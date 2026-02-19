@@ -40,6 +40,10 @@ We are moving from writing software to architecting systems that write, test, an
 
 See [manifesto-agentic-engineering.md](manifesto-agentic-engineering.md) for the full text.
 
+## Contributing
+
+This manifesto improves through evidence, not consensus alone. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on proposing changes, submitting worked patterns, or reporting issues.
+
 ## License
 
 This work is shared for community discussion and adoption. See [LICENSE](LICENSE) for details.
