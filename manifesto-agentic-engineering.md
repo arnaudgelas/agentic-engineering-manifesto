@@ -490,6 +490,17 @@ the system enforces those policies per change. Human review must focus on
 exceptions, high-risk deltas, and statistically valid sampling, not every low-
 risk action.
 
+The manifesto asks for human accountability at scale, which is mathematically
+impossible if your agents are processing thousands of actions. For low-risk and
+medium-risk tiers, remove the human from the loop. Instead, build recursive
+feedback mechanisms where the system is forced to evaluate its own errors, feed
+failures back into its context window, and self-correct or automatically roll
+back.
+
+If your engineers spend all day reviewing agent trace logs, you have simply
+replaced coding with babysitting. True scale requires automated, isolated
+sandboxes where failure is acceptable and recovery is instant.
+
 When incidents occur, accountability is assigned by policy failure mode:
 specification error, verification gap, enforcement failure, or operational
 override. This avoids circular blame on the final approver and drives targeted
