@@ -72,6 +72,16 @@ Failures are data across every phase. Incidents, hallucinations, and policy
 violations must produce post-incident updates to specifications, evaluations,
 tooling constraints, and memory before retry.
 
+```mermaid
+flowchart LR
+    Specify --> Plan --> Execute --> Verify --> Observe --> Learn --> Govern
+    Govern -->|Repeat| Specify
+
+    Verify -.->|Plan / Execution Failure| Plan
+    Verify -.->|Invalid Intent| Specify
+    Observe -.->|Runtime Drift| Specify
+```
+
 ---
 
 ## Twelve Principles
