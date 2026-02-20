@@ -172,13 +172,19 @@ Architecture Decision Records are not prose for humans to skim — they are rule
 that constrain agent behavior. Encode boundaries as machine-enforced policies:
 repository gates, type contracts, lint rules, domain ownership maps, CI checks.
 
-But agents are probabilistic systems. They approximate compliance — they do not
-guarantee it the way a compiler obeys syntax. When architecture is merely
-described rather than enforced, agents will violate it. When architecture is
-enforced but not monitored, violations will go undetected. Build layered
-defenses: static constraints to prevent violations, runtime monitors to detect
-them, and automated recovery to contain them. Expect the boundary to be tested.
-Design for what happens when it is crossed.
+But agents are probabilistic systems. Do not rely on an LLM's system prompt to
+enforce your business rules. Prompts drift, and context windows degrade. They
+approximate compliance — they do not guarantee it the way a compiler obeys
+syntax. When architecture is merely described rather than enforced, agents will
+violate it. When architecture is enforced but not monitored, violations will go
+undetected.
+
+Build deterministic infrastructure wrappers around your probabilistic AI. Enforce
+permissions, repository gates, API rate limits, and data access at the system
+level. If an agent tries to execute a destructive command, the infrastructure—not
+the AI's internal logic—must block it. This contains your blast radius and
+protects against prompt injection, hallucination loops, and poisoned memory banks.
+Expect the boundary to be tested. Design for what happens when it is crossed.
 
 Domain-Driven Design gives each swarm a bounded context — what it owns, where
 code belongs, what is forbidden to reinvent. Retrieval is untrusted input; treat
