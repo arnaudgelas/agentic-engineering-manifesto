@@ -548,7 +548,7 @@ At this phase, teams should begin contract-aware prompting: agents produce
 assertions and pre/postconditions with code, even before full proof pipelines
 are in place.
 
-**Phase 4 — Governed Agentic Delivery.** Agents operate with basic guardrails:
+**Phase 4 — Agentic Delivery.** Agents operate with basic guardrails:
 autonomy tiers are defined, evaluations gate changes, and basic memory persists
 across sessions. But the system is still single-domain, single-swarm, and
 largely reactive. Teams have the discipline to verify outcomes and enforce
