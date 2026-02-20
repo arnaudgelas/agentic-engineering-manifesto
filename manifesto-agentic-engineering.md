@@ -429,15 +429,21 @@ adversarial inputs, you are not chaos-tested.*
 ### 11. Optimize the economics of intelligence
 
 Agentic work is economics-aware. Not every task requires the most capable model.
-Route simple transforms to local or lightweight models. Route routine iteration
-to fast, cheap models. Reserve premium models for final correctness-critical
-decisions.
+The fastest way to burn your runway is to let complex swarms use premium models
+for trivial tasks.
+
+Build a dynamic routing layer. Route simple text transformations or basic logic
+to fast, cheap models (e.g., Haiku or local small language models). Reserve
+expensive, high-reasoning models (e.g., Opus or advanced reasoning tiers)
+strictly for complex orchestration, final code reviews, and critical decision-making.
 
 Model choice is a runtime decision, not a configuration constant. Intelligent
 routing — selecting the right model, the right agent topology, and the right
 resource tier for each task — extends effective capacity by multiples while
-maintaining quality. Cost discipline is not a constraint on capability — it is
-what makes sustained capability possible.
+maintaining quality. This "economics-aware routing" must consider not just token
+cost, but *correlation cost* (avoiding a single point of epistemic failure by
+using diverse models and independent tool chains). Cost discipline is not a
+constraint on capability — it is what makes sustained capability possible.
 
 Inference cost and assurance cost are coupled, not independent knobs. Cheaper
 models may require stronger verification, more retries, or tighter approvals.
@@ -449,6 +455,14 @@ risk. Model errors are often correlated through shared dependencies, similar
 training artifacts, or vendor-side incidents. Routing policies must therefore
 include failure-domain isolation, cross-model canary checks, and explicit data
 handling boundaries per provider.
+
+To mitigate systemic fragility, extend resilience measures across the stack:
+- **Diversity routing** (different models/judges) to reduce correlated
+  hallucinations.
+- **Retrieval canaries** across independent indexes.
+- **Tool redundancy plans** for rate limits/outages.
+
+This is the "organism avoiding monoculture collapse."
 
 Track cost per task, cost per outcome, and cost per quality unit. Make economic
 tradeoffs visible and auditable. When the system learns which routing decisions
