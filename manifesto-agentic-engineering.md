@@ -107,11 +107,23 @@ learned. Anything less is assertion, not evidence.
 Agentic systems face a probability-compounding problem: if each module is
 probabilistically correct with probability `p`, a system of `N` modules has
 roughly `p^N` correctness. At scale, testing alone cannot offset this
-multiplicative risk.
+multiplicative risk. This failure mode forces multi-agent swarms to build explicit
+cross-verification between agents to break the compounding error chain.
 
 This simplified model assumes independent failures. Real agentic systems often
-have correlated failures through shared models, shared context, and shared
-tooling, which can make system-level risk worse than `p^N` suggests.
+have correlated failures that testing or proving alone cannot fix. A clearer
+failure-domain decomposition is required:
+- **Correlated model failure**: The same base model is used everywhere, making
+reasoning blind spots systemic.
+- **Correlated retrieval failure**: The same poisoned or stale knowledge base
+shard feeds multiple agents.
+- **Correlated tool failure**: The same flaky integration or API rate limit
+blocks the entire swarm.
+- **Correlated governance failure**: The same reviewer fatigue or policy
+misconfiguration rubber-stamps errors.
+
+These shared dependencies mean system-level risk is often much worse than `p^N`
+suggests.
 
 This does not mean full formal verification is a near-term default for every
 team. It means assurance must scale with blast radius and system size.
