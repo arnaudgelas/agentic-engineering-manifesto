@@ -86,9 +86,6 @@ flowchart LR
 
 ## Twelve Principles
 
-Minimum bars define baseline engineering discipline. Advanced bars indicate
-recommended direction as autonomy, scale, and risk increase.
-
 ### 1. Outcomes are the unit of work
 
 Progress is measured by the cycle **Outcome → Evidence → Learning** — not by
@@ -111,90 +108,73 @@ evidence, it is not done.*
 
 Requirements, constraints, and acceptance criteria must be versioned,
 reviewable, and machine-readable — because they drive agent behavior directly.
-We do not prompt agents; we architect them. But specifications are not written
-once and handed down. They are hypotheses that sharpen as agents explore the
-problem space and evidence accumulates. A specification starts as intent and
-constraints, then tightens through iterative refinement: specify, execute,
-evaluate, adjust.
-
-Vague intent produces vague results — but so does rigid intent that ignores what
-agents discover during execution. Express what must be true when the work is
-complete. Express what is forbidden. Let the swarm find the path. When the path
-reveals that the spec was wrong, update the spec and run again.
+Specifications are hypotheses that sharpen as agents explore the problem space
+and evidence accumulates. Express what must be true when the work is complete.
+Express what is forbidden. Let the swarm find the path. When the path reveals
+that the spec was wrong, update the spec and run again.
 
 *Minimum bar: If a specification cannot be versioned, reviewed, and revised
 based on execution evidence, it is a wish, not an engineering artifact.*
 
 ### 3. Architecture is defense-in-depth, not a document
 
-Domain boundaries define what agents may do and what they must not do.
-Architecture Decision Records are not prose for humans to skim — they are rules
-that constrain agent behavior. Encode boundaries as machine-enforced policies:
-repository gates, type contracts, lint rules, domain ownership maps, CI checks.
+Domain boundaries define what agents may do and what they must not do. Encode
+boundaries as machine-enforced policies: repository gates, type contracts, lint
+rules, domain ownership maps, CI checks.
 
 But agents are probabilistic systems. Do not rely on an LLM's system prompt to
-enforce your business rules. Prompts drift, and context windows degrade. They
-approximate compliance — they do not guarantee it the way a compiler obeys
-syntax. When architecture is merely described rather than enforced, agents will
-violate it. When architecture is enforced but not monitored, violations will go
-undetected.
+enforce your business rules. Build deterministic infrastructure wrappers around
+your probabilistic AI. Enforce permissions, repository gates, API rate limits,
+and data access at the system level. Expect the boundary to be tested. Design
+for what happens when it is crossed.
 
-Build deterministic infrastructure wrappers around your probabilistic AI. Enforce
-permissions, repository gates, API rate limits, and data access at the system
-level. If an agent tries to execute a destructive command, the infrastructure—not
-the AI's internal logic—must block it. This contains your blast radius and
-protects against prompt injection, hallucination loops, and poisoned memory banks.
-Expect the boundary to be tested. Design for what happens when it is crossed.
+Deterministic wrappers catch structural failures — unauthorized access, schema
+violations, forbidden operations. They cannot catch semantic failures — an agent
+that writes syntactically valid but logically wrong code. That is why
+architecture is *defense-in-depth*, not a single layer: wrappers catch
+structural violations (Principle 3), evaluations catch semantic errors
+(Principle 8), and observability catches behavioral drift (Principle 9). No
+single layer catches everything. All three must hold.
 
 *Minimum bar: If a boundary is described but not enforced at runtime with
 automated detection and recovery, it is not architecture — it is documentation.*
 
 ### 4. Right-size the swarm to the task
 
-Prefer specialized agents — planner, builder, tester, reviewer, security
-auditor, operator — coordinated through shared contracts and state. But do not
-default to maximum parallelism. A single well-evaluated agent with excellent
+Prefer specialized agents coordinated through shared contracts and state. But do
+not default to maximum parallelism. A single well-evaluated agent with excellent
 tools often outperforms an expensive, uncoordinated swarm. Scale agents to
 complexity, not to ambition.
 
-Parallelize exploration and analysis. Serialize decisions that change shared
-state. Coordination is never free: shared state must be typed, versioned, and
-reconciled. Contracts must be logged. Domain boundaries must prevent collisions.
-Without these, a swarm is a mob — agents duplicating work, producing conflicting
-diffs, or interpreting constraints inconsistently.
-
 Design conflict resolution, not just parallelism. Swarms propose; a single
-commit path commits. Choose the simplest topology that solves the problem —
-single agent, pipeline, hierarchy, or mesh — and graduate to more complex
-coordination only when evidence shows it is needed.
+commit path commits. Choose the simplest topology that solves the problem and
+graduate to more complex coordination only when evidence shows it is needed.
 
 *Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.*
 
 ### 5. Autonomy is a tiered budget, not a switch
 
-Grant permissions by risk tier, least privilege, and blast-radius limits. Tools
-are capabilities; audit tool access and grant least privilege. Make risky
-actions reversible or approval-gated. Agents behave like serverless functions,
-not employees: spin up for a guarded task, verify the result, and terminate.
-Long-lived agents are an exception that requires explicit justification,
-heartbeat monitoring, and drift controls.
+Grant permissions by risk tier, least privilege, and blast-radius limits. Agents
+behave like serverless functions, not employees: spin up for a guarded task,
+verify the result, and terminate.
 
-Autonomy operates in explicit tiers:
+Autonomy operates in explicit governance tiers — each defining who approves,
+what evidence is required, and what blast radius is acceptable:
 
-**Tier 1 — Observe.** Agents analyze and propose. Changes are reviewed post-hoc.
-Blast radius: none.
+**Tier 1 — Observe.** Agents analyze and propose. Blast radius: none.
 
 **Tier 2 — Branch.** Agents write to isolated branches. Humans approve merges.
 Blast radius: contained.
 
 **Tier 3 — Commit.** Agents take production-impacting actions with explicit
-human approval, attached rollback plans, and verified evidence of constraint
-compliance. Blast radius: governed.
+human approval, attached rollback plans, and verified evidence. Blast radius:
+governed.
 
-The human role is to define the specification, set the tier, and own the outcome
-— not to supervise every intermediate step. But autonomy without governance is
-negligence. Calibrate the tier to the stakes.
+Within each tier, define granular permissions: read production data but not
+write, deploy to canary but not full rollout, modify test code but not
+application code, change configuration but not schema. Tiers define the
+governance level; permissions define the allowed actions within that level.
 
 *Minimum bar: If you cannot reconstruct an agent's reasoning at any tier, your
 autonomy model has failed.*
@@ -204,24 +184,18 @@ autonomy model has failed.*
 An agent without memory is a liability. But knowledge and memory are not the
 same thing, and conflating them is dangerous.
 
-**Knowledge** is ground truth: code, documentation, Architecture Decision
-Records, formal contracts and invariants, domain constraints. It is versioned,
-deterministic, and authoritative. It changes through governed processes.
+**Knowledge** is ground truth: code, documentation, ADRs, formal contracts,
+domain constraints. It is versioned, deterministic, and authoritative.
 
 **Learned memory** is heuristic: reasoning patterns, incident learnings, routing
-preferences, team-specific conventions. It is probabilistic, subject to decay,
-and requires active curation. It changes through feedback loops.
+preferences. It is probabilistic, subject to decay, and requires active
+curation, including provenance, expiration, compression, rollback, and domain
+scoping.
 
-Both are mandatory. But they are governed differently. Knowledge is persistent
-and version-controlled. Learned memory must support provenance (where did this
-come from?), expiration (when does this stop being valid?), compression (how do
-we keep signal without drowning in noise?), rollback (how do we undo a poisoned
-lesson?), and domain scoping (what context does this apply to?).
-
-Memory can be poisoned. Every memory entry needs provenance and governance. An
-agent that remembers too much hallucinates from noise. An agent that remembers
-nothing repeats every mistake. If mistakes repeat, improve the loop:
-specifications, evaluations, tools, or memory. Diagnosis precedes blame.
+The practical test: if it changes through governed processes (pull requests, ADR
+reviews, schema migrations), it is knowledge. If it changes through feedback
+loops (agent learning, incident adaptation, routing optimization), it is
+learned memory. The governance mechanism determines the classification.
 
 *Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
 not memory — it is a liability.*
@@ -230,15 +204,13 @@ not memory — it is a liability.*
 
 If the knowledge store is polluted with bad embeddings or stale data, the agent
 hallucinates — no matter how clean the code. Context quality and code quality
-are coupled; neither survives without the other. Context is now a first-class
-dependency, engineered with the same rigor as code: versioned, tested, and
-performance-benchmarked.
+are coupled. Context is a first-class dependency, engineered with the same
+rigor as code: versioned, tested, and performance-benchmarked.
 
-Context retrieval must be fast enough to sustain the reasoning loop. If an agent
-takes ten seconds to find context, the thought chain breaks. Invest in retrieval
-performance the way you once invested in build performance. Strict latency bounds,
-optimized indices, and tiered storage are not luxuries. They are what make the
-reasoning loop viable.
+Context retrieval must be fast enough to sustain the reasoning loop. Context
+windows are finite and reasoning quality degrades as low-signal context
+accumulates. Engineer explicit context budgeting: hierarchical retrieval,
+rolling summaries, state compaction, and authority-weighted pruning.
 
 *Minimum bar: If retrieval takes longer than the reasoning loop tolerates,
 context is broken infrastructure.*
@@ -246,19 +218,22 @@ context is broken infrastructure.*
 ### 8. Evaluations are the contract; proofs are a scale strategy
 
 Every change must preserve or improve evaluation performance. Evaluations are
-not a quality gate at the end — they are the contract between human intent and
-agent behavior. They define what "correct" means in terms the system can verify
-autonomously.
+the contract between human intent and agent behavior. They define what
+"correct" means in terms the system can verify autonomously.
 
-Evaluations evolve with the system. They include happy-path validation,
-adversarial testing, regression coverage, and behavioral checks. Without
-evaluations, you are not iterating — you are guessing. An agent without
-evaluations is a random walk with a language model.
+Evaluations evolve with the system: happy-path validation, adversarial testing,
+regression coverage, and behavioral checks. Without evaluations, you are not
+iterating — you are guessing.
+
+"Proofs" here means formal verification of the contracts and infrastructure
+around agents — not of the agent's reasoning itself. You can prove that a
+retry policy is idempotent, that a state machine has no deadlocks, or that a
+type contract is satisfied. You cannot formally verify what an LLM will decide.
+The value of proofs scales with module count and risk: as more agents interact
+through more contracts, the contracts themselves become worth proving.
 
 *Minimum bar: If evaluations do not include regression cases, they are
-insufficient. Advanced bar: include adversarial cases for externally exposed or
-high-blast-radius systems. For model-judged evaluations, calibrate against
-human-labeled samples on a defined cadence.*
+insufficient.*
 
 ### 9. Observability and interoperability cover reasoning, not just uptime
 
@@ -271,20 +246,15 @@ Traces are not logging. Logging records events. Traces reconstruct reasoning —
 the full chain from specification to decision to action to outcome. They are the
 audit trail that makes agentic systems governable, debuggable, and safe.
 
-If you cannot reconstruct what an agent did and why from traces alone, you
-cannot operate safely at scale. If you cannot detect when an agent has deviated
-from its constraints in near-real-time, your observability is incomplete.
-Instrument the reasoning, not just the infrastructure.
+Observability and interoperability are coupled here because portable
+observability requires interoperable trace formats. You cannot aggregate traces
+across vendor boundaries without standardized contracts, and you cannot debug
+cross-runtime failures without replayable tool logs. They have separate minimum
+bars but share a dependency: without interoperability, observability fragments
+at the system boundary where it matters most.
 
-*Minimum bar: If you cannot answer "why did this happen" from traces alone, you
-are not instrumented.*
-
-Portable agentic systems depend on stable, vendor-neutral tool contracts.
-Standardize tool and resource interfaces so agent runtimes, local automation,
-and remote orchestration can interoperate without custom glue for each provider.
-
-*Minimum bar: If tools cannot be swapped or replayed across runtimes without
-rewriting core workflows, the platform is brittle.*
+*Minimum bar (observability): If you cannot answer "why did this happen" from
+traces alone, you are not instrumented.*
 
 ### 10. Assume emergence; engineer containment
 
@@ -293,41 +263,30 @@ dangerous. Expect nonlinear failures, feedback loops, and phase changes. Build
 guardrails, rate limits, circuit breakers, and safe fallbacks before you need
 them.
 
-When emergence produces useful behavior, capture it — evaluate it, verify it,
-and encode it in memory if it passes. When emergence produces dangerous
-behavior, contain it — circuit-break, roll back, and learn from it. The
-difference between these two outcomes is the quality of your containment
-engineering.
+When emergence produces useful behavior, capture it. When emergence produces
+dangerous behavior, contain it. The difference between these two outcomes is
+the quality of your containment engineering.
 
 *Minimum bar: If you have not tested with tool outages, noisy retrieval, and
 adversarial inputs, you are not chaos-tested.*
 
 ### 11. Optimize the economics of intelligence
 
-Agentic work is economics-aware. Not every task requires the most capable model.
-The fastest way to burn your runway is to let complex swarms use premium models
-for trivial tasks.
+Not every task requires the most capable model. Build a dynamic routing layer.
+Route simple tasks to fast, cheap models. Reserve expensive, high-reasoning
+models for complex orchestration and critical decisions. Model choice is a
+runtime decision, not a configuration constant.
 
-Build a dynamic routing layer. Route simple text transformations or basic logic
-to fast, cheap models (e.g., Haiku or local small language models). Reserve
-expensive, high-reasoning models (e.g., Opus or advanced reasoning tiers)
-strictly for complex orchestration, final code reviews, and critical decision-making.
-
-Model choice is a runtime decision, not a configuration constant. Intelligent
-routing — selecting the right model, the right agent topology, and the right
-resource tier for each task — extends effective capacity by multiples while
-maintaining quality. This "economics-aware routing" must consider not just token
-cost, but *correlation cost* (avoiding a single point of epistemic failure by
-using diverse models and independent tool chains). Cost discipline is not a
-constraint on capability — it is what makes sustained capability possible.
-
-Track cost per task, cost per outcome, and cost per quality unit. Make economic
-tradeoffs visible and auditable. When the system learns which routing decisions
-produce the best cost-quality outcomes, feed that learning back into the router.
+Optimize total cost of correctness — not just inference cost, but the full
+cycle: `inference + verification + governance overhead + incident remediation`.
+Include human costs: review time per tier, context-switching across model
+behaviors, and debugging heterogeneous failure modes in multi-model routing.
+Track cost per task, cost per outcome, and cost per quality unit. When
+governance overhead exceeds the value of the work, that is a signal to simplify,
+not to add more governance.
 
 *Minimum bar: If model choice is a configuration constant instead of a runtime
-decision, you are overspending. Advanced bar: route by expected total cost of
-correctness, not token price.*
+decision, you are overspending.*
 
 ### 12. Accountability requires visibility
 
@@ -383,9 +342,20 @@ justified per outcome.
 
 Anything less is in progress.
 
+This DoD is phase-calibrated, not all-or-nothing. At Phase 3, "verified" means
+tests and a diff; at Phase 5, it means reproducible replay with formal artifacts
+where justified. "Provable" applies only when risk requires it; "economical"
+matters only when routing infrastructure exists. The bar rises with the stakes —
+but at every phase, the question is the same: can you show evidence, not just
+assertions?
+
 **Why it matters:** This forces the system to optimize for actual business
 outcomes rather than raw output volume, killing the illusion of productivity.
 
 ---
 
-*Exploration is a phase. Engineering is a discipline. These principles are not the last word — they are the minimum for a world where systems build, test, and ship their own code under human direction. The question that remains is whether governance can scale as fast as autonomy. We bet it can. This manifesto is how we intend to prove it.*
+*Exploration is a phase. Engineering is a discipline. These principles are not
+the last word — they are the minimum for a world where systems build, test, and
+ship their own code under human direction. The question that remains is whether
+governance can scale as fast as autonomy. We bet it can. This manifesto is how
+we intend to prove it.*
