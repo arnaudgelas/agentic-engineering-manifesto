@@ -670,6 +670,9 @@ justified per outcome.
 
 Anything less is in progress.
 
+**Why it matters:** This forces the system to optimize for actual business
+outcomes rather than raw output volume, killing the illusion of productivity.
+
 ---
 
 ## How to Read This Document
