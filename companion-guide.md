@@ -76,6 +76,20 @@ scope narrows rather than expands, and incident classes trend downward. If each
 loop adds ambiguity or expanding goals without quality improvement, treat it as
 scope drift and reset the boundary.
 
+### Specifications vs. Constraints
+
+Specifications and architectural constraints (Principle 3) operate at different
+layers and change at different speeds. Constraints are invariants — security
+policies, domain ownership boundaries, data integrity rules — that hold across
+specification iterations. Specifications are goals and acceptance criteria that
+evolve within those invariants.
+
+In practice, this means: an agent can propose a revised acceptance criterion
+without governance overhead, but proposing a relaxed constraint triggers a
+governed review (ADR update, policy approval, impact assessment). If your system
+cannot distinguish these two change types, specification iteration will
+silently erode your architectural boundaries.
+
 ---
 
 ## Principle 3 — Architecture: Extended Guidance
