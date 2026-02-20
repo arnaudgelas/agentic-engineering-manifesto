@@ -28,6 +28,25 @@ economics-aware routing.
 
 ---
 
+## What is Agentic Engineering?
+
+Agentic Engineering is the discipline of architecting environments, constraints,
+and feedback loops where autonomous agents can safely plan, execute, and verify
+complex work under human governance.
+
+It is distinct from:
+- **AI Engineering**: Building and training the base models themselves.
+- **Prompt Engineering**: Crafting text inputs to steer model outputs.
+- **AI-Assisted Software Engineering**: Using AI as an autocomplete or co-pilot to
+write human-authored code faster.
+
+Agentic Engineering is about treating **agents as system components** rather
+than as human proxies. It shifts the primary human role from writing code to
+specifying intent, defining verifiable contracts, and operating the system that
+executes the work.
+
+---
+
 ## What This Is — and What It Is Not
 
 This manifesto is not "prompting harder." It is not LLMs running production
