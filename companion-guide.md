@@ -112,12 +112,14 @@ Topology choices must be explicit, for example:
 - **Hierarchy** for clear decomposition with centralized decision checkpoints.
 - **Mesh** for discovery-heavy work where peers benefit from lateral
   coordination.
-- **Bio-inspired swarms (experimental, e.g. bee-hive patterns)** for large
-  search and exploration spaces where many short-lived workers can parallelize
-  collection, triage, and handoff to specialist roles.
 
-Default to single, pipeline, hierarchy, or mesh unless measured results justify
-bio-inspired coordination for a specific workload.
+**Bio-inspired swarms (experimental):** bee-hive patterns and similar
+biologically-inspired coordination models appear in research for large search
+and exploration spaces. These are not production-proven at the time of writing.
+Naming them here is not an endorsement — it is an acknowledgment that teams
+will encounter them. Default to single, pipeline, hierarchy, or mesh unless
+your own measured results on your own workload justify bio-inspired
+coordination.
 
 ### Expected Failure Modes by Topology
 
@@ -193,6 +195,15 @@ architectural constraints, ADR rules, lints, CI gates. Make the knowledge base
 self-improving: let retrieval quality metrics feed back into indexing and
 curation, so the system gets more precise over time rather than more cluttered.
 
+### Tooling Maturity and Adoption
+
+The context engineering standard described here exceeds what most teams can
+build today. No mature ecosystem of context-engineering tooling exists yet.
+Adopt incrementally: start by measuring retrieval quality (relevance, latency,
+staleness), then add context budgeting for long-running tasks, then tiered
+SLOs as scale demands. The principle describes the engineering standard; the
+adoption path acknowledges the gap.
+
 ---
 
 ## Principle 8 — Evaluations & Proofs: Extended Guidance
@@ -264,6 +275,18 @@ reality does. Offline tests are insufficient for systems that operate
 autonomously in the wild. Enforce invariants at runtime with policy checks,
 monitors, and automated intervention.
 
+Chaos testing for agentic systems requires its own safety model:
+- **Steady-state hypothesis**: define expected behavior before injecting faults,
+  so you can detect when the system has left its safe operating envelope.
+- **Blast-radius controls**: isolate chaos experiments to scoped environments,
+  shadow traffic, or canary populations — never inject faults into the full
+  production agent population.
+- **Automated abort conditions**: if the system breaches predefined thresholds
+  (error rate, latency, cost spike), halt the experiment and roll back
+  automatically.
+- **Graduated severity**: start with single-fault injection (one tool outage),
+  then compound faults only after single-fault resilience is proven.
+
 ### Threat Modeling
 
 Threat modeling must explicitly include:
@@ -292,8 +315,20 @@ by using diverse models and independent tool chains).
 
 Inference cost and assurance cost are coupled, not independent knobs. Cheaper
 models may require stronger verification, more retries, or tighter approvals.
-Optimize total cost of correctness (`inference + verification + incident
-remediation`), not inference cost alone.
+
+The full cost model includes:
+- **Inference cost**: tokens, compute, API fees.
+- **Verification cost**: evaluation runs, proof checking, canary deployments.
+- **Governance overhead**: human review time per tier, approval latency, policy
+  maintenance.
+- **Incident remediation**: rollback, diagnosis, constraint updates, re-verification.
+- **Opportunity cost**: delayed decisions from approval queues or routing latency.
+- **Context-switching cost**: debugging heterogeneous failure modes across models
+  and vendors.
+
+Optimize total cost of correctness, not inference cost alone. When governance
+overhead exceeds the value of the work, reduce governance complexity rather than
+adding more layers.
 
 ### Multi-Model Risk
 
@@ -344,8 +379,12 @@ sandboxes where failure is acceptable and recovery is instant.
 
 This is mitigation, not full resolution. Oversight saturation at scale remains
 an open problem: systems can outgrow meaningful human review bandwidth faster
-than governance practices mature. Treat this as an active research and
-operations frontier, not a solved control mechanism.
+than governance practices mature. This is not a caveat buried in extended
+guidance — it is a load-bearing limitation of the entire manifesto. The
+twelve principles are designed to remain useful at any scale, but the
+governance model that binds them (human accountability for production outcomes)
+is bounded by human bandwidth. Treat this as an active research and operations
+frontier, not a solved control mechanism.
 
 ### Incident Attribution
 
