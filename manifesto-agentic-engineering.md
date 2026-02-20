@@ -850,4 +850,7 @@ control complexity and re-baseline autonomy scope.
 
 ---
 
-*Exploration is a phase. Engineering is a discipline. These principles are not the last word — they are the minimum for a world where systems build, test, and ship their own code under human direction. The question that remains is whether governance can scale as fast as autonomy. We bet it can. This manifesto is how we intend to prove it.*
+*Exploration is a phase. Engineering is a discipline. These principles are not the last
+word — they are the minimum for a world where systems build, test, and ship their own
+code under human direction. The question that remains is whether governance can scale as
+fast as autonomy. We bet it can. This manifesto is how we intend to prove it.*
