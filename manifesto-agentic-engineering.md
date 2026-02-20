@@ -298,13 +298,14 @@ performance-benchmarked.
 
 Context retrieval must be fast enough to sustain the reasoning loop. If an agent
 takes ten seconds to find context, the thought chain breaks. Invest in retrieval
-performance the way you once invested in build performance — sub-millisecond
-latency for vector search, optimized indices, and tiered storage are not
-luxuries. They are what make the reasoning loop viable.
+performance the way you once invested in build performance. Strict latency bounds,
+optimized indices, and tiered storage are not luxuries. They are what make the
+reasoning loop viable.
 
-Define SLOs for context and decisions. A practical default is p95 retrieval
-latency under 1 second and p95 end-to-end decision latency under 5 seconds for
-interactive engineering loops, with alerts and rollback policies when breached.
+Define tiered SLO guidance by architecture class (local, remote, hybrid+rerank,
+regulated logging) for context and decisions. Establish practical retrieval and decision
+latency baselines suitable for interactive engineering loops, with alerts and
+rollback policies when breached.
 
 Context windows are finite and reasoning quality degrades as low-signal context
 accumulates. Engineer explicit context budgeting for long-running tasks:
