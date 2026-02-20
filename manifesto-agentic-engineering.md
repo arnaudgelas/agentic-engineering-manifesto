@@ -642,15 +642,19 @@ feedback loop honest under real-world conditions.
 
 ## The Agentic Definition of Done
 
+Tokens generated and tasks dispatched are vanity metrics. "The agent said it
+worked" is not a completed ticket.
+
 A change is **done** when it is:
 
 **Shipped** — deployed or delivered, not just merged.
 
-**Observable** — instrumented so reasoning can be inspected and reconstructed
-from traces.
+**Observable** — instrumented and logged so reasoning can be inspected and
+reconstructed from traces.
 
-**Verified** — passing evaluations including adversarial and regression cases,
-with evidence attached.
+**Verified** — evaluated against regression tests (and adversarial cases),
+with an evidence bundle (diffs, trace IDs, policy check outputs) required for
+every automated merge.
 
 **Provable (when risk requires it)** — formalized invariants and replayable
 proof artifacts attached for critical workflows.
