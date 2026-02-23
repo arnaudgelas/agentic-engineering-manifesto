@@ -10,7 +10,7 @@ The Agile Manifesto was written in 2001 for a world where humans wrote all the c
 
 The industry recognizes this. Multiple manifestos, frameworks, and standards have emerged to fill the vacuum — from Casey West's Agentic Manifesto to the P3 Group's *From Sprints to Swarms*, from AWS Prescriptive Guidance to ISO/IEC 5338. Each gets something right. None of them are complete.
 
-**[Beyond Agile: Why the Software Industry Urgently Needs a New Manifesto](beyond_agile.md)** presents the full case: eight structural failures in Agile's assumptions, a critical analysis of every competing framework, and the argument for why the successor must be simultaneously philosophical, principled, operational, and evolutionary.
+**[Beyond Agile: Why the Software Industry Urgently Needs a New Manifesto](beyond_agile.md)** presents the full case: ten structural failures in Agile's assumptions, a critical analysis of every competing framework, and the argument for why the successor must be simultaneously philosophical, principled, operational, and evolutionary.
 
 This manifesto is that successor.
 
