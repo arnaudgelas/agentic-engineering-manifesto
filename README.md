@@ -56,7 +56,7 @@ Every principle maps to at least one phase. Every phase enforces at least one pr
 
 ### The Case for Change
 
-- **[Beyond Agile](beyond_agile.md)** — Why the Agile Manifesto's assumptions have become structural liabilities, what existing frameworks get right and miss, and the urgent case for a new engineering discipline. Twenty-one cited sources.
+- **[Beyond Agile](beyond_agile.md)** — Why the Agile Manifesto's assumptions have become structural liabilities, what existing frameworks get right and miss, and the urgent case for a new engineering discipline. Twenty cited sources.
 
 ### The Manifesto Suite
 
