@@ -231,3 +231,25 @@ Phase-calibrated evidence examples:
 - **Phase 4**: Phase 3 bundle plus policy checks and incident tags.
 - **Phase 5+**: Phase 4 bundle plus reproducible replay and, where justified,
   formal artifacts.
+
+### ALCOA+ Alignment
+
+Organizations operating under GxP, FDA 21 CFR Part 11, or equivalent regulated
+data-integrity frameworks will recognise that the manifesto's evidence model
+satisfies ALCOA+ by construction:
+
+| ALCOA+ Criterion | Manifesto Mechanism |
+|------------------|---------------------|
+| **Attributable** | Agent identity in every trace; named human domain owner (P12) |
+| **Legible** | Structured, queryable traces — not free-text logs (P9) |
+| **Contemporaneous** | Traces captured at execution time, not reconstructed after the fact |
+| **Original** | Signed provenance for shared state; immutable evidence bundles |
+| **Accurate** | Evaluations as the contract between intent and behavior (P8) |
+| **Complete** | Evidence bundles are phase-gated; incomplete bundles block merge |
+| **Consistent** | Versioned specifications; regression gates enforce non-degradation |
+| **Enduring** | Replayable tool logs; trace retention as infrastructure requirement |
+| **Available** | Traces must be queryable and aggregatable for audit at any time (P9) |
+
+This mapping is intentional, not coincidental. The manifesto was designed so that
+governed agentic delivery produces records that meet regulated-industry
+data-integrity standards without a separate compliance overlay.

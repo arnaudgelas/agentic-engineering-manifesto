@@ -520,6 +520,29 @@ staleness), then add context budgeting for long-running tasks, then tiered
 SLOs as scale demands. The principle describes the engineering standard; the
 adoption path acknowledges the gap.
 
+### The Emerging Agent Stack
+
+Recent frontier-lab writing is converging on a useful systems frame: the agent
+is not just a model with a prompt. The operational stack increasingly looks
+like:
+
+- **Model** — the reasoning engine
+- **Context layer** — retrieval, summaries, memory, and task framing
+- **Harness** — execution loop, tool orchestration, constraints, checkpoints,
+  and cleanup
+- **Tools / APIs** — the external actions available to the agent
+- **Environment / runtime** — the bounded execution context, permissions,
+  traces, and operational controls
+
+This is mostly a vocabulary clarification, not a new principle. The manifesto's
+contribution is that it provides the governance model across this stack. P7
+governs the context layer directly, but its quality depends on the harness
+that selects and compacts context, the tools that retrieve it, and the runtime
+that preserves or constrains state across sessions. In practice, treating
+"context engineering" as a standalone discipline without connecting it to the
+harness and runtime is how teams end up with excellent retrieval feeding
+poorly-governed execution loops.
+
 ---
 
 ## Principle 8 — Evaluations & Proofs: Extended Guidance
