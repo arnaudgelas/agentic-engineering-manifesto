@@ -52,3 +52,25 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 <a id="ref-22"></a>[22] Y. Pan et al., "SWE-CI: Evaluating LLM-based Agents in Continuous Integration Environments," *arXiv:2603.03823*, Mar 2026. [A] https://arxiv.org/abs/2603.03823
 
 <a id="ref-23"></a>[23] D. Fretz, "The 5 Levels of AI Agentic Software Development," *LinkedIn*, Feb 2026. [B] https://www.linkedin.com/pulse/5-levels-ai-agentic-software-development-dominik-fretz-mba-pmp-xhvze/
+
+<a id="ref-24"></a>[24] OpenAI, "Harness engineering: leveraging Codex in an agent-first world," *OpenAI*, Feb 2026. [I] https://openai.com/index/harness-engineering/
+
+<a id="ref-25"></a>[25] Anthropic, "Demystifying evals for AI agents," *Anthropic Engineering*, Jan 2026. [I] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+
+<a id="ref-26"></a>[26] D. Bursztein and B. Lewis, "Building agents with the Claude Agent SDK," *Claude Blog*, Jul 2025. [I] https://claude.com/blog/building-agents-with-the-claude-agent-sdk
+
+<a id="ref-27"></a>[27] C. Horne, "Writing effective tools for AI agents," *Anthropic Engineering*, Sep 2025. [I] https://www.anthropic.com/engineering/writing-tools-for-agents
+
+<a id="ref-28"></a>[28] A. Zhang et al., "Building a C compiler with a team of parallel Claudes," *Anthropic Engineering*, Feb 2026. [I] https://www.anthropic.com/engineering/building-c-compiler
+
+<a id="ref-29"></a>[29] B. Böckeler, "Harness Engineering," *Martin Fowler*, Feb 2026. [B] https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html
+
+<a id="ref-30"></a>[30] B. Böckeler, "Context Engineering for Coding Agents," *Martin Fowler*, Feb 2026. [B] https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html
+
+<a id="ref-31"></a>[31] K. Morris, "Humans and Agents in Software Engineering Loops," *Martin Fowler*, Mar 2026. [B] https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents.html
+
+<a id="ref-32"></a>[32] Google Cloud, "Vertex AI Agent Builder," *Google Cloud*, 2026. [I] https://cloud.google.com/products/agent-builder
+
+<a id="ref-33"></a>[33] Google Cloud, "Agent Development Kit overview," *Google Cloud Docs*, 2026. [I] https://docs.cloud.google.com/agent-builder/agent-development-kit/overview
+
+<a id="ref-34"></a>[34] G. Franceschini et al., "Build with Google Antigravity, our new agentic development platform," *Google Developers Blog*, Apr 2025. [I] https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/
