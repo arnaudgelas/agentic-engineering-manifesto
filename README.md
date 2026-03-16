@@ -58,7 +58,7 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 ## The Agentic Loop
 
-**Specify &rarr; Plan &rarr; Execute &rarr; Verify &rarr; Observe &rarr; Learn &rarr; Govern &rarr; Repeat**
+**Specify &rarr; Design &rarr; Plan &rarr; Execute &rarr; Verify &rarr; Validate &rarr; Observe &rarr; Learn &rarr; Govern &rarr; Repeat**
 
 ---
 

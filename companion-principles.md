@@ -95,10 +95,12 @@ dangerous because they can generate feature-shaped output quickly — complete
 with passing tests, clean architecture, and a full evidence bundle — while the
 underlying specification was never worth implementing.
 
-The Agentic Loop addresses validation through the Observe → Learn → Govern
-cycle: runtime behavior, usage data, and business outcomes feed back into
-specification revision. But this only works if teams treat the Observe phase
-as a validation checkpoint, not just a technical monitoring step. Concretely:
+The Agentic Loop addresses validation explicitly through the Validate →
+Observe → Learn → Govern cycle: after verification confirms technical
+correctness, validation checks fitness for real-world use; runtime behavior,
+usage data, and business outcomes then feed back into specification revision.
+But this only works if teams treat Validate as a distinct discipline from
+Verify, not just a technical monitoring step. Concretely:
 
 - **Frame the work in context before specifying.** Is this a proof of concept,
   a minimum viable feature, or a production commitment? Define "good enough"

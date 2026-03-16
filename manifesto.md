@@ -63,10 +63,25 @@ participants in the engineering process.
 
 Every principle in this manifesto serves a single feedback cycle:
 
-**Specify → Plan → Execute → Verify → Observe → Learn → Govern → Repeat**
+**Specify → Design → Plan → Execute → Verify → Validate → Observe → Learn → Govern → Repeat**
 
 This loop is not a waterfall. Any phase can trigger a return to an earlier one
 based on evidence. The loop is the system. The principles are how you keep it honest.
+
+- **Specify** defines what to build and why.
+- **Design** architects how to build it: boundaries, topology, constraints.
+- **Plan** decomposes the design into executable steps.
+- **Execute** carries out the plan within bounded autonomy.
+- **Verify** checks the output against the specification (did we build it right?).
+- **Validate** checks the outcome against real-world need (did we build the right thing?).
+- **Observe** monitors runtime behavior, drift, and cost.
+- **Learn** updates knowledge, memory, and models from observations.
+- **Govern** applies policy, accountability, and change control.
+
+Verification and validation are distinct disciplines. Verification is
+technical correctness against the spec. Validation is fitness for intended use
+in the real world. An agent can pass every verification check and still fail
+validation. Both are required.
 
 Failures are data across every phase. Incidents, hallucinations, and policy
 violations must produce post-incident updates to specifications, evaluations,
@@ -74,11 +89,13 @@ tooling constraints, and memory before retry.
 
 ```mermaid
 flowchart LR
-    Specify --> Plan --> Execute --> Verify --> Observe --> Learn --> Govern
+    Specify --> Design --> Plan --> Execute --> Verify --> Validate --> Observe --> Learn --> Govern
     Govern -->|Repeat| Specify
 
     Verify -.->|Plan / Execution Failure| Plan
     Verify -.->|Invalid Intent| Specify
+    Validate -.->|Wrong Thing Built| Specify
+    Validate -.->|Design Flaw| Design
     Observe -.->|Runtime Drift| Specify
 ```
 
