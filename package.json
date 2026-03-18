@@ -1,0 +1,28 @@
+{
+  "name": "manifesto",
+  "version": "1.0.0",
+  "description": "Principles for building systems where humans steer intent, agents execute within governed boundaries, and verified outcomes are the only measure that matters.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:pdf": "node build-pdf.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnaudgelas/agentic-engineering-manifesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnaudgelas/agentic-engineering-manifesto/issues"
+  },
+  "homepage": "https://github.com/arnaudgelas/agentic-engineering-manifesto#readme",
+  "dependencies": {
+    "marked": "^17.0.4"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.39.1"
+  }
+}
