@@ -142,6 +142,10 @@ This manifesto improves through evidence, not consensus alone. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on proposing changes,
 submitting worked patterns, or reporting issues.
 
+## Authors
+
+See [AUTHORS.md](AUTHORS.md) for the list of contributors.
+
 ## License
 
 This work is shared for community discussion and adoption. See [LICENSE](LICENSE)
