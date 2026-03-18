@@ -14,7 +14,7 @@ The industry has not been idle. Multiple manifestos and frameworks have emerged 
 
 **What it gets right:** The shift from verification ("did it do what I said?") to validation ("did it do what I wanted?"). The Agentic Delivery Lifecycle (ADLC) across five non-linear phases. The "Determinism Gap" — the fundamental difference between a system whose output is known in advance and one whose output is discovered in real-time. The emphasis on continuous flow over time-boxed sprints. The insistence that human engineers and agents must work together continuously, rejecting fully unsupervised delegation <sup>[4](beyond-agile-sources.md#ref-4)</sup>.
 
-**What it misses:** No treatment of memory as infrastructure — West does not distinguish knowledge from learned memory or address memory governance. No economics-aware routing — no recognition that model choice is a runtime decision with cost implications <sup>[17](beyond-agile-sources.md#ref-17)</sup>. No framework for formal verification or proof generation — and this matters because when execution is non-deterministic, at least one layer of the verification pyramid must be provably correct; emerging executable specification languages and verification-aware compilers are beginning to make this feasible, though production-scale evidence remains limited <sup>[12](beyond-agile-sources.md#ref-12)</sup><sup>[19](beyond-agile-sources.md#ref-19)</sup>. No treatment of swarm topology as an engineering decision. The manifesto reads as a philosophical reframe of Agile rather than a new engineering discipline.
+**What it misses:** No treatment of memory as infrastructure — West does not distinguish knowledge from learned memory or address memory governance. No economics-aware routing — no recognition that model choice is a runtime decision with cost implications <sup>[17](beyond-agile-sources.md#ref-17)</sup>. No framework for formal verification or proof generation — and this matters because when execution is non-deterministic, at least one layer of the verification pyramid must be provably correct; executable specification languages and model checkers are now production-viable for this purpose <sup>[12](beyond-agile-sources.md#ref-12)</sup><sup>[19](beyond-agile-sources.md#ref-19)</sup>. No treatment of swarm topology as an engineering decision. The manifesto reads as a philosophical reframe of Agile rather than a new engineering discipline.
 
 ## The SASE Framework (Academic SE 3.0)
 
@@ -45,3 +45,41 @@ The industry has not been idle. Multiple manifestos and frameworks have emerged 
 **What it gets right:** Among the first comprehensive international frameworks for AI system lifecycle processes <sup>[20](beyond-agile-sources.md#ref-20)</sup>. The integration of Model Engineering into standard Implementation processes. The mandate for Continuous Validation — acknowledging that AI agents can suffer from context drift, hallucination, and data staleness over time. The emphasis on bias mitigation, transparency, and purpose-binding for training data <sup>[15](beyond-agile-sources.md#ref-15)</sup>.
 
 **What it misses:** Designed for AI systems broadly, not for agentic engineering specifically. No treatment of multi-agent coordination, swarm topologies, or inter-agent trust. No framework for memory governance, economics-aware routing, or self-improving systems. Compliance-oriented rather than engineering-oriented.
+
+## The Agentic AI Foundation and the Emerging Standards Stack
+
+Since the frameworks above were published, the most significant structural
+development has been institutional: in December 2025, the Linux Foundation
+launched the Agentic AI Foundation (AAIF), co-founded by Anthropic, OpenAI,
+Google, Microsoft, AWS, and Block <sup>[35](beyond-agile-sources.md#ref-35)</sup>.
+MCP, A2A, AGENTS.md, and goose were donated as founding projects.
+
+This matters because the competing frameworks above all suffer from the same
+gap: they describe what agentic engineering needs without naming the protocols
+that implement it. The industry is now actively standardizing into four
+complementary layers, all under neutral governance:
+
+- **MCP** (Model Context Protocol) — agent-to-tool connectivity. Defines typed
+  schemas, auth boundaries, and replayable tool
+  logs <sup>[36](beyond-agile-sources.md#ref-36)</sup>.
+- **A2A** (Agent-to-Agent Protocol) — agent discovery, task delegation, and
+  cross-framework collaboration <sup>[37](beyond-agile-sources.md#ref-37)</sup>.
+- **Agent Skills** — capability definition via SKILL.md files consumed at
+  runtime <sup>[38](beyond-agile-sources.md#ref-38)</sup>.
+- **AGENTS.md** — repository-level machine-readable constraints for coding
+  agents <sup>[39](beyond-agile-sources.md#ref-39)</sup>.
+
+None of the six frameworks reviewed above anticipated this convergence. The
+Agentic Engineering Manifesto does not prescribe specific protocols — its
+contribution is the governance model that sits across all four layers. But the
+existence of AAIF validates the manifesto's core thesis: vendor-neutral,
+interoperable architecture is not aspirational but actively being built.
+
+A parallel movement reinforces the shift: specification-driven development (SDD)
+frameworks are emerging as the dominant workflow pattern for agentic coding.
+Multiple widely-adopted open-source frameworks <sup>[43](beyond-agile-sources.md#ref-43)</sup><sup>[44](beyond-agile-sources.md#ref-44)</sup><sup>[45](beyond-agile-sources.md#ref-45)</sup><sup>[46](beyond-agile-sources.md#ref-46)</sup>
+now enforce the same discipline — write the specification before the agent writes
+the code. This effectively inverts Agile's founding principle of "working
+software over comprehensive documentation." In agentic workflows, comprehensive
+specification *is* the precondition for working software. The documentation is
+not overhead; it is the control surface.

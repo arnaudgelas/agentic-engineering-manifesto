@@ -73,6 +73,32 @@ postconditions, invariants), then iterate in a tight loop: specify, implement,
 attempt to prove, fail, refine, repeat. Proof failure is not a blocker to hide;
 it is a steering signal.
 
+### Specifications as Agent-Consumable Artifacts
+
+The specification-as-living-artifact pattern now has concrete implementations.
+Agent Skills (SKILL.md files — structured metadata plus step-by-step
+instructions that agents consume at runtime) and AGENTS.md (repository-level
+machine-readable constraints) are now widely adopted across major IDEs and coding
+agents. Both formats validate the core P2 claim: specifications that agents can
+parse directly reduce ambiguity, improve adherence, and make convergence
+measurable. Skills define *what* an agent can do; AGENTS.md defines *how* it
+must behave within a codebase. Together with agent-to-tool protocols (which
+define *how* agents connect to external capabilities), they form the
+specification layer of the emerging standards stack.
+
+### The Specification-Driven Development Movement
+
+The specification-first pattern is not just an architectural recommendation — it
+is converging as the dominant practitioner workflow. A wave of open-source
+specification-driven development (SDD) frameworks has emerged, all built on the
+same thesis P2 advocates: write the spec before the agent writes the code.
+The pattern across these frameworks is consistent: specifications are treated as
+code artifacts, baked into workflows, and consumed by agents before
+implementation begins — whether through specify-plan-implement pipelines,
+state-machine-governed iteration, or composable skill-driven workflows. This
+validates P2's core claim at practitioner scale. See
+[Sources](beyond-agile-sources.md) for specific framework references.
+
 ### Convergence Criteria
 
 Specification evolution needs convergence criteria. Treat a specification as
@@ -193,6 +219,11 @@ code belongs, what is forbidden to reinvent. Retrieval is untrusted input;
 treat context injection as a threat vector. This reduces swarm collisions and
 hardens the system against both accidental drift and adversarial conditions.
 
+AGENTS.md files (OpenAI's open standard, now under AAIF governance) offer a
+practical mechanism for encoding architectural constraints at the repository
+level. They function as machine-readable ADRs that coding agents respect at
+runtime — a concrete implementation of architecture as defense-in-depth.
+
 ---
 
 ## Principle 4 — Swarm Topology: Extended Guidance
@@ -214,6 +245,17 @@ Naming them here is not an endorsement — it is an acknowledgment that teams
 will encounter them. Default to single, pipeline, hierarchy, or mesh unless
 your own measured results on your own workload justify bio-inspired
 coordination.
+
+### Inter-Agent Communication Standards
+
+Agent-to-agent protocols (notably A2A, now under AAIF governance) are
+standardizing agent discovery, task lifecycle management, and cross-framework
+collaboration. The manifesto's governance model — tiers, traces,
+accountability — sits above these protocols: the protocol handles agent-level
+coordination; the manifesto's principles govern what those agents are allowed to
+do and how their decisions are audited. Teams adopting multi-agent topologies
+should treat communication protocols as the coordination layer and the
+manifesto's tier model as the authorization layer.
 
 ### Expected Failure Modes by Topology
 
@@ -245,6 +287,23 @@ Architect–Programmer topology when the task horizon exceeds what a single
 context window can sustain, or when specification quality is the primary
 bottleneck. See the [Architect Pattern](companion-principles.md#the-architect-pattern-agent-generated-specifications)
 in the P2 extended guidance for operational detail.
+
+### Topology as a Runtime Concern
+
+The topology choices above are presented as design-time decisions, and for most
+teams at Phase 3–4 they are. But the frontier is moving toward adaptive topology
+selection — systems that choose coordination patterns at runtime based on task
+characteristics, resource availability, and learned performance data. Indicators
+of this shift include: federation hubs that route work across heterogeneous agent
+pools, ephemeral workers that share persistent state rather than maintaining
+their own, and consensus-backed coordination that replaces static orchestrator
+hierarchies.
+
+Teams should design their topology as a deliberate architectural choice today,
+but build the abstraction layer that allows the topology to change without
+rebuilding the system. The practical test: can you switch from hierarchy to mesh
+for a given task class without rewriting coordination logic? If not, the topology
+is hardcoded, and you will pay for that rigidity as the ecosystem matures.
 
 ### Coordination Discipline
 
@@ -312,6 +371,16 @@ The human role is to define the specification, set the tier, and own the
 outcome — not to supervise every intermediate step. But autonomy without
 governance is negligence. Calibrate the tier to the stakes.
 
+### Infrastructure-Level Tier Enforcement in Practice
+
+Enterprise agent runtimes are demonstrating what infrastructure-level tier
+enforcement looks like at scale: declarative permission policies (typically
+YAML or equivalent), audit logs for every agent action, and guardrail
+constraints that the agent cannot override regardless of prompt instructions.
+This is the pattern the manifesto requires — enforcement at the infrastructure
+layer, not the prompt layer. Tiered autonomy is only meaningful when the
+infrastructure, not the agent, enforces the boundaries.
+
 ### Auditing Tier Compliance
 
 Tier boundaries are only meaningful if compliance is verified. Implement:
@@ -370,6 +439,47 @@ practice:
   namespace or tag memory entries by domain, and enforce scope boundaries in
   retrieval queries. Cross-domain memory should be explicitly promoted, not
   implicitly leaked.
+
+### Emerging Memory Infrastructure
+
+The memory infrastructure the manifesto calls for is beginning to materialize.
+Git-native agent memory systems demonstrate what governance-aware memory looks
+like in practice: provenance (every entry traceable to its source), rollback
+(versioned snapshots with merge-safe conflict resolution), and domain scoping
+(namespace isolation preventing cross-agent collisions in multi-branch
+workflows). Dependency-graph approaches validate the P7 claim that context must
+be engineered, not concatenated — tracking explicit task dependencies rather than
+relying on flat retrieval. Teams evaluating memory infrastructure should assess
+whether their chosen solution provides at minimum: provenance metadata, versioned
+snapshots, and scoped namespaces.
+
+### Beyond Retrieval: Persistent Agent Cognition
+
+The manifesto frames memory governance in terms of retrieval infrastructure —
+provenance, expiration, rollback, scoping. This is necessary but no longer
+sufficient to describe the frontier. The emerging memory discipline includes
+three layers:
+
+- **Retrieval memory** — the layer the manifesto already covers well. Embedding
+  stores, vector search, scoped retrieval with SLOs. This is the "better RAG"
+  layer.
+- **Skill memory** — durable behavioral patterns agents acquire through
+  experience, stored as reusable artifacts rather than retrieved context. An
+  agent that has solved a class of problem before should carry forward not just
+  the facts it retrieved but the approach that worked. Skill memory is closer
+  to procedural knowledge than to information retrieval.
+- **Causal and trajectory memory** — the ability to store not just what happened
+  but why it worked or failed, and to consolidate trajectories across tasks into
+  generalizable reasoning patterns. This is learning in the operational sense:
+  the agent's future behavior improves based on structured reflection over past
+  behavior.
+
+All three layers require the same governance properties (provenance, expiration,
+rollback, scoping). But they differ in what "poisoning" means and how rollback
+works. Reverting a bad embedding is straightforward. Reverting a bad learned
+skill is harder — the skill may have influenced downstream decisions that
+themselves became learned patterns. Teams building memory infrastructure should
+design for rollback at each layer independently.
 
 ### The Knowledge-Memory Boundary in Practice
 
@@ -516,11 +626,13 @@ traditional single-iteration metrics miss.
 ### Tooling Maturity and Adoption
 
 The context engineering standard described here exceeds what most teams can
-build today. No mature ecosystem of context-engineering tooling exists yet.
-Adopt incrementally: start by measuring retrieval quality (relevance, latency,
-staleness), then add context budgeting for long-running tasks, then tiered
-SLOs as scale demands. The principle describes the engineering standard; the
-adoption path acknowledges the gap.
+build today. The tooling ecosystem is maturing rapidly — MCP, Agent Skills, and Git-native
+agent memory systems represent early but widely adopted solutions — though
+production-grade governance tooling remains nascent. Adopt incrementally: start
+by measuring retrieval quality (relevance, latency, staleness), then add context
+budgeting for long-running tasks, then tiered SLOs as scale demands. The
+principle describes the engineering standard; the adoption path acknowledges the
+gap.
 
 ### The Emerging Agent Stack
 
@@ -545,6 +657,26 @@ that preserves or constrains state across sessions. In practice, treating
 harness and runtime is how teams end up with excellent retrieval feeding
 poorly-governed execution loops.
 
+As of early 2026, four open standards are crystallizing around this stack, all
+under the Agentic AI Foundation (AAIF, launched December 2025 by the Linux
+Foundation, co-founded by Anthropic, OpenAI, Google, Microsoft, AWS, and Block):
+
+- **MCP** (Model Context Protocol) — agent-to-tool connectivity at the
+  tools/APIs layer. The de facto standard for how agents discover and invoke
+  external capabilities.
+- **A2A** (Agent-to-Agent, Google) — agent-to-agent communication at the
+  coordination layer. Agent Cards for discovery, task lifecycle management,
+  cross-framework collaboration.
+- **Agent Skills** (Anthropic) — capability definition at the harness layer.
+  SKILL.md files that encode domain expertise, constraints, and procedures
+  agents consume at runtime.
+- **AGENTS.md** (OpenAI) — repository-level constraints at the environment
+  layer. Machine-readable architectural guidance that coding agents respect.
+
+The manifesto's governance model — tiers, traces, accountability, evaluations —
+sits across all four standards. No single protocol provides governance; the
+manifesto's principles provide the governance framework that connects them.
+
 ---
 
 ## Principle 8 — Evaluations & Proofs: Extended Guidance
@@ -563,6 +695,17 @@ with different cost curves:
 These are separate disciplines. Use them intentionally: tests by default,
 formal methods first on critical paths and high-blast-radius components, then
 expand coverage where incident data and economics justify it.
+
+The "proofs are a scale strategy" claim is now operationally achievable, not
+just theoretically sound. Executable specification languages allow teams to
+write specifications that are simultaneously human-readable documentation,
+testable assertions, and inputs to model checkers — collapsing the gap between
+"we wrote a spec" and "we proved a property." Model-based testing workflows
+can generate test suites directly from executable specifications, connecting
+formal models to CI pipelines without requiring teams to become proof engineers.
+The practical entry point is not theorem proving but executable specs on one
+critical path — the same scope recommended in the adoption playbook's formal
+contracts step.
 
 ### LLM-as-Judge Risk
 
@@ -608,6 +751,17 @@ evaluation is more expensive to maintain (two separate artifact sets: developmen
 specs and evaluation scenarios) but eliminates the most insidious form of
 evaluation theater — evaluations that pass because the agent learned the
 answers, not because it solved the problem.
+
+### Workflow-Level Evaluation Enforcement
+
+The evaluation-as-contract pattern extends beyond test suites into the
+development workflow itself. Workflow-level skill frameworks now enforce strict red-green-refactor TDD: if
+an agent writes implementation code before a failing test exists, the framework
+deletes the code and forces a restart. Design-first, plan-first, and test-first
+phases are mandatory, not suggested. This is evaluation-as-contract applied to
+the development process rather than the runtime — and it demonstrates that P8's
+principle operates at multiple layers, from CI pipelines to agent harness
+constraints.
 
 ### Boolean vs. Probabilistic Evaluation
 
@@ -738,6 +892,15 @@ Interoperability requires typed schemas, explicit auth boundaries, versioned
 capabilities, and replayable tool logs. Treat adapters as temporary bridges, not
 architecture. The goal is replaceable components, not locked pipelines.
 
+The Model Context Protocol (MCP) is now the de facto implementation of this
+pattern for agent-to-tool connectivity. MCP provides JSON-RPC based typed
+schemas, capability discovery, and structured tool invocation — exactly the
+properties the manifesto requires. For agent-to-agent interoperability, Google's
+A2A protocol standardizes discovery (Agent Cards), task delegation, and
+collaboration. Together, MCP and A2A cover the two interoperability axes: how
+agents connect to tools, and how agents coordinate with each other. Both are
+governed under the Agentic AI Foundation (AAIF).
+
 *Interoperability minimum bar: If tools cannot be swapped or replayed across
 runtimes without rewriting core workflows, the platform is brittle.*
 
@@ -778,6 +941,24 @@ Threat modeling must explicitly include:
 Defense-in-depth means identity for agents and tools, signed provenance for
 shared state, least-privilege tool scopes, egress controls, and continuous
 anomaly detection for cross-agent trust edges.
+
+### Real-World Containment Failures
+
+The OpenClaw ecosystem (2025-2026) provides instructive case studies. OpenClaw
+itself — an open-source autonomous agent with 247K GitHub stars — demonstrated
+how rapidly agentic systems scale when governance is absent. The Moltbook
+incident (February 2026) exposed 1.5 million registered agents (only 17,000
+human owners) through a misconfigured Supabase database with full read/write
+access. The failure hit every threat category above: no identity controls, no
+domain scoping, no blast-radius limits, no audit trail.
+
+NVIDIA's response — NemoClaw (GTC 2026) — is an enterprise-hardened fork that
+adds YAML-based permission policies, audit logging, and guardrail constraints.
+This is containment engineering in practice: the same agent runtime, now with
+the governance layer the manifesto requires. The pattern validates the core
+P10 claim: emergence is not a feature to celebrate but a hazard to engineer
+around. Systems that scale without containment infrastructure will produce
+incidents at scale.
 
 ---
 

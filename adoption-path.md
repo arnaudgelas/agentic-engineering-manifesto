@@ -20,8 +20,8 @@ are at Phase 1 or 2, start with the
 — it covers the organizational changes needed before this infrastructure
 makes sense.
 
-The six steps below roughly map to the Phase 3→4 transition (Steps 1-3), the
-Phase 4→5 transition (Steps 4-5), and ongoing expansion (Step 6). Each step
+The seven steps below roughly map to the Phase 3→4 transition (Steps 1–3), the
+Phase 4→5 transition (Steps 4–6), and ongoing expansion (Step 7). Each step
 is described at the level of what you actually need to do — not just what the
 target state looks like.
 
@@ -92,7 +92,38 @@ injection attacks, malformed inputs, edge cases, authorization bypasses.
 **Success signal:** No agent-generated change reaches an external surface
 without adversarial evaluation coverage.
 
-### Step 5: Pilot Formal Contracts on One High-Blast-Radius Path
+### Step 5: Establish Durable Coordination State
+
+**What to do:** Before expanding to multi-agent topologies or long-running
+agent tasks, build the coordination substrate that prevents duplicate work,
+orphaned tasks, and post-restart divergence. The minimum infrastructure:
+
+- **Work ledgers**: A single source of truth for what tasks are active, claimed,
+  completed, or abandoned. Without this, concurrent agents duplicate effort or
+  leave work silently unfinished.
+- **Lease-based task ownership**: Agents claim tasks with time-bounded leases.
+  If an agent crashes or stalls, the lease expires and the task becomes
+  available for reassignment. Without leases, orphaned tasks accumulate
+  silently.
+- **Restart-safe handoffs**: Agent state must survive restarts. If an agent
+  is interrupted mid-task, the next agent (or the same agent after restart)
+  must be able to resume from a well-defined checkpoint rather than starting
+  over. Design for replay safety: re-executing a handoff must produce the same
+  result, not duplicate side effects.
+
+**Who leads:** Platform/infrastructure engineers.
+
+**Minimum viable version:** A shared task ledger with lease expiration for one
+multi-agent workflow. This can be as simple as a database table with claim
+timestamps and TTLs.
+
+**Timeline:** 2–4 weeks for initial ledger. Ongoing refinement as topologies
+expand.
+
+**Success signal:** No orphaned tasks after agent crashes. No duplicate work
+across concurrent agents. Restart produces resumption, not repetition.
+
+### Step 6: Pilot Formal Contracts on One High-Blast-Radius Path
 
 **What to do:** Select one critical path (e.g., payment processing, data
 integrity constraint, authentication flow) and add machine-checkable contracts
@@ -109,7 +140,7 @@ in the Companion Guide.
 **Success signal:** The contracted path has zero escaped defects from
 contract-violating changes over the pilot period.
 
-### Step 6: Expand Only When Incident Rate and Economics Improve
+### Step 7: Expand Only When Incident Rate and Economics Improve
 
 **What to do:** Before expanding agent autonomy (promoting from Tier 1 to
 Tier 2, or from one domain to multiple domains), verify that the current scope

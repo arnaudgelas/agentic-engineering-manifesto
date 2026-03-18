@@ -74,3 +74,29 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 <a id="ref-33"></a>[33] Google Cloud, "Agent Development Kit overview," *Google Cloud Docs*, 2026. [I] https://docs.cloud.google.com/agent-builder/agent-development-kit/overview
 
 <a id="ref-34"></a>[34] G. Franceschini et al., "Build with Google Antigravity, our new agentic development platform," *Google Developers Blog*, Apr 2025. [I] https://developers.googleblog.com/en/build-with-google-antigravity-our-new-agentic-development-platform/
+
+<a id="ref-35"></a>[35] Linux Foundation, "Linux Foundation Announces the Formation of the Agentic AI Foundation," *Linux Foundation Press*, Dec 2025. [I] https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation
+
+<a id="ref-36"></a>[36] Anthropic, "MCP Joins the Agentic AI Foundation," *Model Context Protocol Blog*, Dec 2025. [I] https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/
+
+<a id="ref-37"></a>[37] Google, "A2A: A New Era of Agent Interoperability," *Google Developers Blog*, Apr 2025. [I] https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/
+
+<a id="ref-38"></a>[38] Anthropic, "Equipping Agents for the Real World with Agent Skills," *Anthropic Engineering*, Oct 2025. [I] https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+
+<a id="ref-39"></a>[39] OpenAI, "AGENTS.md," *GitHub*, 2025. [I] https://github.com/agentsmd/agents.md
+
+<a id="ref-40"></a>[40] NVIDIA, "NVIDIA Announces NemoClaw," *NVIDIA News*, Mar 2026. [I] https://nvidianews.nvidia.com/news/nvidia-announces-nemoclaw
+
+<a id="ref-41"></a>[41] S. Yegge, "Introducing Beads: A Coding Agent Memory System," *Medium*, 2026. [B] https://steve-yegge.medium.com/introducing-beads-a-coding-agent-memory-system-637d7d92514a
+
+<a id="ref-42"></a>[42] CrowdStrike, "What Security Teams Need to Know About OpenClaw AI Super Agent," *CrowdStrike Blog*, 2026. [I] https://www.crowdstrike.com/en-us/blog/what-security-teams-need-to-know-about-openclaw-ai-super-agent/
+
+<a id="ref-43"></a>[43] GitHub, "Spec-driven development with AI: Get started with a new open source toolkit," *GitHub Blog*, 2025. [I] https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/
+
+<a id="ref-44"></a>[44] Fission AI, "OpenSpec: The Spec Framework for Coding Agents," *Y Combinator Launch*, 2025. [I] https://www.ycombinator.com/launches/Pdc-openspec-the-spec-framework-for-coding-agents
+
+<a id="ref-45"></a>[45] J. Vincent, "Superpowers: How I'm using coding agents in October 2025," *blog.fsck.com*, Oct 2025. [B] https://blog.fsck.com/2025/10/09/superpowers/
+
+<a id="ref-46"></a>[46] BMad Code, "BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development," *GitHub*, 2025-2026. [I] https://github.com/bmad-code-org/BMAD-METHOD
+
+<a id="ref-47"></a>[47] Oracle, "Introducing the Open Agent Specification (Agent Spec)," *Oracle AI Blog*, 2025. [I] https://blogs.oracle.com/ai-and-datascience/introducing-open-agent-specification

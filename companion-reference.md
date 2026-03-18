@@ -104,15 +104,15 @@ capabilities.
 | Principle | Core Skill Required | Team Readiness | Notes |
 |---|---|---|---|
 | P1 — Outcomes | CI/CD, release engineering | Ready | Existing pipelines need extension, not replacement |
-| P2 — Specifications | Formal requirements, contract design | Reorient | Requirements skills exist but need machine-readable precision |
+| P2 — Specifications | Formal requirements, contract design | Reorient | Requirements skills exist but need machine-readable precision. Agent Skills, AGENTS.md, and specification-driven development frameworks provide concrete formats and workflows |
 | P3 — Architecture | Infrastructure engineering, policy-as-code | Reorient | Infra skills exist but policy-as-code enforcement is new |
-| P4 — Swarm Topology | Distributed systems design | Acquire | Few teams have multi-agent coordination experience |
-| P5 — Autonomy | Security engineering, access control | Reorient | Access control exists but agent-specific tier enforcement is new |
-| P6 — Knowledge & Memory | Data engineering, information retrieval | Acquire | Memory governance (provenance, expiration, rollback) is a new discipline |
-| P7 — Context | ML/retrieval engineering, context engineering | Acquire | Retrieval engineering at agent scale requires specialized skills |
+| P4 — Swarm Topology | Distributed systems design | Acquire | Few teams have multi-agent coordination experience. A2A protocol provides emerging standards for agent discovery and task delegation |
+| P5 — Autonomy | Security engineering, access control | Reorient | Access control exists but agent-specific tier enforcement is new. Infrastructure-level policy systems (YAML-based permissions, audit logs, guardrail constraints) offer reference implementations |
+| P6 — Knowledge & Memory | Data engineering, information retrieval | Acquire | Memory governance (provenance, expiration, rollback) is a new discipline. Git-native agent memory systems provide early reference architectures |
+| P7 — Context | ML/retrieval engineering, context engineering | Acquire | Retrieval engineering at agent scale requires specialized skills. Agent-to-tool protocols, capability definitions, and agent memory systems form an emerging tooling ecosystem |
 | P8 — Evaluations & Proofs | Test engineering, formal methods | Split | Test engineering: ready. Formal methods: acquire (and defer until Phase 5) |
-| P9 — Observability | SRE, distributed tracing | Reorient | SRE exists but agentic traces require new schema and tooling |
-| P10 — Emergence | Chaos engineering, security | Acquire | Chaos engineering for agentic systems has no established playbook |
+| P9 — Observability | SRE, distributed tracing | Reorient | SRE exists but agentic traces require new schema and tooling. Emerging interoperability standards under neutral governance (AAIF) provide the foundation |
+| P10 — Emergence | Chaos engineering, security | Acquire | Chaos engineering for agentic systems has no established playbook. Early autonomous agent security incidents provide case studies |
 | P11 — Economics | FinOps, cost optimization | Reorient | FinOps exists but total-cost-of-correctness models are new |
 | P12 — Accountability | Incident management, compliance | Ready | Incident management extends naturally; compliance may need updates |
 
@@ -129,3 +129,30 @@ these at full depth without investing in the skill. Start with "Ready" and
 "Reorient" principles (P1, P3, P5, P9, P12) and build toward the harder
 ones incrementally. The [Adoption Playbook](adoption-playbook.md) maps these
 skills to specific phase transitions.
+
+---
+
+## Ecosystem References
+
+This guide references standards and tools that are evolving rapidly. Rather
+than duplicate descriptions that will age, we list the categories that matter
+and point to the authoritative sources.
+
+**Standards under AAIF governance:** MCP (agent-to-tool), A2A (agent-to-agent),
+Agent Skills (capability definition), AGENTS.md (repository-level constraints).
+The Agentic AI Foundation, launched December 2025 under the Linux Foundation,
+provides neutral governance across these protocols.
+
+**Specification-driven development frameworks:** Multiple open-source frameworks
+enforce the specification-first workflow described in P2: specify before
+implementing, treat specs as code artifacts, and consume them at agent runtime.
+See [Sources](beyond-agile-sources.md) refs 43–47 for specific projects.
+
+**Memory and coordination infrastructure:** Git-native agent memory systems,
+autonomous agent runtimes with infrastructure-level policy enforcement, and
+continuous integration benchmarks for structural regression. See
+[Sources](beyond-agile-sources.md) refs 40–42 for specifics.
+
+The manifesto does not endorse specific tools. Its contribution is the
+governance model that applies across them. The [Sources](beyond-agile-sources.md)
+file carries the dated references; this guide carries the principles.
