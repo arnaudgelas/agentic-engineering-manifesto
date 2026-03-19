@@ -438,7 +438,7 @@ function buildHero() {
           Principles for building systems where humans steer intent, agents execute within governed boundaries, and verified outcomes are the only measure that matters.
         </p>
         <p class="hero-kicker">
-          This is a publication surface, not a dump of converted markdown. The opening section now carries repository context, authorship, and navigational clarity before the reader hits the first wall of prose.
+          This is a living document. Agentic engineering is a fast-moving field, and this manifesto evolves continuously &mdash; informed by our own practices, what we witness in the field, and the new technologies, trends, and practices that emerge. Contributions are welcome.
         </p>
         <div class="hero-actions">
           <a class="button-link primary" href="#overview">Start Reading</a>

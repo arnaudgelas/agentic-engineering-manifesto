@@ -138,9 +138,12 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 ## Contributing
 
-This manifesto improves through evidence, not consensus alone. See
-[CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on proposing changes,
-submitting worked patterns, or reporting issues.
+This is a living document. Agentic engineering is a fast-moving field, and
+this manifesto evolves continuously — informed by our own practices, what we
+witness in the field, and the new technologies, trends, and practices that
+emerge. Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for
+guidelines on proposing changes, submitting worked patterns, or reporting
+issues.
 
 ## Authors
 

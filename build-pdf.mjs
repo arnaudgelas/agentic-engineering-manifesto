@@ -141,6 +141,7 @@ function buildCover() {
       <p class="cover-kicker">Manifesto &amp; Companion Guide</p>
       <h1 class="cover-title">The Agentic<br>Engineering<br>Manifesto</h1>
       <p class="cover-lede">Principles for building systems where humans steer intent, agents execute within governed boundaries, and verified outcomes are the only measure that matters.</p>
+      <p class="cover-lede" style="font-size:10px;margin-top:3mm;">This is a living document. Agentic engineering is a fast-moving field, and this manifesto evolves continuously &mdash; informed by our own practices, what we witness in the field, and the new technologies, trends, and practices that emerge. Contributions are welcome.</p>
 
       <div class="cover-values">
         ${coreValues.map(([l, r]) => `<div class="cv-row"><span class="cv-left">${l}</span><span class="cv-over">over</span><span class="cv-right">${r}</span></div>`).join("")}
