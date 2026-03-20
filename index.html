@@ -205,10 +205,24 @@ of working.</li>
 guidance, and the Acceleration Trap (with perception gap evidence).</li>
 <li><a href="#adoption-path">adoption-path.md</a>: Incremental technical adoption path and
 phase transitions.</li>
+<li><a href="adoption-vmodel.md">adoption-vmodel.md</a>: V-model-specific adoption path for
+regulated and verification-heavy organizations.</li>
 <li><a href="#adoption-pilot">adoption-pilot.md</a>: Resistance management and first pilot
 execution.</li>
 <li><a href="#adoption-metrics">adoption-metrics.md</a>: Success metrics, quarterly review
 cadence, and failure modes.</li>
+</ul>
+<h3 id="5-domain-specific-regulatory-alignment">5) Domain-Specific Regulatory Alignment</h3><ul>
+<li><a href="domains/README.md">domains/README.md</a>: Navigation and disclaimers for domain
+content.</li>
+<li><a href="domains/aviation.md">domains/aviation.md</a>: DO-178C, DO-330, DO-333,
+ARP 4754A alignment mapping.</li>
+<li><a href="domains/medical-devices.md">domains/medical-devices.md</a>: IEC 62304,
+ISO 14971, ISO 13485, FDA SaMD alignment mapping.</li>
+<li><a href="domains/pharma.md">domains/pharma.md</a>: GAMP 5, CSA, 21 CFR Part 11, ICH
+alignment mapping.</li>
+<li><a href="domains/financial-services.md">domains/financial-services.md</a>: SR 11-7,
+DORA, EU AI Act, SOX, Three Lines of Defense alignment mapping.</li>
 </ul>
 <hr>
 <h2 id="recommended-reading-paths">Recommended Reading Paths</h2><ul>
@@ -225,6 +239,10 @@ cadence, and failure modes.</li>
 <a href="#beyond-landscape">beyond-agile-landscape.md</a> →
 <a href="#adoption-roles">adoption-roles.md</a> →
 <a href="#adoption-metrics">adoption-metrics.md</a></li>
+<li><strong>For regulated industries (domain-specific):</strong>
+<a href="#companion-frameworks">companion-frameworks.md</a> (Boundary Conditions) →
+<a href="adoption-vmodel.md">adoption-vmodel.md</a> →
+<a href="domains/README.md">domains/README.md</a> → your domain document</li>
 </ul>
 <hr>
 <h2 id="contributing">Contributing</h2><p>This is a living document. Agentic engineering is a fast-moving field, and
@@ -1212,7 +1230,7 @@ existence of AAIF validates the manifesto&#39;s core thesis: vendor-neutral,
 interoperable architecture is not aspirational but actively being built.</p>
 <p>A parallel movement reinforces the shift: specification-driven development (SDD)
 frameworks are emerging as the dominant workflow pattern for agentic coding.
-Multiple widely-adopted open-source frameworks <sup><a href="beyond-agile-sources.md#ref-43">43</a></sup><sup><a href="beyond-agile-sources.md#ref-44">44</a></sup><sup><a href="beyond-agile-sources.md#ref-45">45</a></sup><sup><a href="beyond-agile-sources.md#ref-46">46</a></sup>
+Multiple widely-adopted open-source frameworks <sup><a href="beyond-agile-sources.md#ref-43">43</a></sup><sup><a href="beyond-agile-sources.md#ref-44">44</a></sup><sup><a href="beyond-agile-sources.md#ref-45">45</a></sup><sup><a href="beyond-agile-sources.md#ref-46">46</a></sup><sup><a href="beyond-agile-sources.md#ref-48">48</a></sup>
 now enforce the same discipline — write the specification before the agent writes
 the code. This effectively inverts Agile&#39;s founding principle of &quot;working
 software over comprehensive documentation.&quot; In agentic workflows, comprehensive
@@ -1269,6 +1287,7 @@ not overhead; it is the control surface.</p>
 <p><a id="ref-45"></a>[45] J. Vincent, &quot;Superpowers: How I&#39;m using coding agents in October 2025,&quot; <em>blog.fsck.com</em>, Oct 2025. [B] <a href="https://blog.fsck.com/2025/10/09/superpowers/">https://blog.fsck.com/2025/10/09/superpowers/</a></p>
 <p><a id="ref-46"></a>[46] BMad Code, &quot;BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development,&quot; <em>GitHub</em>, 2025-2026. [I] <a href="https://github.com/bmad-code-org/BMAD-METHOD">https://github.com/bmad-code-org/BMAD-METHOD</a></p>
 <p><a id="ref-47"></a>[47] Oracle, &quot;Introducing the Open Agent Specification (Agent Spec),&quot; <em>Oracle AI Blog</em>, 2025. [I] <a href="https://blogs.oracle.com/ai-and-datascience/introducing-open-agent-specification">https://blogs.oracle.com/ai-and-datascience/introducing-open-agent-specification</a></p>
+<p><a id="ref-48"></a>[48] spec-kit, &quot;spec-kit: Technology-independent SDD toolkit,&quot; <em>GitHub</em>, 2025-2026. [I] <a href="https://github.com/spec-kit/spec-kit">https://github.com/spec-kit/spec-kit</a></p>
 </div></section><section id="companion-guide" class="doc-section" data-group="companion"><div class="section-inner"><p><em>Extended guidance, tradeoffs, failure modes, and reference material for each
 principle in the Agentic Engineering Manifesto.</em></p>
 <p>This guide provides the deeper rationale, advanced bars, and operational detail
@@ -1472,6 +1491,30 @@ hardens the system against both accidental drift and adversarial conditions.</p>
 practical mechanism for encoding architectural constraints at the repository
 level. They function as machine-readable ADRs that coding agents respect at
 runtime — a concrete implementation of architecture as defense-in-depth.</p>
+<h3 id="agent-as-tool-and-software-of-unknown-provenance">Agent-as-Tool and Software of Unknown Provenance</h3><p>In regulated development, software components are classified by provenance and
+qualification status. When agents participate in development, three
+classification questions arise:</p>
+<ol>
+<li><strong>The AI model itself</strong>: Non-deterministic, version-dependent, and opaque.
+Under IEC 62304 (SOUP), DO-178C/DO-330 (tool qualification), and GAMP 5
+(software categories), the model cannot currently be qualified through
+traditional means.</li>
+<li><strong>Agent-selected dependencies</strong>: When an agent pulls in a library or
+pattern, it is making a provenance decision that may carry regulatory
+consequences. The human must own dependency approval; the agent must not
+introduce unvetted dependencies silently.</li>
+<li><strong>Agent-generated code</strong>: May incorporate training-data patterns that
+constitute derivative unclassified software. Evidence bundles must capture
+sufficient provenance to support classification.</li>
+</ol>
+<p>The manifesto&#39;s defense-in-depth response: treat the agent as an unqualified
+tool and independently verify all output through qualified means. This is
+architecturally equivalent to treating retrieval as untrusted input (above).
+The infrastructure must enforce dependency allow-lists, and evidence bundles
+must capture dependency provenance.</p>
+<p>See <a href="companion-frameworks.md#cross-domain-regulatory-insights">companion-frameworks.md</a>
+for the cross-domain analysis and <a href="domains/README.md">domains/</a> for
+domain-specific classification requirements.</p>
 <hr>
 <h2 id="principle-4-swarm-topology-extended-guidance">Principle 4 — Swarm Topology: Extended Guidance</h2><p><em>See Principle 4 in the manifesto for the core statement and minimum bar.</em></p>
 <h3 id="topology-choices">Topology Choices</h3><p>Topology choices must be explicit, for example:</p>
@@ -1891,6 +1934,29 @@ evaluation is more expensive to maintain (two separate artifact sets: developmen
 specs and evaluation scenarios) but eliminates the most insidious form of
 evaluation theater — evaluations that pass because the agent learned the
 answers, not because it solved the problem.</p>
+<h3 id="independent-verification-in-regulated-contexts">Independent Verification in Regulated Contexts</h3><p>Regulated industries share a common governance requirement: the party that
+verifies a system must be organizationally independent from the party that
+built it. SR 11-7 (financial services) requires independent model validation.
+IEC 62304 (medical devices) requires verification by qualified parties
+distinct from developers. DO-178C (aviation) requires independence at each
+design assurance level.</p>
+<p>In agentic engineering, this principle extends to agent-generated output: the
+evaluation infrastructure that verifies agent work should be independent of the
+agent that produced it. Concretely:</p>
+<ul>
+<li>Evaluation criteria should not be visible to the producing agent (evaluation
+holdout, described above)</li>
+<li>Evaluation models should differ from production models where feasible (avoid
+shared blind spots — see P1 correlated failure domains)</li>
+<li>For Tier 3 operations in regulated environments, organizational independence
+between agent development and agent validation should mirror existing
+regulatory expectations</li>
+</ul>
+<p>This is not a new principle — it is a regulated-environment application of the
+existing evaluation-as-contract pattern. See
+<a href="companion-frameworks.md#cross-domain-regulatory-insights">companion-frameworks.md</a>
+for the cross-domain analysis and <a href="domains/README.md">domains/</a> for
+domain-specific independence requirements.</p>
 <h3 id="workflow-level-evaluation-enforcement">Workflow-Level Evaluation Enforcement</h3><p>The evaluation-as-contract pattern extends beyond test suites into the
 development workflow itself. Workflow-level skill frameworks now enforce strict red-green-refactor TDD: if
 an agent writes implementation code before a failing test exists, the framework
@@ -2350,6 +2416,56 @@ data-handling frameworks that meet jurisdictional restrictions for agent-
 accessible data. These are active areas of development. Teams in regulated
 environments should track progress and pilot cautiously rather than waiting
 for full maturity.</p>
+<h3 id="cross-domain-regulatory-insights">Cross-Domain Regulatory Insights</h3><p>Three governance requirements appear independently across regulated domains.
+They are not domain-specific — they are structural properties of any high-
+stakes verification system.</p>
+<p><strong>Independent validation as a governance principle.</strong> Across regulated domains
+— SR 11-7 in financial services, IEC 62304 in medical devices, DO-178C in
+aviation — a common requirement emerges: the entity that validates a system
+must be independent from the entity that developed it. In agentic engineering,
+this applies at two levels: the agent system itself must be validated by
+parties independent of its development, and agent-generated outputs in
+regulated contexts must be verified through independent means. This maps to
+the manifesto&#39;s tier model: at Tier 1-2, human review provides independence;
+at Tier 3, independent evaluation infrastructure (separate models, holdout
+scenarios) provides the independence guarantee. See
+<a href="companion-principles.md#independent-verification-in-regulated-contexts">P8 extended guidance</a>.</p>
+<p><strong>SOUP / agent-as-tool categorization.</strong> Multiple regulatory frameworks require
+classification of software components by provenance and qualification status:
+IEC 62304 (SOUP), DO-178C/DO-330 (COTS/PDS and tool qualification levels),
+ISO 26262 (SEooC), and GAMP 5 (software categories). In agentic engineering,
+three entities require classification: the AI model itself (non-deterministic,
+version-dependent, opaque), agent-selected dependencies (libraries and patterns
+chosen during execution), and agent-generated code (may incorporate
+training-data patterns as implicit unclassified software). The manifesto&#39;s
+defense-in-depth response: treat the agent as an unqualified tool and
+independently verify all output through qualified means. See
+<a href="companion-principles.md#agent-as-tool-and-software-of-unknown-provenance">P3 extended guidance</a>.</p>
+<p><strong>Data classification as an agent constraint.</strong> Agents operating in regulated
+environments must respect data classification boundaries. GxP data,
+ITAR-controlled data, financial PII, and health records each carry handling
+requirements that constrain what data agents may access, where inference may
+execute, and what outputs may be retained. Data classification is not a prompt
+instruction — it must be enforced at the infrastructure level (Principle 5:
+autonomy tiers). In financial services, this interacts with GDPR cross-border
+transfer rules and banking secrecy laws. In life sciences, it interacts with
+patient data handling and GxP record integrity. In aerospace, it interacts
+with export control (ITAR/EAR). The manifesto&#39;s architecture principle (P3)
+applies: data classification boundaries must be machine-enforced, not
+documented and hoped for.</p>
+<h3 id="domain-specific-regulatory-alignment">Domain-Specific Regulatory Alignment</h3><p>For detailed mappings between the manifesto and specific regulatory frameworks,
+see the <a href="domains/README.md">Domain Regulatory Alignment</a> documents:</p>
+<ul>
+<li><a href="domains/aviation.md">Aviation</a> — DO-178C, DO-330, DO-333, ARP 4754A</li>
+<li><a href="domains/medical-devices.md">Medical Devices</a> — IEC 62304, ISO 14971,
+ISO 13485, FDA SaMD</li>
+<li><a href="domains/pharma.md">Pharma / Life Sciences</a> — GAMP 5, CSA, 21 CFR Part 11,
+ICH</li>
+<li><a href="domains/financial-services.md">Financial Services</a> — SR 11-7, DORA,
+EU AI Act, SOX</li>
+</ul>
+<p>For V-model organizations, see <a href="adoption-vmodel.md">adoption-vmodel.md</a> for
+a V-model-specific adoption path.</p>
 <hr>
 <h2 id="operational-definitions">Operational Definitions</h2><p><strong>Blast radius</strong>: the maximum credible impact of a wrong action across users,
 data, services, or regulatory obligations.</p>
@@ -2990,6 +3106,14 @@ guidance for every phase transition.</em></p>
 See the <a href="#adoption-playbook">Adoption Playbook</a> for the full table of contents.
 See the <a href="#adoption-roles">Roles and the Human Side</a> for how roles evolve
 during the transition.</p>
+<blockquote>
+<p><strong>For V-model organizations:</strong> If your organization operates a traditional
+V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
+regulated financial services), see
+<a href="adoption-vmodel.md">adoption-vmodel.md</a> for a V-model-specific variant of
+this adoption path that preserves your existing verification structure while
+transitioning to agentic execution.</p>
+</blockquote>
 <hr>
 <h2 id="incremental-adoption-path">Incremental Adoption Path</h2><p>This section describes the technical infrastructure you build to support
 governed agentic delivery. It assumes your team is at or approaching Phase 3

@@ -111,10 +111,25 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
   guidance, and the Acceleration Trap (with perception gap evidence).
 - [adoption-path.md](adoption-path.md): Incremental technical adoption path and
   phase transitions.
+- [adoption-vmodel.md](adoption-vmodel.md): V-model-specific adoption path for
+  regulated and verification-heavy organizations.
 - [adoption-pilot.md](adoption-pilot.md): Resistance management and first pilot
   execution.
 - [adoption-metrics.md](adoption-metrics.md): Success metrics, quarterly review
   cadence, and failure modes.
+
+### 5) Domain-Specific Regulatory Alignment
+
+- [domains/README.md](domains/README.md): Navigation and disclaimers for domain
+  content.
+- [domains/aviation.md](domains/aviation.md): DO-178C, DO-330, DO-333,
+  ARP 4754A alignment mapping.
+- [domains/medical-devices.md](domains/medical-devices.md): IEC 62304,
+  ISO 14971, ISO 13485, FDA SaMD alignment mapping.
+- [domains/pharma.md](domains/pharma.md): GAMP 5, CSA, 21 CFR Part 11, ICH
+  alignment mapping.
+- [domains/financial-services.md](domains/financial-services.md): SR 11-7,
+  DORA, EU AI Act, SOX, Three Lines of Defense alignment mapping.
 
 ---
 
@@ -133,6 +148,10 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
   [beyond-agile-landscape.md](beyond-agile-landscape.md) →
   [adoption-roles.md](adoption-roles.md) →
   [adoption-metrics.md](adoption-metrics.md)
+- **For regulated industries (domain-specific):**
+  [companion-frameworks.md](companion-frameworks.md) (Boundary Conditions) →
+  [adoption-vmodel.md](adoption-vmodel.md) →
+  [domains/README.md](domains/README.md) → your domain document
 
 ---
 

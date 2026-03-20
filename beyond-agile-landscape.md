@@ -77,7 +77,7 @@ interoperable architecture is not aspirational but actively being built.
 
 A parallel movement reinforces the shift: specification-driven development (SDD)
 frameworks are emerging as the dominant workflow pattern for agentic coding.
-Multiple widely-adopted open-source frameworks <sup>[43](beyond-agile-sources.md#ref-43)</sup><sup>[44](beyond-agile-sources.md#ref-44)</sup><sup>[45](beyond-agile-sources.md#ref-45)</sup><sup>[46](beyond-agile-sources.md#ref-46)</sup>
+Multiple widely-adopted open-source frameworks <sup>[43](beyond-agile-sources.md#ref-43)</sup><sup>[44](beyond-agile-sources.md#ref-44)</sup><sup>[45](beyond-agile-sources.md#ref-45)</sup><sup>[46](beyond-agile-sources.md#ref-46)</sup><sup>[48](beyond-agile-sources.md#ref-48)</sup>
 now enforce the same discipline — write the specification before the agent writes
 the code. This effectively inverts Agile's founding principle of "working
 software over comprehensive documentation." In agentic workflows, comprehensive

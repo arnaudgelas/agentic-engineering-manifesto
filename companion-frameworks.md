@@ -194,6 +194,65 @@ accessible data. These are active areas of development. Teams in regulated
 environments should track progress and pilot cautiously rather than waiting
 for full maturity.
 
+### Cross-Domain Regulatory Insights
+
+Three governance requirements appear independently across regulated domains.
+They are not domain-specific — they are structural properties of any high-
+stakes verification system.
+
+**Independent validation as a governance principle.** Across regulated domains
+— SR 11-7 in financial services, IEC 62304 in medical devices, DO-178C in
+aviation — a common requirement emerges: the entity that validates a system
+must be independent from the entity that developed it. In agentic engineering,
+this applies at two levels: the agent system itself must be validated by
+parties independent of its development, and agent-generated outputs in
+regulated contexts must be verified through independent means. This maps to
+the manifesto's tier model: at Tier 1-2, human review provides independence;
+at Tier 3, independent evaluation infrastructure (separate models, holdout
+scenarios) provides the independence guarantee. See
+[P8 extended guidance](companion-principles.md#independent-verification-in-regulated-contexts).
+
+**SOUP / agent-as-tool categorization.** Multiple regulatory frameworks require
+classification of software components by provenance and qualification status:
+IEC 62304 (SOUP), DO-178C/DO-330 (COTS/PDS and tool qualification levels),
+ISO 26262 (SEooC), and GAMP 5 (software categories). In agentic engineering,
+three entities require classification: the AI model itself (non-deterministic,
+version-dependent, opaque), agent-selected dependencies (libraries and patterns
+chosen during execution), and agent-generated code (may incorporate
+training-data patterns as implicit unclassified software). The manifesto's
+defense-in-depth response: treat the agent as an unqualified tool and
+independently verify all output through qualified means. See
+[P3 extended guidance](companion-principles.md#agent-as-tool-and-software-of-unknown-provenance).
+
+**Data classification as an agent constraint.** Agents operating in regulated
+environments must respect data classification boundaries. GxP data,
+ITAR-controlled data, financial PII, and health records each carry handling
+requirements that constrain what data agents may access, where inference may
+execute, and what outputs may be retained. Data classification is not a prompt
+instruction — it must be enforced at the infrastructure level (Principle 5:
+autonomy tiers). In financial services, this interacts with GDPR cross-border
+transfer rules and banking secrecy laws. In life sciences, it interacts with
+patient data handling and GxP record integrity. In aerospace, it interacts
+with export control (ITAR/EAR). The manifesto's architecture principle (P3)
+applies: data classification boundaries must be machine-enforced, not
+documented and hoped for.
+
+### Domain-Specific Regulatory Alignment
+
+For detailed mappings between the manifesto and specific regulatory frameworks,
+see the [Domain Regulatory Alignment](domains/README.md) documents:
+
+- [Aviation](domains/aviation.md) — DO-178C, DO-330, DO-333, ARP 4754A
+- [Medical Devices](domains/medical-devices.md) — IEC 62304, ISO 14971,
+  ISO 13485, FDA SaMD
+- [Pharma / Life Sciences](domains/pharma.md) — GAMP 5, CSA, 21 CFR Part 11,
+  ICH
+- [Financial Services](domains/financial-services.md) — SR 11-7, DORA,
+  EU AI Act, SOX
+
+For V-model organizations, see [adoption-vmodel.md](adoption-vmodel.md) for
+a V-model-specific adoption path.
+
 ---
 
 ## Operational Definitions

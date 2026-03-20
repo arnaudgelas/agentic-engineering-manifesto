@@ -8,6 +8,12 @@ See the [Adoption Playbook](adoption-playbook.md) for the full table of contents
 See the [Roles and the Human Side](adoption-roles.md) for how roles evolve
 during the transition.
 
+> **For V-model organizations:** If your organization operates a traditional
+> V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
+> regulated financial services), see [adoption-vmodel.md](adoption-vmodel.md)
+> for a V-model-specific variant of this adoption path that preserves your
+> existing verification structure while transitioning to agentic execution.
+
 ---
 
 ## Incremental Adoption Path

@@ -224,6 +224,34 @@ practical mechanism for encoding architectural constraints at the repository
 level. They function as machine-readable ADRs that coding agents respect at
 runtime — a concrete implementation of architecture as defense-in-depth.
 
+### Agent-as-Tool and Software of Unknown Provenance
+
+In regulated development, software components are classified by provenance and
+qualification status. When agents participate in development, three
+classification questions arise:
+
+1. **The AI model itself**: Non-deterministic, version-dependent, and opaque.
+   Under IEC 62304 (SOUP), DO-178C/DO-330 (tool qualification), and GAMP 5
+   (software categories), the model cannot currently be qualified through
+   traditional means.
+2. **Agent-selected dependencies**: When an agent pulls in a library or
+   pattern, it is making a provenance decision that may carry regulatory
+   consequences. The human must own dependency approval; the agent must not
+   introduce unvetted dependencies silently.
+3. **Agent-generated code**: May incorporate training-data patterns that
+   constitute derivative unclassified software. Evidence bundles must capture
+   sufficient provenance to support classification.
+
+The manifesto's defense-in-depth response: treat the agent as an unqualified
+tool and independently verify all output through qualified means. This is
+architecturally equivalent to treating retrieval as untrusted input (above).
+The infrastructure must enforce dependency allow-lists, and evidence bundles
+must capture dependency provenance.
+
+See [companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
+for the cross-domain analysis and [domains/](domains/README.md) for
+domain-specific classification requirements.
+
 ---
 
 ## Principle 4 — Swarm Topology: Extended Guidance
@@ -751,6 +779,33 @@ evaluation is more expensive to maintain (two separate artifact sets: developmen
 specs and evaluation scenarios) but eliminates the most insidious form of
 evaluation theater — evaluations that pass because the agent learned the
 answers, not because it solved the problem.
+
+### Independent Verification in Regulated Contexts
+
+Regulated industries share a common governance requirement: the party that
+verifies a system must be organizationally independent from the party that
+built it. SR 11-7 (financial services) requires independent model validation.
+IEC 62304 (medical devices) requires verification by qualified parties
+distinct from developers. DO-178C (aviation) requires independence at each
+design assurance level.
+
+In agentic engineering, this principle extends to agent-generated output: the
+evaluation infrastructure that verifies agent work should be independent of the
+agent that produced it. Concretely:
+
+- Evaluation criteria should not be visible to the producing agent (evaluation
+  holdout, described above)
+- Evaluation models should differ from production models where feasible (avoid
+  shared blind spots — see P1 correlated failure domains)
+- For Tier 3 operations in regulated environments, organizational independence
+  between agent development and agent validation should mirror existing
+  regulatory expectations
+
+This is not a new principle — it is a regulated-environment application of the
+existing evaluation-as-contract pattern. See
+[companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
+for the cross-domain analysis and [domains/](domains/README.md) for
+domain-specific independence requirements.
 
 ### Workflow-Level Evaluation Enforcement
 

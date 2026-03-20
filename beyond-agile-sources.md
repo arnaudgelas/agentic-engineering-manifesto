@@ -100,3 +100,5 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 <a id="ref-46"></a>[46] BMad Code, "BMAD-METHOD: Breakthrough Method for Agile AI-Driven Development," *GitHub*, 2025-2026. [I] https://github.com/bmad-code-org/BMAD-METHOD
 
 <a id="ref-47"></a>[47] Oracle, "Introducing the Open Agent Specification (Agent Spec)," *Oracle AI Blog*, 2025. [I] https://blogs.oracle.com/ai-and-datascience/introducing-open-agent-specification
+
+<a id="ref-48"></a>[48] spec-kit, "spec-kit: Technology-independent SDD toolkit," *GitHub*, 2025-2026. [I] https://github.com/spec-kit/spec-kit
