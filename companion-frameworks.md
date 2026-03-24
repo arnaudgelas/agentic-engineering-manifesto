@@ -20,8 +20,8 @@ no memory. Creative but unreliable. Useful for discovering what agents can do;
 dangerous for anything that matters. *Failure mode: extrapolating demo results
 to production expectations.*
 
-**Phase 2 — Assisted Delivery.** AI as autocomplete. Copilot-style suggestions
-where the human executes. Productivity gains are real but bounded by human
+**Phase 2 — Assisted Delivery.** AI as autocomplete. AI code-completion tool
+suggestions where the human executes. Productivity gains are real but bounded by human
 throughput. *Failure mode: optimizing human-in-the-loop speed instead of
 questioning whether the loop is necessary.*
 
@@ -156,6 +156,37 @@ Proceed cautiously or cap autonomy at Phase 2-3 when:
 - Teams lack baseline CI/CD quality gates, incident response discipline, or
   domain ownership needed for safe autonomy
 
+### Hard Autonomy Caps by Regulated Use Case
+
+Some use cases carry hard autonomy caps regardless of the organization's
+maturity phase. These caps are not recommendations — they are regulatory
+constraints. A Phase 5 team operating at full agentic maturity still cannot
+exceed these caps. The table below shows the strictest cap per domain; see
+each domain document for the complete use-case-specific cap table.
+
+| Domain | Strictest Cap | Regulatory Basis | Domain Document |
+|---|---|---|---|
+| **Aviation** (airborne software DAL A/B) | Tier 1 (observe only) | DO-178C; DO-330 tool qualification | [aviation.md](domains/aviation.md) |
+| **Medical Devices** (IEC 62304 Class C; EU AI Act high-risk) | Tier 1 (observe only) | IEC 62304; EU MDR + AI Act (Class IIa+) | [medical-devices.md](domains/medical-devices.md) |
+| **Pharma** (GMP context; GxP record modification) | Tier 1 (observe only) | GAMP 5; 21 CFR Part 11; EU GMP Annex 11 | [pharma.md](domains/pharma.md) |
+| **Financial Services** (credit/insurance decisions; algorithmic trading) | Tier 1 (observe only) | EU AI Act Annex III §5; GDPR Art. 22; MiFID II | [financial-services.md](domains/financial-services.md) |
+| **Automotive** (ASIL C/D safety functions) | Tier 1 (observe only) | ISO 26262; UN Regulation 157 | [automotive.md](domains/automotive.md) |
+| **Defense / Government** (classified or ITAR-controlled systems) | Tier 1 (observe only) | CMMC; ITAR 22 CFR 120-130; FedRAMP | [defense-government.md](domains/defense-government.md) |
+
+The rows above show the most restrictive category in each domain. Most workflows
+in these industries permit Tier 2 or Tier 3 for lower-risk activities. The
+domain documents contain full use-case-specific cap tables with the regulatory
+basis for each row.
+
+**Phase maturity and autonomy tiers interact.** Beyond the hard caps above,
+phase maturity is a prerequisite for autonomy tier:
+- Phase 3 or below → Tier 1 only, regardless of infrastructure
+- Phase 4 → Tier 2 available (branch + human approval)
+- Phase 5+ → Tier 3 available, subject to use-case caps above
+
+A team cannot operate at a higher autonomy tier than their phase supports,
+even if the infrastructure is in place.
+
 ### What Regulated Industries Can Still Use
 
 Capping autonomy does not mean the manifesto is irrelevant. Teams in
@@ -181,8 +212,17 @@ can still adopt the manifesto's principles selectively:
 
 The principles that require caution in regulated environments are primarily
 Principle 5 at Tier 3 (production-impacting agent actions), Principle 6
-(memory governance in data-restricted environments), and Principle 10
-(chaos testing in safety-critical systems).
+(memory governance in data-restricted environments — see
+[P6 extended guidance](companion-principles.md#memory-governance-in-regulated-environments)),
+and Principle 10 (chaos testing in safety-critical systems — validate
+chaos experiments in isolated environments before running on production
+equivalents).
+
+For viable starting points by domain, see:
+[Aviation](domains/aviation.md#viable-starting-points) ·
+[Medical Devices](domains/medical-devices.md#viable-starting-points) ·
+[Pharma](domains/pharma.md#viable-starting-points) ·
+[Financial Services](domains/financial-services.md#market-specific-autonomy-guidance)
 
 ### What Would Need to Change
 
@@ -225,17 +265,38 @@ independently verify all output through qualified means. See
 [P3 extended guidance](companion-principles.md#agent-as-tool-and-software-of-unknown-provenance).
 
 **Data classification as an agent constraint.** Agents operating in regulated
-environments must respect data classification boundaries. GxP data,
-ITAR-controlled data, financial PII, and health records each carry handling
-requirements that constrain what data agents may access, where inference may
-execute, and what outputs may be retained. Data classification is not a prompt
-instruction — it must be enforced at the infrastructure level (Principle 5:
-autonomy tiers). In financial services, this interacts with GDPR cross-border
-transfer rules and banking secrecy laws. In life sciences, it interacts with
-patient data handling and GxP record integrity. In aerospace, it interacts
-with export control (ITAR/EAR). The manifesto's architecture principle (P3)
-applies: data classification boundaries must be machine-enforced, not
-documented and hoped for.
+environments must respect data classification boundaries. Classification
+requirements constrain what data agents may access, where inference may
+execute, and what outputs may be retained. Data classification is not a
+prompt instruction — it must be enforced at the infrastructure level
+(Principle 5: autonomy tiers). Domain-specific constraints:
+
+- **Financial services**: GDPR cross-border transfer rules (Chapter V) and
+  banking secrecy laws (Switzerland, Luxembourg, Singapore) may prohibit
+  certain data from reaching external inference APIs entirely.
+- **Life sciences (pharma / medical)**: GxP record integrity requires
+  ALCOA+ compliance; patient-level clinical data carries HIPAA (US) and
+  GDPR (EU) obligations; raw GxP data must never be modifiable by agents.
+- **Aviation / defense**: ITAR (22 CFR 120-130) and EAR (15 CFR 730-774)
+  restrict export-controlled technical data to compliant infrastructure;
+  agents must operate within Technology Control Plans.
+- **Automotive / industrial**: Safety-function configuration data may be
+  restricted under product liability and type-approval obligations.
+
+The manifesto's architecture principle (P3) applies across all domains:
+data classification boundaries must be machine-enforced, not documented
+and hoped for. See each domain document for the applicable classification
+matrix and enforcement mechanism.
+
+**IEC 61508 as the parent functional safety standard.** IEC 61508 (2010)
+is the foundational functional safety standard for industrial electronic
+systems, from which several domain standards derive: IEC 62304 (medical
+device software), ISO 26262 (automotive), EN 50128 (railway), and
+IEC 62061 (machinery). Teams in domains not covered by a specific domain
+document should map IEC 61508 Safety Integrity Levels (SIL 1–4) to the
+manifesto's autonomy tiers using the same logic as the DAL and safety
+class mappings: SIL 3-4 functions → Tier 1 (observe only); SIL 2 →
+Tier 1-2; SIL 1 → full tier range with evidence controls.
 
 ### Domain-Specific Regulatory Alignment
 
@@ -249,6 +310,9 @@ see the [Domain Regulatory Alignment](domains/README.md) documents:
   ICH
 - [Financial Services](domains/financial-services.md) — SR 11-7, DORA,
   EU AI Act, SOX
+- [Automotive](domains/automotive.md) — ISO 26262, ASPICE, UN Regulation 157
+- [Defense / Government](domains/defense-government.md) — CMMC, FedRAMP,
+  NIST SP 800-53, ITAR/EAR
 
 For V-model organizations, see [adoption-vmodel.md](adoption-vmodel.md) for
 a V-model-specific adoption path.

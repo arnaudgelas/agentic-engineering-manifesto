@@ -289,6 +289,99 @@ the functional specification for this validation.
 
 ---
 
+## Market-Specific Autonomy Guidance
+
+The IEC 62304 safety class mapping at the top of this document defines the
+regulatory ceiling. This table adds workflow-level context for common medical
+device development activities.
+
+| Workflow | Safety Class / Risk | Recommended Autonomy | Key Constraint |
+|---|---|---|---|
+| SaMD — patient-facing clinical decision output | Class C (IEC 62304); High-risk (EU AI Act) | Tier 1 (observe only) | Agent assists analysis; human clinician or qualified reviewer owns every output affecting patient care. |
+| SaMD — Class B device software | Class B | Tier 1-2 | Agents draft to isolated branches. Enhanced evidence bundles with SOUP risk analysis. |
+| Class A device software and tooling | Class A | Tier 1-3 | Full agentic loop permissible. Standard evidence bundles. Natural pilot domain. |
+| Test generation and requirements traceability | Any class — tool output | Tier 1 (observe) | Agent generates candidate tests and traceability matrices. Qualified personnel review before entry into the DHF/DMR. |
+| Post-market surveillance data analysis | Post-market | Tier 1-2 | Agents analyze vigilance data, identify signals, draft initial assessments. Clinical significance determination remains human-owned. |
+| Clinical evidence assembly and formatting | Pre-submission | Tier 1-2 | Agents compile CER evidence packages, literature search results, and statistical summaries. Clinical conclusions are human-authored. |
+| IQ/OQ/PQ evidence assembly | Validation | Tier 1-2 | Agents assemble qualification evidence packages and format test results. Human qualified person reviews and approves. |
+| CAPA root cause analysis assistance | Quality | Tier 1-2 | Agents draft root cause analyses from defect data and trend analysis. Human quality owner approves before closure. |
+
+---
+
+## Tool Configuration Notes
+
+*How to configure agent tooling to satisfy IEC 62304 traceability and
+21 CFR Part 11 / EU Annex 11 audit trail requirements.*
+
+### Audit Trail Hook Mapping
+
+21 CFR Part 11 §11.10(e) and EU Annex 11 §9 require audit trails for all
+GxP computerized system activity. Agent configuration should produce:
+
+| Regulatory Requirement | Hook Type | What It Produces |
+|---|---|---|
+| Audit trail — every agent action | PostToolUse audit hook | Agent identity, action type, timestamp, trace ID, data accessed |
+| Access controls — authorized agents only | PreToolUse gate hook | RBAC check record; denied requests logged |
+| Electronic signature for GxP record entry | PreToolUse signature hook | Named human approval with timestamp before any record submission |
+| System validation evidence | SessionStart + SessionEnd hooks | Complete session record for IQ/OQ/PQ evidence |
+| Data backup verification | Scheduled hook | Periodic confirmation that trace archive is intact and queryable |
+
+### Data Classification Enforcement
+
+For Class B/C devices and for GxP records:
+- Restrict agents to approved MCP servers only. No external API calls
+  for sessions containing patient data or device design data.
+- Apply HIPAA (US) and GDPR (EU) data handling controls through the
+  infrastructure-level MCP allowlist, not through agent prompts.
+- The trace infrastructure is a computerized system subject to Part 11
+  validation. Validate before using as a regulatory record source.
+
+### SOUP Detection Integration
+
+Integrate a dependency scanning hook (PreToolUse) that:
+- Intercepts any new library or framework selection by the agent
+- Queries the organization's SOUP registry for qualification status
+- Blocks integration of unqualified SOUP for Class B/C development
+- Logs all SOUP decisions in the evidence bundle for DHF inclusion
+
+---
+
+## Viable Starting Points
+
+Not all medical device software carries equal certification burden. The
+following are realistic entry points for agentic engineering practices today:
+
+1. **Class A device software.** No injury risk. Full agentic loop
+   permissible. Standard evidence bundles. Natural pilot domain with
+   minimal regulatory overhead.
+
+2. **Test generation for any safety class (Tier 1 observe).** Agents
+   generate candidate test cases, traceability matrices, and IEC 62304
+   §5.6 unit verification scaffolding. Qualified personnel review and
+   accept. No tool qualification required. Applicable to Class B and C.
+
+3. **Post-market surveillance analysis.** Agents analyze complaint data,
+   identify adverse event patterns, and draft initial signal assessments.
+   Human clinical reviewer owns the determination. High-value use case
+   with contained blast radius.
+
+4. **Clinical evidence assembly.** Agents compile literature search
+   results, summarize clinical data, and format CER draft sections.
+   Clinical conclusions remain human-authored. Reduces evidence assembly
+   cycle time without automating clinical judgment.
+
+5. **Traceability matrix generation.** Agent assembles
+   specification-to-test-to-verification matrices from the DHF. Human
+   validates completeness. Strong ALCOA+ alignment; directly supports
+   MDR Annex II technical documentation.
+
+6. **IQ/OQ/PQ evidence packaging.** Agents format and assemble
+   qualification evidence packages from evaluation results. Human
+   qualified person reviews before sign-off. Reduces qualification
+   cycle time significantly.
+
+---
+
 ## Open Regulatory Questions
 
 The following questions are unresolved in current regulatory guidance and
@@ -307,7 +400,7 @@ regulatory precedent is needed:
    boundary?
 
 3. **Version change revalidation requirements**: When the underlying model
-   is updated (e.g., GPT-4 to GPT-5), what revalidation scope is required?
+   is updated (e.g., model v1 to v2), what revalidation scope is required?
    The PCCP framework addresses anticipated modifications but does not
    explicitly cover infrastructure-level model changes that alter agent
    behavior without software changes.

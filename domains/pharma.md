@@ -248,7 +248,150 @@ agent deployments.
 
 ---
 
-## 10. Open Regulatory Questions
+## 10. Viable Starting Points
+
+Not all pharma workflows carry equal GxP burden. The following are realistic
+entry points for agentic engineering practices today:
+
+1. **Drug discovery and early research (no GxP obligations).** Manifesto
+   applies directly with minimal regulatory overlay. Natural pilot domain.
+   Use to build team competency and evidence practices before GxP contexts.
+
+2. **Regulatory dossier consistency checking.** Agents cross-check submission
+   sections for internal consistency, identify gaps against CTD format
+   requirements, and flag cross-references. Regulatory affairs professional
+   approves before submission. High-value use case; Tier 1-2 natural ceiling.
+
+3. **Deviation trending and CAPA root cause assistance.** Agents analyze
+   deviation databases, identify patterns, and draft initial root cause
+   analyses for human review. Reduces investigation cycle time. No GMP record
+   modification — observe only.
+
+4. **Pharmacovigilance signal detection.** Agents analyze ICSR data and
+   literature for emerging safety signals. Qualified pharmacovigilance
+   professional reviews all findings before regulatory reporting. Contained
+   blast radius; significant value at Tier 1 observe.
+
+5. **Protocol drafting assistance (GLP, GCP).** Agents draft study protocol
+   sections from templates and prior studies. Principal investigator or
+   sponsor review and approval before finalization. Strong alignment with
+   ICH E6(R3) "fit-for-purpose" quality management.
+
+6. **IQ/OQ/PQ evidence assembly.** Agents format and compile qualification
+   evidence packages from evaluation results. Qualified person signs off.
+   Reduces validation cycle time while preserving human accountability for
+   all quality decisions.
+
+---
+
+## 11. Hard Autonomy Caps
+
+The following caps apply regardless of organizational maturity phase.
+They are derived from GxP data integrity requirements, not from risk
+preference.
+
+| Use Case | Maximum Tier | Regulatory Basis | Key Constraint |
+|---|---|---|---|
+| GMP batch record modification | **Tier 1** (observe only) | 21 CFR 211.68; EU GMP Annex 11 §9; Part 11 | Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. |
+| GMP manufacturing instructions | **Tier 1** (observe only) | EU GMP Chapter 4; 21 CFR 211 | Agent may draft; qualified person reviews and approves before issuance to production. |
+| GLP raw data | **Tier 1** (observe only) | 21 CFR Part 58; OECD GLP Principles | Raw data integrity is absolute. Agents may read; agents must never modify raw data. |
+| GCP patient-facing decisions / causality | **Tier 1** (observe only) | ICH E6(R3); 21 CFR 50/56 | Causality assessment and any patient safety decision requires qualified human judgment. |
+| Regulatory submission content | **Tier 2** max | FDA, EMA submission regulations | Agent drafts and consistency-checks; regulatory affairs professional approves before submission. |
+| Drug discovery / early research | **Tier 3** available | Minimal GxP overlay | Standard manifesto adoption applies. No GxP obligations for pre-IND research. |
+| Pharmacovigilance (ICSR triage, signal detection) | **Tier 1-2** | ICH E2A/E2B/E2C; EudraVigilance | Agent assists signal detection and ICSR assembly; qualified pharmacovigilance professional reviews every case before reporting. |
+
+---
+
+## 12. Formal Verification Opportunity
+
+Manifesto Principle 8 states: "proofs are a scale strategy." For pharma,
+formal verification creates value in specific contexts:
+
+### Process Analytical Technology (PAT) and Control Strategy
+
+PAT models (ICH Q8, Q10) governing real-time release testing and process
+control can benefit from formal verification of the control logic:
+
+- **Process model contracts**: Formal preconditions and postconditions on
+  analytical control algorithms can be machine-verified rather than validated
+  through scripted testing alone.
+- **Agent-generated PAT logic with formal proofs**: Agent-generated control
+  logic accompanied by machine-checked proofs of correctness properties
+  (no out-of-bounds, monotonicity of response) can produce a stronger
+  validation case than test-only approaches.
+- **FDA CSA alignment**: CSA's "use of unscripted testing" and "critical
+  thinking over scripted compliance" principles support replacing exhaustive
+  scripted test matrices with targeted formal verification on critical paths.
+
+### Quantitative Structure-Activity Relationship (QSAR) and Pharmacokinetic Models
+
+QSAR models and PK/PD algorithms used in drug development can benefit from:
+
+- **Formal invariants**: Constraints on output ranges, monotonicity of
+  dose-response relationships, and absence of undefined behavior formally
+  verified rather than tested across a finite sample.
+- **Contract-first specification (P2)**: Specify model constraints as formal
+  contracts before implementation. Agent-generated model code verified against
+  the formal contract by a model checker provides stronger evidence than
+  equivalence testing alone.
+
+### Practical Entry Point
+
+Formal methods do not require a full theorem-proving infrastructure. The
+practical entry is executable specification: write GxP acceptance criteria
+as machine-checkable assertions (postconditions on calculations, invariants
+on data ranges). These serve simultaneously as human-readable requirements
+and automated verification inputs — collapsing the gap between specification
+and test evidence. This is directly compatible with CSA's intent and
+eliminates the overhead of scripted test protocol generation.
+
+---
+
+## 13. Tool Configuration Notes
+
+*How to configure agent tooling to satisfy 21 CFR Part 11 / EU Annex 11
+audit trail requirements and GxP data integrity obligations.*
+
+### Audit Trail Hook Mapping
+
+| GxP Requirement | Hook Type | What It Produces |
+|---|---|---|
+| Audit trail — agent actions on GxP data | PostToolUse audit hook | Timestamp, user/agent identity, action type, before/after values, reason |
+| Electronic signatures for GxP records | PreToolUse signature gate | Named qualified person approval with binding electronic signature |
+| System access controls | PreToolUse RBAC hook | Access check record; unauthorized access attempts logged |
+| Configuration change audit trail | PostToolUse config hook | Specification version changes, prompt modifications, tier adjustments logged |
+| Data backup and recovery verification | Scheduled PostToolUse | Periodic archive integrity check |
+| Operational checks (circuit breakers) | PreToolUse system check | Agent health check; blocks execution if system state outside validated range |
+
+### GxP Data Classification Enforcement
+
+The MCP allowlist (Layer 6 in enterprise configuration) is the primary
+data residency control for GxP systems:
+
+| Data Classification | Agent Access | Routing Constraint |
+|---|---|---|
+| Raw / source data (GMP, GLP) | Read-only | On-premises or validated private cloud only; no external API |
+| Batch records and GMP quality records | Read-only | On-premises only; any agent access logged as a Part 11 event |
+| Draft documents | Read-write with audit trail | Approved models with signed DPA; agent writes to draft state only |
+| Restricted patient-level data | Read-only with additional controls | Anonymization layer required; local inference preferred |
+
+### GAMP Validation of the Agent Infrastructure
+
+The agent runtime itself is a GAMP Category 4 or 5 system:
+- **IQ evidence**: Configuration-as-code (specifications, tool permissions,
+  tier settings, model version pins) captured in the version-controlled
+  configuration repository.
+- **OQ evidence**: Evaluation portfolio results (P8); tier enforcement test
+  logs (P5); trace completeness verification (P9).
+- **PQ evidence**: Production performance metrics (P9); drift detection
+  records; evidence bundle consistency over time (P1).
+
+The configuration repository is the IQ record. Point auditors to it — it
+is the answer to "show me your validated system configuration."
+
+---
+
+## 14. Open Regulatory Questions
 
 These questions are unresolved at the intersection of agentic engineering and
 pharma regulation. They are listed here to support regulatory strategy

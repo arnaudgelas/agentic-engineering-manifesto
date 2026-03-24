@@ -132,6 +132,147 @@ skills to specific phase transitions.
 
 ---
 
+## Annotated Agent Configuration Template
+
+Every project needs an agent configuration file (commonly named `AGENTS.md`,
+`CLAUDE.md`, or similar depending on tooling). Neither the manifesto nor most
+tooling documentation provides a starting point. Use this template — adapt it,
+do not just copy it. Annotations explain what each section must contain and
+whether it is mandatory per CoE policy.
+
+```markdown
+# [Project Name] — Agent Instructions
+
+## Project Overview
+<!-- MANDATORY. 3-5 lines. What does this service do? What domain does it own?
+     What is its upstream/downstream position in the system? -->
+[Service name] is responsible for [core function]. It owns [domain boundary].
+Upstream: [what feeds into it]. Downstream: [what consumes its output].
+Stack: [language, framework, runtime].
+
+## Build, Test, Deploy Commands
+<!-- MANDATORY. Agents must be able to run these without asking. -->
+Build:  [command]
+Test:   [command]          # Must exit 0 before any PR
+Lint:   [command]
+Deploy: [command or "see CI pipeline — do not deploy manually"]
+
+## Domain Constraints
+<!-- MANDATORY. What must this agent never do in this codebase? -->
+- Never modify [schema/table/config] without a migration file and a rollback.
+- Never call external APIs directly — use the adapter layer at [path].
+- Never generate pricing, underwriting, or claims logic — flag for human review.
+- [Any other non-negotiable domain boundary]
+
+## Security
+<!-- MANDATORY. Reference enterprise rules — do not duplicate them here.
+     Add only project-specific security constraints. -->
+Follows enterprise security rules. Project-specific additions:
+- All [entity type] inputs must be validated against [schema/contract] at [path].
+- [Any project-specific credential or secret handling requirement]
+
+## Testing Conventions
+<!-- MANDATORY. Agents must know how tests are structured before writing them. -->
+Test location: [path pattern]
+Naming: [convention, e.g., describe/it or TestFunctionName_Scenario]
+Mocking: [approved mock strategy — real DB / in-memory / stub]
+Coverage threshold: [minimum %, matches hook threshold]
+
+## Commit and PR Conventions
+<!-- MANDATORY. -->
+Commit format: [conventional commits / other]
+PR title: [format]
+Every agent-assisted commit must include: "Co-Authored-By: [agent-id]"
+
+## Architecture Notes
+<!-- RECOMMENDED. Key decisions agents must respect. Keep brief. -->
+- [ADR reference or one-line constraint, e.g., "hexagonal architecture — no
+  framework code in domain layer"]
+- [Data flow constraint, e.g., "all writes go through the command bus at [path]"]
+
+## MCP Integrations in Use
+<!-- RECOMMENDED. List approved MCPs available in this project. -->
+- [MCP name]: [what it does, what data classification it can access]
+
+## What NOT to Put Here
+<!-- Advisory — for the human writing this file -->
+Do not include: credentials, environment variable values, hostnames, IPs,
+information that belongs in enterprise rules (already loaded), information
+that should be in a path-scoped rule file.
+Do not exceed 200 lines. Use @path/to/file imports for larger reference docs.
+```
+
+**CoE review checklist for project agent configuration file:**
+- [ ] Project Overview: domain boundary clearly stated
+- [ ] Build/test/deploy commands: all present and tested
+- [ ] Domain Constraints: no overlap with enterprise-managed agent configuration
+- [ ] Security section: references enterprise rules rather than duplicating them
+- [ ] Testing Conventions: coverage threshold matches hook threshold
+- [ ] No credentials, hostnames, or environment-specific values
+- [ ] Under 200 lines
+
+---
+
+## Cross-Domain Supplier and Vendor Qualification
+
+Every regulated domain requires qualification of critical suppliers of
+software systems. In agentic engineering, "supplier" is an ambiguous
+category — LLM providers, open-source frameworks, agent runtimes, and
+tool integrations all fall into scope. This section provides a
+cross-domain synthesis; domain documents provide the regulatory specifics.
+
+### Who Is the Supplier?
+
+| Component | Supplier Type | Qualification Obligation | Key Issue |
+|---|---|---|---|
+| Commercial LLM API (OpenAI, Anthropic, etc.) | Named vendor with terms of service | Vendor assessment: data handling, version notification, SLA, incident notification | No access to training data, model weights, or full anomaly documentation. Regulatory expectations were written for traditional software suppliers. |
+| Open-source foundation model (Llama, Mistral, etc.) | No identified supplier entity | **Deploying organization assumes full supplier responsibility**: validation, maintenance, version control, anomaly tracking, incident response | No quality agreement possible. The QMS burden falls entirely on the deployer. |
+| Agent framework / orchestration library | OSS or commercial | Same as above, based on licensing model | Framework updates may change agent behavior without semantic versioning signals |
+| MCP tool integrations | Varies | Each tool integration is a system boundary requiring supplier qualification appropriate to the data classification it can access | External API access expands the effective supply chain |
+| Agent memory infrastructure | Internal or vendor | Internal: first-party governance. Vendor: assess data residency, backup/recovery, retention controls | Memory stores may hold regulated data; the store's supplier must be qualified accordingly |
+
+### The Open-Source Supplier Problem
+
+GAMP 5 (pharma), ISO 13485 (medical devices), and SR 11-7 (financial
+services) assume an identifiable supplier with a quality system. Open-source
+foundation models have no such entity. The deploying organization must
+formally document that it assumes supplier responsibilities. This is not
+optional — it is the regulatory consequence of the build decision.
+
+**Documentation required:**
+1. **Assumption of supplier responsibilities**: A formal record stating that
+   the organization assumes full validation, maintenance, monitoring, anomaly
+   tracking, and incident response responsibilities for the open-source model.
+2. **Version management plan**: How model versions are tracked, tested before
+   upgrade, and rolled back if needed.
+3. **Anomaly tracking**: How the organization monitors community-reported
+   issues and assesses impact on its validated use cases.
+4. **Exit strategy**: How the organization would migrate to a different model
+   if the open-source project is abandoned or compromised.
+
+### Cross-Domain Qualification Minimum Requirements
+
+Regardless of domain, agent supplier qualification should address:
+
+| Requirement | Why It Matters | Minimum Evidence |
+|---|---|---|
+| Data handling and residency | Regulated data must not leave compliant infrastructure | Data processing agreement or on-premises deployment confirmation |
+| Version notification | Model updates change agent behavior | Version change notification procedure with minimum lead time |
+| Availability SLA | Agent unavailability is an ICT operational risk | SLA documentation with incident notification commitments |
+| Security posture | Agent infrastructure is an attack surface | Security assessment (SOC 2, ISO 27001, or equivalent) |
+| Sub-processor visibility | Data may pass through additional third parties | Sub-processor list and flow-down requirements |
+| Exit strategy | Concentration risk requires mitigation | Multi-model routing plan (P11) as DORA/third-party risk mitigation |
+
+**Multi-vendor routing as qualification simplification.** P11's multi-model
+routing strategy (routing tasks to the cheapest capable model) also reduces
+supplier qualification burden by preventing dangerous concentration in a
+single provider — a regulatory requirement under DORA for financial services,
+and a prudent risk management practice in all regulated domains. Each
+provider still requires qualification, but no single provider's failure
+can take down the entire capability.
+
+---
+
 ## Ecosystem References
 
 This guide references standards and tools that are evolving rapidly. Rather

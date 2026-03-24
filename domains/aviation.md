@@ -280,6 +280,87 @@ unqualified tool with independent verification of all output.
 
 ---
 
+## ALCOA+ Compliance
+
+Aviation configuration management (DO-178C Section 7) requires data integrity
+standards that parallel ALCOA+ requirements. The manifesto's evidence model
+satisfies these by construction. See [Companion Frameworks — ALCOA+ Alignment](../companion-frameworks.md#alcoa-alignment)
+for the complete mapping table.
+
+For aviation-specific application:
+- **Configuration identification** maps to ALCOA+ "Attributable" and
+  "Original": every agent-generated artifact carries agent identity, model
+  version, session ID, and prompt hash.
+- **Baselines** map to "Contemporaneous" and "Enduring": evidence bundles
+  are captured at execution time and retained as immutable CM items.
+- **Problem reporting** maps to "Accurate" and "Complete": evaluation
+  failures generate problem reports that are traceable and cannot be silently
+  suppressed.
+
+Practical constraint: for DO-178C programs, the trace infrastructure is a
+development tool and must be addressed in the PSAC. Conservative framing:
+describe it as an internal tooling component with documented version control,
+not as a tool requiring TQL qualification.
+
+---
+
+## Market-Specific Autonomy Guidance
+
+The table below maps aviation workflows to recommended autonomy tiers. The
+DAL-based ceiling in the first section of this document applies; this table
+adds workflow-level context.
+
+| Workflow | DAL / Assurance Level | Recommended Autonomy | Notes |
+|---|---|---|---|
+| Airborne software — critical paths (flight control, engine control) | DAL A/B | Tier 1 (observe only) | Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification not currently feasible. |
+| Airborne software — major functions | DAL C | Tier 1-2 | Agents draft to isolated branches. Merge requires qualified review against applicable Table A objectives. |
+| Airborne software — minor / no-effect functions | DAL D/E | Tier 1-3 | Standard evidence bundles satisfy reduced verification objectives. Natural pilot domain. |
+| Ground support equipment (GSE) software | Typically not DO-178C scope | Tier 1-3 | Normal manifesto adoption applies. Confirm applicability of DO-178C to specific GSE. |
+| Ground-based CNS/ATM software (DO-278A) | AL-3 to AL-6 | Tier 1-3 (AL-3 ceiling: Tier 1-2) | Lower assurance levels; natural early adoption domain. Same DO-330 path applies. |
+| Test generation and requirements analysis | Any DAL — tool output only | Tier 1 (observe) | Agent operating at Tier 1 generates candidate test cases, traceability matrices, and coverage analyses. Human qualified staff review and accept. No tool qualification required. |
+| Safety assessment (FHA, FMEA, FTA) | N/A — feeds DAL assignment | Tier 1 (observe only) | Errors propagate into DAL and certification scope. Independent human review non-negotiable for all safety assessment outputs regardless of DAL. |
+| Traceability and evidence package assembly | Any DAL | Tier 1-2 | High value, low risk. Agent assembles; human validates completeness. Strong ALCOA+ alignment. |
+
+---
+
+## Tool Configuration Notes
+
+*How to configure agent tooling to satisfy DO-178C and DORA Article 9
+traceability requirements. Read alongside your enterprise configuration guide.*
+
+### Configuration Management Hook Mapping
+
+DO-178C Section 7 requires that all software lifecycle data is identified,
+baselined, and change-controlled. Agent configuration contributes to this:
+
+| DO-178C CM Objective | Hook Type | What It Produces |
+|---|---|---|
+| Configuration identification of agent artifacts | PostToolUse audit hook | Artifact ID, agent session ID, model version, timestamp |
+| Change control — agent-modified files | PreToolUse gate hook | Review record, autonomy tier at time of change |
+| Problem reporting — failed evaluations | PostToolUse evaluation hook | Evaluation failure record with trace ID |
+| Archival and retention | SessionEnd archive hook | Immutable session record in the CM repository |
+
+### Export Control Enforcement (ITAR/EAR)
+
+For programs with ITAR/EAR-controlled technical data, the MCP allowlist
+(Layer 6 in enterprise configuration) is the primary data residency control:
+- Restrict MCP servers to on-premises or US-person-accessible endpoints only.
+- No external API calls for sessions containing ITAR-controlled design data.
+- Log all tool calls with data classification context for Technology Control
+  Plan compliance.
+
+### Model Version Pinning for Certification Stability
+
+Pin agent model versions during active certification programs:
+- During DER/ODA review periods
+- While PSAC or SCI is open
+- After any verification baseline has been established
+
+Model version changes affecting agent behavior should be documented as
+CM changes and assessed for impact on previously verified artifacts.
+
+---
+
 ## Viable Starting Points
 
 Not all aviation software carries equal certification burden. The following

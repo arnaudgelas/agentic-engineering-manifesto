@@ -64,6 +64,44 @@ workflows.
 Track these alongside system health. If system metrics improve while team
 health metrics decline, the governance model is consuming its own foundation.
 
+**Rubber-stamping detection.** Control theater — humans nominally accountable
+but operationally blind — is the most common governance failure at scale. Detect
+it quantitatively before it becomes an incident:
+
+| Signal | Healthy baseline | Alert threshold | What it indicates |
+|---|---|---|---|
+| Median review time per agent-generated PR | 8–20 minutes | < 2 minutes | Reviewer not reading the diff |
+| PR rejection rate (agent-generated) | 5–15% | < 1% | Approving without meaningful review |
+| Inline comments per approved PR | 3–7 | Trending to 0 over 4 weeks | Review becoming mechanical |
+| Rework rate within 1 week of merge | 1–3% | > 10% | Approved changes requiring hotfixes |
+
+Collect these via your code review platform (GitHub, GitLab, Azure DevOps
+— all provide approval timestamps and comment counts via API).
+
+**Intervention protocol when thresholds breach:** Do not add more reviewers.
+Reduce autonomy scope for that reviewer's domain until review is meaningful
+again. The problem is volume, not capacity. Additional reviewers at the same
+volume create the same rubber-stamping pattern faster.
+
+### Governance Overhead Metrics
+
+Governance infrastructure has real cost. Without efficiency metrics, it is
+impossible to distinguish "governance is working" from "governance is overhead
+with no signal." Finance and leadership will ask; measure proactively.
+
+| Metric | Target | Alert threshold | What to do |
+|---|---|---|---|
+| Governance overhead as % of engineering throughput | < 15% | > 25% for two consecutive quarters | Audit which governance artifacts are actually influencing decisions; remove what isn't |
+| False-positive rate on hook blocks | < 5% | > 15% | Rules are over-restrictive; refine with domain input |
+| Time-to-update-governance-policy | < 2 weeks for standard changes | > 6 weeks | Governance model is too rigid; simplify change management path for low-risk policy updates |
+| Incident-prevention rate attributable to governance controls | At least 1 prevented incident per quarter per active hook | Zero incidents prevented in 2 consecutive quarters | Hook may not be testing what matters; audit coverage |
+| Hook false-negative rate (incidents that governance should have caught) | < 2% of total incidents | > 10% | Governance gaps; add coverage for the failure class |
+
+If governance overhead exceeds 25% of throughput with no corresponding
+reduction in escaped defects, that is over-governance. Reduce ceremony,
+increase signal. The corrective action is always the same: audit what is
+actually influencing decisions and cut the rest.
+
 ### Quarterly Review Cadence
 
 Begin formal quarterly reviews once your team reaches Phase 4 (governed

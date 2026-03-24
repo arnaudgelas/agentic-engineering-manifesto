@@ -165,6 +165,74 @@ over-governance — it would slow every change to protect against a failure
 class that only occurs when changes cross domain boundaries. Instead, promote
 the specific domains with shared dependencies to Phase 5 governance.
 
+### Pattern G — Exception-Based Governance at Scale
+
+**Context:** A team at Phase 4+ is generating agent-driven changes at a volume
+that exceeds meaningful human review of every change. Domain owners are showing
+rubber-stamping signals (review time < 2 minutes, rejection rate < 1%).
+
+**The supervision paradox:** Human review does not scale to machine-speed
+output. Adding more reviewers at the same volume creates the same pattern
+faster. The solution is to reduce the volume of decisions requiring human
+review — not the quality of review.
+
+**The pattern:**
+
+1. **Classify all changes by risk tier** using an automated pre-screener built
+   from domain rules and change impact analysis:
+   - **High-risk:** Changes touching pricing logic, customer-facing decisions,
+     shared schemas with cross-domain consumers, security boundaries, or
+     compliance-annotated code paths → mandatory human review before merge.
+   - **Medium-risk:** Changes within a single domain, touching non-critical paths,
+     passing full evaluation suites → statistical sample (10-20%) reviewed by
+     domain owner; remainder logged without review.
+   - **Low-risk:** Test updates, documentation, configuration in isolated
+     environments, changes with complete evidence bundles and no cross-domain
+     impact → logged and merged automatically; retrospective audit.
+
+2. **Gate high-risk changes explicitly.** A PreToolUse hook on PR creation
+   checks the risk classification and blocks merge until the named domain owner
+   approves. Approval latency for high-risk changes is a tracked metric —
+   rising latency indicates the high-risk classification is too broad.
+
+3. **Sample medium-risk changes.** The domain owner reviews a random 15% sample
+   each week. If the sample catch rate (issues found per reviewed PR) falls below
+   2%, the classification threshold may be too conservative — promote some
+   medium-risk to low-risk. If the catch rate exceeds 15%, the threshold is too
+   permissive — raise more to high-risk.
+
+4. **Log low-risk changes for retrospective audit.** PostToolUse hooks produce
+   full audit records. Internal audit or the 2nd line of defense conducts
+   periodic retrospective reviews of the low-risk cohort (monthly, 5% random
+   sample) to validate the classification is working.
+
+**Evidence bundle:** Risk classification rationale per PR (which rules triggered
+which tier), domain owner approval record for high-risk changes, weekly sample
+review record, retrospective audit findings.
+
+**Classification criteria examples:**
+
+| Rule | Classification |
+|---|---|
+| Touches `src/pricing/**` | High-risk |
+| Touches `src/claims/**` | High-risk |
+| Modifies a database schema | High-risk (cross-domain impact) |
+| New dependency added | High-risk (provenance review required) |
+| Test file changes only, green regression suite | Low-risk |
+| Documentation, README, comments | Low-risk |
+| Single-domain logic change, passing evals | Medium-risk |
+
+**Anti-pattern:** Treating all agent-generated changes as equally risky and
+requiring human review for all of them. This creates the rubber-stamping failure
+mode. The goal is not to review everything — it is to review the right things
+with enough attention to catch real problems.
+
+**Relationship to Three Lines of Defense:** In regulated environments, the
+classification pre-screener is a 1st-line control. The 2nd-line independent
+validation function reviews the classification criteria periodically (not
+individual changes) and challenges whether the risk tiers are set appropriately.
+The 3rd line audits whether the process was followed.
+
 ---
 
 ## Failure Patterns
@@ -191,3 +259,40 @@ contracts and constraints, and rerun verification before retrying.
 3. Add regression and adversarial tests for the failure class.
 4. Re-run verification and canary on constrained scope.
 5. Promote only after evidence shows the loop is broken.
+
+---
+
+### Cross-Domain Incident Classification Framework
+
+A common severity framework enables consistent incident classification,
+reporting, and recovery across regulated environments. Domain-specific
+calibrations are listed below.
+
+| Severity | Definition | Recovery Expectation | Regulatory Trigger |
+|---|---|---|---|
+| **Severity 1** | Agent takes unauthorized action with external impact (customer accounts, patient data, regulatory submissions, safety-critical systems) | Immediate containment; production rollback; root cause analysis with executive sign-off | Mandatory regulatory notification in most domains (DORA Art. 17-23; MDR Art. 87; ITAR incident reporting) |
+| **Severity 2** | Agent produces incorrect output detected before downstream impact; indicates a control failure (evaluation gate missed, tier enforcement bypassed) | Same-day diagnosis; evidence bundle with root cause; governance review of the failed control | Internal incident record; potential regulatory disclosure depending on data type affected |
+| **Severity 3** | Agent performance degradation (latency, accuracy drift, increasing evaluation failure rate) detected through monitoring; within tolerance thresholds | Diagnosis within 24h; specification or tier adjustment if root cause identified | Typically internal; may trigger DORA notification if threshold-breaching degradation continues |
+| **Severity 4** | Agent failure fully contained by circuit breakers or fallback mechanisms; no downstream impact | Post-incident review within 48h; update chaos test suite with the failure scenario | Internal only; document in resilience engineering log |
+
+**Domain-specific calibration:**
+
+- **Aviation**: Map to the failure condition category (Catastrophic, Hazardous,
+  Major, Minor) of the software component affected. Any agent action affecting
+  airborne software in a DAL A/B component is Severity 1 by default.
+- **Medical devices**: Map to IEC 62304 safety class and ISO 14971 harm
+  probability × severity. Any agent action affecting Class C critical-path
+  software is Severity 1. Vigilance reporting timelines apply for Severity 1-2.
+- **Pharma**: Map to GxP data integrity impact. Any agent action that
+  modifies or corrupts GxP records without a valid audit trail is Severity 1.
+  Deviation and CAPA procedures apply.
+- **Financial services**: Use the DORA Severity 1-4 taxonomy defined in the
+  [financial-services.md](domains/financial-services.md#dora-digital-operational-resilience-act)
+  domain document. DORA notification timelines are strict; track them as a
+  first-class workflow trigger.
+- **Automotive**: Any agent action affecting ASIL C/D safety function
+  specifications, test cases, or verification records is Severity 1. ISO 26262
+  Part 8 change management requirements apply.
+- **Defense / government**: ITAR/EAR violations are automatic Severity 1
+  regardless of downstream impact. Report to the cognizant security officer
+  immediately; do not attempt self-remediation before reporting.

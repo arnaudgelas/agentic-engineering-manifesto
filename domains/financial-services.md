@@ -234,14 +234,31 @@ not exceed Tier 2 autonomy under current regulatory expectations.
 
 ---
 
+## Hard Autonomy Caps
+
+The following caps are **regulatory floors** — constraints derived from
+applicable law, not risk preference. A mature Phase 5 organization still
+cannot exceed these caps for the listed use cases.
+
+| Use Case | Maximum Tier | Regulatory Basis | Key Constraints |
+|---|---|---|---|
+| Credit and insurance underwriting, pricing, limit-setting | **Tier 1** (observe only) | EU AI Act Annex III §5 (high-risk); GDPR Art. 22; Fair Lending (ECOA, FHA) | Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory. |
+| Algorithmic trading, execution, market making | **Tier 1** (observe only) | MiFID II Art. 17; MAR; Reg SCI | Kill switches mandatory and must operate sub-second. Agent cannot execute trades autonomously. |
+| AML/KYC screening, SAR filing | **Tier 2** max | AMLD6; FinCEN BSA; Wolfsberg Principles | Human review on every SAR. Agent assists triage and evidence assembly; does not make filing determinations. |
+| Customer credit decisions (lending, card limits) | **Tier 1** (observe only) | EU AI Act Annex III §5; Consumer Credit Directive | Right to human review of automated credit decisions cannot be waived. |
+| Claims decisioning affecting payout | **Tier 1** (observe only) | EU AI Act high-risk; FCA Consumer Duty | Agent may triage and summarize. Human adjudicates every claim. |
+| Fraud detection triggering account action | **Tier 2** max | Consumer Duty; GDPR | Agent may score and flag. Human authorises account restriction or closure. |
+| Regulatory reporting (drafting, consistency checks) | **Tier 2** max | COREP/FINREP; various reporting regulations | Accuracy requirements are absolute. Agent drafts; human approves before submission. |
+| Back-office automation (reconciliation, data entry) | **Tier 3** available | SOX (with evidence controls) | Standard manifesto adoption path. Evidence bundles satisfy change management requirements. |
+
 ## Market-Specific Autonomy Guidance
 
-The table below maps common financial services use cases to recommended
-autonomy tiers from the manifesto. These are starting points; actual tier
-assignments must reflect the organization's risk appetite and regulatory
-obligations.
+The table below maps common financial services workflows to recommended
+starting autonomy tiers. These are starting points; actual tier assignments
+must reflect the organization's risk appetite and regulatory obligations —
+and must not exceed the hard caps above.
 
-| Use Case | Risk Tier | Recommended Autonomy | Key Regulations | Notes |
+| Use Case | Risk Profile | Recommended Starting Autonomy | Key Regulations | Notes |
 |---|---|---|---|---|
 | Back-office automation (document processing, reconciliation, data entry) | Low | Tier 1-3 | SOX | Standard manifesto adoption path. Evidence bundles satisfy change management. Low regulatory sensitivity allows higher autonomy tiers. |
 | Model development support (quant code generation, research assistance, data exploration) | Medium | Tier 1-2 | SR 11-7 | Agent output independently validated by model validation team. The agent is a development tool, not the model itself. Output enters the model development lifecycle and is subject to full SR 11-7 validation. |
@@ -280,6 +297,126 @@ data classification becomes an autonomy constraint enforced at the system
 level, not merely a policy document. The routing layer (P11) must respect
 classification boundaries -- a cost-optimal route that violates data
 residency rules is not a valid route.
+
+---
+
+## Agent Tooling Configuration
+
+*This section maps the regulatory requirements above to the agent tooling
+configuration mechanisms described in the manifesto's companion documents.
+Read this alongside your tool's enterprise configuration guide — neither is
+sufficient alone.*
+
+### DORA Article 9 Evidence Chain
+
+DORA Article 9 requires that changes are recorded, tested, and approved before
+production. Each requirement maps to a specific hook type:
+
+| DORA Article 9 requirement | Hook type | What it produces |
+|---|---|---|
+| Changes are recorded | PostToolUse audit logging hook | SIEM record: timestamp, developer, tool calls, trace ID, deployment ID |
+| Changes are tested before deployment | PreToolUse test enforcement hook | Test pass/fail record, coverage threshold evidence |
+| Changes are approved before production | PreToolUse PR gate hook + Layer 7 RBAC | Named approver, approval timestamp, scope of approval |
+| Sensitive data not exposed | PreToolUse data residency enforcement hook | Classification check log, block record if violated |
+| Session activity is auditable | SessionStart hook + transcript centralization | Session initiation record; note: transcripts are stored locally by default and must be centralized via scheduled hook or script |
+
+The configuration repository (`ai-governance-config` or equivalent) is the
+auditable record of how these controls are configured. Point auditors to the
+repository — it is the answer to "how do you control what the AI tool can do."
+
+### Three Lines of Defense → RBAC Mapping
+
+| Line | Role | RBAC role | Hook infrastructure access |
+|---|---|---|---|
+| 1st line — Development | Builds and operates agent systems | Developer role | Development hooks (secrets detection, test enforcement, security scanning) |
+| 2nd line — Risk/Compliance | Independent validation; sets risk policy | Read-only access to validation hook configs, or separate validation workspace | Validation hooks only — runs on independent infrastructure, not shared with 1st line |
+| 3rd line — Internal Audit | Audits the governance framework | Cost/usage visibility + read access to configuration repository | Audit log hooks output; configuration repository Git history |
+
+**Segregation note:** 2nd-line validation infrastructure must be organizationally
+separated from development infrastructure — use a separate workspace or tenant
+for 2nd-line validation execution, not shared infrastructure with the
+development environment.
+
+### MCP Allowlisting as Data Residency Control
+
+The managed MCP policy (Layer 6) is the primary infrastructure control for
+GDPR cross-border transfer compliance and banking secrecy law requirements:
+
+- MCP servers calling external APIs for Confidential/Restricted data must be
+  restricted to approved providers with signed Data Processing Agreements.
+- MCP servers must be routed through the corporate proxy — not direct external
+  access — so egress is logged and auditable.
+- The MCP allowlist is the machine-enforced answer to "what third-party systems
+  can the AI access?" Document every approved MCP server with its data
+  classification scope and DPA reference.
+
+### Model Version Pinning for Regulatory Stability
+
+During periods of regulatory sensitivity, pin the agent tooling to a specific
+model version in the managed settings file to prevent behavioral drift:
+
+- Q1 regulatory reporting cycles (COREP, FINREP, annual reports)
+- Year-end close periods
+- During active supervisory examinations
+- After any SR 11-7 independent validation that established a behavioral baseline
+
+Behavioral drift between model versions can invalidate a validation baseline.
+Document pinning decisions with rationale in the configuration repository
+change log.
+
+---
+
+## ALCOA+ Compliance
+
+The manifesto's evidence model satisfies ALCOA+ data integrity requirements
+by construction. See [Companion Frameworks — ALCOA+ Alignment](../companion-frameworks.md#alcoa-alignment)
+for the complete mapping table.
+
+For financial services, this means:
+- **SR 11-7 model documentation**: Evidence bundles and structured traces
+  provide the "Attributable," "Legible," and "Contemporaneous" criteria that
+  model validation teams rely on for independent review.
+- **SOX audit trails**: Traces meet the "Original," "Accurate," and
+  "Complete" criteria required for IT General Controls over financial
+  reporting pipelines.
+- **DORA record-keeping**: The "Enduring" and "Available" criteria are
+  satisfied by trace retention infrastructure and queryable audit stores.
+
+Key constraint: the trace infrastructure itself is a production system
+subject to IT change management. Organizations must version-control their
+observability configuration and include it in SOX ITGC scope.
+
+---
+
+## Viable Starting Points
+
+Not all financial services workflows carry equal regulatory burden. The
+following are realistic entry points for agentic engineering practices today:
+
+1. **Back-office automation (SOX-scoped).** Reconciliation, data entry,
+   document processing. Lower regulatory sensitivity. Standard evidence
+   bundles satisfy SOX change management. Natural Phase 3→4 pilot domain.
+
+2. **Model development support.** Agents assist quant researchers with
+   code generation, data exploration, and analysis. Agent output enters the
+   SR 11-7 model lifecycle and receives full independent validation — the
+   agent is a development accelerant, not a replacement for model governance.
+
+3. **Regulatory reporting — consistency checking.** Agents cross-check
+   report data against source systems, flag inconsistencies, and draft
+   narrative sections. Human approves before submission. Traces provide the
+   audit trail regulators expect.
+
+4. **Traceability and evidence assembly.** Agents assemble SR 11-7 model
+   documentation packages, DORA incident records, and SOX change management
+   evidence. Reduces cycle time for audits and examinations without
+   automating the decisions themselves.
+
+5. **AML/KYC triage assistance.** Agents pre-screen transaction monitoring
+   alerts, assemble supporting evidence, and draft initial assessments. Human
+   reviews every case before disposition. False negative risk means Tier 1-2
+   is the permanent ceiling, but agent triage can significantly reduce analyst
+   workload.
 
 ---
 
