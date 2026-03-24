@@ -219,9 +219,9 @@ code belongs, what is forbidden to reinvent. Retrieval is untrusted input;
 treat context injection as a threat vector. This reduces swarm collisions and
 hardens the system against both accidental drift and adversarial conditions.
 
-AGENTS.md files (OpenAI's open standard, now under AAIF governance) offer a
-practical mechanism for encoding architectural constraints at the repository
-level. They function as machine-readable ADRs that coding agents respect at
+AGENTS.md files (an AAIF-governed open standard for repository-level agent
+instructions) offer a practical mechanism for encoding architectural constraints
+at the repository level. They function as machine-readable ADRs that coding agents respect at
 runtime — a concrete implementation of architecture as defense-in-depth.
 
 ### Agent-as-Tool and Software of Unknown Provenance
@@ -526,6 +526,102 @@ loops. In practice, entries migrate between the two:
 The migration process itself needs governance. Unreviewed promotions pollute
 your knowledge base. Unreviewed demotions erode architectural standards.
 
+### Memory Governance at Machine Scale
+
+The governance properties described above (provenance, expiration, compression,
+rollback, domain scoping) are necessary but not sufficient at production volume.
+A single agent executing 100 tasks per hour generates 100 memory entries per
+hour. Human curators can meaningfully review 10-20 entries per hour — an
+immediate 5-10x backlog. At this scale, reactive curation (diagnose regression,
+identify poisoned entry, rollback) is a post-mortem methodology, not a
+governance strategy. Proactive detection is required.
+
+**Implement these four mechanisms before agents generate significant memory
+volume:**
+
+**1. Retrieval canaries (continuous).** For each memory shard serving a
+production domain, define one known-good query with an expected result. Run it
+on every retrieval cycle. If retrieved results deviate from expected, isolate
+the shard immediately and alert. This catches poisoning before agents act on
+bad context. Pattern C in [companion-patterns.md](companion-patterns.md) shows
+this as a recovery step — it should be a permanent fixture, not a post-incident
+addition.
+
+**2. Consistency check on write.** When a new memory entry contradicts an
+existing entry in the same domain, flag both for resolution before the new
+entry is propagated. Do not silently overwrite. The contradiction is signal —
+either the new lesson is wrong, the old lesson is stale, or both need
+re-examination.
+
+**3. Structured memory entry schema.** Require all memory entries to carry:
+- `lesson`: what was learned (one sentence)
+- `rationale`: why this is believed to be true
+- `confidence`: 1-5 (1 = tentative observation, 5 = validated across many cases)
+- `domain_scope`: which domain(s) this applies to
+- `expires_at`: ISO 8601 datetime (see defaults below)
+- `provenance`: trace ID of the event that generated this entry
+
+Agents cannot store memory without these fields. Entries without valid schema
+are rejected at the memory layer, not silently dropped.
+
+**4. Default TTL policy by volatility.**
+
+| Domain type | Default TTL | Rationale |
+|---|---|---|
+| Model routing preferences | 7 days | Provider behavior changes frequently |
+| Transient operational learnings | 7 days | Short-lived context (incidents, deployments) |
+| API behavior and integration patterns | 30 days | APIs change on release cycles |
+| Architectural patterns (project-specific) | 90 days | Reviewed at quarterly retro |
+| Security policies and constraints | Never auto-expire | Human review required for any change |
+| Compliance-relevant learnings | Never auto-expire | Regulatory retention requirements apply |
+
+Expired entries are not deleted automatically — they enter a review queue.
+A domain expert validates or discards them monthly. Target: 5% of active
+entries reviewed per month (manageable volume, full corpus covered in
+20 months). Low validation rate triggers memory system remediation.
+
+**When memory governance fails at scale**, the tell is a sudden degradation in
+evaluation metrics for a specific domain without a corresponding code change.
+The recovery path is Pattern C (Memory Poisoning Recovery). The prevention path
+is these four mechanisms deployed before the volume problem appears.
+
+### Memory Governance in Regulated Environments
+
+The governance properties described above (provenance, expiration,
+compression, rollback, domain scoping) are necessary everywhere and
+insufficient in regulated environments. Data classification adds a layer
+of constraints on what agents may accumulate, retain, and retrieve.
+
+**What regulated environments add to memory governance:**
+
+| Domain | Memory Retention Constraint | Retrieval Constraint | Key Regulatory Basis |
+|---|---|---|---|
+| **Financial services** | Customer PII must not persist in agent memory beyond the session unless a DPA is in place. Banking secrecy jurisdictions may prohibit retention entirely. | External LLM retrievals must not send Confidential/Restricted financial data to unclassified endpoints. | GDPR Art. 5 (data minimisation); DORA third-party risk |
+| **Medical devices / pharma** | Patient-level data must not persist in learned memory. GxP operational data retention follows the applicable retention schedule, not agent TTL. | GxP raw data must never be retrieved into an agent context that has write access to production records. | HIPAA §164.528; GDPR Art. 5; GxP data integrity |
+| **Aviation** | ITAR/EAR-controlled technical data retained in agent memory constitutes a controlled export if transmitted to a non-compliant endpoint. | Retrieval from ITAR-controlled knowledge stores must operate within a Technology Control Plan. | ITAR 22 CFR 120-130; EAR 15 CFR 730-774 |
+| **Defense / government** | CUI (Controlled Unclassified Information) must not persist in any memory store without appropriate classification handling. Classified information must not enter agent systems at all. | Retrieval must be restricted to approved, accredited environments. | CMMC 2.0; NIST SP 800-171; 32 CFR Part 2002 |
+
+**The practical rule:** In regulated environments, learned memory is a
+data store subject to the same classification, retention, and access
+controls as any other system data. The manifesto's memory governance
+properties (provenance, expiration, rollback, scoping) are the mechanism;
+the applicable data regulation determines the thresholds. A GDPR data
+minimisation obligation, for instance, means the TTL default for
+customer-identifiable learnings is "session only" — not 30 days.
+
+**Audit trail for memory changes.** In regulated contexts, the memory
+governance operations themselves (write, expire, rollback) must be logged.
+The standard memory entry schema fields (`provenance`, `expires_at`,
+`domain_scope`) are the minimum; add `classification` and
+`retention_basis` fields for regulated memory stores to make the audit
+trail complete.
+
+See the domain documents for domain-specific memory classification
+requirements: [financial-services.md](domains/financial-services.md#data-residency-and-classification) ·
+[pharma.md](domains/pharma.md#data-integrity-for-agent-systems) ·
+[medical-devices.md](domains/medical-devices.md#tool-configuration-notes) ·
+[aviation.md](domains/aviation.md#export-control-itarear)
+
 ---
 
 ## Principle 7 — Context: Extended Guidance
@@ -695,10 +791,10 @@ Foundation, co-founded by Anthropic, OpenAI, Google, Microsoft, AWS, and Block):
 - **A2A** (Agent-to-Agent, Google) — agent-to-agent communication at the
   coordination layer. Agent Cards for discovery, task lifecycle management,
   cross-framework collaboration.
-- **Agent Skills** (Anthropic) — capability definition at the harness layer.
+- **Agent Skills** — capability definition at the harness layer.
   SKILL.md files that encode domain expertise, constraints, and procedures
   agents consume at runtime.
-- **AGENTS.md** (OpenAI) — repository-level constraints at the environment
+- **AGENTS.md** — repository-level constraints at the environment
   layer. Machine-readable architectural guidance that coding agents respect.
 
 The manifesto's governance model — tiers, traces, accountability, evaluations —
@@ -780,6 +876,39 @@ specs and evaluation scenarios) but eliminates the most insidious form of
 evaluation theater — evaluations that pass because the agent learned the
 answers, not because it solved the problem.
 
+### Champion-Challenger Testing in Regulated Contexts
+
+Champion-challenger testing compares agent system performance against an
+incumbent approach — the current model, the prior system version, or the
+clinical/operational standard of care. This is a cross-domain regulatory
+expectation, not a financial-services-specific concept:
+
+- **Financial services (SR 11-7)**: Requires comparing agent outputs against
+  alternative approaches or incumbent models. Statistical methodology for
+  handling output variability (non-deterministic agents) is an open regulatory
+  question; conservative approach is to run champion-challenger on a held-out
+  sample with human adjudication of disagreements.
+- **Medical devices**: FDA GMLP and ISO/TS 24971-2 expect performance
+  comparison against predicates (prior cleared devices) or the clinical
+  standard of care. The manifesto's evaluation portfolio (P8) is the
+  infrastructure for this comparison — extend evaluation suites with
+  predicate-device test cases.
+- **Pharma**: CSA expects assurance that a new system performs at least as
+  well as the system it replaces. Run champion-challenger during PQ by
+  executing parallel workflows and comparing outputs. Evidence bundle
+  includes disagreement analysis and resolution rationale.
+- **Aviation**: No direct champion-challenger requirement, but DO-178C
+  requires that verification objectives are satisfied. For agent-assisted
+  workflows replacing manual activities, demonstrate that the agent-assisted
+  approach produces equivalent or better coverage per Table A objectives.
+
+**The non-determinism problem.** Traditional champion-challenger assumes
+identical inputs produce comparable outputs. Agents are non-deterministic.
+Practical mitigation: run multiple agent invocations per input (N=3-5);
+use the majority-vote or highest-confidence output as the champion response;
+compare the distribution of champion responses against the incumbent.
+Statistical confidence intervals, not point comparisons, are the evidence.
+
 ### Independent Verification in Regulated Contexts
 
 Regulated industries share a common governance requirement: the party that
@@ -806,6 +935,38 @@ existing evaluation-as-contract pattern. See
 [companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
 for the cross-domain analysis and [domains/](domains/README.md) for
 domain-specific independence requirements.
+
+### Fairness and Bias Testing in High-Risk AI
+
+EU AI Act Article 10 requires that training, validation, and testing datasets
+for high-risk AI systems are "free of errors and complete" and that they account
+for "characteristics or elements that are particular to the specific geographical,
+behavioural or functional setting." In practice, this mandates bias testing
+as part of the evaluation portfolio for any high-risk AI system.
+
+This is a cross-domain obligation, not a financial-services-specific one:
+
+- **Financial services**: Explicit fairness testing against protected
+  classes under ECOA, FHA, and FCA Consumer Duty. Evaluation suites must
+  include demographic parity and disparate impact analysis.
+- **Medical devices**: Clinical AI systems must demonstrate equivalent
+  performance across demographic subgroups (age, sex, ethnicity). ISO/TS
+  24971-2 explicitly addresses this. Evaluation portfolios for Class B/C
+  SaMD must include subgroup performance analysis.
+- **Pharma**: ICH E8(R1) requires that clinical trial populations are
+  representative of the intended treatment population. AI systems used in
+  patient selection or stratification must be tested for demographic bias.
+- **Automotive / industrial**: AI systems in driver monitoring or operator
+  safety systems must demonstrate consistent performance across demographic
+  characteristics that could influence detection accuracy.
+
+**Minimum evaluation bar for high-risk AI systems**: Include at least one
+explicit fairness evaluation category alongside behavioral regression and
+adversarial cases. Fairness evaluation should specify: (1) which subgroup
+characteristics are tested, (2) which performance disparity metric is used
+(demographic parity, equalized odds, etc.), (3) the maximum acceptable
+disparity, and (4) who owns the determination that the disparity is
+acceptable. The last item is a human judgment — not an evaluation output.
 
 ### Workflow-Level Evaluation Enforcement
 
@@ -1067,6 +1228,55 @@ To mitigate systemic fragility, extend resilience measures across the stack:
 This is the "organism avoiding monoculture collapse."
 
 *Advanced bar: route by expected total cost of correctness, not token price.*
+
+### Total Cost of Correctness — Decision Framework
+
+The manifesto defines the formula conceptually. Here is how to use it for
+routing decisions.
+
+**The formula:**
+```
+Total Cost of Correctness =
+  (Inference cost per task × Task count)
+  + (Verification cost per task × Task count)
+  + (Governance overhead per task × Task count)
+  + (Expected remediation cost per failure × Failure rate)
+  + (Opportunity cost of latency)
+```
+
+**Worked example: generating integration tests for a new API endpoint**
+
+| Model tier | Inference cost | Expected pass rate | Rework cost on failure | Total cost of correctness |
+|---|---|---|---|---|
+| Fast/cheap model | $0.04 | 85% (3 failures of 20) | $0.50/failure = $1.50 | **$1.54** |
+| Balanced model | $0.08 | 95% (1 failure) | $0.50/failure = $0.50 | **$0.58** |
+| High-capability model | $0.20 | 99% (0.2 failures) | $0.50/failure = $0.10 | **$0.30** |
+
+Naive cost optimization picks the fast model. Total-cost optimization picks the
+high-capability model. The fast model's lower failure rate in simple cases
+matters less than the higher-capability model's reliability on edge cases.
+
+**Routing decision record.** For each routed task, capture:
+```
+task_type: [description]
+estimated_complexity: [1-10]
+model_selected: [model name/tier]
+rationale: [why this model for this complexity]
+actual_outcome: [pass / fail / rework]
+actual_cost: [inference + verification + remediation]
+```
+
+Feed these records into a FinOps dashboard quarterly. Within three months of
+operation, you will have an empirical cost model that makes routing decisions
+data-driven rather than intuition-driven. The goal is not the cheapest model —
+it is the model with the lowest total cost of correctness for that task class.
+
+**DORA concentration risk note.** In regulated financial services, model routing
+is not only an economics decision — it is a DORA third-party risk control.
+Routing policies must include: failure-domain isolation (ensure no single
+provider failure disables all tasks), cross-model canary checks, and documented
+exit procedures if a provider becomes unavailable. Multi-model routing should
+be documented in the DORA third-party risk register.
 
 ---
 
