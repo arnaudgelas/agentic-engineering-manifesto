@@ -551,8 +551,8 @@ no memory. Creative but unreliable. Useful for discovering what agents can do;
 dangerous for anything that matters. *Failure mode: extrapolating demo results
 to production expectations.*
 
-**Phase 2 — Assisted Delivery.** AI as autocomplete. Copilot-style suggestions
-where the human executes. Productivity gains are real but bounded by human
+**Phase 2 — Assisted Delivery.** AI as autocomplete. AI code-completion tool
+suggestions where the human executes. Productivity gains are real but bounded by human
 throughput. *Failure mode: optimizing human-in-the-loop speed instead of
 questioning whether the loop is necessary.*
 
