@@ -20,6 +20,9 @@ This repository provides a complete alternative: the case for change, the
 manifesto itself, implementation guidance, an organizational adoption path, a
 five-wave publishing campaign, and a structured training curriculum.
 
+Read the published version at
+<https://arnaudgelas.github.io/agentic-engineering-manifesto/>.
+
 Start with **[Beyond Agile](beyond_agile.md)**, then move through the manifesto,
 companion guidance, and adoption playbook.
 
