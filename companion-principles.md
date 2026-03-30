@@ -276,14 +276,14 @@ coordination.
 
 ### Inter-Agent Communication Standards
 
-Agent-to-agent protocols (notably A2A, now under AAIF governance) are
-standardizing agent discovery, task lifecycle management, and cross-framework
-collaboration. The manifesto's governance model — tiers, traces,
-accountability — sits above these protocols: the protocol handles agent-level
-coordination; the manifesto's principles govern what those agents are allowed to
-do and how their decisions are audited. Teams adopting multi-agent topologies
-should treat communication protocols as the coordination layer and the
-manifesto's tier model as the authorization layer.
+Open agent-to-agent protocols are beginning to standardize agent discovery,
+task lifecycle management, and cross-framework collaboration. The manifesto's
+governance model — tiers, traces, accountability — sits above these protocols:
+the protocol handles agent-level coordination; the manifesto's principles
+govern what those agents are allowed to do and how their decisions are
+audited. Teams adopting multi-agent topologies should treat communication
+protocols as the coordination layer and the manifesto's tier model as the
+authorization layer.
 
 ### Expected Failure Modes by Topology
 
@@ -750,13 +750,13 @@ traditional single-iteration metrics miss.
 ### Tooling Maturity and Adoption
 
 The context engineering standard described here exceeds what most teams can
-build today. The tooling ecosystem is maturing rapidly — MCP, Agent Skills, and Git-native
-agent memory systems represent early but widely adopted solutions — though
-production-grade governance tooling remains nascent. Adopt incrementally: start
-by measuring retrieval quality (relevance, latency, staleness), then add context
-budgeting for long-running tasks, then tiered SLOs as scale demands. The
-principle describes the engineering standard; the adoption path acknowledges the
-gap.
+build today. The tooling ecosystem is maturing rapidly — open protocols for
+tool connectivity, structured capability definitions, and version-aware memory
+layers now exist — though production-grade governance tooling remains nascent.
+Adopt incrementally: start by measuring retrieval quality (relevance, latency,
+staleness), then add context budgeting for long-running tasks, then tiered SLOs
+as scale demands. The principle describes the engineering standard; the
+adoption path acknowledges the gap.
 
 ### The Emerging Agent Stack
 
@@ -781,25 +781,21 @@ that preserves or constrains state across sessions. In practice, treating
 harness and runtime is how teams end up with excellent retrieval feeding
 poorly-governed execution loops.
 
-As of early 2026, four open standards are crystallizing around this stack, all
-under the Agentic AI Foundation (AAIF, launched December 2025 by the Linux
-Foundation, co-founded by Anthropic, OpenAI, Google, Microsoft, AWS, and Block):
+As of early 2026, four open interface patterns are crystallizing around this
+stack:
 
-- **MCP** (Model Context Protocol) — agent-to-tool connectivity at the
-  tools/APIs layer. The de facto standard for how agents discover and invoke
-  external capabilities.
-- **A2A** (Agent-to-Agent, Google) — agent-to-agent communication at the
-  coordination layer. Agent Cards for discovery, task lifecycle management,
-  cross-framework collaboration.
-- **Agent Skills** — capability definition at the harness layer.
-  SKILL.md files that encode domain expertise, constraints, and procedures
-  agents consume at runtime.
-- **AGENTS.md** — repository-level constraints at the environment
-  layer. Machine-readable architectural guidance that coding agents respect.
+- **Tool connectivity protocols** — typed schemas, capability discovery,
+  authorization, and structured tool invocation at the tools/APIs layer.
+- **Agent coordination protocols** — agent discovery, task lifecycle
+  management, and cross-runtime delegation at the coordination layer.
+- **Capability definition artifacts** — reusable, reviewable descriptions of
+  domain procedures, constraints, and operational skills at the harness layer.
+- **Repository-level instruction artifacts** — machine-readable project
+  constraints and local conventions at the environment layer.
 
 The manifesto's governance model — tiers, traces, accountability, evaluations —
-sits across all four standards. No single protocol provides governance; the
-manifesto's principles provide the governance framework that connects them.
+sits across all four. No single protocol provides governance; the manifesto's
+principles provide the governance framework that connects them.
 
 ---
 
@@ -1050,6 +1046,28 @@ This does not require formal verification — it requires tracking the trajector
 of code quality across iterations, not just the state of code quality at each
 iteration.
 
+### Benchmark Instability and Contamination Risk
+
+Benchmarks are necessary and insufficient. As public agent benchmarks mature,
+they are increasingly affected by contamination, target leakage, and adaptation
+to the benchmark rather than to the underlying engineering problem. Treat
+benchmark gains as directional evidence, not as durable truth about production
+readiness.
+
+Three practical rules follow:
+
+- **Prefer mutation and refresh over static leaderboard worship.** If a
+  benchmark remains unchanged for long enough, the ecosystem will optimize for
+  it directly.
+- **Maintain private holdouts.** Public benchmarks are useful for comparability;
+  private evaluations are necessary for real assurance.
+- **Test transfer, not just score.** A claimed improvement matters only if it
+  carries over to your stack, constraints, and failure modes.
+
+The manifesto's position is intentionally conservative: external benchmarks help
+calibrate ambition, but promotion between maturity phases should be based on the
+evidence your own system can produce under your own operating conditions.
+
 See also [Verification without validation](companion-reference.md#failure-modes-of-this-manifesto)
 in the Failure Modes section, which describes the related but distinct case
 where verification machinery confirms correctness without confirming value.
@@ -1108,14 +1126,13 @@ Interoperability requires typed schemas, explicit auth boundaries, versioned
 capabilities, and replayable tool logs. Treat adapters as temporary bridges, not
 architecture. The goal is replaceable components, not locked pipelines.
 
-The Model Context Protocol (MCP) is now the de facto implementation of this
-pattern for agent-to-tool connectivity. MCP provides JSON-RPC based typed
-schemas, capability discovery, and structured tool invocation — exactly the
-properties the manifesto requires. For agent-to-agent interoperability, Google's
-A2A protocol standardizes discovery (Agent Cards), task delegation, and
-collaboration. Together, MCP and A2A cover the two interoperability axes: how
-agents connect to tools, and how agents coordinate with each other. Both are
-governed under the Agentic AI Foundation (AAIF).
+The emerging open-protocol stack now covers both interoperability axes the
+manifesto requires: how agents connect to tools, and how agents coordinate with
+other agents. Recent protocol revisions added stronger authorization models,
+structured capability metadata, safer transport patterns, and more durable task
+lifecycle support. These developments matter because they move interoperability
+from vendor-specific SDK behavior toward inspectable contracts that can be
+governed, audited, and replaced.
 
 *Interoperability minimum bar: If tools cannot be swapped or replayed across
 runtimes without rewriting core workflows, the platform is brittle.*

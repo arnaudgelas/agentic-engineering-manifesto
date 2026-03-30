@@ -101,6 +101,12 @@ type (long-term code maintenance), and phase maturity is domain-specific. But
 they provide a concrete, measurable calibration point for teams self-assessing
 their maturity.
 
+Use this benchmark family as a calibration aid, not as a universal scorecard.
+Public agent benchmarks age quickly, can be contaminated, and tend to attract
+optimization pressure from the ecosystem. Treat them as one input into maturity
+assessment alongside private holdouts, incident rates, replay quality, and
+domain-specific evidence bundles.
+
 ### Alternative Framing: The Five Levels of Agentic Development
 
 A complementary practitioner framing describes agentic maturity by *what the

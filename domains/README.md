@@ -55,6 +55,10 @@ level rather than in domain-specific documents:
   [Companion Reference](../companion-reference.md#cross-domain-supplier-and-vendor-qualification)
 - **Memory governance in regulated environments** — see
   [Companion Principles P6](../companion-principles.md#memory-governance-in-regulated-environments)
+- **Open interoperability requirements** — see
+  [Companion Principles P9](../companion-principles.md#interoperability-requirements)
+- **Benchmark instability and private holdouts** — see
+  [Companion Principles P8](../companion-principles.md#benchmark-instability-and-contamination-risk)
 
 ---
 
@@ -72,6 +76,7 @@ links to the domain that has developed the most specific framing.
 | 3 | **Memory accumulation as a change control event**: At what point does accumulated learned memory constitute a change to a validated system? No domain has a threshold or methodology. | Pharma (most developed), Medical, Financial | Open — GAMP 5 open question; no regulatory body has published guidance |
 | 4 | **Open-source model supplier responsibility**: When a deploying organization uses an open-source model with no identifiable supplier, how should GAMP 5 supplier qualification, ISO 13485 §7.4 purchasing controls, and SR 11-7 vendor model management apply? | Pharma, Medical, Financial | Open — conservative position is to assume full supplier responsibility; regulatory validation of this approach is untested |
 | 5 | **GDPR Art. 22 and agent-assisted decisions**: When an agent produces a recommendation that a human rubber-stamps, does that constitute "solely automated decision-making" under GDPR Art. 22? The boundary between meaningful human review and rubber-stamping is undefined in regulatory guidance. | Financial, Medical, All customer-facing | Open — rubber-stamping detection metrics (see adoption-metrics.md) partially address the engineering side; the legal question is unresolved |
+| 6 | **Protocol and evidence portability**: What level of interoperability should regulated teams require for tool invocation, agent delegation, trace export, and replay before an agent platform can be treated as operationally governable rather than vendor-bound? | All | Open — open protocols are emerging, but regulatory expectations for portability, replay, and audit export are not yet settled |
 
 ---
 
