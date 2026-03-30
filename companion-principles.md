@@ -509,6 +509,25 @@ skill is harder — the skill may have influenced downstream decisions that
 themselves became learned patterns. Teams building memory infrastructure should
 design for rollback at each layer independently.
 
+Recent agent-learning work sharpens this distinction further: reusable skills
+can function as an external learning substrate, allowing agents to improve by
+writing, selecting, and refining structured procedural artifacts rather than by
+updating model weights. This makes skill governance a first-class engineering
+concern. If a learned skill can change behavior across many future tasks, it
+should be treated as governed operational memory, not as an implementation
+detail hidden inside prompts.
+
+This also changes the minimum governance question. It is no longer enough to
+ask whether a memory entry is traceable. Teams also need to ask:
+
+- **Who may promote a learned behavior into a reusable skill?**
+- **What evidence is required before a skill is reused across domains?**
+- **How is skill rollback triggered and validated after an incident?**
+- **Which skills are experimental, local, approved, or forbidden?**
+
+Without these controls, a successful one-off workaround can silently become a
+portable failure mode.
+
 ### The Knowledge-Memory Boundary in Practice
 
 The manifesto defines the boundary by governance mechanism: knowledge changes

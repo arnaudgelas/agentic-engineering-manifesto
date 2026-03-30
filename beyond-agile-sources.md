@@ -122,3 +122,7 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 <a id="ref-57"></a>[57] European Commission, "The General-Purpose AI Code of Practice," *Shaping Europe's Digital Future*, Jul 2025. [S] https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai
 
 <a id="ref-58"></a>[58] NIST, "Announcing the 'AI Agent Standards Initiative' for Interoperable and Secure Innovation," *NIST News*, Feb 2026. [S] https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure
+
+<a id="ref-59"></a>[59] J. Evans, B. Bratton, and B. Agüera y Arcas, "Agentic AI and the next intelligence explosion," *Science*, 2026. [A] https://www.science.org/doi/10.1126/science.aeg1895
+
+<a id="ref-60"></a>[60] H. Zhou et al., "Memento-Skills: Let Agents Design Agents," *arXiv:2603.18743*, Mar 2026. [A] https://arxiv.org/abs/2603.18743

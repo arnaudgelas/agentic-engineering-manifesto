@@ -36,7 +36,7 @@ Manifesto, the SASE Framework, the DEV Community manifesto, P3 Group's
 
 ### [Sources](beyond-agile-sources.md)
 
-Twenty-three cited sources classified by type: press, blog, industry, academic,
+Sixty cited sources classified by type: press, blog, industry, academic,
 standard, and internal reference.
 
 ---
@@ -51,6 +51,17 @@ Every existing framework gets something right. None of them are complete. The ga
 4. **Evolutionary** — a maturity spectrum, not a binary switch
 
 The [Agentic Engineering Manifesto](manifesto.md) — six core values, twelve principles mapped to operational tooling, an agentic definition of done, and a maturity spectrum from first adoption to recursive self-improvement — is one attempt to meet this standard. Whether it succeeds is for the engineering community to determine through practice, evidence, and iteration.
+
+What recent agentic-AI research adds is a stronger explanation of *why* a new
+discipline is needed. If intelligence at frontier scale is increasingly plural,
+relational, and organized through internal or external societies of thought,
+then the engineering problem is no longer "how do we steer one smart assistant?"
+It becomes: how do we govern distributed cognition across agents, tools, and
+humans using explicit protocols, evidence, and institutional checks and
+balances? Likewise, if agents can improve by externalizing reusable skills and
+refining them through experience, then memory governance is no longer a nice-
+to-have optimization. It becomes part of the control plane for learning systems
+<sup>[59](beyond-agile-sources.md#ref-59)</sup><sup>[60](beyond-agile-sources.md#ref-60)</sup>.
 
 ---
 

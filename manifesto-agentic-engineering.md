@@ -31,8 +31,8 @@ economics-aware routing.
 ## What is Agentic Engineering?
 
 Agentic Engineering is the discipline of architecting environments, constraints,
-and feedback loops where autonomous agents can safely plan, execute, and verify
-complex work under human governance.
+protocols, and feedback loops where autonomous agents can safely plan, execute,
+and verify complex work under human governance.
 
 It is distinct from:
 - **AI Engineering**: Building and training the base models themselves.
@@ -43,7 +43,10 @@ write human-authored code faster.
 Agentic Engineering is about treating **agents as system components** rather
 than as human proxies. It shifts the primary human role from writing code to
 specifying intent, defining verifiable contracts, and operating the system that
-executes the work.
+executes the work. As agent capability scales, the governing challenge shifts
+from aligning one model in isolation toward aligning a society of interacting
+agents, tools, and humans through checks, balances, and explicit institutional
+control.
 
 ---
 
@@ -69,13 +72,16 @@ This loop is not a waterfall. Any phase can trigger a return to an earlier one
 based on evidence. The loop is the system. The principles are how you keep it honest.
 
 - **Specify** defines what to build and why.
-- **Design** architects how to build it: boundaries, topology, constraints.
+- **Design** architects how to build it: boundaries, topology, constraints,
+  and coordination rules.
 - **Plan** decomposes the design into executable steps.
 - **Execute** carries out the plan within bounded autonomy.
 - **Verify** checks the output against the specification (did we build it right?).
 - **Validate** checks the outcome against real-world need (did we build the right thing?).
 - **Observe** monitors runtime behavior, drift, and cost.
 - **Learn** updates knowledge, memory, and models from observations.
+  Knowledge captures durable truth; memory captures learned heuristics and
+  reusable skills.
 - **Govern** applies policy, accountability, and change control.
 
 Verification and validation are distinct disciplines. Verification is
@@ -241,6 +247,13 @@ Topology choices must be explicit, for example:
 Default to single, pipeline, hierarchy, or mesh unless measured results justify
 bio-inspired coordination for a specific workload.
 
+The point of a swarm is not to mimic an organization chart. It is to create
+structured disagreement, specialization, and reconciliation where the workload
+benefits from multiple perspectives. Intelligence at system scale is often
+plural rather than monolithic. The engineering question is not "how many agents
+can we run?" but "what coordination pattern produces better verified outcomes
+than a single agent on this workload?"
+
 Expected failure modes differ by topology: bottlenecked leads in hierarchies,
 coordination storms in meshes, hidden coupling in pipelines, and role drift or
 signal-amplification errors in bio-inspired swarms (for example, over-committing
@@ -288,14 +301,20 @@ Records, formal contracts and invariants, domain constraints. It is versioned,
 deterministic, and authoritative. It changes through governed processes.
 
 **Learned memory** is heuristic: reasoning patterns, incident learnings, routing
-preferences, team-specific conventions. It is probabilistic, subject to decay,
-and requires active curation. It changes through feedback loops.
+preferences, team-specific conventions, and reusable skills. It is
+probabilistic, subject to decay, and requires active curation. It changes
+through feedback loops.
 
 Both are mandatory. But they are governed differently. Knowledge is persistent
 and version-controlled. Learned memory must support provenance (where did this
 come from?), expiration (when does this stop being valid?), compression (how do
 we keep signal without drowning in noise?), rollback (how do we undo a poisoned
 lesson?), and domain scoping (what context does this apply to?).
+
+At the frontier, memory is not only retrieval. Agents can externalize
+procedures as reusable skill artifacts that evolve through experience without
+changing model weights. Those learned skills require the same provenance,
+review, rollback, and scoping discipline as any other memory layer.
 
 Memory can be poisoned. Every memory entry needs provenance and governance. An
 agent that remembers too much hallucinates from noise. An agent that remembers

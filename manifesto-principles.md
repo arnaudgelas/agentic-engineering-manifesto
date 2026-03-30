@@ -111,6 +111,13 @@ Design conflict resolution, not just parallelism. Swarms propose; a single
 commit path commits. Choose the simplest topology that solves the problem and
 graduate to more complex coordination only when evidence shows it is needed.
 
+The point of a swarm is not to mimic an organization chart. It is to create
+structured disagreement, specialization, and reconciliation where the workload
+benefits from multiple perspectives. Intelligence at system scale is often
+plural rather than monolithic. The engineering question is not "how many agents
+can we run?" but "what coordination pattern produces better verified outcomes
+than a single agent on this workload?"
+
 *Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.*
 
@@ -168,14 +175,19 @@ same thing, and conflating them is dangerous.
 domain constraints. It is versioned, deterministic, and authoritative.
 
 **Learned memory** is heuristic: reasoning patterns, incident learnings, routing
-preferences. It is probabilistic, subject to decay, and requires active
-curation, including provenance, expiration, compression, rollback, and domain
-scoping.
+preferences, and reusable skills. It is probabilistic, subject to decay, and
+requires active curation, including provenance, expiration, compression,
+rollback, and domain scoping.
 
 The practical test: if it changes through governed processes (pull requests, ADR
 reviews, schema migrations), it is knowledge. If it changes through feedback
 loops (agent learning, incident adaptation, routing optimization), it is
 learned memory. The governance mechanism determines the classification.
+
+At the frontier, memory is not only retrieval. Agents can externalize
+procedures as reusable skill artifacts that evolve through experience without
+changing model weights. Those learned skills require the same provenance,
+review, rollback, and scoping discipline as any other memory layer.
 
 *Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
 not memory — it is a liability.*

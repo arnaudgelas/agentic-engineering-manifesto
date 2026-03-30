@@ -31,8 +31,8 @@ economics-aware routing.
 ## What is Agentic Engineering?
 
 Agentic Engineering is the discipline of architecting environments, constraints,
-and feedback loops where autonomous agents can safely plan, execute, and verify
-complex work under human governance.
+protocols, and feedback loops where autonomous agents can safely plan, execute,
+and verify complex work under human governance.
 
 It is distinct from:
 - **AI Engineering**: Building and training the base models themselves.
@@ -43,7 +43,10 @@ It is distinct from:
 Agentic Engineering is about treating **agents as system components** rather
 than as human proxies. It shifts the primary human role from writing code to
 specifying intent, defining verifiable contracts, and operating the system that
-executes the work.
+executes the work. As agent capability scales, the governing challenge shifts
+from aligning one model in isolation toward aligning a society of interacting
+agents, tools, and humans through checks, balances, and explicit institutional
+control.
 
 ---
 
@@ -70,12 +73,15 @@ based on evidence. The loop is the system. The principles are how you keep it ho
 
 - **Specify** defines what to build and why.
 - **Design** architects how to build it: boundaries, topology, constraints.
+  and coordination rules.
 - **Plan** decomposes the design into executable steps.
 - **Execute** carries out the plan within bounded autonomy.
 - **Verify** checks the output against the specification (did we build it right?).
 - **Validate** checks the outcome against real-world need (did we build the right thing?).
 - **Observe** monitors runtime behavior, drift, and cost.
 - **Learn** updates knowledge, memory, and models from observations.
+  Knowledge captures durable truth; memory captures learned heuristics and
+  reusable skills.
 - **Govern** applies policy, accountability, and change control.
 
 Verification and validation are distinct disciplines. Verification is
