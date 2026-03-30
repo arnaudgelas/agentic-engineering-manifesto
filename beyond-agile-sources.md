@@ -102,3 +102,23 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 <a id="ref-47"></a>[47] Oracle, "Introducing the Open Agent Specification (Agent Spec)," *Oracle AI Blog*, 2025. [I] https://blogs.oracle.com/ai-and-datascience/introducing-open-agent-specification
 
 <a id="ref-48"></a>[48] spec-kit, "spec-kit: Technology-independent SDD toolkit," *GitHub*, 2025-2026. [I] https://github.com/spec-kit/spec-kit
+
+<a id="ref-49"></a>[49] Model Context Protocol, "Key Changes," *MCP Specification*, Mar 2025. [S] https://modelcontextprotocol.io/specification/2025-03-26/changelog
+
+<a id="ref-50"></a>[50] Model Context Protocol, "One Year of MCP: November 2025 Spec Release," *MCP Blog*, Nov 2025. [S] https://blog.modelcontextprotocol.io/posts/2025-11-25-first-mcp-anniversary/
+
+<a id="ref-51"></a>[51] Linux Foundation, "Linux Foundation Launches the Agent2Agent Protocol Project to Enable Secure, Intelligent Communication Between AI Agents," *Linux Foundation Press Release*, Jun 2025. [I] https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents
+
+<a id="ref-52"></a>[52] OpenTelemetry, "AI Agent Observability: Building Trust in Autonomous Systems with OpenTelemetry," *OpenTelemetry Blog*, Mar 2025. [S] https://opentelemetry.io/blog/2025/ai-agent-observability/
+
+<a id="ref-53"></a>[53] OpenAI, "Why we no longer evaluate SWE-bench Verified," *OpenAI*, Feb 2026. [I] https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/
+
+<a id="ref-54"></a>[54] C. Cuadron et al., "Saving SWE-Bench: A Benchmark Mutation Approach for More Realistic Agent Evaluation," *Microsoft Research*, Oct 2025. [A] https://www.microsoft.com/en-us/research/publication/saving-swe-bench-a-benchmark-mutation-approach-for-realistic-agent-evaluation/
+
+<a id="ref-55"></a>[55] OpenAI, "Understanding Prompt Injection," *OpenAI*, Nov 2025. [I] https://openai.com/index/prompt-injections/
+
+<a id="ref-56"></a>[56] OpenAI, "Designing AI Agents to Resist Prompt Injection," *OpenAI*, Mar 2026. [I] https://openai.com/index/designing-agents-to-resist-prompt-injection/
+
+<a id="ref-57"></a>[57] European Commission, "The General-Purpose AI Code of Practice," *Shaping Europe's Digital Future*, Jul 2025. [S] https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai
+
+<a id="ref-58"></a>[58] NIST, "Announcing the 'AI Agent Standards Initiative' for Interoperable and Secure Innovation," *NIST News*, Feb 2026. [S] https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure
