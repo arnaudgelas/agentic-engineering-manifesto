@@ -201,4 +201,4 @@ Targeting Phase 5 (multi-domain agentic engineering) before Phase 4 is stable ac
 
 ---
 
-*This document is part of the [Agentic Engineering Manifesto](manifesto.md). See also: [Strategic Context](strategic-context.md) for leadership-level implications, [Adoption Playbook](adoption-playbook.md) for single-team adoption, and [Adoption Path](adoption-path.md) for phase transitions.*
+*This document is part of the [Agentic Engineering Manifesto](manifesto.md). See also: [Roles and the Human Side](adoption-roles.md) for leadership-level implications, [Adoption Playbook](adoption-playbook.md) for single-team adoption, and [Adoption Path](adoption-path.md) for phase transitions.*
