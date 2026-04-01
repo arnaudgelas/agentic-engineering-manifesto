@@ -6,7 +6,13 @@
  * Output: index.html
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from "node:fs";
+import path from "node:path";
 import { marked } from "marked";
 
 // ---------------------------------------------------------------------------
@@ -166,51 +172,151 @@ marked.setOptions({
   breaks: false,
 });
 
-// Custom renderer to add IDs to headings for anchor links and to style tables
-const renderer = new marked.Renderer();
-renderer.heading = function ({ tokens, depth }) {
-  const text = this.parser.parseInline(tokens);
-  const raw = tokens.map((t) => t.raw || t.text || "").join("");
-  const slug = raw
+function slugifyHeading(raw) {
+  return raw
     .toLowerCase()
     .replace(/<[^>]+>/g, "")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .trim();
-  return `<h${depth} id="${slug}">${text}</h${depth}>`;
-};
+}
 
-marked.use({ renderer });
+function markdownToHtmlPath(file) {
+  return file.replace(/\.md$/i, ".html");
+}
+
+function isExternalLink(href) {
+  return /^(?:[a-z]+:)?\/\//i.test(href) || /^(?:mailto|tel):/i.test(href);
+}
+
+function splitHref(href) {
+  const hashIndex = href.indexOf("#");
+  const queryIndex = href.indexOf("?");
+  const splitIndex =
+    hashIndex === -1
+      ? queryIndex
+      : queryIndex === -1
+        ? hashIndex
+        : Math.min(hashIndex, queryIndex);
+
+  if (splitIndex === -1) {
+    return { pathPart: href, suffix: "" };
+  }
+
+  return {
+    pathPart: href.slice(0, splitIndex),
+    suffix: href.slice(splitIndex),
+  };
+}
+
+function rewriteHref(href, currentSourceFile, currentOutputFile) {
+  if (!href || href.startsWith("#") || isExternalLink(href)) {
+    return href;
+  }
+
+  const { pathPart, suffix } = splitHref(href);
+  if (!pathPart) {
+    return href;
+  }
+
+  if (!pathPart.endsWith(".md")) {
+    return href;
+  }
+
+  const sourceDir = path.posix.dirname(currentSourceFile);
+  const targetSourceFile = path.posix.normalize(path.posix.join(sourceDir, pathPart));
+  const targetOutputFile = markdownToHtmlPath(targetSourceFile);
+  const relativeTarget = path.posix.relative(
+    path.posix.dirname(currentOutputFile),
+    targetOutputFile,
+  );
+
+  return `${relativeTarget || "."}${suffix}`;
+}
+
+function createRenderer({ sourceFile, outputFile }) {
+  const renderer = new marked.Renderer();
+
+  renderer.heading = function ({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+    const raw = tokens.map((t) => t.raw || t.text || "").join("");
+    return `<h${depth} id="${slugifyHeading(raw)}">${text}</h${depth}>`;
+  };
+
+  renderer.link = function ({ href, title, tokens }) {
+    const text = this.parser.parseInline(tokens);
+    const resolvedHref = rewriteHref(href, sourceFile, outputFile);
+    const titleAttr = title ? ` title="${title}"` : "";
+    return `<a href="${resolvedHref}"${titleAttr}>${text}</a>`;
+  };
+
+  return renderer;
+}
+
+function readMarkdown(file) {
+  return readFileSync(file, "utf-8");
+}
+
+function stripFirstHeading(markdown) {
+  return markdown.replace(/^#\s+.+\n+/, "");
+}
+
+function convertMarkdown(markdown, { sourceFile, outputFile }) {
+  return marked.parse(markdown, {
+    renderer: createRenderer({ sourceFile, outputFile }),
+  });
+}
+
+function extractTitle(markdown, fallback) {
+  const match = markdown.match(/^#\s+(.+)$/m);
+  return match ? match[1].trim() : fallback;
+}
+
+function listMarkdownFiles(rootDir) {
+  const entries = readdirSync(rootDir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    if (entry.name === "node_modules" || entry.name.startsWith(".")) {
+      continue;
+    }
+
+    const fullPath = path.join(rootDir, entry.name);
+    const relativePath = path.posix.join(
+      rootDir === "." ? "" : rootDir,
+      entry.name,
+    );
+
+    if (entry.isDirectory()) {
+      files.push(...listMarkdownFiles(relativePath));
+      continue;
+    }
+
+    if (entry.isFile() && relativePath.endsWith(".md")) {
+      files.push(relativePath);
+    }
+  }
+
+  return files.sort();
+}
 
 function convertSection(section) {
   let md;
   try {
-    md = readFileSync(section.file, "utf-8");
+    md = readMarkdown(section.file);
   } catch (e) {
     console.warn(`Warning: could not read ${section.file}, skipping.`);
     return "";
   }
 
   // Strip the first H1 heading — we render our own section header
-  md = md.replace(/^#\s+.+\n+/, "");
+  md = stripFirstHeading(md);
 
-  // Convert internal .md links to #section anchors
-  for (const s of sections) {
-    const base = s.file.replace(".md", "");
-    md = md.replaceAll(`](${s.file})`, `](#${s.id})`);
-    md = md.replaceAll(`](${base}.html)`, `](#${s.id})`);
-    md = md.replaceAll(`](./${s.file})`, `](#${s.id})`);
-    md = md.replaceAll(`](./${base}.html)`, `](#${s.id})`);
-  }
-  // Also catch beyond_agile.md → beyond-failures as closest match
-  md = md.replaceAll("](beyond_agile.md)", "](#beyond-failures)");
-  // manifesto.md → manifesto
-  md = md.replaceAll("](manifesto.md)", "](#manifesto)");
-  md = md.replaceAll("](./manifesto.md)", "](#manifesto)");
-
-  const html = marked.parse(md);
-  return html;
+  return convertMarkdown(md, {
+    sourceFile: section.file,
+    outputFile: "index.html",
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -407,7 +513,7 @@ function buildAuthorsCard() {
         )
         .join("")}
     </ul>
-    <p class="meta-copy">Want to contribute? Read <a href="${contributingUrl}" target="_blank" rel="noreferrer">CONTRIBUTING.md</a> in the GitHub repository.</p>
+    <p class="meta-copy">Want to contribute? Read <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for guidelines and contribution flow.</p>
   </aside>`;
 }
 
@@ -458,6 +564,67 @@ function buildHero() {
   </header>`;
 }
 
+function buildStandalonePage({ title, content, sourceFile }) {
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${title} | The Agentic Engineering Manifesto</title>
+  <meta name="description" content="Generated HTML page for ${title}.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="${path.posix.relative(path.posix.dirname(markdownToHtmlPath(sourceFile)), "styles.css") || "styles.css"}">
+</head>
+<body id="top">
+  <div class="main">
+    <div class="main-shell">
+      <header class="hero hero-compact">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-label">Generated Documentation</div>
+            <h1>${title}</h1>
+            <p class="hero-kicker">This page is generated from <code>${sourceFile}</code>.</p>
+            <div class="hero-actions">
+              <a class="button-link primary" href="${path.posix.relative(path.posix.dirname(markdownToHtmlPath(sourceFile)), "index.html") || "index.html"}">Back to index</a>
+              ${repositoryUrl ? `<a class="button-link secondary" href="${repositoryUrl}" target="_blank" rel="noreferrer">${githubIcon}<span>Open GitHub Repository</span></a>` : ""}
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="doc-section standalone-doc">
+        <div class="section-inner">
+          ${content}
+        </div>
+      </section>
+      <footer class="site-footer">
+        <em>Exploration is a phase. Engineering is a discipline.</em>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+function buildStandalonePages() {
+  const markdownFiles = listMarkdownFiles(".");
+
+  for (const sourceFile of markdownFiles) {
+    const outputFile = markdownToHtmlPath(sourceFile);
+    const markdown = readMarkdown(sourceFile);
+    const title = extractTitle(markdown, path.basename(sourceFile, ".md"));
+    const content = convertMarkdown(markdown, { sourceFile, outputFile });
+
+    mkdirSync(path.dirname(outputFile), { recursive: true });
+    writeFileSync(
+      outputFile,
+      buildStandalonePage({ title, content, sourceFile }),
+      "utf-8",
+    );
+  }
+}
+
 const html = `<!doctype html>
 <html lang="en">
 <head>
@@ -498,4 +665,5 @@ const html = `<!doctype html>
 </html>`;
 
 writeFileSync("index.html", html, "utf-8");
+buildStandalonePages();
 console.log(`Built index.html (${(html.length / 1024).toFixed(0)} KB)`);

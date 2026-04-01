@@ -7,6 +7,7 @@
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
+import path from "node:path";
 import { marked } from "marked";
 
 // ---------------------------------------------------------------------------
@@ -66,21 +67,84 @@ function readAuthors(file) {
 // ---------------------------------------------------------------------------
 marked.setOptions({ gfm: true, breaks: false });
 
-const renderer = new marked.Renderer();
-renderer.heading = function ({ tokens, depth }) {
-  const text = this.parser.parseInline(tokens);
-  const raw = tokens.map((t) => t.raw || t.text || "").join("");
-  const slug = raw
+function slugifyHeading(raw) {
+  return raw
     .toLowerCase()
     .replace(/<[^>]+>/g, "")
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .trim();
-  return `<h${depth} id="${slug}">${text}</h${depth}>`;
-};
+}
 
-marked.use({ renderer });
+function markdownToHtmlPath(file) {
+  return file.replace(/\.md$/i, ".html");
+}
+
+function isExternalLink(href) {
+  return /^(?:[a-z]+:)?\/\//i.test(href) || /^(?:mailto|tel):/i.test(href);
+}
+
+function splitHref(href) {
+  const hashIndex = href.indexOf("#");
+  const queryIndex = href.indexOf("?");
+  const splitIndex =
+    hashIndex === -1
+      ? queryIndex
+      : queryIndex === -1
+        ? hashIndex
+        : Math.min(hashIndex, queryIndex);
+
+  if (splitIndex === -1) {
+    return { pathPart: href, suffix: "" };
+  }
+
+  return {
+    pathPart: href.slice(0, splitIndex),
+    suffix: href.slice(splitIndex),
+  };
+}
+
+function rewriteHref(href, currentSourceFile, currentOutputFile) {
+  if (!href || href.startsWith("#") || isExternalLink(href)) {
+    return href;
+  }
+
+  const { pathPart, suffix } = splitHref(href);
+  if (!pathPart || !pathPart.endsWith(".md")) {
+    return href;
+  }
+
+  const targetSourceFile = path.posix.normalize(
+    path.posix.join(path.posix.dirname(currentSourceFile), pathPart),
+  );
+  const targetOutputFile = markdownToHtmlPath(targetSourceFile);
+  const relativeTarget = path.posix.relative(
+    path.posix.dirname(currentOutputFile),
+    targetOutputFile,
+  );
+
+  return `${relativeTarget || "."}${suffix}`;
+}
+
+function createRenderer({ sourceFile, outputFile }) {
+  const renderer = new marked.Renderer();
+
+  renderer.heading = function ({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+    const raw = tokens.map((t) => t.raw || t.text || "").join("");
+    return `<h${depth} id="${slugifyHeading(raw)}">${text}</h${depth}>`;
+  };
+
+  renderer.link = function ({ href, title, tokens }) {
+    const text = this.parser.parseInline(tokens);
+    const resolvedHref = rewriteHref(href, sourceFile, outputFile);
+    const titleAttr = title ? ` title="${title}"` : "";
+    return `<a href="${resolvedHref}"${titleAttr}>${text}</a>`;
+  };
+
+  return renderer;
+}
 
 function convertSection(section) {
   let md;
@@ -94,22 +158,15 @@ function convertSection(section) {
   // Strip first H1
   md = md.replace(/^#\s+.+\n+/, "");
 
-  // Convert internal links
-  for (const s of sections) {
-    const base = s.file.replace(".md", "");
-    md = md.replaceAll(`](${s.file})`, `](#${s.id})`);
-    md = md.replaceAll(`](${base}.html)`, `](#${s.id})`);
-    md = md.replaceAll(`](./${s.file})`, `](#${s.id})`);
-    md = md.replaceAll(`](./${base}.html)`, `](#${s.id})`);
-  }
-  md = md.replaceAll("](beyond_agile.md)", "](#beyond-failures)");
-  md = md.replaceAll("](manifesto.md)", "](#manifesto)");
-  md = md.replaceAll("](./manifesto.md)", "](#manifesto)");
-
   // Remove mermaid code blocks (can't render in print)
   md = md.replace(/```mermaid[\s\S]*?```/g, "");
 
-  return marked.parse(md);
+  return marked.parse(md, {
+    renderer: createRenderer({
+      sourceFile: section.file,
+      outputFile: "manifesto-print.html",
+    }),
+  });
 }
 
 // ---------------------------------------------------------------------------
