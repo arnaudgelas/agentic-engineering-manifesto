@@ -129,7 +129,39 @@ const groups = {
   beyond: { label: "Beyond Agile" },
   companion: { label: "Companion" },
   adoption: { label: "Adoption" },
+  domains: { label: "Domains" },
 };
+
+const domainPages = [
+  {
+    file: "domains/README.md",
+    title: "Domain Overview",
+  },
+  {
+    file: "domains/aviation.md",
+    title: "Aviation",
+  },
+  {
+    file: "domains/medical-devices.md",
+    title: "Medical Devices",
+  },
+  {
+    file: "domains/pharma.md",
+    title: "Pharma",
+  },
+  {
+    file: "domains/financial-services.md",
+    title: "Financial Services",
+  },
+  {
+    file: "domains/automotive.md",
+    title: "Automotive",
+  },
+  {
+    file: "domains/defense-government.md",
+    title: "Defense / Government",
+  },
+];
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const repositoryUrl = normalizeRepositoryUrl(packageJson.repository?.url || "");
@@ -322,7 +354,9 @@ function convertSection(section) {
 // ---------------------------------------------------------------------------
 // Build navigation
 // ---------------------------------------------------------------------------
-function buildNav() {
+function buildNav({ outputFile = "index.html", activePath = "index.html" } = {}) {
+  const relativeIndex = path.posix.relative(path.posix.dirname(outputFile), "index.html") || "index.html";
+
   let html = '<nav id="sidebar" class="sidebar">';
   html += '<div class="sidebar-header">';
   html +=
@@ -340,9 +374,21 @@ function buildNav() {
       html += `<div class="nav-group">`;
       html += `<div class="nav-group-label">${groups[s.group].label}</div>`;
     }
-    html += `<a href="#${s.id}" class="nav-link" data-section="${s.id}">${s.title}</a>`;
+    const sectionHref = outputFile === "index.html" ? `#${s.id}` : `${relativeIndex}#${s.id}`;
+    html += `<a href="${sectionHref}" class="nav-link" data-section="${s.id}">${s.title}</a>`;
   }
   html += "</div>"; // last group
+
+  html += `<div class="nav-group">`;
+  html += `<div class="nav-group-label">${groups.domains.label}</div>`;
+  for (const page of domainPages) {
+    const targetFile = markdownToHtmlPath(page.file);
+    const href = path.posix.relative(path.posix.dirname(outputFile), targetFile) || ".";
+    const activeClass = activePath === targetFile ? " active" : "";
+    html += `<a href="${href}" class="nav-link${activeClass}">${page.title}</a>`;
+  }
+  html += "</div>";
+
   html += "</div>"; // sidebar-scroll
   html += '<div class="sidebar-meta">';
   if (authors.length > 0) {
@@ -497,10 +543,15 @@ function buildHeroStats() {
     .join("")}</div>`;
 }
 
-function buildAuthorsCard() {
+function buildAuthorsCard(outputFile = "index.html") {
   if (authors.length === 0) {
     return "";
   }
+
+  const contributingHref = path.posix.relative(
+    path.posix.dirname(outputFile),
+    "CONTRIBUTING.html",
+  ) || "CONTRIBUTING.html";
 
   return `<aside class="meta-card">
     <p class="meta-kicker">Authorship</p>
@@ -513,7 +564,7 @@ function buildAuthorsCard() {
         )
         .join("")}
     </ul>
-    <p class="meta-copy">Want to contribute? Read <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for guidelines and contribution flow.</p>
+    <p class="meta-copy">Want to contribute? Read <a href="${contributingHref}">CONTRIBUTING.md</a> for guidelines and contribution flow.</p>
   </aside>`;
 }
 
@@ -557,14 +608,43 @@ function buildHero() {
         </div>
       </div>
       <div class="hero-rail">
-        ${buildAuthorsCard()}
+        ${buildAuthorsCard("index.html")}
         ${buildLoop()}
       </div>
     </div>
   </header>`;
 }
 
-function buildStandalonePage({ title, content, sourceFile }) {
+function buildStandaloneHero({ title, sourceFile, outputFile }) {
+  const relativeIndex = path.posix.relative(path.posix.dirname(outputFile), "index.html") || "index.html";
+
+  return `<header class="hero" id="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-label">Domain Documentation</div>
+        <h1>${title}</h1>
+        <p class="hero-lede">
+          Domain-specific regulatory alignment for the Agentic Engineering Manifesto, presented in the same documentation shell as the main site.
+        </p>
+        <p class="hero-kicker">
+          This page is generated from <code>${sourceFile}</code> and remains part of the same document system, with shared navigation back to the manifesto, companion guidance, adoption material, and peer domain mappings.
+        </p>
+        <div class="hero-actions">
+          <a class="button-link primary" href="${relativeIndex}">Open Main Index</a>
+          ${repositoryUrl ? `<a class="button-link secondary" href="${repositoryUrl}" target="_blank" rel="noreferrer">${githubIcon}<span>Open GitHub Repository</span></a>` : ""}
+        </div>
+      </div>
+      <div class="hero-rail">
+        ${buildAuthorsCard(outputFile)}
+        ${buildLoop()}
+      </div>
+    </div>
+  </header>`;
+}
+
+function buildStandalonePage({ title, content, sourceFile, outputFile }) {
+  const relativeStylesheet = path.posix.relative(path.posix.dirname(outputFile), "styles.css") || "styles.css";
+
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -575,25 +655,23 @@ function buildStandalonePage({ title, content, sourceFile }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="${path.posix.relative(path.posix.dirname(markdownToHtmlPath(sourceFile)), "styles.css") || "styles.css"}">
+  <link rel="stylesheet" href="${relativeStylesheet}">
 </head>
 <body id="top">
+  <div class="scroll-progress" id="progress"></div>
+
+  ${buildNav({ outputFile, activePath: outputFile })}
+  <div class="sidebar-overlay" id="overlay"></div>
+
   <div class="main">
+    <div class="mobile-header">
+      <button class="hamburger" onclick="toggleSidebar()" aria-label="Open menu">&#9776;</button>
+      <span class="mobile-title">Agentic Engineering Manifesto</span>
+    </div>
+
     <div class="main-shell">
-      <header class="hero hero-compact">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="hero-label">Generated Documentation</div>
-            <h1>${title}</h1>
-            <p class="hero-kicker">This page is generated from <code>${sourceFile}</code>.</p>
-            <div class="hero-actions">
-              <a class="button-link primary" href="${path.posix.relative(path.posix.dirname(markdownToHtmlPath(sourceFile)), "index.html") || "index.html"}">Back to index</a>
-              ${repositoryUrl ? `<a class="button-link secondary" href="${repositoryUrl}" target="_blank" rel="noreferrer">${githubIcon}<span>Open GitHub Repository</span></a>` : ""}
-            </div>
-          </div>
-        </div>
-      </header>
-      <section class="doc-section standalone-doc">
+      ${buildStandaloneHero({ title, sourceFile, outputFile })}
+      <section class="doc-section standalone-doc" data-group="domains">
         <div class="section-inner">
           ${content}
         </div>
@@ -603,6 +681,10 @@ function buildStandalonePage({ title, content, sourceFile }) {
       </footer>
     </div>
   </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+  <script>${JS}</script>
 </body>
 </html>`;
 }
@@ -619,7 +701,7 @@ function buildStandalonePages() {
     mkdirSync(path.dirname(outputFile), { recursive: true });
     writeFileSync(
       outputFile,
-      buildStandalonePage({ title, content, sourceFile }),
+      buildStandalonePage({ title, content, sourceFile, outputFile }),
       "utf-8",
     );
   }
@@ -640,7 +722,7 @@ const html = `<!doctype html>
 <body id="top">
   <div class="scroll-progress" id="progress"></div>
 
-  ${buildNav()}
+  ${buildNav({ outputFile: "index.html", activePath: "index.html" })}
   <div class="sidebar-overlay" id="overlay"></div>
 
   <div class="main">
