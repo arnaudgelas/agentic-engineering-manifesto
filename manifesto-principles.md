@@ -81,9 +81,10 @@ Domain boundaries define what agents may do and what they must not do. Encode
 boundaries as machine-enforced policies: repository gates, type contracts, lint
 rules, domain ownership maps, CI checks.
 
-But agents are probabilistic systems. Do not rely on an LLM's system prompt to
-enforce your business rules. Build deterministic infrastructure wrappers around
-your probabilistic AI. Enforce permissions, repository gates, API rate limits,
+Orchestration is a deterministic concern; execution is a probabilistic one —
+conflating them is the root failure mode. Do not rely on an LLM's system prompt
+to enforce your business rules. Build deterministic infrastructure wrappers
+around your probabilistic AI. Enforce permissions, repository gates, API rate limits,
 and data access at the system level. Expect the boundary to be tested. Design
 for what happens when it is crossed.
 
