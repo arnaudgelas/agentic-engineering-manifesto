@@ -177,8 +177,10 @@ domain constraints. It is versioned, deterministic, and authoritative.
 
 **Learned memory** is heuristic: reasoning patterns, incident learnings, routing
 preferences, and reusable skills. It is probabilistic, subject to decay, and
-requires active curation, including provenance, expiration, compression,
-rollback, and domain scoping.
+requires continuous renewal — not just point-in-time control. Provenance,
+expiration, compression, rollback, and domain scoping are the mechanisms of
+that renewal cycle: each one governs not only what is stored, but whether what
+was learned is still valid before it is reused.
 
 The practical test: if it changes through governed processes (pull requests, ADR
 reviews, schema migrations), it is knowledge. If it changes through feedback
@@ -191,7 +193,9 @@ changing model weights. Those learned skills require the same provenance,
 review, rollback, and scoping discipline as any other memory layer.
 
 *Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
-not memory — it is a liability.*
+not memory — it is a liability. And if memory is not revalidated against current
+architecture and process before reuse, it is not being governed — it is being
+trusted.*
 
 ---
 
