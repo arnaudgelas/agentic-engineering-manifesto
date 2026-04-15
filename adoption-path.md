@@ -181,6 +181,30 @@ full definitions and failure modes for each. Here is a summary for reference:
 Each transition below describes what changes organizationally, what actions
 to take, and what makes the transition hard.
 
+### Investment and Organizational Sizing by Phase
+
+Every phase transition has both a technical dimension (what you build) and an
+organizational dimension (what you fund, who you hire or develop, what you stop
+doing). This table gives decision-makers the investment framing alongside the
+technical steps:
+
+| Phase transition | Typical investment | Team change | Primary cost driver | ROI signal |
+|---|---|---|---|---|
+| **Phase 1→2** | Tooling licenses (low); process standardization (1–2 weeks engineering time) | No new roles; existing team adopts AI tools | Tool cost + standardization overhead | Cycle time reduction on AI-assisted tasks; measurable in weeks |
+| **Phase 2→3** | Specification training (1–3 weeks); review process redesign | No new roles; senior engineers develop specification discipline | Senior engineer time on specification + review patterns | Reviewable agent output without excessive rework |
+| **Phase 3→4** | CI/CD evidence pipeline (4–8 weeks engineering); evaluation suite build (4–8 weeks QA); domain boundary encoding (2–4 weeks tech lead) | Add: QA lead owning evaluations; explicit domain owners | Evaluation suite build is the primary investment | Escaped defect rate ≤ human baseline; evidence completeness ≥95% |
+| **Phase 4→5** | Platform team formation (3–5 engineers, ongoing); shared evaluation registry; trace standards; memory governance infrastructure | Add: platform team separates from delivery; multiply delivery teams across domains | Platform infrastructure and governance capability building | Total cost of correctness declining per outcome; oversight load stable while output scales |
+| **Phase 5→6** | Formal methods expertise (targeted, time-bounded); independent audit paths; self-improvement governance | Formal verification specialists (targeted hire or consultant); independent validation function | Specialized expertise and governance overhead for self-improving systems | Phase 6 is a frontier, not a universal target — assess only when Phase 5 is fully stable across all critical domains |
+
+**Decision discipline:** Do not fund the next phase until the current phase has
+produced evidence that justifies it. This is not conservatism — it is the
+mechanism that prevents the most common failure: organizations that invest in
+Phase 4 governance infrastructure before Phase 3 evidence exists that agents
+produce reviewable output. The infrastructure becomes bureaucracy, teams lose
+confidence, and the initiative stalls.
+
+---
+
 ### Phase 1 → 2: From Exploration to Assisted Delivery
 
 **What changes:** You move from unstructured experimentation ("let's see what

@@ -107,6 +107,18 @@ flowchart LR
 
 ---
 
+## Why Engineering Rigor Creates Competitive Advantage
+
+The organizations pulling ahead with AI are not winning because they have access to better models — the same foundation models are available to everyone. They are winning because they can apply those models faster, at greater scale, and with less risk than competitors who are still governing AI with processes designed for human developers.
+
+That advantage is an engineering discipline problem, not a technology problem. The gap between a team that can safely expand agent autonomy and a team stuck in Phase 3 — running agents under loose supervision because the governance infrastructure is not there — is the same gap as between a team with mature CI/CD and a team still doing manual deployments. It compounds over time: faster verification enables faster shipping; faster shipping produces more learning; better learning sharpens specifications. The Agentic Loop is not a workflow — it is a compounding return on engineering investment.
+
+The organizations that reach Phase 5 — multi-domain, evidence-driven, continuously learning — are not just more efficient. They are structurally harder to catch. Every cycle of the Agentic Loop widens the gap between them and organizations still measuring velocity in story points.
+
+This manifesto is the engineering foundation for that compounding return. It is not a constraint on speed. It is what makes speed sustainable.
+
+---
+
 ## Contents
 
 ### [Twelve Principles](manifesto-principles.md)
