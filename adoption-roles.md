@@ -109,6 +109,85 @@ failure patterns (hallucination loops, memory poisoning, tier violations).
 
 ---
 
+## Talent Density and Organizational Design
+
+Role evolution tells you *what* people do differently. Talent density tells you
+*how many* people of *what kind* you need to build an organization that can
+actually deliver this. These are separate questions, and confusing them is how
+organizations end up with the right job descriptions but the wrong structure.
+
+### The Build-vs-Buy Decision by Phase
+
+The default assumption — outsource early, build in-house later — is correct in
+principle but often applied too late. The governance capabilities at the core of
+agentic engineering (evaluation design, memory governance, autonomy tier
+management, observability of reasoning) are not purchasable as a service. They
+must be built as organizational muscle, and that requires in-house practitioners
+who own the outcomes.
+
+A practical guide by phase:
+
+| Phase | In-house minimum | Where external help makes sense | What must not be outsourced |
+|---|---|---|---|
+| **Phase 1–2** | Core engineering team using AI tools; no specialist role needed | AI tool vendor support; training | Judgment on which AI outputs are acceptable |
+| **Phase 3** | At least one engineer who owns specification quality | Tool configuration, infrastructure setup | Specification writing; failure pattern documentation |
+| **Phase 4** | Domain owners; QA lead owning evaluation suite; one ops engineer owning observability | Platform infrastructure, CI/CD pipeline build | Evidence gate design; autonomy tier policy; incident response |
+| **Phase 5** | Platform team (3–5 engineers): agent runtime, memory governance, routing; evaluation guild; security lead for agent threat model | Specialized formal methods expertise (targeted, time-bounded) | All governance roles; evaluation ownership; incident accountability |
+
+The practical target by Phase 4: the majority of people doing agentic delivery
+work are in-house, the majority of those are practitioners who build and own
+outcomes (not coordinators or oversight layers), and the majority of those are
+operating at a competent-or-above level in their role. Organizations that
+invert this — heavy external dependency, high coordinator-to-practitioner ratio,
+or large numbers of engineers operating below the competency threshold for
+agentic work — will not reach Phase 5. The governance infrastructure requires
+practitioners who understand what they are governing.
+
+### Team Size and Composition by Phase
+
+Agentic engineering does not scale the way traditional software teams scale.
+Adding headcount at Phase 3 before governance infrastructure exists creates
+coordination problems that compound with agent output volume. The right
+trajectory is:
+
+- **Phase 1–3:** Small, high-trust teams (3–8 people). The primary bottleneck
+  is governance design, not delivery throughput. Adding people before governance
+  patterns are established creates more output to govern, not more governance
+  capacity.
+
+- **Phase 4:** Governance roles become explicit. Minimum viable structure: a
+  domain owner per active agent domain, a QA lead owning the evaluation
+  portfolio, and one platform/operations owner. Total team size for a single
+  pilot domain: 5–10 people including these roles.
+
+- **Phase 5+:** Platform team separates from delivery teams. Shared
+  infrastructure (evaluation registry, trace standards, routing layer, memory
+  governance) is owned by a dedicated platform function, not embedded in each
+  delivery team. Delivery teams remain small (5–8 people each) and multiply
+  across domains, sharing platform infrastructure. Scale comes from replicating
+  the governed delivery model across domains, not from growing individual teams.
+
+### The Skill Density Requirement
+
+The transition to agentic engineering concentrates the value of high-skill
+practitioners. A senior engineer who can write precise machine-readable
+specifications, design adversarial evaluation cases, and reason about blast
+radius is more valuable in a Phase 4 team than in a traditional team — because
+their work governs an agent that produces the output of several engineers. A
+junior engineer who cannot yet write reviewable specifications creates
+bottlenecks, not throughput.
+
+This creates a real organizational challenge: the skills most needed (evaluation
+design, specification engineering, memory governance, observability of reasoning)
+are not standard hiring criteria and are not covered by most engineering
+bootcamps or degree programs. Build an explicit skills development path. The
+[training curriculum](training/README.md) in this repository provides a
+structured progression from prompt engineering fundamentals through agentic
+system design. Use it to develop existing engineers rather than assuming the
+market supplies practitioners ready-made — it does not, at scale, yet.
+
+---
+
 ## The Human Side of the Transition
 
 Adopting agentic engineering is not purely a technical change. It is an

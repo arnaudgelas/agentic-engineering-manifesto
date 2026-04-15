@@ -543,10 +543,26 @@ override. This avoids circular blame on the final approver and drives targeted
 remediation. If trace volume exceeds meaningful human review, raise automation
 barriers or reduce autonomy until oversight signal quality is restored.
 
-This is mitigation, not full resolution. Oversight saturation at scale remains
-an open problem: systems can outgrow meaningful human review bandwidth faster
-than governance practices mature. Treat this as an active research and
-operations frontier, not a solved control mechanism.
+**Accountability at scale operates at the policy level, not the action level.**
+When agents process thousands of actions daily, per-action human review is
+neither feasible nor the right model. The resolution is a three-tier framework
+applied per action class:
+
+| Action class | Human involvement | Accountability mechanism |
+|---|---|---|
+| **Low-risk, reversible** (Tier 1, contained blast radius) | None per action; domain owner reviews statistical samples and trend dashboards | Automated evidence bundle; rollback ready; anomaly alert if pattern deviates |
+| **Medium-risk, governed** (Tier 2, branch + approval) | Human approves merge; does not review every line | Evidence bundle gates approval; trace available on demand |
+| **High-risk, production-impacting** (Tier 3) | Named human reviews evidence and accepts risk per change | Full evidence bundle required; no automated promotion |
+
+A domain owner owns the risk policy, the autonomy tier ceiling, the escalation
+path, and the incident response protocol. They do not approve every low-risk
+action — they own the framework that governs those actions, and carry the
+accountability when that framework fails. When trace volume exceeds meaningful
+review capacity, the correct response is to raise automation barriers (tighten
+evaluation thresholds, lower autonomy tiers) until oversight signal quality is
+restored. Oversight saturation is a system design signal: it means the
+autonomy tier is ahead of the governance infrastructure, not that governance
+should be relaxed.
 
 Failures are data: errors and crashes are learning opportunities, and
 hallucinations can become a hallucination loop where plausible-but-wrong early

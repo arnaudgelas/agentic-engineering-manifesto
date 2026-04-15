@@ -337,6 +337,26 @@ mechanism that makes accountability real. A governance structure where the same
 team both builds and validates has no external check on whether its verification
 was genuine.
 
+**Accountability at scale operates at the policy level, not the action level.**
+When agents process thousands of actions daily, per-action human review is
+neither feasible nor the right model. The resolution is a three-tier framework
+applied per action class:
+
+| Action class | Human involvement | Accountability mechanism |
+|---|---|---|
+| **Low-risk, reversible** (Tier 1, contained blast radius) | None per action; domain owner reviews statistical samples and trend dashboards | Automated evidence bundle; rollback ready; anomaly alert if pattern deviates |
+| **Medium-risk, governed** (Tier 2, branch + approval) | Human approves merge; does not review every line | Evidence bundle gates approval; trace available on demand |
+| **High-risk, production-impacting** (Tier 3) | Named human reviews evidence and accepts risk per change | Full evidence bundle required; no automated promotion |
+
+A domain owner owns the risk policy, the autonomy tier ceiling, the escalation
+path, and the incident response protocol for their domain. They do not approve
+every low-risk action — they own the framework that governs those actions, and
+they carry the accountability when that framework fails. When trace volume
+exceeds meaningful review capacity, the correct response is to raise automation
+barriers (tighten evaluation thresholds, lower autonomy tiers) until oversight
+signal quality is restored — not to accept degraded oversight as a workload
+problem.
+
 Failures are data: errors and crashes are learning opportunities, and
 hallucinations can become a hallucination loop where plausible-but-wrong early
 output drives increasingly wrong follow-on fixes. Never simply retry a failed
