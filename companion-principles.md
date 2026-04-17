@@ -148,6 +148,37 @@ agents amplify the failure mode: without explicit validation loops, a team can
 ship more verified-but-wrong features in a month than a human team could in a
 quarter.
 
+### Requirements Engineering for Agentic Systems
+
+Traditional RE was designed for deterministic systems. Agentic and hybrid
+systems require an extended framework. The key extensions are covered in
+`companion-re-framework.md`. The three most important for specification work:
+
+**Two-axes classification.** Every requirements artifact sits on two axes:
+(1) system type — deterministic, agentic, or hybrid; and (2) artifact consumer
+— human, agent, or hybrid. The cell your requirement occupies determines the
+correct format and verification approach. Probabilistic assurance targets
+replace binary pass/fail requirements for agentic components. Agent-consumable
+specifications must be unambiguous to a machine — contextual inference is
+unreliable.
+
+**Behavioral envelopes.** For agentic components, the primary specification
+artifact is a behavioral envelope — the boundary the system must stay within —
+not a list of enumerated acceptable outputs. The envelope's Layer 1 hard
+boundaries must be enforced by infrastructure policy, not prompt instruction.
+The performance envelope generates the evaluation suite directly.
+
+**Single-source principle.** When a specification serves both human and agent
+consumers, one canonical document must be the source of truth. All other
+representations — governance prose, machine-readable encoding, evaluation
+criteria, compliance mapping — are derived projections. Independent authoring
+of separate documents is a divergence schedule.
+
+See `companion-re-framework.md` for the full framework: two-axes matrix, hard
+requirements vs. probabilistic assurance targets, behavioral envelope structure,
+tiered lifecycle, per-requirement checklist, and academic references
+(arXiv:2602.22302, arXiv:2503.18666, NIST AI 600-1, ISO/IEC 5338).
+
 ### The Architect Pattern: Agent-Generated Specifications
 
 The manifesto treats specification steering as a human-governed activity. But
