@@ -92,6 +92,12 @@ const sections = [
     group: "companion",
   },
   {
+    id: "companion-re-framework",
+    file: "companion-re-framework.md",
+    title: "RE Framework",
+    group: "companion",
+  },
+  {
     id: "adoption-playbook",
     file: "adoption-playbook.md",
     title: "Playbook",

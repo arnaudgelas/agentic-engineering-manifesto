@@ -105,6 +105,10 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
   patterns.
 - [companion-reference.md](companion-reference.md): Nine failure modes (including
   structural regression without detection) and skill requirements.
+- [companion-re-framework.md](companion-re-framework.md): Requirements
+  engineering reference framework for agentic systems — two-axes classification,
+  behavioral envelopes, probabilistic assurance targets, tiered lifecycle, NFR
+  table, and per-requirement checklist.
 
 ### 4) Adoption Playbook (Organizational Transition)
 

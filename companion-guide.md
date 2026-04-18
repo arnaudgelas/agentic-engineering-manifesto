@@ -47,3 +47,13 @@ Hallucination Loop and Operational Recovery Cycle failure patterns.
 - **Skill Requirements by Principle** — readiness assessment (Ready,
   Reorient, Split, Acquire) for each principle with adoption bottleneck
   identification
+
+### [Requirements Engineering Framework](companion-re-framework.md)
+
+Reference framework for specifying agentic systems: the two-axes
+classification matrix (system type × artifact consumer), behavioral envelope
+(four layers: hard boundaries, soft boundaries, performance, adaptation),
+hard requirements vs. probabilistic assurance targets, single-source/
+multiple-projections principle, tiered lifecycle (Tier 1/2/3), NFR table,
+per-requirement checklist, multi-agent behavioral contracts, and change
+control.

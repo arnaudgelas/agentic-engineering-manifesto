@@ -26,6 +26,7 @@ const sections = [
   { id: "companion-frameworks", file: "companion-frameworks.md", title: "Frameworks", group: "companion" },
   { id: "companion-patterns", file: "companion-patterns.md", title: "Patterns", group: "companion" },
   { id: "companion-reference", file: "companion-reference.md", title: "Reference", group: "companion" },
+  { id: "companion-re-framework", file: "companion-re-framework.md", title: "RE Framework", group: "companion" },
   { id: "adoption-playbook", file: "adoption-playbook.md", title: "Playbook", group: "adoption" },
   { id: "adoption-roles", file: "adoption-roles.md", title: "Roles", group: "adoption" },
   { id: "adoption-path", file: "adoption-path.md", title: "Adoption Path", group: "adoption" },
