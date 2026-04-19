@@ -26,8 +26,8 @@ const sections = [
     group: "overview",
   },
   {
-    id: "manifesto",
-    file: "manifesto-agentic-engineering.md",
+    id: "manifesto-core",
+    file: "manifesto.md",
     title: "The Manifesto",
     group: "manifesto",
   },
@@ -42,6 +42,12 @@ const sections = [
     file: "manifesto-done.md",
     title: "Definition of Done",
     group: "manifesto",
+  },
+  {
+    id: "beyond",
+    file: "beyond_agile.md",
+    title: "Beyond Agile",
+    group: "beyond",
   },
   {
     id: "beyond-failures",
@@ -116,6 +122,12 @@ const sections = [
     group: "adoption",
   },
   {
+    id: "adoption-vmodel",
+    file: "adoption-vmodel.md",
+    title: "V-Model Path",
+    group: "adoption",
+  },
+  {
     id: "adoption-pilot",
     file: "adoption-pilot.md",
     title: "First Pilot",
@@ -168,6 +180,10 @@ const domainPages = [
     title: "Defense / Government",
   },
 ];
+
+// Maps source file path → section id, for resolving intra-document links
+const sectionFileMap = new Map(sections.map(s => [path.posix.normalize(s.file), s.id]));
+const domainFileSet = new Set(domainPages.map(p => path.posix.normalize(p.file)));
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const repositoryUrl = normalizeRepositoryUrl(packageJson.repository?.url || "");
@@ -264,6 +280,20 @@ function rewriteHref(href, currentSourceFile, currentOutputFile) {
 
   const sourceDir = path.posix.dirname(currentSourceFile);
   const targetSourceFile = path.posix.normalize(path.posix.join(sourceDir, pathPart));
+
+  // If the target is an integrated section, link to its in-document anchor
+  const sectionId = sectionFileMap.get(targetSourceFile);
+  if (sectionId) {
+    if (currentOutputFile === "index.html") {
+      return `#${sectionId}${suffix}`;
+    } else {
+      // From a standalone page (e.g. a domain page), link back to index.html#section-id
+      const relativeIndex = path.posix.relative(path.posix.dirname(currentOutputFile), "index.html") || "index.html";
+      return `${relativeIndex}#${sectionId}${suffix}`;
+    }
+  }
+
+  // Domain pages and all other .md files: convert .md → .html (standalone pages exist)
   const targetOutputFile = markdownToHtmlPath(targetSourceFile);
   const relativeTarget = path.posix.relative(
     path.posix.dirname(currentOutputFile),

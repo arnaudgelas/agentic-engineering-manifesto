@@ -15,9 +15,10 @@ import { marked } from "marked";
 // ---------------------------------------------------------------------------
 const sections = [
   { id: "overview", file: "README.md", title: "Overview", group: "overview" },
-  { id: "manifesto", file: "manifesto-agentic-engineering.md", title: "The Manifesto", group: "manifesto" },
+  { id: "manifesto-core", file: "manifesto.md", title: "The Manifesto", group: "manifesto" },
   { id: "principles", file: "manifesto-principles.md", title: "Twelve Principles", group: "manifesto" },
   { id: "done", file: "manifesto-done.md", title: "Definition of Done", group: "manifesto" },
+  { id: "beyond", file: "beyond_agile.md", title: "Beyond Agile", group: "beyond" },
   { id: "beyond-failures", file: "beyond-agile-failures.md", title: "Structural Failures", group: "beyond" },
   { id: "beyond-landscape", file: "beyond-agile-landscape.md", title: "Existing Frameworks", group: "beyond" },
   { id: "beyond-sources", file: "beyond-agile-sources.md", title: "Sources", group: "beyond" },
@@ -30,6 +31,7 @@ const sections = [
   { id: "adoption-playbook", file: "adoption-playbook.md", title: "Playbook", group: "adoption" },
   { id: "adoption-roles", file: "adoption-roles.md", title: "Roles", group: "adoption" },
   { id: "adoption-path", file: "adoption-path.md", title: "Adoption Path", group: "adoption" },
+  { id: "adoption-vmodel", file: "adoption-vmodel.md", title: "V-Model Path", group: "adoption" },
   { id: "adoption-pilot", file: "adoption-pilot.md", title: "First Pilot", group: "adoption" },
   { id: "adoption-metrics", file: "adoption-metrics.md", title: "Metrics", group: "adoption" },
 ];
@@ -41,6 +43,9 @@ const groups = {
   companion: { label: "Companion Guide", number: "IV" },
   adoption: { label: "Adoption", number: "V" },
 };
+
+// Maps source file path → section id, for resolving intra-document links
+const sectionFileMap = new Map(sections.map(s => [path.posix.normalize(s.file), s.id]));
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const repositoryUrl = packageJson.repository?.url?.replace(/^git\+/, "").replace(/\.git$/, "") || "";
@@ -106,7 +111,7 @@ function splitHref(href) {
   };
 }
 
-function rewriteHref(href, currentSourceFile, currentOutputFile) {
+function rewriteHref(href, currentSourceFile) {
   if (!href || href.startsWith("#") || isExternalLink(href)) {
     return href;
   }
@@ -119,16 +124,18 @@ function rewriteHref(href, currentSourceFile, currentOutputFile) {
   const targetSourceFile = path.posix.normalize(
     path.posix.join(path.posix.dirname(currentSourceFile), pathPart),
   );
-  const targetOutputFile = markdownToHtmlPath(targetSourceFile);
-  const relativeTarget = path.posix.relative(
-    path.posix.dirname(currentOutputFile),
-    targetOutputFile,
-  );
 
-  return `${relativeTarget || "."}${suffix}`;
+  // If the target is an integrated section, resolve to an in-document anchor
+  const sectionId = sectionFileMap.get(targetSourceFile);
+  if (sectionId) {
+    return `#${sectionId}${suffix}`;
+  }
+
+  // Non-section .md files cannot be linked in a PDF — signal caller to strip the link
+  return null;
 }
 
-function createRenderer({ sourceFile, outputFile }) {
+function createRenderer({ sourceFile }) {
   const renderer = new marked.Renderer();
 
   renderer.heading = function ({ tokens, depth }) {
@@ -139,7 +146,11 @@ function createRenderer({ sourceFile, outputFile }) {
 
   renderer.link = function ({ href, title, tokens }) {
     const text = this.parser.parseInline(tokens);
-    const resolvedHref = rewriteHref(href, sourceFile, outputFile);
+    const resolvedHref = rewriteHref(href, sourceFile);
+    // Null means the target can't be resolved inside the PDF — output plain text
+    if (resolvedHref === null) {
+      return text;
+    }
     const titleAttr = title ? ` title="${title}"` : "";
     return `<a href="${resolvedHref}"${titleAttr}>${text}</a>`;
   };
@@ -165,7 +176,6 @@ function convertSection(section) {
   return marked.parse(md, {
     renderer: createRenderer({
       sourceFile: section.file,
-      outputFile: "manifesto-print.html",
     }),
   });
 }

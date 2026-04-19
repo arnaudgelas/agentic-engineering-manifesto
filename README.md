@@ -82,13 +82,12 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 ### 2) The Manifesto (Normative Core)
 
-- [manifesto.md](manifesto.md): Core values, scope, and Agentic Loop.
+- [manifesto.md](manifesto.md): Core values, scope, Agentic Loop, and reading
+  guide.
 - [manifesto-principles.md](manifesto-principles.md): Twelve principles with
   minimum bars.
 - [manifesto-done.md](manifesto-done.md): Agentic Definition of Done (seven
   criteria plus evolvability).
-- [manifesto-agentic-engineering.md](manifesto-agentic-engineering.md):
-  Extended single-file edition (core + principles + maturity and roles context).
 
 ### 3) Companion Guide (Implementation Guidance)
 

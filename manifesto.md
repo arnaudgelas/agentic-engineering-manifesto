@@ -119,6 +119,17 @@ This manifesto is the engineering foundation for that compounding return. It is 
 
 ---
 
+## How to Read This Manifesto
+
+Use two layers:
+
+- **Manifesto core** (this document + Twelve Principles + Definition of Done):
+  values, principles with minimum bars, and what "done" means. Start here.
+- **Companion guidance** (Companion Guide and its linked documents): extended
+  rationale, tradeoffs, worked patterns, failure modes, organizational change
+  management, and domain-specific regulatory alignment. Come here when
+  implementing.
+
 ## Contents
 
 ### [Twelve Principles](manifesto-principles.md)

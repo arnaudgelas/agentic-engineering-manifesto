@@ -34,7 +34,7 @@ For typos and small clarity fixes, a pull request without a prior issue is fine.
 ### Pull Requests
 
 1. Fork the repository and create a branch from `main`.
-2. Make your changes in `manifesto-agentic-engineering.md` (the source of truth) and update `README.md` if the change affects the summary.
+2. Make your changes in the relevant source file (e.g., `manifesto-principles.md` for principle text, `companion-*.md` for companion guidance, `adoption-*.md` for adoption content) and update `README.md` if the change affects the summary.
 3. Keep changes focused. One concern per pull request.
 4. In your PR description, explain:
    - **What** changed and **why**.
