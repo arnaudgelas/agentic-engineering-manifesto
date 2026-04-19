@@ -177,14 +177,14 @@ their work governs an agent that produces the output of several engineers. A
 junior engineer who cannot yet write reviewable specifications creates
 bottlenecks, not throughput.
 
-This creates a real organizational challenge: the skills most needed (evaluation
-design, specification engineering, memory governance, observability of reasoning)
-are not standard hiring criteria and are not covered by most engineering
-bootcamps or degree programs. Build an explicit skills development path. The
-[training curriculum](training/README.md) in this repository provides a
-structured progression from prompt engineering fundamentals through agentic
-system design. Use it to develop existing engineers rather than assuming the
-market supplies practitioners ready-made — it does not, at scale, yet.
+This creates a real organizational challenge: the skills most needed
+(evaluation design, specification engineering, memory governance, observability
+of reasoning) are not standard hiring criteria and are not covered by most
+engineering bootcamps or degree programs. Build an explicit skills development
+path covering specification engineering, memory governance, and observability
+of reasoning — from prompt engineering fundamentals through agentic system
+design. Do not assume the market supplies practitioners ready-made — it does
+not, at scale, yet.
 
 ---
 

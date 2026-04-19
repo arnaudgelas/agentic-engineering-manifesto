@@ -29,8 +29,7 @@ purpose-built engineering discipline, not retrofitted Agile ceremonies.
 
 This repository provides the complete alternative: the case for change, the
 manifesto itself, a companion implementation guide, an organizational adoption
-playbook, domain-specific regulatory alignment for six industries, and a
-structured training curriculum.
+playbook, and domain-specific regulatory alignment for six industries.
 
 **[Read the published version →](https://arnaudgelas.github.io/agentic-engineering-manifesto/)**
 
@@ -84,7 +83,7 @@ The loop is the system. The principles are how you keep it honest.
 | If you are | Start with |
 |---|---|
 | New to agentic engineering | [Beyond Agile](beyond_agile.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption-playbook.md) |
-| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Companion Guide](companion-guide.md) → [Patterns](companion-patterns.md) → [Adoption Path](adoption-path.md) |
+| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Principle Guidance](companion-principles.md) → [Patterns](companion-patterns.md) → [Adoption Path](adoption-path.md) |
 | An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile-landscape.md) → [Adoption Roles](adoption-roles.md) → [Metrics](adoption-metrics.md) |
 | In a regulated industry | [Domain Overview](domains/README.md) → your domain document |
 
@@ -113,9 +112,8 @@ The loop is the system. The principles are how you keep it honest.
 - [manifesto-done.md](manifesto-done.md): Agentic Definition of Done (seven
   criteria plus evolvability).
 
-### 3) Companion Guide (Implementation Guidance)
+### 3) Implementation Guide
 
-- [companion-guide.md](companion-guide.md): Overview and navigation.
 - [companion-principles.md](companion-principles.md): Extended guidance and
   tradeoffs by principle. Includes the Architect–Programmer pattern, evaluation
   holdout and probabilistic satisfaction, and behavioral vs. structural
@@ -124,11 +122,11 @@ The loop is the system. The principles are how you keep it honest.
   boundary conditions, and operational definitions.
 - [companion-patterns.md](companion-patterns.md): Worked patterns and failure
   patterns.
-- [companion-reference.md](companion-reference.md): Failure modes and skill
-  requirements.
 - [companion-re-framework.md](companion-re-framework.md): Requirements
   engineering framework — two-axes classification, behavioral envelopes, and
   probabilistic assurance targets.
+- [companion-reference.md](companion-reference.md): Failure modes and skill
+  requirements.
 
 ### 4) Adoption Playbook (Organizational Transition)
 

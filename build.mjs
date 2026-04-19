@@ -19,171 +19,59 @@ import { marked } from "marked";
 // Section definitions — order matters for navigation and page flow
 // ---------------------------------------------------------------------------
 const sections = [
-  {
-    id: "overview",
-    file: "README.md",
-    title: "Overview",
-    group: "overview",
-  },
-  {
-    id: "manifesto-core",
-    file: "manifesto.md",
-    title: "The Manifesto",
-    group: "manifesto",
-  },
-  {
-    id: "principles",
-    file: "manifesto-principles.md",
-    title: "Twelve Principles",
-    group: "manifesto",
-  },
-  {
-    id: "done",
-    file: "manifesto-done.md",
-    title: "Definition of Done",
-    group: "manifesto",
-  },
-  {
-    id: "beyond",
-    file: "beyond_agile.md",
-    title: "Beyond Agile",
-    group: "beyond",
-  },
-  {
-    id: "beyond-failures",
-    file: "beyond-agile-failures.md",
-    title: "Structural Failures",
-    group: "beyond",
-  },
-  {
-    id: "beyond-landscape",
-    file: "beyond-agile-landscape.md",
-    title: "Existing Frameworks",
-    group: "beyond",
-  },
-  {
-    id: "beyond-sources",
-    file: "beyond-agile-sources.md",
-    title: "Sources",
-    group: "beyond",
-  },
-  {
-    id: "companion-guide",
-    file: "companion-guide.md",
-    title: "Companion Guide",
-    group: "companion",
-  },
-  {
-    id: "companion-principles",
-    file: "companion-principles.md",
-    title: "Principle Guidance",
-    group: "companion",
-  },
-  {
-    id: "companion-frameworks",
-    file: "companion-frameworks.md",
-    title: "Frameworks",
-    group: "companion",
-  },
-  {
-    id: "companion-patterns",
-    file: "companion-patterns.md",
-    title: "Patterns",
-    group: "companion",
-  },
-  {
-    id: "companion-reference",
-    file: "companion-reference.md",
-    title: "Reference",
-    group: "companion",
-  },
-  {
-    id: "companion-re-framework",
-    file: "companion-re-framework.md",
-    title: "RE Framework",
-    group: "companion",
-  },
-  {
-    id: "adoption-playbook",
-    file: "adoption-playbook.md",
-    title: "Playbook",
-    group: "adoption",
-  },
-  {
-    id: "adoption-roles",
-    file: "adoption-roles.md",
-    title: "Roles",
-    group: "adoption",
-  },
-  {
-    id: "adoption-path",
-    file: "adoption-path.md",
-    title: "Adoption Path",
-    group: "adoption",
-  },
-  {
-    id: "adoption-vmodel",
-    file: "adoption-vmodel.md",
-    title: "V-Model Path",
-    group: "adoption",
-  },
-  {
-    id: "adoption-pilot",
-    file: "adoption-pilot.md",
-    title: "First Pilot",
-    group: "adoption",
-  },
-  {
-    id: "adoption-metrics",
-    file: "adoption-metrics.md",
-    title: "Metrics",
-    group: "adoption",
-  },
+  // Home
+  { id: "overview",          file: "README.md",                   title: "Overview",             group: "overview"        },
+
+  // The Case for Change
+  { id: "beyond",            file: "beyond_agile.md",             title: "Beyond Agile",         group: "beyond"          },
+  { id: "beyond-failures",   file: "beyond-agile-failures.md",    title: "Structural Failures",  group: "beyond"          },
+  { id: "beyond-landscape",  file: "beyond-agile-landscape.md",   title: "Existing Frameworks",  group: "beyond"          },
+  { id: "beyond-sources",    file: "beyond-agile-sources.md",     title: "Sources",              group: "beyond"          },
+
+  // The Manifesto
+  { id: "manifesto-core",    file: "manifesto.md",                title: "The Manifesto",        group: "manifesto"       },
+  { id: "principles",        file: "manifesto-principles.md",     title: "Twelve Principles",    group: "manifesto"       },
+  { id: "done",              file: "manifesto-done.md",           title: "Definition of Done",   group: "manifesto"       },
+
+  // Implementation Guide
+  { id: "companion-principles",   file: "companion-principles.md",   title: "Principle Guidance",  group: "implementation" },
+  { id: "companion-frameworks",   file: "companion-frameworks.md",   title: "Frameworks",          group: "implementation" },
+  { id: "companion-patterns",     file: "companion-patterns.md",     title: "Patterns",            group: "implementation" },
+  { id: "companion-re-framework", file: "companion-re-framework.md", title: "RE Framework",        group: "implementation" },
+  { id: "companion-reference",    file: "companion-reference.md",    title: "Reference",           group: "implementation" },
+
+  // Organizational Adoption
+  { id: "adoption-playbook", file: "adoption-playbook.md",        title: "Playbook",             group: "adoption"        },
+  { id: "adoption-roles",    file: "adoption-roles.md",           title: "Roles",                group: "adoption"        },
+  { id: "adoption-path",     file: "adoption-path.md",            title: "Adoption Path",        group: "adoption"        },
+  { id: "adoption-vmodel",   file: "adoption-vmodel.md",          title: "V-Model Path",         group: "adoption"        },
+  { id: "adoption-pilot",    file: "adoption-pilot.md",           title: "First Pilot",          group: "adoption"        },
+  { id: "adoption-metrics",  file: "adoption-metrics.md",         title: "Metrics",              group: "adoption"        },
+
+  // Domain Alignment
+  { id: "domains-overview",    file: "domains/README.md",               title: "Domain Overview",      group: "domains" },
+  { id: "domains-aviation",    file: "domains/aviation.md",             title: "Aviation",             group: "domains" },
+  { id: "domains-medical",     file: "domains/medical-devices.md",      title: "Medical Devices",      group: "domains" },
+  { id: "domains-pharma",      file: "domains/pharma.md",               title: "Pharma",               group: "domains" },
+  { id: "domains-financial",   file: "domains/financial-services.md",   title: "Financial Services",   group: "domains" },
+  { id: "domains-automotive",  file: "domains/automotive.md",           title: "Automotive",           group: "domains" },
+  { id: "domains-defense",     file: "domains/defense-government.md",   title: "Defense / Government", group: "domains" },
+
 ];
 
 const groups = {
-  overview: { label: "Home" },
-  manifesto: { label: "Manifesto" },
-  beyond: { label: "Beyond Agile" },
-  companion: { label: "Companion" },
-  adoption: { label: "Adoption" },
-  domains: { label: "Domains" },
+  overview:        { label: "Home"                    },
+  beyond:          { label: "The Case for Change"     },
+  manifesto:       { label: "The Manifesto"           },
+  implementation:  { label: "Implementation Guide"    },
+  adoption:        { label: "Organizational Adoption" },
+  domains:         { label: "Domain Alignment"        },
 };
 
-const domainPages = [
-  {
-    file: "domains/README.md",
-    title: "Domain Overview",
-  },
-  {
-    file: "domains/aviation.md",
-    title: "Aviation",
-  },
-  {
-    file: "domains/medical-devices.md",
-    title: "Medical Devices",
-  },
-  {
-    file: "domains/pharma.md",
-    title: "Pharma",
-  },
-  {
-    file: "domains/financial-services.md",
-    title: "Financial Services",
-  },
-  {
-    file: "domains/automotive.md",
-    title: "Automotive",
-  },
-  {
-    file: "domains/defense-government.md",
-    title: "Defense / Government",
-  },
-];
+const domainPages = [];
 
 // Maps source file path → section id, for resolving intra-document links
 const sectionFileMap = new Map(sections.map(s => [path.posix.normalize(s.file), s.id]));
-const domainFileSet = new Set(domainPages.map(p => path.posix.normalize(p.file)));
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const repositoryUrl = normalizeRepositoryUrl(packageJson.repository?.url || "");
@@ -420,16 +308,6 @@ function buildNav({ outputFile = "index.html", activePath = "index.html" } = {})
     html += `<a href="${sectionHref}" class="nav-link" data-section="${s.id}">${s.title}</a>`;
   }
   html += "</div>"; // last group
-
-  html += `<div class="nav-group">`;
-  html += `<div class="nav-group-label">${groups.domains.label}</div>`;
-  for (const page of domainPages) {
-    const targetFile = markdownToHtmlPath(page.file);
-    const href = path.posix.relative(path.posix.dirname(outputFile), targetFile) || ".";
-    const activeClass = activePath === targetFile ? " active" : "";
-    html += `<a href="${href}" class="nav-link${activeClass}">${page.title}</a>`;
-  }
-  html += "</div>";
 
   html += "</div>"; // sidebar-scroll
   html += '<div class="sidebar-meta">';
