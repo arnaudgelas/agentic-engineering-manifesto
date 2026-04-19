@@ -48,11 +48,16 @@ assertions?
 **Evolvability as an implicit criterion.** A change that passes today's tests
 but degrades the codebase's capacity for future change is not truly done — it
 has traded short-term correctness for structural regression. The SWE-CI
-benchmark (arXiv:2603.03823) provides empirical evidence: most agents introduce
-regressions in over 75% of CI iterations, many structural rather than
-behavioral. At Phase 4 and above, "verified" should include evolution-weighted
-signals — not just whether current tests pass, but whether each change makes the
-next change easier or harder. See
+benchmark (arXiv:2603.03823) documents that most agents introduce behavioral
+regressions in over 75% of CI iterations, establishing that agent-generated
+code regresses existing behavior at high rates. This is evidence of behavioral
+regression risk, not a direct measure of architectural evolvability: CI
+metrics do not capture coupling growth, cohesion decay, abstraction quality, or
+future-changeability. Both risks are real and distinct. At Phase 4 and above,
+"verified" should include evolution-weighted signals beyond CI pass rates —
+static analysis for coupling growth, module boundary stability, and change
+amplification — alongside the behavioral regression coverage the benchmark
+measures. See
 [Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
 in the Companion Guide.
 
