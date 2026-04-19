@@ -12,7 +12,19 @@
     "type": "git",
     "url": "git+https://github.com/arnaudgelas/agentic-engineering-manifesto.git"
   },
-  "keywords": [],
+  "keywords": [
+    "agentic-engineering",
+    "ai-agents",
+    "autonomous-agents",
+    "manifesto",
+    "software-engineering",
+    "llm",
+    "ai-governance",
+    "engineering-principles",
+    "agile",
+    "specifications",
+    "ai-safety"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

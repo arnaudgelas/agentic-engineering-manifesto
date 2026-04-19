@@ -87,26 +87,26 @@
       </div>
     </div>
   </header>
-      <section id="overview" class="doc-section" data-group="overview"><div class="section-inner"><p>Principles for building systems where humans steer intent, agents execute
+      <section id="overview" class="doc-section" data-group="overview"><div class="section-inner"><p><em>Principles for building systems where humans steer intent, agents execute
 within governed boundaries, and verified outcomes are the only measure that
-matters.</p>
-<hr>
-<h2 id="why-this-repository-exists">Why This Repository Exists</h2><p>The Agile Manifesto (2001) was written for a world where humans wrote all the
-code. In agentic workflows, generation, verification, and deployment can run at
-machine speed. Legacy rituals such as sprint cadence, velocity scoring, and
-manual review-first pipelines become bottlenecks or blind spots at scale.
-Early empirical evidence — notably the SWE-CI benchmark showing 75%+ regression
-rates per CI iteration across 18 models — confirms that agentic systems require
+matters.</em></p>
+<blockquote>
+<p><strong>The Agile Manifesto was written for a world where humans wrote all the
+code. That world no longer exists.</strong></p>
+</blockquote>
+<p>In agentic workflows, generation, verification, and deployment run at machine
+speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
+review-first pipelines — become bottlenecks and blind spots. Early empirical
+evidence, including the SWE-CI benchmark showing regression rates above 75%
+per CI iteration across 18 models, confirms that agentic systems require
 purpose-built engineering discipline, not retrofitted Agile ceremonies.</p>
-<p>This repository provides a complete alternative: the case for change, the
-manifesto itself, implementation guidance, an organizational adoption path, a
-five-wave publishing campaign, and a structured training curriculum.</p>
-<p>Read the published version at
-<a href="https://arnaudgelas.github.io/agentic-engineering-manifesto/">https://arnaudgelas.github.io/agentic-engineering-manifesto/</a>.</p>
-<p>Start with <strong><a href="#beyond">Beyond Agile</a></strong>, then move through the manifesto,
-companion guidance, and adoption playbook.</p>
+<p>This repository provides the complete alternative: the case for change, the
+manifesto itself, a companion implementation guide, an organizational adoption
+playbook, domain-specific regulatory alignment for six industries, and a
+structured training curriculum.</p>
+<p><strong><a href="https://arnaudgelas.github.io/agentic-engineering-manifesto/">Read the published version →</a></strong></p>
 <hr>
-<h2 id="core-values">Core Values</h2><table>
+<h2 id="six-values">Six Values</h2><table>
 <thead>
 <tr>
 <th>We value more</th>
@@ -145,9 +145,9 @@ companion guidance, and adoption playbook.</p>
 <td>Performance in ideal conditions</td>
 </tr>
 </tbody></table>
-<p>That is, while there is value in the items on the right, we value the items on
-the left more.</p>
-<h2 id="twelve-principles-summary">Twelve Principles (Summary)</h2><ol>
+<p><em>While there is value in the items on the right, we value the items on the left more.</em></p>
+<hr>
+<h2 id="twelve-principles">Twelve Principles</h2><ol>
 <li><strong>Outcomes are the unit of work</strong></li>
 <li><strong>Specifications are living artifacts that evolve through steering</strong></li>
 <li><strong>Architecture is defense-in-depth, not a document</strong></li>
@@ -162,10 +162,38 @@ the left more.</p>
 <li><strong>Accountability requires visibility</strong></li>
 </ol>
 <p>See full text in <a href="#principles">manifesto-principles.md</a>.</p>
-<h2 id="the-agentic-loop">The Agentic Loop</h2><p><strong>Specify &rarr; Design &rarr; Plan &rarr; Execute &rarr; Verify &rarr; Validate &rarr; Observe &rarr; Learn &rarr; Govern &rarr; Repeat</strong></p>
+<hr>
+<h2 id="the-agentic-loop">The Agentic Loop</h2><p><strong>Specify → Design → Plan → Execute → Verify → Validate → Observe → Learn → Govern → Repeat</strong></p>
+<p>Any phase can trigger a return to an earlier one based on evidence.
+The loop is the system. The principles are how you keep it honest.</p>
+<hr>
+<h2 id="who-is-this-for">Who Is This For?</h2><table>
+<thead>
+<tr>
+<th>If you are</th>
+<th>Start with</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>New to agentic engineering</td>
+<td><a href="#beyond">Beyond Agile</a> → <a href="#manifesto-core">The Manifesto</a> → <a href="#adoption-playbook">Adoption Playbook</a></td>
+</tr>
+<tr>
+<td>A practitioner implementing now</td>
+<td><a href="#principles">Twelve Principles</a> → <a href="#companion-guide">Companion Guide</a> → <a href="#companion-patterns">Patterns</a> → <a href="#adoption-path">Adoption Path</a></td>
+</tr>
+<tr>
+<td>An engineering leader or change owner</td>
+<td><a href="#beyond-landscape">Beyond Agile Landscape</a> → <a href="#adoption-roles">Adoption Roles</a> → <a href="#adoption-metrics">Metrics</a></td>
+</tr>
+<tr>
+<td>In a regulated industry</td>
+<td><a href="domains/README.html">Domain Overview</a> → your domain document</td>
+</tr>
+</tbody></table>
 <hr>
 <h2 id="repository-map">Repository Map</h2><h3 id="1-beyond-agile-case-for-change">1) Beyond Agile (Case for Change)</h3><ul>
-<li><a href="#beyond">beyond_agile.md</a>: Main argument for why Agile is
+<li><a href="#beyond">beyond_agile.md</a>: The argument for why Agile is
 insufficient for agentic systems.</li>
 <li><a href="#beyond-failures">beyond-agile-failures.md</a>: Ten structural failures
 in values, practices, and conceptual coverage.</li>
@@ -173,8 +201,7 @@ in values, practices, and conceptual coverage.</li>
 of competing manifestos, standards, and frameworks.</li>
 <li><a href="#beyond-sources">beyond-agile-sources.md</a>: Twenty-three cited
 sources including academic benchmarks (SWE-CI, Feldt et al.), industry
-frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives (Fretz,
-Jones, Kern, Reuven).</li>
+frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives.</li>
 </ul>
 <h3 id="2-the-manifesto-normative-core">2) The Manifesto (Normative Core)</h3><ul>
 <li><a href="#manifesto-core">manifesto.md</a>: Core values, scope, Agentic Loop, and reading
@@ -187,27 +214,24 @@ criteria plus evolvability).</li>
 <h3 id="3-companion-guide-implementation-guidance">3) Companion Guide (Implementation Guidance)</h3><ul>
 <li><a href="#companion-guide">companion-guide.md</a>: Overview and navigation.</li>
 <li><a href="#companion-principles">companion-principles.md</a>: Extended guidance and
-tradeoffs by principle. Includes the Architect–Programmer pattern (from
-SWE-CI), evaluation holdout and probabilistic satisfaction (from Fretz),
-and behavioral vs. structural regression analysis.</li>
+tradeoffs by principle. Includes the Architect–Programmer pattern, evaluation
+holdout and probabilistic satisfaction, and behavioral vs. structural
+regression analysis.</li>
 <li><a href="#companion-frameworks">companion-frameworks.md</a>: Maturity spectrum,
-boundary conditions, operational definitions, empirical phase profiles from
-SWE-CI, and an alternative framing mapping Fretz&#39;s Five Levels to manifesto
-phases.</li>
+boundary conditions, and operational definitions.</li>
 <li><a href="#companion-patterns">companion-patterns.md</a>: Worked patterns and failure
 patterns.</li>
-<li><a href="#companion-reference">companion-reference.md</a>: Nine failure modes (including
-structural regression without detection) and skill requirements.</li>
+<li><a href="#companion-reference">companion-reference.md</a>: Failure modes and skill
+requirements.</li>
 <li><a href="#companion-re-framework">companion-re-framework.md</a>: Requirements
-engineering reference framework for agentic systems — two-axes classification,
-behavioral envelopes, probabilistic assurance targets, tiered lifecycle, NFR
-table, and per-requirement checklist.</li>
+engineering framework — two-axes classification, behavioral envelopes, and
+probabilistic assurance targets.</li>
 </ul>
 <h3 id="4-adoption-playbook-organizational-transition">4) Adoption Playbook (Organizational Transition)</h3><ul>
 <li><a href="#adoption-playbook">adoption-playbook.md</a>: Playbook overview and new way
 of working.</li>
-<li><a href="#adoption-roles">adoption-roles.md</a>: Role evolution, human-side transition
-guidance, and the Acceleration Trap (with perception gap evidence).</li>
+<li><a href="#adoption-roles">adoption-roles.md</a>: Role evolution and human-side
+transition guidance.</li>
 <li><a href="#adoption-path">adoption-path.md</a>: Incremental technical adoption path and
 phase transitions.</li>
 <li><a href="#adoption-vmodel">adoption-vmodel.md</a>: V-model-specific adoption path for
@@ -218,47 +242,23 @@ execution.</li>
 cadence, and failure modes.</li>
 </ul>
 <h3 id="5-domain-specific-regulatory-alignment">5) Domain-Specific Regulatory Alignment</h3><ul>
-<li><a href="domains/README.html">domains/README.md</a>: Navigation and disclaimers for domain
-content.</li>
+<li><a href="domains/README.html">domains/README.md</a>: Navigation and disclaimers.</li>
 <li><a href="domains/aviation.html">domains/aviation.md</a>: DO-178C, DO-330, DO-333,
-ARP 4754A alignment mapping.</li>
+ARP 4754A.</li>
 <li><a href="domains/medical-devices.html">domains/medical-devices.md</a>: IEC 62304,
-ISO 14971, ISO 13485, FDA SaMD alignment mapping.</li>
-<li><a href="domains/pharma.html">domains/pharma.md</a>: GAMP 5, CSA, 21 CFR Part 11, ICH
-alignment mapping.</li>
+ISO 14971, ISO 13485, FDA SaMD.</li>
+<li><a href="domains/pharma.html">domains/pharma.md</a>: GAMP 5, CSA, 21 CFR Part 11, ICH.</li>
 <li><a href="domains/financial-services.html">domains/financial-services.md</a>: SR 11-7,
-DORA, EU AI Act, SOX, Three Lines of Defense alignment mapping.</li>
+DORA, EU AI Act, SOX, Three Lines of Defense.</li>
+<li><a href="domains/automotive.html">domains/automotive.md</a>: ISO 26262, SOTIF, ASPICE.</li>
+<li><a href="domains/defense-government.html">domains/defense-government.md</a>: MIL-STD-882,
+DO-326A, NIST AI RMF.</li>
 </ul>
 <hr>
-<h2 id="recommended-reading-paths">Recommended Reading Paths</h2><ul>
-<li><strong>Quick orientation (30-45 min):</strong>
-<a href="#beyond">beyond_agile.md</a> →
-<a href="#manifesto-core">manifesto.md</a> →
-<a href="#adoption-playbook">adoption-playbook.md</a></li>
-<li><strong>For practitioners implementing now:</strong>
-<a href="#principles">manifesto-principles.md</a> →
-<a href="#companion-principles">companion-principles.md</a> →
-<a href="#companion-patterns">companion-patterns.md</a> →
-<a href="#adoption-path">adoption-path.md</a></li>
-<li><strong>For engineering leaders and change owners:</strong>
-<a href="#beyond-landscape">beyond-agile-landscape.md</a> →
-<a href="#adoption-roles">adoption-roles.md</a> →
-<a href="#adoption-metrics">adoption-metrics.md</a></li>
-<li><strong>For regulated industries (domain-specific):</strong>
-<a href="#companion-frameworks">companion-frameworks.md</a> (Boundary Conditions) →
-<a href="#adoption-vmodel">adoption-vmodel.md</a> →
-<a href="domains/README.html">domains/README.md</a> → your domain document</li>
-</ul>
-<hr>
-<h2 id="contributing">Contributing</h2><p>This is a living document. Agentic engineering is a fast-moving field, and
-this manifesto evolves continuously — informed by our own practices, what we
-witness in the field, and the new technologies, trends, and practices that
-emerge. Contributions are welcome. See <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for
-guidelines on proposing changes, submitting worked patterns, or reporting
-issues.</p>
-<h2 id="authors">Authors</h2><p>See <a href="AUTHORS.html">AUTHORS.md</a> for the list of contributors.</p>
-<h2 id="license">License</h2><p>This work is shared for community discussion and adoption. See <a href="LICENSE">LICENSE</a>
-for details.</p>
+<p>This is a living document. Contributions are welcome — see
+<a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for guidelines on proposing changes,
+submitting worked patterns, or reporting issues. See <a href="AUTHORS.html">AUTHORS.md</a>
+for contributors. See <a href="LICENSE">LICENSE</a> for terms.</p>
 </div></section><section id="manifesto-core" class="doc-section" data-group="manifesto"><div class="section-inner"><p><em>Principles for building systems where humans steer intent, agents execute
 within governed boundaries, and verified outcomes are the only measure that
 matters.</em></p>

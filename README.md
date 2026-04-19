@@ -1,34 +1,42 @@
 # The Agentic Engineering Manifesto
 
-Principles for building systems where humans steer intent, agents execute
-within governed boundaries, and verified outcomes are the only measure that
-matters.
+<!-- github-only -->
+<div align="center">
+
+[![Read Online](https://img.shields.io/badge/Read%20Online-Published%20Site-cc2200?style=flat-square)](https://arnaudgelas.github.io/agentic-engineering-manifesto/)&nbsp;
+[![Download PDF](https://img.shields.io/badge/Download-PDF-e07000?style=flat-square)](https://github.com/arnaudgelas/agentic-engineering-manifesto/raw/main/manifesto.pdf)&nbsp;
+[![License](https://img.shields.io/github/license/arnaudgelas/agentic-engineering-manifesto?style=flat-square)](LICENSE)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/arnaudgelas/agentic-engineering-manifesto?style=flat-square)](https://github.com/arnaudgelas/agentic-engineering-manifesto/commits/main)
+
+</div>
 
 ---
+<!-- /github-only -->
 
-## Why This Repository Exists
+*Principles for building systems where humans steer intent, agents execute
+within governed boundaries, and verified outcomes are the only measure that
+matters.*
 
-The Agile Manifesto (2001) was written for a world where humans wrote all the
-code. In agentic workflows, generation, verification, and deployment can run at
-machine speed. Legacy rituals such as sprint cadence, velocity scoring, and
-manual review-first pipelines become bottlenecks or blind spots at scale.
-Early empirical evidence — notably the SWE-CI benchmark showing 75%+ regression
-rates per CI iteration across 18 models — confirms that agentic systems require
+> **The Agile Manifesto was written for a world where humans wrote all the
+> code. That world no longer exists.**
+
+In agentic workflows, generation, verification, and deployment run at machine
+speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
+review-first pipelines — become bottlenecks and blind spots. Early empirical
+evidence, including the SWE-CI benchmark showing regression rates above 75%
+per CI iteration across 18 models, confirms that agentic systems require
 purpose-built engineering discipline, not retrofitted Agile ceremonies.
 
-This repository provides a complete alternative: the case for change, the
-manifesto itself, implementation guidance, an organizational adoption path, a
-five-wave publishing campaign, and a structured training curriculum.
+This repository provides the complete alternative: the case for change, the
+manifesto itself, a companion implementation guide, an organizational adoption
+playbook, domain-specific regulatory alignment for six industries, and a
+structured training curriculum.
 
-Read the published version at
-<https://arnaudgelas.github.io/agentic-engineering-manifesto/>.
-
-Start with **[Beyond Agile](beyond_agile.md)**, then move through the manifesto,
-companion guidance, and adoption playbook.
+**[Read the published version →](https://arnaudgelas.github.io/agentic-engineering-manifesto/)**
 
 ---
 
-## Core Values
+## Six Values
 
 | We value more | over | We also value |
 |---|---|---|
@@ -39,10 +47,11 @@ companion guidance, and adoption playbook.
 | Tooling, telemetry, and observability | | Chat-based heroics |
 | Resilience under stress | | Performance in ideal conditions |
 
-That is, while there is value in the items on the right, we value the items on
-the left more.
+*While there is value in the items on the right, we value the items on the left more.*
 
-## Twelve Principles (Summary)
+---
+
+## Twelve Principles
 
 1. **Outcomes are the unit of work**
 2. **Specifications are living artifacts that evolve through steering**
@@ -59,9 +68,25 @@ the left more.
 
 See full text in [manifesto-principles.md](manifesto-principles.md).
 
+---
+
 ## The Agentic Loop
 
-**Specify &rarr; Design &rarr; Plan &rarr; Execute &rarr; Verify &rarr; Validate &rarr; Observe &rarr; Learn &rarr; Govern &rarr; Repeat**
+**Specify → Design → Plan → Execute → Verify → Validate → Observe → Learn → Govern → Repeat**
+
+Any phase can trigger a return to an earlier one based on evidence.
+The loop is the system. The principles are how you keep it honest.
+
+---
+
+## Who Is This For?
+
+| If you are | Start with |
+|---|---|
+| New to agentic engineering | [Beyond Agile](beyond_agile.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption-playbook.md) |
+| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Companion Guide](companion-guide.md) → [Patterns](companion-patterns.md) → [Adoption Path](adoption-path.md) |
+| An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile-landscape.md) → [Adoption Roles](adoption-roles.md) → [Metrics](adoption-metrics.md) |
+| In a regulated industry | [Domain Overview](domains/README.md) → your domain document |
 
 ---
 
@@ -69,7 +94,7 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 ### 1) Beyond Agile (Case for Change)
 
-- [beyond_agile.md](beyond_agile.md): Main argument for why Agile is
+- [beyond_agile.md](beyond_agile.md): The argument for why Agile is
   insufficient for agentic systems.
 - [beyond-agile-failures.md](beyond-agile-failures.md): Ten structural failures
   in values, practices, and conceptual coverage.
@@ -77,8 +102,7 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
   of competing manifestos, standards, and frameworks.
 - [beyond-agile-sources.md](beyond-agile-sources.md): Twenty-three cited
   sources including academic benchmarks (SWE-CI, Feldt et al.), industry
-  frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives (Fretz,
-  Jones, Kern, Reuven).
+  frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives.
 
 ### 2) The Manifesto (Normative Core)
 
@@ -93,28 +117,25 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 - [companion-guide.md](companion-guide.md): Overview and navigation.
 - [companion-principles.md](companion-principles.md): Extended guidance and
-  tradeoffs by principle. Includes the Architect–Programmer pattern (from
-  SWE-CI), evaluation holdout and probabilistic satisfaction (from Fretz),
-  and behavioral vs. structural regression analysis.
+  tradeoffs by principle. Includes the Architect–Programmer pattern, evaluation
+  holdout and probabilistic satisfaction, and behavioral vs. structural
+  regression analysis.
 - [companion-frameworks.md](companion-frameworks.md): Maturity spectrum,
-  boundary conditions, operational definitions, empirical phase profiles from
-  SWE-CI, and an alternative framing mapping Fretz's Five Levels to manifesto
-  phases.
+  boundary conditions, and operational definitions.
 - [companion-patterns.md](companion-patterns.md): Worked patterns and failure
   patterns.
-- [companion-reference.md](companion-reference.md): Nine failure modes (including
-  structural regression without detection) and skill requirements.
+- [companion-reference.md](companion-reference.md): Failure modes and skill
+  requirements.
 - [companion-re-framework.md](companion-re-framework.md): Requirements
-  engineering reference framework for agentic systems — two-axes classification,
-  behavioral envelopes, probabilistic assurance targets, tiered lifecycle, NFR
-  table, and per-requirement checklist.
+  engineering framework — two-axes classification, behavioral envelopes, and
+  probabilistic assurance targets.
 
 ### 4) Adoption Playbook (Organizational Transition)
 
 - [adoption-playbook.md](adoption-playbook.md): Playbook overview and new way
   of working.
-- [adoption-roles.md](adoption-roles.md): Role evolution, human-side transition
-  guidance, and the Acceleration Trap (with perception gap evidence).
+- [adoption-roles.md](adoption-roles.md): Role evolution and human-side
+  transition guidance.
 - [adoption-path.md](adoption-path.md): Incremental technical adoption path and
   phase transitions.
 - [adoption-vmodel.md](adoption-vmodel.md): V-model-specific adoption path for
@@ -126,55 +147,21 @@ See full text in [manifesto-principles.md](manifesto-principles.md).
 
 ### 5) Domain-Specific Regulatory Alignment
 
-- [domains/README.md](domains/README.md): Navigation and disclaimers for domain
-  content.
+- [domains/README.md](domains/README.md): Navigation and disclaimers.
 - [domains/aviation.md](domains/aviation.md): DO-178C, DO-330, DO-333,
-  ARP 4754A alignment mapping.
+  ARP 4754A.
 - [domains/medical-devices.md](domains/medical-devices.md): IEC 62304,
-  ISO 14971, ISO 13485, FDA SaMD alignment mapping.
-- [domains/pharma.md](domains/pharma.md): GAMP 5, CSA, 21 CFR Part 11, ICH
-  alignment mapping.
+  ISO 14971, ISO 13485, FDA SaMD.
+- [domains/pharma.md](domains/pharma.md): GAMP 5, CSA, 21 CFR Part 11, ICH.
 - [domains/financial-services.md](domains/financial-services.md): SR 11-7,
-  DORA, EU AI Act, SOX, Three Lines of Defense alignment mapping.
+  DORA, EU AI Act, SOX, Three Lines of Defense.
+- [domains/automotive.md](domains/automotive.md): ISO 26262, SOTIF, ASPICE.
+- [domains/defense-government.md](domains/defense-government.md): MIL-STD-882,
+  DO-326A, NIST AI RMF.
 
 ---
 
-## Recommended Reading Paths
-
-- **Quick orientation (30-45 min):**
-  [beyond_agile.md](beyond_agile.md) →
-  [manifesto.md](manifesto.md) →
-  [adoption-playbook.md](adoption-playbook.md)
-- **For practitioners implementing now:**
-  [manifesto-principles.md](manifesto-principles.md) →
-  [companion-principles.md](companion-principles.md) →
-  [companion-patterns.md](companion-patterns.md) →
-  [adoption-path.md](adoption-path.md)
-- **For engineering leaders and change owners:**
-  [beyond-agile-landscape.md](beyond-agile-landscape.md) →
-  [adoption-roles.md](adoption-roles.md) →
-  [adoption-metrics.md](adoption-metrics.md)
-- **For regulated industries (domain-specific):**
-  [companion-frameworks.md](companion-frameworks.md) (Boundary Conditions) →
-  [adoption-vmodel.md](adoption-vmodel.md) →
-  [domains/README.md](domains/README.md) → your domain document
-
----
-
-## Contributing
-
-This is a living document. Agentic engineering is a fast-moving field, and
-this manifesto evolves continuously — informed by our own practices, what we
-witness in the field, and the new technologies, trends, and practices that
-emerge. Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for
-guidelines on proposing changes, submitting worked patterns, or reporting
-issues.
-
-## Authors
-
-See [AUTHORS.md](AUTHORS.md) for the list of contributors.
-
-## License
-
-This work is shared for community discussion and adoption. See [LICENSE](LICENSE)
-for details.
+This is a living document. Contributions are welcome — see
+[CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on proposing changes,
+submitting worked patterns, or reporting issues. See [AUTHORS.md](AUTHORS.md)
+for contributors. See [LICENSE](LICENSE) for terms.

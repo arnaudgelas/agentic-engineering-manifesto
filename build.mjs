@@ -330,6 +330,10 @@ function stripFirstHeading(markdown) {
   return markdown.replace(/^#\s+.+\n+/, "");
 }
 
+function stripGithubOnlyBlocks(markdown) {
+  return markdown.replace(/<!--\s*github-only\s*-->[\s\S]*?<!--\s*\/github-only\s*-->/gi, "").trim();
+}
+
 function convertMarkdown(markdown, { sourceFile, outputFile }) {
   return marked.parse(markdown, {
     renderer: createRenderer({ sourceFile, outputFile }),
@@ -380,6 +384,8 @@ function convertSection(section) {
 
   // Strip the first H1 heading — we render our own section header
   md = stripFirstHeading(md);
+  // Strip github-only blocks (badges, quick-links) — not meaningful in a built doc
+  md = stripGithubOnlyBlocks(md);
 
   return convertMarkdown(md, {
     sourceFile: section.file,

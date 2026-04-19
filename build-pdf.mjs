@@ -73,6 +73,10 @@ function readAuthors(file) {
 // ---------------------------------------------------------------------------
 marked.setOptions({ gfm: true, breaks: false });
 
+function stripGithubOnlyBlocks(markdown) {
+  return markdown.replace(/<!--\s*github-only\s*-->[\s\S]*?<!--\s*\/github-only\s*-->/gi, "").trim();
+}
+
 function slugifyHeading(raw) {
   return raw
     .toLowerCase()
@@ -169,6 +173,8 @@ function convertSection(section) {
 
   // Strip first H1
   md = md.replace(/^#\s+.+\n+/, "");
+  // Strip github-only blocks (badges, quick-links) — not meaningful in print
+  md = stripGithubOnlyBlocks(md);
 
   // Remove mermaid code blocks (can't render in print)
   md = md.replace(/```mermaid[\s\S]*?```/g, "");
