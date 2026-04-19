@@ -5,7 +5,7 @@
 
 [![Read Online](https://img.shields.io/badge/Read%20Online-Published%20Site-cc2200?style=flat-square)](https://arnaudgelas.github.io/agentic-engineering-manifesto/)&nbsp;
 [![Download PDF](https://img.shields.io/badge/Download-PDF-e07000?style=flat-square)](https://github.com/arnaudgelas/agentic-engineering-manifesto/raw/main/manifesto.pdf)&nbsp;
-[![License](https://img.shields.io/github/license/arnaudgelas/agentic-engineering-manifesto?style=flat-square)](LICENSE)&nbsp;
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey?style=flat-square)](LICENSE)&nbsp;
 [![Last Commit](https://img.shields.io/github/last-commit/arnaudgelas/agentic-engineering-manifesto?style=flat-square)](https://github.com/arnaudgelas/agentic-engineering-manifesto/commits/main)
 
 </div>
