@@ -540,10 +540,17 @@ and coordination rules.</li>
 <li><strong>Verify</strong> checks the output against the specification (did we build it right?).</li>
 <li><strong>Validate</strong> checks the outcome against real-world need (did we build the right thing?).</li>
 <li><strong>Observe</strong> monitors runtime behavior, drift, and cost.</li>
-<li><strong>Learn</strong> updates knowledge, memory, and models from observations.
-Knowledge captures durable truth; memory captures learned heuristics and
-reusable skills.</li>
-<li><strong>Govern</strong> applies policy, accountability, and change control.</li>
+<li><strong>Learn</strong> updates knowledge and memory from observations. At Phases 4–5,
+this means: add durable findings to the knowledge base and curate learned
+memory with new heuristics, routing preferences, and reusable skills.
+Updating model weights (fine-tuning, RLHF) is a separate infrastructure
+concern applicable at Phase 6 and beyond — not a per-loop operation for
+most organizations. Knowledge captures durable truth; memory captures
+learned heuristics and reusable skills.</li>
+<li><strong>Govern</strong> applies policy, accountability, change control, and economics review.
+When inference or governance cost exceeds the value of the work, Govern
+signals Specify to simplify scope or reduce autonomy rather than continuing
+to spend.</li>
 </ul>
 <p>Verification and validation are distinct disciplines. Verification is
 technical correctness against the spec. Validation is fitness for intended use
@@ -552,6 +559,19 @@ validation. Both are required.</p>
 <p>Failures are data across every phase. Incidents, hallucinations, and policy
 violations must produce post-incident updates to specifications, evaluations,
 tooling constraints, and memory before retry.</p>
+<p><strong>When a feedback arrow fires, a remediation sub-cycle must complete before
+re-entering the loop:</strong></p>
+<ol>
+<li><strong>Diagnose</strong> — classify the failure from traces: specification error,
+verification gap, enforcement failure, or operational override.</li>
+<li><strong>Update</strong> — patch memory, tighten contracts, or revise the specification
+to address the root cause.</li>
+<li><strong>Gate</strong> — add or strengthen an evaluation that would catch this failure
+class before retrying.</li>
+<li><strong>Re-verify</strong> — run the updated evaluation suite before advancing.</li>
+</ol>
+<p>Skipping to step 4 without steps 1–3 is a retry, not remediation, and is
+the primary cause of hallucination loops.</p>
 <pre><code class="language-mermaid">flowchart LR
     Specify --&gt; Design --&gt; Plan --&gt; Execute --&gt; Verify --&gt; Validate --&gt; Observe --&gt; Learn --&gt; Govern
     Govern --&gt;|Repeat| Specify
@@ -561,12 +581,32 @@ tooling constraints, and memory before retry.</p>
     Validate -.-&gt;|Wrong Thing Built| Specify
     Validate -.-&gt;|Design Flaw| Design
     Observe -.-&gt;|Runtime Drift| Specify
+    Govern -.-&gt;|Economics / Complexity Breach| Specify
 </code></pre>
 <hr>
 <h2 id="why-engineering-rigor-creates-competitive-advantage">Why Engineering Rigor Creates Competitive Advantage</h2><p>The organizations pulling ahead with AI are not winning because they have access to better models — the same foundation models are available to everyone. They are winning because they can apply those models faster, at greater scale, and with less risk than competitors who are still governing AI with processes designed for human developers.</p>
 <p>That advantage is an engineering discipline problem, not a technology problem. The gap between a team that can safely expand agent autonomy and a team stuck in Phase 3 — running agents under loose supervision because the governance infrastructure is not there — is the same gap as between a team with mature CI/CD and a team still doing manual deployments. It compounds over time: faster verification enables faster shipping; faster shipping produces more learning; better learning sharpens specifications. The Agentic Loop is not a workflow — it is a compounding return on engineering investment.</p>
 <p>The organizations that reach Phase 5 — multi-domain, evidence-driven, continuously learning — are not just more efficient. They are structurally harder to catch. Every cycle of the Agentic Loop widens the gap between them and organizations still measuring velocity in story points.</p>
 <p>This manifesto is the engineering foundation for that compounding return. It is not a constraint on speed. It is what makes speed sustainable.</p>
+<hr>
+<h2 id="the-new-way-of-working">The New Way of Working</h2><p><strong>Humans</strong> express intent as specifications with constraints and acceptance
+criteria — then refine those specifications as evidence accumulates. They encode
+architecture as enforceable, monitored domain boundaries. They set autonomy
+tiers appropriate to risk. They own outcomes and remain accountable. They do not
+supervise every intermediate step — they define what success looks like, verify
+that the system achieved it, and inspect the reasoning when it matters.</p>
+<p><strong>Agents</strong> decompose specifications into executable tasks. They execute within
+domain boundaries, right-sized to complexity. They verify their own outputs
+against evaluations. They report evidence, not assertions. They learn from
+failure and encode that learning in memory — with provenance, so the system
+knows where every lesson came from.</p>
+<p><strong>Systems</strong> maintain persistent knowledge and curated learned memory. They route
+work to appropriate model tiers based on cost and quality requirements. They
+enforce architectural constraints at runtime and monitor for violations. They
+observe behavior, surface anomalies, and maintain the feedback loops that make
+everything else work. They forget what no longer serves them.</p>
+<p>See <a href="#adoption-roles">Roles and the Human Side</a> for how each role evolves
+through the phase transitions.</p>
 <hr>
 <h2 id="how-to-read-this-manifesto">How to Read This Manifesto</h2><p>Use two layers:</p>
 <ul>
@@ -593,6 +633,47 @@ we intend to prove it.</em></p>
 </div></section><section id="principles" class="doc-section" data-group="manifesto"><div class="section-inner"><p><em>The engineering principles that operationalize the six values.</em></p>
 <p>See the <a href="#manifesto-core">Manifesto</a> for the core values and the Agentic Loop.
 See the <a href="#done">Definition of Done</a> for what &quot;done&quot; means.</p>
+<p><strong>Values-to-principles mapping.</strong> The manifesto claims these twelve principles
+operationalize the six values. The correspondence:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Principles</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Iterative steering and alignment</td>
+<td>1 — Outcomes, 2 — Specifications</td>
+</tr>
+<tr>
+<td>Verified outcomes with auditable evidence</td>
+<td>8 — Evaluations, 12 — Accountability</td>
+</tr>
+<tr>
+<td>Right-sized agent collaboration</td>
+<td>3 — Architecture, 4 — Swarm, 5 — Autonomy tiers</td>
+</tr>
+<tr>
+<td>Curated, high-signal context and memory</td>
+<td>6 — Knowledge/memory, 7 — Context</td>
+</tr>
+<tr>
+<td>Tooling, telemetry, and observability</td>
+<td>9 — Observability</td>
+</tr>
+<tr>
+<td>Resilience under stress</td>
+<td>10 — Containment, 11 — Economics</td>
+</tr>
+</tbody></table>
+<p><strong>Sequencing matters.</strong> These principles are not independent. Prerequisites:
+Principle 2 (specifications) before Principle 8 (evaluations); Principle 3
+(architecture) before Principle 5 (autonomy tiers); Principle 6
+(knowledge/memory) before Principle 7 (context); Principle 9 (observability)
+before Principle 12 (accountability). The
+<a href="#adoption-path">Incremental Adoption Path</a> gives the recommended
+implementation order.</p>
 <hr>
 <h3 id="1-outcomes-are-the-unit-of-work">1. Outcomes are the unit of work</h3><p>Progress is measured by the cycle <strong>Outcome → Evidence → Learning</strong> — not by
 tokens generated, tasks dispatched, or agents spawned. An agent that says &quot;done&quot;
@@ -678,6 +759,19 @@ benefits from multiple perspectives. Intelligence at system scale is often
 plural rather than monolithic. The engineering question is not &quot;how many agents
 can we run?&quot; but &quot;what coordination pattern produces better verified outcomes
 than a single agent on this workload?&quot;</p>
+<p><strong>Signals that indicate a single agent is insufficient:</strong></p>
+<ul>
+<li>The task requires concurrent reads or writes across multiple bounded contexts
+where race conditions cannot be resolved inside a single agent.</li>
+<li>Evaluation pass rate plateaus below threshold across successive sessions
+despite specification refinement, indicating context degradation under length.</li>
+<li>The task requires adversarial specialization — roles whose objectives conflict
+and cannot be fully trusted from the same agent (e.g., implementation and
+independent security review).</li>
+<li>Single-agent tool call depth or context budget is consistently saturated on
+representative tasks.</li>
+</ul>
+<p>In the absence of these signals, default to single-agent or pipeline.</p>
 <p><em>Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.</em></p>
 <hr>
@@ -752,6 +846,23 @@ learned memory. The governance mechanism determines the classification.</p>
 procedures as reusable skill artifacts that evolve through experience without
 changing model weights. Those learned skills require the same provenance,
 review, rollback, and scoping discipline as any other memory layer.</p>
+<p><strong>Memory failure modes.</strong> The governance mechanisms above address the
+what-and-when of memory management. The threat model addresses what goes wrong
+when they fail:</p>
+<ul>
+<li><strong>Memory poisoning</strong> — an agent writes incorrect learnings that corrupt
+future agent behavior across sessions. Mitigate with human review gates on
+memory writes from agents operating at Tier 2 or above.</li>
+<li><strong>Cross-agent contamination</strong> — Agent A&#39;s domain-specific memory leaks into
+Agent B&#39;s reasoning context. Mitigate with domain-scoped memory namespacing
+and access controls on memory read paths.</li>
+<li><strong>Consistency under concurrency</strong> — two agents update the same memory store
+with conflicting observations. Mitigate with versioned writes and explicit
+conflict resolution policies, the same as for any shared mutable state.</li>
+<li><strong>Audit trail gap</strong> — &quot;what version of memory was active when this decision
+was made?&quot; requires point-in-time snapshots, not just current state, for
+meaningful incident reconstruction.</li>
+</ul>
 <p><em>Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
 not memory — it is a liability. And if memory is not revalidated against current
 architecture and process before reuse, it is not being governed — it is being
@@ -766,7 +877,12 @@ windows are finite and reasoning quality degrades as low-signal context
 accumulates. Engineer explicit context budgeting: hierarchical retrieval,
 rolling summaries, state compaction, and authority-weighted pruning.</p>
 <p><em>Minimum bar: If retrieval takes longer than the reasoning loop tolerates,
-context is broken infrastructure.</em></p>
+context is broken infrastructure. But slow is not the only failure mode: stale
+embeddings, conflicting sources, semantic precision failures (fast retrieval of
+wrong artifacts), poisoned retrieval artifacts, and authority-weighting errors
+(an outdated ADR silently overriding current policy) are quality failures that a
+performance criterion does not catch. Context quality and code quality are
+coupled — both must be verified, not just timed.</em></p>
 <hr>
 <h3 id="8-evaluations-are-the-contract-proofs-are-a-scale-strategy">8. Evaluations are the contract; proofs are a scale strategy</h3><p>Evaluations define what &quot;correct&quot; means in terms the system can check
 autonomously. Every change must be verified against the evaluation suite — and
@@ -816,12 +932,17 @@ independent validation, which require additional steps:</p>
 <td>Were verification and validation themselves rigorous?</td>
 <td>Organizationally separate team (2nd line)</td>
 <td>Pre-production</td>
-<td>SR 11-7; SS1/23; DORA; regulated industries</td>
+<td>Any high-stakes system; mandated by SR 11-7, SS1/23, DORA in regulated industries</td>
 </tr>
 </tbody></table>
-<p>The most common failure: teams perform verification, label it validation, and
-have no independent validation. This is both a quality gap and, in regulated
-contexts, an audit finding.</p>
+<p>Independent validation is a governance principle, not merely a compliance
+requirement. Any system where a verification failure could cause significant
+harm — financial, safety-critical, reputational, or legally consequential —
+warrants organizational separation between the team that builds and verifies and
+the team that validates. Regulation formalizes this requirement; it does not
+create it. The most common failure: teams perform verification, label it
+validation, and have no independent validation. This is a quality gap in any
+context, not only a regulatory audit finding.</p>
 <p>Independent validation must be capable of blocking production deployment. A team
 that can only observe and advise is not independent validation — it is a
 consultation. See Principle 12 for the accountability structure that makes
@@ -850,8 +971,30 @@ them.</p>
 <p>When emergence produces useful behavior, capture it. When emergence produces
 dangerous behavior, contain it. The difference between these two outcomes is
 the quality of your containment engineering.</p>
+<p>Security is a containment concern, not a separate audit. Agentic systems that
+autonomously write, execute, and deploy code present a distinct attack surface
+that must be threat-modeled before granting autonomy beyond Tier 1:</p>
+<ul>
+<li><strong>Prompt injection</strong> — adversarial content in retrieval artifacts, tool
+responses, or code patterns that redirects agent behavior without the
+operator&#39;s knowledge.</li>
+<li><strong>Privilege escalation</strong> — chained agent calls that accumulate permissions
+no single call would be granted under least-privilege policy.</li>
+<li><strong>Data exfiltration</strong> — tool calls that surface sensitive data to outputs
+that are not fully inspected or logged.</li>
+<li><strong>Supply chain attacks</strong> — poisoned tool registries, model adapters, or
+retrieval sources that corrupt agent behavior at ingestion time.</li>
+<li><strong>Social engineering</strong> — AI-generated outputs crafted to pass human reviewer
+scrutiny by exploiting reviewer trust in fluent, confident text.</li>
+</ul>
+<p>Treat every retrieval artifact, tool response, and agent-to-agent message as
+untrusted input. Defense-in-depth means identity for agents and tools, signed
+provenance for shared state, least-privilege tool scopes, egress controls, and
+continuous anomaly detection for cross-agent trust edges.</p>
 <p><em>Minimum bar: If you have not tested with tool outages, noisy retrieval, and
-adversarial inputs, you are not chaos-tested.</em></p>
+adversarial inputs, you are not chaos-tested. If you have not threat-modeled
+prompt injection, privilege escalation, and exfiltration vectors for your
+specific agent topology, you are not security-tested.</em></p>
 <hr>
 <h3 id="11-optimize-the-economics-of-intelligence">11. Optimize the economics of intelligence</h3><p>Not every task requires the most capable model. Build a dynamic routing layer.
 Route simple tasks to fast, cheap models. Reserve expensive, high-reasoning
@@ -864,6 +1007,16 @@ behaviors, and debugging heterogeneous failure modes in multi-model routing.
 Track cost per task, cost per outcome, and cost per quality unit. When
 governance overhead exceeds the value of the work, that is a signal to simplify,
 not to add more governance.</p>
+<p><strong>Multi-model coherence.</strong> In heterogeneous swarms, different models may hold
+conflicting internal representations of the same codebase — different
+architectural pattern priors, different conventions for what &quot;correct&quot; looks
+like, different training-data views of domain boundaries. This coherence gap
+compounds at Phase 5+ when agent roles are highly specialized. Mitigate by:
+making shared architectural decisions explicit in the knowledge base rather than
+relying on implicit prompt conventions; routing semantically related tasks
+through the same model tier when consistency matters more than cost; and
+treating cross-model disagreement on shared artifacts as an observable quality
+signal rather than a coordination annoyance.</p>
 <p><em>Minimum bar: If model choice is a configuration constant instead of a runtime
 decision, you are overspending.</em></p>
 <hr>
@@ -957,11 +1110,16 @@ assertions?</p>
 <p><strong>Evolvability as an implicit criterion.</strong> A change that passes today&#39;s tests
 but degrades the codebase&#39;s capacity for future change is not truly done — it
 has traded short-term correctness for structural regression. The SWE-CI
-benchmark (arXiv:2603.03823) provides empirical evidence: most agents introduce
-regressions in over 75% of CI iterations, many structural rather than
-behavioral. At Phase 4 and above, &quot;verified&quot; should include evolution-weighted
-signals — not just whether current tests pass, but whether each change makes the
-next change easier or harder. See
+benchmark (arXiv:2603.03823) documents that most agents introduce behavioral
+regressions in over 75% of CI iterations, establishing that agent-generated
+code regresses existing behavior at high rates. This is evidence of behavioral
+regression risk, not a direct measure of architectural evolvability: CI
+metrics do not capture coupling growth, cohesion decay, abstraction quality, or
+future-changeability. Both risks are real and distinct. At Phase 4 and above,
+&quot;verified&quot; should include evolution-weighted signals beyond CI pass rates —
+static analysis for coupling growth, module boundary stability, and change
+amplification — alongside the behavioral regression coverage the benchmark
+measures. See
 <a href="#companion-principles#behavioral-regression-vs-structural-regression">Structural Regression</a>
 in the Companion Guide.</p>
 <p><strong>Why it matters:</strong> This forces the system to optimize for actual business
@@ -3786,10 +3944,14 @@ radius is more valuable in a Phase 4 team than in a traditional team — because
 their work governs an agent that produces the output of several engineers. A
 junior engineer who cannot yet write reviewable specifications creates
 bottlenecks, not throughput.</p>
-<p>This creates a real organizational challenge: the skills most needed (evaluation
-design, specification engineering, memory governance, observability of reasoning)
-are not standard hiring criteria and are not covered by most engineering
-bootcamps or degree programs. Build an explicit skills development path covering specification engineering, memory governance, and observability of reasoning — from prompt engineering fundamentals through agentic system design. Do not assume the market supplies practitioners ready-made — it does not, at scale, yet.</p>
+<p>This creates a real organizational challenge: the skills most needed
+(evaluation design, specification engineering, memory governance, observability
+of reasoning) are not standard hiring criteria and are not covered by most
+engineering bootcamps or degree programs. Build an explicit skills development
+path covering specification engineering, memory governance, and observability
+of reasoning — from prompt engineering fundamentals through agentic system
+design. Do not assume the market supplies practitioners ready-made — it does
+not, at scale, yet.</p>
 <hr>
 <h2 id="the-human-side-of-the-transition">The Human Side of the Transition</h2><p>Adopting agentic engineering is not purely a technical change. It is an
 organizational transformation that directly affects people&#39;s professional
