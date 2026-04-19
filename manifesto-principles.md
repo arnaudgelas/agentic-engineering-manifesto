@@ -5,6 +5,26 @@
 See the [Manifesto](manifesto.md) for the core values and the Agentic Loop.
 See the [Definition of Done](manifesto-done.md) for what "done" means.
 
+**Values-to-principles mapping.** The manifesto claims these twelve principles
+operationalize the six values. The correspondence:
+
+| Value | Principles |
+|---|---|
+| Iterative steering and alignment | 1 — Outcomes, 2 — Specifications |
+| Verified outcomes with auditable evidence | 8 — Evaluations, 12 — Accountability |
+| Right-sized agent collaboration | 3 — Architecture, 4 — Swarm, 5 — Autonomy tiers |
+| Curated, high-signal context and memory | 6 — Knowledge/memory, 7 — Context |
+| Tooling, telemetry, and observability | 9 — Observability |
+| Resilience under stress | 10 — Containment, 11 — Economics |
+
+**Sequencing matters.** These principles are not independent. Prerequisites:
+Principle 2 (specifications) before Principle 8 (evaluations); Principle 3
+(architecture) before Principle 5 (autonomy tiers); Principle 6
+(knowledge/memory) before Principle 7 (context); Principle 9 (observability)
+before Principle 12 (accountability). The
+[Incremental Adoption Path](adoption-path.md) gives the recommended
+implementation order.
+
 ---
 
 ### 1. Outcomes are the unit of work
@@ -119,6 +139,19 @@ plural rather than monolithic. The engineering question is not "how many agents
 can we run?" but "what coordination pattern produces better verified outcomes
 than a single agent on this workload?"
 
+**Signals that indicate a single agent is insufficient:**
+- The task requires concurrent reads or writes across multiple bounded contexts
+  where race conditions cannot be resolved inside a single agent.
+- Evaluation pass rate plateaus below threshold across successive sessions
+  despite specification refinement, indicating context degradation under length.
+- The task requires adversarial specialization — roles whose objectives conflict
+  and cannot be fully trusted from the same agent (e.g., implementation and
+  independent security review).
+- Single-agent tool call depth or context budget is consistently saturated on
+  representative tasks.
+
+In the absence of these signals, default to single-agent or pipeline.
+
 *Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.*
 
@@ -192,6 +225,22 @@ procedures as reusable skill artifacts that evolve through experience without
 changing model weights. Those learned skills require the same provenance,
 review, rollback, and scoping discipline as any other memory layer.
 
+**Memory failure modes.** The governance mechanisms above address the
+what-and-when of memory management. The threat model addresses what goes wrong
+when they fail:
+- **Memory poisoning** — an agent writes incorrect learnings that corrupt
+  future agent behavior across sessions. Mitigate with human review gates on
+  memory writes from agents operating at Tier 2 or above.
+- **Cross-agent contamination** — Agent A's domain-specific memory leaks into
+  Agent B's reasoning context. Mitigate with domain-scoped memory namespacing
+  and access controls on memory read paths.
+- **Consistency under concurrency** — two agents update the same memory store
+  with conflicting observations. Mitigate with versioned writes and explicit
+  conflict resolution policies, the same as for any shared mutable state.
+- **Audit trail gap** — "what version of memory was active when this decision
+  was made?" requires point-in-time snapshots, not just current state, for
+  meaningful incident reconstruction.
+
 *Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
 not memory — it is a liability. And if memory is not revalidated against current
 architecture and process before reuse, it is not being governed — it is being
@@ -212,7 +261,12 @@ accumulates. Engineer explicit context budgeting: hierarchical retrieval,
 rolling summaries, state compaction, and authority-weighted pruning.
 
 *Minimum bar: If retrieval takes longer than the reasoning loop tolerates,
-context is broken infrastructure.*
+context is broken infrastructure. But slow is not the only failure mode: stale
+embeddings, conflicting sources, semantic precision failures (fast retrieval of
+wrong artifacts), poisoned retrieval artifacts, and authority-weighting errors
+(an outdated ADR silently overriding current policy) are quality failures that a
+performance criterion does not catch. Context quality and code quality are
+coupled — both must be verified, not just timed.*
 
 ---
 
@@ -246,11 +300,16 @@ independent validation, which require additional steps:
 |---|---|---|---|---|
 | **Verification** | Did we build it right? Implementation matches specification. | Development / QA team | Pre-merge, every change | Always |
 | **Validation** | Did we build the right thing? Specification matches real-world need. | Product / domain owner | Pre-release | Phase 4+; always for regulated systems |
-| **Independent validation** | Were verification and validation themselves rigorous? | Organizationally separate team (2nd line) | Pre-production | SR 11-7; SS1/23; DORA; regulated industries |
+| **Independent validation** | Were verification and validation themselves rigorous? | Organizationally separate team (2nd line) | Pre-production | Any high-stakes system; mandated by SR 11-7, SS1/23, DORA in regulated industries |
 
-The most common failure: teams perform verification, label it validation, and
-have no independent validation. This is both a quality gap and, in regulated
-contexts, an audit finding.
+Independent validation is a governance principle, not merely a compliance
+requirement. Any system where a verification failure could cause significant
+harm — financial, safety-critical, reputational, or legally consequential —
+warrants organizational separation between the team that builds and verifies and
+the team that validates. Regulation formalizes this requirement; it does not
+create it. The most common failure: teams perform verification, label it
+validation, and have no independent validation. This is a quality gap in any
+context, not only a regulatory audit finding.
 
 Independent validation must be capable of blocking production deployment. A team
 that can only observe and advise is not independent validation — it is a
@@ -293,8 +352,31 @@ When emergence produces useful behavior, capture it. When emergence produces
 dangerous behavior, contain it. The difference between these two outcomes is
 the quality of your containment engineering.
 
+Security is a containment concern, not a separate audit. Agentic systems that
+autonomously write, execute, and deploy code present a distinct attack surface
+that must be threat-modeled before granting autonomy beyond Tier 1:
+
+- **Prompt injection** — adversarial content in retrieval artifacts, tool
+  responses, or code patterns that redirects agent behavior without the
+  operator's knowledge.
+- **Privilege escalation** — chained agent calls that accumulate permissions
+  no single call would be granted under least-privilege policy.
+- **Data exfiltration** — tool calls that surface sensitive data to outputs
+  that are not fully inspected or logged.
+- **Supply chain attacks** — poisoned tool registries, model adapters, or
+  retrieval sources that corrupt agent behavior at ingestion time.
+- **Social engineering** — AI-generated outputs crafted to pass human reviewer
+  scrutiny by exploiting reviewer trust in fluent, confident text.
+
+Treat every retrieval artifact, tool response, and agent-to-agent message as
+untrusted input. Defense-in-depth means identity for agents and tools, signed
+provenance for shared state, least-privilege tool scopes, egress controls, and
+continuous anomaly detection for cross-agent trust edges.
+
 *Minimum bar: If you have not tested with tool outages, noisy retrieval, and
-adversarial inputs, you are not chaos-tested.*
+adversarial inputs, you are not chaos-tested. If you have not threat-modeled
+prompt injection, privilege escalation, and exfiltration vectors for your
+specific agent topology, you are not security-tested.*
 
 ---
 
@@ -312,6 +394,17 @@ behaviors, and debugging heterogeneous failure modes in multi-model routing.
 Track cost per task, cost per outcome, and cost per quality unit. When
 governance overhead exceeds the value of the work, that is a signal to simplify,
 not to add more governance.
+
+**Multi-model coherence.** In heterogeneous swarms, different models may hold
+conflicting internal representations of the same codebase — different
+architectural pattern priors, different conventions for what "correct" looks
+like, different training-data views of domain boundaries. This coherence gap
+compounds at Phase 5+ when agent roles are highly specialized. Mitigate by:
+making shared architectural decisions explicit in the knowledge base rather than
+relying on implicit prompt conventions; routing semantically related tasks
+through the same model tier when consistency matters more than cost; and
+treating cross-model disagreement on shared artifacts as an observable quality
+signal rather than a coordination annoyance.
 
 *Minimum bar: If model choice is a configuration constant instead of a runtime
 decision, you are overspending.*
