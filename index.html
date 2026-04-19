@@ -88,8 +88,8 @@
     </div>
   </header>
       <section id="overview" class="doc-section" data-group="overview"><div class="section-inner"><p><em>Principles for building systems where humans steer intent, agents execute
-within governed boundaries, and verified outcomes are the only measure that
-matters.</em></p>
+within governed boundaries, and verified outcomes are the primary measure that
+matters for agentic work.</em></p>
 <blockquote>
 <p><strong>The Agile Manifesto was written for a world where humans wrote all the
 code. That world no longer exists.</strong></p>
@@ -98,9 +98,10 @@ code. That world no longer exists.</strong></p>
 speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
 review-first pipelines — become bottlenecks and blind spots. Early empirical
 evidence, including the SWE-CI benchmark showing regression rates above 75%
-per CI iteration across 18 models, confirms that agentic systems require
-purpose-built engineering discipline, not retrofitted Agile ceremonies.</p>
-<p>This repository provides the complete alternative: the case for change, the
+per CI iteration across 18 models (arXiv:2603.03823), confirms that agentic
+systems require purpose-built engineering discipline, not retrofitted Agile
+ceremonies.</p>
+<p>This repository provides a complete alternative: the case for change, the
 manifesto itself, a companion implementation guide, an organizational adoption
 playbook, and domain-specific regulatory alignment for six industries.</p>
 <p><strong><a href="https://arnaudgelas.github.io/agentic-engineering-manifesto/">Read the published version →</a></strong></p>
@@ -208,7 +209,10 @@ guide.</li>
 <li><a href="#principles">manifesto-principles.md</a>: Twelve principles with
 minimum bars.</li>
 <li><a href="#done">manifesto-done.md</a>: Agentic Definition of Done (seven
-criteria plus evolvability).</li>
+criteria plus evolvability) and Definition of Done for Hardening (vibe-to-prod
+path).</li>
+<li><a href="glossary.html">glossary.md</a>: Canonical definitions for all terms used across
+the manifesto document set.</li>
 </ul>
 <h3 id="3-implementation-guide">3) Implementation Guide</h3><ul>
 <li><a href="#companion-principles">companion-principles.md</a>: Extended guidance and
@@ -294,7 +298,7 @@ refining them through experience, then memory governance is no longer a nice-
 to-have optimization. It becomes part of the control plane for learning systems
 <sup><a href="#beyond-sources#ref-59">59</a></sup><sup><a href="#beyond-sources#ref-60">60</a></sup>.</p>
 <hr>
-<h2 id="the-urgency">The Urgency</h2><p>Gartner predicts that over 40% of enterprise agentic AI projects will be canceled by end of 2027, citing escalating costs, ambiguous value, and inadequate risk controls as contributing factors <sup><a href="#beyond-sources#ref-8">8</a></sup>. Gartner also identifies &quot;agent washing&quot; — vendors rebranding legacy automation as &quot;agentic AI&quot; — as a primary driver of disillusionment <sup><a href="#beyond-sources#ref-8">8</a></sup>. While Gartner does not explicitly attribute these failures to methodology mismatch, the pattern is consistent with organizations attempting to force non-deterministic, probabilistic agents into rigid, legacy SDLC workflows — a structural gap that methodology alone cannot close but that methodology must address.</p>
+<h2 id="the-urgency">The Urgency</h2><p>Current industry forecasts and long-horizon maintenance benchmarks suggest that agentic delivery fails when teams force probabilistic systems through legacy SDLC workflows <sup><a href="#beyond-sources#ref-8">8</a></sup><sup><a href="#beyond-sources#ref-22">22</a></sup>. The signal is strongest for maintenance-heavy, multi-iteration work, not every software activity. Methodology mismatch is one failure mode among several; cost, governance, tool quality, and organizational incentives also matter.</p>
 <p>The failure is not only technical — it is organizational. Enterprises are trying to adopt agentic technology using Agile governance structures designed for human teams. The Sprint Review is the governance checkpoint, but who reviews agent output at machine speed? The Scrum Master is the process guardian, but who governs a recursive feedback loop? The Product Owner is the requirements authority, but who owns the specification that constrains agent behavior across a swarm? These roles do not map to agentic engineering, and the P3 Group&#39;s observation that organizations face a choice between evolutionary and revolutionary adoption <sup><a href="#beyond-sources#ref-5">5</a></sup> understates the challenge: most organizations are attempting neither, clinging instead to methodologies calibrated for a world that no longer exists.</p>
 <p>The industry is repeating the pattern it followed with every previous paradigm shift: rushing to adopt the new technology while clinging to the old methodology. The two-week sprint does not accommodate machine-speed execution. Story points do not measure probabilistic output. Human code review does not scale to agent-generated volume. Standups do not synchronize digital swarms. Early empirical evidence confirms the scale of the problem: the SWE-CI benchmark, testing 18 models across 100 tasks spanning an average of 233 days of real development history, found that most agents introduce at least one regression in three out of four CI iterations — many of them structural regressions that pass current tests but degrade the codebase&#39;s capacity for future change <sup><a href="#beyond-sources#ref-22">22</a></sup>.</p>
 <p>The question is not whether the Agile Manifesto needs a successor. The question is whether the successor will emerge from principled engineering or from the wreckage of failed projects.</p>
@@ -307,16 +311,16 @@ See the <a href="#beyond-landscape">Existing Manifestos</a> for what competing
 frameworks get right and miss. All references link to
 <a href="#beyond-sources">Sources</a>.</p>
 <hr>
-<p>The failures are not cosmetic. They are structural — rooted in assumptions that no longer hold. Some belong to the Agile Manifesto itself: its four values, written for a human-only world. Others belong to the practices that grew around it — Scrum&#39;s sprints, SAFe&#39;s velocity tracking, the ceremonies and metrics that became the operational expression of Agile but were never part of the original document. The distinction matters: the manifesto is a philosophical statement; the practices are an implementation. Both break, but for different reasons.</p>
+<p>The failures are not cosmetic. They are structural — rooted in assumptions that no longer hold. Some belong to the Agile Manifesto itself: its four values, written for a human-only world. Others belong to the practices that grew around it — Scrum&#39;s sprints, SAFe&#39;s velocity tracking, the ceremonies and metrics that became the operational expression of Agile but were never part of the original document. The distinction matters: the manifesto is a philosophical statement; the practices are an implementation. Both break, but for different reasons. These failures are failures of Agile in agentic systems; they are not a claim that Agile is obsolete for all human-led software work.</p>
 <h2 id="the-four-values-challenged">The Four Values — Challenged</h2><h3 id="1-individuals-and-interactions-over-processes-and-tools-inverted">1. &quot;Individuals and interactions over processes and tools&quot; — Inverted</h3><p>This was Agile&#39;s most liberating principle: trust people, not bureaucracy. But in an agentic pipeline, the toolchain <em>is</em> the capability. The choice of orchestration platform, the choice of verification fleet, the choice of memory infrastructure — these are not implementation details. They are architectural decisions that determine what is possible. Using one tool versus another creates fundamentally different operational realities <sup><a href="#beyond-sources#ref-1">1</a></sup>.</p>
-<p>Processes and tools are now fundamental to success, not obstacles to it. The human&#39;s role has shifted from writing code to architecting the environment in which agents write code. The Agile Manifesto&#39;s founding value has been inverted by the reality it never anticipated <sup><a href="#beyond-sources#ref-1">1</a></sup><sup><a href="#beyond-sources#ref-6">6</a></sup>.</p>
+<p>In agentic systems, processes and tools are now fundamental to success, not obstacles to it. The human&#39;s role has shifted from writing code to architecting the environment in which agents write code. The Agile Manifesto&#39;s founding value has been inverted by the reality it never anticipated <sup><a href="#beyond-sources#ref-1">1</a></sup><sup><a href="#beyond-sources#ref-6">6</a></sup>.</p>
 <h3 id="2-working-software-over-comprehensive-documentation-dangerous">2. &quot;Working software over comprehensive documentation&quot; — Dangerous</h3><p>This value was a corrective against waterfall&#39;s thousand-page specifications that nobody read. It made sense when humans wrote code deliberately and could explain their reasoning. It is actively dangerous when applied to autonomous agents.</p>
-<p>AI models excel at producing software that <em>appears</em> to work. Jones calls this out directly: &quot;AI is spectacular at building software that looks like it works&quot; but &quot;can create technical debt at a rate that normal developers absolutely couldn&#39;t&quot; <sup><a href="#beyond-sources#ref-1">1</a></sup>. The phenomenon — what Andrej Karpathy termed &quot;vibe coding&quot; <sup><a href="#beyond-sources#ref-7">7</a></sup> — generates code satisfying immediate tests while lacking modularity, architectural integrity, and scalability. Without documentation serving as the contractual boundary holding agents accountable, systems hallucinate from legacy training data and corrupt their own operational context <sup><a href="#beyond-sources#ref-1">1</a></sup><sup><a href="#beyond-sources#ref-3">3</a></sup>.</p>
+<p>In agentic systems, AI models excel at producing software that <em>appears</em> to work. Jones calls this out directly: &quot;AI is spectacular at building software that looks like it works&quot; but &quot;can create technical debt at a rate that normal developers absolutely couldn&#39;t&quot; <sup><a href="#beyond-sources#ref-1">1</a></sup>. The phenomenon — what Andrej Karpathy termed &quot;vibe coding&quot; <sup><a href="#beyond-sources#ref-7">7</a></sup> — generates code satisfying immediate tests while lacking modularity, architectural integrity, and scalability. Without documentation serving as the contractual boundary holding agents accountable, systems hallucinate from legacy training data and corrupt their own operational context <sup><a href="#beyond-sources#ref-1">1</a></sup><sup><a href="#beyond-sources#ref-3">3</a></sup>.</p>
 <p>In agentic engineering, <strong>documentation is the specification that constrains agent behavior</strong>. Architecture Decision Records, formal contracts, constraint files, capability definitions — these are not bureaucratic overhead. They are the machine-readable rules that prevent autonomous systems from optimizing for the wrong thing. The Agile Manifesto&#39;s suspicion of documentation becomes negligence when your workforce is probabilistic <sup><a href="#beyond-sources#ref-3">3</a></sup><sup><a href="#beyond-sources#ref-6">6</a></sup>.</p>
 <h3 id="3-customer-collaboration-over-contract-negotiation-reframed">3. &quot;Customer collaboration over contract negotiation&quot; — Reframed</h3><p>Agile rightly elevated direct customer collaboration over adversarial contract negotiations. But in an agentic system, the &quot;contract&quot; is no longer a legal document between humans — it is the machine-readable specification that governs agent behavior. The agent does not collaborate; it executes within constraints. If those constraints are vague, the agent will fill the gaps with its own probabilistic inference — and the customer will receive something nobody specified <sup><a href="#beyond-sources#ref-3">3</a></sup>.</p>
 <p>Contract negotiation has been reborn as specification engineering: defining precise, testable, machine-enforceable boundaries. The collaboration happens between humans during specification. The contract happens between human intent and agent execution <sup><a href="#beyond-sources#ref-4">4</a></sup><sup><a href="#beyond-sources#ref-11">11</a></sup>.</p>
 <h3 id="4-responding-to-change-over-following-a-plan-incomplete">4. &quot;Responding to change over following a plan&quot; — Incomplete</h3><p>Agile rightly valued adaptability over rigid upfront planning. But it assumed the entity responding to change was a human with judgment, context, and accountability. When agents respond to change, they do so probabilistically — and without the judgment to know when adaptation has become drift <sup><a href="#beyond-sources#ref-3">3</a></sup>.</p>
-<p>Agentic systems need something the Agile Manifesto never contemplated: <strong>specifications that steer behavior and evolve through evidence</strong>. Not rigid plans, but not unconstrained adaptation either. Living specifications that tighten through iterative refinement — specify, execute, evaluate, adjust — with convergence criteria that distinguish productive evolution from scope drift <sup><a href="#beyond-sources#ref-3">3</a></sup><sup><a href="#beyond-sources#ref-4">4</a></sup>.</p>
+<p>In agentic systems, specifications need to steer behavior and evolve through evidence — something the Agile Manifesto never contemplated. Not rigid plans, but not unconstrained adaptation either. Living specifications that tighten through iterative refinement — specify, execute, evaluate, adjust — with convergence criteria that distinguish productive evolution from scope drift <sup><a href="#beyond-sources#ref-3">3</a></sup><sup><a href="#beyond-sources#ref-4">4</a></sup>.</p>
 <p>The four Agile values each assumed a human-only world. But the structural failures extend beyond the values themselves — into the practices, metrics, and ceremonies that Scrum, SAFe, and related frameworks built on top of those values.</p>
 <hr>
 <h2 id="the-practices-obsolete">The Practices — Obsolete</h2><h3 id="5-sprint-cadences-are-irrelevant-to-machine-speed-execution">5. Sprint Cadences Are Irrelevant to Machine-Speed Execution</h3><p>A two-week sprint assumes human pace. When agents can complete a full development cycle in hours <sup><a href="#beyond-sources#ref-1">1</a></sup>, the sprint boundary is not just arbitrary — it is a bottleneck that prevents the system from shipping validated increments the moment they are architecturally sound <sup><a href="#beyond-sources#ref-5">5</a></sup><sup><a href="#beyond-sources#ref-11">11</a></sup>.</p>
@@ -326,13 +330,13 @@ frameworks get right and miss. All references link to
 <p>The economics shift runs deeper than metrics. In Agile, cost is simple: developers cost X per sprint, multiply by sprints. In agentic engineering, the cost model is per-token, per-model, per-task — and it varies by orders of magnitude depending on which model is routed to which task. Sending every task to the most capable model is like flying first-class for a cross-town trip; sending every task to the cheapest is like taking a bicycle to the airport. The Agile Manifesto has no vocabulary for <strong>economics-aware routing</strong> — selecting which model handles which task based on the cost-quality tradeoff — because it never needed one <sup><a href="#beyond-sources#ref-17">17</a></sup>. Reuven Cohen has described a &quot;sudden flip in the cost curve&quot; around mid-2025 — the moment long-horizon agentic swarms became economically feasible, making cost-quality routing not just desirable but essential <sup><a href="#beyond-sources#ref-21">21</a></sup>. The Gartner prediction that 40% of agentic projects will be canceled cites &quot;escalating costs&quot; as a primary driver <sup><a href="#beyond-sources#ref-8">8</a></sup> — this is precisely the problem: organizations burning through inference budgets because they lack cost-quality routing discipline.</p>
 <h3 id="7-human-code-review-becomes-the-bottleneck">7. Human Code Review Becomes the Bottleneck</h3><p>When agents produce code at machine speed, the human reviewer becomes the rate limiter. The Agile Manifesto has no answer for this because it never imagined a world where code generation was not the bottleneck <sup><a href="#beyond-sources#ref-18">18</a></sup>. The answer requires tiered verification: deterministic checks filter autonomously, statistical evaluation filters semi-autonomously, and human review focuses exclusively on high-risk deltas and policy exceptions <sup><a href="#beyond-sources#ref-13">13</a></sup><sup><a href="#beyond-sources#ref-18">18</a></sup>.</p>
 <hr>
-<h2 id="the-conceptual-gaps-missing-entirely">The Conceptual Gaps — Missing Entirely</h2><h3 id="8-no-framework-for-non-deterministic-behavior">8. No Framework for Non-Deterministic Behavior</h3><p>This is the deepest category of failure — concepts that neither the manifesto nor its derivative practices ever addressed, because they did not need to. Agile assumes deterministic execution: write code, run tests, the same input produces the same output. Agents are probabilistic. The same specification can produce different implementations across runs. The same tool call can produce different results depending on context window contents, model temperature, and retrieved memory <sup><a href="#beyond-sources#ref-3">3</a></sup><sup><a href="#beyond-sources#ref-4">4</a></sup>.</p>
+<h2 id="the-conceptual-gaps-missing-entirely">The Conceptual Gaps — Missing Entirely</h2><h3 id="8-no-framework-for-non-deterministic-behavior">8. No Framework for Non-Deterministic Behavior</h3><p>In agentic systems, this is the deepest category of failure — concepts that neither the manifesto nor its derivative practices ever addressed, because they did not need to. Agile assumes deterministic execution: write code, run tests, the same input produces the same output. Agents are probabilistic. The same specification can produce different implementations across runs. The same tool call can produce different results depending on context window contents, model temperature, and retrieved memory <sup><a href="#beyond-sources#ref-3">3</a></sup><sup><a href="#beyond-sources#ref-4">4</a></sup>.</p>
 <p>The Agile Manifesto has no vocabulary for emergence, containment, hallucination loops, memory poisoning, or probability-compounding across multi-agent systems <sup><a href="#beyond-sources#ref-4">4</a></sup><sup><a href="#beyond-sources#ref-13">13</a></sup>. These are not edge cases — they are routine operating conditions in agentic engineering.</p>
 <p>It is worth noting that even current enterprise guidance — including McKinsey&#39;s <em>AI Transformation Manifesto</em> — reproduces this gap at the strategic level. McKinsey&#39;s theme on agentic engineering (#11 of their twelve themes) describes the challenge as &quot;ingesting unstructured data, extending AI platforms with agentic capabilities, automating guardrails and controls.&quot; This describes Agile-era configuration management dressed in agentic vocabulary. It has no concept of blast radius, swarm topology, correlated failure modes, or the verification/validation distinction that separates &quot;the agent said it worked&quot; from &quot;we can prove it worked.&quot; The absence of non-determinism vocabulary in enterprise AI guidance is not a strategic oversight — it is a symptom of the same conceptual gap that limits Agile: the framework was designed for human executors, and the vocabulary has not caught up to probabilistic ones.</p>
-<h3 id="9-no-concept-of-systems-that-learn-from-their-own-execution">9. No Concept of Systems That Learn from Their Own Execution</h3><p>This may be the most consequential failure — the one that generates all the others. Agile&#39;s feedback loop is the retrospective: humans reflecting on what happened, deciding what to change, implementing changes in the next sprint. That loop runs on a two-week cadence because it requires human cognition. The feedback is soft — &quot;we should try shorter sprints,&quot; &quot;let&#39;s refine our definition of done.&quot;</p>
+<h3 id="9-no-concept-of-systems-that-learn-from-their-own-execution">9. No Concept of Systems That Learn from Their Own Execution</h3><p>In agentic systems, this may be the most consequential failure — the one that generates all the others. Agile&#39;s feedback loop is the retrospective: humans reflecting on what happened, deciding what to change, implementing changes in the next sprint. That loop runs on a two-week cadence because it requires human cognition. The feedback is soft — &quot;we should try shorter sprints,&quot; &quot;let&#39;s refine our definition of done.&quot;</p>
 <p>Agentic systems have a qualitatively different feedback loop. Errors, logs, successes, and failures feed back into the system in real-time. The system does not wait for a retrospective. It does not require human reflection to adapt. The feedback is hard, unambiguous signals: passing tests, zero runtime errors, validated API responses, converging evaluation metrics <sup><a href="#beyond-sources#ref-2">2</a></sup><sup><a href="#beyond-sources#ref-17">17</a></sup>. This is not merely faster iteration — it is a different kind of learning. Reasoning consolidation cycles can compress chains of inference using reinforcement-learning algorithms in seconds. Meta-cognitive layers enable systems to monitor and modify their own operational parameters. Self-optimizing architectures adapt query and retrieval strategies in microseconds based on access patterns <sup><a href="#beyond-sources#ref-19">19</a></sup>.</p>
 <p>The Agile Manifesto has no concept of a system that improves its own process without human intervention. It assumes the learner is human, the cadence is weekly, and the feedback requires interpretation. In agentic systems, the learner is the system itself, the cadence is continuous, and the feedback is machine-readable. This is not an incremental improvement over retrospectives — it is a paradigm shift that Agile&#39;s vocabulary cannot express <sup><a href="#beyond-sources#ref-2">2</a></sup>.</p>
-<h3 id="10-no-treatment-of-memory-as-infrastructure">10. No Treatment of Memory as Infrastructure</h3><p>Agile&#39;s concept of institutional memory is tribal knowledge and documentation that nobody reads. There is no Agile practice for curating, governing, or versioning what the organization <em>knows</em> — let alone what it has <em>learned</em>. In an agentic system, this gap is fatal.</p>
+<h3 id="10-no-treatment-of-memory-as-infrastructure">10. No Treatment of Memory as Infrastructure</h3><p>In agentic systems, Agile&#39;s concept of institutional memory — tribal knowledge and documentation that nobody reads — is fatally insufficient. There is no Agile practice for curating, governing, or versioning what the organization <em>knows</em> — let alone what it has <em>learned</em>. In an agentic system, this gap is fatal.</p>
 <p>An agent without persistent memory — whether internalized or externalized through retrieval layers, episodic stores, or vector databases — must be reconstructed from scratch for every task. Some architectures externalize memory entirely, separating the agent from its state. But the memory still exists as infrastructure; it still requires curation, governance, and retrieval engineering. The question is not whether memory is needed but where it lives and who governs it. In practice, the distinction between a stateless tool and a memory-augmented agent is the ability to accumulate, curate, and act on context across invocations <sup><a href="#beyond-sources#ref-19">19</a></sup>. And memory itself is not monolithic: knowledge (what was given) and learned memory (what was discovered through execution) are distinct infrastructure with different curation, governance, and retrieval requirements <sup><a href="#beyond-sources#ref-17">17</a></sup>.</p>
 <p>Context windows are finite. What goes into them determines what comes out. <strong>Memory governance</strong> — the discipline of deciding what to retain, what to forget, how to retrieve, and how to prevent poisoning of an agent&#39;s accumulated context — is an engineering discipline as consequential as database design. The Agile Manifesto treats memory as overhead. Agentic engineering treats it as infrastructure <sup><a href="#beyond-sources#ref-3">3</a></sup>.</p>
 </div></section><section id="beyond-landscape" class="doc-section" data-group="beyond"><div class="section-inner"><p><em>A critical review of every competing framework.</em></p>
@@ -360,8 +364,8 @@ Google, Microsoft, AWS, and Block <sup><a href="#beyond-sources#ref-35">35</a></
 MCP, A2A, AGENTS.md, and goose were donated as founding projects.</p>
 <p>This matters because the competing frameworks above all suffer from the same
 gap: they describe what agentic engineering needs without naming the protocols
-that implement it. The industry is now actively standardizing into four
-complementary layers, all under neutral governance:</p>
+that implement it. As of the current ecosystem snapshot, the industry is
+actively standardizing into four complementary layers, all under neutral governance:</p>
 <ul>
 <li><strong>MCP</strong> (Model Context Protocol) — agent-to-tool connectivity. Defines typed
 schemas, auth boundaries, and replayable tool
@@ -376,10 +380,10 @@ agents <sup><a href="#beyond-sources#ref-39">39</a></sup>.</li>
 <p>None of the six frameworks reviewed above anticipated this convergence. The
 Agentic Engineering Manifesto does not prescribe specific protocols — its
 contribution is the governance model that sits across all four layers. But the
-existence of AAIF validates the manifesto&#39;s core thesis: vendor-neutral,
+existence of AAIF supports one of the manifesto&#39;s core theses: vendor-neutral,
 interoperable architecture is not aspirational but actively being built.</p>
 <p>A parallel movement reinforces the shift: specification-driven development (SDD)
-frameworks are emerging as the dominant workflow pattern for agentic coding.
+frameworks are emerging as an increasingly common workflow pattern for agentic coding.
 Multiple widely-adopted open-source frameworks <sup><a href="#beyond-sources#ref-43">43</a></sup><sup><a href="#beyond-sources#ref-44">44</a></sup><sup><a href="#beyond-sources#ref-45">45</a></sup><sup><a href="#beyond-sources#ref-46">46</a></sup><sup><a href="#beyond-sources#ref-48">48</a></sup>
 now enforce the same discipline — write the specification before the agent writes
 the code. This effectively inverts Agile&#39;s founding principle of &quot;working
@@ -389,6 +393,20 @@ not overhead; it is the control surface.</p>
 </div></section><section id="beyond-sources" class="doc-section" data-group="beyond"><div class="section-inner"><p><em>Sources are classified by type: [P] press/trade, [B] blog/opinion,
 [I] industry/vendor, [A] academic, [S] standard, [R] internal reference.</em></p>
 <p>See <a href="#beyond">Beyond Agile</a> for the full argument.</p>
+<hr>
+<h2 id="source-weighting">Source Weighting</h2><p>Not all sources carry equal evidentiary weight. When drawing conclusions, rely
+on the highest-weight source available for the claim:</p>
+<ul>
+<li><strong>Primary</strong> — standards, regulations, official documentation, peer-reviewed
+academic papers. Strongest evidentiary weight.</li>
+<li><strong>Secondary</strong> — industry and vendor guidance, white papers, practitioner
+frameworks. Useful for operational context; may reflect vendor perspective.</li>
+<li><strong>Tertiary</strong> — press, blogs, opinion pieces. Useful for framing and
+practitioner sentiment; treat as directional, not conclusive.</li>
+</ul>
+<p>Conclusions about requirements, governance obligations, or regulatory constraints
+should rest on primary sources. Secondary and tertiary sources provide context
+and practitioner signal, not evidentiary grounding for technical claims.</p>
 <hr>
 <p><a id="ref-1"></a>[1] S. Jones, &quot;AI Killed the Agile Manifesto,&quot; <em>MetaMirror</em> (blog), Jan 2026. [B] <a href="https://blog.metamirror.io/ai-killed-the-agile-manifesto-805ad9a639db">https://blog.metamirror.io/ai-killed-the-agile-manifesto-805ad9a639db</a></p>
 <p><a id="ref-2"></a>[2] Infosys, &quot;How Is AI-Native Software Development Lifecycle Disrupting Traditional Software Development?&quot; <em>Infosys IKI TechCompass</em>, 2025. [I] <a href="https://www.infosys.com/iki/techcompass/ai-native-software-development-lifecycle.html">https://www.infosys.com/iki/techcompass/ai-native-software-development-lifecycle.html</a></p>
@@ -512,8 +530,8 @@ and verify complex work under human governance.</p>
 <li><strong>AI-Assisted Software Engineering</strong>: Using AI as an autocomplete or co-pilot to
 write human-authored code faster.</li>
 </ul>
-<p>Agentic Engineering is about treating <strong>agents as system components</strong> rather
-than as human proxies. It shifts the primary human role from writing code to
+<p>Agentic Engineering is about treating <strong>agents as governed system participants</strong>
+rather than as human proxies. It shifts the primary human role from writing code to
 specifying intent, defining verifiable contracts, and operating the system that
 executes the work. As agent capability scales, the governing challenge shifts
 from aligning one model in isolation toward aligning a society of interacting
@@ -533,7 +551,7 @@ participants in the engineering process.</p>
 based on evidence. The loop is the system. The principles are how you keep it honest.</p>
 <ul>
 <li><strong>Specify</strong> defines what to build and why.</li>
-<li><strong>Design</strong> architects how to build it: boundaries, topology, constraints.
+<li><strong>Design</strong> architects how to build it: boundaries, topology, constraints,
 and coordination rules.</li>
 <li><strong>Plan</strong> decomposes the design into executable steps.</li>
 <li><strong>Execute</strong> carries out the plan within bounded autonomy.</li>
@@ -550,7 +568,10 @@ learned heuristics and reusable skills.</li>
 <li><strong>Govern</strong> applies policy, accountability, change control, and economics review.
 When inference or governance cost exceeds the value of the work, Govern
 signals Specify to simplify scope or reduce autonomy rather than continuing
-to spend.</li>
+to spend. A Govern cycle is not complete until: all outstanding policy
+violations are resolved, accountability signals are within threshold (no
+rubber-stamping pattern detected), economics review is recorded, and any
+architectural decisions triggered by governance are filed back into Design.</li>
 </ul>
 <p>Verification and validation are distinct disciplines. Verification is
 technical correctness against the spec. Validation is fitness for intended use
@@ -581,13 +602,10 @@ the primary cause of hallucination loops.</p>
     Validate -.-&gt;|Wrong Thing Built| Specify
     Validate -.-&gt;|Design Flaw| Design
     Observe -.-&gt;|Runtime Drift| Specify
+    Observe -.-&gt;|Decomposition Error| Plan
     Govern -.-&gt;|Economics / Complexity Breach| Specify
+    Govern -.-&gt;|Architectural Policy Change| Design
 </code></pre>
-<hr>
-<h2 id="why-engineering-rigor-creates-competitive-advantage">Why Engineering Rigor Creates Competitive Advantage</h2><p>The organizations pulling ahead with AI are not winning because they have access to better models — the same foundation models are available to everyone. They are winning because they can apply those models faster, at greater scale, and with less risk than competitors who are still governing AI with processes designed for human developers.</p>
-<p>That advantage is an engineering discipline problem, not a technology problem. The gap between a team that can safely expand agent autonomy and a team stuck in Phase 3 — running agents under loose supervision because the governance infrastructure is not there — is the same gap as between a team with mature CI/CD and a team still doing manual deployments. It compounds over time: faster verification enables faster shipping; faster shipping produces more learning; better learning sharpens specifications. The Agentic Loop is not a workflow — it is a compounding return on engineering investment.</p>
-<p>The organizations that reach Phase 5 — multi-domain, evidence-driven, continuously learning — are not just more efficient. They are structurally harder to catch. Every cycle of the Agentic Loop widens the gap between them and organizations still measuring velocity in story points.</p>
-<p>This manifesto is the engineering foundation for that compounding return. It is not a constraint on speed. It is what makes speed sustainable.</p>
 <hr>
 <h2 id="the-new-way-of-working">The New Way of Working</h2><p><strong>Humans</strong> express intent as specifications with constraints and acceptance
 criteria — then refine those specifications as evidence accumulates. They encode
@@ -608,6 +626,46 @@ everything else work. They forget what no longer serves them.</p>
 <p>See <a href="#adoption-roles">Roles and the Human Side</a> for how each role evolves
 through the phase transitions.</p>
 <hr>
+<h2 id="scope-and-non-goals">Scope and Non-Goals</h2><p><strong>What this manifesto covers:</strong></p>
+<ul>
+<li>The engineering discipline for building and operating systems that include
+autonomous agents as first-class participants in the software development and
+delivery lifecycle (SDLC).</li>
+<li>Governance structures, autonomy controls, and evidence practices for
+agent-assisted software engineering.</li>
+<li>Adoption guidance for regulated and unregulated software delivery contexts,
+including V-model and compliance-heavy organizations.</li>
+<li>Domain-specific mappings to regulatory frameworks for aviation, automotive,
+medical devices, pharmaceuticals, financial services, and defense/government.</li>
+</ul>
+<p><strong>What this manifesto does not cover:</strong></p>
+<ul>
+<li>Training, fine-tuning, or evaluating foundation models. That is AI engineering.</li>
+<li>Deploying agents in physical systems, robotics, or non-software operational
+domains.</li>
+<li>Product management, UX design, or organizational strategy beyond what
+directly governs agent autonomy and accountability.</li>
+<li>Legal advice, compliance determinations, or jurisdiction-specific regulatory
+guidance. The domain pages map principles to frameworks; they are not
+substitutes for qualified regulatory counsel.</li>
+<li>Autonomous weapons systems, or the safety certification of autonomous control
+systems themselves (e.g., certifying an ALKS or autopilot function). The
+domain pages cover <em>software engineering governance for teams building those
+systems</em>; they do not cover the operational safety certification of the
+resulting autonomous system.</li>
+</ul>
+<p><strong>What requires separate guidance:</strong></p>
+<ul>
+<li>Agentic systems operating outside the SDLC (e.g., customer-facing autonomous
+agents, trading agents, autonomous process automation at industrial scale).
+The principles are relevant starting points, but the operational context —
+real-time customer exposure, regulatory regimes, failure modes — differs
+enough to require purpose-built guidance rather than direct application.</li>
+<li>Federated agent networks without a single accountable operator (distinct from
+multi-provider model routing, which P11 addresses).</li>
+<li>Agent deployment in classified environments (the domain pages note this
+boundary; they do not provide guidance for classified system development).</li>
+</ul>
 <h2 id="how-to-read-this-manifesto">How to Read This Manifesto</h2><p>Use two layers:</p>
 <ul>
 <li><strong>Manifesto core</strong> (this document + Twelve Principles + Definition of Done):
@@ -615,8 +673,26 @@ values, principles with minimum bars, and what &quot;done&quot; means. Start her
 <li><strong>Companion guidance</strong> (Companion Guide and its linked documents): extended
 rationale, tradeoffs, worked patterns, failure modes, organizational change
 management, and domain-specific regulatory alignment. Come here when
-implementing.</li>
+implementing. The companion layer is itself multi-document; the full map
+is in <a href="companion-guide.html">companion-guide.md</a>.</li>
 </ul>
+<p>The two-layer framing is accurate but incomplete. The minimum bars in the
+principles are necessary conditions; they are not sufficient for safe operation
+at Phase 4 and above. At higher phases, certain companion content becomes
+operationally essential rather than supplementary: the
+<a href="#companion-principles#specifications-vs-constraints">Specifications vs. Constraints</a>
+distinction (P2), <a href="#adoption-metrics#team-health-metrics-all-phases">rubber-stamping detection</a>
+(P12), the <a href="#companion-re-framework#4-behavioral-envelopes">Adaptation Envelope — Layer 4</a>
+(P6), and the <a href="#companion-patterns">worked failure-mode patterns</a> (P10/P12)
+are required reading before operating autonomy above Tier 1. If the core
+document describes the floor, these documents describe the walls and ceiling.</p>
+<p><strong>On evidence.</strong> This manifesto demands evidence as a discipline. We apply
+that standard to our own claims: empirically supported claims carry citations;
+threshold values are labeled as practitioner heuristics; deductive arguments
+are stated as arguments so they can be evaluated independently. Some claims in
+an emerging discipline necessarily precede the empirical grounding they ideally
+require. Treat those claims as hypotheses and revise them as evidence
+accumulates. That is what a living specification means in practice.</p>
 <h2 id="contents">Contents</h2><h3 id="twelve-principlesmanifesto-principlesmd"><a href="#principles">Twelve Principles</a></h3><p>The engineering principles that operationalize the six values: outcomes,
 specifications, architecture, swarm topology, autonomy tiers, knowledge and
 memory, context, evaluations and proofs, observability and interoperability,
@@ -624,6 +700,9 @@ emergence and containment, economics, and accountability.</p>
 <h3 id="the-agentic-definition-of-donemanifesto-donemd"><a href="#done">The Agentic Definition of Done</a></h3><p>What &quot;done&quot; means in agentic engineering: shipped, observable, verified,
 provable, learned from, governed, and economical. Phase-calibrated, not
 all-or-nothing.</p>
+<h3 id="glossaryglossarymd"><a href="glossary.html">Glossary</a></h3><p>Canonical definitions for terms used across this document set: agent,
+autonomy tier, blast radius, evidence bundle, evaluation, knowledge, learned
+memory, specification, trace, verification, validation, and more.</p>
 <hr>
 <p><em>Exploration is a phase. Engineering is a discipline. These principles are not
 the last word — they are the minimum for a world where systems build, test, and
@@ -711,8 +790,21 @@ Specifications are hypotheses that sharpen as agents explore the problem space
 and evidence accumulates. Express what must be true when the work is complete.
 Express what is forbidden. Let the swarm find the path. When the path reveals
 that the spec was wrong, update the spec and run again.</p>
+<p>Specifications and architectural constraints operate at different layers and
+change at different speeds. Constraints are invariants — security policies,
+domain ownership boundaries, data integrity rules — that hold across
+specification iterations. Specifications are goals and acceptance criteria that
+evolve within those invariants. An agent can propose a revised acceptance
+criterion without governance overhead; proposing a relaxed constraint triggers a
+governed review. If the system cannot distinguish these two change types,
+specification iteration will silently erode architectural boundaries. See
+<a href="#companion-principles#specifications-vs-constraints">Specifications vs. Constraints</a>
+in the extended guidance.</p>
 <p><em>Minimum bar: If a specification cannot be versioned, reviewed, and revised
 based on execution evidence, it is a wish, not an engineering artifact.</em></p>
+<p>These are starter defaults, not universal stop conditions. Calibrate them per
+domain, track false-convergence and false-drift, and harden them only after
+local evidence justifies the thresholds.</p>
 <p><strong>A specification is done iterating when:</strong></p>
 <ul>
 <li>Acceptance criteria remain stable across three consecutive iterations
@@ -774,6 +866,10 @@ representative tasks.</li>
 <p>In the absence of these signals, default to single-agent or pipeline.</p>
 <p><em>Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.</em></p>
+<p><em>Minimum bar (tier containment): An orchestrator cannot delegate actions to
+specialist agents that exceed its own authorized autonomy tier. Tier elevation
+requires the same approval path regardless of whether the request originates
+from a human or an orchestrating agent.</em></p>
 <hr>
 <h3 id="5-autonomy-is-a-tiered-budget-not-a-switch">5. Autonomy is a tiered budget, not a switch</h3><p>Grant permissions by risk tier, least privilege, and blast-radius limits. Agents
 behave like serverless functions, not employees: spin up for a guarded task,
@@ -795,6 +891,9 @@ autonomy model has failed.</em></p>
 <p><strong>Phase maturity is a prerequisite for autonomy tier.</strong> Tiers and phases are
 not independent: a team cannot safely operate at a higher tier than their phase
 supports, regardless of available infrastructure.</p>
+<p>These maximum tiers are conservative defaults for the relevant work item, not a
+blanket organization-wide policy. Calibrate by domain, data classification, and
+blast radius.</p>
 <table>
 <thead>
 <tr>
@@ -805,12 +904,12 @@ supports, regardless of available infrastructure.</p>
 </thead>
 <tbody><tr>
 <td>Phase 1-2</td>
-<td>Tier 1 only</td>
+<td>Tier 1 only for governed production work</td>
 <td>No evaluation suite, no evidence bundles — agent output is unverified</td>
 </tr>
 <tr>
 <td>Phase 3</td>
-<td>Tier 1 only</td>
+<td>Tier 1 only for governed production work</td>
 <td>Autonomy without verification; governance infrastructure not yet in place</td>
 </tr>
 <tr>
@@ -827,6 +926,21 @@ supports, regardless of available infrastructure.</p>
 <p>In regulated industries, use-case-specific caps apply independently of phase.
 See <a href="#companion-frameworks#hard-autonomy-caps-by-regulated-use-case">Companion Frameworks</a>
 for the regulated-industry cap table.</p>
+<p><strong>Phase maturity and task blast radius are independent checks.</strong> Team phase
+determines the governance capability ceiling; it does not automatically qualify
+every task that falls nominally within that tier. For each task, perform a
+separate blast-radius assessment before acceptance:</p>
+<ol>
+<li>What is the maximum credible impact if this specific task fails?</li>
+<li>Does that impact stay within the governance coverage of the current phase?</li>
+<li>If not — escalate the task to a phase with appropriate coverage, or decompose
+it so each subtask stays within the governance boundary.</li>
+</ol>
+<p>A Phase 4 team operating correctly for Phase 4 can still fail on a cross-domain
+task whose blast radius exceeds Phase 4 governance coverage. Phase is a team
+capability ceiling; blast-radius assessment is a per-task gate. The most
+consequential failures tend to occur at domain boundaries, where tasks cross
+phase ceilings that are not checked at the task level.</p>
 <hr>
 <h3 id="6-knowledge-and-memory-are-distinct-infrastructure">6. Knowledge and memory are distinct infrastructure</h3><p>An agent without memory is a liability. But knowledge and memory are not the
 same thing, and conflating them is dangerous.</p>
@@ -963,6 +1077,8 @@ bars but share a dependency: without interoperability, observability fragments
 at the system boundary where it matters most.</p>
 <p><em>Minimum bar (observability): If you cannot answer &quot;why did this happen&quot; from
 traces alone, you are not instrumented.</em></p>
+<p><em>Minimum bar (interoperability): If tools cannot be swapped or replayed across
+runtimes without rewriting core workflows, the platform is brittle.</em></p>
 <hr>
 <h3 id="10-assume-emergence-engineer-containment">10. Assume emergence; engineer containment</h3><p>Multi-agent systems exhibit emergent behavior by nature — some useful, some
 dangerous. Expect nonlinear failures, feedback loops, and phase changes. Build
@@ -1100,7 +1216,7 @@ discovered, with provenance.</p>
 human accountability assigned.</p>
 <p><strong>Economical</strong> — routed through appropriate model tiers, cost tracked and
 justified per outcome.</p>
-<p>Anything less is in progress.</p>
+<p>Anything less is not done for the current phase.</p>
 <p>This DoD is phase-calibrated, not all-or-nothing. At Phase 3, &quot;verified&quot; means
 tests and a diff; at Phase 5, it means reproducible replay with formal artifacts
 where justified. &quot;Provable&quot; applies only when risk requires it; &quot;economical&quot;
@@ -1111,9 +1227,10 @@ assertions?</p>
 but degrades the codebase&#39;s capacity for future change is not truly done — it
 has traded short-term correctness for structural regression. The SWE-CI
 benchmark (arXiv:2603.03823) documents that most agents introduce behavioral
-regressions in over 75% of CI iterations, establishing that agent-generated
-code regresses existing behavior at high rates. This is evidence of behavioral
-regression risk, not a direct measure of architectural evolvability: CI
+regressions in over 75% of CI iterations, showing high regression rates on a
+long-horizon maintenance benchmark; treat it as one calibration point, not a
+universal rate. This is evidence of behavioral regression risk, not a direct
+measure of architectural evolvability: CI
 metrics do not capture coupling growth, cohesion decay, abstraction quality, or
 future-changeability. Both risks are real and distinct. At Phase 4 and above,
 &quot;verified&quot; should include evolution-weighted signals beyond CI pass rates —
@@ -1124,6 +1241,47 @@ measures. See
 in the Companion Guide.</p>
 <p><strong>Why it matters:</strong> This forces the system to optimize for actual business
 outcomes rather than raw output volume, killing the illusion of productivity.</p>
+<hr>
+<h2 id="definition-of-done-for-hardening">Definition of Done for Hardening</h2><p><em>Applying the agentic DoD to work that begins as rapid exploration (&quot;vibe
+coding&quot;) and must become governed engineering before it ships.</em></p>
+<p>Exploratory agent output is not production-ready by default. A prototype that
+&quot;worked in the demo&quot; has not passed the Agentic Definition of Done. The four
+steps below define what hardening means: the path from captured exploration to
+governed, verifiable output.</p>
+<p><strong>Step 1 — Capture.</strong> Record the vibe output exactly as produced: diffs,
+trace IDs, prompts used, tool calls made, and any model or configuration state
+at the time of generation. Treat this as raw evidence, not a deliverable. Do
+not edit or clean the output before capturing it — the unmodified artifact is
+the baseline.</p>
+<p><strong>Step 2 — Extract Specification.</strong> From the captured output, derive the
+specification the agent was implicitly working toward: what behavior does the
+output exhibit, what constraints does it respect (or violate), and what
+observable success criteria would confirm it is correct? This step converts
+intent from the agent&#39;s context window into a machine-readable, reviewable
+specification. If no coherent specification can be extracted, the output is
+not a candidate for hardening — it is a candidate for restart.</p>
+<p><strong>Step 3 — Build Evaluation Portfolio.</strong> For the extracted specification,
+author an evaluation portfolio (P8): behavioral tests, adversarial cases,
+and at least one holdout case not derived from the captured output. The
+portfolio must include explicit regression coverage for any behavior the
+captured output depends on. Evaluation theater — a portfolio that only
+tests the happy path the exploration already demonstrated — does not satisfy
+this step.</p>
+<p><strong>Step 4 — Verify and Refactor.</strong> Run the evaluation portfolio against the
+captured output. Fix every failure. Refactor for structural quality (coupling,
+abstraction, module boundary stability) sufficient for the change&#39;s autonomy
+tier and risk level. Attach the evidence bundle (passing evaluations,
+trace IDs, refactoring diffs) to the change. The change is done when the
+evidence bundle is complete and a named human is accountable for it (P12).</p>
+<p><strong>The practical test.</strong> Ask: if the person who ran the exploration session
+left today, could another engineer reproduce, modify, and extend this output
+using only the specification, the evaluation portfolio, and the evidence
+bundle? If the answer is no, hardening is not complete.</p>
+<p><strong>When to skip hardening.</strong> Exploration output that will be discarded — a
+spike, a proof of concept that will be rewritten, a learning exercise — does
+not require hardening. The trigger for hardening is intent to ship, not
+intent to keep. If the output is going to influence production behavior in any
+form, the four steps apply.</p>
 </div></section><section id="companion-principles" class="doc-section" data-group="implementation"><div class="section-inner"><p><em>Extended guidance, tradeoffs, and operational detail for each principle
 in the Agentic Engineering Manifesto.</em></p>
 <p>Read the <a href="#manifesto-core">Manifesto</a> for the core values and minimum bars.
@@ -1181,7 +1339,7 @@ it is a steering signal.</p>
 <h3 id="specifications-as-agent-consumable-artifacts">Specifications as Agent-Consumable Artifacts</h3><p>The specification-as-living-artifact pattern now has concrete implementations.
 Agent Skills (SKILL.md files — structured metadata plus step-by-step
 instructions that agents consume at runtime) and AGENTS.md (repository-level
-machine-readable constraints) are now widely adopted across major IDEs and coding
+machine-readable constraints) are increasingly supported across several IDEs and coding
 agents. Both formats validate the core P2 claim: specifications that agents can
 parse directly reduce ambiguity, improve adherence, and make convergence
 measurable. Skills define <em>what</em> an agent can do; AGENTS.md defines <em>how</em> it
@@ -1313,8 +1471,8 @@ is enforced but not monitored, violations will go undetected.</p>
 code belongs, what is forbidden to reinvent. Retrieval is untrusted input;
 treat context injection as a threat vector. This reduces swarm collisions and
 hardens the system against both accidental drift and adversarial conditions.</p>
-<p>AGENTS.md files (an AAIF-governed open standard for repository-level agent
-instructions) offer a practical mechanism for encoding architectural constraints
+<p>AGENTS.md files (an emerging repository-level convention in the AAIF ecosystem
+for agent instructions) offer a practical mechanism for encoding architectural constraints
 at the repository level. They function as machine-readable ADRs that coding agents respect at
 runtime — a concrete implementation of architecture as defense-in-depth.</p>
 <h3 id="agent-as-tool-and-software-of-unknown-provenance">Agent-as-Tool and Software of Unknown Provenance</h3><p>In regulated development, software components are classified by provenance and
@@ -1469,6 +1627,57 @@ misconfigured tiers or inadequate specifications.</li>
 incident data. Promote agents with strong track records; demote or
 constrain agents with elevated error rates.</li>
 </ul>
+<h3 id="tier-assignment-decision-checklist">Tier Assignment Decision Checklist</h3><p>Before assigning a tier to a new agent capability — or promoting an existing
+capability to a higher tier — answer the following questions. Each &quot;yes&quot; to
+a risk question is a reason to stay conservative or require additional gates.
+This checklist is a decision aid, not a policy replacement; it does not
+substitute for domain-specific regulatory requirements.</p>
+<p><strong>Blast radius and reversibility</strong></p>
+<ol>
+<li>Could a wrong action affect production data, external parties, or
+safety-critical systems? → Default Tier 1 unless verified rollback exists.</li>
+<li>Is the action irreversible within a one-hour window (data deletion,
+external API calls, customer-facing communications, financial transactions)?
+→ Require Tier 1 or an explicit human approval gate at Tier 2.</li>
+<li>Does the action cross a domain boundary (e.g., write to a system outside
+the agent&#39;s primary scope)? → Require explicit authorization, regardless
+of tier.</li>
+</ol>
+<p><strong>Confidence maturity</strong></p>
+<ol start="4">
+<li>Has this agent operated on this exact task class for fewer than a
+calibration-minimum number of cycles with tracked outcomes? → Stay at Tier 1
+until evidence accumulates. (Calibrate the minimum to domain: typically
+20–50 cycles for low-blast-radius tasks; 100+ for production-impacting tasks.)</li>
+<li>Has the agent&#39;s error rate on this task class been measured and is it
+within the threshold for the target tier? → If not measured, start at Tier 1.</li>
+</ol>
+<p><strong>Specification and governance readiness</strong></p>
+<ol start="6">
+<li>Is the specification for this task class machine-readable with observable
+success criteria? → If no, Tier 1 regardless of blast radius. Tier escalation
+without a complete specification is not a risk decision — it is an unmanaged
+risk.</li>
+<li>Is there an evaluation portfolio covering adversarial cases, not just
+happy-path behavior? → If no, do not promote beyond Tier 1.</li>
+<li>Does the applicable domain set a regulatory floor (e.g., aviation DAL A/B,
+automotive ASIL C/D, medical device Class C, financial services SR 11-7
+high-risk model)? → The regulatory floor overrides the blast-radius
+assessment; it cannot be overridden by team judgment.</li>
+</ol>
+<p><strong>Promotion and demotion rules</strong></p>
+<ul>
+<li><strong>Promote</strong> one tier at a time, only after a consecutive-cycle window with
+zero incidents where the agent exceeded its authorized scope or caused
+undetected harm downstream (calibrate cycle count to domain; a reasonable
+starting default is 30 cycles for Tier 1→2 and 60 cycles for Tier 2→3).</li>
+<li><strong>Demote immediately</strong> on any of: agent exceeded authorized scope; incident
+where blast radius exceeded predicted level; regulatory audit finding;
+specification drift detected; new task class introduced without fresh
+assessment.</li>
+<li>Demotion is immediate; re-promotion requires a fresh checklist pass and
+a complete incident review.</li>
+</ul>
 <hr>
 <h2 id="principle-6-knowledge-memory-extended-guidance">Principle 6 — Knowledge &amp; Memory: Extended Guidance</h2><p><em>See Principle 6 in the manifesto for the core statement and minimum bar.</em></p>
 <h3 id="memory-governance-properties-operational-detail">Memory Governance Properties — Operational Detail</h3><p>The manifesto lists five governance properties. Here is what each means in
@@ -1544,6 +1753,14 @@ works. Reverting a bad embedding is straightforward. Reverting a bad learned
 skill is harder — the skill may have influenced downstream decisions that
 themselves became learned patterns. Teams building memory infrastructure should
 design for rollback at each layer independently.</p>
+<p>The full operational specification for governing learned memory — what counts as
+adaptation, who may write to persistent memory and under what conditions,
+provenance requirements, retention and expiry policy, rollback mechanisms, and
+which behavioral changes trigger a revalidation cycle — is the <strong>Adaptation
+Envelope (Layer 4)</strong> of the behavioral envelope framework. See
+<a href="#companion-re-framework#4-behavioral-envelopes">companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)</a>
+for the complete specification. Principle 6 names the governance properties;
+Layer 4 specifies what to actually write.</p>
 <p>Recent agent-learning work sharpens this distinction further: reusable skills
 can function as an external learning substrate, allowing agents to improve by
 writing, selecting, and refining structured procedural artifacts rather than by
@@ -1887,6 +2104,26 @@ evaluations do not cover edge cases, adversarial inputs, and behavioral
 regressions, they are measuring comfort, not correctness. When evaluation
 metrics become optimization targets rather than measures of quality, the system
 games the metric and drifts from the goal.</p>
+<p><strong>Detecting evaluation theater.</strong> Evaluation theater is recognizable by the
+gap between evaluation metrics and production outcomes. Watch for these signals:</p>
+<ul>
+<li>Evaluation pass rates near 100% while escaped defect rates or user-reported
+issues remain elevated — the evaluation suite is not covering the failure
+modes that matter.</li>
+<li>Adversarial inputs outside the evaluation distribution produce failures the
+suite never triggered — the evaluation distribution is too narrow.</li>
+<li>Evaluation coverage grows (more tests, higher numbers) without growing the
+distribution of tested conditions — the same scenarios run repeatedly with
+minor variations, providing false coverage confidence.</li>
+<li>Incident classes not covered by the current suite recur after remediation —
+the suite did not capture the failure mode, so the same issue reappears.</li>
+</ul>
+<p>The primary structural defense is evaluation holdout (see below): scenarios
+the agent has never seen and cannot overfit to. Without holdout, high eval
+pass rates are consistent with both genuine quality and evaluation theater.
+The measurement mechanism for &quot;evaluation theater detection rate&quot; (listed as a
+Phase 5→6 metric) is therefore: track the fraction of production incidents that
+were not predicted by any evaluation failure in the preceding cycle.</p>
 <p><em>Advanced bar: include adversarial cases for externally exposed or
 high-blast-radius systems. For model-judged evaluations, calibrate against
 human-labeled samples on a defined cadence.</em></p>
@@ -2344,7 +2581,7 @@ rather than individual code inspection. Level 5 is what Tier 3 governance looks
 like when the constraints, evaluations, and evidence infrastructure are mature
 enough to replace line-by-line review entirely.</p>
 <p>The manifesto does not prescribe Level 5 as a target. Most teams are not ready
-for it — and the perception gap is real: a 2025 study found that experienced
+for it — and the perception gap is real: a 2025 study reported that experienced
 developers using AI tools took 19% longer to complete tasks while believing AI
 made them 24% faster. Teams that believe they are operating at Level 4 or 5 are
 often stuck at Level 2, confusing tool adoption with workflow transformation.
@@ -2367,6 +2604,47 @@ with babysitting and the governance model is already failing. If they review
 nothing, accountability is fictional. The correct position is somewhere
 between, defined by the quality of your constraints, evaluations, and
 feedback loops — and it must be re-evaluated as the system grows.</p>
+<h3 id="governance-as-practice-the-domain-owners-routine">Governance as Practice — The Domain Owner&#39;s Routine</h3><p>The manifesto describes governance structure: named owners, defined tiers,
+evidence bundles, approval gates. Structure is necessary but not sufficient.
+A team can have all structural components in place and still have non-functional
+governance: domain owners who approve evidence bundles without understanding
+them, audit trails no one reads, policy violations detected but not acted upon.
+Governance also requires practice — the ongoing behavioral routine by which a
+domain owner actually performs governance rather than performs its appearance.</p>
+<p>What distinguishes performed governance from simulated governance:</p>
+<p><strong>Understanding what is being approved.</strong> A domain owner performing governance
+can answer, without prompting: what changed, why, what could go wrong, and why
+the evidence bundle indicates those risks were addressed. If they cannot answer,
+they are signing, not governing.</p>
+<p><strong>Acting on anomalies.</strong> When accountability signals degrade — review times
+drop, rejection rate trends toward zero — a governing domain owner reduces
+autonomy scope for that domain. A domain owner performing governance theater
+adds reviewers or frames the problem as a workload issue.</p>
+<p><strong>Reading incidents as policy feedback.</strong> After an incident, the governing
+question is: which constraint was missing, which evaluation didn&#39;t catch this,
+which evidence bundle criterion was insufficient? The non-governing question
+is: who approved the change that caused the incident? The first drives
+remediation; the second drives blame without improving the system.</p>
+<p><strong>Maintaining calibration.</strong> A domain owner who has not rejected a change in
+two months either has extraordinary agents or has stopped governing. Healthy
+rejection rates (5–15% of agent-generated PRs) are a calibration signal, not
+a ceiling to minimize. Sustained rates below that range should be treated as
+a governance degradation signal, not as quality improvement, unless
+corroborated by other evidence.</p>
+<p>These behaviors are not auditable by structure alone. They require the domain
+owner to treat governance as a craft that degrades without practice.</p>
+<h3 id="governance-health-monitoring">Governance Health Monitoring</h3><p>Accountability frameworks can degrade silently. Control theater — humans
+nominally accountable but operationally blind — is the most common governance
+failure at scale and cannot be detected from the outside. Detect it from the
+inside by monitoring the signals that distinguish meaningful review from
+rubber-stamping. The
+<a href="#adoption-metrics#team-health-metrics-all-phases">Rubber-stamping detection table</a>
+in the adoption metrics document provides a quantitative baseline: median review
+time, PR rejection rate, inline comment density, and rework rate within one
+week. These thresholds are operational heuristics, not empirically validated
+figures — treat them as starting points calibrated against your own team&#39;s
+baseline data. The intervention protocol when thresholds breach is to reduce
+autonomy scope for that domain, not to add more reviewers.</p>
 <h3 id="incident-attribution">Incident Attribution</h3><p>When incidents occur, accountability is assigned by policy failure mode:
 specification error, verification gap, enforcement failure, or operational
 override. This avoids circular blame on the final approver and drives targeted
@@ -2475,13 +2753,14 @@ hours later, does not read code (Phase 4-5).</li>
 <li><strong>Level 5 — Dark Factory</strong>: Specifications in, working software out, no human
 writes or reviews code (Phase 5-6).</li>
 </ul>
-<p>The critical insight: <strong>90% of developers who claim to be AI-native operate at
-Level 2.</strong> The gap between perceived and actual maturity is the most common
-failure mode in agentic adoption. A 2025 study found experienced developers
-using AI tools took 19% longer to complete tasks while believing AI made them
-24% faster. The manifesto&#39;s phase-calibrated evidence requirements exist
+<p>Anecdotal practitioner reports suggest many teams overestimate their AI-native
+maturity — most operate closer to Level 2 than they believe. The gap between
+perceived and actual maturity is the most common failure mode in agentic
+adoption. A 2025 study reported that experienced developers using AI tools took
+19% longer to complete tasks while believing AI made them 24% faster. The manifesto&#39;s phase-calibrated evidence requirements exist
 precisely to close this perception gap — your phase is determined by the
 evidence you can produce, not by the practices you believe you follow.</p>
+<p>Use this as calibration, not as a universal scorecard.</p>
 <p><strong>Where the two frameworks diverge:</strong> Fretz&#39;s levels are descriptive of the
 human experience. The manifesto&#39;s phases are prescriptive about governance
 infrastructure. A team can be at Level 3 (human as manager) while lacking the
@@ -2513,7 +2792,7 @@ each domain document for the complete use-case-specific cap table.</p>
 <thead>
 <tr>
 <th>Domain</th>
-<th>Strictest Cap</th>
+<th>Conservative Default Cap</th>
 <th>Regulatory Basis</th>
 <th>Domain Document</th>
 </tr>
@@ -2555,10 +2834,11 @@ each domain document for the complete use-case-specific cap table.</p>
 <td><a href="#domains-defense">defense-government.md</a></td>
 </tr>
 </tbody></table>
-<p>The rows above show the most restrictive category in each domain. Most workflows
-in these industries permit Tier 2 or Tier 3 for lower-risk activities. The
-domain documents contain full use-case-specific cap tables with the regulatory
-basis for each row.</p>
+<p>The rows above show conservative defaults for the most restrictive category in
+each domain. Lower-risk workflows in the same domain may permit higher tiers if
+separately justified. Most workflows in these industries permit Tier 2 or Tier 3
+for lower-risk activities. The domain documents contain full use-case-specific
+cap tables with the regulatory basis for each row.</p>
 <p><strong>Phase maturity and autonomy tiers interact.</strong> Beyond the hard caps above,
 phase maturity is a prerequisite for autonomy tier:</p>
 <ul>
@@ -2826,6 +3106,7 @@ model — these require understanding failure modes and security boundaries.</li
 <li>Route the test review and evaluation against the existing regression suite
 to deterministic tooling — no model needed.</li>
 </ol>
+<p><em>Illustrative only, not benchmark data.</em></p>
 <p>Cost comparison (illustrative):</p>
 <ul>
 <li>All tasks to high-capability model: $4.20 total, 45 seconds.</li>
@@ -2893,7 +3174,10 @@ at Phase 4 (requiring cross-domain reviews for every change). That is
 over-governance — it would slow every change to protect against a failure
 class that only occurs when changes cross domain boundaries. Instead, promote
 the specific domains with shared dependencies to Phase 5 governance.</p>
-<h3 id="pattern-g-exception-based-governance-at-scale">Pattern G — Exception-Based Governance at Scale</h3><p><strong>Context:</strong> A team at Phase 4+ is generating agent-driven changes at a volume
+<h3 id="pattern-g-exception-based-governance-at-scale">Pattern G — Exception-Based Governance at Scale</h3><p>These sampling thresholds are example defaults; calibrate them to local risk,
+review complexity, and incident history. This is a governance pattern, not a
+universal policy.</p>
+<p><strong>Context:</strong> A team at Phase 4+ is generating agent-driven changes at a volume
 that exceeds meaningful human review of every change. Domain owners are showing
 rubber-stamping signals (review time &lt; 2 minutes, rejection rate &lt; 1%).</p>
 <p><strong>The supervision paradox:</strong> Human review does not scale to machine-speed
@@ -2982,6 +3266,64 @@ classification pre-screener is a 1st-line control. The 2nd-line independent
 validation function reviews the classification criteria periodically (not
 individual changes) and challenges whether the risk tiers are set appropriately.
 The 3rd line audits whether the process was followed.</p>
+<hr>
+<h3 id="pattern-h-the-persona-simulator">Pattern H — The Persona Simulator</h3><p><strong>When to use:</strong> Before shipping a feature that involves complex user interactions,
+ambiguous intent, or high diversity of user populations. Use this pattern to
+validate that the specification itself is correct — not just that the implementation
+satisfies the specification as written.</p>
+<p><strong>The problem it solves:</strong> Specifications are written from the perspective of the
+team that wrote them. They encode assumptions about how users will interact with
+the feature, what they will ask, and what they consider a success. These assumptions
+are often wrong. Traditional testing verifies that the implementation matches the
+spec; it does not verify that the spec matches user reality.</p>
+<p><strong>Pattern:</strong></p>
+<p>Deploy a swarm of simulation agents, each instantiated with a distinct persona
+profile: domain expertise, communication style, prior experience with the system,
+edge-case goals, adversarial intent (where applicable). Each persona agent
+interacts with the feature under development using the specification as its
+behavioral target.</p>
+<p>The simulation produces two outputs:</p>
+<ol>
+<li><strong>Coverage gaps</strong> — interaction paths, question types, or intent categories
+that the specification does not address. These become specification amendments
+before implementation is finalized.</li>
+<li><strong>Failure signals</strong> — interactions where the feature&#39;s response would be
+incorrect, ambiguous, or unsafe from the perspective of that persona. These
+become evaluation cases in the evaluation portfolio (P8).</li>
+</ol>
+<p><strong>Relationship to the Agentic Loop:</strong> The Persona Simulator belongs to the
+Validate phase, not the Verify phase. Verify confirms the implementation satisfies
+the specification. Validate asks whether the specification itself is worth satisfying.
+Running the simulator before implementation is complete (on a specification stub or
+prototype) catches the wrong-thing-built failure class before it is fully built.</p>
+<p><strong>Minimum viable version:</strong></p>
+<pre><code>personas = [
+  { role: &quot;power user&quot;, style: &quot;terse&quot;, goal: &quot;efficiency&quot; },
+  { role: &quot;first-time user&quot;, style: &quot;exploratory&quot;, goal: &quot;orientation&quot; },
+  { role: &quot;adversarial user&quot;, style: &quot;probing&quot;, goal: &quot;boundary-finding&quot; },
+  { role: &quot;domain expert&quot;, style: &quot;precise&quot;, goal: &quot;correctness validation&quot; },
+]
+
+for persona in personas:
+  interactions = simulate(persona, feature_spec, n=20)
+  gaps = extract_coverage_gaps(interactions, feature_spec)
+  failures = extract_failure_signals(interactions, acceptance_criteria)
+  report.add(persona, gaps, failures)
+</code></pre>
+<p><strong>Exit criterion:</strong> The simulation is complete when coverage gaps have been either
+addressed in the specification or explicitly accepted as out of scope, and all
+failure signals have been added to the evaluation portfolio. Shipping without
+addressing the failure signals is an explicit risk decision, not an oversight.</p>
+<p>Not all failure signals can be deferred. Any failure signal involving safety,
+data integrity, irreversible user harm, or a regulatory requirement is
+non-deferrable: it must be addressed in the specification before the
+implementation proceeds. Logging it as &quot;accepted out of scope&quot; is not
+acceptable for these categories. If no fix is feasible, the feature scope must
+be reduced to exclude the interaction class that produces the failure.</p>
+<p><strong>What this pattern is not:</strong> It is not a replacement for user research. Real users
+surface failure modes that no persona model anticipates. The Persona Simulator is
+a pre-ship filter, not a substitute for post-ship observation. It raises the floor;
+it does not guarantee the ceiling.</p>
 <hr>
 <h2 id="failure-patterns">Failure Patterns</h2><h3 id="hallucination-loop">Hallucination Loop</h3><p>An agent misreads a timeout error as auth failure, applies credential retries,
 and increases incident volume. Each retry generates plausible-but-wrong output
@@ -3160,7 +3502,7 @@ immediately; do not attempt self-remediation before reporting.</li>
 <li>Regulatory compliance: aligned to ISO/IEC 5338, NIST AI RMF, or domain-specific standards</li>
 </ul>
 <p>The failure mode is maintaining separate documents for each consumer. These diverge. The governance document says one thing; the agent execution spec says another; the tests verify a third thing.</p>
-<p><strong>The single-source principle:</strong> One canonical source document (the behavioral specification) is the source of truth. All other representations are generated or derived from it, not independently authored. When the source changes, all projections must be updated.</p>
+<p><strong>The single-source principle</strong> <em>(governance best practice, not a legal requirement)</em>: One canonical source document (the behavioral specification) is the source of truth. All other representations are generated or derived from it, not independently authored. When the source changes, all projections must be updated.</p>
 <p>In practice:</p>
 <ul>
 <li>Write the behavioral specification in human-readable prose with explicit, structured sections</li>
@@ -3189,7 +3531,7 @@ Requirements emphasis: all Tier 1 requirements, plus: scope boundary (what the a
 Requirements emphasis: all Tier 2 requirements, plus: explicit human approval requirements (who can authorize, under what conditions), audit trail specification, rollback plan (pre-approved, not improvised), incident escalation path.</p>
 <p>Minimum requirements artifacts: Tier 2 artifacts + human approval policy + audit trail specification + pre-approved rollback plan + incident escalation procedure.</p>
 <p>EU AI Act obligations apply to high-risk systems operating at Tier 3. Human oversight requirements under the Act are not governance checkboxes — they are system design requirements. Specify: what interface enables operators to monitor, detect anomalies, and override outputs; what training or competency is required to exercise oversight effectively; what stop-operation procedure exists and how quickly it can be invoked; and what post-market monitoring captures for ongoing review. &quot;Human approval&quot; is insufficient as a Tier 3 requirement unless the approval mechanism itself is specified as part of the system.</p>
-<p>The tier assignment is a requirements decision, not a deployment parameter. It must be made explicitly at the specification stage and documented in the behavioral specification. Tier assignment determines the governance overhead; an agent assigned to Tier 1 cannot subsequently be granted Tier 3 authority without a full re-specification and review cycle.</p>
+<p>Tier assignment is a requirements decision, not a deployment parameter. It must be made explicitly at the specification stage and documented in the behavioral specification. Tier assignment determines the governance overhead; an agent assigned to Tier 1 cannot subsequently be granted Tier 3 authority without a full re-specification and review cycle.</p>
 <hr>
 <h2 id="7-non-functional-requirements-for-agentic-systems">7. Non-Functional Requirements for Agentic Systems</h2><p>The NFR categories that require explicit treatment in agentic systems:</p>
 <table>
@@ -3242,7 +3584,7 @@ Requirements emphasis: all Tier 2 requirements, plus: explicit human approval re
 </tr>
 <tr>
 <td><strong>Regulatory compliance</strong></td>
-<td>EU AI Act (high-risk system obligations enforceable Aug 2026): documented post-market monitoring, human oversight, logging of autonomous decisions, traceability</td>
+<td>EU AI Act (high-risk obligations apply on a staged timetable; verify the current application date and transitional rules for your use case): documented post-market monitoring, human oversight, logging of autonomous decisions, traceability</td>
 <td>Hard requirements (documentation, logging, override capability) + process requirements (post-market monitoring plan)</td>
 </tr>
 <tr>
@@ -3476,6 +3818,12 @@ do not just copy it. Annotations explain what each section must contain and
 whether it is mandatory per CoE policy.</p>
 <pre><code class="language-markdown"># [Project Name] — Agent Instructions
 
+## Scope and Version
+&lt;!-- RECOMMENDED. Establish ownership and applicability before the agent reads further. --&gt;
+Owner: [name or team]
+Last updated: [date]
+Applicable systems: [which services, repos, or pipelines this file governs]
+
 ## Project Overview
 &lt;!-- MANDATORY. 3-5 lines. What does this service do? What domain does it own?
      What is its upstream/downstream position in the system? --&gt;
@@ -3498,8 +3846,8 @@ Deploy: [command or &quot;see CI pipeline — do not deploy manually&quot;]
 - [Any other non-negotiable domain boundary]
 
 ## Security
-&lt;!-- MANDATORY. Reference enterprise rules — do not duplicate them here.
-     Add only project-specific security constraints. --&gt;
+&lt;!-- MANDATORY. Do not duplicate enterprise-wide policy here; link to the
+     governing file instead. Add only project-specific security constraints. --&gt;
 Follows enterprise security rules. Project-specific additions:
 - All [entity type] inputs must be validated against [schema/contract] at [path].
 - [Any project-specific credential or secret handling requirement]
@@ -3710,7 +4058,7 @@ Each phase transition has a distinct investment profile and return horizon:</p>
 <td><strong>Phase 1→2</strong> (exploration → assisted delivery)</td>
 <td>Low: tooling licenses, standardization time</td>
 <td>Immediate: measurable cycle time reduction on assisted tasks</td>
-<td>AI suggestions accepted &gt;50% without rework</td>
+<td>AI suggestions accepted at a materially positive rate without increasing rework</td>
 </tr>
 <tr>
 <td><strong>Phase 2→3</strong> (assisted → agentic prototyping)</td>
@@ -3731,6 +4079,7 @@ Each phase transition has a distinct investment profile and return horizon:</p>
 <td>Total cost of correctness declining per outcome; oversight load stable</td>
 </tr>
 </tbody></table>
+<p>Treat these as starting signals, not universal thresholds. Calibrate against your domain baseline and risk class.</p>
 <p><strong>Do not fund the next phase until the current phase has produced evidence that
 justifies it.</strong> Organizations that invest in Phase 4 governance infrastructure
 before they have Phase 3 evidence that agents produce reviewable output create
@@ -3770,6 +4119,72 @@ enforce architectural constraints at runtime and monitor for violations. They
 observe behavior, surface anomalies, and maintain the feedback loops that make
 everything else work. They forget what no longer serves them.</p>
 <hr>
+<h2 id="converting-agile-ceremonies-to-agentic-practice">Converting Agile Ceremonies to Agentic Practice</h2><p>Teams converting from Agile face a specific organizational challenge: the
+ceremonies are load-bearing. They are not decoration. They synchronize teams,
+surface blockers, and create accountability. Abolishing them without replacing
+the function they serve produces confusion and regression. The question is not
+whether to keep the ceremonies — it is what mechanism replaces each function.</p>
+<p>The table below maps the core Agile ceremonies to their agentic equivalents.
+The intent of each ceremony is preserved; the mechanism changes to match
+machine-speed, evidence-based execution. These are starting points, not mandates.
+Adapt to the team&#39;s phase maturity and domain constraints.</p>
+<table>
+<thead>
+<tr>
+<th>Agile Ceremony</th>
+<th>Intent</th>
+<th>Agentic Equivalent</th>
+<th>Mechanism</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Sprint Planning</strong></td>
+<td>Agree on scope and how to build it</td>
+<td><strong>Spec Refinement &amp; Tier Assignment</strong></td>
+<td>Domain owner and leads convert backlog items into machine-readable specifications with autonomy tier assignments and blast-radius classifications. Ambiguous items are decomposed until unambiguous — not estimated. The plan artifact is a specification, not a story-point count.</td>
+</tr>
+<tr>
+<td><strong>Daily Standup</strong></td>
+<td>Synchronize status and surface blockers</td>
+<td><strong>Trace Audit &amp; Anomaly Review</strong></td>
+<td>Daily review of structured traces from the prior period. Tasks with unexpected tool calls, evaluation failures, or cost spikes are flagged for root-cause. The traces are the status; there is no verbal report. The review surfaces behavioral drift before it compounds into a hallucination loop.</td>
+</tr>
+<tr>
+<td><strong>Sprint Review</strong></td>
+<td>Demonstrate completed work to stakeholders</td>
+<td><strong>Evidence Bundle Review</strong></td>
+<td>Completed work is presented via evidence bundles: diffs, trace IDs, evaluation results, policy check outputs. Stakeholders review outcomes and audit quality, not demos. &quot;The agent said it worked&quot; does not pass review.</td>
+</tr>
+<tr>
+<td><strong>Retrospective</strong></td>
+<td>Reflect on process and improve it</td>
+<td><strong>Memory Curation &amp; Skill Promotion</strong></td>
+<td>Review the knowledge base and learned memory from the cycle: what heuristics held, what failed, what should be promoted to reusable skill artifacts. Stale memory is pruned. Recurring failure patterns become new evaluation cases. The retro artifact is a memory diff, not a list of action items.</td>
+</tr>
+<tr>
+<td><strong>Backlog Refinement</strong></td>
+<td>Clarify and prioritize upcoming work</td>
+<td><strong>Specification Sharpening</strong></td>
+<td>Upcoming specifications are reviewed for constraint completeness, risk assignment, and observable success criteria. Items without measurable success criteria are not pulled into the next Spec Refinement cycle.</td>
+</tr>
+<tr>
+<td><strong>Release Planning</strong></td>
+<td>Coordinate cross-team work for a release</td>
+<td><strong>Governance Checkpoint</strong></td>
+<td>Cross-domain review of autonomy tier assignments, blast-radius gates, and evidence bundle completeness for all release-bound changes. The domain owner (P12) confirms accountability assignment before deployment.</td>
+</tr>
+</tbody></table>
+<p><strong>The failure mode to avoid.</strong> Teams that attempt to run Agile ceremonies
+unchanged alongside agentic workflows typically end up with two parallel
+processes: the Agile process for humans and an ungoverned agentic process
+running in parallel. Both processes degrade. The table above collapses the
+two into one evidence-based, specification-driven workflow.</p>
+<p><strong>Phase calibration.</strong> At Phase 1–2, the Standup → Trace Audit conversion may
+be partial: teams are still building trace infrastructure. Start with a hybrid
+(brief verbal check plus whatever traces exist) and migrate fully once tracing
+is reliable. Do not adopt the full ceremony mapping before the infrastructure
+can support it.</p>
+<hr>
 <h2 id="contents">Contents</h2><h3 id="roles-and-the-human-sideadoption-rolesmd"><a href="#adoption-roles">Roles and the Human Side</a></h3><p>How roles evolve (Developers, Tech Leads, QA Engineers, Operations Engineers)
 and the human dimension of the transition: naming the loss, the supervision
 paradox, the acceleration trap, sustainable pace, and protecting the junior
@@ -3792,7 +4207,7 @@ transitions.</p>
 day-to-day. This is not a minor adjustment. It is a fundamental shift in
 professional identity that must be named, supported, and managed — not imposed
 silently.</p>
-<p>These role descriptions show the full trajectory from current state to Phase 5
+<p>These role descriptions show one likely trajectory from current state toward Phase 5
 (Agentic Engineering). The shift is progressive — no one wakes up in the end
 state. At Phase 2, developers still write most code; at Phase 3, they begin
 delegating and reviewing; at Phase 4, specifications and evidence become the
@@ -4019,6 +4434,7 @@ and agents now handle that work, the training ground is disappearing.</p>
 junior engineers never develop foundational skills through hands-on work, the
 industry will face a shortage of senior engineers who truly understand the
 systems they oversee. You cannot supervise what you never learned to build.</p>
+<p>This is an organizational policy choice, not a universal staffing rule.</p>
 <p>Concrete actions:</p>
 <ul>
 <li>Dedicate a portion of agent-suitable work to junior engineers as learning
@@ -4041,6 +4457,11 @@ guidance for every phase transition.</em></p>
 See the <a href="#adoption-playbook">Adoption Playbook</a> for the full table of contents.
 See the <a href="#adoption-roles">Roles and the Human Side</a> for how roles evolve
 during the transition.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+Phase transition criteria and go/no-go thresholds in this document are
+<em>heuristics</em> — calibrate to local domain and baseline before applying.
+See <a href="glossary.html">glossary.md</a> for canonical term definitions.</p>
 <blockquote>
 <p><strong>For V-model organizations:</strong> If your organization operates a traditional
 V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
@@ -4065,8 +4486,8 @@ domain, define what agents may do (Tier 1: analyze and propose; Tier 2: write
 to branches; Tier 3: production actions) and what they must not do. Encode
 these as infrastructure-level permissions, not prompt instructions.</p>
 <p><strong>Who leads:</strong> Tech leads, with input from security and operations.</p>
-<p><strong>Minimum viable version:</strong> Start with one domain. Define Tier 1 only (agents
-can analyze and propose, zero blast radius). This is safe, reversible, and
+<p><strong>Minimum viable version:</strong> Start with one domain. Define Tier 1 only for the
+first pilot domain (agents can analyze and propose, zero blast radius). This is safe, reversible, and
 immediately useful as a learning exercise.</p>
 <p><strong>Timeline:</strong> 2-4 weeks for initial domain mapping. Ongoing refinement.</p>
 <p><strong>Success signal:</strong> You can answer &quot;what is this agent allowed to do in this
@@ -4166,6 +4587,7 @@ to take, and what makes the transition hard.</p>
 organizational dimension (what you fund, who you hire or develop, what you stop
 doing). This table gives decision-makers the investment framing alongside the
 technical steps:</p>
+<p>Calibrate all phase-transition metrics to domain baseline and incident history.</p>
 <table>
 <thead>
 <tr>
@@ -4213,7 +4635,8 @@ technical steps:</p>
 </tr>
 </tbody></table>
 <p><strong>Decision discipline:</strong> Do not fund the next phase until the current phase has
-produced evidence that justifies it. This is not conservatism — it is the
+produced evidence that justifies it. If the go/no-go signals fail for two review
+cycles, freeze expansion and re-baseline before proceeding. This is not conservatism — it is the
 mechanism that prevents the most common failure: organizations that invest in
 Phase 4 governance infrastructure before Phase 3 evidence exists that agents
 produce reviewable output. The infrastructure becomes bureaucracy, teams lose
@@ -4354,6 +4777,8 @@ inside bounded harnesses</li>
 </ul>
 <p>The right goal: <strong>keep the V-model&#39;s assurance logic, but retool its artifacts,
 gates, and execution model for agents.</strong></p>
+<p>This is a transition framework for agentic engineering inside a V-model
+organization, not a proposal to discard the V-model.</p>
 <h3 id="what-should-stay-the-same">What Should Stay the Same</h3><ul>
 <li>Intended use, risk classification, and release responsibility remain human
 accountabilities.</li>
@@ -4364,7 +4789,9 @@ evidence requirements.</li>
 <li>Validation against clinical, operational, or business reality cannot be
 delegated fully to an agent.</li>
 </ul>
-<h3 id="what-should-change">What Should Change</h3><ul>
+<h3 id="what-should-change">What Should Change</h3><p>Applicability varies by domain, qualification regime, and tool qualification
+constraints.</p>
+<ul>
 <li>Requirements become versioned, structured, and reusable by both humans and
 agents.</li>
 <li>Architecture is encoded as enforceable constraints, not just diagrams and
@@ -5086,8 +5513,9 @@ Forced adoption produces compliance, not learning.</li>
 </ul>
 <p>Good pilot domains: internal tools, test infrastructure, documentation
 generation, non-critical API endpoints, CI/CD pipeline improvements.</p>
-<p>Bad pilot domains: payment processing, authentication, customer-facing APIs,
-anything subject to regulatory compliance — these are Step 5, not Step 1.</p>
+<p>Bad pilot domains: payment processing, authentication, customer-facing decisions
+with legal or financial impact, and other high-blast-radius or controlled-data
+workflows — these are Step 5, not Step 1.</p>
 <h3 id="pilot-structure">Pilot Structure</h3><p><strong>Duration:</strong> 6-8 weeks minimum. Shorter pilots don&#39;t generate enough
 evidence to distinguish signal from noise.</p>
 <p><strong>Team size:</strong> 3-5 engineers from the pilot domain, plus one operations
@@ -5125,10 +5553,17 @@ from one pilot — each domain has different failure surfaces.</p>
 See the <a href="#adoption-playbook">Adoption Playbook</a> for the full table of contents.
 See the <a href="#adoption-path">Adoption Path</a> for incremental steps and phase
 transitions.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) are in
+<a href="#principles">manifesto-principles.md</a>. Metric thresholds and
+alert bands in this document are <em>heuristics</em> — example starting bands that
+must be calibrated to local baseline, domain, and risk class before use.
+See <a href="glossary.html">glossary.md</a> for canonical term definitions.</p>
 <hr>
 <h2 id="success-metrics">Success Metrics</h2><p>Treat this manifesto as a living specification. Run pilots, publish failure
 analyses, measure outcomes, and revise principles based on evidence from real
 workflows.</p>
+<p>Treat every threshold below as a starting baseline that must be calibrated to
+local review size, risk class, and domain history.</p>
 <h3 id="metrics-by-phase-transition">Metrics by Phase Transition</h3><p><strong>Phase 1 → 2 (focus on standardization and repeatable value):</strong></p>
 <ul>
 <li>Number of AI-assisted tasks with documented, repeatable workflows</li>
@@ -5186,8 +5621,8 @@ it quantitatively before it becomes an incident:</p>
 <thead>
 <tr>
 <th>Signal</th>
-<th>Healthy baseline</th>
-<th>Alert threshold</th>
+<th>Example healthy band</th>
+<th>Example alert band</th>
 <th>What it indicates</th>
 </tr>
 </thead>
@@ -5218,6 +5653,11 @@ it quantitatively before it becomes an incident:</p>
 </tbody></table>
 <p>Collect these via your code review platform (GitHub, GitLab, Azure DevOps
 — all provide approval timestamps and comment counts via API).</p>
+<p><em>These thresholds are operational heuristics calibrated from practitioner
+experience, not empirically validated across diverse organizations. Treat them
+as starting baselines and adjust based on your team&#39;s observed patterns. The
+alert thresholds are directional: any sustained trend toward them warrants
+investigation, even before a hard threshold is crossed.</em></p>
 <p><strong>Intervention protocol when thresholds breach:</strong> Do not add more reviewers.
 Reduce autonomy scope for that reviewer&#39;s domain until review is meaningful
 again. The problem is volume, not capacity. Additional reviewers at the same
@@ -5265,6 +5705,7 @@ with no signal.&quot; Finance and leadership will ask; measure proactively.</p>
 <td>Governance gaps; add coverage for the failure class</td>
 </tr>
 </tbody></table>
+<p><em>Calibrate after one quarter of baseline measurement.</em></p>
 <p>If governance overhead exceeds 25% of throughput with no corresponding
 reduction in escaped defects, that is over-governance. Reduce ceremony,
 increase signal. The corrective action is always the same: audit what is
@@ -5500,16 +5941,28 @@ aviation certification frameworks.</em></p>
 conditions on regulated-industry adoption. See
 <a href="#adoption-vmodel">adoption-vmodel.md</a> for the V-model adoption path
 applicable to verification-heavy lifecycles.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+Autonomy tier assignment criteria are in
+<a href="#companion-principles#principle-5--autonomy-extended-guidance">companion-principles.md — P5</a>.
+This document maps those definitions to aviation certification requirements;
+it does not redefine them.</p>
 <p><strong>Scope:</strong> DO-178C, DO-330, DO-333, ARP 4754A, ARP 4761/4761A, DO-326A,
 DO-356A, DO-278A.</p>
 <p><strong>Audience:</strong> DERs, ODA unit members, certification liaisons, software leads,
 and systems engineers evaluating where agentic engineering practices can operate
 within existing certification constraints.</p>
 <blockquote>
-<p><strong>Disclaimer</strong> -- This document maps concepts from the Agentic Engineering
+<p><strong>Disclaimer</strong> — This document maps concepts from the Agentic Engineering
 Manifesto to aviation regulatory frameworks. It does not constitute
 compliance or certification advice. Consult your DER, ODA, or certification
 authority for compliance determinations.</p>
+<p><strong>Regulatory currency:</strong> This document reflects DO-178C, DO-330, DO-333,
+ARP 4754A, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at
+the time of last review. These standards evolve; EASA, FAA, and TCCA guidance
+material is updated periodically. Verify currency against official sources
+before relying on this content. <strong>Last reviewed: April 2026.</strong>
+Proposed changes not yet enacted are flagged as such.</p>
 </blockquote>
 <hr>
 <h2 id="design-assurance-level-to-manifesto-autonomy-mapping">Design Assurance Level to Manifesto Autonomy Mapping</h2><p>The manifesto defines three autonomy tiers (Principle 5): Tier 1 (Observe),
@@ -6051,6 +6504,8 @@ not as a tool requiring TQL qualification.</p>
 <h2 id="market-specific-autonomy-guidance">Market-Specific Autonomy Guidance</h2><p>The table below maps aviation workflows to recommended autonomy tiers. The
 DAL-based ceiling in the first section of this document applies; this table
 adds workflow-level context.</p>
+<p><em>These are conservative caps for safety-relevant software paths; lower-risk
+supporting tooling may have different constraints.</em></p>
 <table>
 <thead>
 <tr>
@@ -6064,7 +6519,7 @@ adds workflow-level context.</p>
 <td>Airborne software — critical paths (flight control, engine control)</td>
 <td>DAL A/B</td>
 <td>Tier 1 (observe only)</td>
-<td>Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification not currently feasible.</td>
+<td>Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification is not currently feasible under present evidence and qualification expectations; treat the agent as an unqualified tool pending authority review.</td>
 </tr>
 <tr>
 <td>Airborne software — major functions</td>
@@ -6225,19 +6680,31 @@ lifecycle data under DO-178C Section 7? The conservative position is yes.</p>
 </div></section><section id="domains-medical" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="#manifesto-core">Agentic Engineering Manifesto</a> to medical device
 regulatory frameworks.</em></p>
 <blockquote>
-<p><strong>Disclaimer</strong> -- This document maps concepts from the Agentic Engineering
+<p><strong>Disclaimer</strong> — This document maps concepts from the Agentic Engineering
 Manifesto to medical device regulatory frameworks. It does not constitute
 compliance or regulatory advice. Consult qualified regulatory and quality
 professionals for compliance determinations.</p>
+<p><strong>Regulatory currency:</strong> This document reflects IEC 62304, EU MDR 2017/745,
+FDA 21 CFR Part 820 (QMSR, effective February 2026, replacing the prior QSR),
+and EU AI Act requirements as understood at the
+time of last review. The EU AI Act implementation timeline is subject to
+ongoing guidance and proposed amendments; verify current status at
+eur-lex.europa.eu before relying on AI Act classifications in this document.
+<strong>Last reviewed: April 2026.</strong> Proposed changes not yet enacted are flagged
+as such.</p>
 </blockquote>
 <p>See also: <a href="#companion-frameworks">Companion Frameworks</a> (boundary
 conditions, ALCOA+ mapping), <a href="#adoption-vmodel">Agentic V-Model</a>
 (V-model lifecycle transition for regulated industries).</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+This document maps those definitions to medical device regulatory requirements;
+it does not redefine them.</p>
 <hr>
 <h2 id="iec-62304-safety-class-to-manifesto-autonomy-mapping">IEC 62304 Safety Class to Manifesto Autonomy Mapping</h2><p>IEC 62304 safety classification determines documentation depth, verification
-rigor, and -- in this mapping -- the permissible agent autonomy ceiling. The
-2026 update is expected to collapse Classes A and B; until published, map
-conservatively to the three-class model.</p>
+rigor, and -- in this mapping -- the permissible agent autonomy ceiling. If IEC 62304 is revised, re-evaluate the class mapping rather than assuming
+the current three-class structure is permanent; until any update is published,
+map conservatively to the three-class model.</p>
 <table>
 <thead>
 <tr>
@@ -6251,7 +6718,7 @@ conservatively to the three-class model.</p>
 <tbody><tr>
 <td><strong>Class A</strong> (no injury)</td>
 <td>Negligible</td>
-<td>Tier 1-3 (P5). Full agentic loop permissible.</td>
+<td>Tier 1-3 (P5) for non-safety-critical software items; full agentic loop remains subject to the device&#39;s risk controls and use-case constraints.</td>
 <td>Minimal: requirements + release documentation.</td>
 <td>Standard evidence bundles per manifesto phase.</td>
 </tr>
@@ -6725,8 +7192,9 @@ Learn-Govern) is a superset of the TPLC cycle. The key constraint: TPLC
 modifications outside the approved PCCP scope require new regulatory
 submissions.</p>
 <hr>
-<h2 id="eu-mdr-ai-act-dual-compliance">EU MDR + AI Act Dual Compliance</h2><p>From August 2026, medical devices classified IIa or higher that incorporate
-AI are automatically high-risk AI systems under the EU AI Act. This creates
+<h2 id="eu-mdr-ai-act-dual-compliance">EU MDR + AI Act Dual Compliance</h2><p>Many EU MDR IIa+ devices that incorporate AI will also trigger high-risk AI
+obligations under the EU AI Act, but the exact classification depends on
+intended purpose and the applicable AI Act annexes. This typically creates
 dual compliance obligations.</p>
 <table>
 <thead>
@@ -7011,17 +7479,27 @@ a regulatory submission.</p>
 </div></section><section id="domains-pharma" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Maps the <a href="#manifesto-core">Agentic Engineering Manifesto</a> principles to
 pharmaceutical and life sciences regulatory frameworks.</em></p>
 <blockquote>
-<p><strong>Disclaimer</strong> -- This document maps concepts from the Agentic Engineering
+<p><strong>Disclaimer</strong> — This document maps concepts from the Agentic Engineering
 Manifesto to pharmaceutical and life sciences regulatory frameworks. It does
 not constitute compliance or regulatory advice. Consult qualified regulatory
 and quality professionals for compliance determinations.</p>
+<p><strong>Regulatory currency:</strong> This document reflects GAMP 5 (2nd ed. 2022),
+FDA 21 CFR Part 11, EU Annex 11, ICH Q10, and EMA guidance as understood
+at the time of last review. FDA and EMA guidance on AI/ML in regulated
+manufacturing is actively evolving. <strong>Last reviewed: April 2026.</strong>
+Proposed changes not yet enacted are flagged as such.</p>
 </blockquote>
 <p>Related documents:
 <a href="#companion-frameworks">Companion Frameworks</a> (boundary conditions, ALCOA+ mapping) |
 <a href="#adoption-vmodel">V-Model Adoption Path</a> |
 <a href="#principles">Manifesto Principles</a></p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+This document maps those definitions to pharmaceutical regulatory requirements;
+it does not redefine them.</p>
 <hr>
-<h2 id="1-gamp-5-category-mapping">1. GAMP 5 Category Mapping</h2><p>GAMP 5 (2nd edition, 2022) categorizes computerized systems for risk-based
+<h2 id="1-gamp-5-category-mapping">1. GAMP 5 Category Mapping</h2><p>These mappings are pragmatic classifications, not formal GAMP rulings.</p>
+<p>GAMP 5 (2nd edition, 2022) categorizes computerized systems for risk-based
 validation. The table below maps each category to its agentic engineering
 equivalent and the manifesto mechanism that governs it.</p>
 <table>
@@ -7546,7 +8024,7 @@ computerized systems.</p>
 <td>P11 economics-aware routing means multiple model providers. Each requires qualification. Routing logic itself is a validated configuration (GAMP Cat 4).</td>
 </tr>
 </tbody></table>
-<p><strong>Open question: who is the &quot;supplier&quot; for open-source models?</strong></p>
+<p><strong>Open regulatory issue: who is the &quot;supplier&quot; for open-source models?</strong></p>
 <p>GAMP 5 and EU GMP Chapter 7 assume an identifiable supplier with a quality
 system. Open-source foundation models have no such entity. The deploying
 organization must formally document that it assumes supplier responsibilities
@@ -7555,7 +8033,9 @@ tracking, and incident response. This represents a significant resource
 commitment that must be factored into the build-vs-buy decision for GxP
 agent deployments.</p>
 <hr>
-<h2 id="9-change-control-considerations">9. Change Control Considerations</h2><table>
+<h2 id="9-change-control-considerations">9. Change Control Considerations</h2><p>Treat model updates, prompt edits, tool changes, and memory growth as distinct
+change classes; they carry different validation scopes and requalification burdens.</p>
+<table>
 <thead>
 <tr>
 <th>Change Type</th>
@@ -8052,6 +8532,17 @@ Manifesto to financial services regulatory frameworks. It does not constitute
 compliance or regulatory advice. Consult qualified risk, compliance, and
 regulatory professionals for compliance determinations.</p>
 </blockquote>
+<blockquote>
+<p><strong>Regulatory currency:</strong> This document reflects SR 11-7 / OCC 2011-12,
+DORA (EU 2022/2554), EU AI Act, GDPR, MiFID II, and SEC/FINRA model risk
+guidance as understood at the time of last review. Financial
+services regulation varies significantly by jurisdiction; this document uses
+conservative cross-jurisdictional defaults, not jurisdiction-specific advice.
+The EU AI Act implementation timeline and Annex III classifications are
+subject to ongoing guidance; verify current status before relying on AI Act
+references here. <strong>Last reviewed: April 2026.</strong> Proposed changes not yet
+enacted are flagged as such.</p>
+</blockquote>
 <hr>
 <h2 id="preamble">Preamble</h2><p>This document is a companion to <a href="#manifesto-core">manifesto.md</a>. It assumes
 familiarity with the <a href="#companion-frameworks">boundary conditions</a> and the
@@ -8060,6 +8551,10 @@ services already operates the governance infrastructure the manifesto demands:
 model risk management, three lines of defense, change control, audit trails.
 The bridge to agentic engineering is extension of existing frameworks, not
 construction of new ones.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+This document maps those definitions to financial services regulatory
+requirements; it does not redefine them.</p>
 <hr>
 <h2 id="sr-11-7-occ-2011-12-model-risk-management">SR 11-7 / OCC 2011-12 Model Risk Management</h2><p>SR 11-7 defines model risk management expectations for banking organizations
 supervised by the Federal Reserve and OCC. Agent systems that influence
@@ -8256,13 +8751,14 @@ within scope.</p>
 <td>Supportive -- the manifesto&#39;s containment patterns generate threat intelligence (adversarial inputs, failure modes); no explicit mechanism for sharing this intelligence with the financial services community.</td>
 </tr>
 </tbody></table>
-<p><strong>DORA makes multi-model routing a regulatory requirement.</strong> Under the
-third-party risk pillar, concentration risk in a single LLM provider creates
-regulatory exposure. If a single provider outage would impair critical
-financial functions, DORA requires mitigation. P11 (economics of intelligence)
-therefore serves a dual purpose: cost optimization and DORA concentration
-risk compliance. Organizations should document their multi-model routing
-strategy as a DORA third-party risk mitigation measure.</p>
+<p>Multi-model routing can be an effective mitigation for DORA concentration risk,
+but it is not a universal regulatory requirement. Under the third-party risk
+pillar, concentration risk in a single LLM provider creates regulatory exposure
+where a single provider outage would impair critical financial functions. P11
+(economics of intelligence) therefore serves a dual purpose: cost optimization
+and DORA concentration risk mitigation. Organizations should document their
+multi-model routing strategy as a DORA third-party risk mitigation measure where
+relevant.</p>
 <p><strong>Exit planning.</strong> DORA requires exit strategies for critical ICT third-party
 providers. For agent systems, this means: the ability to switch LLM providers
 without loss of capability, portability of specifications and evaluation
@@ -8468,8 +8964,9 @@ which maps to manifesto Tier 1 (observe) or Tier 2 (branch with approval), or</l
 <li>Obtain explicit consent and provide the right to contest, which requires a
 contestation workflow that the manifesto does not currently define.</li>
 </ul>
-<p>The practical implication is that customer-facing financial decisions should
-not exceed Tier 2 autonomy under current regulatory expectations.</p>
+<p>The practical implication is that for customer-facing decisions with legal or
+similarly significant effects, Tier 1 or Tier 2 is the conservative default
+pending jurisdiction-specific review.</p>
 <hr>
 <h2 id="hard-autonomy-caps">Hard Autonomy Caps</h2><p>The following caps are <strong>regulatory floors</strong> — constraints derived from
 applicable law, not risk preference. A mature Phase 5 organization still
@@ -8485,13 +8982,13 @@ cannot exceed these caps for the listed use cases.</p>
 </thead>
 <tbody><tr>
 <td>Credit and insurance underwriting, pricing, limit-setting</td>
-<td><strong>Tier 1</strong> (observe only)</td>
+<td><strong>Tier 1</strong> (observe only, conservative default)</td>
 <td>EU AI Act Annex III §5 (high-risk); GDPR Art. 22; Fair Lending (ECOA, FHA)</td>
 <td>Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory.</td>
 </tr>
 <tr>
 <td>Algorithmic trading, execution, market making</td>
-<td><strong>Tier 1</strong> (observe only)</td>
+<td><strong>Tier 1</strong> (observe only, conservative default)</td>
 <td>MiFID II Art. 17; MAR; Reg SCI</td>
 <td>Kill switches mandatory and must operate sub-second. Agent cannot execute trades autonomously.</td>
 </tr>
@@ -8503,13 +9000,13 @@ cannot exceed these caps for the listed use cases.</p>
 </tr>
 <tr>
 <td>Customer credit decisions (lending, card limits)</td>
-<td><strong>Tier 1</strong> (observe only)</td>
+<td><strong>Tier 1</strong> (observe only, conservative default)</td>
 <td>EU AI Act Annex III §5; Consumer Credit Directive</td>
 <td>Right to human review of automated credit decisions cannot be waived.</td>
 </tr>
 <tr>
 <td>Claims decisioning affecting payout</td>
-<td><strong>Tier 1</strong> (observe only)</td>
+<td><strong>Tier 1</strong> (observe only, conservative default)</td>
 <td>EU AI Act high-risk; FCA Consumer Duty</td>
 <td>Agent may triage and summarize. Human adjudicates every claim.</td>
 </tr>
@@ -8532,6 +9029,8 @@ cannot exceed these caps for the listed use cases.</p>
 <td>Standard manifesto adoption path. Evidence bundles satisfy change management requirements.</td>
 </tr>
 </tbody></table>
+<p><em>These are conservative defaults, not universal legal ceilings; legal review is
+required for each product and jurisdiction.</em></p>
 <h2 id="market-specific-autonomy-guidance">Market-Specific Autonomy Guidance</h2><p>The table below maps common financial services workflows to recommended
 starting autonomy tiers. These are starting points; actual tier assignments
 must reflect the organization&#39;s risk appetite and regulatory obligations —
@@ -8794,11 +9293,21 @@ automotive functional safety and software process frameworks.</em></p>
 Manifesto to automotive regulatory frameworks. It does not constitute
 compliance or certification advice. Consult qualified functional safety
 engineers and type-approval specialists for compliance determinations.</p>
+<p><strong>Regulatory currency:</strong> This document reflects ISO 26262:2018, ASPICE 3.1,
+UN Regulation 157 (ALKS), UN Regulation 155 (cybersecurity), ISO/SAE 21434,
+and ISO PAS 8800 (draft) as understood at the time of last review. ISO PAS
+8800 is under active development; its requirements may change materially
+before publication. <strong>Last reviewed: April 2026.</strong> Proposed changes not yet
+enacted are flagged as such.</p>
 </blockquote>
 <p>See <a href="#companion-frameworks">companion-frameworks.md</a> for boundary
 conditions on regulated-industry adoption. See
 <a href="#adoption-vmodel">adoption-vmodel.md</a> for the V-model adoption path
 applicable to verification-heavy lifecycles.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+This document maps those definitions to automotive regulatory requirements;
+it does not redefine them.</p>
 <p><strong>Scope:</strong> ISO 26262, ASPICE (Automotive SPICE), UN Regulation 157 (ALKS),
 UN Regulation 155 (cybersecurity), ISO/SAE 21434 (cybersecurity), ISO PAS
 8800 (AI in road vehicles — under development).</p>
@@ -8856,6 +9365,8 @@ ASIL of the software element under development.</p>
 <td>No ASIL applies. Normal manifesto governance is sufficient.</td>
 </tr>
 </tbody></table>
+<p><em>These are conservative defaults for safety-relevant software paths; lower-risk
+QM and supporting tooling may permit higher autonomy.</em></p>
 <p><strong>ASIL decomposition.</strong> ISO 26262 supports ASIL decomposition: an ASIL D
 requirement may be decomposed into two ASIL B requirements handled by
 independent channels. In agentic contexts, ASIL decomposition applies to
@@ -8985,7 +9496,7 @@ affect the safety of the item?</li>
 <tr>
 <td>TCL 3</td>
 <td>High tool impact, low detection</td>
-<td>Challenging. Requires formal tool qualification or use of a pre-qualified tool. Current LLMs cannot achieve TCL 3 qualification.</td>
+<td>Challenging. Requires formal tool qualification or use of a pre-qualified tool. Current LLMs are not practical candidates for TCL 3 qualification under present evidence and qualification expectations.</td>
 </tr>
 </tbody></table>
 <p><strong>The viable path.</strong> Independent human verification of all agent output is
@@ -9298,9 +9809,23 @@ constitute compliance, legal, or security advice. Consult qualified security
 officers, program managers, and legal counsel for compliance determinations.
 Classification obligations vary significantly by program; this document
 addresses unclassified system development.</p>
+<p><strong>Regulatory currency:</strong> This document reflects CMMC 2.0, FedRAMP (current
+marketplace and authorization requirements), NIST SP 800-53 Rev 5, NIST SP
+800-171 Rev 2, ITAR (22 CFR 120-130), EAR (15 CFR 730-774), and DoD
+Instruction 5000.02 as understood at the time of last review. CMMC
+scoping guidance for AI systems is not yet settled; DIBCAC has not issued
+definitive guidance on LLM API boundary classification. FedRAMP
+authorization status for frontier LLM providers is evolving rapidly;
+verify the FedRAMP marketplace before making infrastructure decisions.
+<strong>Last reviewed: April 2026.</strong> Proposed changes not yet enacted are
+flagged as such.</p>
 </blockquote>
 <p>See <a href="#companion-frameworks">companion-frameworks.md</a> for boundary
 conditions on regulated-industry adoption.</p>
+<p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
+tier definitions are in <a href="#principles">manifesto-principles.md</a>.
+This document maps those definitions to defense and government regulatory
+requirements; it does not redefine them.</p>
 <p><strong>Scope:</strong> CMMC 2.0 (DoD contractor cybersecurity), FedRAMP (federal cloud
 authorization), NIST SP 800-53 (federal security controls), NIST SP 800-171
 (protecting CUI), ITAR (22 CFR 120-130) / EAR (15 CFR 730-774) export
@@ -9337,8 +9862,8 @@ can be used at all, on what infrastructure, and with what controls.</p>
 </tr>
 <tr>
 <td><strong>Classified (SECRET / TS / TS/SCI)</strong></td>
-<td><strong>Not permissible</strong> with commercial AI systems</td>
-<td>Air-gapped, accredited systems only; commercial LLM APIs are categorically excluded</td>
+<td><strong>Not permissible</strong> with non-accredited commercial AI systems</td>
+<td>Air-gapped, accredited systems only; non-accredited commercial LLM APIs are categorically excluded</td>
 <td>No persistence whatsoever outside the accredited system boundary</td>
 </tr>
 <tr>
@@ -9662,7 +10187,7 @@ implementations of ZTA principles in agentic systems.</p>
 <td>Classified program development</td>
 <td>SECRET / TS</td>
 <td><strong>Not permissible</strong></td>
-<td>Commercial AI systems are categorically excluded from classified programs. No exceptions without accredited system boundary and government authorization.</td>
+<td>Non-accredited commercial AI systems are categorically excluded from classified programs. No exceptions without accredited system boundary and government authorization. Unclassified still requires access control, auditability, and change management.</td>
 </tr>
 <tr>
 <td>Cybersecurity assessment and testing</td>
