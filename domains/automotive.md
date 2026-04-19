@@ -7,11 +7,23 @@ automotive functional safety and software process frameworks.*
 > Manifesto to automotive regulatory frameworks. It does not constitute
 > compliance or certification advice. Consult qualified functional safety
 > engineers and type-approval specialists for compliance determinations.
+>
+> **Regulatory currency:** This document reflects ISO 26262:2018, ASPICE 3.1,
+> UN Regulation 157 (ALKS), UN Regulation 155 (cybersecurity), ISO/SAE 21434,
+> and ISO PAS 8800 (draft) as understood at the time of last review. ISO PAS
+> 8800 is under active development; its requirements may change materially
+> before publication. **Last reviewed: April 2026.** Proposed changes not yet
+> enacted are flagged as such.
 
 See [companion-frameworks.md](../companion-frameworks.md) for boundary
 conditions on regulated-industry adoption. See
 [adoption-vmodel.md](../adoption-vmodel.md) for the V-model adoption path
 applicable to verification-heavy lifecycles.
+
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+This document maps those definitions to automotive regulatory requirements;
+it does not redefine them.
 
 **Scope:** ISO 26262, ASPICE (Automotive SPICE), UN Regulation 157 (ALKS),
 UN Regulation 155 (cybersecurity), ISO/SAE 21434 (cybersecurity), ISO PAS
@@ -37,6 +49,9 @@ ASIL of the software element under development.
 | **ASIL B** | Significant | Tier 1-2 — Observe or Branch | Agent may draft artifacts to isolated branches; merge requires qualified human verification against Part 6 ASIL B objectives | Fewer independence requirements at ASIL B. Agent-drafted code and tests are viable when independently reviewed. |
 | **ASIL A** | Low | Tier 1-3 — Full tier range | Standard evidence bundles (P1) attached to each agent contribution; verification per Part 6 ASIL A objectives | Reduced verification rigor. Agent contributions with evidence bundles can satisfy most objectives with standard review. |
 | **QM** (Quality Management only) | Negligible safety relevance | Tier 1-3 — Full tier range | Standard manifesto governance; no functional safety objectives | No ASIL applies. Normal manifesto governance is sufficient. |
+
+*These are conservative defaults for safety-relevant software paths; lower-risk
+QM and supporting tooling may permit higher autonomy.*
 
 **ASIL decomposition.** ISO 26262 supports ASIL decomposition: an ASIL D
 requirement may be decomposed into two ASIL B requirements handled by
@@ -89,7 +104,7 @@ A tool's Confidence Level (TCL 1, 2, or 3) is determined by:
 |-----|-------|------------------|
 | TCL 1 | Low tool impact or high detection | Viable. If agent output is always independently reviewed by qualified engineers, the detection probability is high, placing many agent functions at TCL 1. |
 | TCL 2 | Moderate tool impact, moderate detection | Viable with constraints. Requires increased confidence measures: use case restrictions, validation of tool use environment, or tool monitoring. |
-| TCL 3 | High tool impact, low detection | Challenging. Requires formal tool qualification or use of a pre-qualified tool. Current LLMs cannot achieve TCL 3 qualification. |
+| TCL 3 | High tool impact, low detection | Challenging. Requires formal tool qualification or use of a pre-qualified tool. Current LLMs are not practical candidates for TCL 3 qualification under present evidence and qualification expectations. |
 
 **The viable path.** Independent human verification of all agent output is
 the primary mechanism for achieving high TD (tool error detection), which

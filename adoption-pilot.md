@@ -99,8 +99,9 @@ Choose a domain that is:
 Good pilot domains: internal tools, test infrastructure, documentation
 generation, non-critical API endpoints, CI/CD pipeline improvements.
 
-Bad pilot domains: payment processing, authentication, customer-facing APIs,
-anything subject to regulatory compliance — these are Step 5, not Step 1.
+Bad pilot domains: payment processing, authentication, customer-facing decisions
+with legal or financial impact, and other high-blast-radius or controlled-data
+workflows — these are Step 5, not Step 1.
 
 ### Pilot Structure
 

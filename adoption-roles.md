@@ -16,7 +16,7 @@ day-to-day. This is not a minor adjustment. It is a fundamental shift in
 professional identity that must be named, supported, and managed — not imposed
 silently.
 
-These role descriptions show the full trajectory from current state to Phase 5
+These role descriptions show one likely trajectory from current state toward Phase 5
 (Agentic Engineering). The shift is progressive — no one wakes up in the end
 state. At Phase 2, developers still write most code; at Phase 3, they begin
 delegating and reviewing; at Phase 4, specifications and evidence become the
@@ -278,6 +278,8 @@ This is not just a concern for individual careers. It is a systemic risk: if
 junior engineers never develop foundational skills through hands-on work, the
 industry will face a shortage of senior engineers who truly understand the
 systems they oversee. You cannot supervise what you never learned to build.
+
+This is an organizational policy choice, not a universal staffing rule.
 
 Concrete actions:
 - Dedicate a portion of agent-suitable work to junior engineers as learning

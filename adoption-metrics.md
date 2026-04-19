@@ -7,6 +7,12 @@ See the [Adoption Playbook](adoption-playbook.md) for the full table of contents
 See the [Adoption Path](adoption-path.md) for incremental steps and phase
 transitions.
 
+**Canonical sources.** Normative principle definitions (P1–P12) are in
+[manifesto-principles.md](manifesto-principles.md). Metric thresholds and
+alert bands in this document are *heuristics* — example starting bands that
+must be calibrated to local baseline, domain, and risk class before use.
+See [glossary.md](glossary.md) for canonical term definitions.
+
 ---
 
 ## Success Metrics
@@ -14,6 +20,9 @@ transitions.
 Treat this manifesto as a living specification. Run pilots, publish failure
 analyses, measure outcomes, and revise principles based on evidence from real
 workflows.
+
+Treat every threshold below as a starting baseline that must be calibrated to
+local review size, risk class, and domain history.
 
 ### Metrics by Phase Transition
 
@@ -68,7 +77,7 @@ health metrics decline, the governance model is consuming its own foundation.
 but operationally blind — is the most common governance failure at scale. Detect
 it quantitatively before it becomes an incident:
 
-| Signal | Healthy baseline | Alert threshold | What it indicates |
+| Signal | Example healthy band | Example alert band | What it indicates |
 |---|---|---|---|
 | Median review time per agent-generated PR | 8–20 minutes | < 2 minutes | Reviewer not reading the diff |
 | PR rejection rate (agent-generated) | 5–15% | < 1% | Approving without meaningful review |
@@ -77,6 +86,12 @@ it quantitatively before it becomes an incident:
 
 Collect these via your code review platform (GitHub, GitLab, Azure DevOps
 — all provide approval timestamps and comment counts via API).
+
+*These thresholds are operational heuristics calibrated from practitioner
+experience, not empirically validated across diverse organizations. Treat them
+as starting baselines and adjust based on your team's observed patterns. The
+alert thresholds are directional: any sustained trend toward them warrants
+investigation, even before a hard threshold is crossed.*
 
 **Intervention protocol when thresholds breach:** Do not add more reviewers.
 Reduce autonomy scope for that reviewer's domain until review is meaningful
@@ -96,6 +111,8 @@ with no signal." Finance and leadership will ask; measure proactively.
 | Time-to-update-governance-policy | < 2 weeks for standard changes | > 6 weeks | Governance model is too rigid; simplify change management path for low-risk policy updates |
 | Incident-prevention rate attributable to governance controls | At least 1 prevented incident per quarter per active hook | Zero incidents prevented in 2 consecutive quarters | Hook may not be testing what matters; audit coverage |
 | Hook false-negative rate (incidents that governance should have caught) | < 2% of total incidents | > 10% | Governance gaps; add coverage for the failure class |
+
+*Calibrate after one quarter of baseline measurement.*
 
 If governance overhead exceeds 25% of throughput with no corresponding
 reduction in escaped defects, that is over-governance. Reduce ceremony,

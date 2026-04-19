@@ -8,6 +8,12 @@ See the [Adoption Playbook](adoption-playbook.md) for the full table of contents
 See the [Roles and the Human Side](adoption-roles.md) for how roles evolve
 during the transition.
 
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](manifesto-principles.md).
+Phase transition criteria and go/no-go thresholds in this document are
+*heuristics* — calibrate to local domain and baseline before applying.
+See [glossary.md](glossary.md) for canonical term definitions.
+
 > **For V-model organizations:** If your organization operates a traditional
 > V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
 > regulated financial services), see [adoption-vmodel.md](adoption-vmodel.md)
@@ -40,8 +46,8 @@ these as infrastructure-level permissions, not prompt instructions.
 
 **Who leads:** Tech leads, with input from security and operations.
 
-**Minimum viable version:** Start with one domain. Define Tier 1 only (agents
-can analyze and propose, zero blast radius). This is safe, reversible, and
+**Minimum viable version:** Start with one domain. Define Tier 1 only for the
+first pilot domain (agents can analyze and propose, zero blast radius). This is safe, reversible, and
 immediately useful as a learning exercise.
 
 **Timeline:** 2-4 weeks for initial domain mapping. Ongoing refinement.
@@ -188,6 +194,8 @@ organizational dimension (what you fund, who you hire or develop, what you stop
 doing). This table gives decision-makers the investment framing alongside the
 technical steps:
 
+Calibrate all phase-transition metrics to domain baseline and incident history.
+
 | Phase transition | Typical investment | Team change | Primary cost driver | ROI signal |
 |---|---|---|---|---|
 | **Phase 1→2** | Tooling licenses (low); process standardization (1–2 weeks engineering time) | No new roles; existing team adopts AI tools | Tool cost + standardization overhead | Cycle time reduction on AI-assisted tasks; measurable in weeks |
@@ -197,7 +205,8 @@ technical steps:
 | **Phase 5→6** | Formal methods expertise (targeted, time-bounded); independent audit paths; self-improvement governance | Formal verification specialists (targeted hire or consultant); independent validation function | Specialized expertise and governance overhead for self-improving systems | Phase 6 is a frontier, not a universal target — assess only when Phase 5 is fully stable across all critical domains |
 
 **Decision discipline:** Do not fund the next phase until the current phase has
-produced evidence that justifies it. This is not conservatism — it is the
+produced evidence that justifies it. If the go/no-go signals fail for two review
+cycles, freeze expansion and re-baseline before proceeding. This is not conservatism — it is the
 mechanism that prevents the most common failure: organizations that invest in
 Phase 4 governance infrastructure before Phase 3 evidence exists that agents
 produce reviewable output. The infrastructure becomes bureaucracy, teams lose

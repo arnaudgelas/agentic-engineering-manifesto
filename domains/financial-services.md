@@ -8,6 +8,16 @@ financial services regulatory frameworks.*
 > compliance or regulatory advice. Consult qualified risk, compliance, and
 > regulatory professionals for compliance determinations.
 
+> **Regulatory currency:** This document reflects SR 11-7 / OCC 2011-12,
+> DORA (EU 2022/2554), EU AI Act, GDPR, MiFID II, and SEC/FINRA model risk
+> guidance as understood at the time of last review. Financial
+> services regulation varies significantly by jurisdiction; this document uses
+> conservative cross-jurisdictional defaults, not jurisdiction-specific advice.
+> The EU AI Act implementation timeline and Annex III classifications are
+> subject to ongoing guidance; verify current status before relying on AI Act
+> references here. **Last reviewed: April 2026.** Proposed changes not yet
+> enacted are flagged as such.
+
 ---
 
 ## Preamble
@@ -19,6 +29,11 @@ services already operates the governance infrastructure the manifesto demands:
 model risk management, three lines of defense, change control, audit trails.
 The bridge to agentic engineering is extension of existing frameworks, not
 construction of new ones.
+
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+This document maps those definitions to financial services regulatory
+requirements; it does not redefine them.
 
 ---
 
@@ -120,13 +135,14 @@ within scope.
 | Third-Party Risk | Art. 28-44 | LLM providers as critical ICT third parties; concentration risk assessment; exit strategies; right to audit; sub-outsourcing controls; contractual requirements | P11 multi-model routing | Partial -- multi-model routing mitigates concentration risk by design. Gaps: contractual requirements for LLM providers (SLA, data handling, incident notification), exit planning and portability, sub-outsourcing visibility, right-to-audit clauses in provider agreements. |
 | Information Sharing | Art. 45 | Agent-specific threat intelligence sharing with peers, regulators, and industry bodies | P10 containment | Supportive -- the manifesto's containment patterns generate threat intelligence (adversarial inputs, failure modes); no explicit mechanism for sharing this intelligence with the financial services community. |
 
-**DORA makes multi-model routing a regulatory requirement.** Under the
-third-party risk pillar, concentration risk in a single LLM provider creates
-regulatory exposure. If a single provider outage would impair critical
-financial functions, DORA requires mitigation. P11 (economics of intelligence)
-therefore serves a dual purpose: cost optimization and DORA concentration
-risk compliance. Organizations should document their multi-model routing
-strategy as a DORA third-party risk mitigation measure.
+Multi-model routing can be an effective mitigation for DORA concentration risk,
+but it is not a universal regulatory requirement. Under the third-party risk
+pillar, concentration risk in a single LLM provider creates regulatory exposure
+where a single provider outage would impair critical financial functions. P11
+(economics of intelligence) therefore serves a dual purpose: cost optimization
+and DORA concentration risk mitigation. Organizations should document their
+multi-model routing strategy as a DORA third-party risk mitigation measure where
+relevant.
 
 **Exit planning.** DORA requires exit strategies for critical ICT third-party
 providers. For agent systems, this means: the ability to switch LLM providers
@@ -229,8 +245,9 @@ or account action must either:
 - Obtain explicit consent and provide the right to contest, which requires a
   contestation workflow that the manifesto does not currently define.
 
-The practical implication is that customer-facing financial decisions should
-not exceed Tier 2 autonomy under current regulatory expectations.
+The practical implication is that for customer-facing decisions with legal or
+similarly significant effects, Tier 1 or Tier 2 is the conservative default
+pending jurisdiction-specific review.
 
 ---
 
@@ -242,14 +259,17 @@ cannot exceed these caps for the listed use cases.
 
 | Use Case | Maximum Tier | Regulatory Basis | Key Constraints |
 |---|---|---|---|
-| Credit and insurance underwriting, pricing, limit-setting | **Tier 1** (observe only) | EU AI Act Annex III §5 (high-risk); GDPR Art. 22; Fair Lending (ECOA, FHA) | Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory. |
-| Algorithmic trading, execution, market making | **Tier 1** (observe only) | MiFID II Art. 17; MAR; Reg SCI | Kill switches mandatory and must operate sub-second. Agent cannot execute trades autonomously. |
+| Credit and insurance underwriting, pricing, limit-setting | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5 (high-risk); GDPR Art. 22; Fair Lending (ECOA, FHA) | Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory. |
+| Algorithmic trading, execution, market making | **Tier 1** (observe only, conservative default) | MiFID II Art. 17; MAR; Reg SCI | Kill switches mandatory and must operate sub-second. Agent cannot execute trades autonomously. |
 | AML/KYC screening, SAR filing | **Tier 2** max | AMLD6; FinCEN BSA; Wolfsberg Principles | Human review on every SAR. Agent assists triage and evidence assembly; does not make filing determinations. |
-| Customer credit decisions (lending, card limits) | **Tier 1** (observe only) | EU AI Act Annex III §5; Consumer Credit Directive | Right to human review of automated credit decisions cannot be waived. |
-| Claims decisioning affecting payout | **Tier 1** (observe only) | EU AI Act high-risk; FCA Consumer Duty | Agent may triage and summarize. Human adjudicates every claim. |
+| Customer credit decisions (lending, card limits) | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5; Consumer Credit Directive | Right to human review of automated credit decisions cannot be waived. |
+| Claims decisioning affecting payout | **Tier 1** (observe only, conservative default) | EU AI Act high-risk; FCA Consumer Duty | Agent may triage and summarize. Human adjudicates every claim. |
 | Fraud detection triggering account action | **Tier 2** max | Consumer Duty; GDPR | Agent may score and flag. Human authorises account restriction or closure. |
 | Regulatory reporting (drafting, consistency checks) | **Tier 2** max | COREP/FINREP; various reporting regulations | Accuracy requirements are absolute. Agent drafts; human approves before submission. |
 | Back-office automation (reconciliation, data entry) | **Tier 3** available | SOX (with evidence controls) | Standard manifesto adoption path. Evidence bundles satisfy change management requirements. |
+
+*These are conservative defaults, not universal legal ceilings; legal review is
+required for each product and jurisdiction.*
 
 ## Market-Specific Autonomy Guidance
 

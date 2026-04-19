@@ -40,10 +40,12 @@ Each phase transition has a distinct investment profile and return horizon:
 
 | Phase transition | Investment character | Return horizon | Key go/no-go signal |
 |---|---|---|---|
-| **Phase 1→2** (exploration → assisted delivery) | Low: tooling licenses, standardization time | Immediate: measurable cycle time reduction on assisted tasks | AI suggestions accepted >50% without rework |
+| **Phase 1→2** (exploration → assisted delivery) | Low: tooling licenses, standardization time | Immediate: measurable cycle time reduction on assisted tasks | AI suggestions accepted at a materially positive rate without increasing rework |
 | **Phase 2→3** (assisted → agentic prototyping) | Low-medium: specification discipline, review process | 1–2 months | Agent outputs consistently reviewable; rework rate tracked |
 | **Phase 3→4** (prototyping → governed delivery) | Medium: evidence pipeline, evaluation suite, domain boundary encoding | 2–4 months | Evidence completeness ≥95%; escaped defect rate ≤ human baseline |
 | **Phase 4→5** (governed → engineering scale) | Significant: platform ownership, memory governance, multi-domain expansion | 4–8 months | Total cost of correctness declining per outcome; oversight load stable |
+
+Treat these as starting signals, not universal thresholds. Calibrate against your domain baseline and risk class.
 
 **Do not fund the next phase until the current phase has produced evidence that
 justifies it.** Organizations that invest in Phase 4 governance infrastructure
@@ -96,6 +98,42 @@ work to appropriate model tiers based on cost and quality requirements. They
 enforce architectural constraints at runtime and monitor for violations. They
 observe behavior, surface anomalies, and maintain the feedback loops that make
 everything else work. They forget what no longer serves them.
+
+---
+
+## Converting Agile Ceremonies to Agentic Practice
+
+Teams converting from Agile face a specific organizational challenge: the
+ceremonies are load-bearing. They are not decoration. They synchronize teams,
+surface blockers, and create accountability. Abolishing them without replacing
+the function they serve produces confusion and regression. The question is not
+whether to keep the ceremonies — it is what mechanism replaces each function.
+
+The table below maps the core Agile ceremonies to their agentic equivalents.
+The intent of each ceremony is preserved; the mechanism changes to match
+machine-speed, evidence-based execution. These are starting points, not mandates.
+Adapt to the team's phase maturity and domain constraints.
+
+| Agile Ceremony | Intent | Agentic Equivalent | Mechanism |
+|---|---|---|---|
+| **Sprint Planning** | Agree on scope and how to build it | **Spec Refinement & Tier Assignment** | Domain owner and leads convert backlog items into machine-readable specifications with autonomy tier assignments and blast-radius classifications. Ambiguous items are decomposed until unambiguous — not estimated. The plan artifact is a specification, not a story-point count. |
+| **Daily Standup** | Synchronize status and surface blockers | **Trace Audit & Anomaly Review** | Daily review of structured traces from the prior period. Tasks with unexpected tool calls, evaluation failures, or cost spikes are flagged for root-cause. The traces are the status; there is no verbal report. The review surfaces behavioral drift before it compounds into a hallucination loop. |
+| **Sprint Review** | Demonstrate completed work to stakeholders | **Evidence Bundle Review** | Completed work is presented via evidence bundles: diffs, trace IDs, evaluation results, policy check outputs. Stakeholders review outcomes and audit quality, not demos. "The agent said it worked" does not pass review. |
+| **Retrospective** | Reflect on process and improve it | **Memory Curation & Skill Promotion** | Review the knowledge base and learned memory from the cycle: what heuristics held, what failed, what should be promoted to reusable skill artifacts. Stale memory is pruned. Recurring failure patterns become new evaluation cases. The retro artifact is a memory diff, not a list of action items. |
+| **Backlog Refinement** | Clarify and prioritize upcoming work | **Specification Sharpening** | Upcoming specifications are reviewed for constraint completeness, risk assignment, and observable success criteria. Items without measurable success criteria are not pulled into the next Spec Refinement cycle. |
+| **Release Planning** | Coordinate cross-team work for a release | **Governance Checkpoint** | Cross-domain review of autonomy tier assignments, blast-radius gates, and evidence bundle completeness for all release-bound changes. The domain owner (P12) confirms accountability assignment before deployment. |
+
+**The failure mode to avoid.** Teams that attempt to run Agile ceremonies
+unchanged alongside agentic workflows typically end up with two parallel
+processes: the Agile process for humans and an ungoverned agentic process
+running in parallel. Both processes degrade. The table above collapses the
+two into one evidence-based, specification-driven workflow.
+
+**Phase calibration.** At Phase 1–2, the Standup → Trace Audit conversion may
+be partial: teams are still building trace infrastructure. Start with a hybrid
+(brief verbal check plus whatever traces exist) and migrate fully once tracing
+is reliable. Do not adopt the full ceremony mapping before the infrastructure
+can support it.
 
 ---
 

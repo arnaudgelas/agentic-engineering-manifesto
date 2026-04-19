@@ -8,6 +8,13 @@ conditions on regulated-industry adoption. See
 [adoption-vmodel.md](../adoption-vmodel.md) for the V-model adoption path
 applicable to verification-heavy lifecycles.
 
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+Autonomy tier assignment criteria are in
+[companion-principles.md — P5](../companion-principles.md#principle-5--autonomy-extended-guidance).
+This document maps those definitions to aviation certification requirements;
+it does not redefine them.
+
 **Scope:** DO-178C, DO-330, DO-333, ARP 4754A, ARP 4761/4761A, DO-326A,
 DO-356A, DO-278A.
 
@@ -15,10 +22,17 @@ DO-356A, DO-278A.
 and systems engineers evaluating where agentic engineering practices can operate
 within existing certification constraints.
 
-> **Disclaimer** -- This document maps concepts from the Agentic Engineering
+> **Disclaimer** — This document maps concepts from the Agentic Engineering
 > Manifesto to aviation regulatory frameworks. It does not constitute
 > compliance or certification advice. Consult your DER, ODA, or certification
 > authority for compliance determinations.
+>
+> **Regulatory currency:** This document reflects DO-178C, DO-330, DO-333,
+> ARP 4754A, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at
+> the time of last review. These standards evolve; EASA, FAA, and TCCA guidance
+> material is updated periodically. Verify currency against official sources
+> before relying on this content. **Last reviewed: April 2026.**
+> Proposed changes not yet enacted are flagged as such.
 
 ---
 
@@ -310,9 +324,12 @@ The table below maps aviation workflows to recommended autonomy tiers. The
 DAL-based ceiling in the first section of this document applies; this table
 adds workflow-level context.
 
+*These are conservative caps for safety-relevant software paths; lower-risk
+supporting tooling may have different constraints.*
+
 | Workflow | DAL / Assurance Level | Recommended Autonomy | Notes |
 |---|---|---|---|
-| Airborne software — critical paths (flight control, engine control) | DAL A/B | Tier 1 (observe only) | Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification not currently feasible. |
+| Airborne software — critical paths (flight control, engine control) | DAL A/B | Tier 1 (observe only) | Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification is not currently feasible under present evidence and qualification expectations; treat the agent as an unqualified tool pending authority review. |
 | Airborne software — major functions | DAL C | Tier 1-2 | Agents draft to isolated branches. Merge requires qualified review against applicable Table A objectives. |
 | Airborne software — minor / no-effect functions | DAL D/E | Tier 1-3 | Standard evidence bundles satisfy reduced verification objectives. Natural pilot domain. |
 | Ground support equipment (GSE) software | Typically not DO-178C scope | Tier 1-3 | Normal manifesto adoption applies. Confirm applicability of DO-178C to specific GSE. |

@@ -14,8 +14,8 @@
 <!-- /github-only -->
 
 *Principles for building systems where humans steer intent, agents execute
-within governed boundaries, and verified outcomes are the only measure that
-matters.*
+within governed boundaries, and verified outcomes are the primary measure that
+matters for agentic work.*
 
 > **The Agile Manifesto was written for a world where humans wrote all the
 > code. That world no longer exists.**
@@ -24,10 +24,11 @@ In agentic workflows, generation, verification, and deployment run at machine
 speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
 review-first pipelines — become bottlenecks and blind spots. Early empirical
 evidence, including the SWE-CI benchmark showing regression rates above 75%
-per CI iteration across 18 models, confirms that agentic systems require
-purpose-built engineering discipline, not retrofitted Agile ceremonies.
+per CI iteration across 18 models (arXiv:2603.03823), confirms that agentic
+systems require purpose-built engineering discipline, not retrofitted Agile
+ceremonies.
 
-This repository provides the complete alternative: the case for change, the
+This repository provides a complete alternative: the case for change, the
 manifesto itself, a companion implementation guide, an organizational adoption
 playbook, and domain-specific regulatory alignment for six industries.
 
@@ -110,7 +111,10 @@ The loop is the system. The principles are how you keep it honest.
 - [manifesto-principles.md](manifesto-principles.md): Twelve principles with
   minimum bars.
 - [manifesto-done.md](manifesto-done.md): Agentic Definition of Done (seven
-  criteria plus evolvability).
+  criteria plus evolvability) and Definition of Done for Hardening (vibe-to-prod
+  path).
+- [glossary.md](glossary.md): Canonical definitions for all terms used across
+  the manifesto document set.
 
 ### 3) Implementation Guide
 

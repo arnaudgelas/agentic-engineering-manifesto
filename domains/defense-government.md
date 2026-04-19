@@ -9,9 +9,25 @@ defense and government regulatory frameworks.*
 > officers, program managers, and legal counsel for compliance determinations.
 > Classification obligations vary significantly by program; this document
 > addresses unclassified system development.
+>
+> **Regulatory currency:** This document reflects CMMC 2.0, FedRAMP (current
+> marketplace and authorization requirements), NIST SP 800-53 Rev 5, NIST SP
+> 800-171 Rev 2, ITAR (22 CFR 120-130), EAR (15 CFR 730-774), and DoD
+> Instruction 5000.02 as understood at the time of last review. CMMC
+> scoping guidance for AI systems is not yet settled; DIBCAC has not issued
+> definitive guidance on LLM API boundary classification. FedRAMP
+> authorization status for frontier LLM providers is evolving rapidly;
+> verify the FedRAMP marketplace before making infrastructure decisions.
+> **Last reviewed: April 2026.** Proposed changes not yet enacted are
+> flagged as such.
 
 See [companion-frameworks.md](../companion-frameworks.md) for boundary
 conditions on regulated-industry adoption.
+
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+This document maps those definitions to defense and government regulatory
+requirements; it does not redefine them.
 
 **Scope:** CMMC 2.0 (DoD contractor cybersecurity), FedRAMP (federal cloud
 authorization), NIST SP 800-53 (federal security controls), NIST SP 800-171
@@ -36,7 +52,7 @@ can be used at all, on what infrastructure, and with what controls.
 |---|---|---|---|
 | **Unclassified / Public** | Fully permissible | Standard cloud or on-premises | Standard manifesto TTL policies apply |
 | **CUI (Controlled Unclassified Information)** | Permissible with controls | FIPS 140-2/3 validated, CUI-authorized environment; FedRAMP High or equivalent | No CUI in external API calls; memory retention subject to CUI handling requirements (32 CFR Part 2002) |
-| **Classified (SECRET / TS / TS/SCI)** | **Not permissible** with commercial AI systems | Air-gapped, accredited systems only; commercial LLM APIs are categorically excluded | No persistence whatsoever outside the accredited system boundary |
+| **Classified (SECRET / TS / TS/SCI)** | **Not permissible** with non-accredited commercial AI systems | Air-gapped, accredited systems only; non-accredited commercial LLM APIs are categorically excluded | No persistence whatsoever outside the accredited system boundary |
 | **ITAR / EAR Controlled Technical Data** | Permissible only on compliant infrastructure | US-person-only access; no transmission to non-compliant cloud endpoints; Technology Control Plan required | Retention only within ITAR-compliant boundary; model training on controlled data requires authorization |
 
 **The hard rule:** No classified information may enter any commercial AI
@@ -185,7 +201,7 @@ implementations of ZTA principles in agentic systems.
 | CUI document processing and analysis | CUI | Tier 1-2 | Agents analyze and draft; human reviews before any CUI record is modified or transmitted. FedRAMP Moderate infrastructure required. |
 | Requirements and traceability analysis | Unclassified / CUI | Tier 1-2 | High-value use case. Agent assembles traceability matrices; human qualified engineer validates. Evidence bundles support ATO documentation. |
 | ITAR-controlled program development | ITAR technical data | Tier 1 (observe only) | ITAR compliance requires human control over all controlled technical data. Agent may analyze within the controlled boundary; no external API calls. |
-| Classified program development | SECRET / TS | **Not permissible** | Commercial AI systems are categorically excluded from classified programs. No exceptions without accredited system boundary and government authorization. |
+| Classified program development | SECRET / TS | **Not permissible** | Non-accredited commercial AI systems are categorically excluded from classified programs. No exceptions without accredited system boundary and government authorization. Unclassified still requires access control, auditability, and change management. |
 | Cybersecurity assessment and testing | Varies | Tier 1-2 | Agent assists vulnerability analysis and security assessment; ISSO/ISSM reviews and approves all findings before remediation actions. |
 | Logistics and sustainment analytics | Unclassified | Tier 1-3 | Non-safety-critical domain; standard manifesto adoption. High-value opportunity for cost reduction. |
 

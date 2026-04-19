@@ -3,27 +3,41 @@
 *Mapping the [Agentic Engineering Manifesto](../manifesto.md) to medical device
 regulatory frameworks.*
 
-> **Disclaimer** -- This document maps concepts from the Agentic Engineering
+> **Disclaimer** — This document maps concepts from the Agentic Engineering
 > Manifesto to medical device regulatory frameworks. It does not constitute
 > compliance or regulatory advice. Consult qualified regulatory and quality
 > professionals for compliance determinations.
+>
+> **Regulatory currency:** This document reflects IEC 62304, EU MDR 2017/745,
+> FDA 21 CFR Part 820 (QMSR, effective February 2026, replacing the prior QSR),
+> and EU AI Act requirements as understood at the
+> time of last review. The EU AI Act implementation timeline is subject to
+> ongoing guidance and proposed amendments; verify current status at
+> eur-lex.europa.eu before relying on AI Act classifications in this document.
+> **Last reviewed: April 2026.** Proposed changes not yet enacted are flagged
+> as such.
 
 See also: [Companion Frameworks](../companion-frameworks.md) (boundary
 conditions, ALCOA+ mapping), [Agentic V-Model](../adoption-vmodel.md)
 (V-model lifecycle transition for regulated industries).
+
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+This document maps those definitions to medical device regulatory requirements;
+it does not redefine them.
 
 ---
 
 ## IEC 62304 Safety Class to Manifesto Autonomy Mapping
 
 IEC 62304 safety classification determines documentation depth, verification
-rigor, and -- in this mapping -- the permissible agent autonomy ceiling. The
-2026 update is expected to collapse Classes A and B; until published, map
-conservatively to the three-class model.
+rigor, and -- in this mapping -- the permissible agent autonomy ceiling. If IEC 62304 is revised, re-evaluate the class mapping rather than assuming
+the current three-class structure is permanent; until any update is published,
+map conservatively to the three-class model.
 
 | Safety Class | Risk Level | Max Agent Autonomy | Documentation Depth | Evidence Bundle Requirements |
 |---|---|---|---|---|
-| **Class A** (no injury) | Negligible | Tier 1-3 (P5). Full agentic loop permissible. | Minimal: requirements + release documentation. | Standard evidence bundles per manifesto phase. |
+| **Class A** (no injury) | Negligible | Tier 1-3 (P5) for non-safety-critical software items; full agentic loop remains subject to the device's risk controls and use-case constraints. | Minimal: requirements + release documentation. | Standard evidence bundles per manifesto phase. |
 | **Class B** (non-serious injury) | Moderate | Tier 1-2 (P5). Agents propose; humans approve merges. | Moderate: architecture + integration testing required. | Enhanced bundles with SOUP risk analysis per item. |
 | **Class C** (death / serious injury) | High | Tier 1 only (P5). Agents analyze and propose; humans implement. | Full: detailed design + unit-level verification required. | Complete bundles with SOUP verification, unit-level trace, formal risk linkage. |
 
@@ -219,8 +233,9 @@ submissions.
 
 ## EU MDR + AI Act Dual Compliance
 
-From August 2026, medical devices classified IIa or higher that incorporate
-AI are automatically high-risk AI systems under the EU AI Act. This creates
+Many EU MDR IIa+ devices that incorporate AI will also trigger high-risk AI
+obligations under the EU AI Act, but the exact classification depends on
+intended purpose and the applicable AI Act annexes. This typically creates
 dual compliance obligations.
 
 | Requirement Source | Requirement | Manifesto Principle | Notes |

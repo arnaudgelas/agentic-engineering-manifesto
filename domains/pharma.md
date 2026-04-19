@@ -3,19 +3,32 @@
 *Maps the [Agentic Engineering Manifesto](../manifesto.md) principles to
 pharmaceutical and life sciences regulatory frameworks.*
 
-> **Disclaimer** -- This document maps concepts from the Agentic Engineering
+> **Disclaimer** — This document maps concepts from the Agentic Engineering
 > Manifesto to pharmaceutical and life sciences regulatory frameworks. It does
 > not constitute compliance or regulatory advice. Consult qualified regulatory
 > and quality professionals for compliance determinations.
+>
+> **Regulatory currency:** This document reflects GAMP 5 (2nd ed. 2022),
+> FDA 21 CFR Part 11, EU Annex 11, ICH Q10, and EMA guidance as understood
+> at the time of last review. FDA and EMA guidance on AI/ML in regulated
+> manufacturing is actively evolving. **Last reviewed: April 2026.**
+> Proposed changes not yet enacted are flagged as such.
 
 Related documents:
 [Companion Frameworks](../companion-frameworks.md) (boundary conditions, ALCOA+ mapping) |
 [V-Model Adoption Path](../adoption-vmodel.md) |
 [Manifesto Principles](../manifesto-principles.md)
 
+**Canonical sources.** Normative principle definitions (P1–P12) and autonomy
+tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+This document maps those definitions to pharmaceutical regulatory requirements;
+it does not redefine them.
+
 ---
 
 ## 1. GAMP 5 Category Mapping
+
+These mappings are pragmatic classifications, not formal GAMP rulings.
 
 GAMP 5 (2nd edition, 2022) categorizes computerized systems for risk-based
 validation. The table below maps each category to its agentic engineering
@@ -223,7 +236,7 @@ computerized systems.
 | Open-source models | No traditional "supplier" exists. The deploying organization assumes full supplier responsibility: validation, maintenance, version control, incident response. Document this in the validation plan. |
 | Multi-vendor routing | P11 economics-aware routing means multiple model providers. Each requires qualification. Routing logic itself is a validated configuration (GAMP Cat 4). |
 
-**Open question: who is the "supplier" for open-source models?**
+**Open regulatory issue: who is the "supplier" for open-source models?**
 
 GAMP 5 and EU GMP Chapter 7 assume an identifiable supplier with a quality
 system. Open-source foundation models have no such entity. The deploying
@@ -236,6 +249,9 @@ agent deployments.
 ---
 
 ## 9. Change Control Considerations
+
+Treat model updates, prompt edits, tool changes, and memory growth as distinct
+change classes; they carry different validation scopes and requalification burdens.
 
 | Change Type | Pharma Change Control Implication | Manifesto Mechanism | Open Question |
 |-------------|----------------------------------|---------------------|---------------|

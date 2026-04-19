@@ -35,6 +35,9 @@ way rigor is expressed:
 The right goal: **keep the V-model's assurance logic, but retool its artifacts,
 gates, and execution model for agents.**
 
+This is a transition framework for agentic engineering inside a V-model
+organization, not a proposal to discard the V-model.
+
 ### What Should Stay the Same
 
 - Intended use, risk classification, and release responsibility remain human
@@ -47,6 +50,9 @@ gates, and execution model for agents.**
   delegated fully to an agent.
 
 ### What Should Change
+
+Applicability varies by domain, qualification regime, and tool qualification
+constraints.
 
 - Requirements become versioned, structured, and reusable by both humans and
   agents.
