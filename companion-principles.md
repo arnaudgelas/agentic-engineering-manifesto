@@ -78,7 +78,7 @@ it is a steering signal.
 The specification-as-living-artifact pattern now has concrete implementations.
 Agent Skills (SKILL.md files — structured metadata plus step-by-step
 instructions that agents consume at runtime) and AGENTS.md (repository-level
-machine-readable constraints) are now widely adopted across major IDEs and coding
+machine-readable constraints) are increasingly supported across several IDEs and coding
 agents. Both formats validate the core P2 claim: specifications that agents can
 parse directly reduce ambiguity, improve adherence, and make convergence
 measurable. Skills define *what* an agent can do; AGENTS.md defines *how* it
@@ -250,8 +250,8 @@ code belongs, what is forbidden to reinvent. Retrieval is untrusted input;
 treat context injection as a threat vector. This reduces swarm collisions and
 hardens the system against both accidental drift and adversarial conditions.
 
-AGENTS.md files (an AAIF-governed open standard for repository-level agent
-instructions) offer a practical mechanism for encoding architectural constraints
+AGENTS.md files (an emerging repository-level convention in the AAIF ecosystem
+for agent instructions) offer a practical mechanism for encoding architectural constraints
 at the repository level. They function as machine-readable ADRs that coding agents respect at
 runtime — a concrete implementation of architecture as defense-in-depth.
 
@@ -454,6 +454,60 @@ Tier boundaries are only meaningful if compliance is verified. Implement:
   incident data. Promote agents with strong track records; demote or
   constrain agents with elevated error rates.
 
+### Tier Assignment Decision Checklist
+
+Before assigning a tier to a new agent capability — or promoting an existing
+capability to a higher tier — answer the following questions. Each "yes" to
+a risk question is a reason to stay conservative or require additional gates.
+This checklist is a decision aid, not a policy replacement; it does not
+substitute for domain-specific regulatory requirements.
+
+**Blast radius and reversibility**
+
+1. Could a wrong action affect production data, external parties, or
+   safety-critical systems? → Default Tier 1 unless verified rollback exists.
+2. Is the action irreversible within a one-hour window (data deletion,
+   external API calls, customer-facing communications, financial transactions)?
+   → Require Tier 1 or an explicit human approval gate at Tier 2.
+3. Does the action cross a domain boundary (e.g., write to a system outside
+   the agent's primary scope)? → Require explicit authorization, regardless
+   of tier.
+
+**Confidence maturity**
+
+4. Has this agent operated on this exact task class for fewer than a
+   calibration-minimum number of cycles with tracked outcomes? → Stay at Tier 1
+   until evidence accumulates. (Calibrate the minimum to domain: typically
+   20–50 cycles for low-blast-radius tasks; 100+ for production-impacting tasks.)
+5. Has the agent's error rate on this task class been measured and is it
+   within the threshold for the target tier? → If not measured, start at Tier 1.
+
+**Specification and governance readiness**
+
+6. Is the specification for this task class machine-readable with observable
+   success criteria? → If no, Tier 1 regardless of blast radius. Tier escalation
+   without a complete specification is not a risk decision — it is an unmanaged
+   risk.
+7. Is there an evaluation portfolio covering adversarial cases, not just
+   happy-path behavior? → If no, do not promote beyond Tier 1.
+8. Does the applicable domain set a regulatory floor (e.g., aviation DAL A/B,
+   automotive ASIL C/D, medical device Class C, financial services SR 11-7
+   high-risk model)? → The regulatory floor overrides the blast-radius
+   assessment; it cannot be overridden by team judgment.
+
+**Promotion and demotion rules**
+
+- **Promote** one tier at a time, only after a consecutive-cycle window with
+  zero incidents where the agent exceeded its authorized scope or caused
+  undetected harm downstream (calibrate cycle count to domain; a reasonable
+  starting default is 30 cycles for Tier 1→2 and 60 cycles for Tier 2→3).
+- **Demote immediately** on any of: agent exceeded authorized scope; incident
+  where blast radius exceeded predicted level; regulatory audit finding;
+  specification drift detected; new task class introduced without fresh
+  assessment.
+- Demotion is immediate; re-promotion requires a fresh checklist pass and
+  a complete incident review.
+
 ---
 
 ## Principle 6 — Knowledge & Memory: Extended Guidance
@@ -539,6 +593,15 @@ works. Reverting a bad embedding is straightforward. Reverting a bad learned
 skill is harder — the skill may have influenced downstream decisions that
 themselves became learned patterns. Teams building memory infrastructure should
 design for rollback at each layer independently.
+
+The full operational specification for governing learned memory — what counts as
+adaptation, who may write to persistent memory and under what conditions,
+provenance requirements, retention and expiry policy, rollback mechanisms, and
+which behavioral changes trigger a revalidation cycle — is the **Adaptation
+Envelope (Layer 4)** of the behavioral envelope framework. See
+[companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)](companion-re-framework.md#4-behavioral-envelopes)
+for the complete specification. Principle 6 names the governance properties;
+Layer 4 specifies what to actually write.
 
 Recent agent-learning work sharpens this distinction further: reusable skills
 can function as an external learning substrate, allowing agents to improve by
@@ -891,6 +954,27 @@ evaluations do not cover edge cases, adversarial inputs, and behavioral
 regressions, they are measuring comfort, not correctness. When evaluation
 metrics become optimization targets rather than measures of quality, the system
 games the metric and drifts from the goal.
+
+**Detecting evaluation theater.** Evaluation theater is recognizable by the
+gap between evaluation metrics and production outcomes. Watch for these signals:
+
+- Evaluation pass rates near 100% while escaped defect rates or user-reported
+  issues remain elevated — the evaluation suite is not covering the failure
+  modes that matter.
+- Adversarial inputs outside the evaluation distribution produce failures the
+  suite never triggered — the evaluation distribution is too narrow.
+- Evaluation coverage grows (more tests, higher numbers) without growing the
+  distribution of tested conditions — the same scenarios run repeatedly with
+  minor variations, providing false coverage confidence.
+- Incident classes not covered by the current suite recur after remediation —
+  the suite did not capture the failure mode, so the same issue reappears.
+
+The primary structural defense is evaluation holdout (see below): scenarios
+the agent has never seen and cannot overfit to. Without holdout, high eval
+pass rates are consistent with both genuine quality and evaluation theater.
+The measurement mechanism for "evaluation theater detection rate" (listed as a
+Phase 5→6 metric) is therefore: track the fraction of production incidents that
+were not predicted by any evaluation failure in the preceding cycle.
 
 *Advanced bar: include adversarial cases for externally exposed or
 high-blast-radius systems. For model-judged evaluations, calibrate against
@@ -1439,7 +1523,7 @@ like when the constraints, evaluations, and evidence infrastructure are mature
 enough to replace line-by-line review entirely.
 
 The manifesto does not prescribe Level 5 as a target. Most teams are not ready
-for it — and the perception gap is real: a 2025 study found that experienced
+for it — and the perception gap is real: a 2025 study reported that experienced
 developers using AI tools took 19% longer to complete tasks while believing AI
 made them 24% faster. Teams that believe they are operating at Level 4 or 5 are
 often stuck at Level 2, confusing tool adoption with workflow transformation.
@@ -1467,6 +1551,59 @@ with babysitting and the governance model is already failing. If they review
 nothing, accountability is fictional. The correct position is somewhere
 between, defined by the quality of your constraints, evaluations, and
 feedback loops — and it must be re-evaluated as the system grows.
+
+### Governance as Practice — The Domain Owner's Routine
+
+The manifesto describes governance structure: named owners, defined tiers,
+evidence bundles, approval gates. Structure is necessary but not sufficient.
+A team can have all structural components in place and still have non-functional
+governance: domain owners who approve evidence bundles without understanding
+them, audit trails no one reads, policy violations detected but not acted upon.
+Governance also requires practice — the ongoing behavioral routine by which a
+domain owner actually performs governance rather than performs its appearance.
+
+What distinguishes performed governance from simulated governance:
+
+**Understanding what is being approved.** A domain owner performing governance
+can answer, without prompting: what changed, why, what could go wrong, and why
+the evidence bundle indicates those risks were addressed. If they cannot answer,
+they are signing, not governing.
+
+**Acting on anomalies.** When accountability signals degrade — review times
+drop, rejection rate trends toward zero — a governing domain owner reduces
+autonomy scope for that domain. A domain owner performing governance theater
+adds reviewers or frames the problem as a workload issue.
+
+**Reading incidents as policy feedback.** After an incident, the governing
+question is: which constraint was missing, which evaluation didn't catch this,
+which evidence bundle criterion was insufficient? The non-governing question
+is: who approved the change that caused the incident? The first drives
+remediation; the second drives blame without improving the system.
+
+**Maintaining calibration.** A domain owner who has not rejected a change in
+two months either has extraordinary agents or has stopped governing. Healthy
+rejection rates (5–15% of agent-generated PRs) are a calibration signal, not
+a ceiling to minimize. Sustained rates below that range should be treated as
+a governance degradation signal, not as quality improvement, unless
+corroborated by other evidence.
+
+These behaviors are not auditable by structure alone. They require the domain
+owner to treat governance as a craft that degrades without practice.
+
+### Governance Health Monitoring
+
+Accountability frameworks can degrade silently. Control theater — humans
+nominally accountable but operationally blind — is the most common governance
+failure at scale and cannot be detected from the outside. Detect it from the
+inside by monitoring the signals that distinguish meaningful review from
+rubber-stamping. The
+[Rubber-stamping detection table](adoption-metrics.md#team-health-metrics-all-phases)
+in the adoption metrics document provides a quantitative baseline: median review
+time, PR rejection rate, inline comment density, and rework rate within one
+week. These thresholds are operational heuristics, not empirically validated
+figures — treat them as starting points calibrated against your own team's
+baseline data. The intervention protocol when thresholds breach is to reduce
+autonomy scope for that domain, not to add more reviewers.
 
 ### Incident Attribution
 

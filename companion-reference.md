@@ -143,6 +143,12 @@ whether it is mandatory per CoE policy.
 ```markdown
 # [Project Name] — Agent Instructions
 
+## Scope and Version
+<!-- RECOMMENDED. Establish ownership and applicability before the agent reads further. -->
+Owner: [name or team]
+Last updated: [date]
+Applicable systems: [which services, repos, or pipelines this file governs]
+
 ## Project Overview
 <!-- MANDATORY. 3-5 lines. What does this service do? What domain does it own?
      What is its upstream/downstream position in the system? -->
@@ -165,8 +171,8 @@ Deploy: [command or "see CI pipeline — do not deploy manually"]
 - [Any other non-negotiable domain boundary]
 
 ## Security
-<!-- MANDATORY. Reference enterprise rules — do not duplicate them here.
-     Add only project-specific security constraints. -->
+<!-- MANDATORY. Do not duplicate enterprise-wide policy here; link to the
+     governing file instead. Add only project-specific security constraints. -->
 Follows enterprise security rules. Project-specific additions:
 - All [entity type] inputs must be validated against [schema/contract] at [path].
 - [Any project-specific credential or secret handling requirement]

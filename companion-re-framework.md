@@ -116,7 +116,7 @@ Agentic pipelines require requirements artifacts in multiple formats for multipl
 
 The failure mode is maintaining separate documents for each consumer. These diverge. The governance document says one thing; the agent execution spec says another; the tests verify a third thing.
 
-**The single-source principle:** One canonical source document (the behavioral specification) is the source of truth. All other representations are generated or derived from it, not independently authored. When the source changes, all projections must be updated.
+**The single-source principle** *(governance best practice, not a legal requirement)*: One canonical source document (the behavioral specification) is the source of truth. All other representations are generated or derived from it, not independently authored. When the source changes, all projections must be updated.
 
 In practice:
 - Write the behavioral specification in human-readable prose with explicit, structured sections
@@ -160,7 +160,7 @@ Minimum requirements artifacts: Tier 2 artifacts + human approval policy + audit
 
 EU AI Act obligations apply to high-risk systems operating at Tier 3. Human oversight requirements under the Act are not governance checkboxes — they are system design requirements. Specify: what interface enables operators to monitor, detect anomalies, and override outputs; what training or competency is required to exercise oversight effectively; what stop-operation procedure exists and how quickly it can be invoked; and what post-market monitoring captures for ongoing review. "Human approval" is insufficient as a Tier 3 requirement unless the approval mechanism itself is specified as part of the system.
 
-The tier assignment is a requirements decision, not a deployment parameter. It must be made explicitly at the specification stage and documented in the behavioral specification. Tier assignment determines the governance overhead; an agent assigned to Tier 1 cannot subsequently be granted Tier 3 authority without a full re-specification and review cycle.
+Tier assignment is a requirements decision, not a deployment parameter. It must be made explicitly at the specification stage and documented in the behavioral specification. Tier assignment determines the governance overhead; an agent assigned to Tier 1 cannot subsequently be granted Tier 3 authority without a full re-specification and review cycle.
 
 ---
 
@@ -178,7 +178,7 @@ The NFR categories that require explicit treatment in agentic systems:
 | **Explainability** | Traceability of agent reasoning to decision | Hard requirement (trace format) + probabilistic target (trace completeness) |
 | **Cost** | Token consumption, compute cost per task | Probabilistic assurance target (p95 cost per run) |
 | **Latency** | Time-to-completion distribution | Probabilistic assurance target (p50/p95/p99) |
-| **Regulatory compliance** | EU AI Act (high-risk system obligations enforceable Aug 2026): documented post-market monitoring, human oversight, logging of autonomous decisions, traceability | Hard requirements (documentation, logging, override capability) + process requirements (post-market monitoring plan) |
+| **Regulatory compliance** | EU AI Act (high-risk obligations apply on a staged timetable; verify the current application date and transitional rules for your use case): documented post-market monitoring, human oversight, logging of autonomous decisions, traceability | Hard requirements (documentation, logging, override capability) + process requirements (post-market monitoring plan) |
 | **Evolvability** | Specifications must evolve without full re-derivation | Single-source principle compliance |
 
 ---

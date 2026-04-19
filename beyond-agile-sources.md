@@ -7,6 +7,24 @@ See [Beyond Agile](beyond_agile.md) for the full argument.
 
 ---
 
+## Source Weighting
+
+Not all sources carry equal evidentiary weight. When drawing conclusions, rely
+on the highest-weight source available for the claim:
+
+- **Primary** — standards, regulations, official documentation, peer-reviewed
+  academic papers. Strongest evidentiary weight.
+- **Secondary** — industry and vendor guidance, white papers, practitioner
+  frameworks. Useful for operational context; may reflect vendor perspective.
+- **Tertiary** — press, blogs, opinion pieces. Useful for framing and
+  practitioner sentiment; treat as directional, not conclusive.
+
+Conclusions about requirements, governance obligations, or regulatory constraints
+should rest on primary sources. Secondary and tertiary sources provide context
+and practitioner signal, not evidentiary grounding for technical claims.
+
+---
+
 <a id="ref-1"></a>[1] S. Jones, "AI Killed the Agile Manifesto," *MetaMirror* (blog), Jan 2026. [B] https://blog.metamirror.io/ai-killed-the-agile-manifesto-805ad9a639db
 
 <a id="ref-2"></a>[2] Infosys, "How Is AI-Native Software Development Lifecycle Disrupting Traditional Software Development?" *Infosys IKI TechCompass*, 2025. [I] https://www.infosys.com/iki/techcompass/ai-native-software-development-lifecycle.html

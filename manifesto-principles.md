@@ -77,8 +77,23 @@ and evidence accumulates. Express what must be true when the work is complete.
 Express what is forbidden. Let the swarm find the path. When the path reveals
 that the spec was wrong, update the spec and run again.
 
+Specifications and architectural constraints operate at different layers and
+change at different speeds. Constraints are invariants — security policies,
+domain ownership boundaries, data integrity rules — that hold across
+specification iterations. Specifications are goals and acceptance criteria that
+evolve within those invariants. An agent can propose a revised acceptance
+criterion without governance overhead; proposing a relaxed constraint triggers a
+governed review. If the system cannot distinguish these two change types,
+specification iteration will silently erode architectural boundaries. See
+[Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints)
+in the extended guidance.
+
 *Minimum bar: If a specification cannot be versioned, reviewed, and revised
 based on execution evidence, it is a wish, not an engineering artifact.*
+
+These are starter defaults, not universal stop conditions. Calibrate them per
+domain, track false-convergence and false-drift, and harden them only after
+local evidence justifies the thresholds.
 
 **A specification is done iterating when:**
 - Acceptance criteria remain stable across three consecutive iterations
@@ -155,6 +170,11 @@ In the absence of these signals, default to single-agent or pipeline.
 *Minimum bar: If shared state is not typed, versioned, and reconciled, the swarm
 is a mob.*
 
+*Minimum bar (tier containment): An orchestrator cannot delegate actions to
+specialist agents that exceed its own authorized autonomy tier. Tier elevation
+requires the same approval path regardless of whether the request originates
+from a human or an orchestrating agent.*
+
 ---
 
 ### 5. Autonomy is a tiered budget, not a switch
@@ -187,16 +207,36 @@ autonomy model has failed.*
 not independent: a team cannot safely operate at a higher tier than their phase
 supports, regardless of available infrastructure.
 
+These maximum tiers are conservative defaults for the relevant work item, not a
+blanket organization-wide policy. Calibrate by domain, data classification, and
+blast radius.
+
 | Phase | Maximum available tier | Rationale |
 |---|---|---|
-| Phase 1-2 | Tier 1 only | No evaluation suite, no evidence bundles — agent output is unverified |
-| Phase 3 | Tier 1 only | Autonomy without verification; governance infrastructure not yet in place |
+| Phase 1-2 | Tier 1 only for governed production work | No evaluation suite, no evidence bundles — agent output is unverified |
+| Phase 3 | Tier 1 only for governed production work | Autonomy without verification; governance infrastructure not yet in place |
 | Phase 4 | Tier 2 (branch + human approval) | Verification gates operational; blast radius is contained |
 | Phase 5+ | Tier 3 (governed production impact) | Full Agentic Loop with verification, validation, and domain-scoped accountability |
 
 In regulated industries, use-case-specific caps apply independently of phase.
 See [Companion Frameworks](companion-frameworks.md#hard-autonomy-caps-by-regulated-use-case)
 for the regulated-industry cap table.
+
+**Phase maturity and task blast radius are independent checks.** Team phase
+determines the governance capability ceiling; it does not automatically qualify
+every task that falls nominally within that tier. For each task, perform a
+separate blast-radius assessment before acceptance:
+
+1. What is the maximum credible impact if this specific task fails?
+2. Does that impact stay within the governance coverage of the current phase?
+3. If not — escalate the task to a phase with appropriate coverage, or decompose
+   it so each subtask stays within the governance boundary.
+
+A Phase 4 team operating correctly for Phase 4 can still fail on a cross-domain
+task whose blast radius exceeds Phase 4 governance coverage. Phase is a team
+capability ceiling; blast-radius assessment is a per-task gate. The most
+consequential failures tend to occur at domain boundaries, where tasks cross
+phase ceilings that are not checked at the task level.
 
 ---
 
@@ -338,6 +378,9 @@ at the system boundary where it matters most.
 
 *Minimum bar (observability): If you cannot answer "why did this happen" from
 traces alone, you are not instrumented.*
+
+*Minimum bar (interoperability): If tools cannot be swapped or replayed across
+runtimes without rewriting core workflows, the platform is brittle.*
 
 ---
 

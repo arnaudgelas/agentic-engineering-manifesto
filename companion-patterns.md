@@ -87,6 +87,8 @@ Routing decision:
 3. Route the test review and evaluation against the existing regression suite
    to deterministic tooling — no model needed.
 
+*Illustrative only, not benchmark data.*
+
 Cost comparison (illustrative):
 - All tasks to high-capability model: $4.20 total, 45 seconds.
 - Routed as above: $0.85 total, 32 seconds (fast model handles 70% of volume).
@@ -167,6 +169,10 @@ the specific domains with shared dependencies to Phase 5 governance.
 
 ### Pattern G — Exception-Based Governance at Scale
 
+These sampling thresholds are example defaults; calibrate them to local risk,
+review complexity, and incident history. This is a governance pattern, not a
+universal policy.
+
 **Context:** A team at Phase 4+ is generating agent-driven changes at a volume
 that exceeds meaningful human review of every change. Domain owners are showing
 rubber-stamping signals (review time < 2 minutes, rejection rate < 1%).
@@ -232,6 +238,77 @@ classification pre-screener is a 1st-line control. The 2nd-line independent
 validation function reviews the classification criteria periodically (not
 individual changes) and challenges whether the risk tiers are set appropriately.
 The 3rd line audits whether the process was followed.
+
+---
+
+### Pattern H — The Persona Simulator
+
+**When to use:** Before shipping a feature that involves complex user interactions,
+ambiguous intent, or high diversity of user populations. Use this pattern to
+validate that the specification itself is correct — not just that the implementation
+satisfies the specification as written.
+
+**The problem it solves:** Specifications are written from the perspective of the
+team that wrote them. They encode assumptions about how users will interact with
+the feature, what they will ask, and what they consider a success. These assumptions
+are often wrong. Traditional testing verifies that the implementation matches the
+spec; it does not verify that the spec matches user reality.
+
+**Pattern:**
+
+Deploy a swarm of simulation agents, each instantiated with a distinct persona
+profile: domain expertise, communication style, prior experience with the system,
+edge-case goals, adversarial intent (where applicable). Each persona agent
+interacts with the feature under development using the specification as its
+behavioral target.
+
+The simulation produces two outputs:
+1. **Coverage gaps** — interaction paths, question types, or intent categories
+   that the specification does not address. These become specification amendments
+   before implementation is finalized.
+2. **Failure signals** — interactions where the feature's response would be
+   incorrect, ambiguous, or unsafe from the perspective of that persona. These
+   become evaluation cases in the evaluation portfolio (P8).
+
+**Relationship to the Agentic Loop:** The Persona Simulator belongs to the
+Validate phase, not the Verify phase. Verify confirms the implementation satisfies
+the specification. Validate asks whether the specification itself is worth satisfying.
+Running the simulator before implementation is complete (on a specification stub or
+prototype) catches the wrong-thing-built failure class before it is fully built.
+
+**Minimum viable version:**
+
+```
+personas = [
+  { role: "power user", style: "terse", goal: "efficiency" },
+  { role: "first-time user", style: "exploratory", goal: "orientation" },
+  { role: "adversarial user", style: "probing", goal: "boundary-finding" },
+  { role: "domain expert", style: "precise", goal: "correctness validation" },
+]
+
+for persona in personas:
+  interactions = simulate(persona, feature_spec, n=20)
+  gaps = extract_coverage_gaps(interactions, feature_spec)
+  failures = extract_failure_signals(interactions, acceptance_criteria)
+  report.add(persona, gaps, failures)
+```
+
+**Exit criterion:** The simulation is complete when coverage gaps have been either
+addressed in the specification or explicitly accepted as out of scope, and all
+failure signals have been added to the evaluation portfolio. Shipping without
+addressing the failure signals is an explicit risk decision, not an oversight.
+
+Not all failure signals can be deferred. Any failure signal involving safety,
+data integrity, irreversible user harm, or a regulatory requirement is
+non-deferrable: it must be addressed in the specification before the
+implementation proceeds. Logging it as "accepted out of scope" is not
+acceptable for these categories. If no fix is feasible, the feature scope must
+be reduced to exclude the interaction class that produces the failure.
+
+**What this pattern is not:** It is not a replacement for user research. Real users
+surface failure modes that no persona model anticipates. The Persona Simulator is
+a pre-ship filter, not a substitute for post-ship observation. It raises the floor;
+it does not guarantee the ceiling.
 
 ---
 

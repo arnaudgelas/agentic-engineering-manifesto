@@ -10,7 +10,7 @@ frameworks get right and miss. All references link to
 
 ---
 
-The failures are not cosmetic. They are structural — rooted in assumptions that no longer hold. Some belong to the Agile Manifesto itself: its four values, written for a human-only world. Others belong to the practices that grew around it — Scrum's sprints, SAFe's velocity tracking, the ceremonies and metrics that became the operational expression of Agile but were never part of the original document. The distinction matters: the manifesto is a philosophical statement; the practices are an implementation. Both break, but for different reasons.
+The failures are not cosmetic. They are structural — rooted in assumptions that no longer hold. Some belong to the Agile Manifesto itself: its four values, written for a human-only world. Others belong to the practices that grew around it — Scrum's sprints, SAFe's velocity tracking, the ceremonies and metrics that became the operational expression of Agile but were never part of the original document. The distinction matters: the manifesto is a philosophical statement; the practices are an implementation. Both break, but for different reasons. These failures are failures of Agile in agentic systems; they are not a claim that Agile is obsolete for all human-led software work.
 
 ## The Four Values — Challenged
 
@@ -18,13 +18,13 @@ The failures are not cosmetic. They are structural — rooted in assumptions tha
 
 This was Agile's most liberating principle: trust people, not bureaucracy. But in an agentic pipeline, the toolchain *is* the capability. The choice of orchestration platform, the choice of verification fleet, the choice of memory infrastructure — these are not implementation details. They are architectural decisions that determine what is possible. Using one tool versus another creates fundamentally different operational realities <sup>[1](beyond-agile-sources.md#ref-1)</sup>.
 
-Processes and tools are now fundamental to success, not obstacles to it. The human's role has shifted from writing code to architecting the environment in which agents write code. The Agile Manifesto's founding value has been inverted by the reality it never anticipated <sup>[1](beyond-agile-sources.md#ref-1)</sup><sup>[6](beyond-agile-sources.md#ref-6)</sup>.
+In agentic systems, processes and tools are now fundamental to success, not obstacles to it. The human's role has shifted from writing code to architecting the environment in which agents write code. The Agile Manifesto's founding value has been inverted by the reality it never anticipated <sup>[1](beyond-agile-sources.md#ref-1)</sup><sup>[6](beyond-agile-sources.md#ref-6)</sup>.
 
 ### 2. "Working software over comprehensive documentation" — Dangerous
 
 This value was a corrective against waterfall's thousand-page specifications that nobody read. It made sense when humans wrote code deliberately and could explain their reasoning. It is actively dangerous when applied to autonomous agents.
 
-AI models excel at producing software that *appears* to work. Jones calls this out directly: "AI is spectacular at building software that looks like it works" but "can create technical debt at a rate that normal developers absolutely couldn't" <sup>[1](beyond-agile-sources.md#ref-1)</sup>. The phenomenon — what Andrej Karpathy termed "vibe coding" <sup>[7](beyond-agile-sources.md#ref-7)</sup> — generates code satisfying immediate tests while lacking modularity, architectural integrity, and scalability. Without documentation serving as the contractual boundary holding agents accountable, systems hallucinate from legacy training data and corrupt their own operational context <sup>[1](beyond-agile-sources.md#ref-1)</sup><sup>[3](beyond-agile-sources.md#ref-3)</sup>.
+In agentic systems, AI models excel at producing software that *appears* to work. Jones calls this out directly: "AI is spectacular at building software that looks like it works" but "can create technical debt at a rate that normal developers absolutely couldn't" <sup>[1](beyond-agile-sources.md#ref-1)</sup>. The phenomenon — what Andrej Karpathy termed "vibe coding" <sup>[7](beyond-agile-sources.md#ref-7)</sup> — generates code satisfying immediate tests while lacking modularity, architectural integrity, and scalability. Without documentation serving as the contractual boundary holding agents accountable, systems hallucinate from legacy training data and corrupt their own operational context <sup>[1](beyond-agile-sources.md#ref-1)</sup><sup>[3](beyond-agile-sources.md#ref-3)</sup>.
 
 In agentic engineering, **documentation is the specification that constrains agent behavior**. Architecture Decision Records, formal contracts, constraint files, capability definitions — these are not bureaucratic overhead. They are the machine-readable rules that prevent autonomous systems from optimizing for the wrong thing. The Agile Manifesto's suspicion of documentation becomes negligence when your workforce is probabilistic <sup>[3](beyond-agile-sources.md#ref-3)</sup><sup>[6](beyond-agile-sources.md#ref-6)</sup>.
 
@@ -38,7 +38,7 @@ Contract negotiation has been reborn as specification engineering: defining prec
 
 Agile rightly valued adaptability over rigid upfront planning. But it assumed the entity responding to change was a human with judgment, context, and accountability. When agents respond to change, they do so probabilistically — and without the judgment to know when adaptation has become drift <sup>[3](beyond-agile-sources.md#ref-3)</sup>.
 
-Agentic systems need something the Agile Manifesto never contemplated: **specifications that steer behavior and evolve through evidence**. Not rigid plans, but not unconstrained adaptation either. Living specifications that tighten through iterative refinement — specify, execute, evaluate, adjust — with convergence criteria that distinguish productive evolution from scope drift <sup>[3](beyond-agile-sources.md#ref-3)</sup><sup>[4](beyond-agile-sources.md#ref-4)</sup>.
+In agentic systems, specifications need to steer behavior and evolve through evidence — something the Agile Manifesto never contemplated. Not rigid plans, but not unconstrained adaptation either. Living specifications that tighten through iterative refinement — specify, execute, evaluate, adjust — with convergence criteria that distinguish productive evolution from scope drift <sup>[3](beyond-agile-sources.md#ref-3)</sup><sup>[4](beyond-agile-sources.md#ref-4)</sup>.
 
 The four Agile values each assumed a human-only world. But the structural failures extend beyond the values themselves — into the practices, metrics, and ceremonies that Scrum, SAFe, and related frameworks built on top of those values.
 
@@ -70,7 +70,7 @@ When agents produce code at machine speed, the human reviewer becomes the rate l
 
 ### 8. No Framework for Non-Deterministic Behavior
 
-This is the deepest category of failure — concepts that neither the manifesto nor its derivative practices ever addressed, because they did not need to. Agile assumes deterministic execution: write code, run tests, the same input produces the same output. Agents are probabilistic. The same specification can produce different implementations across runs. The same tool call can produce different results depending on context window contents, model temperature, and retrieved memory <sup>[3](beyond-agile-sources.md#ref-3)</sup><sup>[4](beyond-agile-sources.md#ref-4)</sup>.
+In agentic systems, this is the deepest category of failure — concepts that neither the manifesto nor its derivative practices ever addressed, because they did not need to. Agile assumes deterministic execution: write code, run tests, the same input produces the same output. Agents are probabilistic. The same specification can produce different implementations across runs. The same tool call can produce different results depending on context window contents, model temperature, and retrieved memory <sup>[3](beyond-agile-sources.md#ref-3)</sup><sup>[4](beyond-agile-sources.md#ref-4)</sup>.
 
 The Agile Manifesto has no vocabulary for emergence, containment, hallucination loops, memory poisoning, or probability-compounding across multi-agent systems <sup>[4](beyond-agile-sources.md#ref-4)</sup><sup>[13](beyond-agile-sources.md#ref-13)</sup>. These are not edge cases — they are routine operating conditions in agentic engineering.
 
@@ -78,7 +78,7 @@ It is worth noting that even current enterprise guidance — including McKinsey'
 
 ### 9. No Concept of Systems That Learn from Their Own Execution
 
-This may be the most consequential failure — the one that generates all the others. Agile's feedback loop is the retrospective: humans reflecting on what happened, deciding what to change, implementing changes in the next sprint. That loop runs on a two-week cadence because it requires human cognition. The feedback is soft — "we should try shorter sprints," "let's refine our definition of done."
+In agentic systems, this may be the most consequential failure — the one that generates all the others. Agile's feedback loop is the retrospective: humans reflecting on what happened, deciding what to change, implementing changes in the next sprint. That loop runs on a two-week cadence because it requires human cognition. The feedback is soft — "we should try shorter sprints," "let's refine our definition of done."
 
 Agentic systems have a qualitatively different feedback loop. Errors, logs, successes, and failures feed back into the system in real-time. The system does not wait for a retrospective. It does not require human reflection to adapt. The feedback is hard, unambiguous signals: passing tests, zero runtime errors, validated API responses, converging evaluation metrics <sup>[2](beyond-agile-sources.md#ref-2)</sup><sup>[17](beyond-agile-sources.md#ref-17)</sup>. This is not merely faster iteration — it is a different kind of learning. Reasoning consolidation cycles can compress chains of inference using reinforcement-learning algorithms in seconds. Meta-cognitive layers enable systems to monitor and modify their own operational parameters. Self-optimizing architectures adapt query and retrieval strategies in microseconds based on access patterns <sup>[19](beyond-agile-sources.md#ref-19)</sup>.
 
@@ -86,7 +86,7 @@ The Agile Manifesto has no concept of a system that improves its own process wit
 
 ### 10. No Treatment of Memory as Infrastructure
 
-Agile's concept of institutional memory is tribal knowledge and documentation that nobody reads. There is no Agile practice for curating, governing, or versioning what the organization *knows* — let alone what it has *learned*. In an agentic system, this gap is fatal.
+In agentic systems, Agile's concept of institutional memory — tribal knowledge and documentation that nobody reads — is fatally insufficient. There is no Agile practice for curating, governing, or versioning what the organization *knows* — let alone what it has *learned*. In an agentic system, this gap is fatal.
 
 An agent without persistent memory — whether internalized or externalized through retrieval layers, episodic stores, or vector databases — must be reconstructed from scratch for every task. Some architectures externalize memory entirely, separating the agent from its state. But the memory still exists as infrastructure; it still requires curation, governance, and retrieval engineering. The question is not whether memory is needed but where it lives and who governs it. In practice, the distinction between a stateless tool and a memory-augmented agent is the ability to accumulate, curate, and act on context across invocations <sup>[19](beyond-agile-sources.md#ref-19)</sup>. And memory itself is not monolithic: knowledge (what was given) and learned memory (what was discovered through execution) are distinct infrastructure with different curation, governance, and retrieval requirements <sup>[17](beyond-agile-sources.md#ref-17)</sup>.
 

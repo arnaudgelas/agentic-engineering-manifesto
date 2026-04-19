@@ -126,13 +126,15 @@ phases but emphasize the human role transition:
 - **Level 5 — Dark Factory**: Specifications in, working software out, no human
   writes or reviews code (Phase 5-6).
 
-The critical insight: **90% of developers who claim to be AI-native operate at
-Level 2.** The gap between perceived and actual maturity is the most common
-failure mode in agentic adoption. A 2025 study found experienced developers
-using AI tools took 19% longer to complete tasks while believing AI made them
-24% faster. The manifesto's phase-calibrated evidence requirements exist
+Anecdotal practitioner reports suggest many teams overestimate their AI-native
+maturity — most operate closer to Level 2 than they believe. The gap between
+perceived and actual maturity is the most common failure mode in agentic
+adoption. A 2025 study reported that experienced developers using AI tools took
+19% longer to complete tasks while believing AI made them 24% faster. The manifesto's phase-calibrated evidence requirements exist
 precisely to close this perception gap — your phase is determined by the
 evidence you can produce, not by the practices you believe you follow.
+
+Use this as calibration, not as a universal scorecard.
 
 **Where the two frameworks diverge:** Fretz's levels are descriptive of the
 human experience. The manifesto's phases are prescriptive about governance
@@ -170,7 +172,7 @@ constraints. A Phase 5 team operating at full agentic maturity still cannot
 exceed these caps. The table below shows the strictest cap per domain; see
 each domain document for the complete use-case-specific cap table.
 
-| Domain | Strictest Cap | Regulatory Basis | Domain Document |
+| Domain | Conservative Default Cap | Regulatory Basis | Domain Document |
 |---|---|---|---|
 | **Aviation** (airborne software DAL A/B) | Tier 1 (observe only) | DO-178C; DO-330 tool qualification | [aviation.md](domains/aviation.md) |
 | **Medical Devices** (IEC 62304 Class C; EU AI Act high-risk) | Tier 1 (observe only) | IEC 62304; EU MDR + AI Act (Class IIa+) | [medical-devices.md](domains/medical-devices.md) |
@@ -179,10 +181,11 @@ each domain document for the complete use-case-specific cap table.
 | **Automotive** (ASIL C/D safety functions) | Tier 1 (observe only) | ISO 26262; UN Regulation 157 | [automotive.md](domains/automotive.md) |
 | **Defense / Government** (classified or ITAR-controlled systems) | Tier 1 (observe only) | CMMC; ITAR 22 CFR 120-130; FedRAMP | [defense-government.md](domains/defense-government.md) |
 
-The rows above show the most restrictive category in each domain. Most workflows
-in these industries permit Tier 2 or Tier 3 for lower-risk activities. The
-domain documents contain full use-case-specific cap tables with the regulatory
-basis for each row.
+The rows above show conservative defaults for the most restrictive category in
+each domain. Lower-risk workflows in the same domain may permit higher tiers if
+separately justified. Most workflows in these industries permit Tier 2 or Tier 3
+for lower-risk activities. The domain documents contain full use-case-specific
+cap tables with the regulatory basis for each row.
 
 **Phase maturity and autonomy tiers interact.** Beyond the hard caps above,
 phase maturity is a prerequisite for autonomy tier:

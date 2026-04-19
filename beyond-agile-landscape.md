@@ -56,8 +56,8 @@ MCP, A2A, AGENTS.md, and goose were donated as founding projects.
 
 This matters because the competing frameworks above all suffer from the same
 gap: they describe what agentic engineering needs without naming the protocols
-that implement it. The industry is now actively standardizing into four
-complementary layers, all under neutral governance:
+that implement it. As of the current ecosystem snapshot, the industry is
+actively standardizing into four complementary layers, all under neutral governance:
 
 - **MCP** (Model Context Protocol) — agent-to-tool connectivity. Defines typed
   schemas, auth boundaries, and replayable tool
@@ -72,11 +72,11 @@ complementary layers, all under neutral governance:
 None of the six frameworks reviewed above anticipated this convergence. The
 Agentic Engineering Manifesto does not prescribe specific protocols — its
 contribution is the governance model that sits across all four layers. But the
-existence of AAIF validates the manifesto's core thesis: vendor-neutral,
+existence of AAIF supports one of the manifesto's core theses: vendor-neutral,
 interoperable architecture is not aspirational but actively being built.
 
 A parallel movement reinforces the shift: specification-driven development (SDD)
-frameworks are emerging as the dominant workflow pattern for agentic coding.
+frameworks are emerging as an increasingly common workflow pattern for agentic coding.
 Multiple widely-adopted open-source frameworks <sup>[43](beyond-agile-sources.md#ref-43)</sup><sup>[44](beyond-agile-sources.md#ref-44)</sup><sup>[45](beyond-agile-sources.md#ref-45)</sup><sup>[46](beyond-agile-sources.md#ref-46)</sup><sup>[48](beyond-agile-sources.md#ref-48)</sup>
 now enforce the same discipline — write the specification before the agent writes
 the code. This effectively inverts Agile's founding principle of "working
