@@ -40,8 +40,8 @@ It is distinct from:
 - **AI-Assisted Software Engineering**: Using AI as an autocomplete or co-pilot to
   write human-authored code faster.
 
-Agentic Engineering is about treating **agents as system components** rather
-than as human proxies. It shifts the primary human role from writing code to
+Agentic Engineering is about treating **agents as governed system participants**
+rather than as human proxies. It shifts the primary human role from writing code to
 specifying intent, defining verifiable contracts, and operating the system that
 executes the work. As agent capability scales, the governing challenge shifts
 from aligning one model in isolation toward aligning a society of interacting
@@ -72,7 +72,7 @@ This loop is not a waterfall. Any phase can trigger a return to an earlier one
 based on evidence. The loop is the system. The principles are how you keep it honest.
 
 - **Specify** defines what to build and why.
-- **Design** architects how to build it: boundaries, topology, constraints.
+- **Design** architects how to build it: boundaries, topology, constraints,
   and coordination rules.
 - **Plan** decomposes the design into executable steps.
 - **Execute** carries out the plan within bounded autonomy.
@@ -89,7 +89,10 @@ based on evidence. The loop is the system. The principles are how you keep it ho
 - **Govern** applies policy, accountability, change control, and economics review.
   When inference or governance cost exceeds the value of the work, Govern
   signals Specify to simplify scope or reduce autonomy rather than continuing
-  to spend.
+  to spend. A Govern cycle is not complete until: all outstanding policy
+  violations are resolved, accountability signals are within threshold (no
+  rubber-stamping pattern detected), economics review is recorded, and any
+  architectural decisions triggered by governance are filed back into Design.
 
 Verification and validation are distinct disciplines. Verification is
 technical correctness against the spec. Validation is fitness for intended use
@@ -123,20 +126,10 @@ flowchart LR
     Validate -.->|Wrong Thing Built| Specify
     Validate -.->|Design Flaw| Design
     Observe -.->|Runtime Drift| Specify
+    Observe -.->|Decomposition Error| Plan
     Govern -.->|Economics / Complexity Breach| Specify
+    Govern -.->|Architectural Policy Change| Design
 ```
-
----
-
-## Why Engineering Rigor Creates Competitive Advantage
-
-The organizations pulling ahead with AI are not winning because they have access to better models — the same foundation models are available to everyone. They are winning because they can apply those models faster, at greater scale, and with less risk than competitors who are still governing AI with processes designed for human developers.
-
-That advantage is an engineering discipline problem, not a technology problem. The gap between a team that can safely expand agent autonomy and a team stuck in Phase 3 — running agents under loose supervision because the governance infrastructure is not there — is the same gap as between a team with mature CI/CD and a team still doing manual deployments. It compounds over time: faster verification enables faster shipping; faster shipping produces more learning; better learning sharpens specifications. The Agentic Loop is not a workflow — it is a compounding return on engineering investment.
-
-The organizations that reach Phase 5 — multi-domain, evidence-driven, continuously learning — are not just more efficient. They are structurally harder to catch. Every cycle of the Agentic Loop widens the gap between them and organizations still measuring velocity in story points.
-
-This manifesto is the engineering foundation for that compounding return. It is not a constraint on speed. It is what makes speed sustainable.
 
 ---
 
@@ -166,6 +159,45 @@ through the phase transitions.
 
 ---
 
+## Scope and Non-Goals
+
+**What this manifesto covers:**
+- The engineering discipline for building and operating systems that include
+  autonomous agents as first-class participants in the software development and
+  delivery lifecycle (SDLC).
+- Governance structures, autonomy controls, and evidence practices for
+  agent-assisted software engineering.
+- Adoption guidance for regulated and unregulated software delivery contexts,
+  including V-model and compliance-heavy organizations.
+- Domain-specific mappings to regulatory frameworks for aviation, automotive,
+  medical devices, pharmaceuticals, financial services, and defense/government.
+
+**What this manifesto does not cover:**
+- Training, fine-tuning, or evaluating foundation models. That is AI engineering.
+- Deploying agents in physical systems, robotics, or non-software operational
+  domains.
+- Product management, UX design, or organizational strategy beyond what
+  directly governs agent autonomy and accountability.
+- Legal advice, compliance determinations, or jurisdiction-specific regulatory
+  guidance. The domain pages map principles to frameworks; they are not
+  substitutes for qualified regulatory counsel.
+- Autonomous weapons systems, or the safety certification of autonomous control
+  systems themselves (e.g., certifying an ALKS or autopilot function). The
+  domain pages cover *software engineering governance for teams building those
+  systems*; they do not cover the operational safety certification of the
+  resulting autonomous system.
+
+**What requires separate guidance:**
+- Agentic systems operating outside the SDLC (e.g., customer-facing autonomous
+  agents, trading agents, autonomous process automation at industrial scale).
+  The principles are relevant starting points, but the operational context —
+  real-time customer exposure, regulatory regimes, failure modes — differs
+  enough to require purpose-built guidance rather than direct application.
+- Federated agent networks without a single accountable operator (distinct from
+  multi-provider model routing, which P11 addresses).
+- Agent deployment in classified environments (the domain pages note this
+  boundary; they do not provide guidance for classified system development).
+
 ## How to Read This Manifesto
 
 Use two layers:
@@ -175,7 +207,27 @@ Use two layers:
 - **Companion guidance** (Companion Guide and its linked documents): extended
   rationale, tradeoffs, worked patterns, failure modes, organizational change
   management, and domain-specific regulatory alignment. Come here when
-  implementing.
+  implementing. The companion layer is itself multi-document; the full map
+  is in [companion-guide.md](companion-guide.md).
+
+The two-layer framing is accurate but incomplete. The minimum bars in the
+principles are necessary conditions; they are not sufficient for safe operation
+at Phase 4 and above. At higher phases, certain companion content becomes
+operationally essential rather than supplementary: the
+[Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints)
+distinction (P2), [rubber-stamping detection](adoption-metrics.md#team-health-metrics-all-phases)
+(P12), the [Adaptation Envelope — Layer 4](companion-re-framework.md#4-behavioral-envelopes)
+(P6), and the [worked failure-mode patterns](companion-patterns.md) (P10/P12)
+are required reading before operating autonomy above Tier 1. If the core
+document describes the floor, these documents describe the walls and ceiling.
+
+**On evidence.** This manifesto demands evidence as a discipline. We apply
+that standard to our own claims: empirically supported claims carry citations;
+threshold values are labeled as practitioner heuristics; deductive arguments
+are stated as arguments so they can be evaluated independently. Some claims in
+an emerging discipline necessarily precede the empirical grounding they ideally
+require. Treat those claims as hypotheses and revise them as evidence
+accumulates. That is what a living specification means in practice.
 
 ## Contents
 
@@ -191,6 +243,12 @@ emergence and containment, economics, and accountability.
 What "done" means in agentic engineering: shipped, observable, verified,
 provable, learned from, governed, and economical. Phase-calibrated, not
 all-or-nothing.
+
+### [Glossary](glossary.md)
+
+Canonical definitions for terms used across this document set: agent,
+autonomy tier, blast radius, evidence bundle, evaluation, knowledge, learned
+memory, specification, trace, verification, validation, and more.
 
 ---
 
