@@ -78,7 +78,7 @@ but operationally blind — is the most common governance failure at scale. Dete
 it quantitatively before it becomes an incident:
 
 | Signal | Example healthy band | Example alert band | What it indicates |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Median review time per agent-generated PR | 8–20 minutes | < 2 minutes | Reviewer not reading the diff |
 | PR rejection rate (agent-generated) | 5–15% | < 1% | Approving without meaningful review |
 | Inline comments per approved PR | 3–7 | Trending to 0 over 4 weeks | Review becoming mechanical |
@@ -105,7 +105,7 @@ impossible to distinguish "governance is working" from "governance is overhead
 with no signal." Finance and leadership will ask; measure proactively.
 
 | Metric | Target | Alert threshold | What to do |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Governance overhead as % of engineering throughput | < 15% | > 25% for two consecutive quarters | Audit which governance artifacts are actually influencing decisions; remove what isn't |
 | False-positive rate on hook blocks | < 5% | > 15% | Rules are over-restrictive; refine with domain input |
 | Time-to-update-governance-policy | < 2 weeks for standard changes | > 6 weeks | Governance model is too rigid; simplify change management path for low-risk policy updates |

@@ -3,22 +3,39 @@
 *The technical infrastructure for governed delivery and organizational change
 guidance for every phase transition.*
 
-Read the [Manifesto](manifesto.md) for the core principles.
-See the [Adoption Playbook](adoption-playbook.md) for the full table of contents.
-See the [Roles and the Human Side](adoption-roles.md) for how roles evolve
-during the transition.
+Read the [Manifesto](manifesto.md) for the core principles.  See the [Adoption
+Playbook](adoption-playbook.md) for the full table of contents.  See the [Roles
+and the Human Side](adoption-roles.md) for how roles evolve during the
+transition.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
 tier definitions are in [manifesto-principles.md](manifesto-principles.md).
 Phase transition criteria and go/no-go thresholds in this document are
-*heuristics* — calibrate to local domain and baseline before applying.
-See [glossary.md](glossary.md) for canonical term definitions.
+*heuristics* — calibrate to local domain and baseline before applying.  See
+[glossary.md](glossary.md) for canonical term definitions.
 
 > **For V-model organizations:** If your organization operates a traditional
 > V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
 > regulated financial services), see [adoption-vmodel.md](adoption-vmodel.md)
 > for a V-model-specific variant of this adoption path that preserves your
 > existing verification structure while transitioning to agentic execution.
+
+> **ASDLC context:** The phases and transitions described in this document are
+> **Layer 2 maturity phases** — the maturity of the engineering execution loop,
+> as defined in the [Agentic Engineering Manifesto](manifesto.md). A team at
+> Phase 5 of the inner loop has highly mature engineering execution. That does
+> not imply maturity in the demand layer (how well business needs are validated
+> before entering the loop), the release layer (how governed the path to
+> production is), or the operations layer (how well the team can maintain and
+> operate what has been delivered). Those layers have their own maturity
+> assessment, covered in the [ASDLC](asdlc.md).
+>
+> Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
+> delivery in at least one domain) before investing heavily in outer-layer
+> governance. A team with no reliable inner loop cannot benefit from improved
+> demand management or release governance — those investments require a working
+> execution engine to govern. The correct sequence is: prove the inner loop,
+> then extend outward.
 
 ---
 
@@ -27,14 +44,14 @@ See [glossary.md](glossary.md) for canonical term definitions.
 This section describes the technical infrastructure you build to support
 governed agentic delivery. It assumes your team is at or approaching Phase 3
 (agents executing autonomously) and wants to reach Phase 4 and beyond. If you
-are at Phase 1 or 2, start with the
-[Phase Transitions](#organizational-change-by-phase-transition) section below
-— it covers the organizational changes needed before this infrastructure
-makes sense.
+are at Phase 1 or 2, start with the [Phase
+Transitions](#organizational-change-by-phase-transition) section below — it
+covers the organizational changes needed before this infrastructure makes
+sense.
 
 The seven steps below roughly map to the Phase 3→4 transition (Steps 1–3), the
-Phase 4→5 transition (Steps 4–6), and ongoing expansion (Step 7). Each step
-is described at the level of what you actually need to do — not just what the
+Phase 4→5 transition (Steps 4–6), and ongoing expansion (Step 7). Each step is
+described at the level of what you actually need to do — not just what the
 target state looks like.
 
 ### Step 1: Define Domain Boundaries and Autonomy Tiers
@@ -47,8 +64,8 @@ these as infrastructure-level permissions, not prompt instructions.
 **Who leads:** Tech leads, with input from security and operations.
 
 **Minimum viable version:** Start with one domain. Define Tier 1 only for the
-first pilot domain (agents can analyze and propose, zero blast radius). This is safe, reversible, and
-immediately useful as a learning exercise.
+first pilot domain (agents can analyze and propose, zero blast radius). This is
+safe, reversible, and immediately useful as a learning exercise.
 
 **Timeline:** 2-4 weeks for initial domain mapping. Ongoing refinement.
 
@@ -70,8 +87,8 @@ minutes per PR, not hours.
 **Timeline:** 1-2 weeks to configure CI gates. 1-2 sprints to normalize.
 
 **Success signal:** No agent-generated change merges without an evidence
-bundle. Engineers stop saying "the agent said it worked" and start pointing
-at evidence.
+bundle. Engineers stop saying "the agent said it worked" and start pointing at
+evidence.
 
 ### Step 3: Add Regression Gates Before Expanding Autonomy
 
@@ -83,13 +100,13 @@ evaluation performance. Failed evaluations block merge.
 
 **Minimum viable version:** Start with existing tests. Add behavioral
 regression tests for the most common agent failure patterns in your domain.
-Ten well-chosen regression cases are more valuable than a hundred
-boilerplate tests.
+Ten well-chosen regression cases are more valuable than a hundred boilerplate
+tests.
 
 **Timeline:** 2-4 weeks for initial suite. Continuous expansion.
 
-**Success signal:** Escaped defect rate for agent-generated changes is equal
-to or lower than for human-generated changes.
+**Success signal:** Escaped defect rate for agent-generated changes is equal to
+or lower than for human-generated changes.
 
 ### Step 4: Add Adversarial and Security Evaluations on Exposed Surfaces
 
@@ -110,18 +127,17 @@ without adversarial evaluation coverage.
 agent tasks, build the coordination substrate that prevents duplicate work,
 orphaned tasks, and post-restart divergence. The minimum infrastructure:
 
-- **Work ledgers**: A single source of truth for what tasks are active, claimed,
-  completed, or abandoned. Without this, concurrent agents duplicate effort or
-  leave work silently unfinished.
+- **Work ledgers**: A single source of truth for what tasks are active,
+  claimed, completed, or abandoned. Without this, concurrent agents duplicate
+effort or leave work silently unfinished.
 - **Lease-based task ownership**: Agents claim tasks with time-bounded leases.
   If an agent crashes or stalls, the lease expires and the task becomes
-  available for reassignment. Without leases, orphaned tasks accumulate
-  silently.
-- **Restart-safe handoffs**: Agent state must survive restarts. If an agent
-  is interrupted mid-task, the next agent (or the same agent after restart)
-  must be able to resume from a well-defined checkpoint rather than starting
-  over. Design for replay safety: re-executing a handoff must produce the same
-  result, not duplicate side effects.
+available for reassignment. Without leases, orphaned tasks accumulate silently.
+- **Restart-safe handoffs**: Agent state must survive restarts. If an agent is
+  interrupted mid-task, the next agent (or the same agent after restart) must
+be able to resume from a well-defined checkpoint rather than starting over.
+Design for replay safety: re-executing a handoff must produce the same result,
+not duplicate side effects.
 
 **Who leads:** Platform/infrastructure engineers.
 
@@ -143,9 +159,9 @@ integrity constraint, authentication flow) and add machine-checkable contracts
 verification — it is contract-first development on a narrow scope.
 
 **Who leads:** Senior engineers with architecture responsibility. May require
-external expertise in formal methods — see the
-[Skill Requirements table](companion-reference.md#skill-requirements-by-principle)
-in the Companion Guide.
+external expertise in formal methods — see the [Skill Requirements
+table](companion-reference.md#skill-requirements-by-principle) in the Companion
+Guide.
 
 **Timeline:** 4-8 weeks for initial pilot.
 
@@ -154,38 +170,38 @@ contract-violating changes over the pilot period.
 
 ### Step 7: Expand Only When Incident Rate and Economics Improve
 
-**What to do:** Before expanding agent autonomy (promoting from Tier 1 to
-Tier 2, or from one domain to multiple domains), verify that the current scope
-is working: incident rate is flat or declining, total cost of correctness is
+**What to do:** Before expanding agent autonomy (promoting from Tier 1 to Tier
+2, or from one domain to multiple domains), verify that the current scope is
+working: incident rate is flat or declining, total cost of correctness is
 acceptable, and governance overhead is sustainable.
 
 **Who leads:** Engineering leadership with input from operations and finance.
 
 **Expansion criteria:** Incident rate stable or improving for two consecutive
-quarters. Total cost of correctness declining per outcome. Human oversight
-load (reviews per domain owner) is sustainable.
+quarters. Total cost of correctness declining per outcome. Human oversight load
+(reviews per domain owner) is sustainable.
 
 ---
 
 ## Organizational Change by Phase Transition
 
-The manifesto defines six maturity phases. The
-[Companion Guide](companion-frameworks.md#the-agentic-maturity-spectrum) provides
-full definitions and failure modes for each. Here is a summary for reference:
+The manifesto defines six maturity phases. The [Companion
+Guide](companion-frameworks.md#the-agentic-maturity-spectrum) provides full
+definitions and failure modes for each. Here is a summary for reference:
 
 - **Phase 1 — Guided Exploration.** Single prompts, no structure, no memory.
 - **Phase 2 — Assisted Delivery.** AI as autocomplete; humans execute.
 - **Phase 3 — Agentic Prototyping.** Agents execute within a single session;
   limited verification.
-- **Phase 4 — Agentic Delivery.** Basic guardrails: autonomy tiers,
-  evaluation gates, persistent memory. Single-domain.
+- **Phase 4 — Agentic Delivery.** Basic guardrails: autonomy tiers, evaluation
+  gates, persistent memory. Single-domain.
 - **Phase 5 — Agentic Engineering.** Structured autonomy at scale.
   Multi-domain, evidence-driven, continuous Agentic Loop.
-- **Phase 6 — Adaptive Systems.** Self-improving infrastructure within
-  governed boundaries. Frontier capabilities required.
+- **Phase 6 — Adaptive Systems.** Self-improving infrastructure within governed
+  boundaries. Frontier capabilities required.
 
-Each transition below describes what changes organizationally, what actions
-to take, and what makes the transition hard.
+Each transition below describes what changes organizationally, what actions to
+take, and what makes the transition hard.
 
 ### Investment and Organizational Sizing by Phase
 
@@ -197,7 +213,7 @@ technical steps:
 Calibrate all phase-transition metrics to domain baseline and incident history.
 
 | Phase transition | Typical investment | Team change | Primary cost driver | ROI signal |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Phase 1→2** | Tooling licenses (low); process standardization (1–2 weeks engineering time) | No new roles; existing team adopts AI tools | Tool cost + standardization overhead | Cycle time reduction on AI-assisted tasks; measurable in weeks |
 | **Phase 2→3** | Specification training (1–3 weeks); review process redesign | No new roles; senior engineers develop specification discipline | Senior engineer time on specification + review patterns | Reviewable agent output without excessive rework |
 | **Phase 3→4** | CI/CD evidence pipeline (4–8 weeks engineering); evaluation suite build (4–8 weeks QA); domain boundary encoding (2–4 weeks tech lead) | Add: QA lead owning evaluations; explicit domain owners | Evaluation suite build is the primary investment | Escaped defect rate ≤ human baseline; evidence completeness ≥95% |
@@ -205,50 +221,48 @@ Calibrate all phase-transition metrics to domain baseline and incident history.
 | **Phase 5→6** | Formal methods expertise (targeted, time-bounded); independent audit paths; self-improvement governance | Formal verification specialists (targeted hire or consultant); independent validation function | Specialized expertise and governance overhead for self-improving systems | Phase 6 is a frontier, not a universal target — assess only when Phase 5 is fully stable across all critical domains |
 
 **Decision discipline:** Do not fund the next phase until the current phase has
-produced evidence that justifies it. If the go/no-go signals fail for two review
-cycles, freeze expansion and re-baseline before proceeding. This is not conservatism — it is the
-mechanism that prevents the most common failure: organizations that invest in
-Phase 4 governance infrastructure before Phase 3 evidence exists that agents
-produce reviewable output. The infrastructure becomes bureaucracy, teams lose
-confidence, and the initiative stalls.
+produced evidence that justifies it. If the go/no-go signals fail for two
+review cycles, freeze expansion and re-baseline before proceeding. This is not
+conservatism — it is the mechanism that prevents the most common failure:
+organizations that invest in Phase 4 governance infrastructure before Phase 3
+evidence exists that agents produce reviewable output. The infrastructure
+becomes bureaucracy, teams lose confidence, and the initiative stalls.
 
 ---
 
 ### Phase 1 → 2: From Exploration to Assisted Delivery
 
 **What changes:** You move from unstructured experimentation ("let's see what
-ChatGPT can do") to repeatable AI-assisted workflows where humans remain in
-the loop for every action. Agents go from novelty to daily tool.
+ChatGPT can do") to repeatable AI-assisted workflows where humans remain in the
+loop for every action. Agents go from novelty to daily tool.
 
 This transition matters to the manifesto because it builds the foundation for
-two things that every later phase depends on: the habit of evaluating AI
-output critically (the seed of Principle 8 — Evaluations), and the
-organizational muscle of defining what tools may and must not do (the seed of
-Principle 5 — Autonomy). Teams that skip Phase 2 arrive at Phase 3 with no
-discipline around either, and Phase 3 is where the consequences start
-compounding.
+two things that every later phase depends on: the habit of evaluating AI output
+critically (the seed of Principle 8 — Evaluations), and the organizational
+muscle of defining what tools may and must not do (the seed of Principle 5 —
+Autonomy). Teams that skip Phase 2 arrive at Phase 3 with no discipline around
+either, and Phase 3 is where the consequences start compounding.
 
 **Organizational actions:**
 - Identify the tasks where AI assistance delivers consistent value (code
-  completion, test generation, documentation drafting) and standardize
-  tooling around them
-- Establish basic usage guidelines: what models are approved, what data may
-  be shared with them, what outputs require human review before use
+  completion, test generation, documentation drafting) and standardize tooling
+around them
+- Establish basic usage guidelines: what models are approved, what data may be
+  shared with them, what outputs require human review before use
 - Begin measuring where AI assistance actually saves time versus where it
-  creates rework — intuition is unreliable here; this is your first
-  encounter with the economics principle (Principle 11) at the simplest
-  possible scale
-- Run a lightweight retrospective: which experiments from Phase 1 produced
-  real value, and which were demos that impressed but didn't stick?
+  creates rework — intuition is unreliable here; this is your first encounter
+with the economics principle (Principle 11) at the simplest possible scale
+- Run a lightweight retrospective: which experiments from Phase 1 produced real
+  value, and which were demos that impressed but didn't stick?
 
 **The hard part:** The organizational challenge is not technical — it is
 cultural. Phase 1 generates enthusiasm and a sense of possibility. Phase 2
 demands that you kill the experiments that felt exciting but don't produce
 repeatable value. Teams that skip this curation step carry forward a scattered
-toolset of one-off prompts and ad-hoc workflows that no one else can
-reproduce. Worse, they develop a false confidence that "we're already doing
-AI" which becomes a barrier to the deeper changes Phase 3 requires. This is
-primarily a curation and standardization exercise, not a technical build.
+toolset of one-off prompts and ad-hoc workflows that no one else can reproduce.
+Worse, they develop a false confidence that "we're already doing AI" which
+becomes a barrier to the deeper changes Phase 3 requires. This is primarily a
+curation and standardization exercise, not a technical build.
 
 ### Phase 2 → 3: From Assisted Delivery to Agentic Prototyping
 
@@ -258,29 +272,28 @@ human stops typing every line and starts delegating whole tasks. This is the
 moment the team realizes prompting is not engineering.
 
 **Organizational actions:**
-- Select 2-3 bounded tasks where agents can execute end-to-end within a
-  session (e.g., generate a module from a spec, write a test suite for an
-  existing component, refactor a file according to a style guide)
+- Select 2-3 bounded tasks where agents can execute end-to-end within a session
+  (e.g., generate a module from a spec, write a test suite for an existing
+component, refactor a file according to a style guide)
 - Require human review of every agent-generated output before merge — no
-  exceptions. At this phase, the agent has no memory, no verification
-  pipeline, and no guardrails beyond the prompt
-- Begin documenting failure patterns: where agents hallucinate, where they
-  miss edge cases, where they produce plausible-looking code that fails
-  silently. This documentation becomes the seed for your evaluation suite
-  in Phase 4
+  exceptions. At this phase, the agent has no memory, no verification pipeline,
+and no guardrails beyond the prompt
+- Begin documenting failure patterns: where agents hallucinate, where they miss
+  edge cases, where they produce plausible-looking code that fails silently.
+This documentation becomes the seed for your evaluation suite in Phase 4
 - Start writing specifications with explicit acceptance criteria, even if
-  informally. The habit of defining "what does done look like" before the
-  agent starts is the single most important skill for everything that follows
+  informally. The habit of defining "what does done look like" before the agent
+starts is the single most important skill for everything that follows
 
 **The hard part:** The supervision paradox hits here for the first time.
-Reviewing agent-generated code is harder than writing it yourself — you
-inherit output without context. Teams that don't acknowledge this will either
+Reviewing agent-generated code is harder than writing it yourself — you inherit
+output without context. Teams that don't acknowledge this will either
 rubber-stamp agent output (creating quality risk) or reject the workflow
 entirely (losing the productivity gain). Neither is acceptable. The answer is
 better specifications and the beginning of structured evaluation, which is
 exactly what Phase 4 formalizes. Expect this transition to take longer than
-Phase 1→2 — your team is moving from "AI suggests, I decide" to "AI
-executes, I verify," and learning to verify well takes practice.
+Phase 1→2 — your team is moving from "AI suggests, I decide" to "AI executes, I
+verify," and learning to verify well takes practice.
 
 ### Phase 3 → 4: Governed Delivery Foundation
 
@@ -293,8 +306,8 @@ executes, I verify," and learning to verify well takes practice.
 - Standardize incident classification and rollback drills
 - Begin tracking evidence bundle completeness and escaped defect rate
 
-**The hard part:** Convincing teams that the evidence overhead is worth it
-when they're already shipping faster than ever. The acceleration trap makes
+**The hard part:** Convincing teams that the evidence overhead is worth it when
+they're already shipping faster than ever. The acceleration trap makes
 governance feel like a brake. Frame it as insurance, not bureaucracy: the
 evidence bundle is what lets you expand autonomy later. Without it, you're
 stuck at Phase 3 forever. Start with a single domain; parallel rollout across
@@ -310,17 +323,16 @@ because it requires organizational change, not just tooling.
 - Establish shared evaluation registry and trace standards
 - Create platform ownership for agent runtime, routing, and memory governance
 - Formalize security reviews for tools, connectors, and shared state
-- Invest in the "Rare" skills identified in the Companion Guide's
-  [Skill Requirements table](companion-reference.md#skill-requirements-by-principle):
-  distributed systems design, memory governance, ML/retrieval engineering,
-  chaos engineering
+- Invest in the "Rare" skills identified in the Companion Guide's [Skill
+  Requirements table](companion-reference.md#skill-requirements-by-principle):
+distributed systems design, memory governance, ML/retrieval engineering, chaos
+engineering
 
-**The hard part:** This transition often requires new roles or
-responsibilities that don't exist in the current org chart. "Platform
-ownership for agent runtime" is not something most organizations have. You
-are creating infrastructure categories, not just adopting tools. This is not
-a sprint goal — it is an organizational redesign that unfolds over multiple
-quarters.
+**The hard part:** This transition often requires new roles or responsibilities
+that don't exist in the current org chart. "Platform ownership for agent
+runtime" is not something most organizations have. You are creating
+infrastructure categories, not just adopting tools. This is not a sprint goal —
+it is an organizational redesign that unfolds over multiple quarters.
 
 ### Phase 5 → 6: Adaptive Frontier
 

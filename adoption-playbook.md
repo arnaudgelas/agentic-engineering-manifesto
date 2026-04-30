@@ -39,7 +39,7 @@ Agentic engineering adoption is stage-gated investment, not a single project.
 Each phase transition has a distinct investment profile and return horizon:
 
 | Phase transition | Investment character | Return horizon | Key go/no-go signal |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Phase 1→2** (exploration → assisted delivery) | Low: tooling licenses, standardization time | Immediate: measurable cycle time reduction on assisted tasks | AI suggestions accepted at a materially positive rate without increasing rework |
 | **Phase 2→3** (assisted → agentic prototyping) | Low-medium: specification discipline, review process | 1–2 months | Agent outputs consistently reviewable; rework rate tracked |
 | **Phase 3→4** (prototyping → governed delivery) | Medium: evidence pipeline, evaluation suite, domain boundary encoding | 2–4 months | Evidence completeness ≥95%; escaped defect rate ≤ human baseline |
@@ -115,7 +115,7 @@ machine-speed, evidence-based execution. These are starting points, not mandates
 Adapt to the team's phase maturity and domain constraints.
 
 | Agile Ceremony | Intent | Agentic Equivalent | Mechanism |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Sprint Planning** | Agree on scope and how to build it | **Spec Refinement & Tier Assignment** | Domain owner and leads convert backlog items into machine-readable specifications with autonomy tier assignments and blast-radius classifications. Ambiguous items are decomposed until unambiguous — not estimated. The plan artifact is a specification, not a story-point count. |
 | **Daily Standup** | Synchronize status and surface blockers | **Trace Audit & Anomaly Review** | Daily review of structured traces from the prior period. Tasks with unexpected tool calls, evaluation failures, or cost spikes are flagged for root-cause. The traces are the status; there is no verbal report. The review surfaces behavioral drift before it compounds into a hallucination loop. |
 | **Sprint Review** | Demonstrate completed work to stakeholders | **Evidence Bundle Review** | Completed work is presented via evidence bundles: diffs, trace IDs, evaluation results, policy check outputs. Stakeholders review outcomes and audit quality, not demos. "The agent said it worked" does not pass review. |
