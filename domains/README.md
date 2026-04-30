@@ -70,7 +70,7 @@ standards-body guidance, or regulatory precedent is needed. Each question
 links to the domain that has developed the most specific framing.
 
 | # | Question | Domains Affected | Status |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | **Agent-as-tool qualification**: Is an AI agent SOUP (IEC 62304), an unqualified tool (DO-178C/DO-330), a GAMP Cat 3/4 system, or a new category requiring new classification frameworks? No domain has a settled answer. | All | Open — each domain uses the "treat as unqualified tool, independently verify output" pragmatic approach pending regulatory guidance |
 | 2 | **Model version change revalidation scope**: When the underlying model is updated (e.g., model version bump by the provider), what revalidation is required? Does a minor version change trigger full re-IQ/OQ/PQ? Full independent model validation? Or only a behavioral regression test? | Medical, Pharma, Financial | Open — PCCP (FDA) partially addresses anticipated modifications but not infrastructure-level model changes |
 | 3 | **Memory accumulation as a change control event**: At what point does accumulated learned memory constitute a change to a validated system? No domain has a threshold or methodology. | Pharma (most developed), Medical, Financial | Open — GAMP 5 open question; no regulatory body has published guidance |

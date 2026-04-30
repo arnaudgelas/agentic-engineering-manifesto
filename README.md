@@ -39,7 +39,7 @@ playbook, and domain-specific regulatory alignment for six industries.
 ## Six Values
 
 | We value more | over | We also value |
-|---|---|---|
+| --- | --- | --- |
 | Iterative steering and alignment | | Rigid upfront specifications |
 | Verified outcomes with auditable evidence | | Fluent assertions of success |
 | Right-sized agent collaboration | | Monolithic god-agents |
@@ -82,7 +82,7 @@ The loop is the system. The principles are how you keep it honest.
 ## Who Is This For?
 
 | If you are | Start with |
-|---|---|
+| --- | --- |
 | New to agentic engineering | [Beyond Agile](beyond_agile.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption-playbook.md) |
 | A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Principle Guidance](companion-principles.md) → [Patterns](companion-patterns.md) → [Adoption Path](adoption-path.md) |
 | An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile-landscape.md) → [Adoption Roles](adoption-roles.md) → [Metrics](adoption-metrics.md) |

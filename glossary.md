@@ -18,6 +18,21 @@ tools, and produce outputs without step-by-step human instruction. Agents are
 treated as system participants with defined scope and governed autonomy, not as
 human proxies. Agents operate within autonomy tiers set by human governance.
 
+**Agent incident classification**
+The five categories of production incidents specific to agent products: quality,
+behavioral, safety, persona, and adversarial. Defined in `agent-operations.md`.
+
+**Agent product**
+An agent or agentic system deployed to serve a business purpose directly, where
+the agent itself is the deliverable (not software produced by agents). Examples:
+a claims processing agent, a regulatory reporting agent, a customer advisory
+agent.
+
+**Agent Product Brief**
+The Stage 1 output of the APLC: business purpose, user model, trust
+architecture, persona design, regulatory classification, and success criteria
+for an agent product. Defined in `agent-conception.md`.
+
 **Agentic engineering**
 The discipline of architecting environments, constraints, protocols, and feedback
 loops in which autonomous agents can safely plan, execute, and verify complex
@@ -31,27 +46,58 @@ The core feedback cycle: Specify → Design → Plan → Execute → Verify → 
 earlier phase on evidence. See [manifesto.md](manifesto.md#the-agentic-loop) for
 the full description and feedback arrows.
 
+**APLC**
+Agentic Product Lifecycle. The seven-stage framework governing agent systems
+delivered as products: Conceive, Specify Behaviorally, Build & Evaluate,
+Release, Operate, Maintain, Retire. Positions the manifesto as its engineering
+execution engine for the Build stage.
+
+**ASDLC**
+Agentic Software Delivery Lifecycle. The four-layer framework (Demand & Value,
+Engineering Execution, Release & Deployment, Operations & Maintenance) that
+positions the Agentic Engineering Manifesto as its engineering execution layer
+for software delivery.
+
 **Audit trail**
 The immutable, tamper-evident record of agent actions, tool calls, and decisions
 required for post-incident diagnosis and regulatory compliance. Audit trails are
 infrastructure concerns — agents must not have write access to their own audit
 trail. See also: *trace*.
 
-**Autonomy tier**
-One of three levels of authorized agent action:
+**Autonomy tier** One of three levels of authorized agent action:
 - **Tier 1 (Observe)** — read-only; output is advisory only; no changes without
   explicit human approval.
 - **Tier 2 (Branch)** — agents may act in isolated or sandboxed environments;
   changes require human review before merging or deploying.
 - **Tier 3 (Commit)** — agents may act in production or commit directly, with
-  verified rollback capability. The domain owner retains accountability for
-  all Tier 3 actions.
-Tier assignment is a governance decision driven by blast radius, reversibility,
-and confidence maturity. See [Tier Assignment Decision Checklist](companion-principles.md#tier-assignment-decision-checklist).
+  verified rollback capability. The domain owner retains accountability for all
+Tier 3 actions.  Tier assignment is a governance decision driven by blast
+radius, reversibility, and confidence maturity. See [Tier Assignment Decision
+Checklist](companion-principles.md#tier-assignment-decision-checklist).
 
 ---
 
 ## B
+
+**Behavioral baseline**
+The measured behavioral profile of a deployed agent, established at release and
+used to detect drift. Defined in `agent-release-governance.md`.
+
+**Behavioral drift**
+A change in an agent product's behavior over time not caused by an intentional
+update. May result from foundation model updates, knowledge base changes, memory
+accumulation, or input distribution shift. Governed by APLC Stage 6.
+
+**Behavioral release gate**
+The APLC Stage 3→4 interface: the conditions an agent product must satisfy before
+production release, including behavioral baseline documentation, red-team
+clearance, and composite state manifest. Defined in
+`agent-release-governance.md`.
+
+**Behavioral specification**
+The Stage 2 output of the APLC: the behavioral envelope, use-case coverage map,
+uncertainty protocol, and escalation design for an agent product. Extends the
+companion-re-framework vocabulary to the product level.
 
 **Blast radius**
 The maximum credible impact if an agent acts incorrectly: scope of data affected,
@@ -63,12 +109,18 @@ per task class, not per agent.
 
 ## C
 
-**Constraint** (vs. *specification*)
-A requirement that governs the boundaries of what the system may do, typically
-safety, compliance, or architectural in nature. Constraints require a governed
-review process to relax; they do not evolve within an iteration. Contrast with
-*specification*, which may be refined as evidence accumulates within an iteration.
-See [Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints).
+**Composite agent state**
+The five components that together constitute what an agent "is" at any point in
+time: application code, system prompt, foundation model version, knowledge base
+version, and memory state. Relevant to versioning and incident investigation.
+Defined in `agent-composite-versioning.md`.
+
+**Constraint** (vs. *specification*) A requirement that governs the boundaries
+of what the system may do, typically safety, compliance, or architectural in
+nature. Constraints require a governed review process to relax; they do not
+evolve within an iteration. Contrast with *specification*, which may be refined
+as evidence accumulates within an iteration.  See [Specifications vs.
+Constraints](companion-principles.md#specifications-vs-constraints).
 
 **Context window**
 The bounded working memory visible to a model at inference time: the accumulated
@@ -86,6 +138,10 @@ The agentic DoD requires a change to be: shipped, observable, verified, provable
 (when risk requires it), learned from, governed, and economical. The DoD is
 phase-calibrated — the bar rises with phase maturity and risk level.
 See [manifesto-done.md](manifesto-done.md).
+
+**Demand backlog**
+The managed queue of validated business needs awaiting specification and loop
+entry. Governed by ASDLC Layer 1.
 
 **Domain boundary**
 An enforced architectural perimeter that constrains which agents may access which
@@ -130,6 +186,15 @@ evidence bundles also include formal proof artifacts for critical workflows.
 
 ---
 
+## F
+
+**Foundation model update governance**
+The process of detecting, assessing, and accepting or rejecting a foundation
+model provider update in a deployed agent product. Defined in
+`agent-maintenance.md`.
+
+---
+
 ## G
 
 **Governance**
@@ -161,9 +226,20 @@ provenance metadata, TTLs (expiration), conflict resolution rules, and promotion
 criteria to become *skill memory*. Learned memory is probabilistically derived
 and may be incorrect; it requires governance to prevent drift.
 
+**Loop-ready specification**
+A specification that has passed the specification readiness gate and is ready to
+enter the Agentic Loop's Specify phase. See `specification-readiness.md`.
+
 ---
 
 ## O
+
+**Operational DoD**
+The ASDLC Layer 4 Definition of Done. Defined in `operations-dod.md`.
+
+**Operational readiness gate**
+The ASDLC Layer 3→4 interface: the conditions a deployed system must satisfy
+before it is considered operationally ready.
 
 **Orchestrator**
 An agent responsible for decomposing a task, delegating subtasks to specialist
@@ -197,6 +273,19 @@ of domain boundaries and tool allowlists, not prompt-level defenses alone.
 
 ## R
 
+**Red-team protocol**
+Structured adversarial testing of an agent product's behavioral boundaries:
+prompt injection, persona break attempts, behavioral envelope probing. A
+required evaluation practice before release. Defined in
+`agent-behavioral-evaluation.md`.
+
+**Release DoD**
+The ASDLC Layer 3 Definition of Done. Defined in `release-governance.md`.
+
+**Release gate**
+The ASDLC Layer 2→3 interface: the conditions a loop output must satisfy before
+it can enter the release layer for production deployment.
+
 **Rollback gate**
 An infrastructure-enforced checkpoint that requires verified rollback capability
 before an action is authorized at Tier 3. A rollback gate confirms that (a) the
@@ -221,6 +310,15 @@ the Specify phase and the governing document for the Verify phase. Contrast with
 *constraint*, which bounds what the system may do and requires governed review
 to change.
 
+**Specification readiness gate**
+The ASDLC Layer 1→2 interface: the set of conditions a business need must
+satisfy before it can enter the Agentic Loop as a specification.
+
+**Steward**
+The named human accountable for a system's maintenance, long-term health, and
+eventual deprecation. Distinct from the accountable human at deployment time
+(P12).
+
 **Swarm**
 An orchestrated collection of multiple agents, each with a bounded scope,
 collaborating to complete a task that exceeds a single agent's context or
@@ -240,6 +338,11 @@ post-incident analysis. Contrast with *audit trail*: traces capture agent
 reasoning; audit trails capture the tamper-evident event record for compliance.
 In practice, traces feed the audit trail — they are not the same artifact.
 
+**Trust model**
+The design of who can instruct an agent product to do what, at what authority
+level, and under what conditions. A Stage 1 (Conceive) design decision. Defined
+in `agent-conception.md`.
+
 ---
 
 ## V
@@ -250,6 +353,10 @@ right thing? Validation is the Validate phase of the Agentic Loop. It asks
 whether the specification itself was correct, not whether the implementation
 matches the specification. An agent can pass every verification check and still
 fail validation. See also: *verification*.
+
+**Value realisation**
+The business-level outcome measured post-deployment against the success
+criterion defined at the specification readiness gate.
 
 **Verification** (vs. *validation*)
 The check that the implementation satisfies the specification: did we build it

@@ -219,7 +219,7 @@ review record, retrospective audit findings.
 **Classification criteria examples:**
 
 | Rule | Classification |
-|---|---|
+| --- | --- |
 | Touches `src/pricing/**` | High-risk |
 | Touches `src/claims/**` | High-risk |
 | Modifies a database schema | High-risk (cross-domain impact) |
@@ -346,7 +346,7 @@ reporting, and recovery across regulated environments. Domain-specific
 calibrations are listed below.
 
 | Severity | Definition | Recovery Expectation | Regulatory Trigger |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Severity 1** | Agent takes unauthorized action with external impact (customer accounts, patient data, regulatory submissions, safety-critical systems) | Immediate containment; production rollback; root cause analysis with executive sign-off | Mandatory regulatory notification in most domains (DORA Art. 17-23; MDR Art. 87; ITAR incident reporting) |
 | **Severity 2** | Agent produces incorrect output detected before downstream impact; indicates a control failure (evaluation gate missed, tier enforcement bypassed) | Same-day diagnosis; evidence bundle with root cause; governance review of the failed control | Internal incident record; potential regulatory disclosure depending on data type affected |
 | **Severity 3** | Agent performance degradation (latency, accuracy drift, increasing evaluation failure rate) detected through monitoring; within tolerance thresholds | Diagnosis within 24h; specification or tier adjustment if root cause identified | Typically internal; may trigger DORA notification if threshold-breaching degradation continues |
