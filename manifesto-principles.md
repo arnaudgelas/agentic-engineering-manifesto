@@ -227,6 +227,12 @@ governance level; permissions define the allowed actions within that level.
 *Minimum bar: If you cannot reconstruct an agent's reasoning at any tier, your
 autonomy model has failed.*
 
+*Minimum bar (tool authorization): If an agent can invoke tools that have not
+been explicitly authorized for its operating tier, the tier model is nominal.
+Tool access is part of the permission model — not a separate concern. A tool
+that a Tier 1 agent can call without authorization is a tier violation
+regardless of whether the agent chooses to call it.*
+
 *Minimum bar (Tier 4): If the policy envelope is not machine-enforced, if
 control evaluations are not passing, or if governance observability is not
 instrumented, Tier 4 operation is not permitted regardless of phase.*
@@ -309,6 +315,15 @@ when they fail:
 - **Audit trail gap** — "what version of memory was active when this decision
   was made?" requires point-in-time snapshots, not just current state, for
   meaningful incident reconstruction.
+- **Knowledge contamination** — agent-generated content enters the knowledge
+  base through governed processes (commits, ADRs, documentation PRs) and is
+  subsequently retrieved in future context with the same epistemic authority as
+  human-authored knowledge. Mitigate by requiring provenance labeling of all
+  agent-authored artefacts at commit time — the label travels with the artefact
+  through versioning and retrieval so that consumers can apply appropriate
+  epistemic weight. An unlabeled agent-authored ADR retrieved as authoritative
+  knowledge is a failure mode that bypasses both memory governance and retrieval
+  quality controls.
 
 *Minimum bar: If memory cannot expire, be rolled back, or show provenance, it is
 not memory — it is a liability. And if memory is not revalidated against current
@@ -456,15 +471,29 @@ that must be threat-modeled before granting autonomy beyond Tier 1:
 
 - **Prompt injection** — adversarial content in retrieval artifacts, tool
   responses, or code patterns that redirects agent behavior without the
-  operator's knowledge.
+  operator's knowledge. Mitigate by treating all tool responses, retrieval
+  artifacts, and agent-to-agent messages as untrusted input subject to input
+  schema validation before processing. If the agent runtime cannot enforce an
+  input boundary between external content and internal instruction, prompt
+  injection is structurally enabled.
 - **Privilege escalation** — chained agent calls that accumulate permissions
   no single call would be granted under least-privilege policy.
 - **Data exfiltration** — tool calls that surface sensitive data to outputs
-  that are not fully inspected or logged.
+  that are not fully inspected or logged. Mitigate with egress controls on tool
+  outputs — agent outputs that include retrieved or generated content must be
+  logged with full trace before leaving the trust boundary. A system where
+  output channels are not fully inspected and logged has no exfiltration
+  defense.
 - **Supply chain attacks** — poisoned tool registries, model adapters, or
-  retrieval sources that corrupt agent behavior at ingestion time.
+  retrieval sources that corrupt agent behavior at ingestion time. Mitigate by
+  pinning tools to verified manifests — checksum or signing verification against
+  a known-good registry. A tool added to the manifest without integrity
+  verification is an uncontrolled dependency.
 - **Social engineering** — AI-generated outputs crafted to pass human reviewer
-  scrutiny by exploiting reviewer trust in fluent, confident text.
+  scrutiny by exploiting reviewer trust in fluent, confident text. Mitigate by
+  surfacing primary artefacts as the default review interface for any
+  human-approval decision. An approval workflow whose default view is an
+  agent-authored summary is structurally vulnerable to this attack.
 
 Treat every retrieval artifact, tool response, and agent-to-agent message as
 untrusted input. Defense-in-depth means identity for agents and tools, signed

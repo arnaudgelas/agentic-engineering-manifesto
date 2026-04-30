@@ -91,8 +91,12 @@ based on evidence. The loop is the system. The principles are how you keep it ho
   signals Specify to simplify scope or reduce autonomy rather than continuing
   to spend. A Govern cycle is not complete until: all outstanding policy
   violations are resolved, accountability signals are within threshold (no
-  rubber-stamping pattern detected), economics review is recorded, and any
-  architectural decisions triggered by governance are filed back into Design.
+  rubber-stamping pattern detected), economics review is recorded, any
+  architectural decisions triggered by governance are filed back into Design,
+  and tool invocations during the loop are confirmed within the authorized
+  scope for the operating tier — any out-of-scope tool call is classified as
+  a policy violation and triggers the remediation sub-cycle before the loop
+  repeats.
 
 ### What the Loop Produces
 
