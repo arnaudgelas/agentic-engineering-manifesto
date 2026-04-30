@@ -380,14 +380,16 @@ diffs, or interpreting constraints inconsistently.
 
 ### Setting Tier Boundaries
 
-The manifesto defines three tiers (Observe, Branch, Commit), but choosing where
-to draw the boundaries for your organization is the harder problem. Tier
-assignment should be driven by three factors:
+The manifesto defines four tiers (Observe, Branch, Commit, Operate), but
+choosing where to draw the boundaries for your organization is the harder
+problem. Tier assignment should be driven by three factors:
 
 - **Blast radius**: What is the maximum credible impact if the agent acts
   incorrectly? Tier 1 (Observe) for actions with no production impact. Tier 2
   (Branch) for actions contained to isolated environments. Tier 3 (Commit) only
-  for production-impacting actions with verified rollback.
+  for production-impacting actions with verified rollback. Tier 4 (Operate) only
+  within a machine-enforced policy envelope with passing control evaluations and
+  active governance observability.
 - **Reversibility**: How quickly and completely can you undo a wrong action?
   Fast, clean rollback justifies higher autonomy. Irreversible actions (data
   deletion, external API calls, customer-facing communications) demand stricter
@@ -409,7 +411,8 @@ current tier. The protocol for tier escalation must be explicit:
    action it needs, why, what evidence supports the request, and what the blast
    radius would be.
 2. The system routes the request to the appropriate approver (automated policy
-   check for Tier 1→2, human reviewer for Tier 2→3).
+   check for Tier 1→2, human reviewer for Tier 2→3, governance board approval
+   for Tier 3→4).
 3. Approval is scoped and time-bounded — the agent receives temporary elevation
    for a specific action, not a blanket tier promotion.
 4. The escalation, approval, and outcome are traced and auditable.
@@ -500,7 +503,8 @@ substitute for domain-specific regulatory requirements.
 - **Promote** one tier at a time, only after a consecutive-cycle window with
   zero incidents where the agent exceeded its authorized scope or caused
   undetected harm downstream (calibrate cycle count to domain; a reasonable
-  starting default is 30 cycles for Tier 1→2 and 60 cycles for Tier 2→3).
+  starting default is 30 cycles for Tier 1→2, 60 cycles for Tier 2→3, and 90
+  cycles with validated governance infrastructure for Tier 3→4).
 - **Demote immediately** on any of: agent exceeded authorized scope; incident
   where blast radius exceeded predicted level; regulatory audit finding;
   specification drift detected; new task class introduced without fresh

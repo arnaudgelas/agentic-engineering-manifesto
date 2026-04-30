@@ -64,15 +64,22 @@ required for post-incident diagnosis and regulatory compliance. Audit trails are
 infrastructure concerns — agents must not have write access to their own audit
 trail. See also: *trace*.
 
-**Autonomy tier** One of three levels of authorized agent action:
+**Autonomy tier** One of four levels of authorized agent action:
 - **Tier 1 (Observe)** — read-only; output is advisory only; no changes without
   explicit human approval.
 - **Tier 2 (Branch)** — agents may act in isolated or sandboxed environments;
   changes require human review before merging or deploying.
 - **Tier 3 (Commit)** — agents may act in production or commit directly, with
-  verified rollback capability. The domain owner retains accountability for all
-Tier 3 actions.  Tier assignment is a governance decision driven by blast
-radius, reversibility, and confidence maturity. See [Tier Assignment Decision
+  verified rollback capability and explicit human approval per change. The domain
+  owner retains accountability for all Tier 3 actions.
+- **Tier 4 (Operate)** — agents execute autonomously within a human-approved,
+  machine-enforced policy envelope without per-change human approval. The domain
+  owner approves the envelope and retains full accountability. Requires passing
+  control evaluations and active governance observability. Blast radius:
+  policy-bounded.
+
+Tier assignment is a governance decision driven by blast radius, reversibility,
+and confidence maturity. See [Tier Assignment Decision
 Checklist](companion-principles.md#tier-assignment-decision-checklist).
 
 ---

@@ -38,10 +38,10 @@ operate within existing certification constraints.
 
 ## Design Assurance Level to Manifesto Autonomy Mapping
 
-The manifesto defines three autonomy tiers (Principle 5): Tier 1 (Observe),
-Tier 2 (Branch), Tier 3 (Commit). The mapping below constrains the maximum
-permissible tier based on the failure condition severity tied to the software
-component's Design Assurance Level.
+The manifesto defines four autonomy tiers (Principle 5): Tier 1 (Observe),
+Tier 2 (Branch), Tier 3 (Commit), Tier 4 (Operate). The mapping below
+constrains the maximum permissible tier based on the failure condition severity
+tied to the software component's Design Assurance Level.
 
 | DAL | Failure Condition | Max Agent Autonomy Tier | Verification Depth | Rationale |
 | --- | --- | --- | --- | --- |
@@ -49,7 +49,7 @@ component's Design Assurance Level.
 | B | Hazardous | Tier 1 -- Observe only | Independent verification required for all objectives with independence (Table A-4, A-5, A-7) | Same constraint as DAL A. Reduced objective count does not relax the independence requirement. |
 | C | Major | Tier 1-2 -- Observe or Branch | Agent may draft artifacts to isolated branches; merge requires qualified human verification against applicable Table A objectives | Fewer objectives with independence. Agent-drafted code and tests are viable when independently reviewed before baseline. |
 | D | Minor | Tier 1-3 -- Full tier range | Standard evidence bundles (P1) attached to each agent contribution; verification per Table A objectives | Reduced verification rigor. Agent contributions with evidence bundles can satisfy most objectives with standard review. |
-| E | No Effect | Tier 1-3 -- Full tier range | Standard manifesto adoption path applies | No certification objectives apply. Normal manifesto governance is sufficient. |
+| E | No Effect | Tier 1-4 -- Full tier range | Standard manifesto adoption path applies; Tier 4 additionally requires validated governance infrastructure per P5 | No certification objectives apply. Normal manifesto governance is sufficient. Tier 4 permitted only when machine-enforced policy envelope, passing control evaluations, and active governance observability are all confirmed operational. |
 
 **Key constraint:** DAL assignment is determined by the system safety
 assessment (ARP 4754A/4761A), not by the development team. The DAL dictates the
@@ -286,8 +286,8 @@ DO-278A is a strong candidate for earlier agentic adoption:
 | AL-2 | Comparable to DAL B | Tier 1 |
 | AL-3 | Comparable to DAL C | Tier 1-2 |
 | AL-4 | Comparable to DAL D | Tier 1-3 |
-| AL-5 | Below DAL D | Tier 1-3 |
-| AL-6 | Below DAL E | Tier 1-3 |
+| AL-5 | Below DAL D | Tier 1-4 (Tier 4 requires validated governance infrastructure per P5) |
+| AL-6 | Below DAL E | Tier 1-4 (Tier 4 requires validated governance infrastructure per P5) |
 
 The same DO-330 tool qualification constraints apply. The path is identical:
 unqualified tool with independent verification of all output.
