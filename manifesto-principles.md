@@ -9,7 +9,7 @@ See the [Definition of Done](manifesto-done.md) for what "done" means.
 operationalize the six values. The correspondence:
 
 | Value | Principles |
-|---|---|
+| --- | --- |
 | Iterative steering and alignment | 1 — Outcomes, 2 — Specifications |
 | Verified outcomes with auditable evidence | 8 — Evaluations, 12 — Accountability |
 | Right-sized agent collaboration | 3 — Architecture, 4 — Swarm, 5 — Autonomy tiers |
@@ -152,7 +152,12 @@ structured disagreement, specialization, and reconciliation where the workload
 benefits from multiple perspectives. Intelligence at system scale is often
 plural rather than monolithic. The engineering question is not "how many agents
 can we run?" but "what coordination pattern produces better verified outcomes
-than a single agent on this workload?"
+than a single agent on this workload?" Swarms are not only for implementation:
+the same coordination patterns — specialization, structured disagreement,
+reconciliation — apply to governance work such as specification critique, threat
+modeling, evidence assembly, and release risk assessment; a swarm that only
+writes code while governance remains a separate human overlay is not a governed
+agentic system.
 
 **Signals that indicate a single agent is insufficient:**
 - The task requires concurrent reads or writes across multiple bounded contexts
@@ -192,8 +197,27 @@ what evidence is required, and what blast radius is acceptable:
 Blast radius: contained.
 
 **Tier 3 — Commit.** Agents take production-impacting actions with explicit
-human approval, attached rollback plans, and verified evidence. Blast radius:
-governed.
+human approval per change, attached rollback plans, and verified evidence. Blast
+radius: governed.
+
+**Tier 4 — Operate.** Agents execute autonomously within a human-approved,
+machine-enforced policy envelope — without per-change human approval. The human
+approves the envelope (allowed change classes, blast radius ceiling, required
+evidence schema, rollback conditions, kill-switch configuration) and retains
+accountability for its design. Agents act within it; anomaly detection and
+governance observability surface deviations for human review. Blast radius:
+policy-bounded.
+
+Tier 4 is not Tier 3 with the human removed. It is a governance model shift:
+accountability moves from the action level to the policy level. This only holds
+when the policy envelope is machine-enforced (not merely documented), control
+evaluations confirm the governance system itself works (P8), governance
+observability is instrumented and alerting on stale evidence and drift (P9),
+and rubber-stamping detection is active (P12). Without these prerequisites,
+Tier 4 is ungoverned production autonomy. The control state record produced by
+each loop iteration (see *What the Loop Produces*) is the primary audit
+mechanism at this tier: it must confirm that each action fell within the
+approved envelope before the action is logged as compliant.
 
 Within each tier, define granular permissions: read production data but not
 write, deploy to canary but not full rollout, modify test code but not
@@ -202,6 +226,10 @@ governance level; permissions define the allowed actions within that level.
 
 *Minimum bar: If you cannot reconstruct an agent's reasoning at any tier, your
 autonomy model has failed.*
+
+*Minimum bar (Tier 4): If the policy envelope is not machine-enforced, if
+control evaluations are not passing, or if governance observability is not
+instrumented, Tier 4 operation is not permitted regardless of phase.*
 
 **Phase maturity is a prerequisite for autonomy tier.** Tiers and phases are
 not independent: a team cannot safely operate at a higher tier than their phase
@@ -212,11 +240,12 @@ blanket organization-wide policy. Calibrate by domain, data classification, and
 blast radius.
 
 | Phase | Maximum available tier | Rationale |
-|---|---|---|
+| --- | --- | --- |
 | Phase 1-2 | Tier 1 only for governed production work | No evaluation suite, no evidence bundles — agent output is unverified |
 | Phase 3 | Tier 1 only for governed production work | Autonomy without verification; governance infrastructure not yet in place |
 | Phase 4 | Tier 2 (branch + human approval) | Verification gates operational; blast radius is contained |
 | Phase 5+ | Tier 3 (governed production impact) | Full Agentic Loop with verification, validation, and domain-scoped accountability |
+| Phase 5+ with validated governance infrastructure | Tier 4 (policy-envelope autonomous operation) | Machine-enforced envelope, passing control evaluations, active governance observability, and rubber-stamping detection all confirmed operational |
 
 In regulated industries, use-case-specific caps apply independently of phase.
 See [Companion Frameworks](companion-frameworks.md#hard-autonomy-caps-by-regulated-use-case)
@@ -337,7 +366,7 @@ Passing evaluations satisfies verification. It does not satisfy validation or
 independent validation, which require additional steps:
 
 | Discipline | Question answered | Owner | Timing | Required by |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Verification** | Did we build it right? Implementation matches specification. | Development / QA team | Pre-merge, every change | Always |
 | **Validation** | Did we build the right thing? Specification matches real-world need. | Product / domain owner | Pre-release | Phase 4+; always for regulated systems |
 | **Independent validation** | Were verification and validation themselves rigorous? | Organizationally separate team (2nd line) | Pre-production | Any high-stakes system; mandated by SR 11-7, SS1/23, DORA in regulated industries |
@@ -355,6 +384,18 @@ Independent validation must be capable of blocking production deployment. A team
 that can only observe and advise is not independent validation — it is a
 consultation. See Principle 12 for the accountability structure that makes
 independent validation meaningful.
+
+**Evaluations must also test whether the governance system works — not only
+whether the product works.** A governance evaluation suite verifies: evidence
+bundle completeness (all required fields present and non-empty); provenance
+consistency (provenance fields match across artefacts in the same bundle);
+control state record accuracy (stated pass/fail/waived verdict matches the
+underlying artefact); rollback procedure currency (tested within the window
+defined by the evidence freshness rules); and SBOM completeness against the
+deployed dependency set. When governance evaluations fail, they trigger the
+same remediation sub-cycle as product evaluation failures — not a separate
+audit process. A governance system that is never evaluated is trusted, not
+governed.
 
 ---
 
@@ -381,6 +422,20 @@ traces alone, you are not instrumented.*
 
 *Minimum bar (interoperability): If tools cannot be swapped or replayed across
 runtimes without rewriting core workflows, the platform is brittle.*
+
+**Observability covers governance state, not only system behavior.** The
+following signals must be instrumented alongside reasoning traces: stale
+artefacts in active evidence bundles, surfaced without manual audit using the
+freshness rules in the Definition of Done; controls in a failed or waived state
+with no recorded resolution timeline or expiry; accountability ownership gaps —
+active production components with no named, current owner; rubber-stamping
+patterns — review-time distribution anomalies and approval-without-trace events
+as defined in the accountability metrics; and model, prompt, or tool manifest
+changes that have not triggered an evaluation re-run. Governance-state
+observability makes the difference between a system that is governed and a
+system that appears governed. If the current health of the governance state
+cannot be answered from instrumentation alone, the system is not observable in
+the sense that matters for agentic operation.
 
 ---
 
@@ -421,6 +476,37 @@ adversarial inputs, you are not chaos-tested. If you have not threat-modeled
 prompt injection, privilege escalation, and exfiltration vectors for your
 specific agent topology, you are not security-tested.*
 
+**Governance failure modes are containment concerns, not compliance concerns.**
+The following failure modes must be engineered against with the same discipline
+applied to security threats:
+
+- **Evidence laundering** — an agent assembles an evidence bundle from outputs
+  it generated, creating circular self-attestation with no independent
+verification. Mitigate by requiring that at least one verification step in the
+evidence bundle is executed by a process that did not produce the artefact
+under review.
+- **Approval laundering** — a human signs off on a change by reviewing an
+  agent-generated summary rather than the underlying evidence. Mitigate with
+evidence bundle presentation controls that surface primary artefacts, not
+agent-authored summaries, as the default review interface.
+- **Compliance theater** — evaluations and controls are added to satisfy audit
+  requirements rather than to catch failures. Detectable by back-testing
+whether controls would have caught known past failures; if not, the control is
+theater.
+- **Stale-control reliance** — a control is recorded as passing because it has
+  not been re-run since the system changed, not because the system still
+satisfies it. Mitigate with the evidence freshness rules in the Definition of
+Done.
+- **Automated rubber-stamping** — human review rate collapses under volume;
+  reviewers approve without meaningful inspection. Detectable via review-time
+distribution metrics as defined in adoption-metrics.md; requires the response
+defined in Principle 12: raise automation barriers, lower autonomy tiers until
+oversight signal quality is restored.
+- **Waiver accumulation** — waivers granted for specific circumstances persist
+  beyond those circumstances, silently expanding the system's effective policy
+boundary. Require waiver expiry dates and automated staleness detection so
+accumulated waivers surface at the next release gate.
+
 ---
 
 ### 11. Optimize the economics of intelligence
@@ -459,7 +545,12 @@ decision, you are overspending.*
 Agents execute; humans own outcomes, risks, approvals, and incidents. No agent —
 however capable — absorbs legal, ethical, or operational responsibility. Release
 decisions, risk acceptance, production behavior, and incident response require a
-human with skin in the game.
+human with skin in the game. Agents may prepare evidence, summarize risk, flag
+missing controls, and recommend decisions. Agents may not accept residual risk,
+approve production exposure, waive controls, or absorb accountability for
+business outcomes. The boundary is not capability — it is consequence: when a
+decision has consequences the organization must answer for, a named human must
+make it.
 
 But accountability without visibility is a legal fiction. You cannot own what
 you cannot see. The autonomy tiers in Principle 5, the traces in Principle 9,
@@ -479,10 +570,11 @@ neither feasible nor the right model. The resolution is a three-tier framework
 applied per action class:
 
 | Action class | Human involvement | Accountability mechanism |
-|---|---|---|
+| --- | --- | --- |
 | **Low-risk, reversible** (Tier 1, contained blast radius) | None per action; domain owner reviews statistical samples and trend dashboards | Automated evidence bundle; rollback ready; anomaly alert if pattern deviates |
 | **Medium-risk, governed** (Tier 2, branch + approval) | Human approves merge; does not review every line | Evidence bundle gates approval; trace available on demand |
 | **High-risk, production-impacting** (Tier 3) | Named human reviews evidence and accepts risk per change | Full evidence bundle required; no automated promotion |
+| **Policy-envelope autonomous** (Tier 4) | Human approves and owns the policy envelope; no per-action review; anomaly detection routes deviations to human | Control state record confirms each action fell within the approved envelope; governance observability surfaces drift; kill switch available and tested |
 
 A domain owner owns the risk policy, the autonomy tier ceiling, the escalation
 path, and the incident response protocol for their domain. They do not approve

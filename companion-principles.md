@@ -680,7 +680,7 @@ are rejected at the memory layer, not silently dropped.
 **4. Default TTL policy by volatility.**
 
 | Domain type | Default TTL | Rationale |
-|---|---|---|
+| --- | --- | --- |
 | Model routing preferences | 7 days | Provider behavior changes frequently |
 | Transient operational learnings | 7 days | Short-lived context (incidents, deployments) |
 | API behavior and integration patterns | 30 days | APIs change on release cycles |
@@ -708,7 +708,7 @@ of constraints on what agents may accumulate, retain, and retrieve.
 **What regulated environments add to memory governance:**
 
 | Domain | Memory Retention Constraint | Retrieval Constraint | Key Regulatory Basis |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Financial services** | Customer PII must not persist in agent memory beyond the session unless a DPA is in place. Banking secrecy jurisdictions may prohibit retention entirely. | External LLM retrievals must not send Confidential/Restricted financial data to unclassified endpoints. | GDPR Art. 5 (data minimisation); DORA third-party risk |
 | **Medical devices / pharma** | Patient-level data must not persist in learned memory. GxP operational data retention follows the applicable retention schedule, not agent TTL. | GxP raw data must never be retrieved into an agent context that has write access to production records. | HIPAA §164.528; GDPR Art. 5; GxP data integrity |
 | **Aviation** | ITAR/EAR-controlled technical data retained in agent memory constitutes a controlled export if transmitted to a non-compliant endpoint. | Retrieval from ITAR-controlled knowledge stores must operate within a Technology Control Plan. | ITAR 22 CFR 120-130; EAR 15 CFR 730-774 |
@@ -1398,7 +1398,7 @@ Total Cost of Correctness =
 **Worked example: generating integration tests for a new API endpoint**
 
 | Model tier | Inference cost | Expected pass rate | Rework cost on failure | Total cost of correctness |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Fast/cheap model | $0.04 | 85% (3 failures of 20) | $0.50/failure = $1.50 | **$1.54** |
 | Balanced model | $0.08 | 95% (1 failure) | $0.50/failure = $0.50 | **$0.58** |
 | High-capability model | $0.20 | 99% (0.2 failures) | $0.50/failure = $0.10 | **$0.30** |
