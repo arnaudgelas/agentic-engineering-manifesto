@@ -273,6 +273,85 @@ capability ceiling; blast-radius assessment is a per-task gate. The most
 consequential failures tend to occur at domain boundaries, where tasks cross
 phase ceilings that are not checked at the task level.
 
+**Autonomy tiers and human oversight patterns are complementary
+classifications.** Tiers classify the scope of agent authority. Oversight
+patterns classify the structure of human involvement. Both must be specified;
+neither is sufficient alone.
+
+Four oversight patterns correspond to the tier model:
+
+**Human In the Loop (HITL).** A human reviews and approves each agent output
+before it is enacted. This is the required pattern for Tier 1 proposals, Tier 2
+merge approvals, Tier 3 evidence bundle sign-off, and any Tier 4 envelope
+change. HITL has two modes: *synchronous* (human review before the output takes
+effect — required when the action is irreversible before review can complete)
+and *asynchronous* (agent output enacted, human reviews and may revert
+immediately afterward — appropriate when the action is reversible within the
+review window). The distinction is not organizational preference; it is
+determined by the irreversibility window of the action class.
+
+**Human On the Loop (HOTL).** The agent executes within defined boundaries; a
+human monitors and retains intervention authority before consequences become
+irreversible. The human does not review every action. HOTL is the natural
+oversight pattern for Tier 2 branch execution and Tier 3 operational
+monitoring. Its governance condition is the irreversibility window: the time
+from action to irreversibility must exceed the sum of alert detection latency,
+human notification latency, assessment time, and intervention execution time.
+If this condition cannot be satisfied, HOTL is not providing the claimed
+governance function — the pattern must be upgraded to HITL or the action's
+reversibility must be engineered to be longer.
+
+**Human Off the Loop (HOLL).** The agent executes fully autonomously within a
+machine-enforced policy envelope. No human is present during operation. This is
+the Tier 4 pattern for in-envelope actions. HOLL requires three conditions
+beyond the Tier 4 prerequisites already stated: (1) the per-action evidence
+record is sufficient to reconstruct accountability without any human witness —
+a regulatory examiner must be able to determine from logs alone whether any
+action was within the approved envelope; (2) a periodic compliance audit at a
+defined cadence confirms that in-envelope actions remain within the
+specification's behavioral intent, not merely within the technical envelope;
+(3) reversion triggers are pre-defined — the conditions that cause the system
+to revert from HOLL to a more restrictive pattern are specified before
+deployment, not determined reactively after an incident.
+
+**Expert-Driven Loop (EDL).** A qualified domain expert — not a
+general-competence reviewer — exercises judgment that defines correct behavior
+for use cases that cannot be fully pre-specified. EDL is not a separate queue
+structure. It is a qualification constraint on HITL: it determines *who* may
+serve as the human reviewer for designated work item classes. EDL applies
+wherever correct behavior requires domain expertise to assess rather than a
+pre-specified contract to enforce. In engineering delivery: independent
+validation for high-stakes and regulated systems (where organizational
+independence is necessary but not sufficient — domain expertise is also
+required); security review for systems with adversarial exposure; compliance
+validation in regulated industries. Expert judgment accumulates as ground
+truth: each expert review must produce a structured record of the case, the
+judgment, and the behavioral pattern it represents, so that the expert's
+criteria can be progressively codified into specifications that reduce EDL
+dependency over time.
+
+The oversight pattern for a given work item class is not derived from its
+autonomy tier alone — it is specified at the point where the work item class is
+defined, and it constrains how the tier's governance is implemented. A Tier 3
+system with asynchronous HITL has a longer action-to-review window than a Tier
+3 system with synchronous HITL; both satisfy the tier model, but one requires a
+more demanding reversibility guarantee.
+
+*Minimum bar (HOTL): If the irreversibility window for a HOTL-designated action
+class has not been measured and confirmed to exceed the sum of monitoring
+detection, notification, assessment, and intervention time, HOTL is not
+providing oversight — it is providing the appearance of oversight.*
+
+*Minimum bar (HOLL): If the per-action evidence record is not sufficient to
+reconstruct accountability from logs alone — without any human witness — HOLL
+is not a governed autonomy model. It is Tier 4 in name with ungoverned
+operation in practice.*
+
+*Minimum bar (EDL): If the independent validator's domain qualifications are
+not documented, or if their review produces no structured record of judgment
+rationale, independent validation is organizational theater, not a governance
+control.*
+
 ---
 
 ### 6. Knowledge and memory are distinct infrastructure
@@ -623,3 +702,59 @@ go live. Clear responsibility is not bureaucracy; it is system safety.
 
 *Minimum bar: If no named human can inspect the reasoning, review the evidence,
 and own the outcome of a production agent, the system is ungoverned.*
+
+**The four oversight patterns define how accountability is exercised, not just
+claimed.** The three-tier action class table above maps action risk to human
+involvement. The oversight patterns from P5 specify the structure of that
+involvement. Together they close the gap between "a named human is accountable"
+(a statement about who) and "accountability is actually being exercised" (a
+statement about how).
+
+Accountability failures in agentic systems cluster around three patterns:
+
+*Accountability diffusion* — the accountable human's name is on the record, but
+their actual review was nominal. The oversight design nominally provides HITL;
+in practice, the reviewer approves without reviewing. Detected by: override
+rate at or near zero for work item classes with known complexity; reviewer
+agreement rate above 95% for sustained periods; review latency consistently
+below the minimum plausible for the case type. When these signals appear, raise
+the investigation before assuming the agent has become trustworthy — the more
+likely explanation is that human oversight has degraded into a signature
+ceremony.
+
+*Accountability displacement* — the oversight design nominally provides HOTL,
+but the monitoring design does not detect violations within the irreversibility
+window. The human is on the loop in principle; the loop has no signal that
+reaches them in time to act. Detected by: monitoring false negative rate
+(violations that did not generate alerts, discovered post-hoc);
+alert-to-intervention latency exceeding the irreversibility window on measured
+cases; monitoring coverage validation failures.
+
+*Accountability abstraction* — the oversight design nominally provides HOLL,
+but the per-action evidence record is insufficient to reconstruct what happened
+and why. The policy envelope was approved; the audit cannot confirm compliance.
+Detected by: evidence records with missing fields; audit findings that cannot
+be resolved because the log is incomplete; inability to answer, for a specific
+action, whether it was within the approved envelope.
+
+**The Expert-Driven Loop is the fourth accountability mechanism.** When correct
+behavior cannot be fully pre-specified, the domain expert who defines it is the
+accountability anchor for that determination. An independent validation
+performed by a reviewer without domain expertise does not satisfy the
+accountability requirement for expert-designated work item classes — it
+satisfies the presence requirement while failing the quality requirement. The
+accountable expert is not interchangeable with an accountable generalist for
+work item classes where the distinction matters.
+
+**Oversight adequacy is measurable.** "We have HITL" is not an accountability
+claim. "Our HITL override rate is N%, reviewer calibration is current, SLO
+compliance is N%, and capture detection has not triggered in N months" is an
+accountability claim. Accountability requires visibility — into the agent's
+reasoning (P9) and into the oversight mechanism's performance. Both must be
+instrumented.
+
+*Minimum bar (oversight adequacy): If you cannot report, for each oversight
+pattern in use, the metrics that indicate whether the pattern is delivering
+genuine governance — override rates for HITL, false negative rates for HOTL,
+compliance audit currency for HOLL, expert qualification currency for EDL — you
+cannot claim the governance is functioning. You can only claim it is present.*
