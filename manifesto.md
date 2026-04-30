@@ -11,7 +11,7 @@ and ship software under human direction. Through this work, we have come to
 value:
 
 | We Value More | over | We Also Value |
-|---|---|---|
+| --- | --- | --- |
 | **Iterative steering and alignment** | over | Rigid upfront specifications |
 | **Verified outcomes with auditable evidence** | over | Fluent assertions of success |
 | **Right-sized agent collaboration** | over | Monolithic god-agents |
@@ -94,6 +94,59 @@ based on evidence. The loop is the system. The principles are how you keep it ho
   rubber-stamping pattern detected), economics review is recorded, and any
   architectural decisions triggered by governance are filed back into Design.
 
+### What the Loop Produces
+
+The loop's output is not code. It is an **evidence-backed deployable** — a
+package of artefacts that together satisfy the Definition of Done and provide
+the release layer with everything it needs to make a governed deployment decision.
+
+A complete loop output contains:
+
+**The deployable artefact.** The code, configuration, model, or process change
+that implements the specification. Built, tested, and ready to deploy to the
+target environment.
+
+**The evidence bundle.** Per Principle 1 and the Definition of Done: evaluation
+reports with pass/fail and metrics, trace IDs linking to the full decision chain,
+diffs showing what changed, policy check outputs confirming constraint compliance,
+and memory updates confirming what was learned. The evidence bundle is the
+machine-readable record of how "done" was proven. Anything less is assertion.
+
+**The specification artefact.** The versioned, final state of the specification
+as it stood when the evaluation suite passed. This is the document against which
+independent validation (P8) is performed, and the reference against which future
+changes to this component will be assessed.
+
+**The rollback procedure.** A tested rollback plan (not just documented — tested
+in a representative environment) that allows the deployment to be reversed within
+a defined time window if the change produces unintended production behaviour.
+The rollback procedure is a condition of the DoD's "Governed" criterion.
+
+**The accountability sign-off.** A named human who has reviewed the evidence
+bundle, accepted that the DoD conditions are satisfied, and accepts production
+accountability for the outcome (P12). This is not a rubber stamp — it is the
+governance record that the evidence was reviewed.
+
+**The control state record.** A machine-readable record — generated at loop
+completion, not assembled post-hoc — that states, for every required control:
+whether it passed, failed, was waived, is stale, or requires a human decision
+before the release gate can be cleared. This is distinct from the evidence
+bundle: the evidence bundle contains the artefacts that constitute the
+evidence; the control state record contains the structured verdict on each
+control. A release layer that receives an evidence bundle without a control
+state record cannot assess gate readiness without re-reading all artefacts. A
+release layer that receives a control state record can assess gate readiness
+programmatically and route only the exceptions that require human judgment. A
+waived control must carry: the waiver rationale, the name of the human who
+granted the waiver, and an expiry date after which the waiver lapses and the
+control reverts to required.
+
+These artefacts are handed to the release layer as a unit. A release layer that
+accepts a deployable without a complete evidence bundle is accepting unverified
+output. A release layer that accepts an evidence bundle without a named accountable
+human is accepting ungoverned output. Both are governance failures at the boundary,
+not in the loop.
+
 Verification and validation are distinct disciplines. Verification is
 technical correctness against the spec. Validation is fitness for intended use
 in the real world. An agent can pass every verification check and still fail
@@ -131,6 +184,56 @@ flowchart LR
     Govern -.->|Architectural Policy Change| Design
 ```
 
+### What Must Be True Before Entering Specify
+
+The loop is rigorous. It verifies, validates, observes, learns, and governs with
+discipline. But that rigour is only as valuable as the intent it is applied to.
+Specify is not the beginning of a software lifecycle — it is the beginning of
+the execution phase. Something must precede it.
+
+A specification is **loop-ready** when all of the following are true:
+
+**Business need validated.** The need is real and evidence-backed — not just
+articulated. User research, data analysis, regulatory mandate, or executive
+decision with documented rationale constitutes validation. A stakeholder request
+without supporting evidence is not a validated need.
+
+**Value measurable.** A success criterion at the business level exists and is
+measurable post-deployment. "Improve customer experience" is not measurable.
+"Reduce mean time to resolution for claims by 20% within 90 days of deployment"
+is. If you cannot define what business success looks like before entering the
+loop, you cannot validate at the end.
+
+**Acceptance criteria expressible.** The need can be expressed as machine-readable
+acceptance criteria and constraints. If a domain expert cannot write a first draft
+of the acceptance criteria before the loop starts, the need is not well-understood
+enough to specify.
+
+**Constraints identified.** Security requirements, compliance obligations, domain
+ownership boundaries, performance envelopes, and data classification constraints
+are known before Specify begins. Discovering a compliance constraint at the
+Verify phase is a scope failure, not a verification failure.
+
+**Accountable human named.** A named person accepts business-level accountability
+for the outcome before the loop runs — the P12 anchor, established upstream. This
+person owns the success criterion, not the implementation.
+
+**Blast radius assessed.** A preliminary assessment of maximum credible impact if
+the implementation fails. This informs the autonomy tier (P5) and the scope of
+the evidence bundle required. A change whose failure impacts one microservice
+requires different governance than one whose failure affects a regulatory filing.
+
+**Out-of-scope explicitly stated.** What this specification explicitly does not
+include. Absent this, scope expands during execution — a common driver of
+specification drift inside the loop.
+
+If these conditions are not met, the work is not loop-ready and should not enter the loop. Resolving these gaps requires demand governance upstream of engineering execution — clarifying the need, establishing measurable success criteria, and confirming constraints before the loop runs.
+Entering the loop without a loop-ready specification does not save time — it
+produces well-executed work on the wrong problem.
+
+*Minimum bar: If you cannot answer "what does business success look like and how
+will you measure it?" before entering Specify, the loop is not ready to run.*
+
 ---
 
 ## The New Way of Working
@@ -159,44 +262,50 @@ through the phase transitions.
 
 ---
 
-## Scope and Non-Goals
+## Scope and Framework Context
 
-**What this manifesto covers:**
-- The engineering discipline for building and operating systems that include
-  autonomous agents as first-class participants in the software development and
-  delivery lifecycle (SDLC).
-- Governance structures, autonomy controls, and evidence practices for
-  agent-assisted software engineering.
-- Adoption guidance for regulated and unregulated software delivery contexts,
-  including V-model and compliance-heavy organizations.
-- Domain-specific mappings to regulatory frameworks for aviation, automotive,
-  medical devices, pharmaceuticals, financial services, and defense/government.
+### What this manifesto covers
 
-**What this manifesto does not cover:**
-- Training, fine-tuning, or evaluating foundation models. That is AI engineering.
+The engineering discipline for governing systems that include autonomous agents
+as first-class participants in **engineering execution**: from a loop-ready
+specification entering Specify through governed output exiting the loop. This
+includes:
+
+- The Agentic Loop: Specify, Design, Plan, Execute, Verify, Validate, Observe,
+  Learn, Govern — and the feedback paths between them.
+- Governance structures, autonomy controls, and evidence practices for the
+  execution phase.
+- The Definition of Done: the conditions that prove a loop output is complete.
+- Adoption guidance for transitioning teams through the maturity phases.
+- Domain-specific mappings to regulatory frameworks for teams in regulated
+  industries.
+
+### Position as shared engineering execution infrastructure
+
+This manifesto governs engineering execution — from a loop-ready specification entering Specify through governed output exiting the loop. Outer lifecycle frameworks, covering what precedes the loop (demand validation, portfolio governance) and what follows it (release governance, operations, maintenance, and product lifecycle governance), depend on this manifesto as their shared engineering execution standard. The principles apply in full regardless of delivery mode; the outer frameworks govern what the manifesto does not.
+
+### What this manifesto does not cover
+
+The following are explicitly out of scope for this document:
+
+- Business need validation, demand prioritisation, portfolio governance, and specification readiness — the upstream work that determines what enters the loop.
+- Release gates, environment promotion, change management, and compliance documentation for the deployment boundary — the downstream work that governs how loop output reaches production.
+- Incident management, SLO governance, security patching, ownership transfer, and system deprecation — the operational work that governs systems in production.
+- Agent product brief and trust model design, persona design, and regulatory risk classification — the product conception work that precedes engineering execution for agent products.
+- Behavioral envelope specification at the product level, use-case coverage mapping, uncertainty protocol, and escalation design for agent products.
+- Behavioral release gates, composite state versioning, behavioral drift governance, foundation model update governance, and regulated retirement for agent products.
+
+**Out of scope in all frameworks:**
+- Training, fine-tuning, or evaluating foundation models.
 - Deploying agents in physical systems, robotics, or non-software operational
   domains.
-- Product management, UX design, or organizational strategy beyond what
-  directly governs agent autonomy and accountability.
 - Legal advice, compliance determinations, or jurisdiction-specific regulatory
-  guidance. The domain pages map principles to frameworks; they are not
-  substitutes for qualified regulatory counsel.
+  guidance. Domain pages map principles to frameworks; they are not substitutes
+  for qualified regulatory counsel.
 - Autonomous weapons systems, or the safety certification of autonomous control
-  systems themselves (e.g., certifying an ALKS or autopilot function). The
-  domain pages cover *software engineering governance for teams building those
-  systems*; they do not cover the operational safety certification of the
-  resulting autonomous system.
-
-**What requires separate guidance:**
-- Agentic systems operating outside the SDLC (e.g., customer-facing autonomous
-  agents, trading agents, autonomous process automation at industrial scale).
-  The principles are relevant starting points, but the operational context —
-  real-time customer exposure, regulatory regimes, failure modes — differs
-  enough to require purpose-built guidance rather than direct application.
-- Federated agent networks without a single accountable operator (distinct from
-  multi-provider model routing, which P11 addresses).
-- Agent deployment in classified environments (the domain pages note this
-  boundary; they do not provide guidance for classified system development).
+  systems themselves.
+- Federated agent networks without a single accountable operator.
+- Agent deployment in classified environments.
 
 ## How to Read This Manifesto
 
