@@ -10,16 +10,15 @@ regulatory frameworks.*
 >
 > **Regulatory currency:** This document reflects IEC 62304, EU MDR 2017/745,
 > FDA 21 CFR Part 820 (QMSR, effective February 2026, replacing the prior QSR),
-> and EU AI Act requirements as understood at the
-> time of last review. The EU AI Act implementation timeline is subject to
-> ongoing guidance and proposed amendments; verify current status at
-> eur-lex.europa.eu before relying on AI Act classifications in this document.
-> **Last reviewed: April 2026.** Proposed changes not yet enacted are flagged
-> as such.
+> and EU AI Act requirements as understood at the time of last review. The EU
+> AI Act implementation timeline is subject to ongoing guidance and proposed
+> amendments; verify current status at eur-lex.europa.eu before relying on AI
+> Act classifications in this document.  **Last reviewed: April 2026.**
+> Proposed changes not yet enacted are flagged as such.
 
 See also: [Companion Frameworks](../companion-frameworks.md) (boundary
-conditions, ALCOA+ mapping), [Agentic V-Model](../adoption-vmodel.md)
-(V-model lifecycle transition for regulated industries).
+conditions, ALCOA+ mapping), [Agentic V-Model](../adoption-vmodel.md) (V-model
+lifecycle transition for regulated industries).
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
 tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
@@ -31,12 +30,13 @@ it does not redefine them.
 ## IEC 62304 Safety Class to Manifesto Autonomy Mapping
 
 IEC 62304 safety classification determines documentation depth, verification
-rigor, and -- in this mapping -- the permissible agent autonomy ceiling. If IEC 62304 is revised, re-evaluate the class mapping rather than assuming
-the current three-class structure is permanent; until any update is published,
-map conservatively to the three-class model.
+rigor, and -- in this mapping -- the permissible agent autonomy ceiling. If IEC
+62304 is revised, re-evaluate the class mapping rather than assuming the
+current three-class structure is permanent; until any update is published, map
+conservatively to the three-class model.
 
 | Safety Class | Risk Level | Max Agent Autonomy | Documentation Depth | Evidence Bundle Requirements |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Class A** (no injury) | Negligible | Tier 1-3 (P5) for non-safety-critical software items; full agentic loop remains subject to the device's risk controls and use-case constraints. | Minimal: requirements + release documentation. | Standard evidence bundles per manifesto phase. |
 | **Class B** (non-serious injury) | Moderate | Tier 1-2 (P5). Agents propose; humans approve merges. | Moderate: architecture + integration testing required. | Enhanced bundles with SOUP risk analysis per item. |
 | **Class C** (death / serious injury) | High | Tier 1 only (P5). Agents analyze and propose; humans implement. | Full: detailed design + unit-level verification required. | Complete bundles with SOUP verification, unit-level trace, formal risk linkage. |
@@ -59,7 +59,7 @@ Notes:
 ## IEC 62304 Software Lifecycle to Manifesto Mapping
 
 | IEC 62304 Activity | Clause | Manifesto Equivalent | Principle | Alignment | Gap |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | Software development planning | 5.1 | Specification + Plan phases of Agentic Loop | P2, P5 | Strong. Living specifications exceed static plans. | Plans must be frozen at submission; manifesto assumes evolution. Snapshot mechanism needed. |
 | Software requirements analysis | 5.2 | Specify phase; machine-readable specs | P2 | Strong. Machine-readable specs satisfy traceability. | Requirements must include safety requirements traced to risk analysis (ISO 14971 linkage). |
 | Software architectural design | 5.3 | Design phase; domain boundaries (P3) | P3 | Strong. Enforced boundaries map to software items. | Architecture must decompose to software items with assigned safety classes. |
@@ -76,7 +76,7 @@ Notes:
 ## ISO 14971 Risk Management to Manifesto Mapping
 
 | ISO 14971 Element | Clause | Manifesto Mechanism | Alignment |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Intended use / reasonably foreseeable misuse | 4.2-4.3 | Specification scope (P2); boundary enforcement (P3) | Strong. Machine-enforced boundaries prevent foreseeable misuse categories. |
 | Hazard identification | 5.2 | Adversarial testing (P8); chaos testing (P10) | Moderate. Manifesto identifies runtime hazards; clinical hazards require domain expertise outside agent scope. |
 | Risk estimation | 5.4 | Observability data (P9); incident attribution (P12) | Moderate. Runtime data informs probability estimation; severity requires clinical judgment. |
@@ -106,7 +106,7 @@ ML-based medical devices. Key additions relevant to agentic systems:
 ## ISO 13485 QMS to Manifesto Mapping
 
 | ISO 13485 Requirement | Clause | Manifesto Mechanism | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Design input | 7.3.3 | Specifications (P2); machine-readable requirements | Specs must include applicable regulatory requirements, standards, and risk control outputs. |
 | Design output | 7.3.4 | Evidence bundles; verified artifacts | Outputs must reference design input requirements and include acceptance criteria. |
 | Design review | 7.3.5 | Govern phase; human accountability (P12) | Named domain owner reviews at each design stage. Agent-generated artifacts are inputs to review, not substitutes. |
@@ -126,7 +126,7 @@ ML-based medical devices. Key additions relevant to agentic systems:
 ### SOUP Requirements by Safety Class
 
 | Requirement | Class A | Class B | Class C |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | SOUP identification | Required | Required | Required |
 | SOUP risk analysis | -- | Required | Required |
 | Published anomaly list review | -- | Required | Required |
@@ -186,7 +186,7 @@ anticipated modifications. The manifesto's living specifications (P2) and
 continuous revalidation triggers align structurally:
 
 | PCCP Element | Manifesto Mechanism |
-|---|---|
+| --- | --- |
 | Description of anticipated modifications | Living specifications with versioned change categories (P2) |
 | Modification protocol (implementation, V&V) | Agentic Loop: Execute, Verify, Validate phases with evidence gates |
 | Real-world performance monitoring plan | Observe + Learn phases; telemetry and drift detection (P9) |
@@ -199,7 +199,7 @@ SaMD.
 ### GMLP Principles to Manifesto Mapping
 
 | GMLP Principle | Manifesto Principle | Alignment |
-|---|---|---|
+| --- | --- | --- |
 | Multi-disciplinary expertise | Right-sized swarm (P4); human domain ownership (P12) | Strong |
 | Good software engineering practices | Architecture (P3); evaluations (P8) | Strong |
 | Clinical association and scientific validity | Outside manifesto scope | Gap -- requires clinical expertise |
@@ -218,7 +218,7 @@ Both assume continuous monitoring, learning, and modification rather than
 a single pre-market snapshot.
 
 | TPLC Stage | Agentic Loop Phase | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Planning and development | Specify, Design, Plan | Manifesto specifications serve as the SaMD development plan. |
 | Verification and validation | Execute, Verify, Validate | Evidence bundles document V&V activities per PCCP scope. |
 | Deployment and monitoring | Observe, Learn | Real-world performance monitoring feeds back into specifications. |
@@ -239,7 +239,7 @@ intended purpose and the applicable AI Act annexes. This typically creates
 dual compliance obligations.
 
 | Requirement Source | Requirement | Manifesto Principle | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | AI Act Art. 10 | Data governance | P6 (Knowledge/Memory), P7 (Context) | Training, validation, and testing datasets must meet quality criteria. Manifesto's data curation aligns but must be formalized per Annex IV. |
 | AI Act Art. 13 | Transparency | P9 (Observability) | Traces and decision reconstruction satisfy transparency requirements. Must include user-facing documentation per AI Act format. |
 | AI Act Art. 14 | Human oversight | P5 (Autonomy tiers), P12 (Accountability) | Tiered autonomy with named human owners directly satisfies human oversight requirements. |
@@ -311,7 +311,7 @@ regulatory ceiling. This table adds workflow-level context for common medical
 device development activities.
 
 | Workflow | Safety Class / Risk | Recommended Autonomy | Key Constraint |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | SaMD — patient-facing clinical decision output | Class C (IEC 62304); High-risk (EU AI Act) | Tier 1 (observe only) | Agent assists analysis; human clinician or qualified reviewer owns every output affecting patient care. |
 | SaMD — Class B device software | Class B | Tier 1-2 | Agents draft to isolated branches. Enhanced evidence bundles with SOUP risk analysis. |
 | Class A device software and tooling | Class A | Tier 1-3 | Full agentic loop permissible. Standard evidence bundles. Natural pilot domain. |
@@ -334,7 +334,7 @@ device development activities.
 GxP computerized system activity. Agent configuration should produce:
 
 | Regulatory Requirement | Hook Type | What It Produces |
-|---|---|---|
+| --- | --- | --- |
 | Audit trail — every agent action | PostToolUse audit hook | Agent identity, action type, timestamp, trace ID, data accessed |
 | Access controls — authorized agents only | PreToolUse gate hook | RBAC check record; denied requests logged |
 | Electronic signature for GxP record entry | PreToolUse signature hook | Named human approval with timestamp before any record submission |

@@ -102,7 +102,7 @@ capability gaps before they become adoption blockers. See the
 capabilities.
 
 | Principle | Core Skill Required | Team Readiness | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | P1 — Outcomes | CI/CD, release engineering | Ready | Existing pipelines need extension, not replacement |
 | P2 — Specifications | Formal requirements, contract design | Reorient | Requirements skills exist but need machine-readable precision. Agent Skills, AGENTS.md, and specification-driven development frameworks provide concrete formats and workflows |
 | P3 — Architecture | Infrastructure engineering, policy-as-code | Reorient | Infra skills exist but policy-as-code enforcement is new |
@@ -230,7 +230,7 @@ cross-domain synthesis; domain documents provide the regulatory specifics.
 ### Who Is the Supplier?
 
 | Component | Supplier Type | Qualification Obligation | Key Issue |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Commercial LLM API (OpenAI, Anthropic, etc.) | Named vendor with terms of service | Vendor assessment: data handling, version notification, SLA, incident notification | No access to training data, model weights, or full anomaly documentation. Regulatory expectations were written for traditional software suppliers. |
 | Open-source foundation model (Llama, Mistral, etc.) | No identified supplier entity | **Deploying organization assumes full supplier responsibility**: validation, maintenance, version control, anomaly tracking, incident response | No quality agreement possible. The QMS burden falls entirely on the deployer. |
 | Agent framework / orchestration library | OSS or commercial | Same as above, based on licensing model | Framework updates may change agent behavior without semantic versioning signals |
@@ -261,7 +261,7 @@ optional — it is the regulatory consequence of the build decision.
 Regardless of domain, agent supplier qualification should address:
 
 | Requirement | Why It Matters | Minimum Evidence |
-|---|---|---|
+| --- | --- | --- |
 | Data handling and residency | Regulated data must not leave compliant infrastructure | Data processing agreement or on-premises deployment confirmation |
 | Version notification | Model updates change agent behavior | Version change notification procedure with minimum lead time |
 | Availability SLA | Agent unavailability is an ICT operational risk | SLA documentation with incident notification commitments |

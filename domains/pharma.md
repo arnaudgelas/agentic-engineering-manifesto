@@ -307,7 +307,7 @@ They are derived from GxP data integrity requirements, not from risk
 preference.
 
 | Use Case | Maximum Tier | Regulatory Basis | Key Constraint |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | GMP batch record modification | **Tier 1** (observe only) | 21 CFR 211.68; EU GMP Annex 11 §9; Part 11 | Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. |
 | GMP manufacturing instructions | **Tier 1** (observe only) | EU GMP Chapter 4; 21 CFR 211 | Agent may draft; qualified person reviews and approves before issuance to production. |
 | GLP raw data | **Tier 1** (observe only) | 21 CFR Part 58; OECD GLP Principles | Raw data integrity is absolute. Agents may read; agents must never modify raw data. |
@@ -371,7 +371,7 @@ audit trail requirements and GxP data integrity obligations.*
 ### Audit Trail Hook Mapping
 
 | GxP Requirement | Hook Type | What It Produces |
-|---|---|---|
+| --- | --- | --- |
 | Audit trail — agent actions on GxP data | PostToolUse audit hook | Timestamp, user/agent identity, action type, before/after values, reason |
 | Electronic signatures for GxP records | PreToolUse signature gate | Named qualified person approval with binding electronic signature |
 | System access controls | PreToolUse RBAC hook | Access check record; unauthorized access attempts logged |
@@ -385,7 +385,7 @@ The MCP allowlist (Layer 6 in enterprise configuration) is the primary
 data residency control for GxP systems:
 
 | Data Classification | Agent Access | Routing Constraint |
-|---|---|---|
+| --- | --- | --- |
 | Raw / source data (GMP, GLP) | Read-only | On-premises or validated private cloud only; no external API |
 | Batch records and GMP quality records | Read-only | On-premises only; any agent access logged as a Part 11 event |
 | Draft documents | Read-write with audit trail | Approved models with signed DPA; agent writes to draft state only |
@@ -414,7 +414,7 @@ pharma regulation. They are listed here to support regulatory strategy
 discussions, not to imply that answers exist.
 
 | # | Question | Regulatory Context | Manifesto Reference |
-|---|----------|-------------------|---------------------|
+| --- | ---------- | ------------------- | --------------------- |
 | 1 | How should agent systems be categorized under GAMP 5 -- Category 3, 4, or a new category? | GAMP 5 (2nd ed.) | P3, P5 |
 | 2 | Do agent-generated GxP records satisfy Part 11 requirements for electronic records? | 21 CFR Part 11 | P9, P12 |
 | 3 | What validation approach applies to systems whose behavior changes through learning? | GAMP 5; CSA | P6, P8 |
@@ -467,3 +467,11 @@ Manifesto principles referenced throughout this document.
 | P10 | Assume emergence; engineer containment | Circuit breakers; chaos testing; safe fallbacks |
 | P11 | Optimize economics of intelligence | Cost of correctness; dynamic model routing |
 | P12 | Accountability requires visibility | Human ownership; incident attribution |
+
+---
+
+## ASDLC and APLC Regulatory Guidance
+
+For pharma and life sciences-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (GAMP 5, 21 CFR Part 11, EU Annex 11, GxP validation), see [ASDLC Pharma Domain Guidance](../asdlc/domains/pharma.md).
+
+For agent product regulatory guidance applicable to pharmaceutical agent products governed by the APLC, see [APLC Pharma Domain Guidance](../aplc/domains/pharma.md).

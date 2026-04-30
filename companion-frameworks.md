@@ -173,7 +173,7 @@ exceed these caps. The table below shows the strictest cap per domain; see
 each domain document for the complete use-case-specific cap table.
 
 | Domain | Conservative Default Cap | Regulatory Basis | Domain Document |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Aviation** (airborne software DAL A/B) | Tier 1 (observe only) | DO-178C; DO-330 tool qualification | [aviation.md](domains/aviation.md) |
 | **Medical Devices** (IEC 62304 Class C; EU AI Act high-risk) | Tier 1 (observe only) | IEC 62304; EU MDR + AI Act (Class IIa+) | [medical-devices.md](domains/medical-devices.md) |
 | **Pharma** (GMP context; GxP record modification) | Tier 1 (observe only) | GAMP 5; 21 CFR Part 11; EU GMP Annex 11 | [pharma.md](domains/pharma.md) |

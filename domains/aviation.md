@@ -10,29 +10,29 @@ applicable to verification-heavy lifecycles.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
 tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
-Autonomy tier assignment criteria are in
-[companion-principles.md — P5](../companion-principles.md#principle-5--autonomy-extended-guidance).
-This document maps those definitions to aviation certification requirements;
-it does not redefine them.
+Autonomy tier assignment criteria are in [companion-principles.md —
+P5](../companion-principles.md#principle-5--autonomy-extended-guidance).  This
+document maps those definitions to aviation certification requirements; it does
+not redefine them.
 
 **Scope:** DO-178C, DO-330, DO-333, ARP 4754A, ARP 4761/4761A, DO-326A,
 DO-356A, DO-278A.
 
 **Audience:** DERs, ODA unit members, certification liaisons, software leads,
-and systems engineers evaluating where agentic engineering practices can operate
-within existing certification constraints.
+and systems engineers evaluating where agentic engineering practices can
+operate within existing certification constraints.
 
 > **Disclaimer** — This document maps concepts from the Agentic Engineering
 > Manifesto to aviation regulatory frameworks. It does not constitute
 > compliance or certification advice. Consult your DER, ODA, or certification
 > authority for compliance determinations.
 >
-> **Regulatory currency:** This document reflects DO-178C, DO-330, DO-333,
-> ARP 4754A, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at
-> the time of last review. These standards evolve; EASA, FAA, and TCCA guidance
+> **Regulatory currency:** This document reflects DO-178C, DO-330, DO-333, ARP
+> 4754A, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at the
+> time of last review. These standards evolve; EASA, FAA, and TCCA guidance
 > material is updated periodically. Verify currency against official sources
-> before relying on this content. **Last reviewed: April 2026.**
-> Proposed changes not yet enacted are flagged as such.
+> before relying on this content. **Last reviewed: April 2026.** Proposed
+> changes not yet enacted are flagged as such.
 
 ---
 
@@ -44,16 +44,16 @@ permissible tier based on the failure condition severity tied to the software
 component's Design Assurance Level.
 
 | DAL | Failure Condition | Max Agent Autonomy Tier | Verification Depth | Rationale |
-|-----|-------------------|------------------------|---------------------|-----------|
+| --- | --- | --- | --- | --- |
 | A | Catastrophic | Tier 1 -- Observe only | All agent output independently verified through qualified means (DO-178C Table A-1 through A-10 objectives, independence requirements) | No certification credit for unqualified tool output. Agent may analyze and propose; human authors and verifies. |
 | B | Hazardous | Tier 1 -- Observe only | Independent verification required for all objectives with independence (Table A-4, A-5, A-7) | Same constraint as DAL A. Reduced objective count does not relax the independence requirement. |
 | C | Major | Tier 1-2 -- Observe or Branch | Agent may draft artifacts to isolated branches; merge requires qualified human verification against applicable Table A objectives | Fewer objectives with independence. Agent-drafted code and tests are viable when independently reviewed before baseline. |
 | D | Minor | Tier 1-3 -- Full tier range | Standard evidence bundles (P1) attached to each agent contribution; verification per Table A objectives | Reduced verification rigor. Agent contributions with evidence bundles can satisfy most objectives with standard review. |
 | E | No Effect | Tier 1-3 -- Full tier range | Standard manifesto adoption path applies | No certification objectives apply. Normal manifesto governance is sufficient. |
 
-**Key constraint:** DAL assignment is determined by the system safety assessment
-(ARP 4754A/4761A), not by the development team. The DAL dictates the ceiling;
-the team cannot raise it.
+**Key constraint:** DAL assignment is determined by the system safety
+assessment (ARP 4754A/4761A), not by the development team. The DAL dictates the
+ceiling; the team cannot raise it.
 
 ---
 
@@ -64,7 +64,7 @@ categories. The table below maps each to the most applicable manifesto
 principles.
 
 | DO-178C Process | Key Objectives | Manifesto Principle | Alignment | Notes |
-|----------------|----------------|---------------------|-----------|-------|
+| --- | --- | --- | --- | --- |
 | **Planning Process** (Section 4) | PSAC, SDP, SVP, SCMP, SQAP | P2 -- Specifications are living artifacts | Strong | Machine-readable specifications (P2) strengthen plan-to-artifact traceability. Plans remain human-approved documents. |
 | **Planning Process** | Standards definition, transition criteria | P5 -- Autonomy is a tiered budget | Moderate | Autonomy tiers map to plan-defined transition criteria. Agent permissions can be encoded in SDP/SVP. |
 | **Development Process** (Section 5) | Requirements, design, coding, integration | P1 -- Outcomes are the unit of work | Strong | Evidence bundles per outcome satisfy DO-178C's requirement for traceable development output. |
@@ -93,7 +93,7 @@ under DO-330. Its Tool Qualification Level (TQL) is determined by the DAL of
 the software it produces and whether its output errors are detectable.
 
 | TQL | Software DAL | Error Detectability | Required Tool Development Rigor | Agent Feasibility (Current State) |
-|-----|-------------|---------------------|---------------------------------|----------------------------------|
+| --- | --- | --- | --- | --- |
 | TQL-1 | DAL A | Undetectable | Equivalent to DO-178C DAL A | Not feasible. LLMs are non-deterministic, requirements are unknowable, and exhaustive testing is impossible. |
 | TQL-2 | DAL A-B | Detectable | Equivalent to DO-178C DAL B | Not feasible. Same fundamental obstacles as TQL-1 with marginally reduced scope. |
 | TQL-3 | DAL A-C | Detectable | Equivalent to DO-178C DAL C | Not feasible. Requires demonstrable tool requirements and verification. Current LLMs cannot satisfy these. |
@@ -126,17 +126,17 @@ This is Tier 1 and Tier 2 operation by construction.
 
 **Note:** This constraint may evolve. EASA and FAA have issued AI roadmaps
 (EASA AI Concept Paper 2.0, FAA AI Safety Assurance Framework). Certification
-authorities are actively developing guidance for ML-based tools.
-Industry groups (SAE G-34/EUROCAE WG-114) are drafting standards for
-ML in airborne systems. Monitor these developments.
+authorities are actively developing guidance for ML-based tools.  Industry
+groups (SAE G-34/EUROCAE WG-114) are drafting standards for ML in airborne
+systems. Monitor these developments.
 
 ---
 
 ## DO-333 Formal Methods -- The Opportunity
 
 DO-333 is the formal methods supplement to DO-178C. It provides certification
-credit for formal analyses that replace specific testing objectives -- making it
-the most natural intersection between agentic engineering and aviation
+credit for formal analyses that replace specific testing objectives -- making
+it the most natural intersection between agentic engineering and aviation
 certification.
 
 Manifesto Principle 8 states: "proofs are a scale strategy." DO-333 is the
@@ -145,7 +145,7 @@ certification framework that gives this statement regulatory teeth.
 ### DO-333 Credit Categories Mapped to Manifesto
 
 | DO-333 Credit | What It Replaces | Manifesto Formal Contracts Approach | Aviation Applicability |
-|--------------|-----------------|-------------------------------------|----------------------|
+| --- | --- | --- | --- |
 | Formal proof of absence of runtime errors | Robustness testing objectives | Agent-generated code with formal proofs via tools like Astree, Polyspace, or Frama-C | Production precedent: Astree on Airbus A380/A350, A340 |
 | Formal proof of requirements satisfaction | Requirements-based test cases (partial) | Formal contracts as machine-verifiable specifications (P2 + P8) | Applicable where requirements are formally expressible |
 | Model checking of state machines | State machine testing | Agent-generated models with exhaustive state exploration | Applicable to control logic, mode management |
@@ -153,8 +153,8 @@ certification framework that gives this statement regulatory teeth.
 
 ### Why This Matters for Agentic Engineering
 
-Agent-generated code accompanied by machine-checked formal proofs can produce
-a **stronger** certification case than traditionally hand-written code with
+Agent-generated code accompanied by machine-checked formal proofs can produce a
+**stronger** certification case than traditionally hand-written code with
 manual testing alone. The proof is the evidence, and it is independently
 verifiable by deterministic tools.
 
@@ -178,7 +178,7 @@ requirements and DAL assignments flowing down to DO-178C software development.
 Agents can assist at this level, but human accountability is absolute.
 
 | ARP 4754A Process | Agent Role (Manifesto Alignment) | Human Accountability |
-|-------------------|----------------------------------|---------------------|
+| --- | --- | --- |
 | Functional Hazard Assessment (FHA) | Agent assists with analysis: identifies failure modes from system architecture, cross-references historical FHA databases (P6 -- Knowledge). | Human owns hazard classification. FHA severity assignments require engineering judgment and regulatory agreement. |
 | Preliminary System Safety Assessment (PSSA) | Agent drafts fault trees and dependency diagrams from architectural models; proposes failure rates from component databases (P1 -- Evidence bundles). | Human approves safety assessment. PSSA conclusions drive DAL allocation and must be defensible to the certification authority. |
 | System Safety Assessment (SSA) | Agent generates bidirectional traceability matrices between safety requirements, design artifacts, and verification evidence (P9 -- Observability). | Human validates completeness and correctness. SSA is the final safety argument; it must be human-owned. |
@@ -202,10 +202,10 @@ this:
   (trace ID, agent ID, timestamp), provenance, and linked problem reports.
 - **Manifesto trace model (P9)** provides bidirectional traceability from
   specification through implementation to verification -- the same traceability
-  DO-178C Section 7.2 requires.
+DO-178C Section 7.2 requires.
 - **Knowledge as versioned ground truth (P6)** maps to CM baseline management.
   Agent knowledge stores must be baselined and change-controlled alongside
-  source code and requirements.
+source code and requirements.
 
 Agent memory (the heuristic/learned component per P6) is **not** a CM item
 unless it influences airborne software output. If it does, it must be
@@ -214,7 +214,7 @@ baselined, and changes must go through problem reporting.
 ### CM Mapping Summary
 
 | DO-178C CM Objective (Section 7) | Manifesto Mechanism | Implementation Note |
-|----------------------------------|---------------------|---------------------|
+| --- | --- | --- |
 | Configuration identification | Evidence bundle IDs (P1), trace IDs (P9) | Each agent-generated artifact carries a unique identifier linked to the agent session, model version, and prompt hash. |
 | Baselines | Knowledge baseline (P6) | Agent knowledge stores and model versions are baselined alongside software baselines at each lifecycle milestone. |
 | Traceability | Bidirectional trace model (P9) | Specification-to-code-to-test traceability generated by agents must be independently validated for completeness. |
@@ -232,7 +232,7 @@ involvement in safety assessment activities requires particular care because
 errors propagate into DAL assignments and certification scope.
 
 | Safety Assessment Method | Agent Contribution | Constraint |
-|-------------------------|-------------------|------------|
+| --- | --- | --- |
 | Fault Tree Analysis (FTA) | Agent drafts fault trees from system architecture models and failure mode libraries. | Human validates logical correctness, cut set analysis, and probability assignments. Automated generation must not mask missing failure modes. |
 | Failure Modes and Effects Analysis (FMEA) | Agent populates FMEA worksheets from component databases, prior analyses, and architecture descriptions. | Human reviews severity classifications, detection methods, and recommended actions. Agent cannot assign severity. |
 | Markov Analysis | Agent builds state transition models and computes reliability metrics. | Human validates state space completeness and transition rate assumptions. |
@@ -255,7 +255,7 @@ vectors that must be addressed in the Security Risk Assessment.
 ### Manifesto Alignment
 
 | Security Concern | Manifesto Mapping | Aviation-Specific Consideration |
-|-----------------|-------------------|-------------------------------|
+| --- | --- | --- |
 | Agent data access scope | P10 -- Containment; P3 -- Defense-in-depth | Agents must not have access to airborne software beyond their authorized development scope. Network isolation and data classification enforcement apply. |
 | Supply chain integrity of agent models | P3 -- Architecture boundaries | Model provenance, integrity verification, and version control. Untrusted model updates are a supply chain attack vector. |
 | Prompt injection / adversarial input | P10 -- Containment | Adversarial inputs to development agents could introduce subtle vulnerabilities in airborne code. Independent verification (DO-330 unqualified tool path) is the mitigation. |
@@ -266,8 +266,8 @@ vectors that must be addressed in the Security Risk Assessment.
 Airborne software, particularly defense-related avionics, is frequently subject
 to ITAR (22 CFR 120-130) or EAR (15 CFR 730-774) restrictions. Agents that
 process ITAR/EAR-controlled technical data must operate within compliant
-infrastructure: no data transmission to non-compliant cloud endpoints, no
-model training on controlled data without authorization, and access controls
+infrastructure: no data transmission to non-compliant cloud endpoints, no model
+training on controlled data without authorization, and access controls
 consistent with Technology Control Plans.
 
 ---
@@ -281,7 +281,7 @@ applies to a lower-criticality domain overall.
 DO-278A is a strong candidate for earlier agentic adoption:
 
 | DO-278A Assurance Level | Equivalent Rigor | Agent Autonomy Ceiling |
-|------------------------|------------------|----------------------|
+| --- | --- | --- |
 | AL-1 | Comparable to DAL A | Tier 1 |
 | AL-2 | Comparable to DAL B | Tier 1 |
 | AL-3 | Comparable to DAL C | Tier 1-2 |
@@ -298,18 +298,19 @@ unqualified tool with independent verification of all output.
 
 Aviation configuration management (DO-178C Section 7) requires data integrity
 standards that parallel ALCOA+ requirements. The manifesto's evidence model
-satisfies these by construction. See [Companion Frameworks — ALCOA+ Alignment](../companion-frameworks.md#alcoa-alignment)
-for the complete mapping table.
+satisfies these by construction. See [Companion Frameworks — ALCOA+
+Alignment](../companion-frameworks.md#alcoa-alignment) for the complete mapping
+table.
 
 For aviation-specific application:
 - **Configuration identification** maps to ALCOA+ "Attributable" and
   "Original": every agent-generated artifact carries agent identity, model
-  version, session ID, and prompt hash.
-- **Baselines** map to "Contemporaneous" and "Enduring": evidence bundles
-  are captured at execution time and retained as immutable CM items.
-- **Problem reporting** maps to "Accurate" and "Complete": evaluation
-  failures generate problem reports that are traceable and cannot be silently
-  suppressed.
+version, session ID, and prompt hash.
+- **Baselines** map to "Contemporaneous" and "Enduring": evidence bundles are
+  captured at execution time and retained as immutable CM items.
+- **Problem reporting** maps to "Accurate" and "Complete": evaluation failures
+  generate problem reports that are traceable and cannot be silently
+suppressed.
 
 Practical constraint: for DO-178C programs, the trace infrastructure is a
 development tool and must be addressed in the PSAC. Conservative framing:
@@ -328,7 +329,7 @@ adds workflow-level context.
 supporting tooling may have different constraints.*
 
 | Workflow | DAL / Assurance Level | Recommended Autonomy | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Airborne software — critical paths (flight control, engine control) | DAL A/B | Tier 1 (observe only) | Agent may analyze, draft, and propose. All output independently verified by qualified personnel. TQL-1/2 tool qualification is not currently feasible under present evidence and qualification expectations; treat the agent as an unqualified tool pending authority review. |
 | Airborne software — major functions | DAL C | Tier 1-2 | Agents draft to isolated branches. Merge requires qualified review against applicable Table A objectives. |
 | Airborne software — minor / no-effect functions | DAL D/E | Tier 1-3 | Standard evidence bundles satisfy reduced verification objectives. Natural pilot domain. |
@@ -351,7 +352,7 @@ DO-178C Section 7 requires that all software lifecycle data is identified,
 baselined, and change-controlled. Agent configuration contributes to this:
 
 | DO-178C CM Objective | Hook Type | What It Produces |
-|---|---|---|
+| --- | --- | --- |
 | Configuration identification of agent artifacts | PostToolUse audit hook | Artifact ID, agent session ID, model version, timestamp |
 | Change control — agent-modified files | PreToolUse gate hook | Review record, autonomy tier at time of change |
 | Problem reporting — failed evaluations | PostToolUse evaluation hook | Evaluation failure record with trace ID |
@@ -359,8 +360,8 @@ baselined, and change-controlled. Agent configuration contributes to this:
 
 ### Export Control Enforcement (ITAR/EAR)
 
-For programs with ITAR/EAR-controlled technical data, the MCP allowlist
-(Layer 6 in enterprise configuration) is the primary data residency control:
+For programs with ITAR/EAR-controlled technical data, the MCP allowlist (Layer
+6 in enterprise configuration) is the primary data residency control:
 - Restrict MCP servers to on-premises or US-person-accessible endpoints only.
 - No external API calls for sessions containing ITAR-controlled design data.
 - Log all tool calls with data classification context for Technology Control
@@ -373,72 +374,80 @@ Pin agent model versions during active certification programs:
 - While PSAC or SCI is open
 - After any verification baseline has been established
 
-Model version changes affecting agent behavior should be documented as
-CM changes and assessed for impact on previously verified artifacts.
+Model version changes affecting agent behavior should be documented as CM
+changes and assessed for impact on previously verified artifacts.
 
 ---
 
 ## Viable Starting Points
 
-Not all aviation software carries equal certification burden. The following
-are realistic entry points for agentic engineering practices today:
+Not all aviation software carries equal certification burden. The following are
+realistic entry points for agentic engineering practices today:
 
 1. **DAL D/E software development.** Reduced verification objectives, fewer
-   independence requirements. Evidence bundles and evaluation gates provide
-   sufficient assurance credit with standard review.
+independence requirements. Evidence bundles and evaluation gates provide
+sufficient assurance credit with standard review.
 
-2. **Ground support equipment (GSE) software.** Often not subject to DO-178C
-   at all. Standard manifesto adoption applies.
+2. **Ground support equipment (GSE) software.** Often not subject to DO-178C at
+all. Standard manifesto adoption applies.
 
 3. **Test generation and requirements analysis automation.** Agents operating
-   at Tier 1 (Observe) to generate candidate test cases, requirements
-   traceability matrices, and coverage analyses. Output is reviewed and
-   accepted by qualified personnel -- no tool qualification required.
+at Tier 1 (Observe) to generate candidate test cases, requirements traceability
+matrices, and coverage analyses. Output is reviewed and accepted by qualified
+personnel -- no tool qualification required.
 
 4. **Traceability automation and evidence bundle assembly.** Agent-assembled
-   traceability data and certification evidence packages. Human validates
-   completeness. High-value, low-risk application.
+traceability data and certification evidence packages. Human validates
+completeness. High-value, low-risk application.
 
 5. **Formal proof assistance (DO-333 credit).** Agents generate proof
-   obligations or proof scripts for formal verification tools. The tool
-   (Astree, Frama-C, etc.) provides the deterministic verification.
-   Agent output is checked by the prover, not by human review alone.
+obligations or proof scripts for formal verification tools. The tool (Astree,
+Frama-C, etc.) provides the deterministic verification.  Agent output is
+checked by the prover, not by human review alone.
 
 6. **DO-278A AL-4 through AL-6 systems.** Lower assurance levels with
-   proportionally reduced verification burden. Natural pilot domain.
+proportionally reduced verification burden. Natural pilot domain.
 
 ---
 
 ## Open Regulatory Questions
 
 The following questions do not have settled answers as of this writing.
-Organizations should track developments from FAA, EASA, SAE G-34, and
-EUROCAE WG-114.
+Organizations should track developments from FAA, EASA, SAE G-34, and EUROCAE
+WG-114.
 
-1. **Certification authority stance on agent-generated airborne software.**
-   No published policy exists specifically addressing LLM-generated code in
-   DO-178C certification. Current guidance is interpreted through existing
-   tool qualification (DO-330) frameworks.
+1. **Certification authority stance on agent-generated airborne software.** No
+published policy exists specifically addressing LLM-generated code in DO-178C
+certification. Current guidance is interpreted through existing tool
+qualification (DO-330) frameworks.
 
 2. **Issue Paper likelihood.** Novel technologies in certification programs
-   typically trigger FAA Issue Papers or EASA Certification Review Items
-   (CRIs). An agentic development approach in a DAL A-C program should
-   anticipate this.
+typically trigger FAA Issue Papers or EASA Certification Review Items (CRIs).
+An agentic development approach in a DAL A-C program should anticipate this.
 
-3. **PSAC framing.** How to describe agentic engineering practices in the
-   Plan for Software Aspects of Certification without triggering unnecessary
-   concern. Framing agents as unqualified development tools with independent
-   verification is the current pragmatic approach.
+3. **PSAC framing.** How to describe agentic engineering practices in the Plan
+for Software Aspects of Certification without triggering unnecessary concern.
+Framing agents as unqualified development tools with independent verification
+is the current pragmatic approach.
 
-4. **Tool qualification evolution for AI-based tools.** SAE G-34/EUROCAE
-   WG-114 are developing ARP 6983 (ML in airborne systems) and related
-   guidance. Future standards may provide a path to qualified AI-based
-   development tools that does not exist today.
+4. **Tool qualification evolution for AI-based tools.** SAE G-34/EUROCAE WG-114
+are developing ARP 6983 (ML in airborne systems) and related guidance. Future
+standards may provide a path to qualified AI-based development tools that does
+not exist today.
 
 5. **Multi-model supply chain.** When multiple models (routing per P11) are
-   used in a development workflow, the tool qualification and CM implications
-   compound. No guidance exists for multi-model development tool chains.
+used in a development workflow, the tool qualification and CM implications
+compound. No guidance exists for multi-model development tool chains.
 
 6. **Memory and learned behavior in development tools.** If an agent's learned
-   memory (P6) influences airborne software output, does that memory become
-   lifecycle data under DO-178C Section 7? The conservative position is yes.
+memory (P6) influences airborne software output, does that memory become
+lifecycle data under DO-178C Section 7? The conservative position is yes.
+
+---
+
+## ASDLC and APLC Regulatory Guidance
+
+For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Aviation Domain Guidance](../asdlc/domains/aviation.md).
+
+For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see [APLC Aviation Domain Guidance](../aplc/domains/aviation.md).
+
