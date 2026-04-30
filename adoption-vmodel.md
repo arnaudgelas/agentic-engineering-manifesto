@@ -119,7 +119,7 @@ The structural symmetry is preserved: every specification level maps to a
 verification level. But every layer has changed in substance.
 
 | Classical V-model stage | Agentic equivalent | What changes | Human accountability remains at |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | User needs / intended use | Structured intent package | Intended use, hazards, workflow assumptions, risk class, and success criteria become explicit machine-readable inputs | intended use, risk acceptance, go / no-go |
 | System requirements | Versioned requirement contracts | Requirements include acceptance criteria, stop criteria, data constraints, and traceability IDs | requirement approval and scope decisions |
 | High-level design | Enforced architectural policy | ADRs, bounded contexts, tool permissions, and data boundaries become executable constraints | boundary ownership and exception approval |
@@ -409,7 +409,7 @@ This roadmap assumes a serious regulated environment and a staged transition.
 The phases are sequential in emphasis, but some activities overlap.
 
 | Phase | Focus | Typical duration | Primary outcome | Manifesto phase |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 0 | Baseline and segmentation | 4-6 weeks | Current V-model mapped, risk classes segmented, pilot scope chosen | Pre-Phase 3 |
 | 1 | Specification foundation | 6-10 weeks | Requirements become structured, versioned, and agent-usable | Phase 2-3 |
 | 2 | Verification and validation backbone | 8-12 weeks | V and V evidence becomes executable, repeatable, and tiered | Phase 3 |
