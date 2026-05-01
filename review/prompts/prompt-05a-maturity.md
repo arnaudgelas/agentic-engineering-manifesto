@@ -36,7 +36,7 @@ references wherever possible.
    Read enough to form an evidence-grounded opinion on every maturity criterion below.
 2. `manifesto.md` — the six-phase maturity spectrum (Phase 1 through Phase 6) and the
    Agentic Loop phase definitions.
-3. `companion-frameworks.md` — the peer framework comparison table and the boundary
+3. `companion/frameworks.md` — the peer framework comparison table and the boundary
    condition guidance. (Hard autonomy caps by regulated use case are consumed by 05b,
    not here.)
 4. `phase-assessment-checklist.md` — the hard proof standard and per-phase evidence
@@ -108,10 +108,10 @@ thresholds from `prompt.md`. Every claim in the gate description and status cell
 must quote verbatim from a named source file with path (e.g., ``verify_phases.py
 line 142: `check_traceability(threshold=0.7)`` from `[[FRAMEWORK_LOWER]]/src/...`).
 
-**Step 6 — Peer comparison.** Using `companion-frameworks.md` and any frameworks
+**Step 6 — Peer comparison.** Using `companion/frameworks.md` and any frameworks
 listed in `[[PRIOR_REVIEWS]]`, build a short comparison. If no prior reviews are
-available, note this explicitly and limit comparison to what `companion-frameworks.md`
-provides. Do not fabricate peer data. Source: `companion-frameworks.md` peer
+available, note this explicitly and limit comparison to what `companion/frameworks.md`
+provides. Do not fabricate peer data. Source: `companion/frameworks.md` peer
 framework comparison table.
 
 **Step 7 — Economics assessment.** Anchor this sub-section explicitly to **P11
@@ -205,7 +205,7 @@ file with path.]
 
 ### Comparison with Peer Frameworks
 
-[Short markdown table or bulleted list. Source: `companion-frameworks.md` plus
+[Short markdown table or bulleted list. Source: `companion/frameworks.md` plus
 [[PRIOR_REVIEWS]] if available. If no peer data is available, state this explicitly.]
 
 ---
@@ -238,7 +238,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Read `[[FRAMEWORK]]`'s source artefacts before scoring.** Every claim must be
   grounded in a specific file, rule, or phase within `[[FRAMEWORK_LOWER]]/`.
 - **Read the manifesto's own source artefacts before scoring.** At minimum:
-  `manifesto.md`, `companion-frameworks.md`, and `phase-assessment-checklist.md`.
+  `manifesto.md`, `companion/frameworks.md`, and `phase-assessment-checklist.md`.
   Do not score from memory.
 - **Do NOT read `[[DOMAIN_FILE]]`.** This agent is intentionally domain-agnostic.
   Any regulatory, client, or industry-specific content is out of scope and must

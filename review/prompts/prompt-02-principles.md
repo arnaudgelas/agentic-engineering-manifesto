@@ -18,12 +18,12 @@ Read each of the following files before scoring P1–P12:
 - `manifesto.md` — core values and agentic loop definition
 - `manifesto-principles.md` — authoritative definitions of P1–P12 (used for **definitions and minimum-bar text only**, NOT for the H1 principle name — see `prompts/prompt-02-principle-template.md`)
 - `manifesto-done.md` — Definition of Done, including the seven evidence conditions
-- `companion-principles.md` — extended guidance including the specifications-vs-constraints distinction
-- `companion-frameworks.md` — boundary conditions and hard autonomy caps by regulated use case
-- `adoption-path.md` — incremental adoption order and phase definitions
-- `adoption-metrics.md` — rubber-stamping detection and oversight metrics
+- `companion/principles.md` — extended guidance including the specifications-vs-constraints distinction
+- `companion/frameworks.md` — boundary conditions and hard autonomy caps by regulated use case
+- `adoption/path.md` — incremental adoption order and phase definitions
+- `adoption/metrics.md` — rubber-stamping detection and oversight metrics
 - `agentic-enterprise.md` — enterprise deployment context
-- `beyond-agile-*.md` — any files matching this pattern
+- `beyond-agile/*.md` — any files matching this pattern
 - `glossary.md` — canonical term definitions
 
 ### Domain file

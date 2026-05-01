@@ -72,7 +72,7 @@ clause references wherever possible.
    `[[INDUSTRY]]`. Read **every** section: regulatory requirements, use-case cap
    table, and any domain-specific autonomy cap guidance. **All regulations and
    all use cases for Part 9 are sourced exclusively from this file.**
-3. `companion-frameworks.md` — specifically the **hard autonomy caps by regulated
+3. `companion/frameworks.md` — specifically the **hard autonomy caps by regulated
    use case** table (section "Hard Autonomy Caps by Regulated Use Case") and the
    boundary condition guidance.
 4. `[[FRAMEWORK]]` source artefacts — all available files under `[[FRAMEWORK_LOWER]]/`.
@@ -118,7 +118,7 @@ cases (use-case cap table or named workflow examples). **Do NOT invent use cases
 that are not present in `[[DOMAIN_FILE]]`. If `[[DOMAIN_FILE]]` does not contain
 enough named use cases, state this and use only what is present.
 
-Read `companion-frameworks.md`'s **hard autonomy caps by regulated use case** table
+Read `companion/frameworks.md`'s **hard autonomy caps by regulated use case** table
 (section "Hard Autonomy Caps by Regulated Use Case"). For each use case in this
 analysis, note the autonomy-cap ceiling it faces (e.g., "Tier 2 cap — human approval
 mandatory") and treat that ceiling as a **hard upper bound** on Fit verdicts.
@@ -127,7 +127,7 @@ For each use case, state: **Fit** / **Conditional** / **Unfit**. Justify each
 verdict by citing:
 - (a) the regulatory constraint quoted verbatim from `[[DOMAIN_FILE]]` with
   article / section / clause reference,
-- (b) the autonomy-cap ceiling from `companion-frameworks.md`, and
+- (b) the autonomy-cap ceiling from `companion/frameworks.md`, and
 - (c) the specific `[[FRAMEWORK]]` capability or gap (with file path) that
   determines fitness.
 
@@ -279,7 +279,7 @@ regulations for non-FS domain files.]
 | Use Case | Autonomy-Cap Ceiling | Fitness | Regulatory Constraint | [[FRAMEWORK]] Limiting Factor |
 |---|---|---|---|---|
 [4–8 rows. Use-case names verbatim from `[[DOMAIN_FILE]]` — do NOT invent use cases.
-Autonomy-Cap Ceiling sourced from `companion-frameworks.md`'s
+Autonomy-Cap Ceiling sourced from `companion/frameworks.md`'s
 hard-autonomy-caps-by-regulated-use-case table. Fitness: Fit / Conditional / Unfit.]
 
 ---
@@ -327,7 +327,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **All use cases come from `[[DOMAIN_FILE]]`.** Use-case names appear verbatim
   from `[[DOMAIN_FILE]]`'s use-case cap table or named workflow examples.
   Do NOT invent use cases.
-- **Autonomy-cap ceilings come from `companion-frameworks.md`** — specifically
+- **Autonomy-cap ceilings come from `companion/frameworks.md`** — specifically
   the "Hard Autonomy Caps by Regulated Use Case" section. Treat them as hard
   upper bounds on Fit verdicts.
 - **Read `[[FRAMEWORK]]`'s source artefacts before grounding any claim.** Every
@@ -336,7 +336,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Do NOT re-quote tables from `prompt.md`.** Reference the canonical severity
   thresholds and effort sizing by name only.
 - **Evidence requirement — verbatim quotation.** Every claim MUST quote verbatim
-  from a named source file (whether `[[DOMAIN_FILE]]`, `companion-frameworks.md`,
+  from a named source file (whether `[[DOMAIN_FILE]]`, `companion/frameworks.md`,
   or a `[[FRAMEWORK]]` source artefact) with its path. "The framework supports
   X" is not acceptable; ``verify_phases.py line 142: `check_traceability(threshold=0.7)```
   is. Paraphrase only after the verbatim quote has been provided.
@@ -388,7 +388,7 @@ and re-verify before saving.
       or another FS-domain file.
 - [ ] Use-Case Fitness Analysis use cases are named verbatim from
       `[[DOMAIN_FILE]]`; no invented use cases. Each row carries an
-      autonomy-cap ceiling sourced from `companion-frameworks.md`.
+      autonomy-cap ceiling sourced from `companion/frameworks.md`.
 - [ ] Red Line section is present and cites a specific clause / section / article
       from `[[DOMAIN_FILE]]` for at least one prohibited workflow (or states
       explicitly that no hard stops exist, with regulatory justification).

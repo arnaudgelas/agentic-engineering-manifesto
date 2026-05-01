@@ -35,7 +35,7 @@ references wherever possible.
    Read enough to form an evidence-grounded opinion on every maturity criterion below.
 2. `manifesto.md` — the six-phase maturity spectrum (Phase 1 through Phase 6) and the
    Agentic Loop phase definitions.
-3. `companion-frameworks.md` — the peer framework comparison table, the hard autonomy
+3. `companion/frameworks.md` — the peer framework comparison table, the hard autonomy
    caps by regulated use case, and the boundary condition guidance.
 4. `phase-assessment-checklist.md` — the hard proof standard and per-phase evidence
    requirements for all six phases.
@@ -96,9 +96,9 @@ thresholds from `prompt.md`. Every claim in the gate description and status cell
 must quote verbatim from a named source file with path (e.g., ``verify_phases.py
 line 142: `check_traceability(threshold=0.7)`` from `[[FRAMEWORK_LOWER]]/src/...`).
 
-**Step 6 — Peer comparison.** Using `companion-frameworks.md` and any frameworks
+**Step 6 — Peer comparison.** Using `companion/frameworks.md` and any frameworks
 listed in `[[PRIOR_REVIEWS]]`, build a short comparison. If no prior reviews are
-available, note this explicitly and limit comparison to what `companion-frameworks.md`
+available, note this explicitly and limit comparison to what `companion/frameworks.md`
 provides. Do not fabricate peer data.
 
 **Step 7 — Economics assessment.** Anchor this sub-section explicitly to **P11
@@ -142,14 +142,14 @@ table or named workflow examples). Do NOT invent use cases that are not present 
 `[[DOMAIN_FILE]]`. If `[[DOMAIN_FILE]]` does not contain enough named use cases,
 state this and use only what is present.
 
-Read `companion-frameworks.md`'s **hard-autonomy-caps-by-regulated-use-case** table
+Read `companion/frameworks.md`'s **hard-autonomy-caps-by-regulated-use-case** table
 (section "Hard Autonomy Caps by Regulated Use Case"). For each use case in this
 analysis, note the autonomy-cap ceiling it faces (e.g., "Tier 2 cap — human approval
 mandatory") and treat that ceiling as a hard upper bound on Fit verdicts.
 
 For each use case, state: Fit / Conditional / Unfit. Justify each verdict by citing
 (a) the regulatory constraint quoted verbatim from `[[DOMAIN_FILE]]` with article /
-section / clause reference, (b) the autonomy-cap ceiling from `companion-frameworks.md`,
+section / clause reference, (b) the autonomy-cap ceiling from `companion/frameworks.md`,
 and (c) the specific `[[FRAMEWORK]]` capability or gap (with file path) that
 determines fitness. Do not mark a use case Conditional without stating exactly what
 additional control would make it Fit.
@@ -250,7 +250,7 @@ file with path.]
 
 ### Comparison with Peer Frameworks
 
-[Short markdown table or bulleted list. Source: companion-frameworks.md plus
+[Short markdown table or bulleted list. Source: companion/frameworks.md plus
 [[PRIOR_REVIEWS]] if available. If no peer data is available, state this explicitly.]
 
 ---
@@ -283,7 +283,7 @@ regulations for non-FS domain files.]
 | Use Case | Autonomy-Cap Ceiling | Fitness | Regulatory Constraint | [[FRAMEWORK]] Limiting Factor |
 |---|---|---|---|---|
 [4–8 rows. Use-case names verbatim from `[[DOMAIN_FILE]]` — do NOT invent use cases.
-Autonomy-Cap Ceiling sourced from `companion-frameworks.md`'s
+Autonomy-Cap Ceiling sourced from `companion/frameworks.md`'s
 hard-autonomy-caps-by-regulated-use-case table. Fitness: Fit / Conditional / Unfit.]
 
 ---
@@ -322,7 +322,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Read `[[FRAMEWORK]]`'s source artefacts before scoring.** Every claim must be
   grounded in a specific file, rule, or phase within `[[FRAMEWORK_LOWER]]/`.
 - **Read the manifesto's own source artefacts before scoring.** At minimum:
-  `manifesto.md`, `companion-frameworks.md`, and `phase-assessment-checklist.md`.
+  `manifesto.md`, `companion/frameworks.md`, and `phase-assessment-checklist.md`.
   Do not score from memory.
 - **Evidence requirement — verbatim quotation.** Every claim MUST quote verbatim
   from a named source file with its path. "The framework supports X" is not
@@ -382,7 +382,7 @@ and re-verify before saving.
       or another FS-domain file.
 - [ ] Use-Case Fitness Analysis use cases are named verbatim from `[[DOMAIN_FILE]]`;
       no invented use cases. Each row carries an autonomy-cap ceiling sourced from
-      `companion-frameworks.md`.
+      `companion/frameworks.md`.
 - [ ] Red Line section is present and cites specific clauses / sections / articles
       from `[[DOMAIN_FILE]]`.
 - [ ] Deployment Path has the stage count appropriate to the regulatory mapping

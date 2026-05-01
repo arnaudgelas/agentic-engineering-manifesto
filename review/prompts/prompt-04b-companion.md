@@ -7,7 +7,7 @@
 **Wave 1 isolation:** This prompt runs in Wave 1 alongside agents 01, 02, 03, 04a, 05, and 07. Do not read sibling Wave 1 outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
 
 **Cross-prompt scope guards:**
-- The `companion-frameworks.md` subsection (Part 7) assesses [[FRAMEWORK]]'s alignment with the *guidance* in `companion-frameworks.md`. It does NOT issue the determinative phase placement — that is Part 8, owned by agent 05. Do not pre-empt Part 8.
+- The `companion/frameworks.md` subsection (Part 7) assesses [[FRAMEWORK]]'s alignment with the *guidance* in `companion/frameworks.md`. It does NOT issue the determinative phase placement — that is Part 8, owned by agent 05. Do not pre-empt Part 8.
 - Do not produce Part 6 content (adoption alignment). That is owned by agent 04a.
 - Do not produce the Cross-Document Synthesis. That is owned by agent 04c.
 
@@ -31,12 +31,12 @@ Suggested reading order: README → CHANGELOG/release notes → top-level rules 
 
 ### Manifesto companion corpus — read each file end-to-end
 
-- `companion-frameworks.md` — six-phase maturity spectrum (Phase 1–6) with failure modes per phase; boundary conditions for regulated industries; hard autonomy caps by use-case class; operational definitions of blast radius, right-sized, and evidence bundle.
-- `companion-patterns.md` — Patterns A–H (Single-Domain Reliability Fix, Multi-Agent Cross-Domain Coordination, Memory Poisoning Recovery, Economics Routing, Autonomy Tier Escalation, Governed Failure, Exception-Based Governance, Persona Simulator); Hallucination Loop failure pattern; Operational Recovery Cycle failure pattern.
-- `companion-principles.md` — extended guidance for all 12 principles; probability-compounding problem; correlated failure domains (model, retrieval, tool, governance); blast radius management; isolation design; accountability paradox; retrieval SLOs; context budgeting; tier boundary design; memory governance operational detail.
-- `companion-guide.md` — Annotated Agent Configuration Template (`AGENTS.md` / `CLAUDE.md`); CoE review checklist; contents index for the full companion suite.
-- `companion-re-framework.md` — requirements engineering paradigm break for agentic systems; two-axes classification matrix (system type × consumer type); single-source / multiple-projections principle; spec lifecycle and convergence; hard requirements vs. probabilistic assurance targets.
-- `companion-reference.md` — failure modes of the manifesto (over-governance, evidence theater, control theater, security theater, adoption theater, maturity inflation, verification without validation, structural regression without detection); skill requirements by principle with readiness assessment.
+- `companion/frameworks.md` — six-phase maturity spectrum (Phase 1–6) with failure modes per phase; boundary conditions for regulated industries; hard autonomy caps by use-case class; operational definitions of blast radius, right-sized, and evidence bundle.
+- `companion/patterns.md` — Patterns A–H (Single-Domain Reliability Fix, Multi-Agent Cross-Domain Coordination, Memory Poisoning Recovery, Economics Routing, Autonomy Tier Escalation, Governed Failure, Exception-Based Governance, Persona Simulator); Hallucination Loop failure pattern; Operational Recovery Cycle failure pattern.
+- `companion/principles.md` — extended guidance for all 12 principles; probability-compounding problem; correlated failure domains (model, retrieval, tool, governance); blast radius management; isolation design; accountability paradox; retrieval SLOs; context budgeting; tier boundary design; memory governance operational detail.
+- `companion/guide.md` — Annotated Agent Configuration Template (`AGENTS.md` / `CLAUDE.md`); CoE review checklist; contents index for the full companion suite.
+- `companion/re-framework.md` — requirements engineering paradigm break for agentic systems; two-axes classification matrix (system type × consumer type); single-source / multiple-projections principle; spec lifecycle and convergence; hard requirements vs. probabilistic assurance targets.
+- `companion/reference.md` — failure modes of the manifesto (over-governance, evidence theater, control theater, security theater, adoption theater, maturity inflation, verification without validation, structural regression without detection); skill requirements by principle with readiness assessment.
 
 ### Domain file
 
@@ -62,12 +62,12 @@ For each of the six companion files, assess [[FRAMEWORK]]'s coverage in the foll
 3. **Cite evidence.** For each verdict, cite specific [[FRAMEWORK]] artefact names, file paths, command names, or rule text. Every claim about `[[FRAMEWORK]]` MUST quote verbatim from a named source file with its path. Do not assert coverage without a citation.
 4. **Identify gaps.** For partial and absent coverage, state precisely what is missing and assign a severity label (Critical / High / Medium / Low) using the canonical thresholds defined in `prompt.md`.
 5. **Identify contradictions.** This is mandatory for every Part 7 subsection. Identify any place where `[[FRAMEWORK]]` explicitly contradicts or undermines this companion document's guidance. Label these with a `**Contradiction:**` prefix and assign severity. A contradiction is not the same as a gap — gaps are absences; contradictions are conflicts. Candidate contradiction patterns to actively check:
-   - Default autonomy tier vs. `companion-frameworks.md` hard cap.
-   - Blast-radius scope (code-only) vs. `companion-principles.md` (data + users + regulatory).
-   - Workspace-only isolation vs. `companion-principles.md` data/tool access enforcement.
-   - INVEST or deterministic acceptance criteria vs. `companion-re-framework.md` probabilistic assurance targets.
-   - Workspace agent configuration scaffolding vs. `companion-guide.md` template requirements.
-   - Process-level evaluation vs. `companion-reference.md` outcome validation.
+   - Default autonomy tier vs. `companion/frameworks.md` hard cap.
+   - Blast-radius scope (code-only) vs. `companion/principles.md` (data + users + regulatory).
+   - Workspace-only isolation vs. `companion/principles.md` data/tool access enforcement.
+   - INVEST or deterministic acceptance criteria vs. `companion/re-framework.md` probabilistic assurance targets.
+   - Workspace agent configuration scaffolding vs. `companion/guide.md` template requirements.
+   - Process-level evaluation vs. `companion/reference.md` outcome validation.
    If no contradiction is found in a subsection, state `**Contradiction:** None identified.` explicitly.
 6. **State [[ORGANIZATION]] implication.** End each subsection with a [[ORGANIZATION]]-specific implication paragraph (2–4 sentences) that names a specific regulation Article (with Article or section number) or named risk-type entry from `[[DOMAIN_FILE]]`, describes the specific exposure (operational, regulatory, financial), and states the timing of the exposure (immediate, on next phase transition, on supervisory review).
 
@@ -135,7 +135,7 @@ Every subsection (6 total) MUST contain the following named subheadings, in this
 
 **Depth is proportional to the document's significance.** A document where `[[FRAMEWORK]]` has major coverage or major gap warrants more depth. Minimum: 6 substantive bullets or 3 paragraphs of analysis. Do not pad to a target line count.
 
-**Heading format:** Use H3 (`### `) for each file's heading. Wrap the filename in backticks. Format example: `` ### `companion-frameworks.md` — Maturity Guidance Alignment ``.
+**Heading format:** Use H3 (`### `) for each file's heading. Wrap the filename in backticks. Format example: `` ### `companion/frameworks.md` — Maturity Guidance Alignment ``.
 
 **Strengths surfacing:** Where [[FRAMEWORK]] demonstrably meets a requirement, name it as a strength inside `What [[FRAMEWORK]] Covers` even if other parts of the subsection are partial or absent.
 
@@ -149,20 +149,20 @@ Every subsection (6 total) MUST contain the following named subheadings, in this
 
 Open with `## Part 7 — Companion Framework Alignment`. Produce the following six subsections in this exact order. Apply the structural skeleton from §3.3, including the mandatory `Contradictions` block.
 
-#### `### \`companion-frameworks.md\` — Maturity Guidance Alignment`
+#### `### \`companion/frameworks.md\` — Maturity Guidance Alignment`
 
-Assess [[FRAMEWORK]]'s alignment with the *guidance* in `companion-frameworks.md`. Do NOT issue a determinative phase placement (that is Part 8, agent 05). State which `companion-frameworks.md` requirements [[FRAMEWORK]] meets and misses; map [[FRAMEWORK]]'s default operating mode against the hard autonomy caps for [[INDUSTRY]] domains from `[[DOMAIN_FILE]]`.
+Assess [[FRAMEWORK]]'s alignment with the *guidance* in `companion/frameworks.md`. Do NOT issue a determinative phase placement (that is Part 8, agent 05). State which `companion/frameworks.md` requirements [[FRAMEWORK]] meets and misses; map [[FRAMEWORK]]'s default operating mode against the hard autonomy caps for [[INDUSTRY]] domains from `[[DOMAIN_FILE]]`.
 
 Assess [[FRAMEWORK]]'s mitigation of the failure mode for each phase:
 - Phase 3: "Autonomy without verification." Is this mitigated?
 - Phase 4: "Governance without feedback." Is this mitigated?
 - Phase 5: "Evaluation theater." Is this mitigated?
 
-#### `### \`companion-patterns.md\` — Pattern Implementation Assessment`
+#### `### \`companion/patterns.md\` — Pattern Implementation Assessment`
 
 Produce a table: Pattern | [[FRAMEWORK]] Implementation | Verdict (✅/🟡/❌) | Evidence. Cover Patterns A–H plus the Hallucination Loop and Operational Recovery Cycle failure patterns (10 rows). After the table, identify the pattern most operationally relevant to [[ORGANIZATION]]'s [[INDUSTRY]] context and explain its relevance with a named regulatory basis.
 
-#### `### \`companion-principles.md\` — Principle-Level Design Decisions`
+#### `### \`companion/principles.md\` — Principle-Level Design Decisions`
 
 For each of the following extended guidance topics, assess [[FRAMEWORK]]'s alignment and identify any contradictions:
 - Probability compounding and correlated failure domains (model, retrieval, tool, governance): does [[FRAMEWORK]] address any of these failure domains explicitly?
@@ -171,7 +171,7 @@ For each of the following extended guidance topics, assess [[FRAMEWORK]]'s align
 
 For [[ORGANIZATION]], identify the most dangerous correlated failure domain in [[INDUSTRY]] context (anchored to a specific criterion: highest probability, highest blast radius, or highest regulatory exposure — name the criterion) and assess whether [[FRAMEWORK]] has detection capability for it.
 
-#### `### \`companion-guide.md\` — Practical Implementation Guidance`
+#### `### \`companion/guide.md\` — Practical Implementation Guidance`
 
 Assess [[FRAMEWORK]]'s alignment with the Annotated Agent Configuration Template requirements:
 - Does [[FRAMEWORK]] scaffold an agent configuration file (`AGENTS.md`, `CLAUDE.md`, or equivalent)?
@@ -180,7 +180,7 @@ Assess [[FRAMEWORK]]'s alignment with the Annotated Agent Configuration Template
 
 Assess CoE review checklist compliance: project overview / domain boundary; build/test/deploy commands; domain constraints; security section; testing conventions. For each checklist item, state whether [[FRAMEWORK]] satisfies it and cite the artefact.
 
-#### `### \`companion-re-framework.md\` — Requirements Engineering Assessment`
+#### `### \`companion/re-framework.md\` — Requirements Engineering Assessment`
 
 Assess [[FRAMEWORK]]'s requirements output against the two-axes classification matrix (system type ∈ {deterministic, agentic, hybrid} × consumer type ∈ {human, agent, hybrid}). State which cell [[FRAMEWORK]]'s output falls in and what the full RE framework requirements are for that cell.
 
@@ -191,9 +191,9 @@ Assess the following requirements:
 - Single-source / multiple-projections principle: if [[FRAMEWORK]] produces a YAML/canonical source and then downstream representations (ADO stories, ticket descriptions, etc.), are the downstream representations automatically synchronised when the source changes?
 - Probabilistic assurance targets: does [[FRAMEWORK]] generate or validate probabilistic assurance targets for non-deterministic agent behaviour? State the consequence for [[ORGANIZATION]]'s [[INDUSTRY]] AI systems, which are non-deterministic by nature.
 
-#### `### \`companion-reference.md\` — Failure Modes Risk Table`
+#### `### \`companion/reference.md\` — Failure Modes Risk Table`
 
-For each failure mode in `companion-reference.md`, produce a row assessing [[FRAMEWORK]]'s risk level, with evidence. Cover all eight failure modes: Over-governance, Evidence theater, Control theater, Security theater, Adoption theater, Maturity inflation, Verification without validation, Structural regression without detection. Quote the operational definition from `companion-reference.md` (1 line) before scoring [[FRAMEWORK]]'s risk level.
+For each failure mode in `companion/reference.md`, produce a row assessing [[FRAMEWORK]]'s risk level, with evidence. Cover all eight failure modes: Over-governance, Evidence theater, Control theater, Security theater, Adoption theater, Maturity inflation, Verification without validation, Structural regression without detection. Quote the operational definition from `companion/reference.md` (1 line) before scoring [[FRAMEWORK]]'s risk level.
 
 Use this format: a table with columns Failure Mode | Definition | [[FRAMEWORK]] Risk Level (Low/Medium/High/Critical) | Evidence. After the table, identify the highest-risk failure mode for [[ORGANIZATION]] in [[INDUSTRY]] context with a named regulatory basis (Article number) from `[[DOMAIN_FILE]]`.
 
@@ -262,4 +262,4 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 
 ---
 
-*Sources to read: all files in `[[FRAMEWORK_LOWER]]/`; `companion-frameworks.md`; `companion-patterns.md`; `companion-principles.md`; `companion-guide.md`; `companion-re-framework.md`; `companion-reference.md`; `[[DOMAIN_FILE]]`; and `[[PRIOR_REVIEWS]]` if not `none`.*
+*Sources to read: all files in `[[FRAMEWORK_LOWER]]/`; `companion/frameworks.md`; `companion/patterns.md`; `companion/principles.md`; `companion/guide.md`; `companion/re-framework.md`; `companion/reference.md`; `[[DOMAIN_FILE]]`; and `[[PRIOR_REVIEWS]]` if not `none`.*

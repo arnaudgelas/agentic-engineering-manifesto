@@ -30,16 +30,16 @@ Read each of the following files end-to-end:
 - `manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the six-phase maturity model, and the evidence-backed deployable definition.
 - `manifesto-principles.md` — all twelve principles, their minimum bars, and their sequencing dependencies.
 - `manifesto-done.md` — the Agentic Definition of Done: Shipped / Observable / Verified / Provable / Learned from / Governed / Economical; evidence freshness rules; hardening DoD.
-- `companion-guide.md` (if present) — extended rationale and companion guidance index.
-- `companion-principles.md` (if present) — specifications-vs-constraints distinction, structural vs. behavioural regression, and related extended guidance.
-- `companion-frameworks.md` (if present) — hard autonomy caps by regulated use-case.
-- `companion-patterns.md` (if present) — worked failure-mode patterns.
-- `adoption-path.md` (if present) — incremental adoption path and recommended implementation order.
-- `adoption-roles.md` (if present) — role evolution through phase transitions.
-- `adoption-metrics.md` (if present) — team health metrics and oversight-adequacy metrics.
-- `adoption-vmodel.md` (if present) — Agentic V-Model transition framework.
+- `companion/guide.md` (if present) — extended rationale and companion guidance index.
+- `companion/principles.md` (if present) — specifications-vs-constraints distinction, structural vs. behavioural regression, and related extended guidance.
+- `companion/frameworks.md` (if present) — hard autonomy caps by regulated use-case.
+- `companion/patterns.md` (if present) — worked failure-mode patterns.
+- `adoption/path.md` (if present) — incremental adoption path and recommended implementation order.
+- `adoption/roles.md` (if present) — role evolution through phase transitions.
+- `adoption/metrics.md` (if present) — team health metrics and oversight-adequacy metrics.
+- `adoption/vmodel.md` (if present) — Agentic V-Model transition framework.
 - `agentic-enterprise.md` (if present) — enterprise-level agentic governance context.
-- `beyond-agile-*.md` (any file matching this pattern) — contextual framing for agentic delivery beyond agile.
+- `beyond-agile/*.md` (any file matching this pattern) — contextual framing for agentic delivery beyond agile.
 - `glossary.md` — canonical term definitions.
 
 If `manifesto.md`, `manifesto-principles.md`, or `manifesto-done.md` cannot be read, abort and report the missing file. Do not proceed with scoring.

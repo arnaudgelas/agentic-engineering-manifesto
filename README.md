@@ -83,9 +83,9 @@ The loop is the system. The principles are how you keep it honest.
 
 | If you are | Start with |
 | --- | --- |
-| New to agentic engineering | [Beyond Agile](beyond_agile.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption-playbook.md) |
-| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Principle Guidance](companion-principles.md) → [Patterns](companion-patterns.md) → [Adoption Path](adoption-path.md) |
-| An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile-landscape.md) → [Adoption Roles](adoption-roles.md) → [Metrics](adoption-metrics.md) |
+| New to agentic engineering | [Beyond Agile](beyond-agile/main.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption/playbook.md) |
+| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Principle Guidance](companion/principles.md) → [Patterns](companion/patterns.md) → [Adoption Path](adoption/path.md) |
+| An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile/landscape.md) → [Adoption Roles](adoption/roles.md) → [Metrics](adoption/metrics.md) |
 | In a regulated industry | [Domain Overview](domains/README.md) → your domain document |
 
 ---
@@ -94,13 +94,13 @@ The loop is the system. The principles are how you keep it honest.
 
 ### 1) Beyond Agile (Case for Change)
 
-- [beyond_agile.md](beyond_agile.md): The argument for why Agile is
+- [beyond-agile/main.md](beyond-agile/main.md): The argument for why Agile is
   insufficient for agentic systems.
-- [beyond-agile-failures.md](beyond-agile-failures.md): Ten structural failures
+- [beyond-agile/failures.md](beyond-agile/failures.md): Ten structural failures
   in values, practices, and conceptual coverage.
-- [beyond-agile-landscape.md](beyond-agile-landscape.md): Critical comparison
+- [beyond-agile/landscape.md](beyond-agile/landscape.md): Critical comparison
   of competing manifestos, standards, and frameworks.
-- [beyond-agile-sources.md](beyond-agile-sources.md): Twenty-three cited
+- [beyond-agile/sources.md](beyond-agile/sources.md): Twenty-three cited
   sources including academic benchmarks (SWE-CI, Feldt et al.), industry
   frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives.
 
@@ -118,33 +118,33 @@ The loop is the system. The principles are how you keep it honest.
 
 ### 3) Implementation Guide
 
-- [companion-principles.md](companion-principles.md): Extended guidance and
+- [companion/principles.md](companion/principles.md): Extended guidance and
   tradeoffs by principle. Includes the Architect–Programmer pattern, evaluation
   holdout and probabilistic satisfaction, and behavioral vs. structural
   regression analysis.
-- [companion-frameworks.md](companion-frameworks.md): Maturity spectrum,
+- [companion/frameworks.md](companion/frameworks.md): Maturity spectrum,
   boundary conditions, and operational definitions.
-- [companion-patterns.md](companion-patterns.md): Worked patterns and failure
+- [companion/patterns.md](companion/patterns.md): Worked patterns and failure
   patterns.
-- [companion-re-framework.md](companion-re-framework.md): Requirements
+- [companion/re-framework.md](companion/re-framework.md): Requirements
   engineering framework — two-axes classification, behavioral envelopes, and
   probabilistic assurance targets.
-- [companion-reference.md](companion-reference.md): Failure modes and skill
+- [companion/reference.md](companion/reference.md): Failure modes and skill
   requirements.
 
 ### 4) Adoption Playbook (Organizational Transition)
 
-- [adoption-playbook.md](adoption-playbook.md): Playbook overview and new way
+- [adoption/playbook.md](adoption/playbook.md): Playbook overview and new way
   of working.
-- [adoption-roles.md](adoption-roles.md): Role evolution and human-side
+- [adoption/roles.md](adoption/roles.md): Role evolution and human-side
   transition guidance.
-- [adoption-path.md](adoption-path.md): Incremental technical adoption path and
+- [adoption/path.md](adoption/path.md): Incremental technical adoption path and
   phase transitions.
-- [adoption-vmodel.md](adoption-vmodel.md): V-model-specific adoption path for
+- [adoption/vmodel.md](adoption/vmodel.md): V-model-specific adoption path for
   regulated and verification-heavy organizations.
-- [adoption-pilot.md](adoption-pilot.md): Resistance management and first pilot
+- [adoption/pilot.md](adoption/pilot.md): Resistance management and first pilot
   execution.
-- [adoption-metrics.md](adoption-metrics.md): Success metrics, quarterly review
+- [adoption/metrics.md](adoption/metrics.md): Success metrics, quarterly review
   cadence, and failure modes.
 
 ### 5) Domain-Specific Regulatory Alignment

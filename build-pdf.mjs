@@ -18,10 +18,10 @@ const sections = [
   { id: "overview",          file: "README.md",                   title: "Overview",             group: "overview"        },
 
   // The Case for Change
-  { id: "beyond",            file: "beyond_agile.md",             title: "Beyond Agile",         group: "beyond"          },
-  { id: "beyond-failures",   file: "beyond-agile-failures.md",    title: "Structural Failures",  group: "beyond"          },
-  { id: "beyond-landscape",  file: "beyond-agile-landscape.md",   title: "Existing Frameworks",  group: "beyond"          },
-  { id: "beyond-sources",    file: "beyond-agile-sources.md",     title: "Sources",              group: "beyond"          },
+  { id: "beyond",            file: "beyond-agile/main.md",        title: "Beyond Agile",         group: "beyond"          },
+  { id: "beyond-failures",   file: "beyond-agile/failures.md",    title: "Structural Failures",  group: "beyond"          },
+  { id: "beyond-landscape",  file: "beyond-agile/landscape.md",   title: "Existing Frameworks",  group: "beyond"          },
+  { id: "beyond-sources",    file: "beyond-agile/sources.md",     title: "Sources",              group: "beyond"          },
 
   // The Manifesto
   { id: "manifesto-core",    file: "manifesto.md",                title: "The Manifesto",        group: "manifesto"       },
@@ -29,19 +29,19 @@ const sections = [
   { id: "done",              file: "manifesto-done.md",           title: "Definition of Done",   group: "manifesto"       },
 
   // Implementation Guide
-  { id: "companion-principles",   file: "companion-principles.md",   title: "Principle Guidance",  group: "implementation" },
-  { id: "companion-frameworks",   file: "companion-frameworks.md",   title: "Frameworks",          group: "implementation" },
-  { id: "companion-patterns",     file: "companion-patterns.md",     title: "Patterns",            group: "implementation" },
-  { id: "companion-re-framework", file: "companion-re-framework.md", title: "RE Framework",        group: "implementation" },
-  { id: "companion-reference",    file: "companion-reference.md",    title: "Reference",           group: "implementation" },
+  { id: "companion-principles",   file: "companion/principles.md",   title: "Principle Guidance",  group: "implementation" },
+  { id: "companion-frameworks",   file: "companion/frameworks.md",   title: "Frameworks",          group: "implementation" },
+  { id: "companion-patterns",     file: "companion/patterns.md",     title: "Patterns",            group: "implementation" },
+  { id: "companion-re-framework", file: "companion/re-framework.md", title: "RE Framework",        group: "implementation" },
+  { id: "companion-reference",    file: "companion/reference.md",    title: "Reference",           group: "implementation" },
 
   // Organizational Adoption
-  { id: "adoption-playbook", file: "adoption-playbook.md",        title: "Playbook",             group: "adoption"        },
-  { id: "adoption-roles",    file: "adoption-roles.md",           title: "Roles",                group: "adoption"        },
-  { id: "adoption-path",     file: "adoption-path.md",            title: "Adoption Path",        group: "adoption"        },
-  { id: "adoption-vmodel",   file: "adoption-vmodel.md",          title: "V-Model Path",         group: "adoption"        },
-  { id: "adoption-pilot",    file: "adoption-pilot.md",           title: "First Pilot",          group: "adoption"        },
-  { id: "adoption-metrics",  file: "adoption-metrics.md",         title: "Metrics",              group: "adoption"        },
+  { id: "adoption-playbook", file: "adoption/playbook.md",        title: "Playbook",             group: "adoption"        },
+  { id: "adoption-roles",    file: "adoption/roles.md",           title: "Roles",                group: "adoption"        },
+  { id: "adoption-path",     file: "adoption/path.md",            title: "Adoption Path",        group: "adoption"        },
+  { id: "adoption-vmodel",   file: "adoption/vmodel.md",          title: "V-Model Path",         group: "adoption"        },
+  { id: "adoption-pilot",    file: "adoption/pilot.md",           title: "First Pilot",          group: "adoption"        },
+  { id: "adoption-metrics",  file: "adoption/metrics.md",         title: "Metrics",              group: "adoption"        },
 
   // Domain Alignment
   { id: "domains-overview",    file: "domains/README.md",               title: "Domain Overview",      group: "domains" },

@@ -7,10 +7,10 @@
 **Wave 1 isolation:** This prompt runs in Wave 1 alongside agents 01, 02, 03, 05, and 07. Do not read sibling Wave 1 outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of Part 7 (see §3.6) will be consumed by agent 06 to build Part 11.
 
 **Cross-prompt scope guards:**
-- The `companion-frameworks.md` subsection (Part 7) assesses [[FRAMEWORK]]'s alignment with the *guidance* in `companion-frameworks.md`. It does NOT issue the determinative phase placement — that is Part 8, owned by agent 05. Do not pre-empt Part 8.
-- The `adoption-pilot.md` subsection (Part 6) issues a pilot-feasibility verdict scoped to `adoption-pilot.md` criteria. It does NOT issue a production-deployment red line — that is Part 9, owned by agent 05.
+- The `companion/frameworks.md` subsection (Part 7) assesses [[FRAMEWORK]]'s alignment with the *guidance* in `companion/frameworks.md`. It does NOT issue the determinative phase placement — that is Part 8, owned by agent 05. Do not pre-empt Part 8.
+- The `adoption/pilot.md` subsection (Part 6) issues a pilot-feasibility verdict scoped to `adoption/pilot.md` criteria. It does NOT issue a production-deployment red line — that is Part 9, owned by agent 05.
 - The `Highest-Leverage Single Change` (Cross-Document Synthesis) is scoped to the adoption-ceiling unlock implied by Parts 6–7 findings. It is not a remediation roadmap — Part 11 (agent 06) is broader.
-- The `adoption-vmodel.md` subsection (Part 6) assesses whether [[FRAMEWORK]] *artefacts* satisfy V-model levels. Cross-reference Part 4 only via canonical part number. Do not re-derive loop-phase content.
+- The `adoption/vmodel.md` subsection (Part 6) assesses whether [[FRAMEWORK]] *artefacts* satisfy V-model levels. Cross-reference Part 4 only via canonical part number. Do not re-derive loop-phase content.
 
 ---
 
@@ -32,22 +32,22 @@ Suggested reading order: README → CHANGELOG/release notes → top-level rules 
 
 ### Manifesto adoption corpus — read each file end-to-end
 
-- `adoption-path.md` — 7-step incremental adoption path; Phase 3→4 and Phase 4→5 transitions; domain boundary encoding; evidence bundle requirements; regression gates; formal contracts; durable coordination state; expansion criteria.
-- `adoption-playbook.md` — business case; stage-gated investment model; supervision paradox; Agile-to-agentic ceremony conversion; cultural and human side of the transition; failure modes of the change programme.
-- `adoption-enterprise.md` — enterprise wave model (Wave 0–3); six enterprise readiness dimensions; heterogeneous maturity management; cross-domain dependencies; governance integration patterns.
-- `adoption-metrics.md` — success metrics by phase transition (Phase 1→2 through Phase 4→5); team health metrics; governance overhead metrics; failure modes of the change programme.
-- `adoption-roles.md` — how developer, tech lead, QA, operations, platform, domain owner, and product roles evolve through phase transitions; the human side of the transition; sustainable pace.
-- `adoption-pilot.md` — pilot selection criteria; pilot structure and duration guidance; success criteria; navigating organisational resistance and politics; first pilot design.
-- `adoption-vmodel.md` — Agentic V-Model for regulated organisations; left-arc specification artefacts; right-arc verification artefacts; ALCOA+ compliance properties; traceability requirements; validation vs. verification distinction.
+- `adoption/path.md` — 7-step incremental adoption path; Phase 3→4 and Phase 4→5 transitions; domain boundary encoding; evidence bundle requirements; regression gates; formal contracts; durable coordination state; expansion criteria.
+- `adoption/playbook.md` — business case; stage-gated investment model; supervision paradox; Agile-to-agentic ceremony conversion; cultural and human side of the transition; failure modes of the change programme.
+- `adoption/enterprise.md` — enterprise wave model (Wave 0–3); six enterprise readiness dimensions; heterogeneous maturity management; cross-domain dependencies; governance integration patterns.
+- `adoption/metrics.md` — success metrics by phase transition (Phase 1→2 through Phase 4→5); team health metrics; governance overhead metrics; failure modes of the change programme.
+- `adoption/roles.md` — how developer, tech lead, QA, operations, platform, domain owner, and product roles evolve through phase transitions; the human side of the transition; sustainable pace.
+- `adoption/pilot.md` — pilot selection criteria; pilot structure and duration guidance; success criteria; navigating organisational resistance and politics; first pilot design.
+- `adoption/vmodel.md` — Agentic V-Model for regulated organisations; left-arc specification artefacts; right-arc verification artefacts; ALCOA+ compliance properties; traceability requirements; validation vs. verification distinction.
 
 ### Manifesto companion corpus — read each file end-to-end
 
-- `companion-frameworks.md` — six-phase maturity spectrum (Phase 1–6) with failure modes per phase; boundary conditions for regulated industries; hard autonomy caps by use-case class; operational definitions of blast radius, right-sized, and evidence bundle.
-- `companion-patterns.md` — Patterns A–H (Single-Domain Reliability Fix, Multi-Agent Cross-Domain Coordination, Memory Poisoning Recovery, Economics Routing, Autonomy Tier Escalation, Governed Failure, Exception-Based Governance, Persona Simulator); Hallucination Loop failure pattern; Operational Recovery Cycle failure pattern.
-- `companion-principles.md` — extended guidance for all 12 principles; probability-compounding problem; correlated failure domains (model, retrieval, tool, governance); blast radius management; isolation design; accountability paradox; retrieval SLOs; context budgeting; tier boundary design; memory governance operational detail.
-- `companion-guide.md` — Annotated Agent Configuration Template (`AGENTS.md` / `CLAUDE.md`); CoE review checklist; contents index for the full companion suite.
-- `companion-re-framework.md` — requirements engineering paradigm break for agentic systems; two-axes classification matrix (system type × consumer type); single-source / multiple-projections principle; spec lifecycle and convergence; hard requirements vs. probabilistic assurance targets.
-- `companion-reference.md` — failure modes of the manifesto (over-governance, evidence theater, control theater, security theater, adoption theater, maturity inflation, verification without validation, structural regression without detection); skill requirements by principle with readiness assessment.
+- `companion/frameworks.md` — six-phase maturity spectrum (Phase 1–6) with failure modes per phase; boundary conditions for regulated industries; hard autonomy caps by use-case class; operational definitions of blast radius, right-sized, and evidence bundle.
+- `companion/patterns.md` — Patterns A–H (Single-Domain Reliability Fix, Multi-Agent Cross-Domain Coordination, Memory Poisoning Recovery, Economics Routing, Autonomy Tier Escalation, Governed Failure, Exception-Based Governance, Persona Simulator); Hallucination Loop failure pattern; Operational Recovery Cycle failure pattern.
+- `companion/principles.md` — extended guidance for all 12 principles; probability-compounding problem; correlated failure domains (model, retrieval, tool, governance); blast radius management; isolation design; accountability paradox; retrieval SLOs; context budgeting; tier boundary design; memory governance operational detail.
+- `companion/guide.md` — Annotated Agent Configuration Template (`AGENTS.md` / `CLAUDE.md`); CoE review checklist; contents index for the full companion suite.
+- `companion/re-framework.md` — requirements engineering paradigm break for agentic systems; two-axes classification matrix (system type × consumer type); single-source / multiple-projections principle; spec lifecycle and convergence; hard requirements vs. probabilistic assurance targets.
+- `companion/reference.md` — failure modes of the manifesto (over-governance, evidence theater, control theater, security theater, adoption theater, maturity inflation, verification without validation, structural regression without detection); skill requirements by principle with readiness assessment.
 
 ### Domain file
 
@@ -79,12 +79,12 @@ For each of the seven adoption files, assess [[FRAMEWORK]]'s coverage in the fol
 For each of the six companion files, apply the same five-step procedure as above. Additionally:
 
 - **Identify any place where `[[FRAMEWORK]]` explicitly contradicts or undermines this companion document's guidance.** Label these with a `**Contradiction:**` prefix and assign severity. A contradiction is not the same as a gap — gaps are absences; contradictions are conflicts. Candidate contradiction patterns to actively check:
-  - Default autonomy tier vs. `companion-frameworks.md` hard cap.
-  - Blast-radius scope (code-only) vs. `companion-principles.md` (data + users + regulatory).
-  - Workspace-only isolation vs. `companion-principles.md` data/tool access enforcement.
-  - INVEST or deterministic acceptance criteria vs. `companion-re-framework.md` probabilistic assurance targets.
-  - Workspace agent configuration scaffolding vs. `companion-guide.md` template requirements.
-  - Process-level evaluation vs. `companion-reference.md` outcome validation.
+  - Default autonomy tier vs. `companion/frameworks.md` hard cap.
+  - Blast-radius scope (code-only) vs. `companion/principles.md` (data + users + regulatory).
+  - Workspace-only isolation vs. `companion/principles.md` data/tool access enforcement.
+  - INVEST or deterministic acceptance criteria vs. `companion/re-framework.md` probabilistic assurance targets.
+  - Workspace agent configuration scaffolding vs. `companion/guide.md` template requirements.
+  - Process-level evaluation vs. `companion/reference.md` outcome validation.
 - If no contradiction is found in a subsection, state `**Contradiction:** None identified.` explicitly.
 
 ### 2.3 Scoring and grading
@@ -149,7 +149,7 @@ Every subsection (13 total: 7 in Part 6, 6 in Part 7) MUST contain the following
 
 **Depth is proportional to the document's significance.** A document where `[[FRAMEWORK]]` has major coverage or major gap warrants more depth. Minimum: 6 substantive bullets or 3 paragraphs of analysis. Do not pad to a target line count.
 
-**Heading format:** Use H3 (`### `) for each file's heading. Wrap the filename in backticks. Format example: `` ### `adoption-path.md` — Adoption Path and Phase Transitions ``.
+**Heading format:** Use H3 (`### `) for each file's heading. Wrap the filename in backticks. Format example: `` ### `adoption/path.md` — Adoption Path and Phase Transitions ``.
 
 **Strengths surfacing:** Where [[FRAMEWORK]] demonstrably meets a requirement, name it as a strength inside `What [[FRAMEWORK]] Covers` even if other parts of the subsection are partial or absent.
 
@@ -163,7 +163,7 @@ Every subsection (13 total: 7 in Part 6, 6 in Part 7) MUST contain the following
 
 Open with `## Part 6 — Adoption Document Alignment`. Produce the following seven subsections in this exact order. Apply the structural skeleton from §3.3 to each.
 
-#### `### \`adoption-path.md\` — Adoption Path and Phase Transitions`
+#### `### \`adoption/path.md\` — Adoption Path and Phase Transitions`
 
 Assess [[FRAMEWORK]]'s support for the 7-step incremental adoption path:
 - Step 1: Domain boundary encoding and autonomy tier infrastructure enforcement (not just prompt-level constraints).
@@ -180,7 +180,7 @@ Assign a per-step `✅ Met` / `🟡 Partial` / `❌ Absent` verdict.
 
 Include a `#### Output Lifecycle & Version Migration` sub-subsection (4–6 bullets) covering how `[[FRAMEWORK]]` supports output retention, versioning, and migration across framework versions. Include: whether [[FRAMEWORK]] stamps its output artefacts with the producing framework version; whether there is a migration path for artefacts produced by prior versions; whether the audit log is centrally accessible rather than local-only; and the consequence for [[ORGANIZATION]]'s multi-year regulatory artefact horizon.
 
-#### `### \`adoption-playbook.md\` — Organisational Change Readiness`
+#### `### \`adoption/playbook.md\` — Organisational Change Readiness`
 
 Assess [[FRAMEWORK]]'s support for:
 - Business case metrics: total cost of correctness, escaped defect rate, cycle time from specification to verified deployment.
@@ -188,7 +188,7 @@ Assess [[FRAMEWORK]]'s support for:
 - Agile-to-agentic ceremony conversion: standup replacement; evidence bundle review replacing sprint review; memory curation replacing retrospective.
 - Cultural and human dimensions: note explicitly if these are out of [[FRAMEWORK]]'s scope, and state the implication for [[ORGANIZATION]]'s change programme.
 
-#### `### \`adoption-enterprise.md\` — Enterprise Wave Model`
+#### `### \`adoption/enterprise.md\` — Enterprise Wave Model`
 
 Assess [[FRAMEWORK]]'s readiness for each wave:
 - Wave 0 (one team, one domain, Phase 3→4): Can [[FRAMEWORK]] be safely deployed for a pilot? Does it produce the governance evidence artefacts Wave 0 requires?
@@ -198,24 +198,24 @@ Assess [[FRAMEWORK]]'s readiness for each wave:
 
 Assess all six enterprise readiness dimensions: current agentic maturity distribution, existing governance integration, infrastructure readiness (reasoning observability, memory, evaluation pipelines), skill distribution, regulatory exposure, and organisational change capacity.
 
-#### `### \`adoption-metrics.md\` — Measurement Readiness`
+#### `### \`adoption/metrics.md\` — Measurement Readiness`
 
-Produce a coverage table with the following columns: Metric | Phase | [[FRAMEWORK]] Support | Verdict (✅/🟡/❌) | Evidence. Cover the full set of metrics from `adoption-metrics.md` across Phase 1→2, Phase 2→3, Phase 3→4, Phase 4→5, team health, and governance overhead (one row per metric). After the table, summarise the proportion met, partially met, and absent. State the consequence for [[ORGANIZATION]]'s ability to demonstrate phase transition readiness to a regulator or board.
+Produce a coverage table with the following columns: Metric | Phase | [[FRAMEWORK]] Support | Verdict (✅/🟡/❌) | Evidence. Cover the full set of metrics from `adoption/metrics.md` across Phase 1→2, Phase 2→3, Phase 3→4, Phase 4→5, team health, and governance overhead (one row per metric). After the table, summarise the proportion met, partially met, and absent. State the consequence for [[ORGANIZATION]]'s ability to demonstrate phase transition readiness to a regulator or board.
 
-#### `### \`adoption-roles.md\` — Role Transition Assessment`
+#### `### \`adoption/roles.md\` — Role Transition Assessment`
 
 Produce a coverage table with columns: Role | [[FRAMEWORK]] Support | Verdict (✅/🟡/❌) | Evidence. Cover, in this order: Developer (specification author), Developer (code reviewer), Tech Lead (architecture), QA Engineer (test generation), QA Engineer (evaluation design), Operations Engineer (deployment), Operations Engineer (behavioural observability), Platform Engineer (agent runtime), Platform Engineer (memory governance), Domain Owner (autonomy tier assignment), Product Owner (loop-ready specification), Specification Analyst. After the table, list the roles absent from [[FRAMEWORK]]'s tooling scope with a note on the consequence for [[ORGANIZATION]].
 
-#### `### \`adoption-pilot.md\` — Pilot Design Readiness`
+#### `### \`adoption/pilot.md\` — Pilot Design Readiness`
 
 Assess:
 - Pilot selection criteria alignment: which pilot domains at [[ORGANIZATION]] are safe for [[FRAMEWORK]] deployment?
 - Pilot structure compatibility: sprint tracking, team size, scope enforcement, tooling investment.
 - Pilot success criteria alignment: escaped defect rate tracking, evidence bundle assembly time, lesson capture, specification refinement.
 - [[INDUSTRY]]-specific guard rails from `[[DOMAIN_FILE]]`: which autonomy domains require additional controls beyond [[FRAMEWORK]]'s defaults?
-- Conclude with a clear pilot-feasibility verdict scoped to `adoption-pilot.md` criteria: "[[FRAMEWORK]] is pilot-feasible at [[ORGANIZATION]] in [domains] / not pilot-feasible in [domains] without [specific additional controls]." Do not extend this to a production-deployment red line — that is Part 9 territory.
+- Conclude with a clear pilot-feasibility verdict scoped to `adoption/pilot.md` criteria: "[[FRAMEWORK]] is pilot-feasible at [[ORGANIZATION]] in [domains] / not pilot-feasible in [domains] without [specific additional controls]." Do not extend this to a production-deployment red line — that is Part 9 territory.
 
-#### `### \`adoption-vmodel.md\` — V-Model Integration`
+#### `### \`adoption/vmodel.md\` — V-Model Integration`
 
 Assess each arc:
 
@@ -233,20 +233,20 @@ Assess each arc:
 
 Open with `## Part 7 — Companion Framework Alignment`. Produce the following six subsections in this exact order. Apply the structural skeleton from §3.3, including the mandatory `Contradictions` block.
 
-#### `### \`companion-frameworks.md\` — Maturity Guidance Alignment`
+#### `### \`companion/frameworks.md\` — Maturity Guidance Alignment`
 
-Assess [[FRAMEWORK]]'s alignment with the *guidance* in `companion-frameworks.md`. Do NOT issue a determinative phase placement (that is Part 8, agent 05). State which `companion-frameworks.md` requirements [[FRAMEWORK]] meets and misses; map [[FRAMEWORK]]'s default operating mode against the hard autonomy caps for [[INDUSTRY]] domains from `[[DOMAIN_FILE]]`.
+Assess [[FRAMEWORK]]'s alignment with the *guidance* in `companion/frameworks.md`. Do NOT issue a determinative phase placement (that is Part 8, agent 05). State which `companion/frameworks.md` requirements [[FRAMEWORK]] meets and misses; map [[FRAMEWORK]]'s default operating mode against the hard autonomy caps for [[INDUSTRY]] domains from `[[DOMAIN_FILE]]`.
 
 Assess [[FRAMEWORK]]'s mitigation of the failure mode for each phase:
 - Phase 3: "Autonomy without verification." Is this mitigated?
 - Phase 4: "Governance without feedback." Is this mitigated?
 - Phase 5: "Evaluation theater." Is this mitigated?
 
-#### `### \`companion-patterns.md\` — Pattern Implementation Assessment`
+#### `### \`companion/patterns.md\` — Pattern Implementation Assessment`
 
 Produce a table: Pattern | [[FRAMEWORK]] Implementation | Verdict (✅/🟡/❌) | Evidence. Cover Patterns A–H plus the Hallucination Loop and Operational Recovery Cycle failure patterns (10 rows). After the table, identify the pattern most operationally relevant to [[ORGANIZATION]]'s [[INDUSTRY]] context and explain its relevance with a named regulatory basis.
 
-#### `### \`companion-principles.md\` — Principle-Level Design Decisions`
+#### `### \`companion/principles.md\` — Principle-Level Design Decisions`
 
 For each of the following extended guidance topics, assess [[FRAMEWORK]]'s alignment and identify any contradictions:
 - Probability compounding and correlated failure domains (model, retrieval, tool, governance): does [[FRAMEWORK]] address any of these failure domains explicitly?
@@ -255,7 +255,7 @@ For each of the following extended guidance topics, assess [[FRAMEWORK]]'s align
 
 For [[ORGANIZATION]], identify the most dangerous correlated failure domain in [[INDUSTRY]] context (anchored to a specific criterion: highest probability, highest blast radius, or highest regulatory exposure — name the criterion) and assess whether [[FRAMEWORK]] has detection capability for it.
 
-#### `### \`companion-guide.md\` — Practical Implementation Guidance`
+#### `### \`companion/guide.md\` — Practical Implementation Guidance`
 
 Assess [[FRAMEWORK]]'s alignment with the Annotated Agent Configuration Template requirements:
 - Does [[FRAMEWORK]] scaffold an agent configuration file (`AGENTS.md`, `CLAUDE.md`, or equivalent)?
@@ -264,7 +264,7 @@ Assess [[FRAMEWORK]]'s alignment with the Annotated Agent Configuration Template
 
 Assess CoE review checklist compliance: project overview / domain boundary; build/test/deploy commands; domain constraints; security section; testing conventions. For each checklist item, state whether [[FRAMEWORK]] satisfies it and cite the artefact.
 
-#### `### \`companion-re-framework.md\` — Requirements Engineering Assessment`
+#### `### \`companion/re-framework.md\` — Requirements Engineering Assessment`
 
 Assess [[FRAMEWORK]]'s requirements output against the two-axes classification matrix (system type ∈ {deterministic, agentic, hybrid} × consumer type ∈ {human, agent, hybrid}). State which cell [[FRAMEWORK]]'s output falls in and what the full RE framework requirements are for that cell.
 
@@ -275,9 +275,9 @@ Assess the following requirements:
 - Single-source / multiple-projections principle: if [[FRAMEWORK]] produces a YAML/canonical source and then downstream representations (ADO stories, ticket descriptions, etc.), are the downstream representations automatically synchronised when the source changes?
 - Probabilistic assurance targets: does [[FRAMEWORK]] generate or validate probabilistic assurance targets for non-deterministic agent behaviour? State the consequence for [[ORGANIZATION]]'s [[INDUSTRY]] AI systems, which are non-deterministic by nature.
 
-#### `### \`companion-reference.md\` — Failure Modes Risk Table`
+#### `### \`companion/reference.md\` — Failure Modes Risk Table`
 
-For each failure mode in `companion-reference.md`, produce a row assessing [[FRAMEWORK]]'s risk level, with evidence. Cover all eight failure modes: Over-governance, Evidence theater, Control theater, Security theater, Adoption theater, Maturity inflation, Verification without validation, Structural regression without detection. Quote the operational definition from `companion-reference.md` (1 line) before scoring [[FRAMEWORK]]'s risk level.
+For each failure mode in `companion/reference.md`, produce a row assessing [[FRAMEWORK]]'s risk level, with evidence. Cover all eight failure modes: Over-governance, Evidence theater, Control theater, Security theater, Adoption theater, Maturity inflation, Verification without validation, Structural regression without detection. Quote the operational definition from `companion/reference.md` (1 line) before scoring [[FRAMEWORK]]'s risk level.
 
 Use this format: a table with columns Failure Mode | Definition | [[FRAMEWORK]] Risk Level (Low/Medium/High/Critical) | Evidence. After the table, identify the highest-risk failure mode for [[ORGANIZATION]] in [[INDUSTRY]] context with a named regulatory basis (Article number) from `[[DOMAIN_FILE]]`.
 
@@ -363,9 +363,9 @@ These rules apply without exception.
 - [ ] Every subsection contains: `What the Document Requires`; `What [[FRAMEWORK]] Covers`; `Gaps`; `[[ORGANIZATION]] Implication`. Every Part 7 subsection additionally contains a `Contradictions` block (zero or more, with companion guidance violated and [[FRAMEWORK]] artefact named, or `**Contradiction:** None identified.`).
 - [ ] Every gap bullet ends with a severity label `[Severity: Critical|High|Medium|Low]`.
 - [ ] Every coverage statement names a specific [[FRAMEWORK]] artefact (file path, command name, rule, module) AND quotes verbatim from that artefact.
-- [ ] The `adoption-path.md` subsection contains an `Output Lifecycle & Version Migration` sub-subsection with 4–6 bullets.
-- [ ] The `adoption-pilot.md` subsection ends with a pilot-feasibility verdict (not a production red line).
-- [ ] The `adoption-vmodel.md` subsection contains a `**Fundamental incompatibility:**` sub-header.
+- [ ] The `adoption/path.md` subsection contains an `Output Lifecycle & Version Migration` sub-subsection with 4–6 bullets.
+- [ ] The `adoption/pilot.md` subsection ends with a pilot-feasibility verdict (not a production red line).
+- [ ] The `adoption/vmodel.md` subsection contains a `**Fundamental incompatibility:**` sub-header.
 - [ ] The Cross-Document Synthesis section is present with both `Realistic Adoption Ceiling at [[ORGANIZATION]]` and `Highest-Leverage Single Change` subsections.
 - [ ] The `Realistic Adoption Ceiling` subsection opens with the canonical verdict sentence form, contains 4–8 evidence bullets each citing a Part 6 or Part 7 subsection, and closes with the single-binding-constraint sentence.
 - [ ] At least 5 distinct regulations or risk-types from `[[DOMAIN_FILE]]` are referenced across the output. No single regulation accounts for the majority of subsections.
@@ -382,4 +382,4 @@ These rules apply without exception.
 
 ---
 
-*Sources to read: all files in `[[FRAMEWORK_LOWER]]/`; `adoption-path.md`; `adoption-playbook.md`; `adoption-enterprise.md`; `adoption-metrics.md`; `adoption-roles.md`; `adoption-pilot.md`; `adoption-vmodel.md`; `companion-frameworks.md`; `companion-patterns.md`; `companion-principles.md`; `companion-guide.md`; `companion-re-framework.md`; `companion-reference.md`; `[[DOMAIN_FILE]]`; and `[[PRIOR_REVIEWS]]` if not `none`.*
+*Sources to read: all files in `[[FRAMEWORK_LOWER]]/`; `adoption/path.md`; `adoption/playbook.md`; `adoption/enterprise.md`; `adoption/metrics.md`; `adoption/roles.md`; `adoption/pilot.md`; `adoption/vmodel.md`; `companion/frameworks.md`; `companion/patterns.md`; `companion/principles.md`; `companion/guide.md`; `companion/re-framework.md`; `companion/reference.md`; `[[DOMAIN_FILE]]`; and `[[PRIOR_REVIEWS]]` if not `none`.*

@@ -7,7 +7,7 @@
 **Wave dependency:** Run ONLY after `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04a_adoption.md` and `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04b_companion.md` both exist and are non-empty. Confirm both files satisfy: first 5 lines readable, last 5 lines readable, total line count ≥ 20. **If either file is missing, empty, or fails the readability check, report which file is missing and STOP. Do not attempt to fabricate content for the missing sibling.**
 
 **Cross-prompt scope guards:**
-- Do NOT re-read [[FRAMEWORK]] source artefacts to re-derive scores. The verdicts in 04a and 04b are authoritative; lift them verbatim. The only re-reading permitted is `[[DOMAIN_FILE]]` (for synthesis citations) and `companion-frameworks.md` (for any phase-name reference in the ceiling sentence).
+- Do NOT re-read [[FRAMEWORK]] source artefacts to re-derive scores. The verdicts in 04a and 04b are authoritative; lift them verbatim. The only re-reading permitted is `[[DOMAIN_FILE]]` (for synthesis citations) and `companion/frameworks.md` (for any phase-name reference in the ceiling sentence).
 - Do NOT issue a determinative phase placement. The synthesis verdict sentence is scoped to the *adoption ceiling implied by Parts 6–7 findings*, not the determinative phase placement (which is Part 8, owned by agent 05).
 - Do NOT issue a production-deployment red line. The Highest-Leverage Single Change is scoped to the adoption-ceiling unlock implied by Parts 6–7 findings — not a remediation roadmap (which is Part 11, owned by agent 06) and not a production red line (Part 9, owned by agent 05).
 - Do NOT pre-empt Part 8.
@@ -24,12 +24,12 @@
 ### Optional (read only for synthesis citations)
 
 - `[[DOMAIN_FILE]]` — for regulation/risk-type citations in the synthesis bullets.
-- `companion-frameworks.md` — for phase-name reference in the ceiling sentence (Phase 1–6 vocabulary). Do not re-derive companion alignment.
+- `companion/frameworks.md` — for phase-name reference in the ceiling sentence (Phase 1–6 vocabulary). Do not re-derive companion alignment.
 
 ### Do NOT read
 
 - `[[FRAMEWORK]]` source artefacts. Re-derivation is forbidden.
-- Adoption corpus or companion corpus files (other than `companion-frameworks.md` for phase-name reference). The siblings have already assessed them.
+- Adoption corpus or companion corpus files (other than `companion/frameworks.md` for phase-name reference). The siblings have already assessed them.
 - `[[PRIOR_REVIEWS]]`. Sibling files have already integrated peer comparison if applicable.
 
 ---
@@ -57,11 +57,11 @@
 When transferring Part 6 (from 04a) and Part 7 (from 04b) into the combined file, lift the content **verbatim** with one mechanical transformation:
 
 - The 04a/04b files are stand-alone documents whose top-level heading is H1 (`# `). In the combined file, those become H2 (`## `).
-- Inside each lifted section, every heading shifts down by one level: H2 → H3, H3 → H4, H4 → H5. The H3 subsection title `### \`adoption-path.md\` — ...` therefore becomes H4 `#### \`adoption-path.md\` — ...` in the combined file? **No.** The combined file's `## Part 6 — Adoption Document Alignment` heading replaces the 04a top-level heading; the existing H3 subsection headings inside Part 6 (e.g., `### \`adoption-path.md\` — ...`) are kept at H3 because Part 6 is at H2. The same applies to Part 7. Concretely:
+- Inside each lifted section, every heading shifts down by one level: H2 → H3, H3 → H4, H4 → H5. The H3 subsection title `### \`adoption/path.md\` — ...` therefore becomes H4 `#### \`adoption/path.md\` — ...` in the combined file? **No.** The combined file's `## Part 6 — Adoption Document Alignment` heading replaces the 04a top-level heading; the existing H3 subsection headings inside Part 6 (e.g., `### \`adoption/path.md\` — ...`) are kept at H3 because Part 6 is at H2. The same applies to Part 7. Concretely:
   - 04a's `# [[FRAMEWORK]] Agent 04a — Adoption Document Alignment (Part 6)` → drop entirely (replaced by combined header).
   - 04a's `## Methodology` → drop entirely (replaced by combined `## Methodology (brief)` block written by 04c).
   - 04a's `## Part 6 — Adoption Document Alignment` → keep as-is in combined file at H2.
-  - 04a's `### \`adoption-path.md\` — ...` H3 subsections → keep as H3.
+  - 04a's `### \`adoption/path.md\` — ...` H3 subsections → keep as H3.
   - 04a's `#### What the Document Requires` H4 sub-subsections → keep as H4.
   - Same pattern for 04b's Part 7.
 - The `<!-- GAP INVENTORY ... /GAP INVENTORY -->` blocks in 04a and 04b are NOT lifted into the body of the combined file. They are extracted (per §2.2) and their contents are merged into a single `<!-- GAP INVENTORY ... /GAP INVENTORY -->` block at the very end of the combined file.
@@ -75,7 +75,7 @@ Write `### Realistic Adoption Ceiling at [[ORGANIZATION]]` per §3.6.1. Source m
 - The merged Gap Inventory.
 - The contradiction bullets from Part 7 (now in the combined file).
 - The `[[ORGANIZATION]] Implication` paragraphs from each subsection (for regulatory citations).
-- `companion-frameworks.md` — only for phase-name vocabulary in the ceiling sentence.
+- `companion/frameworks.md` — only for phase-name vocabulary in the ceiling sentence.
 
 The ceiling sentence has a fixed form:
 > `[[FRAMEWORK]]` can support adoption up to Phase {N} in `[[INDUSTRY]]` contexts without significant additional tooling.
@@ -177,7 +177,7 @@ Optionally, name a secondary change that would unlock additional capability but 
 
 After Cross-Document Synthesis closes, append (in this order):
 
-1. **Sources read footer** — italic `*Sources read: ...*`. Merge the lists from 04a and 04b's footers, de-duplicate, and add the synthesis-only inputs (`[[DOMAIN_FILE]]`, optionally `companion-frameworks.md`).
+1. **Sources read footer** — italic `*Sources read: ...*`. Merge the lists from 04a and 04b's footers, de-duplicate, and add the synthesis-only inputs (`[[DOMAIN_FILE]]`, optionally `companion/frameworks.md`).
 2. **Merged Gap Inventory block** — the de-duplicated `<!-- GAP INVENTORY ... /GAP INVENTORY -->` block built from both siblings (per §2.2). Each row keeps its original `P6` or `P7` part reference. Format:
 
 ```
@@ -194,7 +194,7 @@ After Cross-Document Synthesis closes, append (in this order):
 
 These rules apply without exception. See `prompt.md` for the canonical severity, weighting, and effort tables — do not re-quote them.
 
-1. **Do not re-read [[FRAMEWORK]] source files to re-derive scores or alignment grades.** Lift Part 6 and Part 7 verbatim from the sibling outputs. The only permissible re-reads are `[[DOMAIN_FILE]]` (for synthesis citations) and `companion-frameworks.md` (for the phase-name in the ceiling sentence).
+1. **Do not re-read [[FRAMEWORK]] source files to re-derive scores or alignment grades.** Lift Part 6 and Part 7 verbatim from the sibling outputs. The only permissible re-reads are `[[DOMAIN_FILE]]` (for synthesis citations) and `companion/frameworks.md` (for the phase-name in the ceiling sentence).
 2. **Do not edit substantive content of Part 6 or Part 7.** Heading-level harmonisation (dropping the sibling H1, the sibling `## Methodology`, the sibling gap inventory, and the sibling sources footer) is permitted; rewording, regrading, or "improvement" of bullets is not.
 3. The Cross-Document Synthesis is the only original content authored by 04c. Its bullets must trace to entries in the merged Gap Inventory or to Part 7 contradictions.
 4. **Placeholder scan.** Before saving, scan the combined file for any remaining `[[...]]` patterns. If any remain (including in lifted material from 04a/04b), STOP and report — the siblings should have substituted them, but if they did not, fixing it here masks the upstream defect.
@@ -237,4 +237,4 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 
 ---
 
-*Sources to read: `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04a_adoption.md`; `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04b_companion.md`; `[[DOMAIN_FILE]]` (synthesis citations only); `companion-frameworks.md` (phase-name reference only).*
+*Sources to read: `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04a_adoption.md`; `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04b_companion.md`; `[[DOMAIN_FILE]]` (synthesis citations only); `companion/frameworks.md` (phase-name reference only).*
