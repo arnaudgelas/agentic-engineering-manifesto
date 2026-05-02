@@ -1,0 +1,719 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/arnaudgelas/manifesto/governance/evidence_bundle.schema.json",
+  "title": "Unified Evidence Bundle",
+  "description": "Cross-framework evidence bundle satisfying AEM Definition-of-Done, IGM provenance, AEnt-M traceability, ASDLC release-gate Condition 1, and APLC composite-state-manifest requirements. See governance/evidence-bundle-schema.md for the normative description.",
+  "type": "object",
+  "required": [
+    "bundle_metadata",
+    "aem_components",
+    "aentm_components"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "bundle_metadata": { "$ref": "#/$defs/bundle_metadata" },
+    "aem_components": { "$ref": "#/$defs/aem_components" },
+    "igm_components": { "$ref": "#/$defs/igm_components" },
+    "aentm_components": { "$ref": "#/$defs/aentm_components" },
+    "cross_references": { "$ref": "#/$defs/cross_references" }
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "rfc3339_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hex_hash_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "epistemic_tier": {
+      "type": "string",
+      "enum": ["provisional", "candidate", "confirmed", "high-confidence", "authoritative"],
+      "description": "IGM epistemic tier (renamed from 'confidence'). Replaces IGM's 'confidence level' terminology."
+    },
+    "consequence_class": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "autonomy_tier": {
+      "type": "string",
+      "enum": ["tier-1", "tier-2", "tier-3", "tier-4"]
+    },
+    "relocation_stage": {
+      "type": "string",
+      "enum": ["full-synchronous", "parallel-run", "monitored-relocation", "operational-relocation"]
+    },
+    "response_class": {
+      "type": "string",
+      "enum": ["block", "escalate", "restrict-scope", "advisory-only", "continue-with-enhanced-monitoring"]
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": ["regulatory", "operational", "technical", "domain-mechanical", "external-intelligence"]
+    },
+    "acquisition_mode": {
+      "type": "string",
+      "enum": ["harvest", "extract", "capture", "emerge"]
+    },
+    "contradiction_type": {
+      "type": "string",
+      "enum": ["logical", "jurisdictional", "temporal", "scope", "extraction"]
+    },
+    "governance_status": {
+      "type": "string",
+      "enum": ["searchable", "recommendable", "reasoning-eligible", "action-eligible", "regulatory-evidence"]
+    },
+    "artefact_origin_label": {
+      "type": "string",
+      "enum": ["human-authored", "tool-generated", "agent-proposed-with-human-review", "agent-generated"],
+      "description": "AEM artefact-origin label (called 'epistemic tier' in asdlc/release-governance.md:189; renamed here to disambiguate from IGM's epistemic tier for claims)."
+    },
+    "freshness_state": {
+      "type": "string",
+      "enum": ["fresh", "stale", "projected-stale", "n/a"]
+    },
+    "control_status": {
+      "type": "string",
+      "enum": ["pass", "fail", "waived", "stale", "requires-human-decision"]
+    },
+    "consequence_class_role": {
+      "type": "string",
+      "enum": ["workflow_owner", "decision_reviewer", "accountable_authority", "dual_authority_a", "dual_authority_b", "governance_authority"]
+    },
+    "igm_authority": {
+      "type": "string",
+      "enum": ["semantic_authority", "assertion_authority", "inference_authority", "revision_authority"]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": { "type": "string" },
+        "entity": { "type": "string" },
+        "process": { "type": "string" },
+        "system": { "type": "string" },
+        "temporal_from": { "$ref": "#/$defs/rfc3339_timestamp" },
+        "temporal_to": { "$ref": "#/$defs/rfc3339_timestamp" }
+      }
+    },
+    "bundle_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_id",
+        "schema_version",
+        "created_at",
+        "system_under_release",
+        "consequence_class",
+        "bundle_hash",
+        "signatures"
+      ],
+      "properties": {
+        "bundle_id": { "$ref": "#/$defs/uuid" },
+        "schema_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "created_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+        "system_under_release": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["system_id", "system_name", "version", "autonomy_tier"],
+          "properties": {
+            "system_id": { "type": "string" },
+            "system_name": { "type": "string" },
+            "version": { "type": "string" },
+            "autonomy_tier": { "$ref": "#/$defs/autonomy_tier" },
+            "envelope_id": { "type": "string" }
+          },
+          "if": { "properties": { "autonomy_tier": { "const": "tier-4" } } },
+          "then": { "required": ["envelope_id"] }
+        },
+        "consequence_class": { "$ref": "#/$defs/consequence_class" },
+        "bundle_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+        "bundle_signature": { "type": "string" },
+        "signatures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["signatory_role", "signatory_name", "signed_at", "scope"],
+            "properties": {
+              "signatory_role": { "type": "string" },
+              "signatory_name": { "type": "string" },
+              "signed_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "signature": { "type": "string" },
+              "scope": { "type": "string", "description": "Scope of accountability for this signature." }
+            }
+          }
+        }
+      }
+    },
+    "aem_components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluation_reports",
+        "trace_ids",
+        "diffs",
+        "policy_check_outputs",
+        "rollback_plan",
+        "evidence_freshness_attestation",
+        "bundle_integrity_attestation"
+      ],
+      "properties": {
+        "evaluation_reports": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["eval_id", "eval_suite_version", "ran_at", "status"],
+            "properties": {
+              "eval_id": { "type": "string" },
+              "eval_suite_version": { "type": "string" },
+              "ran_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "pass_count": { "type": "integer", "minimum": 0 },
+              "fail_count": { "type": "integer", "minimum": 0 },
+              "regression_pass_count": { "type": "integer", "minimum": 0 },
+              "adversarial_pass_count": { "type": "integer", "minimum": 0 },
+              "holdout_pass_count": { "type": "integer", "minimum": 0 },
+              "metrics": { "type": "object", "additionalProperties": true },
+              "trace_id": { "type": "string" },
+              "status": { "type": "string", "enum": ["pass", "fail", "waived"] }
+            }
+          }
+        },
+        "trace_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "diffs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["diff_id", "repo", "base_ref", "head_ref"],
+            "properties": {
+              "diff_id": { "type": "string" },
+              "repo": { "type": "string" },
+              "base_ref": { "type": "string" },
+              "head_ref": { "type": "string" },
+              "summary": { "type": "string" },
+              "files_changed_count": { "type": "integer", "minimum": 0 },
+              "lines_added": { "type": "integer", "minimum": 0 },
+              "lines_removed": { "type": "integer", "minimum": 0 },
+              "links": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "deployment_ids": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["deployment_id", "environment", "deployed_at", "system_version", "status"],
+            "properties": {
+              "deployment_id": { "type": "string" },
+              "environment": { "type": "string" },
+              "deployed_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "deployed_by": { "type": "string" },
+              "system_version": { "type": "string" },
+              "foundation_model_version": { "type": "string" },
+              "status": { "type": "string", "enum": ["success", "failed", "rolled-back"] }
+            }
+          }
+        },
+        "rollback_plan": {
+          "type": "object",
+          "required": ["rollback_id", "plan_summary", "last_tested_at", "last_test_status", "executor_role"],
+          "properties": {
+            "rollback_id": { "type": "string" },
+            "plan_summary": { "type": "string" },
+            "last_tested_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "last_test_status": { "type": "string", "enum": ["pass", "fail"] },
+            "mean_rollback_time_seconds": { "type": "number", "minimum": 0 },
+            "executor_role": { "type": "string" }
+          }
+        },
+        "policy_check_outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["policy_id", "policy_version", "status", "ran_at"],
+            "properties": {
+              "policy_id": { "type": "string" },
+              "policy_version": { "type": "string" },
+              "status": { "type": "string", "enum": ["pass", "fail", "waived"] },
+              "evidence_artefact_id": { "type": "string" },
+              "ran_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+            }
+          }
+        },
+        "memory_updates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["memory_store_id", "change_summary", "provenance_label"],
+            "properties": {
+              "memory_store_id": { "type": "string" },
+              "change_summary": { "type": "string" },
+              "provenance_label": { "$ref": "#/$defs/artefact_origin_label" },
+              "reviewer_role": { "type": "string" },
+              "reviewed_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+            }
+          }
+        },
+        "control_state_record": {
+          "type": "object",
+          "required": ["controls", "generated_at", "generator_role"],
+          "properties": {
+            "controls": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["control_id", "status"],
+                "properties": {
+                  "control_id": { "type": "string" },
+                  "status": { "$ref": "#/$defs/control_status" },
+                  "evidence_artefact_id": { "type": "string" },
+                  "waiver_owner": { "type": "string" },
+                  "waiver_expiry": { "$ref": "#/$defs/rfc3339_timestamp" },
+                  "compensating_control": { "type": "string" }
+                }
+              }
+            },
+            "generated_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "generator_role": { "type": "string" }
+          }
+        },
+        "agentic_provenance_record": {
+          "type": "object",
+          "required": ["foundation_model_id", "foundation_model_version"],
+          "properties": {
+            "foundation_model_id": { "type": "string" },
+            "foundation_model_version": { "type": "string" },
+            "provider_category": { "type": "string", "enum": ["third-party-api", "self-hosted-open-weight", "on-premises", "hybrid"] },
+            "deployment_mode": { "type": "string" },
+            "eval_model_parity": { "type": "boolean" },
+            "system_prompt_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+            "tool_manifest": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tool_id": { "type": "string" },
+                  "version": { "type": "string" },
+                  "permission_scope": { "type": "string" }
+                }
+              }
+            },
+            "memory_state_version": { "type": "string" },
+            "retrieval_corpus_version": { "type": "string" },
+            "embedding_model_version": { "type": "string" },
+            "dataset_lineage": { "type": "string" },
+            "policy_constraints_active": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "bundle_integrity_attestation": {
+          "type": "object",
+          "required": ["hash_algorithm", "hash_value", "signed_by", "signed_at"],
+          "properties": {
+            "hash_algorithm": { "type": "string", "enum": ["sha256", "sha384", "sha512"] },
+            "hash_value": { "type": "string" },
+            "signature_algorithm": { "type": "string" },
+            "signature_value": { "type": "string" },
+            "signed_by": { "type": "string" },
+            "signed_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+          }
+        },
+        "epistemic_tier_labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["artefact_id", "label"],
+            "properties": {
+              "artefact_id": { "type": "string" },
+              "label": { "$ref": "#/$defs/artefact_origin_label" }
+            }
+          }
+        },
+        "evidence_freshness_attestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "threat_model_status": { "$ref": "#/$defs/freshness_state" },
+            "sbom_status": { "$ref": "#/$defs/freshness_state" },
+            "security_static_analysis_status": { "$ref": "#/$defs/freshness_state" },
+            "cost_forecast_status": { "$ref": "#/$defs/freshness_state" },
+            "runbook_status": { "$ref": "#/$defs/freshness_state" },
+            "dpia_status": { "$ref": "#/$defs/freshness_state" },
+            "model_eval_run_status": { "$ref": "#/$defs/freshness_state" },
+            "rollback_test_status": { "$ref": "#/$defs/freshness_state" },
+            "agentic_provenance_record_status": { "$ref": "#/$defs/freshness_state" }
+          }
+        },
+        "dpia": {
+          "type": "object",
+          "properties": {
+            "dpia_id": { "type": "string" },
+            "version": { "type": "string" },
+            "completed_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "data_categories": { "type": "array", "items": { "type": "string" } },
+            "data_subjects": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "sbom": {
+          "type": "object",
+          "required": ["sbom_id", "generated_at", "format"],
+          "properties": {
+            "sbom_id": { "type": "string" },
+            "generated_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "dependency_count": { "type": "integer", "minimum": 0 },
+            "format": { "type": "string", "enum": ["CycloneDX", "SPDX"] }
+          }
+        },
+        "threat_model": {
+          "type": "object",
+          "required": ["threat_model_id", "version", "last_reviewed_at"],
+          "properties": {
+            "threat_model_id": { "type": "string" },
+            "version": { "type": "string" },
+            "last_reviewed_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "attack_surface_summary": { "type": "string" }
+          }
+        }
+      }
+    },
+    "igm_components": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "intelligence_claims_snapshot": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "claim_id",
+              "claim_assertion",
+              "claim_type",
+              "epistemic_tier",
+              "provenance_hash",
+              "source_type",
+              "acquisition_mode",
+              "scope",
+              "decay_window_remaining_days",
+              "projected_stale_at_deploy",
+              "governance_status"
+            ],
+            "properties": {
+              "claim_id": { "type": "string" },
+              "claim_assertion": { "type": "string" },
+              "claim_type": { "$ref": "#/$defs/claim_type" },
+              "epistemic_tier": { "$ref": "#/$defs/epistemic_tier" },
+              "provenance_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+              "source_type": { "type": "string" },
+              "acquisition_mode": { "$ref": "#/$defs/acquisition_mode" },
+              "scope": { "$ref": "#/$defs/scope" },
+              "contradiction_status": {
+                "type": "object",
+                "required": ["active"],
+                "properties": {
+                  "active": { "type": "boolean" },
+                  "type": { "$ref": "#/$defs/contradiction_type" },
+                  "counter_claim_id": { "type": "string" }
+                }
+              },
+              "decay_window_remaining_days": { "type": "integer" },
+              "projected_stale_at_deploy": { "type": "boolean" },
+              "governance_status": { "$ref": "#/$defs/governance_status" },
+              "expert_dependent": { "type": "boolean" },
+              "dependencies": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "feedback_observations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["observation_id", "originating_engagement", "observation_type", "routed_to_ingest_at", "status"],
+            "properties": {
+              "observation_id": { "type": "string" },
+              "originating_engagement": { "type": "string" },
+              "claim_id_referenced": { "type": "string" },
+              "observation_type": { "type": "string", "enum": ["gap", "contradiction", "decay", "operational-correction"] },
+              "routed_to_ingest_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "status": { "type": "string" },
+              "accepting_authority": { "$ref": "#/$defs/igm_authority" }
+            }
+          }
+        },
+        "contradiction_handling_decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["contradiction_id", "type", "claim_a_id", "claim_b_id", "classification_decided_by", "classification_at", "response_class"],
+            "properties": {
+              "contradiction_id": { "type": "string" },
+              "type": { "$ref": "#/$defs/contradiction_type" },
+              "claim_a_id": { "type": "string" },
+              "claim_b_id": { "type": "string" },
+              "classification_decided_by": { "type": "string" },
+              "classification_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "response_class": { "$ref": "#/$defs/response_class" },
+              "response_class_decided_by": { "type": "string" },
+              "action_taken_id": { "type": "string" }
+            }
+          }
+        },
+        "provenance_chain": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["step_type", "at"],
+              "properties": {
+                "step_type": { "type": "string", "enum": ["source", "extraction", "validation", "promotion", "corroboration", "supersession", "retirement"] },
+                "at": { "$ref": "#/$defs/rfc3339_timestamp" },
+                "by_authority": { "$ref": "#/$defs/igm_authority" },
+                "evidence_artefact_id": { "type": "string" },
+                "social_challenge_record": { "type": "string" }
+              }
+            }
+          }
+        },
+        "epistemic_tier_movements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "from_tier", "to_tier", "at"],
+            "properties": {
+              "claim_id": { "type": "string" },
+              "from_tier": { "$ref": "#/$defs/epistemic_tier" },
+              "to_tier": { "$ref": "#/$defs/epistemic_tier" },
+              "at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "by_authority": { "$ref": "#/$defs/igm_authority" },
+              "rationale": { "type": "string" }
+            }
+          }
+        },
+        "decay_state_attestation": {
+          "type": "object",
+          "required": ["evaluated_at", "claims_in_window", "claims_past_window"],
+          "properties": {
+            "evaluated_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "claims_in_window": { "type": "integer", "minimum": 0 },
+            "claims_past_window": { "type": "integer", "minimum": 0 },
+            "claims_within_30d_of_window": { "type": "integer", "minimum": 0 },
+            "staleness_metrics_per_domain": { "type": "object", "additionalProperties": true }
+          }
+        },
+        "four_authorities_state": {
+          "type": "object",
+          "required": [
+            "semantic_authority_id",
+            "assertion_authority_id",
+            "inference_authority_id",
+            "revision_authority_id",
+            "last_review_at"
+          ],
+          "properties": {
+            "semantic_authority_id": { "type": "string" },
+            "semantic_alternate_id": { "type": "string" },
+            "assertion_authority_id": { "type": "string" },
+            "assertion_alternate_id": { "type": "string" },
+            "inference_authority_id": { "type": "string" },
+            "inference_alternate_id": { "type": "string" },
+            "revision_authority_id": { "type": "string" },
+            "revision_alternate_id": { "type": "string" },
+            "last_review_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+          }
+        }
+      }
+    },
+    "aentm_components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consequence_class",
+        "action_class_id",
+        "named_human_signoffs"
+      ],
+      "properties": {
+        "consequence_class": { "$ref": "#/$defs/consequence_class" },
+        "action_class_id": { "type": "string" },
+        "relocation_stage_at_action": { "$ref": "#/$defs/relocation_stage" },
+        "response_class_at_runtime": { "$ref": "#/$defs/response_class" },
+        "composite_state_hash_at_action": { "$ref": "#/$defs/hex_hash_sha256" },
+        "composite_state_components": {
+          "type": "object",
+          "required": [
+            "application_code_hash",
+            "system_prompt_hash",
+            "foundation_model_id",
+            "foundation_model_version",
+            "knowledge_base_snapshot_id",
+            "memory_state_hash"
+          ],
+          "properties": {
+            "application_code_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+            "system_prompt_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+            "foundation_model_id": { "type": "string" },
+            "foundation_model_version": { "type": "string" },
+            "knowledge_base_snapshot_id": { "type": "string" },
+            "knowledge_base_source_manifest_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+            "memory_state_hash": { "$ref": "#/$defs/hex_hash_sha256" }
+          }
+        },
+        "regulatory_source_chain": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["regulatory_source_id", "source_type", "citation", "version"],
+            "properties": {
+              "regulatory_source_id": { "type": "string" },
+              "source_type": { "type": "string", "enum": ["statute", "delegated-act", "regulatory-technical-standard", "implementing-technical-standard", "guideline", "standard", "industry-code", "other"] },
+              "citation": { "type": "string" },
+              "version": { "type": "string" },
+              "claim_ids_derived_from_source": { "type": "array", "items": { "type": "string" } },
+              "cascade_analysis_complete": { "type": "boolean" },
+              "cascade_completed_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+            }
+          }
+        },
+        "named_human_signoffs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["role", "human_id", "signed_at", "scope", "decision"],
+            "properties": {
+              "role": { "$ref": "#/$defs/consequence_class_role" },
+              "human_id": { "type": "string" },
+              "signed_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "scope": { "type": "string" },
+              "decision": { "type": "string", "enum": ["approve", "reject", "defer"] },
+              "rationale": { "type": "string" },
+              "evidence_reviewed": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "initiative_authorisation_record": {
+          "type": "object",
+          "required": ["initiative_gate_id", "three_conditions", "accountability_anchor_signatures", "gate_decision", "valid_until"],
+          "properties": {
+            "initiative_gate_id": { "type": "string" },
+            "three_conditions": {
+              "type": "object",
+              "required": ["substrate_depth_attestation", "constraint_legibility_attestation", "governance_relocation_attestation"],
+              "properties": {
+                "substrate_depth_attestation": { "type": "string" },
+                "constraint_legibility_attestation": { "type": "string" },
+                "governance_relocation_attestation": { "type": "string" }
+              }
+            },
+            "accountability_anchor_signatures": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "required": ["role", "human_id", "signed_at"],
+                "properties": {
+                  "role": { "type": "string" },
+                  "human_id": { "type": "string" },
+                  "signed_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+                }
+              }
+            },
+            "gate_decision": { "type": "string", "enum": ["authorised", "withdrawn", "pending"] },
+            "valid_until": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "last_quarterly_review_at": { "$ref": "#/$defs/rfc3339_timestamp" }
+          }
+        },
+        "epistemic_circuit_breaker_state": {
+          "type": "object",
+          "required": ["breaker_id", "threshold_definition"],
+          "properties": {
+            "breaker_id": { "type": "string" },
+            "threshold_definition": { "type": "string" },
+            "last_activation_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "activation_count_30d": { "type": "integer", "minimum": 0 },
+            "activation_response_class": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/response_class" }
+            }
+          }
+        },
+        "aem_loop_readiness_attestation": {
+          "type": "object",
+          "required": ["loop_readiness_gate_id", "all_nine_conditions_met", "attested_by", "attested_at"],
+          "properties": {
+            "loop_readiness_gate_id": { "type": "string" },
+            "all_nine_conditions_met": { "type": "boolean" },
+            "attested_by": { "type": "string" },
+            "attested_at": { "$ref": "#/$defs/rfc3339_timestamp" },
+            "specification_origin": { "type": "string", "enum": ["human-authored", "agent-surfaced-opportunity"] }
+          }
+        }
+      }
+    },
+    "cross_references": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "external_artefact_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["artefact_id", "artefact_type", "location_uri"],
+            "properties": {
+              "artefact_id": { "type": "string" },
+              "artefact_type": { "type": "string" },
+              "location_uri": { "type": "string", "format": "uri-reference" },
+              "integrity_hash": { "$ref": "#/$defs/hex_hash_sha256" }
+            }
+          }
+        },
+        "predecessor_bundle_id": { "$ref": "#/$defs/uuid" },
+        "successor_bundle_id": { "$ref": "#/$defs/uuid" },
+        "incident_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["incident_id", "incident_class", "severity"],
+            "properties": {
+              "incident_id": { "type": "string" },
+              "incident_class": { "type": "string", "enum": ["quality", "behavioral", "safety", "persona", "adversarial", "regulatory-art-73", "dora-pillar-2"] },
+              "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+              "related_to_this_bundle_via": { "type": "string" }
+            }
+          }
+        },
+        "waiver_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["waiver_id", "condition_waived", "waiver_owner", "expiry", "status"],
+            "properties": {
+              "waiver_id": { "type": "string" },
+              "condition_waived": { "type": "string" },
+              "waiver_owner": { "type": "string" },
+              "expiry": { "$ref": "#/$defs/rfc3339_timestamp" },
+              "status": { "type": "string", "enum": ["issued", "active", "expiring", "expired", "closed"] }
+            }
+          }
+        },
+        "register_links": {
+          "type": "object",
+          "properties": {
+            "foundation_model_third_party_register_entry_id": { "type": "string" },
+            "ctpp_designation": { "type": "boolean" },
+            "exit_plan_link": { "type": "string", "format": "uri-reference" }
+          }
+        }
+      }
+    }
+  }
+}
