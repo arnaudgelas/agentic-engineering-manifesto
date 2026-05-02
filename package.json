@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.mjs",
     "build:pdf": "node build-pdf.mjs",
+    "clean": "node clean.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

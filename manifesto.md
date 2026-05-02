@@ -329,7 +329,7 @@ at Phase 4 and above. At higher phases, certain companion content becomes
 operationally essential rather than supplementary: the
 [Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints)
 distinction (P2), [rubber-stamping detection](adoption-metrics.md#team-health-metrics-all-phases)
-(P12), the [Adaptation Envelope — Layer 4](companion-re-framework.md#4-behavioral-envelopes)
+(P12), the [Adaptation Envelope — Layer 4](companion-re-framework.md#4-the-behavioral-envelope)
 (P6), and the [worked failure-mode patterns](companion-patterns.md) (P10/P12)
 are required reading before operating autonomy above Tier 1. If the core
 document describes the floor, these documents describe the walls and ceiling.

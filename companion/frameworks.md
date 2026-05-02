@@ -342,7 +342,7 @@ phase and risk tier.
 **Total cost of correctness**: `inference + verification + governance overhead +
 incident remediation + opportunity cost + context-switching cost`. Optimize this
 composite, not any single component. See
-[Principle 11 guidance](companion-principles.md#principle-11--economics-extended-guidance).
+[Principle 11 guidance](companion-principles.md#principle-11-economics-extended-guidance).
 
 **Evolution-weighted correctness (EvoScore)**: a metric that measures functional
 correctness on future modifications, not just current tests. Agents whose early

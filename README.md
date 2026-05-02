@@ -36,6 +36,38 @@ playbook, and domain-specific regulatory alignment for six industries.
 
 ---
 
+## The agentic governance stack
+
+The Agentic Engineering Manifesto (AEM) is the **root layer** of a layered governance stack for agentic systems. The dependency direction is explicit:
+
+```
+Agentic Engineering Manifesto (AEM)
+   ├─ Agentic SDLC (ASDLC) — engineering-side governance of agent-built code
+   ├─ Agentic Product Lifecycle (APLC) — product-side governance of agent behavior
+   ├─ Intelligence Governance Manifesto (IGM) — substrate that agents reason over
+   └─ Agentic Enterprise Manifesto (AEnt-M) — enterprise coordination of multiple agents on a shared substrate
+       ├─ depends on IGM (substrate)
+       └─ inherits AEM principles
+```
+
+ASDLC, APLC, IGM, and AEnt-M extend AEM and inherit its twelve principles. Earlier framings of the relationship as "complementary" or "companion" are retired in favour of the layered model above. See [`agentic-governance-stack.md`](agentic-governance-stack.md) for the canonical one-page reference, the layer-by-layer scope, and the term-collision preface that resolves cross-stack vocabulary collisions (e.g. *confidence*, *autonomy tier*, *governance*, *initiative*).
+
+---
+
+## Where to Start (Across the Stack)
+
+The Agentic Engineering Manifesto, ASDLC, and APLC are a layered set, but each is independently adoptable. Pick the one that matches the pain you are feeling now — you do not need to adopt all three at once, and you do not need to read them in order.
+
+| If your pain is… | Start with… |
+| --- | --- |
+| **An AI agent already in market or about to be**, and you cannot describe its behavior, prove its drift, or govern foundation-model updates that change it without warning | **[APLC](https://github.com/arnaudgelas/aplc)** — the Agentic Product Lifecycle. Governs the agent product itself: behavioral specification, evaluation, drift, foundation-model update governance, regulated retirement. |
+| **Software delivery by teams using AI agents to write code**, where the inner loop runs faster than your demand validation, release governance, or operational readiness can keep up | **[ASDLC](https://github.com/arnaudgelas/asdlc)** — the Agentic Software Delivery Lifecycle. Governs the four-layer delivery lifecycle around agent-built software: demand, execution, release, operations. |
+| **Engineering practice itself** — how humans steer intent, how agents execute within governed boundaries, what verified outcomes look like inside the inner loop | **[Manifesto](https://github.com/arnaudgelas/agentic-engineering-manifesto)** — the Agentic Engineering Manifesto. Defines the inner engineering loop that both APLC Stage 3 and ASDLC Layer 2 reference. |
+
+Each framework is independently useful. Together they form a complete governance stack for organisations dealing with both agent-built software and agent products in market.
+
+---
+
 ## Six Values
 
 | We value more | over | We also value |

@@ -47,18 +47,24 @@ assertions?
 
 **Evolvability as an implicit criterion.** A change that passes today's tests
 but degrades the codebase's capacity for future change is not truly done — it
-has traded short-term correctness for structural regression. The SWE-CI
-benchmark (arXiv:2603.03823) documents that most agents introduce behavioral
-regressions in over 75% of CI iterations, showing high regression rates on a
-long-horizon maintenance benchmark; treat it as one calibration point, not a
-universal rate. This is evidence of behavioral regression risk, not a direct
-measure of architectural evolvability: CI
-metrics do not capture coupling growth, cohesion decay, abstraction quality, or
-future-changeability. Both risks are real and distinct. At Phase 4 and above,
-"verified" should include evolution-weighted signals beyond CI pass rates —
-static analysis for coupling growth, module boundary stability, and change
-amplification — alongside the behavioral regression coverage the benchmark
-measures. See
+has traded short-term correctness for structural regression. Chen et al.,
+*SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via
+Continuous Integration* (2026, https://arxiv.org/abs/2603.03823), documents
+that most agents introduce behavioral regressions in over 75% of CI iterations
+on a long-horizon maintenance benchmark; treat it as one calibration point,
+not a universal rate. This complements the issue-resolution benchmarks that
+preceded it — Jimenez et al., *SWE-bench: Can Language Models Resolve
+Real-World GitHub Issues?* (ICLR 2024, https://arxiv.org/abs/2310.06770), and
+Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software
+Engineering* (2024, https://arxiv.org/abs/2405.15793) — by extending the
+evaluation surface from single-issue capability to multi-commit, long-horizon
+maintenance behaviour. SWE-CI is evidence of behavioral regression risk, not
+a direct measure of architectural evolvability: CI metrics do not capture
+coupling growth, cohesion decay, abstraction quality, or future-changeability.
+Both risks are real and distinct. At Phase 4 and above, "verified" should
+include evolution-weighted signals beyond CI pass rates — static analysis for
+coupling growth, module boundary stability, and change amplification —
+alongside the behavioral regression coverage the benchmark measures. See
 [Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
 in the Companion Guide.
 

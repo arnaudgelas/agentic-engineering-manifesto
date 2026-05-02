@@ -603,7 +603,7 @@ adaptation, who may write to persistent memory and under what conditions,
 provenance requirements, retention and expiry policy, rollback mechanisms, and
 which behavioral changes trigger a revalidation cycle — is the **Adaptation
 Envelope (Layer 4)** of the behavioral envelope framework. See
-[companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)](companion-re-framework.md#4-behavioral-envelopes)
+[companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)](companion-re-framework.md#4-the-behavioral-envelope)
 for the complete specification. Principle 6 names the governance properties;
 Layer 4 specifies what to actually write.
 
@@ -735,7 +735,7 @@ trail complete.
 
 See the domain documents for domain-specific memory classification
 requirements: [financial-services.md](domains/financial-services.md#data-residency-and-classification) ·
-[pharma.md](domains/pharma.md#data-integrity-for-agent-systems) ·
+[pharma.md](domains/pharma.md#7-data-integrity-for-agent-systems) ·
 [medical-devices.md](domains/medical-devices.md#tool-configuration-notes) ·
 [aviation.md](domains/aviation.md#export-control-itarear)
 

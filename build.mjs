@@ -34,6 +34,7 @@ const sections = [
   { id: "done",              file: "manifesto-done.md",           title: "Definition of Done",   group: "manifesto"       },
 
   // Implementation Guide
+  { id: "companion-guide",        file: "companion/guide.md",        title: "Companion Guide",    group: "implementation" },
   { id: "companion-principles",   file: "companion/principles.md",   title: "Principle Guidance",  group: "implementation" },
   { id: "companion-frameworks",   file: "companion/frameworks.md",   title: "Frameworks",          group: "implementation" },
   { id: "companion-patterns",     file: "companion/patterns.md",     title: "Patterns",            group: "implementation" },
@@ -47,6 +48,7 @@ const sections = [
   { id: "adoption-vmodel",   file: "adoption/vmodel.md",          title: "V-Model Path",         group: "adoption"        },
   { id: "adoption-pilot",    file: "adoption/pilot.md",           title: "First Pilot",          group: "adoption"        },
   { id: "adoption-metrics",  file: "adoption/metrics.md",         title: "Metrics",              group: "adoption"        },
+  { id: "adoption-enterprise", file: "adoption/enterprise.md",     title: "Enterprise Adoption",  group: "adoption"        },
 
   // Domain Alignment
   { id: "domains-overview",    file: "domains/README.md",               title: "Domain Overview",      group: "domains" },
@@ -54,6 +56,7 @@ const sections = [
   { id: "domains-medical",     file: "domains/medical-devices.md",      title: "Medical Devices",      group: "domains" },
   { id: "domains-pharma",      file: "domains/pharma.md",               title: "Pharma",               group: "domains" },
   { id: "domains-financial",   file: "domains/financial-services.md",   title: "Financial Services",   group: "domains" },
+  { id: "domains-insurance",   file: "domains/insurance.md",            title: "Insurance",            group: "domains" },
   { id: "domains-automotive",  file: "domains/automotive.md",           title: "Automotive",           group: "domains" },
   { id: "domains-defense",     file: "domains/defense-government.md",   title: "Defense / Government", group: "domains" },
 
@@ -72,6 +75,66 @@ const domainPages = [];
 
 // Maps source file path → section id, for resolving intra-document links
 const sectionFileMap = new Map(sections.map(s => [path.posix.normalize(s.file), s.id]));
+
+// Human-authored markdown uses a mix of root-relative conceptual names and
+// folder-local filenames. Normalize those aliases before deciding whether a
+// link should target an integrated section or a standalone HTML page.
+const sourceAliases = new Map([
+  ["adoption-enterprise.md", "adoption/enterprise.md"],
+  ["adoption-metrics.md", "adoption/metrics.md"],
+  ["adoption-path.md", "adoption/path.md"],
+  ["adoption-pilot.md", "adoption/pilot.md"],
+  ["adoption-playbook.md", "adoption/playbook.md"],
+  ["adoption-roles.md", "adoption/roles.md"],
+  ["adoption-vmodel.md", "adoption/vmodel.md"],
+  ["beyond_agile.md", "beyond-agile/main.md"],
+  ["beyond-agile-failures.md", "beyond-agile/failures.md"],
+  ["beyond-agile-landscape.md", "beyond-agile/landscape.md"],
+  ["beyond-agile-sources.md", "beyond-agile/sources.md"],
+  ["companion-frameworks.md", "companion/frameworks.md"],
+  ["companion-guide.md", "companion/guide.md"],
+  ["companion-patterns.md", "companion/patterns.md"],
+  ["companion-principles.md", "companion/principles.md"],
+  ["companion-re-framework.md", "companion/re-framework.md"],
+  ["companion-reference.md", "companion/reference.md"],
+  ["domains/README.md", "domains/README.md"],
+  ["domains/automotive.md", "domains/automotive.md"],
+  ["domains/aviation.md", "domains/aviation.md"],
+  ["domains/defense-government.md", "domains/defense-government.md"],
+  ["domains/financial-services.md", "domains/financial-services.md"],
+  ["domains/insurance.md", "domains/insurance.md"],
+  ["domains/medical-devices.md", "domains/medical-devices.md"],
+  ["domains/pharma.md", "domains/pharma.md"],
+  ["glossary.md", "glossary.md"],
+  ["manifesto-done.md", "manifesto-done.md"],
+  ["manifesto-principles.md", "manifesto-principles.md"],
+  ["manifesto.md", "manifesto.md"],
+]);
+
+function resolveSourceFile(pathPart, currentSourceFile) {
+  const normalizedPath = path.posix.normalize(pathPart);
+  if (sourceAliases.has(normalizedPath)) {
+    return sourceAliases.get(normalizedPath);
+  }
+
+  const targetFromCurrent = path.posix.normalize(
+    path.posix.join(path.posix.dirname(currentSourceFile), normalizedPath),
+  );
+  if (sourceAliases.has(targetFromCurrent)) {
+    return sourceAliases.get(targetFromCurrent);
+  }
+
+  const rootRelative = normalizedPath.replace(/^(\.\.\/)+/, "");
+  if (sourceAliases.has(rootRelative)) {
+    return sourceAliases.get(rootRelative);
+  }
+
+  return targetFromCurrent;
+}
+
+function buildSectionHref(sectionId, suffix) {
+  return suffix.startsWith("#") ? suffix : `#${sectionId}${suffix}`;
+}
 
 const packageJson = JSON.parse(readFileSync("package.json", "utf-8"));
 const repositoryUrl = normalizeRepositoryUrl(packageJson.repository?.url || "");
@@ -166,18 +229,18 @@ function rewriteHref(href, currentSourceFile, currentOutputFile) {
     return href;
   }
 
-  const sourceDir = path.posix.dirname(currentSourceFile);
-  const targetSourceFile = path.posix.normalize(path.posix.join(sourceDir, pathPart));
+  const targetSourceFile = resolveSourceFile(pathPart, currentSourceFile);
 
   // If the target is an integrated section, link to its in-document anchor
   const sectionId = sectionFileMap.get(targetSourceFile);
   if (sectionId) {
+    const sectionHref = buildSectionHref(sectionId, suffix);
     if (currentOutputFile === "index.html") {
-      return `#${sectionId}${suffix}`;
+      return sectionHref;
     } else {
       // From a standalone page (e.g. a domain page), link back to index.html#section-id
       const relativeIndex = path.posix.relative(path.posix.dirname(currentOutputFile), "index.html") || "index.html";
-      return `${relativeIndex}#${sectionId}${suffix}`;
+      return `${relativeIndex}${sectionHref}`;
     }
   }
 
