@@ -11,7 +11,7 @@ applicable to verification-heavy lifecycles.
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
 tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
 Autonomy tier assignment criteria are in [companion-principles.md —
-P5](../companion-principles.md#principle-5--autonomy-extended-guidance).  This
+P5](../companion-principles.md#principle-5-autonomy-extended-guidance).  This
 document maps those definitions to aviation certification requirements; it does
 not redefine them.
 
@@ -450,4 +450,3 @@ lifecycle data under DO-178C Section 7? The conservative position is yes.
 For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Aviation Domain Guidance](../asdlc/domains/aviation.md).
 
 For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see [APLC Aviation Domain Guidance](../aplc/domains/aviation.md).
-
