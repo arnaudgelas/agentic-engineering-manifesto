@@ -22,7 +22,7 @@ Show which output files exist, which are missing, and what wave a review is on.
 
 Check for the following files in `{FRAMEWORK_LOWER}/` relative to the current working directory.
 
-**Wave 1a outputs (19 files):**
+**Wave 1a outputs (18 files):**
 
 | File | Agent |
 | --- | --- |
@@ -39,7 +39,7 @@ Check for the following files in `{FRAMEWORK_LOWER}/` relative to the current wo
 | File | Agent |
 | --- | --- |
 | `{FRAMEWORK_LOWER}_review_04_adoption_companion.md` | 04c |
-| `{FRAMEWORK_LOWER}_review_05_maturity_financial.md` | 05b |
+| `{FRAMEWORK_LOWER}_review_05_maturity_industry.md` | 05b |
 
 **Wave 2 output (1 file):**
 
@@ -69,7 +69,7 @@ Review status: {FRAMEWORK_LOWER}/
 Manifesto: arnaudgelas/agentic-engineering-manifesto@{MANIFESTO_HASH_SHORT}
   (resolve from the header of any existing output file, or run git in the manifesto path)
 
-Wave 1a  [✓ / ✗]  (N/19 files present and non-empty)
+Wave 1a  [✓ / ✗]  (N/18 files present and non-empty)
   ✓ _review_01_quick_overview.md
   ✓ _review_02_principle_p1.md … p12.md (12/12)
   ✗ _review_03_loop_dod.md   ← MISSING
@@ -85,9 +85,9 @@ Suggested next action:
   Re-run agent 03 (missing _review_03_loop_dod.md), then proceed to Wave 1b.
 ```
 
-If all 23 files are present and non-empty:
+If all 22 files are present and non-empty:
 ```
-✓ Review complete — all 23 files present.
+✓ Review complete — all 22 files present.
   Merged review: {FRAMEWORK_LOWER}_manifesto_alignment_review_merged.md
 ```
 

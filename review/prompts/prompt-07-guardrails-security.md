@@ -30,15 +30,40 @@ Read all of the following before writing a single scored claim. Do not score fro
 2. **`manifesto-principles.md`** — read in full; key anchors for this review:
    - **P3** (Architecture is defence-in-depth): boundaries encoded as machine-enforced policies; deterministic wrappers around probabilistic AI; design for boundary crossing.
    - **P9** (Observability covers reasoning): traces reconstruct *why* something happened; governance-state observability; prompt/response audit trails.
-   - **P10** (Assume emergence; engineer containment): threat model covers prompt injection, privilege escalation, data exfiltration, supply-chain attacks, and social engineering; treat every retrieval artefact and tool response as untrusted input.
+   - **P10** (Assume emergence; engineer containment): threat model covers prompt injection, privilege escalation, data exfiltration, supply-chain attacks, and social engineering; treat every retrieval artefact and tool response as untrusted input. The Governance Failure Modes paragraph (evidence laundering, approval laundering, compliance theater, stale-control reliance, automated rubber-stamping, waiver accumulation) must be engineered against with the same discipline as security threats.
 
-3. **`[[DOMAIN_FILE]]`** — read in full for:
+3. **`manifesto-done.md`** — read for:
+   - The Hardening DoD steps and the **agentic provenance record** required fields.
+   - The **bundle integrity attestation** requirement (cryptographic hash or digital signature of the assembled bundle).
+   - The **security static analysis** requirement (OWASP ASVS-calibrated, no unresolved Critical or High; waivers documented and approved by the accountable human).
+   - The **evidence freshness** rules (threat-model staleness on architecture/tool/data/model changes; SBOM staleness on dependency change; rollback-procedure staleness 48h before deployment; etc.).
+
+4. **Cross-stack normative artefacts (lift only AEM-relevant content; apply scope guard from `prompt.md`):**
+   - `governance/evidence-bundle-schema.md` — read the `aem_components` and `bundle_metadata` (integrity / signature) sections. Use them to score §13.5 critical findings around evidence-bundle completeness.
+   - `governance/integrated-audit-trail.md` — read the AEM execution trace section. Use it to score §13.2 Audit-trail row, §13.5 critical findings around traceability, and §12.5 detection probability.
+   - `governance/governance-integration-note.md` — read the AEM Tier 4 section. Use it to score §12.4 architecture assessment when `[[FRAMEWORK]]` operates or claims to support Tier 4.
+
+5. **`[[DOMAIN_FILE]]`** — read in full for:
    - Hard autonomy caps that apply to `[[ORGANIZATION]]`'s use cases.
-   - Regulations with explicit security clauses (DORA, GDPR, EU AI Act, Solvency II, SR 11-7, NYDFS Part 500, ISO 27001, SOX ITGC, EIOPA AI Guidelines where referenced).
-   - Fairness and non-discrimination obligations (EIOPA AI guidelines, Consumer Duty, GDPR Art. 22, EU AI Act Art. 10).
-   - **Scope guard.** If `[[DOMAIN_FILE]]` references `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` paths, ignore those sections — they are out of scope for this review and MUST NOT be forward-propagated into the output file.
+   - Regulations with explicit security clauses, as named in `[[DOMAIN_FILE]]`.
+   - Fairness and non-discrimination obligations, as named in `[[DOMAIN_FILE]]`.
+   - **Scope guard.** If `[[DOMAIN_FILE]]` references out-of-scope corpora (`asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-governance-stack.md`, `manifesto-evolution-plan.md`, `phase-assessment-checklist.md`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*`), ignore those sections — they are out of scope for this review and MUST NOT be forward-propagated into the output file.
 
-4. **`[[PRIOR_REVIEWS]]`** — if not `none`, read all listed files for findings already recorded in Parts 1–11. Do not duplicate findings already covered; do cross-reference with canonical part numbers where relevant.
+6. **Regulatory crosswalks (cite when they add specificity to a security finding). Cite a crosswalk only when the regulation it covers also appears in `[[DOMAIN_FILE]]`.**
+   - `regulatory/eu-ai-act-addendum.md` — Articles 9 (risk management), 10 (data governance), 12 (record-keeping), 14 (human oversight), 15 (accuracy/robustness/cybersecurity), 27 (FRIA), 72 (post-market monitoring), 73 (serious incident reporting). GPAI obligations (Articles 51–55).
+   - `regulatory/foundation-model-third-party-register.md` — DORA Pillar 4 register schema and exit strategy. Use it to score §13.2 Supply-chain integrity row.
+   - `regulatory/nist-ai-rmf-crosswalk.md` — NIST AI 600-1 GenAI Profile risks (G1–G12: confabulation, CBRN, dangerous/violent recommendations, IP, obscene content, value chain, data privacy, information security, harmful bias, environmental impact). Use it to score §12.5 adversarial scenario and §13.5 critical findings.
+   - `regulatory/iso-42001-crosswalk.md` — Annex A controls (A.2–A.10).
+   - `regulatory/iso-23894-23053-crosswalk.md` — risk treatment options.
+   - `regulatory/incidents-appendix.md` — named real-world incidents (Slack-AI exfiltration via indirect prompt injection, DocGo AI-washing, etc.). **Cite at least one incident in the §12.5 adversarial scenario or the §13.5 critical findings whose failure mode `[[FRAMEWORK]]` does not demonstrably mitigate.**
+
+7. **Operational templates (cite when they bound a security control's implementation):**
+   - `operational-templates/agent-inventory-schema.md` — discovery and registration; **a registered estate is a precondition for every other control**. If `[[FRAMEWORK]]` produces or extends an agent-inventory artefact, cite it in §13.2 Audit-trail and §13.5 critical findings.
+   - `operational-templates/ai-risk-register.md` — AI risk register schema. Use for §13.5 critical-findings remediation.
+   - `operational-templates/slo-table.md` — incident-reporting (regulator), waiver expiry, and feedback-loop closure SLOs. Use for §13.4 row remediation and §12.3 behavioural guardrails.
+   - `operational-templates/decommissioning-checklist.md` — orderly retirement; supports §13.5 supply-chain integrity findings around model deprecation.
+
+8. **`[[PRIOR_REVIEWS]]`** — if not `none`, read all listed files for findings already recorded in Parts 1–11. Do not duplicate findings already covered; do cross-reference with canonical part numbers where relevant.
 
 ---
 
@@ -81,6 +106,18 @@ Assess the overall guardrail architecture as a system. Identify:
 - The highest-risk unguarded vector given `[[ORGANIZATION]]`'s use cases.
 - An overall architecture severity label using the canonical bands in `prompt.md`.
 
+### 2.2.1 Governance Failure Mode Coverage (§12.4 sub-block)
+
+Within §12.4, add a sub-block titled **Governance Failure Modes** that scores `[[FRAMEWORK]]` against the six governance failure modes named in `manifesto-principles.md` P10:
+- **Evidence laundering** — agent assembles its own evidence; no independent verification.
+- **Approval laundering** — human approves an agent-generated summary, not the underlying evidence.
+- **Compliance theater** — controls added to satisfy audit, not to catch failures (back-test against known past failures).
+- **Stale-control reliance** — control marked passing because it has not been re-run since system change.
+- **Automated rubber-stamping** — review rate collapses under volume; reviewers approve without inspection.
+- **Waiver accumulation** — waivers granted for specific circumstances persist beyond those circumstances.
+
+For each: state whether `[[FRAMEWORK]]` has any detection or containment mechanism (citation required), and the severity of the gap. These are containment concerns, not compliance concerns — score them as such.
+
 ### 2.3 Adversarial Scenario (§12.5) — Red-Team Walk-through
 
 The adversarial scenario MUST be drawn from a `[[INDUSTRY]]` / `[[DOMAIN_FILE]]` use-case (not a generic AI scenario). Name the specific business workflow being attacked. Walk through: attack vector → `[[FRAMEWORK]]` detection/containment mechanism → outcome → gap. Conclude with a P3/P10 verdict.
@@ -112,7 +149,7 @@ The scenario MUST cite at least one specific `[[FRAMEWORK]]` source artefact by 
 - Does `[[FRAMEWORK]]` control or document LLM temperature, seed, and model-version parameters for its LLM calls?
 - Are LLM outputs non-deterministic? What is the stated or observable variance range?
 - Are prompts and responses stored in the audit trail, or only token counts and timestamps? State explicitly: (a) where prompts are journalled, (b) where responses are journalled, (c) whether either is hashed or signed, (d) the regulatory mapping of any gap.
-- Regulatory implication: map non-determinism and prompt/response journalling to specific clauses in SR 11-7 §IV.A (independent model validation; reproducibility), EU AI Act Art. 9 (risk management), Art. 12 (record-keeping), and Art. 13 (transparency), and Solvency II Art. 121 (statistical quality standards) where relevant to `[[ORGANIZATION]]`. State whether `[[FRAMEWORK]]`'s outputs are suitable as model documentation or validation artefacts without additional controls.
+- Regulatory implication: map non-determinism and prompt/response journalling to specific clauses cited in `[[DOMAIN_FILE]]` (e.g., record-keeping, model validation, transparency, statistical quality requirements). State whether `[[FRAMEWORK]]`'s outputs are suitable as model documentation or validation artefacts without additional controls.
 
 **Verdict requirement.** Conclude §13.1 with one of: `**Determinism verdict: DETERMINISTIC-ADEQUATE**` / `**PARTIALLY-DETERMINISTIC**` / `**NON-DETERMINISTIC**`. State the specific evidence that drove this verdict (verbatim quote from `[[FRAMEWORK]]` source with path).
 
@@ -141,29 +178,19 @@ Every cell must be grounded in a specific artefact, file, or mechanism observed 
 For `[[INDUSTRY]]` use cases specifically:
 - Does `[[FRAMEWORK]]` provide any mechanism to detect or mitigate bias in LLM outputs from phase engines or agent tasks?
 - Which `[[FRAMEWORK]]` outputs could indirectly shape customer-facing systems (requirements, behavioural specifications, evaluation criteria)?
-- Cite applicable fairness obligations from `[[DOMAIN_FILE]]` only — e.g., EIOPA AI guidelines (proxy discrimination), FCA Consumer Duty, GDPR Art. 22 (automated decisions on special category data), GDPR Art. 9 (special category data), EU AI Act Art. 10 (data governance), Equality Act 2010 only if `[[DOMAIN_FILE]]` mentions UK retail business.
+- Cite applicable fairness obligations from `[[DOMAIN_FILE]]` only — name the specific Articles or sections present in `[[DOMAIN_FILE]]`.
 - Distinguish what is out of scope for a developer tool vs. what represents a genuine gap. For each out-of-scope claim, justify it in one sentence: "We classify this as out-of-scope because `[[FRAMEWORK]]`'s outputs do not directly affect customers; the gap remains relevant if `[[FRAMEWORK]]`'s outputs feed downstream agent products that do."
 
 ### 3.4 Regulatory Security Requirements for `[[ORGANIZATION]]`
 
-For each major regulation in `[[DOMAIN_FILE]]` that carries a security clause, produce a row. Required regulations to cover (the row list is a floor — add others if present in `[[DOMAIN_FILE]]`; do not remove any of these):
+Enumerate regulations **exclusively** from `[[DOMAIN_FILE]]`'s sections that contain security clauses. For each regulation in `[[DOMAIN_FILE]]` that contains a security clause, produce a row. Do NOT name any regulation that does not appear in `[[DOMAIN_FILE]]`. Do NOT default to financial-services regulations or any other off-domain regulations.
 
 | Regulation | Security requirement | `[[FRAMEWORK]]` Status | Risk Level |
 | --- | --- | --- | --- |
-| DORA Art. 9 (ICT risk management — protection and prevention) | | | |
-| DORA Art. 12 (ICT-related incident management — backup, restoration, recovery) | | | |
-| NYDFS Part 500 (cybersecurity programme — 500.05 pen-testing, 500.07 access privileges, 500.13 audit trail) | | | |
-| GDPR Art. 32 (security of processing — encryption, integrity, availability, resilience) | | | |
-| GDPR Art. 9 (special category data) | | | |
-| EU AI Act Art. 12 (record-keeping for high-risk AI) | | | |
-| EU AI Act Art. 15 (accuracy, robustness, cybersecurity) | | | |
-| ISO 27001 alignment (Annex A controls A.5–A.18) | | | |
-| SOX ITGC (access, change management, computer operations) | | | |
-| SR 11-7 §IV.A (independent model validation — reproducibility, ongoing monitoring) | | | |
-| EIOPA AI Guidelines (fairness, explainability, human oversight) | | | |
-| Solvency II Art. 121 (systems of governance — statistical quality standards) | | | |
 
-Every status and risk-level claim must cite the specific article and map it to a named artefact or mechanism (or gap) in `[[FRAMEWORK]]`. Risk levels use the canonical severity labels (Critical / High / Medium / Low) defined in `prompt.md`. If a row does not apply to `[[ORGANIZATION]]`'s jurisdiction (e.g., SR 11-7 for an EU-only insurer), mark it `N/A — out of jurisdiction` and justify in one sentence.
+Cite broadly applicable cross-jurisdictional regulations (e.g., GDPR Art. 32, EU AI Act Art. 12/15, ISO 27001) *in addition* to the `[[DOMAIN_FILE]]`-derived rows ONLY IF `[[DOMAIN_FILE]]` itself names them. Do not import them by default.
+
+Every status and risk-level claim must cite the specific article and map it to a named artefact or mechanism (or gap) in `[[FRAMEWORK]]`. Risk levels use the canonical severity labels (Critical / High / Medium / Low) defined in `prompt.md`. If a row does not apply to `[[ORGANIZATION]]`'s jurisdiction (e.g., a regulation listed in `[[DOMAIN_FILE]]` that does not bind `[[ORGANIZATION]]`'s operating territory), mark it `N/A — out of jurisdiction` and justify in one sentence.
 
 ### 3.5 Critical Security Findings — structure and count
 
@@ -239,7 +266,7 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 
 ### 13.4 Regulatory Security Requirements for [[ORGANIZATION]]
 
-[Markdown table per §3.4 above; all 12 floor regulations populated; jurisdictional N/A entries justified]
+[Markdown table per §3.4 above; one row per regulation with a security clause enumerated from `[[DOMAIN_FILE]]`; cross-jurisdictional regulations cited only when also named in `[[DOMAIN_FILE]]`; jurisdictional N/A entries justified]
 
 ### 13.5 Critical Security Findings
 
@@ -263,7 +290,7 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 - **Severity, effort, and weighting** all come from `prompt.md`. Do not redefine them in the output. Reference `prompt.md` when a label or band is needed.
 - Use date format **YYYY-MM-DD** throughout.
 - When cross-referencing other parts of the review, use canonical part numbers (e.g., "see Part 9"). Do not use file names or agent numbers in cross-references within output content.
-- Do not reference `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the output. If `[[DOMAIN_FILE]]` references these paths, ignore those sections and do not forward-propagate them.
+- **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not read or reference `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. If `[[DOMAIN_FILE]]`, a regulatory crosswalk, a governance file, or an operational template references these paths, ignore those sections and do not forward-propagate them.
 
 ---
 
@@ -275,11 +302,13 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 - [ ] `[[FRAMEWORK]]` artefacts have been read — specific files are named in the sources-reviewed header.
 - [ ] `manifesto-principles.md` has been read; P3, P9, and P10 are cited by name in the output.
 - [ ] `[[DOMAIN_FILE]]` has been read; at least three specific regulatory articles are cited in Part 13.
-- [ ] No `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` references appear anywhere in the output, even where `[[DOMAIN_FILE]]` mentions them.
+- [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the output, even where `[[DOMAIN_FILE]]` or any cross-stack file mentions them. Every cited source file is tracked by git on the current branch.
+- [ ] §12.4 contains a Governance Failure Mode Coverage sub-block scoring all six modes (evidence laundering, approval laundering, compliance theater, stale-control reliance, automated rubber-stamping, waiver accumulation).
+- [ ] At least one §12.5 adversarial scenario or §13.5 critical finding cites a named real-world incident from `regulatory/incidents-appendix.md` whose failure mode `[[FRAMEWORK]]` does not demonstrably mitigate.
 - [ ] Sections 12.1, 12.2, 12.3, 12.4, and 12.5 are all present and non-empty.
 - [ ] Sections 13.1, 13.2, 13.3, 13.4, and 13.5 are all present and non-empty.
 - [ ] The Security Coverage Map (§13.2) has all 11 control families: Authentication & identity; Secrets management; Input validation & sanitisation; Output filtering; Audit trail & non-repudiation; Supply-chain integrity (model registry, dependencies); Dependency security (CVE / licence scan); Network egress controls; Data residency & sovereignty; Model integrity (provenance, SBOM); Observability (reasoning traces — see P9).
-- [ ] §13.4 contains all 12 floor regulations (DORA Art. 9, DORA Art. 12, NYDFS Part 500, GDPR Art. 32, GDPR Art. 9, EU AI Act Art. 12, EU AI Act Art. 15, ISO 27001, SOX ITGC, SR 11-7 §IV.A, EIOPA AI Guidelines, Solvency II Art. 121).
+- [ ] §13.4 contains a row for every regulation in `[[DOMAIN_FILE]]` that has an explicit security clause; no regulation absent from `[[DOMAIN_FILE]]` is named (matching the rule in `prompts/prompt-05b-industry.md`).
 - [ ] §13.1 ends with `**Determinism verdict: DETERMINISTIC-ADEQUATE**` / `**PARTIALLY-DETERMINISTIC**` / `**NON-DETERMINISTIC**` and the verdict cites specific evidence.
 - [ ] §12.5 adversarial scenario names a specific `[[FRAMEWORK]]` source artefact, names the specific `[[ORGANIZATION]]` business workflow, contains at least one verbatim quote, and concludes with a P3/P10 verdict citing both principles by name.
 - [ ] Each Parts 12.1, 12.2, 12.3 row cites at least one of P3, P9, P10 by name.

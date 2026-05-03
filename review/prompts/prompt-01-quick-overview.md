@@ -2,7 +2,7 @@
 
 **Purpose:** Produce the overview file for a [[FRAMEWORK]] Agentic Engineering Manifesto alignment review, covering overall scores, scoring methodology, a framing-warning header, principle-by-principle score rationale, and client/industry-specific observations.
 
-**Wave:** Wave 1. This prompt runs in parallel with prompts 02, 03, 04, 05, and 07. It cannot read their outputs. Use canonical Part numbers ("see Part 12") for any cross-reference whose target is produced by another agent — agent 08 (merge) will resolve cross-references at synthesis time.
+**Wave:** Wave 1a. This prompt runs in parallel with prompts 02, 03, 04a, 04b, 05a, and 07. It cannot read their outputs. Use canonical Part numbers ("see Part 12") for any cross-reference whose target is produced by another agent — agent 08 (merge) will resolve cross-references at synthesis time.
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
@@ -25,24 +25,70 @@ Score only against artefacts and capabilities present at `[[FRAMEWORK_VERSION]]`
 
 ### Manifesto corpus
 
-Read each of the following files end-to-end:
+Read each of the following files end-to-end. These constitute the Agentic Engineering Manifesto (AEM) corpus that this review scores against:
 
-- `manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the six-phase maturity model, and the evidence-backed deployable definition.
-- `manifesto-principles.md` — all twelve principles, their minimum bars, and their sequencing dependencies.
-- `manifesto-done.md` — the Agentic Definition of Done: Shipped / Observable / Verified / Provable / Learned from / Governed / Economical; evidence freshness rules; hardening DoD.
-- `companion/guide.md` (if present) — extended rationale and companion guidance index.
-- `companion/principles.md` (if present) — specifications-vs-constraints distinction, structural vs. behavioural regression, and related extended guidance.
-- `companion/frameworks.md` (if present) — hard autonomy caps by regulated use-case.
-- `companion/patterns.md` (if present) — worked failure-mode patterns.
-- `adoption/path.md` (if present) — incremental adoption path and recommended implementation order.
-- `adoption/roles.md` (if present) — role evolution through phase transitions.
-- `adoption/metrics.md` (if present) — team health metrics and oversight-adequacy metrics.
-- `adoption/vmodel.md` (if present) — Agentic V-Model transition framework.
-- `agentic-enterprise.md` (if present) — enterprise-level agentic governance context.
-- `beyond-agile/*.md` (any file matching this pattern) — contextual framing for agentic delivery beyond agile.
+**Core (mandatory — abort if missing):**
+- `manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify"), the six-phase maturity model, and the evidence-backed deployable definition.
+- `manifesto-principles.md` — all twelve principles, their minimum bars, the four oversight patterns (HITL/HOTL/HOLL/EDL), and their sequencing dependencies.
+- `manifesto-done.md` — the Agentic Definition of Done (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
 - `glossary.md` — canonical term definitions.
 
-If `manifesto.md`, `manifesto-principles.md`, or `manifesto-done.md` cannot be read, abort and report the missing file. Do not proceed with scoring.
+**Companion corpus (read each end-to-end):**
+- `companion/guide.md` — extended rationale and companion guidance index, Annotated Agent Configuration Template.
+- `companion/principles.md` — specifications-vs-constraints distinction, structural vs. behavioural regression, probability compounding, blast-radius management, accountability paradox.
+- `companion/frameworks.md` — six-phase maturity spectrum failure modes, hard autonomy caps by regulated use-case.
+- `companion/patterns.md` — worked failure-mode patterns (Patterns A–H, Hallucination Loop, Operational Recovery Cycle).
+- `companion/re-framework.md` — requirements engineering paradigm break for agentic systems.
+- `companion/reference.md` — failure modes of the manifesto (over-governance, evidence theater, control theater, etc.).
+
+**Adoption corpus (read each end-to-end):**
+- `adoption/path.md` — 7-step incremental adoption path and Phase 3→4 / Phase 4→5 transitions.
+- `adoption/playbook.md` — business case, supervision paradox, Agile-to-agentic ceremony conversion.
+- `adoption/enterprise.md` — enterprise wave model and six readiness dimensions.
+- `adoption/metrics.md` — team health metrics, oversight-adequacy metrics, rubber-stamping detection.
+- `adoption/roles.md` — role evolution through phase transitions.
+- `adoption/pilot.md` — pilot selection, structure, success criteria.
+- `adoption/vmodel.md` — Agentic V-Model transition framework, ALCOA+ properties.
+
+**Beyond-Agile context (contextual framing for agentic delivery beyond Agile / DevOps):**
+- `beyond-agile/main.md` — primary framing.
+- `beyond-agile/landscape.md` — landscape of agentic delivery vs prior software-delivery paradigms.
+- `beyond-agile/failures.md` — failure modes of carrying Agile assumptions into agentic delivery.
+- `beyond-agile/sources.md` — references and sources.
+
+**Governance corpus (read for AEM-relevant content; apply scope guard from `prompt.md`):**
+- `governance/aem-principle-coverage-map.md` — for the AEM principle landscape and where extension layers attach. Treat the IGM/AEnt-M columns as out-of-scope context only.
+- `governance/governance-integration-note.md` — Tier 4 binary policy envelope (AEM column).
+- `governance/composition-rule.md` — AEM autonomy-tier gate as one of three composition gates.
+- `governance/evidence-bundle-schema.md` (and the companion JSON schema `governance/evidence_bundle.schema.json`) — `aem_components` section of the unified evidence bundle.
+- `governance/integrated-audit-trail.md` — AEM execution trace.
+- `governance/phase-level-matrix.md` — AEM Phase 1–6 with maximum autonomy tier table.
+- `governance/authority-accountability-matrix.md` — accountability anchors that intersect AEM P12.
+
+**Integration corpus (read for AEM-relevant content):**
+- `integration/loop-readiness-for-agent-opportunities.md` — AEM nine-condition loop-readiness gate vs agent-surfaced opportunities.
+- `integration/low-consequence-resolution.md` — AEM P12 per-action accountability minimum bar.
+
+**Regulatory crosswalks (read those relevant to `[[INDUSTRY]]`; AEM content is the floor for evidence and governance discipline):**
+- `regulatory/eu-ai-act-addendum.md` — Annex III mapping; Articles 9, 10, 12, 13, 14, 15, 27, 72, 73; GPAI obligations.
+- `regulatory/foundation-model-third-party-register.md` — DORA Pillar 4 register schema, exit strategy, CTPP analysis.
+- `regulatory/nist-ai-rmf-crosswalk.md` — NIST AI RMF 1.0 (Govern / Map / Measure / Manage) + AI 600-1 GenAI Profile.
+- `regulatory/iso-42001-crosswalk.md` — ISO/IEC 42001:2023 AI Management System.
+- `regulatory/iso-23894-23053-crosswalk.md` — ISO/IEC 23894 (AI risk management) + 23053 (AI system framework).
+- `regulatory/coso-cobit-crosswalk.md` — COSO ERM 2017 + COBIT 2019/2023 with Three-Lines operationalisation.
+- `regulatory/incidents-appendix.md` — named real-world events (Slack-AI exfiltration, DocGo SDNY, etc.) the manifesto is designed to prevent.
+
+**Operational templates (read those relevant to assessing `[[FRAMEWORK]]`'s alignment):**
+- `operational-templates/agent-inventory-schema.md` — AI agent discovery and registration.
+- `operational-templates/ai-risk-register.md` — AI risk register schema.
+- `operational-templates/risk-appetite-statement.md` — board-level AI risk appetite.
+- `operational-templates/slo-table.md` — consolidated SLO table including evidence freshness.
+- `operational-templates/decommissioning-checklist.md` — orderly retirement of agents.
+- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record (the ten provenance fields enumerated in `manifesto-done.md`).
+- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record (`manifesto.md` What the Loop Produces).
+- `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope (`manifesto-done.md`).
+
+If `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`, or `glossary.md` cannot be read, abort and report the missing file. Do not proceed with scoring.
 
 ### Domain file
 
@@ -164,7 +210,7 @@ Produce all sections below in this exact order, using these exact headings.
 **Version reviewed:** [[FRAMEWORK_VERSION]]
 **Review date:** <YYYY-MM-DD; the date the agent was invoked>
 **Manifesto:** `arnaudgelas/agentic-engineering-manifesto@[[MANIFESTO_HASH]]`
-**Reviewer methodology:** Agentic Engineering Manifesto — 12 Principles, 6-Phase Model, Agentic Loop, Agentic DoD, all Adoption and Companion documents, [[INDUSTRY]] domain guidance
+**Reviewer methodology:** Agentic Engineering Manifesto — 12 Principles, 6-Phase Model, Agentic Loop, Agentic DoD (incl. Hardening DoD, agentic provenance record, evidence freshness rules), all Adoption / Companion / Beyond-Agile documents, AEM-relevant content from `governance/`, `integration/`, `regulatory/`, and `operational-templates/`, and [[INDUSTRY]] domain guidance
 **Context:** [[ORGANIZATION]] — [[INDUSTRY]]
 **Overall Score:** <X.X>/100
 **Maturity Level:** Phase <N> — <Name>, with <any proto-elements or isolated capabilities at higher phases noted>. <One sentence stating that the next phase's gate requirements are substantially unmet, naming the lowest unmet gate.>
@@ -341,7 +387,7 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 6. Every major finding must map to a specific regulatory provision (article, paragraph, or rule number) from `[[DOMAIN_FILE]]` as it applies to [[ORGANIZATION]]. Generic regulation names are insufficient.
 7. Use date format YYYY-MM-DD wherever a date appears. The `Review date` line is the date the agent was invoked.
 8. When cross-referencing another part of the review within the output file, use canonical part numbers (e.g., "see Part 12"). Do not use file names or agent numbers in cross-references.
-9. Do not reference ASDLC, APLC, `asdlc/`, `aplc/`, or `agentic-sdlc-handbook/` anywhere in the output file. These are outside the scope of this review system. Additionally, do not read or use as inputs any file under `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, or any file matching `asdlc-plan*` or `aplc-plan*` — including any content that `[[DOMAIN_FILE]]` itself might reference: do not forward-propagate ASDLC/APLC references from domain files into the output.
+9. **Out-of-scope corpus / tracked-files-only.** This review covers the Agentic Engineering Manifesto (AEM) only. Do not read, cite, or reference any file untracked by git on the current branch. Specifically the following are out of scope: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan.md`, `asdlc-plan.html`, `aplc-plan.md`, `aplc-plan.html`, `igm-aent-coherence-review.md`, and `igm-aent-coherence-review.html`. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not forward-propagate out-of-scope references from `[[DOMAIN_FILE]]` or from cross-stack files in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` — paraphrase to manifesto-equivalent terms.
 10. The weighted calculation in the footnote must verify arithmetically. Check that `Σ(P{N}_score × decimal_weight)` equals the stated total before saving, and that the header `Overall Score` equals the table sum to one decimal place (or includes the rounding caveat sentence).
 11. The output MUST NOT contain any of the following soft-language tokens: "consider", "may", "could potentially", "it might be worth", "perhaps", "use judgement", "should ideally", "may want to", "appears to", "arguably", "seemingly". Use declarative statements. State what `[[FRAMEWORK]]` does or does not do at `[[FRAMEWORK_VERSION]]`. Do not state what `[[FRAMEWORK]]` will do, plans to do, or could do.
 12. This is a regulator-credible technical review, not a vendor blog post. Do not use marketing language ("robust", "best-in-class", "industry-leading"). Do not soften findings. Do not try to please. Score the framework as it is at HEAD.
@@ -362,7 +408,7 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 - [ ] Does every severity label in every principle row match the canonical thresholds defined in `prompt.md`?
 - [ ] Does every principle name in the Manifesto Principles Table and in the Principle-by-Principle Score Rationale headers use the SHORT-FORM names from the `prompt.md` weighting table (matching this prompt's Section 2.1 list verbatim)?
 - [ ] Are all dates in the output file in YYYY-MM-DD format, and does the `Review date` equal the date the agent was invoked?
-- [ ] Are there zero references to ASDLC, APLC, `asdlc/`, `aplc/`, or `agentic-sdlc-handbook/` anywhere in the output file?
+- [ ] Are there zero references to `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review` anywhere in the output file? Are all source files referenced in the output tracked by git on the current branch?
 - [ ] Have any soft-language tokens been removed? (Scan the output for: "consider", "may", "could potentially", "it might be worth", "perhaps", "use judgement", "should ideally", "may want to", "appears to", "arguably", "seemingly".)
 - [ ] Does every principle score paragraph contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does every principle score paragraph contain at least one verbatim quote (≤30 words, in backticks or double quotes) from a `[[FRAMEWORK]]` artefact with the file path stated?

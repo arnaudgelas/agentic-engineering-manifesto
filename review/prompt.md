@@ -49,7 +49,7 @@ All output files go into `[[FRAMEWORK_LOWER]]/`. Create the directory if it does
 | 04b — Companion (Part 7) | `[[FRAMEWORK_LOWER]]_review_04b_companion.md` |
 | 04c — Adoption+Companion+Synthesis | `[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md` |
 | 05a — Maturity (Part 8) | `[[FRAMEWORK_LOWER]]_review_05a_maturity.md` |
-| 05b — Industry + Combined (Parts 8+9) | `[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md` |
+| 05b — Industry + Combined (Parts 8+9) | `[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md` |
 | 06 — Strengths & Gaps | `[[FRAMEWORK_LOWER]]_review_06_strengths_gaps.md` |
 | 07 — Guardrails & Security | `[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md` |
 | 08 — Merge | `[[FRAMEWORK_LOWER]]_manifesto_alignment_review_merged.md` |
@@ -130,7 +130,7 @@ prompts/prompt-04a-adoption.md           # Part 6: 7 adoption docs
 prompts/prompt-04b-companion.md          # Part 7: 6 companion docs
 prompts/prompt-04c-synthesis.md          # reads 04a+04b; writes combined adoption_companion.md
 prompts/prompt-05a-maturity.md           # Part 8: generic maturity (no domain file)
-prompts/prompt-05b-industry.md           # Part 9: domain-specific; writes combined maturity_financial.md
+prompts/prompt-05b-industry.md           # Part 9: domain-specific; writes combined maturity_industry.md
 prompts/prompt-06-strengths-gaps.md
 prompts/prompt-07-guardrails-security.md
 prompts/prompt-08-merge.md
@@ -142,7 +142,7 @@ prompts/prompt-08-merge.md
 
 Spawn agents 01, 02, 03, 04a, 04b, 05a, and 07 simultaneously.
 
-**Wait condition:** Use `Glob` + `Read` (first/last 5 lines, ≥20 lines each) to verify all 19 Wave 1a output files exist and are non-empty before proceeding to Wave 1b:
+**Wait condition:** Use `Glob` + `Read` (first/last 5 lines, ≥20 lines each) to verify all 18 Wave 1a output files exist and are non-empty before proceeding to Wave 1b:
 
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_01_quick_overview.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_02_principle_p1.md` through `[[FRAMEWORK_LOWER]]_review_02_principle_p12.md` (12 files)
@@ -152,7 +152,7 @@ Spawn agents 01, 02, 03, 04a, 04b, 05a, and 07 simultaneously.
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05a_maturity.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md`
 
-Agent 02 writes 12 principle files sequentially. Wave 1a is not complete until the Glob check confirms all 19 files.
+Agent 02 writes 12 principle files sequentially. Wave 1a is not complete until the Glob check confirms all 18 files.
 
 **Recovery:** If any Wave 1a file is missing, re-run only the responsible agent. For agent 02: re-run with explicit instruction to write only the missing principle files.
 
@@ -165,11 +165,11 @@ Spawn agents 04c and 05b simultaneously. Each has its own dependency:
 **Wait condition:** Use `Glob` + `Read` to verify both Wave 1b outputs exist and are non-empty:
 
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md`
-- `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md`
+- `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`
 
 ### Wave 2 — after Wave 1b is fully complete
 
-Spawn agent 06 using the `Agent` tool. Confirm with `Glob` that all 21 Wave 1a + 1b files exist and are non-empty before spawning.
+Spawn agent 06 using the `Agent` tool. Confirm with `Glob` that all 20 Wave 1a + 1b files exist and are non-empty before spawning.
 
 ### Wave 3 — after Wave 2 is fully complete
 
@@ -181,7 +181,7 @@ Spawn agent 08. The following 18 canonical files (read by agent 08) must all exi
 | Agent 02 | `_review_02_principle_p{N}.md` for N=1..12 | 12 |
 | Agent 03 | `_review_03_loop_dod.md` | 1 |
 | Agent 04c | `_review_04_adoption_companion.md` | 1 |
-| Agent 05b | `_review_05_maturity_financial.md` | 1 |
+| Agent 05b | `_review_05_maturity_industry.md` | 1 |
 | Agent 06 | `_review_06_strengths_gaps.md` | 1 |
 | Agent 07 | `_review_07_guardrails_security_appendix.md` | 1 |
 | **Total** | | **18** |
@@ -195,7 +195,9 @@ If any output file already exists, update it in place. Replace wholesale only if
 ## Hard rules for all agents
 
 - **Read [[FRAMEWORK]]'s source artefacts before scoring.** Every claim must be grounded in a specific file, rule, or phase.
-- **Read the manifesto's own source artefacts before scoring.** At minimum: `manifesto-principles.md`, agentic loop phase definitions, Agentic DoD conditions, and maturity level definitions. Do not score from memory of the manifesto — read the current files.
+- **Read the Agentic Engineering Manifesto's own source artefacts before scoring.** At minimum: `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`, `glossary.md`, and the `adoption/`, `companion/`, and `domains/` directories. Where directly relevant to the agent's task, also read the current files in `beyond-agile/`, `governance/`, `integration/`, `regulatory/`, and `operational-templates/` — these are the additional normative and contextual artefacts that extend AEM. Do not score from memory of the manifesto — read the current files.
+- **Scope guard for cross-stack files.** Files under `governance/`, `integration/`, `regulatory/`, and `operational-templates/` are written for the wider agentic-governance stack and routinely reference IGM, AEnt-M, ASDLC, and APLC. When reading them, lift only the AEM-relevant content (AEM autonomy tiers, AEM evidence-bundle components, AEM Phase 1–6, AEM Definition of Done conditions, AEM Loop phases). Do not propagate IGM, AEnt-M, ASDLC, or APLC vocabulary, file paths, or coverage claims into the review output.
+- **Tracked-files-only rule.** Every source file referenced or read by an agent MUST be tracked by git on this branch. Do not read, cite, or reference files that appear in `git status` as untracked (`??`), files that have been deleted, files outside the repository, or files that exist only on disk. The authoritative list of in-scope source files is `git ls-files` for the manifesto repository; if a path is not in that list, it is not in scope.
 - Scores are 0–100. State the score, then state the evidence for and the evidence against separately.
 - Use the canonical weighting scheme above for any composite score calculation.
 - Use the canonical severity thresholds above for all severity labels.
@@ -207,3 +209,19 @@ If any output file already exists, update it in place. Replace wholesale only if
 - Use date format **YYYY-MM-DD** wherever a date appears.
 - When cross-referencing another part of the review, use the canonical part number (e.g., "see Part 12"). Do not use file names or agent numbers in cross-references within output content.
 - **Every output file MUST include the manifesto provenance line in its header metadata block:** `Manifesto: arnaudgelas/agentic-engineering-manifesto@[[MANIFESTO_HASH]]`. This ensures every review is traceable to the exact manifesto version used for scoring.
+
+## Out-of-scope corpus (do NOT read; do NOT reference)
+
+This review system covers the Agentic Engineering Manifesto (AEM) **only**. The following adjacent corpora and untracked files live in or alongside the same repository but are explicitly outside the scope of this review system. No agent may read them, cite them, or propagate their vocabulary into output:
+
+- `asdlc/`, `agentic-sdlc-handbook/`, `asdlc-plan.md`, `asdlc-plan.html`
+- `aplc/`, `aplc-plan.md`, `aplc-plan.html`
+- `intelligence-governance-manifesto/`
+- `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`
+- `agentic-governance-stack.md`, `agentic-governance-stack.html`
+- `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`
+- `phase-assessment-checklist.md`, `phase-assessment-checklist.html`
+- `igm-aent-coherence-review.md`, `igm-aent-coherence-review.html`
+- Any file untracked by git on the current branch (verify with `git ls-files`).
+
+The output of every agent MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `agentic-sdlc-handbook`, `asdlc/`, `aplc/`, `aplc-plan`, `asdlc-plan`, or `igm-aent-coherence-review`. When `[[DOMAIN_FILE]]` itself contains references to these out-of-scope frameworks, paraphrase them to manifesto-equivalent terms (e.g., "APLC behavioural specification" → "the framework's specification artefact"). When a `governance/`, `integration/`, `regulatory/`, or `operational-templates/` file mixes AEM content with IGM/AEnt-M/ASDLC/APLC content, lift only the AEM-relevant material.

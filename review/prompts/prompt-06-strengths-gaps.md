@@ -25,7 +25,7 @@ Run the following operational checks. If any check fails, output ONLY a structur
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_01_quick_overview.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_03_loop_dod.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md`
-   - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md`
+   - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md`
 3. **Non-empty / non-stub check.** Read the first 5 lines and the last 5 lines of each of the 5 files in step 2. If a file has fewer than 20 lines total, treat it as invalid.
 4. **Placeholder leakage check.** None of the 17 files may contain a literal `[[...]]` token in their header lines (lines 1–10). If any file shows an unsubstituted placeholder, treat it as invalid.
@@ -54,14 +54,22 @@ These are the agent's evidence. The agent reads these files end-to-end. The agen
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_02_principle_p1.md` ... `p12.md` | Agent 02 (×12) |
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_03_loop_dod.md` | Agent 03 |
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md` | Agent 04 |
-| `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md` | Agent 05 |
+| `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md` | Agent 05 |
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md` | Agent 07 |
 
 ### 2.2 — Manifesto corpus (read in full, current version on disk)
 
 - `manifesto-principles.md` — canonical P1–P12, autonomy tiers, oversight patterns, minimum bars.
-- `manifesto.md` — Agentic Loop phases and the six values.
-- `manifesto-done.md` — Agentic Definition of Done and evidence freshness rules.
+- `manifesto.md` — Agentic Loop phases, loop-readiness gate, and the six values.
+- `manifesto-done.md` — Agentic Definition of Done, Hardening DoD, and evidence freshness rules.
+- `companion/frameworks.md` — six-phase failure modes used to anchor target_phase gates.
+- `companion/principles.md` — extended guidance for principle minimum bars cited in gaps.
+
+**Cross-stack normative artefacts (lift only AEM-relevant content; apply scope guard from `prompt.md`):**
+- `governance/governance-integration-note.md` — for AEM Tier 4 prerequisites cited in target_phase Phase 6 gaps.
+- `governance/phase-level-matrix.md` — AEM column only; for Phase × tier compatibility cited in target_phase gaps.
+- `governance/evidence-bundle-schema.md` — `aem_components` for evidence-bundle gap remediations.
+- `operational-templates/slo-table.md` — for SLO-based remediation actions.
 
 ### 2.3 — Domain file
 
@@ -81,7 +89,7 @@ Compare principle-file scores (Wave 1 agent 02) with overview scores (Wave 1 age
 
 ### 3.2 — Target phase extraction (machine-readable)
 
-Extract the maturity verdict from `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md`. That file contains a bold line of the form `**Maturity Verdict: Phase {N}**`. Set `target_phase = N + 1`.
+Extract the maturity verdict from `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`. That file contains a bold line of the form `**Maturity Verdict: Phase {N}**`. Set `target_phase = N + 1`.
 
 Ceiling rule: if the verdict is `Phase 6`, use `Phase 6 (Sustained Maturity)` as the target — no Phase 7 exists. The gap analysis then identifies what would prevent Phase 6 from being durable across regulatory environments.
 
@@ -159,7 +167,7 @@ Metadata block immediately below the title:
 **Reviewer:** Agent 06 — Strengths & Gaps
 **Methodology:** Wave 2 synthesis — all 17 Wave 1 output files read end-to-end; no `[[FRAMEWORK]]` source re-read
 **Context:** [[ORGANIZATION]] — [[INDUSTRY]]
-**Source material:** [[FRAMEWORK_LOWER]]_review_01_quick_overview.md; [[FRAMEWORK_LOWER]]_review_02_principle_p1.md through p12.md; [[FRAMEWORK_LOWER]]_review_03_loop_dod.md; [[FRAMEWORK_LOWER]]_review_04_adoption_companion.md; [[FRAMEWORK_LOWER]]_review_05_maturity_financial.md; [[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md
+**Source material:** [[FRAMEWORK_LOWER]]_review_01_quick_overview.md; [[FRAMEWORK_LOWER]]_review_02_principle_p1.md through p12.md; [[FRAMEWORK_LOWER]]_review_03_loop_dod.md; [[FRAMEWORK_LOWER]]_review_04_adoption_companion.md; [[FRAMEWORK_LOWER]]_review_05_maturity_industry.md; [[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md
 ```
 
 ### 4.2 — Score Authority Table (mandatory)
@@ -225,7 +233,7 @@ Each strength uses this exact structure:
 ## Part 11 — Gap Analysis: What's Missing to Reach {target_phase}
 ```
 
-Open with one factual sentence (semicolon-list permitted) stating the `target_phase` requirements that drive the gap list. Cite the manifesto's phase-gate condition file (e.g., `phase-assessment-checklist.md` `target_phase` section).
+Open with one factual sentence (semicolon-list permitted) stating the `target_phase` requirements that drive the gap list. Cite the manifesto sources that establish those requirements (e.g., `manifesto.md` six-phase model, `manifesto-principles.md` P5 Phase × tier table, `companion/frameworks.md` per-phase failure modes, and `governance/phase-level-matrix.md` AEM column).
 
 Each gap MUST use the EXACT heading format:
 
@@ -323,7 +331,7 @@ These rules are non-negotiable.
 5. **Phase target.** The gap analysis targets `target_phase` as defined by §3.2. The integer phase number replaces every `{N+1}` token before save. Phase 6 ceiling rule applies.
 6. **Cross-references.** Use canonical part numbers ("see Part 12"). Do not use file names or agent numbers in cross-references within output content.
 7. **Date format.** YYYY-MM-DD throughout.
-8. **No ASDLC, APLC, or handbook references.** Do not mention or link to `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the output or in the agent's reasoning.
+8. **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not mention or link to `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output or in the agent's reasoning. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
 9. **No `[[DOMAIN_FILE]]` forward-propagation.** Do not introduce regulatory mappings beyond those that appear in `[[DOMAIN_FILE]]`. Do not import regulatory framing from other domain files. The agent does not extend the regulatory taxonomy beyond what `[[DOMAIN_FILE]]` defines.
 10. **Banned soft language.** The output MUST NOT contain any of: `consider`, `may`, `could potentially`, `perhaps`, `use judgement`. Also avoid (without an evidence anchor in the same paragraph): `robust`, `comprehensive`, `world-class`, `industry-leading`, `best-in-class`, `leverages`, `empowers`, `enables` (without naming what is enabled), `seamless`, `holistic`, `mature` (without phase number), `production-ready` (without naming what is production), `powerful` (without naming the power).
 11. **Principal-file score authority.** Principle-file scores override overview scores for all severity determinations. The Score Authority Table records the divergence.
@@ -353,7 +361,7 @@ These rules are non-negotiable.
 - [ ] No gap depends on itself directly or transitively; every dependency target precedes its dependent in the table.
 - [ ] Roadmap Interpretation has one paragraph per effort tier (S, M, L/XL) plus a closing adoption-ceiling paragraph; tier paragraphs justify sequencing by reference to regulatory exposure.
 - [ ] No banned soft language appears in the output (`consider`, `may`, `could potentially`, `perhaps`, `use judgement`, plus the qualified list in Hard rule 10).
-- [ ] No `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` references anywhere.
+- [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the output. Every source file referenced is tracked by git on the current branch.
 - [ ] Every claim in strengths and gaps is anchored to a verbatim quote from a named Wave 1 source file with path.
 - [ ] All cross-references use canonical part numbers; no file names or agent numbers in cross-references within output content.
 - [ ] All dates use YYYY-MM-DD.

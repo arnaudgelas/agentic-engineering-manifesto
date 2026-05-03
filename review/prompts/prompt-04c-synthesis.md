@@ -204,7 +204,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 8. The `Highest-Leverage Single Change` is scoped to *adoption-ceiling unlock*, not a remediation roadmap (Part 11) and not a production red line (Part 9).
 9. Use date format YYYY-MM-DD wherever a date appears.
 10. When cross-referencing within the combined file, use canonical part numbers (`Part 6`, `Part 7`). The synthesis-level subsection reference form is `Part 6 — <file-slug>` or `Part 7 — <file-slug>`.
-11. Do not reference ASDLC, APLC, `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the output. Do not propagate `[[DOMAIN_FILE]]` content forward outside cited regulations and risk-types.
+11. **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not reference `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not propagate `[[DOMAIN_FILE]]` content forward outside cited regulations and risk-types. If lifted material from 04a or 04b contains any out-of-scope token, STOP and report — do not silently fix it.
 12. Subsection order within each Part is canonical (per the sibling specs) and must not be re-ordered during lifting.
 13. **Preflight is non-optional.** If 04a or 04b is missing, empty, or malformed, STOP and report — do not fabricate content.
 
@@ -227,7 +227,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 - [ ] At least 5 distinct regulations or risk-types from `[[DOMAIN_FILE]]` are referenced across the combined file. No single regulation accounts for the majority of subsections.
 - [ ] Every regulatory citation includes either an Article number, section number, or named risk-register entry.
 - [ ] All dates use YYYY-MM-DD format.
-- [ ] No references to ASDLC, APLC, `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` appear anywhere in the output file.
+- [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the output file. Every cited source file is tracked by git on the current branch.
 - [ ] The output does NOT contain the words `consider`, `may`, `could potentially`, `perhaps`, or `use judgement` (in either lifted or synthesis content).
 - [ ] The output does NOT contain a composite [[FRAMEWORK]] score.
 - [ ] The output does NOT contain a determinative phase placement (Part 8 territory) or a production-deployment red line (Part 9 territory).

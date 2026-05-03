@@ -105,6 +105,13 @@ Assess each of the seven evidence conditions from `manifesto-done.md` against `[
 
 For each condition: verdict (Met / Partially met / Absent), followed by a one-to-two sentence explanation citing specific `[[FRAMEWORK]]` evidence with file paths in backticks. If the condition is absent, state so directly.
 
+After the seven conditions, assess the **Hardening DoD additions** from `manifesto-done.md`:
+- Security static analysis results (OWASP ASVS-calibrated, no unresolved Critical/High).
+- **Bundle integrity attestation** (cryptographic hash or digital signature of the assembled bundle).
+- **Agentic provenance record** (foundation model identifier and version, provider category, evaluation/production model parity, system-instruction hash, tool manifest, memory state version, retrieval corpus version, embedding model version, dataset lineage, policy constraints active).
+
+For each: Met / Partially met / Absent verdict with citation. The `aem_components` section of `governance/evidence-bundle-schema.md` formalises the schema — cite it where useful.
+
 ### P3 — `## Blast-Radius Test`
 
 Structure this section as three numbered sub-sections:
@@ -128,7 +135,10 @@ Structure as a tier-by-tier analysis:
 - **What actions `[[FRAMEWORK]]` takes autonomously** (without any human step).
 - **What requires human approval** within `[[FRAMEWORK]]`'s lifecycle.
 - **What is never autonomous** under `[[FRAMEWORK]]`'s current design.
-- **Tier determination.** State the highest manifesto autonomy tier that `[[FRAMEWORK]]` operates at, and what structural evidence supports this determination.
+- **Tier determination.** State the highest manifesto autonomy tier (Tier 1–4) that `[[FRAMEWORK]]` operates at, and what structural evidence supports this determination.
+- **Oversight pattern.** Name which of the four oversight patterns from `manifesto-principles.md` (HITL synchronous/asynchronous, HOTL, HOLL, EDL) `[[FRAMEWORK]]` instantiates and whether its irreversibility window is measured (HOTL minimum bar) and whether per-action evidence is sufficient to reconstruct accountability without a human witness (HOLL minimum bar).
+- **Tier 4 prerequisites (if claimed).** If `[[FRAMEWORK]]` claims or supports Tier 4, evaluate the four prerequisites from `manifesto-principles.md` and `governance/governance-integration-note.md`: machine-enforced policy envelope; passing control evaluations; instrumented governance observability; active rubber-stamping detection. State Met / Partially met / Absent for each. Note that absence of any one prerequisite means Tier 4 is "ungoverned production autonomy" per the manifesto.
+- **Phase × tier compatibility.** Cross-check against `governance/phase-level-matrix.md` (AEM Phase column only) and the table in `manifesto-principles.md` P5 to confirm the operating tier is permissible at the framework's phase placement.
 - **What prevents higher tiers.** Name the specific mechanisms or artefacts that would need to exist for `[[FRAMEWORK]]` to safely operate at a higher tier.
 
 ### P8 — `## Seven-Condition DoD Test (Evaluation Edition)`
@@ -150,14 +160,27 @@ For each condition: verdict (Met / Partially met / Absent) plus a one-to-two sen
 This section is a binary diagnostic. Answer the question in the section heading directly and unambiguously (e.g., "**Short answer: execution only.**"). Then explain:
 
 - What `[[FRAMEWORK]]` logs and instruments — be specific: name the log files, watcher plugins, HUD fields, audit-trail artefacts.
-- What the manifesto's P9 minimum bar requires for reasoning-level observability, and whether `[[FRAMEWORK]]`'s instrumentation meets it.
+- What the manifesto's P9 minimum bar requires for reasoning-level observability (a trace must reconstruct *why*, not just *that*), and whether `[[FRAMEWORK]]`'s instrumentation meets it.
+- Whether the AEM execution trace described in `governance/integrated-audit-trail.md` is producible from `[[FRAMEWORK]]`'s output: trace IDs that link spec → design → plan → execute → verify → validate → observe → learn → govern; per-action tool calls, decisions, evaluation results, rollbacks, near-misses; OpenTelemetry-compatible identifiers; replayable from trace ID + agentic provenance record + tool manifest + composite state.
+- Whether **governance-state observability** (per the second minimum-bar paragraph in P9) is instrumented: stale evidence in active bundles, controls in failed/waived state without resolution timeline, accountability ownership gaps, rubber-stamping patterns (per `adoption/metrics.md` and `operational-templates/slo-table.md`), and model/prompt/tool manifest changes that did not trigger an evaluation re-run.
 - The specific gap between what `[[FRAMEWORK]]` records and what a "why did this happen" query requires.
 
 Do not equivocate. If the observability covers only execution, state so; do not soften the finding.
 
 ### P12 — `## Structured Recovery Test`
 
-Assess `[[FRAMEWORK]]` against five recovery steps. Present as numbered steps:
+The P12 test has two parts. **Part A — Oversight adequacy** is a precondition: oversight that cannot be measured cannot be claimed. **Part B — Structured recovery** is the binding-constraint scoring test.
+
+**Part A — Oversight Adequacy.** For each oversight pattern that `[[FRAMEWORK]]` instantiates (HITL synchronous/asynchronous, HOTL, HOLL, EDL — defined in `manifesto-principles.md`), assess:
+
+- **HITL:** does `[[FRAMEWORK]]` report override rate, reviewer agreement rate, and review latency by work-item class? Override rate near zero or sustained reviewer agreement >95% indicates accountability diffusion (`adoption/metrics.md`).
+- **HOTL:** has the irreversibility window been measured and confirmed to exceed monitoring detection + notification + assessment + intervention time? If not, HOTL is "the appearance of oversight" per the P5 minimum bar.
+- **HOLL:** is per-action evidence sufficient to reconstruct accountability from logs alone, without any human witness?
+- **EDL:** are the independent validator's domain qualifications documented and current; does each expert review produce a structured record of judgment rationale?
+
+Cite `governance/authority-accountability-matrix.md` (AEM column only), `integration/low-consequence-resolution.md` (per-action accountability minimum bar — no consequence-class carve-out in AEM), and `operational-templates/slo-table.md` (waiver expiry, feedback-loop closure SLOs) where relevant. Verdict per pattern: Met / Partially met / Absent.
+
+**Part B — Structured Recovery.** Assess `[[FRAMEWORK]]` against five recovery steps. Present as numbered steps:
 
 1. **Intent recovery.** Can a new engineer determine what the original engineer was trying to achieve from `[[FRAMEWORK]]`'s artefacts alone?
 2. **Decision recovery.** Can a new engineer reconstruct why each significant choice was made?
@@ -174,7 +197,7 @@ After the five steps, apply the binding constraint: count how many steps pass fu
 - 2 steps fully passing → 20–39
 - 0–1 steps fully passing → 0–19
 
-Partial passes provide credit within the band but cannot move the score across a band boundary.
+Partial passes provide credit within the band but cannot move the score across a band boundary. **If Part A finds any oversight pattern Absent or Partially met for an action class `[[FRAMEWORK]]` operates at Tier 2 or above, the score cannot exceed the upper bound of the band one step lower than Part B alone would set.**
 
 ### Other principles (P2, P4, P6, P7, P10, P11)
 

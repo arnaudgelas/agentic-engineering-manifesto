@@ -4,7 +4,7 @@
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
-**Wave 1 isolation:** This prompt runs in Wave 1 alongside agents 01, 02, 03, 04b, 05, and 07. Do not read sibling Wave 1 outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
+**Wave 1a isolation:** This prompt runs in Wave 1a alongside agents 01, 02, 03, 04b, 05a, and 07. Do not read sibling Wave 1a outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
 
 **Cross-prompt scope guards:**
 - The `adoption/pilot.md` subsection (Part 6) issues a pilot-feasibility verdict scoped to `adoption/pilot.md` criteria. It does NOT issue a production-deployment red line — that is Part 9, owned by agent 05.
@@ -237,7 +237,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 6. Severity labels must use the canonical thresholds from `prompt.md`. Do not invent different thresholds. Do not re-quote them in the output.
 7. Use date format YYYY-MM-DD wherever a date appears.
 8. When cross-referencing another part of the review within the output file, use canonical part numbers only (e.g., "see Part 3", "see Part 12"). Do not use file names or agent numbers in cross-references. The synthesis-level subsection reference form is `Part 6 — <file-slug>`.
-9. Do not reference ASDLC, APLC, `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the output file. These are outside the scope of this review system. Do not propagate `[[DOMAIN_FILE]]` content forward into unrelated synthesis (no domain-file bleed beyond cited regulations and risk-types).
+9. **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not read or reference `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output file. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not propagate `[[DOMAIN_FILE]]` content forward into unrelated synthesis (no domain-file bleed beyond cited regulations and risk-types).
 10. The output MUST NOT contain the words `consider`, `may`, `could potentially`, `perhaps`, or `use judgement`. Make falsifiable statements grounded in cited artefacts. If evidence is uncertain, state `unverified — source artefact does not address X`.
 11. Do not produce a composite [[FRAMEWORK]] score. Part 1 is owned by agent 01.
 12. Do not produce Part 7 content (companion alignment) or the Cross-Document Synthesis. Those are owned by agents 04b and 04c respectively.
@@ -264,7 +264,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 - [ ] Every regulatory citation includes either an Article number, section number, or named risk-register entry.
 - [ ] Every severity label matches the canonical thresholds from `prompt.md`.
 - [ ] All dates use YYYY-MM-DD format.
-- [ ] No references to ASDLC, APLC, `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` appear anywhere in the output file. No `[[DOMAIN_FILE]]` content is propagated outside cited regulations and risk-types.
+- [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the output file. Every cited source file is tracked by git on the current branch. No `[[DOMAIN_FILE]]` content is propagated outside cited regulations and risk-types.
 - [ ] The output does NOT contain the words `consider`, `may`, `could potentially`, `perhaps`, or `use judgement`.
 - [ ] The output does NOT contain a composite [[FRAMEWORK]] score.
 - [ ] The output does NOT contain Part 7 content or the Cross-Document Synthesis (those are 04b/04c territory).

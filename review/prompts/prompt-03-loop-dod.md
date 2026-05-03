@@ -20,8 +20,23 @@ Read the following before writing a single score. Do not score from memory or as
 **`[[FRAMEWORK]]` artefacts** — read all source files, configuration, phase-gate logic, and any lifecycle enforcement mechanisms. For every claim made in the output about `[[FRAMEWORK]]`'s behaviour, the supporting evidence MUST be a verbatim quote from a named source file with its path. Pay particular attention to: specification artefacts, phase gate definitions, verification mechanisms, feedback modules, observability plugins, governance and audit trail mechanisms, and any escalation or approval workflows.
 
 **Manifesto corpus:**
-- `manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern) and the Govern completion conditions.
+- `manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify" — nine conditions before entry), and the Govern completion conditions.
 - `manifesto-done.md` — for the seven Agentic DoD conditions (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
+- `manifesto-principles.md` — for the four oversight patterns (HITL/HOTL/HOLL/EDL) that bear on the Govern phase and the Human Escalation Architecture sub-section.
+- **Evidence Quality Gate (apply throughout).** Every piece of evidence cited in Loop or DoD scoring must be Attributable (named agent/tool + named accountable human), Contemporaneous (recorded during the work, not reconstructed), Queryable (retrievable without heroic manual effort), and Bound-to-outcome (clearly linked to the change/decision/action). Apply this gate regardless of phase; evidence that fails the gate cannot raise a score.
+
+**Cross-stack normative artefacts (lift only the AEM-relevant content; apply the scope guard from `prompt.md`):**
+- `governance/evidence-bundle-schema.md` — read the `aem_components` section. Use it to score the DoD's evidence-bundle conditions and the agentic provenance record.
+- `governance/integrated-audit-trail.md` — read the AEM execution trace section. Use it to score the **Observe** phase, the DoD **Observable** condition, and the Human Escalation Architecture sub-section.
+- `governance/governance-integration-note.md` — read the AEM Tier 4 binary policy envelope section. Use it to score the **Govern** phase Tier 4 prerequisites.
+- `governance/authority-accountability-matrix.md` — read the AEM column. Use it for the Human Escalation Architecture sub-section.
+- `integration/loop-readiness-for-agent-opportunities.md` — use it to score the **Specify** phase's handling of agent-surfaced opportunities against AEM's nine-condition loop-readiness gate.
+- `integration/low-consequence-resolution.md` — use it to score the **Govern** phase per-action accountability bar for low-consequence actions (AEM has no consequence-class carve-out).
+- `operational-templates/slo-table.md` — use it to score the DoD **Observable** and **Governed** conditions (feedback-loop closure SLOs, waiver-expiry SLOs).
+- `operational-templates/agent-inventory-schema.md` — use it to score the DoD **Governed** condition (registered estate is a precondition for governance).
+- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record. Use it to bind DoD `Verified` and the agentic-provenance-record requirement in `manifesto-done.md`.
+- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record. Use it to score the DoD `Governed` condition (`manifesto.md` What the Loop Produces).
+- `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope. Use it to anchor DoD `Verified` evidence-bundle scoring (complement to `governance/evidence-bundle-schema.md`).
 
 **Domain file:** `[[DOMAIN_FILE]]` — read in full. Map every major finding to a specific regulation or risk type identified in this file by article or section number. Do not forward-propagate content from `[[DOMAIN_FILE]]` into `[[FRAMEWORK]]` claims; the framework's behaviour is established only from `[[FRAMEWORK]]`'s own artefacts.
 
@@ -35,7 +50,7 @@ Read the following before writing a single score. Do not score from memory or as
 
 For each of the nine phases in order (Specify, Design, Plan, Execute, Verify, Validate, Observe, Learn, Govern):
 
-1. Re-read the phase definition in `manifesto.md` to establish the bar before assessing `[[FRAMEWORK]]`. For Govern, anchor explicitly to the Govern completion conditions in `manifesto.md` (no outstanding policy violations, accountability signals within threshold, economics review recorded, architectural decisions filed back to Design, tool invocations confirmed within authorised scope).
+1. Re-read the phase definition in `manifesto.md` to establish the bar before assessing `[[FRAMEWORK]]`. **For Specify**, also assess `[[FRAMEWORK]]`'s handling of the loop-readiness gate (the nine conditions in "What Must Be True Before Entering Specify"): does `[[FRAMEWORK]]` reject or accept work that lacks a validated business need, measurable value, expressible acceptance criteria, identified constraints, named accountable human, blast-radius assessment, or explicit out-of-scope statement? Cross-reference `integration/loop-readiness-for-agent-opportunities.md` for handling of agent-surfaced opportunities. **For Observe**, anchor to the AEM execution trace section of `governance/integrated-audit-trail.md` and the governance-state observability minimum bar in P9. **For Govern**, anchor explicitly to the Govern completion conditions in `manifesto.md` (no outstanding policy violations, accountability signals within threshold, economics review recorded, architectural decisions filed back to Design, tool invocations confirmed within authorised scope), and — if `[[FRAMEWORK]]` claims or supports Tier 4 — to the four Tier 4 prerequisites in `manifesto-principles.md` and `governance/governance-integration-note.md`.
 2. Identify every artefact, function, gate, or mechanism in `[[FRAMEWORK]]` that corresponds to this phase. Name the files and rule text explicitly with full path.
 3. Quote verbatim, with the source file path, at least one passage from a `[[FRAMEWORK]]` source file that directly supports the score.
 4. Quote verbatim, with the source file path, the relevant phase definition from `manifesto.md`.
@@ -185,7 +200,7 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 - **Score consistency invariant.** Part 4 per-phase scores and Part 5 per-condition scores MUST equal the corresponding rows in agent 01's Part 1 tables. Agent 03 is the authoritative source for Loop and DoD scores. Agent 01 reads these files to populate Part 1. Agent 08 (Part 13) detects mismatches.
 - **Dates in YYYY-MM-DD format** everywhere a date appears.
 - **Cross-references use canonical part numbers** (e.g., "see Part 3", "see Part 12"). Do not use file names or agent numbers in cross-references within the output content.
-- **No references to ASDLC, APLC, asdlc/, aplc/, asdlc-plan.md, aplc-plan.md, or agentic-sdlc-handbook/** anywhere in the output. These are out of scope for this review.
+- **No references to out-of-scope corpora or untracked files.** Every source file cited MUST be tracked by git on the current branch. Do not read or cite `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
 - **No forward-propagation from `[[DOMAIN_FILE]]` into framework claims.** Use `[[DOMAIN_FILE]]` only to establish regulatory obligations. Never assert that `[[FRAMEWORK]]` implements behaviour by extrapolating from `[[DOMAIN_FILE]]`.
 - **Banned soft language.** The output MUST NOT contain `consider`, `may`, `could potentially`, `perhaps`, or `use judgement`. Make claims with evidence or do not make them.
 - **Severity labels must use the canonical thresholds** defined in `prompt.md`.
@@ -211,7 +226,7 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 - [ ] Part 4 per-phase scores and Part 5 per-condition scores match the corresponding rows of agent 01's Part 1 tables (or this file is treated as authoritative and agent 01 will reconcile).
 - [ ] All dates are in YYYY-MM-DD format.
 - [ ] No remaining `[[...]]` placeholders appear in the output.
-- [ ] No ASDLC / APLC references appear anywhere in the output.
+- [ ] No out-of-scope-corpus references appear anywhere in the output (zero matches for `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review`). Every cited source file is tracked by git on the current branch.
 - [ ] No banned soft language (`consider`, `may`, `could potentially`, `perhaps`, `use judgement`) appears.
 - [ ] Header metadata block uses exactly the labels `Framework`, `Client context`, `Regulatory overlay`, `Reviewer date`, `Source artefacts read` and lists every source artefact actually read.
 - [ ] Every score states evidence for and evidence against separately.

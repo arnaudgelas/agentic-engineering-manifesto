@@ -8,7 +8,7 @@ reusable maturity phase placement assessment.
 
 This agent runs in **Wave 1a** and produces the machine-readable **Maturity Verdict** line
 that agent **05b** (Wave 1b) consumes when constructing the canonical combined output file
-`[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md`. Agent **06** also consumes the
+`[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`. Agent **06** also consumes the
 `**Maturity Verdict: Phase {N}**` line from the canonical combined file.
 
 **Canonical references (do not re-quote):** Weighting scheme, severity thresholds, and
@@ -36,12 +36,21 @@ references wherever possible.
    Read enough to form an evidence-grounded opinion on every maturity criterion below.
 2. `manifesto.md` — the six-phase maturity spectrum (Phase 1 through Phase 6) and the
    Agentic Loop phase definitions.
-3. `companion/frameworks.md` — the peer framework comparison table and the boundary
-   condition guidance. (Hard autonomy caps by regulated use case are consumed by 05b,
-   not here.)
-4. `phase-assessment-checklist.md` — the hard proof standard and per-phase evidence
-   requirements for all six phases.
-5. `[[PRIOR_REVIEWS]]` — if not `none`, read the listed review files for peer
+3. `manifesto-principles.md` — the AEM Phase × maximum autonomy tier table in P5,
+   the four oversight patterns, and the Tier 4 prerequisites.
+4. `manifesto-done.md` — the Agentic DoD phase calibration ("phase-calibrated, not
+   all-or-nothing") and the evidence freshness rules.
+5. `companion/frameworks.md` — the six-phase maturity spectrum failure modes per
+   phase, the peer framework comparison table, and the boundary condition guidance.
+   (Hard autonomy caps by regulated use case are consumed by 05b, not here.)
+6. `companion/principles.md` — extended guidance on phase progression and structural
+   regression.
+7. `governance/phase-level-matrix.md` — the AEM Phase column with the corresponding
+   maximum autonomy tier and the Tier 4 prerequisites. **Read the AEM column only;
+   ignore the IGM Maturity Level and AEnt-M Phase columns — those are out of scope.**
+8. `governance/governance-integration-note.md` — for the AEM Tier 4 binary policy
+   envelope prerequisites that bound any Phase 6 verdict.
+9. `[[PRIOR_REVIEWS]]` — if not `none`, read the listed review files for peer
    framework context before completing the Comparison with Peer Frameworks section.
 
 **DO NOT read `[[DOMAIN_FILE]]`.** Domain regulations and use cases are out of scope
@@ -58,11 +67,18 @@ of positive and negative evidence from `[[FRAMEWORK]]`'s source artefacts. Evide
 must be attributable (file name, function name, rule text) and contemporaneous (in
 the artefacts as they stand, not as they are planned).
 
-**Step 2 — Gate-by-gate assessment.** Work through the Phase Assessment Checklist
-(`phase-assessment-checklist.md`) for each phase in ascending order. Mark each gate
-as: met (evidence on file), partial (evidence present but incomplete), or unmet
-(no evidence). An unmet gate at Phase N means `[[FRAMEWORK]]` cannot be placed at
-Phase N or higher.
+**Step 2 — Gate-by-gate assessment.** For each phase in ascending order, derive
+the gate requirements directly from `manifesto.md` (the six-phase model and the
+Agentic Loop / DoD it implies at each phase), `manifesto-principles.md` (P5 Phase
+× maximum autonomy tier table; principle minimum bars), `companion/frameworks.md`
+(the named failure mode for each phase: e.g., Phase 3 "autonomy without
+verification"; Phase 4 "governance without feedback"; Phase 5 "evaluation
+theater"), `manifesto-done.md` (the phase-calibrated DoD), and
+`governance/phase-level-matrix.md` (AEM column only). Mark each gate as: met
+(evidence on file), partial (evidence present but incomplete), or unmet (no
+evidence). An unmet gate at Phase N means `[[FRAMEWORK]]` cannot be placed at
+Phase N or higher. Apply the Evidence Quality Gate to every cited artefact:
+Attributable, Contemporaneous, Queryable, Bound-to-outcome.
 
 **Step 3 — Verdict (bounded by lowest unmet gate).** The phase verdict is bounded
 by the **LOWEST unmet gate**, **NOT** by the highest demonstrated feature. Partial
@@ -238,8 +254,9 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Read `[[FRAMEWORK]]`'s source artefacts before scoring.** Every claim must be
   grounded in a specific file, rule, or phase within `[[FRAMEWORK_LOWER]]/`.
 - **Read the manifesto's own source artefacts before scoring.** At minimum:
-  `manifesto.md`, `companion/frameworks.md`, and `phase-assessment-checklist.md`.
-  Do not score from memory.
+  `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`,
+  `companion/frameworks.md`, `companion/principles.md`, and
+  `governance/phase-level-matrix.md` (AEM column only). Do not score from memory.
 - **Do NOT read `[[DOMAIN_FILE]]`.** This agent is intentionally domain-agnostic.
   Any regulatory, client, or industry-specific content is out of scope and must
   not appear anywhere in the output. That content is produced by agent 05b.
@@ -259,9 +276,22 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Date format YYYY-MM-DD** wherever a date appears.
 - **Canonical part numbers** in all cross-references (e.g., "see Part 12"). Do not
   use file names or agent numbers in cross-references within the output content.
-- **No ASDLC / APLC references.** Do not mention `asdlc/`, `aplc/`, `asdlc-plan.md`,
-  `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the output. These paths
-  are out of scope for this review.
+- **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be
+  tracked by git on the current branch. Do not read or reference `asdlc/`,
+  `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`,
+  `agentic-enterprise-manifesto/`, `agentic-enterprise.md`,
+  `agentic-enterprise.html`, `agentic-governance-stack.md`,
+  `agentic-governance-stack.html`, `manifesto-evolution-plan.md`,
+  `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`,
+  `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or
+  `igm-aent-coherence-review*` anywhere in the output file. The output MUST
+  contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`,
+  `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`,
+  `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`,
+  `phase-assessment-checklist`, or `agentic-sdlc-handbook`. When reading
+  `governance/phase-level-matrix.md` or
+  `governance/governance-integration-note.md`, lift only the AEM column /
+  AEM Tier 4 section content; ignore IGM and AEnt-M columns and sections.
 
 ---
 
@@ -293,7 +323,14 @@ and re-verify before saving.
       regulations are named (no SR 11-7, DORA, EU AI Act, GDPR, Solvency II, IDD,
       HIPAA, etc.). No use cases are named. No client-specific content.
 - [ ] No `[[...]]` placeholders remain in the output file.
-- [ ] No ASDLC / APLC references appear anywhere in the output file.
+- [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`,
+      `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`,
+      `agentic-enterprise-manifesto`, `agentic-enterprise`,
+      `agentic-governance-stack`, `manifesto-evolution-plan`,
+      `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`,
+      `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the
+      output file. Every source file referenced is tracked by git on the current
+      branch.
 - [ ] No banned soft language (`consider`, `may`, `could potentially`, `perhaps`,
       `use judgement`) appears anywhere in the output file.
 - [ ] Every claim in the output quotes verbatim from a named source file with

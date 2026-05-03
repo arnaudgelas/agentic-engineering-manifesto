@@ -34,7 +34,7 @@ Use `Read` to read the **first and last 5 lines** of each of the 18 source files
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_02_principle_p12.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_03_loop_dod.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md
-[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_financial.md
+[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_06_strengths_gaps.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md
 ```
@@ -59,7 +59,7 @@ Cross-checks:
 
 4. **DoD condition score check.** For each of the 7 DoD conditions: extract the score from agent 01's "Agentic Definition of Done Table" (`_review_01_quick_overview.md` Part 1). Extract the score from the corresponding row of agent 03's "DoD Condition Table" (`_review_03_loop_dod.md` Part 5). Quote both verbatim. They MUST match.
 
-5. **Maturity verdict check.** Extract the phase number named in agent 01's "Maturity Phase Verdict" paragraph (`_review_01_quick_overview.md` Part 1). Extract the phase number from agent 05b's `**Maturity Verdict: Phase {N}**` line in `_review_05_maturity_financial.md` Part 8 (lifted verbatim from agent 05a). Quote both verbatim. They MUST name the same phase.
+5. **Maturity verdict check.** Extract the phase number named in agent 01's "Maturity Phase Verdict" paragraph (`_review_01_quick_overview.md` Part 1). Extract the phase number from agent 05b's `**Maturity Verdict: Phase {N}**` line in `_review_05_maturity_industry.md` Part 8 (lifted verbatim from agent 05a). Quote both verbatim. They MUST name the same phase.
 
 6. **Composite arithmetic check.** Compute `Σ(score × decimal_weight)` from agent 01's Manifesto Principles Table using the canonical weighting from `prompt.md`. Compare against the `**Overall Score:** <X.X>/100` line in `_review_01_quick_overview.md`'s header. Quote both values verbatim.
 
@@ -75,7 +75,7 @@ Preserve Wave 1 scores verbatim. The merged document MUST NOT re-score any princ
 
 - **Composite arithmetic disagreement.** If agent 01's header `**Overall Score:** <X.X>/100` differs from the computed `Σ(score × decimal_weight)` derived from Part 1's table, report BOTH values in the Source Integrity section as an arithmetic inconsistency. Use the computed value as the authoritative score in the merged document's metadata block. Round to one decimal place.
 
-- **Loop / DoD / Maturity disagreement.** Surface in Source Integrity. Do not arbitrate. The agent that owns that dimension is the authoritative source: agent 03 owns Loop-phase and DoD-condition scores; agent 05a owns the Maturity Verdict (surfaced in the combined `_review_05_maturity_financial.md` by agent 05b). Use the owner's value in the merged document.
+- **Loop / DoD / Maturity disagreement.** Surface in Source Integrity. Do not arbitrate. The agent that owns that dimension is the authoritative source: agent 03 owns Loop-phase and DoD-condition scores; agent 05a owns the Maturity Verdict (surfaced in the combined `_review_05_maturity_industry.md` by agent 05b). Use the owner's value in the merged document.
 
 ---
 
@@ -86,9 +86,10 @@ Read all of the following end-to-end before composing a single line of the merge
 1. All 18 source files listed in Preflight Step 1 (Preflight Step 1 reads only the first and last 5 lines of each; this step reads each file end-to-end).
 2. `[[DOMAIN_FILE]]` — the industry domain file for `[[INDUSTRY]]` context.
 3. `[[PRIOR_REVIEWS]]` (if not `none`) — for peer-framework comparison material.
-4. The manifesto's own source artefacts: at minimum `manifesto-principles.md`, `manifesto.md` (Agentic Loop phase definitions), `manifesto-done.md` (Agentic DoD conditions and maturity level definitions). Read the current files; do not rely on memory.
+4. The manifesto's own source artefacts: at minimum `manifesto-principles.md`, `manifesto.md` (Agentic Loop phase definitions, loop-readiness gate), `manifesto-done.md` (Agentic DoD conditions, Hardening DoD, agentic provenance record, evidence freshness rules), `companion/frameworks.md` (per-phase failure modes), and `companion/principles.md`. Read the current files; do not rely on memory.
 5. `[[FRAMEWORK]]`'s own source artefacts — any framework files not already read during Waves 1a/1b/2.
 6. `glossary.md` — to enforce the Glossary scope discipline (see §Appendices).
+7. **Where Wave 1 sources cite cross-stack files** in `governance/`, `integration/`, `regulatory/`, or `operational-templates/`, the merge agent does NOT re-derive content — Wave 1 has already extracted the AEM-relevant material. Read those cross-stack files only when needed to verify a Wave 1 citation is accurate, and only the AEM-relevant section.
 
 ---
 
@@ -131,13 +132,13 @@ The Executive Verdict MUST contain, in this order:
 
 (a) **Overall composite score and severity label.** Use the recomputed composite from Preflight Step 3 and the canonical severity thresholds from `prompt.md`. Cite Part 1.
 
-(b) **Maturity phase verdict and the specific evidence driving that placement.** Take the phase number verbatim from the `**Maturity Verdict: Phase {N}**` line in `_review_05_maturity_financial.md` (authored by agent 05a, surfaced by agent 05b). Cite Part 8.
+(b) **Maturity phase verdict and the specific evidence driving that placement.** Take the phase number verbatim from the `**Maturity Verdict: Phase {N}**` line in `_review_05_maturity_industry.md` (authored by agent 05a, surfaced by agent 05b). Cite Part 8.
 
 (c) **Top 3 genuine strengths.** Take verbatim short forms of the first three numbered strengths in agent 06's Part 10 (`_review_06_strengths_gaps.md`). State which numbers (e.g., "Strength 1, Strength 2, Strength 3"). Each in one sentence. Do not invent new items or reorder.
 
 (d) **Top 3 gaps.** Take the three highest-severity gaps from agent 06's Part 11. Order: Critical first, then High, then by roadmap order within the same severity. State which Gap numbers, reproduce severity labels verbatim. Each in one sentence.
 
-(e) **The Red Line.** Take verbatim from agent 05b's Part 9 "The Red Line" subsection in `_review_05_maturity_financial.md`. Do not paraphrase.
+(e) **The Red Line.** Take verbatim from agent 05b's Part 9 "The Red Line" subsection in `_review_05_maturity_industry.md`. Do not paraphrase.
 
 (f) **The highest-leverage single change.** Take verbatim from agent 04c's "Cross-Document Synthesis → Highest-Leverage Single Change" subsection in `_review_04_adoption_companion.md`. Do not paraphrase. If the highest-leverage-change finding in Executive Verdict differs from agent 04c's wording, surface the discrepancy in Source Integrity.
 
@@ -150,7 +151,7 @@ Populate every part. Do not omit or reorder parts. If a source file contains mat
 After Part 13, write two closing sections:
 
 - `## Prioritised Remediation Roadmap` — drawn from `_review_06_strengths_gaps.md`. Preserve effort labels (S/M/L/XL) and priority ordering verbatim. Do not re-rank. Each row cites the specific Gap N entry in Part 11. The roadmap row count equals the number of gaps in Part 11. Effort labels in the Roadmap match effort labels in the corresponding gap detail.
-- `## [[ORGANIZATION]] Deployment Recommendation` — synthesise from `_review_05_maturity_financial.md` (Part 9 Deployment Path) and `_review_06_strengths_gaps.md` (Roadmap Interpretation). State clearly: the recommended deployment posture for `[[ORGANIZATION]]`, the conditions that must be met before full deployment, the regulatory constraints from `[[INDUSTRY]]` that are non-negotiable. The Deployment Recommendation MUST NOT contradict the Red Line in Part 9 or the Executive Verdict.
+- `## [[ORGANIZATION]] Deployment Recommendation` — synthesise from `_review_05_maturity_industry.md` (Part 9 Deployment Path) and `_review_06_strengths_gaps.md` (Roadmap Interpretation). State clearly: the recommended deployment posture for `[[ORGANIZATION]]`, the conditions that must be met before full deployment, the regulatory constraints from `[[INDUSTRY]]` that are non-negotiable. The Deployment Recommendation MUST NOT contradict the Red Line in Part 9 or the Executive Verdict.
 
 ### Appendices
 
@@ -181,7 +182,7 @@ Context:             [[INDUSTRY]]
 Client:              [[ORGANIZATION]]
 Sources (18 files):  <list all 18 source file paths — exactly 18 entries>
 Overall score:       <X.X / 100, computed via Σ(score × weight) from Part 1>
-Maturity level:      <Phase N — Label, taken from the Maturity Verdict in `_review_05_maturity_financial.md` (authored by agent 05a, surfaced by agent 05b)>
+Maturity level:      <Phase N — Label, taken from the Maturity Verdict in `_review_05_maturity_industry.md` (authored by agent 05a, surfaced by agent 05b)>
 Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 ---
 
@@ -264,20 +265,20 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 | Part 6 — Adoption Document Alignment | `_review_04_adoption_companion.md` Part 6 (written by agent 04c, which lifts Part 6 content verbatim from agent 04a's output) | Preserve all 7 adoption subsections with their alignment grades (Well-aligned / Partially aligned / Misaligned). |
 | Part 7 — Companion Framework Alignment | `_review_04_adoption_companion.md` Part 7 (written by agent 04c, which lifts Part 7 content verbatim from agent 04b's output) | Preserve all 6 companion subsections with alignment grades and contradiction labels. |
 | Cross-Document Synthesis | `_review_04_adoption_companion.md` `## Cross-Document Synthesis` (generated by agent 04c from the gap inventory blocks of agents 04a and 04b) | Place between Part 7 and Part 8. Preserve `### Realistic Adoption Ceiling at [[ORGANIZATION]]` and `### Highest-Leverage Single Change` subsections. Highest-Leverage Single Change MUST agree verbatim with the Executive Verdict's item (f); flag any discrepancy in Source Integrity. |
-| Part 8 — Maturity Phase Placement | `_review_05_maturity_financial.md` Part 8 (written by agent 05b, which lifts Part 8 content verbatim from agent 05a's output) | Preserve `### The Verdict` (with `**Maturity Verdict: Phase {N}**` line), `### Evidence Matrix`, `### Phase Gate Non-Negotiables` (table form with `Gate \| Required to reach Phase {N+1} \| [[FRAMEWORK]] status \| Severity` columns), `### Comparison with Peer Frameworks`, `### Economics Assessment`. |
-| Part 9 — `[[INDUSTRY]]` Assessment (`[[ORGANIZATION]]`) | `_review_05_maturity_financial.md` Part 9 (written by agent 05b) | Preserve `### The Regulatory Exposure Map`, `### Use-Case Fitness Analysis`, `### The Red Line`, `### The Deployment Path`. |
+| Part 8 — Maturity Phase Placement | `_review_05_maturity_industry.md` Part 8 (written by agent 05b, which lifts Part 8 content verbatim from agent 05a's output) | Preserve `### The Verdict` (with `**Maturity Verdict: Phase {N}**` line), `### Evidence Matrix`, `### Phase Gate Non-Negotiables` (table form with `Gate \| Required to reach Phase {N+1} \| [[FRAMEWORK]] status \| Severity` columns), `### Comparison with Peer Frameworks`, `### Economics Assessment`. |
+| Part 9 — `[[INDUSTRY]]` Assessment (`[[ORGANIZATION]]`) | `_review_05_maturity_industry.md` Part 9 (written by agent 05b) | Preserve `### The Regulatory Exposure Map`, `### Use-Case Fitness Analysis`, `### The Red Line`, `### The Deployment Path`. |
 
-**Note:** `_review_04_adoption_companion.md` is written by agent 04c after it reads agents 04a+04b outputs. `_review_05_maturity_financial.md` is written by agent 05b after it reads agent 05a's output. The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, and `_review_05a_maturity.md` are NOT direct inputs to agent 08.
+**Note:** `_review_04_adoption_companion.md` is written by agent 04c after it reads agents 04a+04b outputs. `_review_05_maturity_industry.md` is written by agent 05b after it reads agent 05a's output. The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, and `_review_05a_maturity.md` are NOT direct inputs to agent 08.
 | Part 10 — Genuine Strengths | `_review_06_strengths_gaps.md` Part 10 | Preserve all 6–10 numbered strengths with fairness notes verbatim. |
 | Part 11 — Gap Analysis | `_review_06_strengths_gaps.md` Part 11 | Preserve all gaps (each with severity, principle mapping, "What is missing", "Why it matters in `[[INDUSTRY]]`", "What closes it", "Evidence anchor", "Effort"). Preserve roadmap order. Do NOT duplicate the Roadmap inside Part 11; the Roadmap is its own closing section. |
 | Part 12 — Guardrails Assessment | `_review_07_guardrails_security_appendix.md` Part 12 | Preserve all 5 sub-sections (12.1 Input Guardrails, 12.2 Output Guardrails, 12.3 Behavioural Guardrails, 12.4 Guardrail Architecture Assessment, 12.5 Adversarial Scenario). |
-| Part 13 — Security Assessment | `_review_07_guardrails_security_appendix.md` Part 13 | Preserve all 5 sub-sections (13.1 Determinism and Output Variance, 13.2 Security Coverage Map with all 10 control families, 13.3 Bias and Fairness Exposure, 13.4 Regulatory Security Requirements, 13.5 Critical Security Findings). |
+| Part 13 — Security Assessment | `_review_07_guardrails_security_appendix.md` Part 13 | Preserve all 5 sub-sections (13.1 Determinism and Output Variance, 13.2 Security Coverage Map with all 11 control families, 13.3 Bias and Fairness Exposure, 13.4 Regulatory Security Requirements, 13.5 Critical Security Findings). |
 | Prioritised Remediation Roadmap | `_review_06_strengths_gaps.md` `## Prioritised Remediation Roadmap` | Preserve effort labels and priority order. Each row cites the Gap N entry in Part 11. Roadmap row count equals Part 11 gap count. Do not re-rank. |
-| `[[ORGANIZATION]]` Deployment Recommendation | `_review_05_maturity_financial.md` Part 9 Deployment Path + `_review_06_strengths_gaps.md` Roadmap Interpretation | Synthesise; include regulatory constraints; do not contradict the Red Line. |
+| `[[ORGANIZATION]]` Deployment Recommendation | `_review_05_maturity_industry.md` Part 9 Deployment Path + `_review_06_strengths_gaps.md` Roadmap Interpretation | Synthesise; include regulatory constraints; do not contradict the Red Line. |
 | Appendix A — Adversarial Scenario | `_review_07_guardrails_security_appendix.md` §12.5 | Reproduce the full red-team walk-through verbatim. Do not summarise. |
-| Appendix B — Security Coverage Map | `_review_07_guardrails_security_appendix.md` §13.2 | Preserve all 10 control-family rows verbatim. |
-| Appendix C — Evidence Matrix | `_review_05_maturity_financial.md` Part 8 Evidence Matrix | Reference Part 8; do not duplicate the table — extract once and cross-reference if needed. |
-| Appendix D — Peer-Framework Comparison | `_review_05_maturity_financial.md` `### Comparison with Peer Frameworks` + `[[PRIOR_REVIEWS]]` if any | If `[[PRIOR_REVIEWS]]` is `none`, state explicitly "No prior reviews available; peer comparison limited to the spectrum table in `companion/frameworks.md` (reproduced from agent 05b's Comparison with Peer Frameworks, lifted from agent 05a)." Do not fabricate peer data. |
+| Appendix B — Security Coverage Map | `_review_07_guardrails_security_appendix.md` §13.2 | Preserve all 11 control-family rows verbatim. |
+| Appendix C — Evidence Matrix | `_review_05_maturity_industry.md` Part 8 Evidence Matrix | Reference Part 8; do not duplicate the table — extract once and cross-reference if needed. |
+| Appendix D — Peer-Framework Comparison | `_review_05_maturity_industry.md` `### Comparison with Peer Frameworks` + `[[PRIOR_REVIEWS]]` if any | If `[[PRIOR_REVIEWS]]` is `none`, state explicitly "No prior reviews available; peer comparison limited to the spectrum table in `companion/frameworks.md` (reproduced from agent 05b's Comparison with Peer Frameworks, lifted from agent 05a)." Do not fabricate peer data. |
 | Appendix E — Glossary | All sources | `[[FRAMEWORK]]`-specific terms only — module names, command names, configuration keys, framework-internal concepts. NOT general AI/ML/agentic terms defined in `glossary.md` (autonomy tiers, Loop phase names, DoD conditions, maturity phase names, principle names, severity labels, effort labels, manifesto vocabulary). Alphabetical, British English, one-line definition each, with citation to the source artefact in `[[FRAMEWORK]]` where the term is defined. |
 
 ---
@@ -294,7 +295,7 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 - Use the canonical severity thresholds and effort labels defined in `prompt.md`. Do not restate the tables.
 - Do not introduce findings, scores, severity labels, regulations, or strengths that do not appear in any Wave 1 source. The merge is editorial synthesis; new analytical claims are not permitted.
 - Do not relabel severity (Critical → High, etc.) without surfacing the change in Source Integrity.
-- **No references to ASDLC, APLC, `asdlc/`, `aplc/`, `asdlc-plan.md`, `aplc-plan.md`, or `agentic-sdlc-handbook/` anywhere in the merged document.** Forward-propagation prohibition extends to `[[DOMAIN_FILE]]`: do not embed full domain-file passages, do not derive ASDLC/APLC roadmaps, and do not invent domain bridges that are not present in `[[DOMAIN_FILE]]`. The output file MUST contain zero matches for the tokens `ASDLC`, `APLC`, `asdlc`, `aplc`, or `agentic-sdlc-handbook`.
+- **Out-of-scope corpus / tracked-files-only.** Every source file referenced in the merged document MUST be tracked by git on the current branch. No references to `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the merged document. The output file MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc`, `aplc`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review`. Forward-propagation prohibition extends to `[[DOMAIN_FILE]]` and to any cross-stack file in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` that the Wave 1 sources cited: do not embed full passages from those files, do not derive IGM/AEnt-M/ASDLC/APLC roadmaps, and do not invent domain bridges that are not present in `[[DOMAIN_FILE]]`. **If any Wave 1 source contains an out-of-scope-corpus token, surface it in `## Source Integrity` as an integrity warning and STOP — do not silently scrub it from lifted material; the upstream agent should have caught it.**
 - Do not praise `[[FRAMEWORK]]` for things it does not demonstrably do. Do not penalise it for problems outside its stated scope — but note scope gaps explicitly.
 
 ---
@@ -315,10 +316,10 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 - [ ] Per-principle test sections preserved: P1 `Seven-Condition DoD Test`, P3 `Blast-Radius Test`, P5 `Tier Assessment`, P8 `Seven-Condition DoD Test (Evaluation Edition)`, P9 `Does [[FRAMEWORK]]'s observability cover reasoning or only execution?`, P12 `Structured Recovery Test`.
 - [ ] `## Prioritised Remediation Roadmap` row count equals the number of gaps in Part 11. Each row cites the specific Gap N entry. Effort labels match the gap detail.
 - [ ] `## [[ORGANIZATION]] Deployment Recommendation` synthesises from agents 05 and 06 and addresses `[[INDUSTRY]]` regulatory constraints; does not contradict the Red Line.
-- [ ] All five appendices (A–E) populated. Appendix A reproduces agent 07 §12.5 verbatim. Appendix B preserves all 10 control-family rows. Appendix D handles the `[[PRIOR_REVIEWS]] = none` case explicitly if applicable.
+- [ ] All five appendices (A–E) populated. Appendix A reproduces agent 07 §12.5 verbatim. Appendix B preserves all 11 control-family rows. Appendix D handles the `[[PRIOR_REVIEWS]] = none` case explicitly if applicable.
 - [ ] Glossary (Appendix E) contains only `[[FRAMEWORK]]`-specific terms (module names, command names, configuration keys, framework-internal concepts). Contains zero entries for manifesto vocabulary defined in `glossary.md` (autonomy tiers, Loop phase names, DoD conditions, maturity phase names, principle names, severity labels, effort labels). Alphabetical, British English.
 - [ ] Cross-references use canonical part numbers only — zero matches for source-file names (e.g., `_review_03_loop_dod.md`), agent numbers (e.g., `agent 06`), or Wave designations.
-- [ ] Output file contains zero matches for `ASDLC`, `APLC`, `asdlc`, `aplc`, or `agentic-sdlc-handbook`.
+- [ ] Output file contains zero matches for `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc`, `aplc`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review`. Every source file referenced in the merged document is tracked by git on the current branch.
 - [ ] Output file contains zero matches for the banned soft-language tokens `consider`, `may`, `could potentially`, `perhaps`, `use judgement`.
 - [ ] Output file contains zero remaining `[[...]]` placeholders.
 - [ ] Output file contains no source-file metadata blocks, per-agent "Inputs to Read" sections, per-agent "Methodology" sections, or per-source-file H1 titles or footers.
