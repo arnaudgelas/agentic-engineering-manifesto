@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/arnaudgelas/manifesto/operational-templates/agentic-provenance-record.json",
+  "title": "Agentic Provenance Record",
+  "description": "Per-loop-iteration machine-readable provenance record. Generated automatically at loop completion; filed with the evidence bundle; retained for the operational lifetime of the system. Implements the ten required fields enumerated in manifesto-done.md (Agentic provenance record). STATUS: DRAFT — governance-authority signoff required.",
+  "type": "object",
+  "required": [
+    "loop_iteration_id",
+    "loop_completed_at",
+    "foundation_model",
+    "provider_category_and_deployment_mode",
+    "evaluation_production_model_parity",
+    "prompt_hash",
+    "tool_manifest",
+    "memory_state_version",
+    "policy_constraints_active"
+  ],
+  "properties": {
+    "loop_iteration_id": {
+      "type": "string",
+      "description": "Stable identifier for this loop iteration; joins to the evidence bundle."
+    },
+    "loop_completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of loop completion; record is generated at this moment, not assembled post-hoc."
+    },
+    "foundation_model": {
+      "type": "object",
+      "required": ["model_identifier", "model_version"],
+      "properties": {
+        "model_identifier": {
+          "type": "string",
+          "description": "Specific model used during the loop iteration."
+        },
+        "model_version": {"type": "string"},
+        "fine_tune_or_adapter_identifier": {
+          "type": "string",
+          "description": "Fine-tune / LoRA / adapter ID, if applicable."
+        }
+      }
+    },
+    "provider_category_and_deployment_mode": {
+      "type": "object",
+      "required": ["provider_category", "deployment_mode"],
+      "properties": {
+        "provider_category": {
+          "type": "string",
+          "enum": ["third-party API", "self-hosted open-weight", "on-premises"],
+          "description": "Category only; commercial vendor names are intentionally not captured."
+        },
+        "deployment_mode": {
+          "type": "string",
+          "description": "How the model was reached (e.g., managed endpoint, in-cluster inference, edge)."
+        }
+      }
+    },
+    "evaluation_production_model_parity": {
+      "type": "object",
+      "required": ["parity"],
+      "properties": {
+        "parity": {
+          "type": "boolean",
+          "description": "True iff the model used during evaluation matches the model deployed to production."
+        },
+        "divergence_justification": {
+          "type": "string",
+          "description": "Required when parity=false. Documents why the evaluated configuration differs from the production configuration."
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"parity": {"const": false}}, "required": ["parity"]},
+          "then": {"required": ["divergence_justification"]}
+        }
+      ]
+    },
+    "prompt_hash": {
+      "type": "string",
+      "description": "Cryptographic hash of system instructions and prompts; plaintext is not stored. Enables change detection across iterations while protecting confidentiality."
+    },
+    "tool_manifest": {
+      "type": "array",
+      "description": "Complete list of tools, plugins, and integration servers available to the agent during the loop, with version and permission scope.",
+      "items": {
+        "type": "object",
+        "required": ["tool_name", "version", "permission_scopes"],
+        "properties": {
+          "tool_name": {"type": "string"},
+          "version": {"type": "string"},
+          "permission_scopes": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "memory_state_version": {
+      "type": "object",
+      "description": "Persistent memory state identifiers at loop entry and exit. Required where persistent memory is in use.",
+      "properties": {
+        "at_loop_entry": {"type": "string"},
+        "at_loop_exit": {"type": "string"}
+      }
+    },
+    "retrieval_corpus_version": {
+      "type": "string",
+      "description": "Version identifier of any retrieval corpus, vector store, or knowledge base consulted during the loop. Required where retrieval augmentation is in use."
+    },
+    "embedding_model_version": {
+      "type": "string",
+      "description": "Embedding model used to generate retrieval embeddings, where applicable."
+    },
+    "dataset_lineage": {
+      "type": "string",
+      "description": "Lineage of the training or fine-tuning dataset for systems using fine-tuned or domain-adapted models."
+    },
+    "policy_constraints_active": {
+      "type": "array",
+      "description": "Set of safety, content, and behavioural policies in effect during the loop iteration.",
+      "items": {"type": "string"}
+    }
+  }
+}

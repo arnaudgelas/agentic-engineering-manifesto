@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/arnaudgelas/manifesto/operational-templates/control-state-record.json",
+  "title": "Control State Record",
+  "description": "Machine-readable record generated at loop completion stating the verdict on every required control. Distinct from the evidence bundle (which contains the artefacts that constitute the evidence): this record contains the structured verdict layer. Enables a release layer to assess gate readiness programmatically and route only exceptions to humans. Implements the verdict and waiver model in manifesto.md (What the Loop Produces — Control state record). STATUS: DRAFT — governance-authority signoff required.",
+  "type": "object",
+  "required": ["loop_iteration_id", "generated_at", "controls"],
+  "properties": {
+    "loop_iteration_id": {
+      "type": "string",
+      "description": "Joins to the evidence bundle and the agentic provenance record for the same loop iteration."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Generated at loop completion, not assembled post-hoc."
+    },
+    "evidence_bundle_id": {
+      "type": "string",
+      "description": "Reference to the companion evidence bundle envelope."
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Per-control verdicts. Every required control for the work item class must appear in this array.",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "verdict"],
+        "properties": {
+          "control_id": {"type": "string"},
+          "control_description": {"type": "string"},
+          "verdict": {
+            "type": "string",
+            "enum": ["passed", "failed", "waived", "stale", "needs-decision"],
+            "description": "passed = control evaluated and met; failed = control evaluated and not met; waived = control bypassed under explicit, expiring waiver; stale = artefact required by the control is outside its freshness window; needs-decision = a human judgment is required before the gate can be assessed."
+          },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidence_reference": {
+            "type": "string",
+            "description": "Pointer into the evidence bundle (e.g., trace ID, report path, artefact hash)."
+          },
+          "waiver": {
+            "type": "object",
+            "description": "Required when verdict='waived'. The waiver lapses at expiry_date and the control reverts to required.",
+            "required": ["rationale", "granted_by", "expiry_date"],
+            "properties": {
+              "rationale": {
+                "type": "string",
+                "description": "Why the waiver was granted for this control on this iteration."
+              },
+              "granted_by": {
+                "type": "string",
+                "description": "Name of the human who granted the waiver. Not an agent."
+              },
+              "expiry_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Date after which the waiver lapses and the control reverts to required."
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {"verdict": {"const": "waived"}},
+              "required": ["verdict"]
+            },
+            "then": {"required": ["waiver"]}
+          }
+        ]
+      }
+    }
+  }
+}

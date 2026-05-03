@@ -342,6 +342,16 @@ an emerging discipline necessarily precede the empirical grounding they ideally
 require. Treat those claims as hypotheses and revise them as evidence
 accumulates. That is what a living specification means in practice.
 
+Concretely: numeric thresholds in this document — for example, the 80%
+first-pass verification rate and three-iteration specification stability gate
+(P2), the 20% cost-divergence threshold and 48-hour rollback freshness window
+(Definition of Done), and the phase-to-tier ceilings (P5) — are practitioner
+heuristics, not validated thresholds. They exist to make the bar concrete, not
+to assert that one number rather than another has been empirically established.
+Measure your baseline, calibrate against it, and revise as evidence
+accumulates. Treating these numbers as authoritative without local calibration
+is a misreading of the document.
+
 ## Contents
 
 ### [Twelve Principles](manifesto-principles.md)

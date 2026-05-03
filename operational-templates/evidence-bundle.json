@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/arnaudgelas/manifesto/operational-templates/evidence-bundle.json",
+  "title": "Evidence Bundle Envelope",
+  "description": "Wrapper that ties together the artefacts handed to the release layer as a unit: passing eval reports, trace IDs, diffs, policy outputs, security static analysis, integrity attestation, the agentic provenance record, and a reference to the control state record. A release layer that accepts a deployable without a complete evidence bundle is accepting unverified output. Implements the evidence bundle, security static analysis, bundle integrity attestation, and provenance reference described in manifesto-done.md. STATUS: DRAFT — governance-authority signoff required.",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "loop_iteration_id",
+    "assembled_at",
+    "evaluation_reports",
+    "trace_ids",
+    "diffs",
+    "policy_check_outputs",
+    "integrity_attestation",
+    "provenance_record_ref"
+  ],
+  "properties": {
+    "bundle_id": {"type": "string"},
+    "loop_iteration_id": {
+      "type": "string",
+      "description": "Joins to the agentic provenance record and the control state record for the same iteration."
+    },
+    "assembled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evaluation_reports": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Passing evaluation reports with timestamps. At least one report is required; the gate is only passed when no required report is in 'failed' state.",
+      "items": {
+        "type": "object",
+        "required": ["report_id", "timestamp", "result"],
+        "properties": {
+          "report_id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "result": {
+            "type": "string",
+            "enum": ["passed", "failed"]
+          },
+          "report_location": {"type": "string"}
+        }
+      }
+    },
+    "trace_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Trace IDs linking specification to execution to output."
+    },
+    "diffs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "References (URLs, SHAs, paths) to diffs showing exactly what changed."
+    },
+    "policy_check_outputs": {
+      "type": "array",
+      "description": "Per-policy verdicts confirming constraint compliance.",
+      "items": {
+        "type": "object",
+        "required": ["policy_id", "result"],
+        "properties": {
+          "policy_id": {"type": "string"},
+          "result": {
+            "type": "string",
+            "enum": ["passed", "failed", "n/a"]
+          },
+          "output_location": {"type": "string"}
+        }
+      }
+    },
+    "security_static_analysis": {
+      "type": "object",
+      "description": "Required when loop output produces code touching external interfaces (HTTP endpoints, user-input processing, database queries, file system operations, external API calls). Must pass with no unresolved Critical or High findings; ASVS-calibrated. Specific tooling is an implementation choice.",
+      "required": ["applicable", "asvs_calibrated"],
+      "properties": {
+        "applicable": {"type": "boolean"},
+        "asvs_calibrated": {"type": "boolean"},
+        "tool": {"type": "string"},
+        "report_location": {"type": "string"},
+        "unresolved_findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["finding_id", "severity", "status"],
+            "properties": {
+              "finding_id": {"type": "string"},
+              "severity": {
+                "type": "string",
+                "enum": ["Critical", "High", "Medium", "Low", "Info"]
+              },
+              "status": {
+                "type": "string",
+                "enum": ["remediated", "waived"]
+              },
+              "waiver_justification": {"type": "string"},
+              "waiver_approved_by": {
+                "type": "string",
+                "description": "Accountable human who approved the waiver. Required when status='waived'."
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {"status": {"const": "waived"}},
+                  "required": ["status"]
+                },
+                "then": {
+                  "required": ["waiver_justification", "waiver_approved_by"]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "integrity_attestation": {
+      "type": "object",
+      "description": "Integrity protection over the assembled bundle. Verifiable at release-gate assessment; retained for the operational lifetime of the system. In regulated environments where tamper-evident audit trails are legally required, digital signatures with non-repudiation properties are the appropriate mechanism.",
+      "required": ["mechanism", "value", "generated_at"],
+      "properties": {
+        "mechanism": {
+          "type": "string",
+          "enum": ["hash", "signature"]
+        },
+        "algorithm": {
+          "type": "string",
+          "description": "e.g., SHA-256, Ed25519."
+        },
+        "value": {
+          "type": "string",
+          "description": "Hash digest or signature value."
+        },
+        "key_identifier": {
+          "type": "string",
+          "description": "Required when mechanism='signature'; key controlled by release system or accountable human."
+        },
+        "non_repudiation": {
+          "type": "boolean",
+          "description": "True when digital signature with non-repudiation properties is used."
+        },
+        "generated_at": {"type": "string", "format": "date-time"},
+        "verifiable_by": {
+          "type": "string",
+          "description": "Verification procedure or reference."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"mechanism": {"const": "signature"}},
+            "required": ["mechanism"]
+          },
+          "then": {"required": ["key_identifier"]}
+        }
+      ]
+    },
+    "provenance_record_ref": {
+      "type": "string",
+      "description": "Reference to the agentic-provenance-record.json instance for this loop iteration. Absence is treated as evidence-bundle incompleteness, not as a pass."
+    },
+    "control_state_record_ref": {
+      "type": "string",
+      "description": "Reference to the companion control-state-record.json instance."
+    }
+  }
+}

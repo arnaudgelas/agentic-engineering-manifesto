@@ -49,16 +49,28 @@ assertions?
 but degrades the codebase's capacity for future change is not truly done — it
 has traded short-term correctness for structural regression. Chen et al.,
 *SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via
-Continuous Integration* (2026, https://arxiv.org/abs/2603.03823), documents
-that most agents introduce behavioral regressions in over 75% of CI iterations
-on a long-horizon maintenance benchmark; treat it as one calibration point,
-not a universal rate. This complements the issue-resolution benchmarks that
-preceded it — Jimenez et al., *SWE-bench: Can Language Models Resolve
-Real-World GitHub Issues?* (ICLR 2024, https://arxiv.org/abs/2310.06770), and
-Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software
+Continuous Integration* (2026, https://arxiv.org/abs/2603.03823), reports
+that most frontier models achieve zero-regression rates below 0.25 across
+100 maintenance tasks averaging 71 consecutive commits and 233 days of
+repository history — i.e., regressions appear in at least three of every
+four CI iterations for most agents. Independent measurements corroborate
+the long-horizon collapse: Deng et al., *SWE-Bench Pro: Can AI Agents Solve
+Long-Horizon Software Engineering Tasks?* (2025,
+https://arxiv.org/abs/2509.16941), reports frontier-model success rates
+near 23% on long-horizon, multi-file engineering tasks — versus
+substantially higher rates on shorter benchmarks such as SWE-bench
+Verified — and Kwa et al., *Measuring AI Ability to Complete Long Software
+Tasks* (METR, 2025, https://arxiv.org/abs/2503.14499), shows reliable
+model success collapsing as task duration extends beyond roughly fifty
+minutes of equivalent human effort. Treat these as calibration points,
+not universal rates; the rates differ by benchmark composition and model
+generation. They complement the issue-resolution benchmarks that preceded
+them — Jimenez et al., *SWE-bench: Can Language Models Resolve Real-World
+GitHub Issues?* (ICLR 2024, https://arxiv.org/abs/2310.06770), and Yang et
+al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software
 Engineering* (2024, https://arxiv.org/abs/2405.15793) — by extending the
-evaluation surface from single-issue capability to multi-commit, long-horizon
-maintenance behaviour. SWE-CI is evidence of behavioral regression risk, not
+evaluation surface from single-issue capability to multi-commit,
+long-horizon maintenance behaviour. SWE-CI is evidence of behavioral regression risk, not
 a direct measure of architectural evolvability: CI metrics do not capture
 coupling growth, cohesion decay, abstraction quality, or future-changeability.
 Both risks are real and distinct. At Phase 4 and above, "verified" should

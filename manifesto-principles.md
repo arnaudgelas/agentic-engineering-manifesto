@@ -17,6 +17,19 @@ operationalize the six values. The correspondence:
 | Tooling, telemetry, and observability | 9 — Observability |
 | Resilience under stress | 10 — Containment, 11 — Economics |
 
+**Why twelve.** The principle count is not chosen for symbolic resonance with
+the 2001 Agile Manifesto. Each principle is irreducible: removing any one
+uncovers a distinct failure mode that the others do not cover. The closest
+candidates for consolidation are P3 (architecture) with P10 (containment), and
+P6 (knowledge/memory) with P7 (context). They remain separate because P3
+governs deterministic boundaries enforced before agent action while P10
+governs the engineered response to emergent behaviour after boundaries are
+crossed — different failure modes, different controls; and because P6 governs
+what the system retains and how it expires while P7 governs what is retrieved
+into a specific reasoning loop and how it is budgeted — different lifetimes,
+different infrastructure. A reader who finds twelve excessive should propose
+the specific failure mode that becomes uncovered when a principle is removed.
+
 **Sequencing matters.** These principles are not independent. Prerequisites:
 Principle 2 (specifications) before Principle 8 (evaluations); Principle 3
 (architecture) before Principle 5 (autonomy tiers); Principle 6
@@ -240,6 +253,15 @@ instrumented, Tier 4 operation is not permitted regardless of phase.*
 **Phase maturity is a prerequisite for autonomy tier.** Tiers and phases are
 not independent: a team cannot safely operate at a higher tier than their phase
 supports, regardless of available infrastructure.
+
+*Deployment status disclosure (as of 2026-05-03):* No production Tier 4
+deployment is known to have been independently validated against the
+prerequisites stated above. The bar is documented; it has not been empirically
+met at scale in any deployment publicly reported against this specification.
+Treat Tier 4 as a research target with explicit prerequisites — not a
+production target with checklist-clearance — until independent validation
+evidence exists. This disclosure will be updated when validated deployments
+are reported.
 
 These maximum tiers are conservative defaults for the relevant work item, not a
 blanket organization-wide policy. Calibrate by domain, data classification, and
