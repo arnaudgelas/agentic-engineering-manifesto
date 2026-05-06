@@ -1,10 +1,10 @@
-# Sub-prompt 08 — Merge
+# Sub-prompt 09 — Merge
 
-**Purpose:** Produce `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_manifesto_alignment_review_merged.md` — a single, coherent master review of **[[FRAMEWORK]]** against the Agentic Engineering Manifesto, integrating all 18 canonical source files (Wave 1a + Wave 1b + Wave 2) into canonical Parts 1–13 plus closing sections and appendices.
+**Purpose:** Produce `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_manifesto_alignment_review_merged.md` — a single, coherent master review of **[[FRAMEWORK]]** against the Agentic Engineering Manifesto, integrating all 19 canonical source files (Wave 1a + Wave 1b + Wave 2) into canonical Parts 1–14 plus closing sections and appendices.
 
 **Placeholder reminder:** Before doing any work, scan this prompt for any remaining `[[...]]` patterns. If any placeholder is unsubstituted (e.g., the literal text `[[FRAMEWORK]]` still appears in your working copy), stop immediately and report which variables are unset.
 
-**Wave 3 preflight reminder:** This agent runs in Wave 3. All 18 canonical source files from Waves 1a, 1b, and 2 must exist and be non-empty before any merging begins. Verify this before proceeding (see Preflight Check below).
+**Wave 3 preflight reminder:** This agent runs in Wave 3. All 19 canonical source files from Waves 1a, 1b, and 2 must exist and be non-empty before any merging begins. Verify this before proceeding (see Preflight Check below).
 
 **Canonical references (do not re-quote):** Score weighting, severity thresholds, and effort sizing are defined exclusively in `prompt.md`. Reference them by name (e.g., "the canonical severity thresholds from `prompt.md`"). Do NOT re-quote these tables in this prompt or in the output.
 
@@ -14,9 +14,9 @@
 
 ## Preflight Check
 
-### Step 1 — Verify all 18 source files exist AND are non-empty
+### Step 1 — Verify all 19 source files exist AND are non-empty
 
-Use `Read` to read the **first and last 5 lines** of each of the 18 source files listed below under `[[FRAMEWORK_LOWER]]/`. If any file returns empty content or fewer than 20 lines, treat it as invalid. Output ONLY a report of all invalid files and STOP. Do not write the merged output.
+Use `Read` to read the **first and last 5 lines** of each of the 19 source files listed below under `[[FRAMEWORK_LOWER]]/`. If any file returns empty content or fewer than 20 lines, treat it as invalid. Output ONLY a report of all invalid files and STOP. Do not write the merged output.
 
 ```
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_01_quick_overview.md
@@ -37,9 +37,10 @@ Use `Read` to read the **first and last 5 lines** of each of the 18 source files
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_06_strengths_gaps.md
 [[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md
+[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md
 ```
 
-**If any file is missing, empty, or shorter than 20 lines: stop immediately. Report each invalid file by path. Do not produce a partial or incomplete merge. Do not proceed until all 18 files are confirmed valid.**
+**If any file is missing, empty, or shorter than 20 lines: stop immediately. Report each invalid file by path. Do not produce a partial or incomplete merge. Do not proceed until all 19 files are confirmed valid.**
 
 ### Step 2 — Score-integrity cross-checks (mandatory; report-don't-fix)
 
@@ -53,7 +54,7 @@ Cross-checks:
 
 1. **Per-principle score check (P1–P12).** For each principle N: extract the integer in the `Score` column of agent 01's "Manifesto Principles Table" (`_review_01_quick_overview.md` Part 1). Quote the row verbatim as evidence. Extract the integer in the H1 line of `_review_02_principle_p{N}.md` (the `**NN/100**` token). Quote the H1 line verbatim. The two integers MUST match.
 
-2. **Per-principle H1 vs Score-rationale check.** For each principle N: extract the integer from the H1 line of `_review_02_principle_p{N}.md` and the integer from its `## Score rationale` paragraph (`Score: **NN/100**`). Quote both verbatim. They MUST match (agent 02 enforces this internally; verify before lifting).
+2. **Per-principle H1 vs Score-rationale check.** For each principle N: extract the integer from the H1 line of `_review_02_principle_p{N}.md` and the integer from its `## Score rationale` paragraph (`Score: **NN/100**`). Quote both verbatim. They MUST match (each `02-pN` agent enforces this internally before saving its file; verify before lifting).
 
 3. **Loop-phase score check.** For each of the 9 phases: extract the score from agent 01's "Agentic Loop Phases Table" (`_review_01_quick_overview.md` Part 1). Extract the score from the corresponding `### {Phase} | **{score}/100**` heading in `_review_03_loop_dod.md` Part 4. Quote both verbatim. They MUST match.
 
@@ -71,7 +72,7 @@ Cross-checks:
 
 Preserve Wave 1 scores verbatim. The merged document MUST NOT re-score any principle, dimension, or composite metric. Apply these resolution rules:
 
-- **Per-principle disagreement (agent 01 table vs agent 02 H1).** Per-principle file scores are authoritative (mirroring agent 06's rule at `prompts/prompt-06-strengths-gaps.md` rule 10). Use the agent 02 H1 score in Part 1's table and in the merged document's per-principle H3 headings. Surface the divergence in Source Integrity with both values.
+- **Per-principle disagreement (agent 01 table vs `02-pN` H1).** Per-principle file scores are authoritative (mirroring agent 06's rule at `prompts/prompt-06-strengths-gaps.md` rule 10). Use the `02-pN` H1 score in Part 1's table and in the merged document's per-principle H3 headings. Surface the divergence in Source Integrity with both values.
 
 - **Composite arithmetic disagreement.** If agent 01's header `**Overall Score:** <X.X>/100` differs from the computed `Σ(score × decimal_weight)` derived from Part 1's table, report BOTH values in the Source Integrity section as an arithmetic inconsistency. Use the computed value as the authoritative score in the merged document's metadata block. Round to one decimal place.
 
@@ -83,7 +84,7 @@ Preserve Wave 1 scores verbatim. The merged document MUST NOT re-score any princ
 
 Read all of the following end-to-end before composing a single line of the merged document:
 
-1. All 18 source files listed in Preflight Step 1 (Preflight Step 1 reads only the first and last 5 lines of each; this step reads each file end-to-end).
+1. All 19 source files listed in Preflight Step 1 (Preflight Step 1 reads only the first and last 5 lines of each; this step reads each file end-to-end).
 2. `[[DOMAIN_FILE]]` — the industry domain file for `[[INDUSTRY]]` context.
 3. `[[PRIOR_REVIEWS]]` (if not `none`) — for peer-framework comparison material.
 4. The manifesto's own source artefacts: at minimum `manifesto-principles.md`, `manifesto.md` (Agentic Loop phase definitions, loop-readiness gate), `manifesto-done.md` (Agentic DoD conditions, Hardening DoD, agentic provenance record, evidence freshness rules), `companion/frameworks.md` (per-phase failure modes), and `companion/principles.md`. Read the current files; do not rely on memory.
@@ -115,11 +116,11 @@ The merged review is an editorial integration, not a concatenation of source fil
 
 ### P3 cross-reference placeholder resolution
 
-Scan agent 02's 12 principle files for the placeholder `*[Part 12 cross-reference …]*` (the literal string emitted by `prompts/prompt-02-principles.md` for P3, character-for-character: `> *[Part 12 cross-reference — see Part 12 guardrails assessment; resolved at merge time]*`). Resolve each occurrence to the canonical part-number citation: "see Part 12, §12.{N}" where `{N}` is the specific subsection of Part 12 that addresses the blast-radius implication. If the specific subsection is not determinable from context, use "see Part 12." Do not leave any placeholder in the merged output.
+Scan the 12 principle files for the placeholder `*[Part 12 cross-reference …]*` (the literal string emitted by `prompts/prompt-02-principle.md` when `[[PRINCIPLE_NUMBER]]` is 3, character-for-character: `> *[Part 12 cross-reference — see Part 12 guardrails assessment; resolved at merge time]*`). Resolve each occurrence to the canonical part-number citation: "see Part 12, §12.{N}" where `{N}` is the specific subsection of Part 12 that addresses the blast-radius implication. If the specific subsection is not determinable from context, use "see Part 12." Do not leave any placeholder in the merged output.
 
 ### Preserve scores verbatim (operationalised)
 
-- Wave 1 scores are authoritative. Agent 08 is an editorial integrator, not a scorer.
+- Wave 1 scores are authoritative. Agent 09 is an editorial integrator, not a scorer.
 - Use the same rounding convention as the source — one decimal place — and verify the metadata `Overall score` against the Part 1 table sum.
 - Do not relabel any severity (e.g., Critical → High) without surfacing the change in Source Integrity. The merged document preserves Wave 1 severity labels verbatim.
 - Every numeric score in the merged document MUST trace verbatim to a specific Wave 1 source file. Every regulatory citation MUST trace to a specific Wave 1 source file (or to the canonical regulatory citations in `[[DOMAIN_FILE]]`). Do not introduce findings, scores, severity labels, regulations, or strengths that do not appear in any Wave 1 source.
@@ -165,7 +166,7 @@ Populate all five appendices. Do not omit or merge appendices.
 
 ### Idempotence
 
-If the output file already exists: check whether any of the 18 source files has a modification timestamp newer than the existing merged file. If yes, regenerate from scratch. If no, output `Merged review is up to date — no regeneration needed` and stop. The Source Integrity section MUST be regenerated on every regeneration.
+If the output file already exists: check whether any of the 19 source files has a modification timestamp newer than the existing merged file. If yes, regenerate from scratch. If no, output `Merged review is up to date — no regeneration needed` and stop. The Source Integrity section MUST be regenerated on every regeneration.
 
 ### Required document structure
 
@@ -177,10 +178,10 @@ Framework:           [[FRAMEWORK]]
 Version:             [[FRAMEWORK_VERSION]]
 Review date:         YYYY-MM-DD
 Manifesto:           arnaudgelas/agentic-engineering-manifesto@[[MANIFESTO_HASH]]
-Reviewer methodology: Multi-agent swarm review; 11 specialised agents (01, 02, 03, 04a, 04b, 04c, 05a, 05b, 06, 07, 08); Wave 1a / 1b / 2 / 3 execution
+Reviewer methodology: Multi-agent swarm review — 13 specialised agent roles (01; 02-p1..02-p12; 03; 04a; 04b; 04c; 05a; 05b; 06; 07; 08a; 08b; 09) producing 19 source files across Wave 1a / 1b / 2 / 3 execution
 Context:             [[INDUSTRY]]
 Client:              [[ORGANIZATION]]
-Sources (18 files):  <list all 18 source file paths — exactly 18 entries>
+Sources (19 files):  <list all 19 source file paths — exactly 19 entries>
 Overall score:       <X.X / 100, computed via Σ(score × weight) from Part 1>
 Maturity level:      <Phase N — Label, taken from the Maturity Verdict in `_review_05_maturity_industry.md` (authored by agent 05a, surfaced by agent 05b)>
 Severity:            <Critical | High | Medium | Low, per canonical thresholds>
@@ -198,7 +199,7 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 
 ## Part 3 — Manifesto Principles
 
-### P1 — <Principle name verbatim from manifesto-principles.md>
+### P1 — <Principle name verbatim from prompt.md weighting table>
 ### P2 — <Principle name>
 ### P3 — <Principle name>
 ### P4 — <Principle name>
@@ -229,9 +230,11 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 
 ## Part 11 — Gap Analysis: Path to Next Phase
 
-## Part 12 — Guardrails Assessment
+## Part 12 — AI/Runtime Guardrails Assessment
 
 ## Part 13 — Security Assessment
+
+## Part 14 — Enterprise Guardrail Domain Coverage
 
 ## Prioritised Remediation Roadmap
 
@@ -268,11 +271,12 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 | Part 8 — Maturity Phase Placement | `_review_05_maturity_industry.md` Part 8 (written by agent 05b, which lifts Part 8 content verbatim from agent 05a's output) | Preserve `### The Verdict` (with `**Maturity Verdict: Phase {N}**` line), `### Evidence Matrix`, `### Phase Gate Non-Negotiables` (table form with `Gate \| Required to reach Phase {N+1} \| [[FRAMEWORK]] status \| Severity` columns), `### Comparison with Peer Frameworks`, `### Economics Assessment`. |
 | Part 9 — `[[INDUSTRY]]` Assessment (`[[ORGANIZATION]]`) | `_review_05_maturity_industry.md` Part 9 (written by agent 05b) | Preserve `### The Regulatory Exposure Map`, `### Use-Case Fitness Analysis`, `### The Red Line`, `### The Deployment Path`. |
 
-**Note:** `_review_04_adoption_companion.md` is written by agent 04c after it reads agents 04a+04b outputs. `_review_05_maturity_industry.md` is written by agent 05b after it reads agent 05a's output. The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, and `_review_05a_maturity.md` are NOT direct inputs to agent 08.
+**Note:** `_review_04_adoption_companion.md` is written by agent 04c after it reads agents 04a+04b outputs. `_review_05_maturity_industry.md` is written by agent 05b after it reads agent 05a's output. The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, and `_review_05a_maturity.md` are NOT direct inputs to agent 09.
 | Part 10 — Genuine Strengths | `_review_06_strengths_gaps.md` Part 10 | Preserve all 6–10 numbered strengths with fairness notes verbatim. |
 | Part 11 — Gap Analysis | `_review_06_strengths_gaps.md` Part 11 | Preserve all gaps (each with severity, principle mapping, "What is missing", "Why it matters in `[[INDUSTRY]]`", "What closes it", "Evidence anchor", "Effort"). Preserve roadmap order. Do NOT duplicate the Roadmap inside Part 11; the Roadmap is its own closing section. |
-| Part 12 — Guardrails Assessment | `_review_07_guardrails_security_appendix.md` Part 12 | Preserve all 5 sub-sections (12.1 Input Guardrails, 12.2 Output Guardrails, 12.3 Behavioural Guardrails, 12.4 Guardrail Architecture Assessment, 12.5 Adversarial Scenario). |
+| Part 12 — AI/Runtime Guardrails Assessment | `_review_07_guardrails_security_appendix.md` Part 12 | Preserve all 5 sub-sections (12.1 Input Guardrails, 12.2 Output Guardrails, 12.3 Behavioural Guardrails, 12.4 Guardrail Architecture Assessment, 12.5 Adversarial Scenario). |
 | Part 13 — Security Assessment | `_review_07_guardrails_security_appendix.md` Part 13 | Preserve all 5 sub-sections (13.1 Determinism and Output Variance, 13.2 Security Coverage Map with all 11 control families, 13.3 Bias and Fairness Exposure, 13.4 Regulatory Security Requirements, 13.5 Critical Security Findings). |
+| Part 14 — Enterprise Guardrail Domain Coverage | `_review_08_enterprise_guardrails.md` (canonical file written by agent 08b, which lifts §14.1–§14.15 verbatim from agent 08a's intermediate `_review_08a_domains.md`) | Preserve all 19 sub-sections at H3 depth (14.1–14.15 the 15 domains; 14.16 Cross-cutting matrix with importance + `[[FRAMEWORK]]` coverage matrices and Critical/High gaps; 14.17 Twelve Non-Negotiable Guardrails table with N/12 coverage; 14.18 Agent Card / Task Card schema verification with Schema Coverage Score; 14.19 Enterprise Guardrail Maturity Verdict). Preserve the `**Enterprise Guardrail Maturity: <LACKING / PARTIAL / ADEQUATE / MATURE>**` verdict line verbatim. Do NOT re-score P1–P12; Part 14's overlapping findings cite principles by number. Do NOT duplicate Part 12 or Part 13 content; cross-references stand. The intermediate `_review_08a_domains.md` is NOT a direct input to agent 09 — it is consumed by agent 08b. |
 | Prioritised Remediation Roadmap | `_review_06_strengths_gaps.md` `## Prioritised Remediation Roadmap` | Preserve effort labels and priority order. Each row cites the Gap N entry in Part 11. Roadmap row count equals Part 11 gap count. Do not re-rank. |
 | `[[ORGANIZATION]]` Deployment Recommendation | `_review_05_maturity_industry.md` Part 9 Deployment Path + `_review_06_strengths_gaps.md` Roadmap Interpretation | Synthesise; include regulatory constraints; do not contradict the Red Line. |
 | Appendix A — Adversarial Scenario | `_review_07_guardrails_security_appendix.md` §12.5 | Reproduce the full red-team walk-through verbatim. Do not summarise. |
@@ -285,8 +289,8 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 
 ## Hard Rules
 
-- Read all 18 source files end-to-end before composing a single line of the merged document.
-- Do not re-score. Wave 1 scores are authoritative. Agent 08 is an editorial integrator, not a scorer.
+- Read all 19 source files end-to-end before composing a single line of the merged document.
+- Do not re-score. Wave 1 scores are authoritative. Agent 09 is an editorial integrator, not a scorer.
 - Surface every score inconsistency in `## Source Integrity` using the fixed entry schema. Do not silently correct (except composite arithmetic per Preflight Step 3).
 - Use date format **YYYY-MM-DD** wherever a date appears.
 - Cross-references within the merged document use canonical part numbers only (e.g., "see Part 12"). Never use source file names, agent numbers, or Wave designations in cross-references.
@@ -304,11 +308,13 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 
 **Do not save the output file until every item below is confirmed.** Each item is binary yes/no. If any item fails, fix the file content and re-verify before saving.
 
-- [ ] All 18 source files confirmed valid by Preflight Step 1 (≥ 20 lines each, non-empty first/last 5 lines).
+- [ ] All 19 source files confirmed valid by Preflight Step 1 (≥ 20 lines each, non-empty first/last 5 lines).
 - [ ] All 8 score-integrity cross-checks completed; results recorded verbatim in `## Source Integrity` with the fixed entry schema.
 - [ ] Composite arithmetic recomputed; metadata `Overall score` equals `Σ(score × decimal_weight)` from Part 1's table, rounded to one decimal place.
 - [ ] Framing Warning section (4 sub-sections) is present between metadata and Executive Verdict.
-- [ ] All 13 canonical parts present and in order; Cross-Document Synthesis present between Part 7 and Part 8.
+- [ ] All 14 canonical parts present and in order; Cross-Document Synthesis present between Part 7 and Part 8; Part 14 (Enterprise Guardrail Domain Coverage) present after Part 13 and before the Prioritised Remediation Roadmap. Part 14 contains all 19 sub-sections (§14.1–§14.15, §14.16 cross-cutting matrix, §14.17 twelve non-negotiables, §14.18 schema verification, §14.19 maturity verdict).
+- [ ] Part 14 does NOT introduce any re-score of P1–P12 or restate the composite. Overlap with Part 12/Part 13 is by cross-reference, not duplication.
+- [ ] Part 14 §14.19 contains a verbatim `**Enterprise Guardrail Maturity: <LACKING | PARTIAL | ADEQUATE | MATURE>**` line lifted from `_review_08_enterprise_guardrails.md`.
 - [ ] `## Executive Verdict` is self-contained, ≤ 800 words, and includes (a) overall score and severity label, (b) maturity phase, (c) top-3 strengths from agent 06 Part 10, (d) top-3 highest-severity gaps from agent 06 Part 11, (e) The Red Line verbatim from agent 05b Part 9, (f) highest-leverage single change verbatim from agent 04c Cross-Document Synthesis.
 - [ ] Executive Verdict's Red Line equals Part 9's Red Line verbatim.
 - [ ] Executive Verdict's highest-leverage single change equals agent 04c's Cross-Document Synthesis verbatim; any drift is logged in Source Integrity.
@@ -325,5 +331,5 @@ Severity:            <Critical | High | Medium | Low, per canonical thresholds>
 - [ ] Output file contains no source-file metadata blocks, per-agent "Inputs to Read" sections, per-agent "Methodology" sections, or per-source-file H1 titles or footers.
 - [ ] All dates in YYYY-MM-DD format. No `MM/DD/YYYY` or `DD/MM/YYYY` matches.
 - [ ] British English throughout (organisation, behaviour, optimise, defence, prioritise, modelling, licence, programme — not the American forms).
-- [ ] Front-matter `Sources (18 files):` block lists exactly 18 paths.
-- [ ] Output line count is between 1,500 and 3,000 lines (a result outside this range is evidence of either concatenation or skeletonisation; investigate before saving).
+- [ ] Front-matter `Sources (19 files):` block lists exactly 19 paths.
+- [ ] Output line count is between 1,800 and 3,500 lines (a result outside this range is evidence of either concatenation or skeletonisation; investigate before saving). The expanded upper bound accommodates Part 14 (15 domain sub-sections + cross-cutting matrix + 12 non-negotiables + schema tables).

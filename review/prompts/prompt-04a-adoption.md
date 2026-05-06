@@ -4,7 +4,7 @@
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
-**Wave 1a isolation:** This prompt runs in Wave 1a alongside agents 01, 02, 03, 04b, 05a, and 07. Do not read sibling Wave 1a outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
+**Wave 1a isolation:** This prompt runs in Wave 1a alongside agents 01, 02-p1..p12, 03, 04b, 05a, 07, and 08a. Do not read sibling Wave 1a outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
 
 **Cross-prompt scope guards:**
 - The `adoption/pilot.md` subsection (Part 6) issues a pilot-feasibility verdict scoped to `adoption/pilot.md` criteria. It does NOT issue a production-deployment red line — that is Part 9, owned by agent 05.
@@ -270,7 +270,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 - [ ] The output does NOT contain Part 7 content or the Cross-Document Synthesis (those are 04b/04c territory).
 - [ ] The machine-readable `<!-- GAP INVENTORY ... /GAP INVENTORY -->` block is appended after Part 6 closes, with one row per gap and Part reference `P6`.
 - [ ] The output file closes with an italic `*Sources read: ...*` footer.
-- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 13), not file names or agent numbers.
+- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 14), not file names or agent numbers.
 
 ---
 

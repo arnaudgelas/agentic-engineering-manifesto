@@ -2,7 +2,7 @@
 
 **Purpose:** Produce the overview file for a [[FRAMEWORK]] Agentic Engineering Manifesto alignment review, covering overall scores, scoring methodology, a framing-warning header, principle-by-principle score rationale, and client/industry-specific observations.
 
-**Wave:** Wave 1a. This prompt runs in parallel with prompts 02, 03, 04a, 04b, 05a, and 07. It cannot read their outputs. Use canonical Part numbers ("see Part 12") for any cross-reference whose target is produced by another agent — agent 08 (merge) will resolve cross-references at synthesis time.
+**Wave:** Wave 1a. This prompt runs in parallel with prompts 02-p1..p12, 03, 04a, 04b, 05a, 07, and 08a. It cannot read their outputs. Use canonical Part numbers ("see Part 12") for any cross-reference whose target is produced by another agent — agent 09 (merge) will resolve cross-references at synthesis time.
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
@@ -131,7 +131,7 @@ Do not conflate evidence-for and evidence-against. State them separately.
 
 Every claim about `[[FRAMEWORK]]` MUST be grounded in a verbatim quote from a named source file, including the file path. Paraphrase without citation is forbidden. Each principle's evidence-for must include at least one verbatim quote (in single backticks or double quotes, ≤30 words) from a `[[FRAMEWORK]]` artefact, with the file path in parentheses (e.g., `"delegates AI operations to Claude Code CLI"` (`README.md`)). Each principle's evidence-against must include at least one specific named absence (artefact name, function name, or rule that does not exist in `[[FRAMEWORK]]` but the manifesto requires).
 
-**Cross-prompt score authority:** The per-principle scores entered in the Manifesto Principles Table in this review are the AUTHORITATIVE scores for this review run. Agent 02 will use these scores as a reference; agent 03 will provide Loop/DoD scores that must match the corresponding rows in Part 1. Agent 08 performs the final cross-check. Do NOT independently re-derive scores from other agents' outputs (you cannot read them — they run in parallel).
+**Cross-prompt score authority:** The per-principle scores entered in the Manifesto Principles Table in this review are the AUTHORITATIVE scores for this review run. Agents 02-p1..p12 will use these scores as a reference; agent 03 will provide Loop/DoD scores that must match the corresponding rows in Part 1. Agent 08b performs the final cross-check. Do NOT independently re-derive scores from other agents' outputs (you cannot read them — they run in parallel).
 
 ### 2.2 Overall score
 

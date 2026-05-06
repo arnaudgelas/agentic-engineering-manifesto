@@ -4,7 +4,7 @@
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
-**Wave 1a isolation:** This prompt runs in Wave 1a alongside agents 01, 02, 03, 04a, 05a, and 07. Do not read sibling Wave 1a outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
+**Wave 1a isolation:** This prompt runs in Wave 1a alongside agents 01, 02-p1..p12, 03, 04a, 05a, 07, and 08a. Do not read sibling Wave 1a outputs. Do not produce a composite [[FRAMEWORK]] score (Part 1 is owned by agent 01). Your gap inventory at the end of the file (see §3.4) will be consumed by agent 04c (synthesis) and ultimately by agent 06 (which builds Part 11 from the combined 04 output).
 
 **Cross-prompt scope guards:**
 - The `companion/frameworks.md` subsection (Part 7) assesses [[FRAMEWORK]]'s alignment with the *guidance* in `companion/frameworks.md`. It does NOT issue the determinative phase placement — that is Part 8, owned by agent 05. Do not pre-empt Part 8.
@@ -258,7 +258,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 - [ ] Contradictions are distinguished from gaps throughout (`**Contradiction:**` prefix used).
 - [ ] The machine-readable `<!-- GAP INVENTORY ... /GAP INVENTORY -->` block is appended after Part 7 closes, with one row per gap and Part reference `P7`.
 - [ ] The output file closes with an italic `*Sources read: ...*` footer.
-- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 13), not file names or agent numbers.
+- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 14), not file names or agent numbers.
 
 ---
 

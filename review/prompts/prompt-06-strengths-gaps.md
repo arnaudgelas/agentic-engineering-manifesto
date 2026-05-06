@@ -4,13 +4,13 @@
 
 **Placeholder reminder:** Before executing, confirm every `[[VARIABLE]]` in this prompt has been substituted by the orchestrator. If any literal `[[...]]` pattern remains, stop and report.
 
-**Wave-2 contract:** This agent is a **synthesis agent**. Its evidence is the 17 Wave 1 output files. It does NOT re-read `[[FRAMEWORK]]` source artefacts and does NOT re-derive scores. Where a `[[FRAMEWORK]]` artefact is cited, the citation is copied verbatim from the Wave 1 file that established it.
+**Wave-2 contract:** This agent is a **synthesis agent**. Its evidence is the 18 upstream output files available before Part 11 synthesis. It does NOT re-read `[[FRAMEWORK]]` source artefacts and does NOT re-derive scores. Where a `[[FRAMEWORK]]` artefact is cited, the citation is copied verbatim from the Wave 1 file that established it.
 
 **Canonical references (do not re-quote):**
 - Score weighting scheme — defined in `prompt.md` §"Score weighting scheme". Reference it; do not copy the table here.
 - Severity thresholds (Critical / High / Medium / Low) — defined in `prompt.md` §"Severity thresholds". Reference; do not copy.
 - Effort sizing (S / M / L / XL) — defined in `prompt.md` §"Effort sizing". Reference; do not copy.
-- Canonical part numbering — defined in `prompt.md` §"Canonical part numbering". Use Part 1 through Part 13 references in output; do not re-quote the table.
+- Canonical part numbering — defined in `prompt.md` §"Canonical part numbering". Use Part 1 through Part 14 references in output; do not re-quote the table.
 
 ---
 
@@ -21,14 +21,15 @@
 Run the following operational checks. If any check fails, output ONLY a structured report listing the missing/invalid files and STOP. Do not write Part 10, do not write Part 11, do not write the roadmap.
 
 1. **Glob check for principle files.** Run a `Glob` for `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_02_principle_p*.md`. The result MUST contain exactly 12 files (p1.md through p12.md). If fewer than 12, the agent stops.
-2. **Existence check for the other 5 Wave 1 files.** For each of the following paths, verify it exists:
+2. **Existence check for the other 6 Wave 1 files.** For each of the following paths, verify it exists:
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_01_quick_overview.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_03_loop_dod.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`
    - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md`
-3. **Non-empty / non-stub check.** Read the first 5 lines and the last 5 lines of each of the 5 files in step 2. If a file has fewer than 20 lines total, treat it as invalid.
-4. **Placeholder leakage check.** None of the 17 files may contain a literal `[[...]]` token in their header lines (lines 1–10). If any file shows an unsubstituted placeholder, treat it as invalid.
+   - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md`
+3. **Non-empty / non-stub check.** Read the first 5 lines and the last 5 lines of each of the 6 files in step 2. If a file has fewer than 20 lines total, treat it as invalid.
+4. **Placeholder leakage check.** None of the 18 files may contain a literal `[[...]]` token in their header lines (lines 1–10). If any file shows an unsubstituted placeholder, treat it as invalid.
 
 Stop conditions (output a structured report listing the offending files, then halt):
 
@@ -44,7 +45,7 @@ The agent does not proceed past Step 1 until all checks pass.
 
 ## Step 2 — Inputs
 
-### 2.1 — The 17 Wave 1 output files (the only evidence base)
+### 2.1 — The 18 upstream output files (the only evidence base)
 
 These are the agent's evidence. The agent reads these files end-to-end. The agent does NOT read `[[FRAMEWORK]]` source artefacts directly — Wave 1 has already done that read. Where a `[[FRAMEWORK]]` artefact citation is required in output, the agent copies it verbatim from the Wave 1 file that established it.
 
@@ -56,6 +57,7 @@ These are the agent's evidence. The agent reads these files end-to-end. The agen
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md` | Agent 04 |
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md` | Agent 05 |
 | `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md` | Agent 07 |
+| `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md` | Agent 08 |
 
 ### 2.2 — Manifesto corpus (read in full, current version on disk)
 
@@ -165,9 +167,9 @@ Metadata block immediately below the title:
 **Review date:** YYYY-MM-DD
 **Manifesto:** `arnaudgelas/agentic-engineering-manifesto@[[MANIFESTO_HASH]]`
 **Reviewer:** Agent 06 — Strengths & Gaps
-**Methodology:** Wave 2 synthesis — all 17 Wave 1 output files read end-to-end; no `[[FRAMEWORK]]` source re-read
+**Methodology:** Wave 2 synthesis — all 18 upstream output files read end-to-end; no `[[FRAMEWORK]]` source re-read
 **Context:** [[ORGANIZATION]] — [[INDUSTRY]]
-**Source material:** [[FRAMEWORK_LOWER]]_review_01_quick_overview.md; [[FRAMEWORK_LOWER]]_review_02_principle_p1.md through p12.md; [[FRAMEWORK_LOWER]]_review_03_loop_dod.md; [[FRAMEWORK_LOWER]]_review_04_adoption_companion.md; [[FRAMEWORK_LOWER]]_review_05_maturity_industry.md; [[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md
+**Source material:** [[FRAMEWORK_LOWER]]_review_01_quick_overview.md; [[FRAMEWORK_LOWER]]_review_02_principle_p1.md through p12.md; [[FRAMEWORK_LOWER]]_review_03_loop_dod.md; [[FRAMEWORK_LOWER]]_review_04_adoption_companion.md; [[FRAMEWORK_LOWER]]_review_05_maturity_industry.md; [[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md; [[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md
 ```
 
 ### 4.2 — Score Authority Table (mandatory)
@@ -315,7 +317,7 @@ Reference specific `[[INDUSTRY]]` regulations and articles throughout.
 ### 4.7 — Footer
 
 ```
-*Review conducted by Agent 06. Source files: 17 Wave 1 outputs listed in the metadata block. Regulatory frameworks sourced from `[[DOMAIN_FILE]]` (sections cited in Part 11 listed inline). Manifesto principles sourced from `manifesto-principles.md`, `manifesto.md`, and `manifesto-done.md`.*
+*Review conducted by Agent 06. Source files: 18 upstream outputs listed in the metadata block. Regulatory frameworks sourced from `[[DOMAIN_FILE]]` (sections cited in Part 11 listed inline). Manifesto principles sourced from `manifesto-principles.md`, `manifesto.md`, and `manifesto-done.md`.*
 ```
 
 ---
@@ -344,7 +346,7 @@ These rules are non-negotiable.
 **Do not save the output file until every item below is confirmed.**
 
 - [ ] Step 1 preflight passed: Glob returned exactly 12 principle files; the 5 other Wave 1 files exist; each has ≥20 lines; no header-line placeholder leakage.
-- [ ] All 17 Wave 1 files read end-to-end. None missing or empty.
+- [ ] All 18 upstream output files read end-to-end. None missing or empty.
 - [ ] Score Authority Table is present with 12 rows and divergence flags.
 - [ ] `target_phase` extracted from `**Maturity Verdict: Phase {N}**` in Review 05; integer substituted everywhere; Phase 6 ceiling rule applied if relevant; no literal `{N+1}` text in output.
 - [ ] Every strength has: dual-anchor evidence (Wave 1 anchor + source anchor verbatim from Wave 1), Mechanism / Why genuinely good / Better than the alternative subsections, fairness note sourced from the same file's evidence-against section.
@@ -365,4 +367,4 @@ These rules are non-negotiable.
 - [ ] Every claim in strengths and gaps is anchored to a verbatim quote from a named Wave 1 source file with path.
 - [ ] All cross-references use canonical part numbers; no file names or agent numbers in cross-references within output content.
 - [ ] All dates use YYYY-MM-DD.
-- [ ] Source material block has all 17 file paths with `[[FRAMEWORK_LOWER]]` substituted.
+- [ ] Source material block has all 18 file paths with `[[FRAMEWORK_LOWER]]` substituted.

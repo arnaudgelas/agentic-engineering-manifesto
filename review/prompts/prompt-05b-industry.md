@@ -19,7 +19,7 @@ for `domains/financial-services.md` versus `domains/insurance.md` versus
 domains.
 
 The output filename is `[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`.
-Downstream agents (prompt-06 reads Part 8 from this file; prompt-08 reads both
+Downstream agents (prompt-06 reads Part 8 from this file; prompt-09 reads both
 Part 8 and Part 9) consume this exact path.
 
 **Canonical references (do not re-quote):** Weighting scheme, severity thresholds,

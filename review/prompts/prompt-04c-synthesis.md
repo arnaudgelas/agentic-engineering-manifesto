@@ -1,6 +1,6 @@
 # Sub-prompt 04c — Adoption & Companion Synthesis (Combined Output + Cross-Document Synthesis)
 
-**Purpose:** Produce the canonical combined output `[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md` for the Agent 04 line of the [[FRAMEWORK]] manifesto review. This agent (04c) is one of three siblings (04a, 04b, 04c). 04a produces Part 6 (adoption alignment); 04b produces Part 7 (companion alignment) with explicit contradictions. 04c (this agent) reads both, lifts their content into a single combined file with heading harmonisation, and adds the Cross-Document Synthesis (Realistic Adoption Ceiling at [[ORGANIZATION]] + Highest-Leverage Single Change). The combined output filename is unchanged from the legacy single-agent version, so downstream consumers (agent 06 building Part 11; agent 08 merging) need no modification.
+**Purpose:** Produce the canonical combined output `[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md` for the Agent 04 line of the [[FRAMEWORK]] manifesto review. This agent (04c) is one of three siblings (04a, 04b, 04c). 04a produces Part 6 (adoption alignment); 04b produces Part 7 (companion alignment) with explicit contradictions. 04c (this agent) reads both, lifts their content into a single combined file with heading harmonisation, and adds the Cross-Document Synthesis (Realistic Adoption Ceiling at [[ORGANIZATION]] + Highest-Leverage Single Change). The combined output filename is unchanged from the legacy single-agent version, so downstream consumers (agent 06 building Part 11; agent 09 merging) need no modification.
 
 **Note to orchestrator:** All `[[VARIABLE]]` placeholders in this file must be substituted before this prompt is passed to the agent. If any `[[...]]` pattern remains in your working copy, stop and resolve it before spawning.
 
@@ -233,7 +233,7 @@ These rules apply without exception. See `prompt.md` for the canonical severity,
 - [ ] The output does NOT contain a determinative phase placement (Part 8 territory) or a production-deployment red line (Part 9 territory).
 - [ ] A single merged `<!-- GAP INVENTORY ... /GAP INVENTORY -->` block is appended after the synthesis section, with one row per gap (de-duplicated across siblings) and original P6/P7 part references preserved.
 - [ ] A single merged `*Sources read: ...*` footer is present at the canonical position (per §3.7).
-- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 13), not file names or agent numbers.
+- [ ] All cross-references to other parts use canonical part numbers (Part 1–Part 14), not file names or agent numbers.
 
 ---
 

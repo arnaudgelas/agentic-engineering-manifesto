@@ -1,0 +1,303 @@
+# Sub-prompt 08b — Enterprise Guardrail Synthesis (Part 14, §14.16–§14.19) + Canonical Part 14 File
+
+**Purpose.** Read agent 08a's intermediate output, lift the 15 domain assessments (§14.1–§14.15) verbatim, then add §14.16 (cross-cutting matrix), §14.17 (twelve non-negotiables), §14.18 (Agent Card / Task Card schema verification), and §14.19 (Enterprise Guardrail Maturity Verdict). Write the **canonical Part 14 file** that the merge agent (agent 09) consumes.
+
+This is the synthesiser half of the agent 08a / 08b split. Agent 08a runs in Wave 1a producing the intermediate `_review_08a_domains.md`. Agent 08b runs in Wave 1b alongside 04c and 05b.
+
+**Placeholder reminder.** Before executing, confirm `[[FRAMEWORK]]`, `[[FRAMEWORK_LOWER]]`, `[[FRAMEWORK_VERSION]]`, `[[ORGANIZATION]]`, `[[INDUSTRY]]`, `[[DOMAIN_FILE]]`, `[[PRIOR_REVIEWS]]`, and `[[MANIFESTO_HASH]]` have been substituted. If any `[[...]]` pattern remains, stop and report.
+
+**Wave dependency and malformation checklist.** This prompt MUST be invoked only after `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08a_domains.md` exists and satisfies ALL of:
+- ≥ 100 lines (substantive content)
+- Contains all 15 H3 sections `### 14.1` through `### 14.15` in order
+- Each domain section contains: Domain question, Required controls table, [[FRAMEWORK]] coverage table, Anchors line, Domain Coverage Score (parseable as integer 0–100)
+If the dependency is missing or any malformation is detected, stop and report before proceeding. This is not a preflight-skip condition; report the error to the orchestrator.
+
+**Output file.** Write one file: `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md`. This is the **canonical Part 14 file** that agent 09 (merge) lifts.
+
+**Canonical thresholds.** Severity, score ranges, effort labels, and principle weightings come from `prompt.md`. Reference; do not redefine.
+
+**Banned soft language.** Output MUST NOT contain `consider`, `may`, `could potentially`, `perhaps`, `use judgement`, `use judgment`. Where a fact is unknown, state `unknown` — do not hedge.
+
+**Evidence requirement.** Every claim about `[[FRAMEWORK]]`, manifesto files, or `[[DOMAIN_FILE]]` MUST be supported by a verbatim quote with absolute path.
+
+**Re-scoring prohibition.** This prompt MUST NOT re-score P1–P12 or restate the composite. Where a finding overlaps a principle, cite the principle by number.
+
+**Lift fidelity.** §14.1–§14.15 MUST be lifted verbatim from `_review_08a_domains.md` — do not rewrite, summarise, or re-evaluate. If 08a's content is malformed (e.g., a domain section missing the Domain Coverage Score), surface this in a `## Source Integrity` block at the top of the canonical file and proceed; do not silently correct.
+
+**Idempotence (preflight).** Before writing, Glob `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md`. If the file exists with ≥ 20 lines AND contains a verbatim `**Enterprise Guardrail Maturity:` line in §14.19 AND the modification timestamp is newer than `_review_08a_domains.md`, exit without writing. Otherwise rewrite.
+
+---
+
+## 1. Inputs to read
+
+1. **`[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08a_domains.md`** — the intermediate per-domain output. Read end-to-end. This is the primary input.
+
+2. **`[[FRAMEWORK]]` source artefacts** — read ONLY for §14.18 schema verification (agent definitions, agent cards, task definitions, task cards). Do NOT re-read `[[FRAMEWORK]]` for §14.16 or §14.17 — those draw evidence exclusively from 08a's domain coverage tables (§14.1–§14.15). Cite 08a evidence by absolute path; do not re-scan the framework.
+
+3. **`manifesto.md`** and `manifesto-principles.md` — for the AEM Loop phase mapping used in §14.16's lifecycle-phase axis.
+
+4. **`[[DOMAIN_FILE]]`** — for `[[INDUSTRY]]`-specific business workflows that ground §14.16 critical/high gaps and §14.19 highest-leverage investment.
+
+5. **`regulatory/incidents-appendix.md`** — for naming a real-world incident in the §14.16 critical-gaps narrative or §14.19 verdict rationale.
+
+6. **`[[PRIOR_REVIEWS]]`** — if not `none`, read for peer comparison only.
+
+---
+
+## 2. Methodology — §14.16 Cross-cutting Guardrail × Lifecycle-Phase Coverage Matrix
+
+**Lifecycle phase columns** (use these exact labels):
+1. Specify
+2. Design
+3. Plan
+4. Execute
+5. Verify
+6. Validate
+7. Release
+8. Operate
+9. Learn / Govern
+
+**Domain rows** — exactly the 15 domains from agent 08a in canonical order (14.1 through 14.15).
+
+### 2.1 Importance matrix (15 × 9)
+For each (Domain, Phase) cell, populate with one of:
+- `Critical` — non-negotiable in this phase for this domain.
+- `High` — strongly required.
+- `Medium` — recommended.
+- `Low` — informational for this phase.
+- `n/a` — the domain does not bind in this phase.
+
+### 2.2 `[[FRAMEWORK]]` Coverage matrix (15 × 9)
+Same rows and columns. Each cell:
+- `Infrastructure` — `[[FRAMEWORK]]` enforces this control at runtime in this phase.
+- `Instruction` — `[[FRAMEWORK]]` documents the control but does not enforce it programmatically.
+- `Absent` — control is not present in `[[FRAMEWORK]]` for this phase.
+- `n/a` — out of scope per the importance matrix.
+
+### 2.3 Critical/High gaps
+Every `Absent` cell at `Critical` or `High` importance is a **gap**. Enumerate as a numbered list. Each entry:
+- One-sentence finding statement.
+- Severity label per `prompt.md`.
+- At least one cited Domain Coverage row from §14.1–§14.15 (lifted from 08a) that supports the gap.
+
+**Required:** at least three gaps must cite a specific `[[ORGANIZATION]]` business workflow from `[[INDUSTRY]]` / `[[DOMAIN_FILE]]` to ground the impact.
+
+---
+
+## 3. Methodology — §14.17 Twelve Non-Negotiable Guardrails
+
+Score `[[FRAMEWORK]]`'s coverage of each of the 12 minimum-viable guardrails. **Every row MUST cite evidence from agent 08a's domain coverage tables in §14.1–§14.15 by absolute path, or state MISSING if no 08a domain covers the non-negotiable.** Do NOT re-scan `[[FRAMEWORK]]` source artefacts for §14.17 — use only 08a's evidence, already extracted in the domain assessments.
+
+| # | Non-negotiable | Rule | `[[FRAMEWORK]]` Coverage (verbatim evidence + path) | Enforcement Level | Severity of Gap |
+| --- | --- | --- | --- | --- | --- |
+| 1 | No unowned agent or task | Every agent, run, task, release, and waiver has a named accountable human. | | | |
+| 2 | No agentic execution without ready spec | Entry requires acceptance criteria, risk tier, data classification, owner, out-of-scope, Definition of Done. | | | |
+| 3 | No unbounded autonomy | Every agent run has approved tier, tool scope, environment scope, expiry. | | | |
+| 4 | No unapproved tool or MCP access | Tools are allowlisted, logged, least-privilege, revocable. | | | |
+| 5 | No architecture violation without ADR and waiver | Enterprise architecture standards enforced before merge/release. | | | |
+| 6 | No secret or restricted data leakage | Sensitive-data controls cover prompts, context, outputs, logs, memory, tools. | | | |
+| 7 | No generated change without tests | Agent-generated code/config requires relevant tests and regression evidence. | | | |
+| 8 | No release without evidence bundle | Release requires trace, tests, security scans, policy checks, rollback, sign-off. | | | |
+| 9 | No critical/high security issue without resolution or waiver | Critical/High findings block release unless formally waived. | | | |
+| 10 | No production change without tested rollback | Rollback tested in representative environment. | | | |
+| 11 | No runaway cost | Every run has budget limits, routing policy, retry limits, cost attribution. | | | |
+| 12 | No human rubber-stamp | High-risk approvals require qualified humans, evidence review, anti-rubber-stamping detection. | | | |
+
+**Severity of Gap** uses the canonical thresholds from `prompt.md`. **Coverage formula:** count of fully-covered non-negotiables / 12 × 100, rounded to integer. Partial coverage of an individual non-negotiable counts as 0 for the formula (the partial state is recorded in the Severity-of-Gap column but does not raise the N/12 numerator).
+
+---
+
+## 4. Methodology — §14.18 Agent Card / Task Card Schema Verification
+
+### 4.1 Agent Card schema verification
+Verify each required field is present in `[[FRAMEWORK]]`'s agent definitions or registry:
+- `agent_id`, `version` (semver), `purpose`, `accountable_owner`, `steward`
+- `allowed_autonomy_tiers` (mapped to AEM tiers from P5)
+- `allowed_inputs`, `forbidden_inputs`
+- `allowed_tools`, `forbidden_tools`
+- `data_access` (classification_max, retention)
+- `required_logs` (prompts, context_refs, tool_calls, outputs, policy_verdicts, human_approvals)
+- `kill_switch` (owner, tested_frequency)
+- `evaluation` (required_eval_suite, minimum_pass_rate, adversarial_tests_required)
+
+Coverage table: Field | Present in `[[FRAMEWORK]]` | Verbatim evidence with path | Gap.
+
+### 4.2 Task Card schema verification
+Required fields:
+- `task_id`, `requester`, `accountable_owner`
+- `business_need`, `success_metric`, `acceptance_criteria`, `out_of_scope`
+- `risk_tier`, `blast_radius`, `data_classification`, `autonomy_tier`
+- `allowed_repositories`, `allowed_tools`, `allowed_environments`
+- `max_budget` (tokens, currency, wall_clock_minutes, retries)
+- `required_evidence`, `rollback_expectation`, `approval_requirements`
+
+Coverage table: Field | Present in `[[FRAMEWORK]]` | Verbatim evidence with path | Gap.
+
+### 4.3 Schema score
+`Schema Coverage Score` = average of (fields-present-in-Agent-Card / total) and (fields-present-in-Task-Card / total), expressed as 0–100. Severity per `prompt.md`.
+
+---
+
+## 5. Methodology — §14.19 Enterprise Guardrail Maturity Verdict
+
+Conclude Part 14 with one verdict drawn from this precedence cascade (use the verbatim label; apply in order — first match wins):
+1. `**Enterprise Guardrail Maturity: LACKING**` — if any non-negotiable is scored Critical, OR average domain coverage < 40, OR §14.17 coverage < 50%.
+2. `**Enterprise Guardrail Maturity: PARTIAL**` — if average domain coverage < 55, OR §14.17 coverage < 75%, OR any non-negotiable is scored High.
+3. `**Enterprise Guardrail Maturity: ADEQUATE**` — if average domain coverage < 70, OR §14.17 coverage < 90%.
+4. `**Enterprise Guardrail Maturity: MATURE**` — if average domain coverage ≥ 70, AND §14.17 coverage ≥ 90%, AND no Critical or High on any non-negotiable.
+
+**Required:** one paragraph naming the *single highest-leverage domain investment* that would move `[[FRAMEWORK]]` to the next maturity tier — name the artefact, mechanism, or process, with effort label per `prompt.md`. This must reference a specific `[[ORGANIZATION]]` business workflow from `[[INDUSTRY]]` / `[[DOMAIN_FILE]]`.
+
+**Boundary with Part 8.** Part 8 (Maturity Phase Placement) places `[[FRAMEWORK]]` on the AEM phase ladder. §14.19 reports a **separate, orthogonal** dimension: enterprise guardrail maturity. The two verdicts can disagree (e.g., a Phase 4 framework with LACKING enterprise guardrails). Do not arbitrate.
+
+---
+
+## 6. Output Specification
+
+Write the canonical Part 14 file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md` with the following exact structure:
+
+```
+# [[FRAMEWORK]] Review — Part 14: Enterprise Guardrail Domain Coverage
+
+**Framework:** [[FRAMEWORK]]
+**Version:** [[FRAMEWORK_VERSION]]
+**Client:** [[ORGANIZATION]]
+**Industry:** [[INDUSTRY]]
+**Reviewer:** Agent 08a (§14.1–§14.15) + Agent 08b (§14.16–§14.19)
+**Date:** YYYY-MM-DD
+**Manifesto:** `arnaudgelas/agentic-engineering-manifesto@[[MANIFESTO_HASH]]`
+**Sources reviewed:** [list every file read by 08a (lifted from intermediate file's header) and additional files read by 08b]
+
+**Scope note.** Part 14 assesses enterprise-wide guardrail domain coverage. AI/runtime guardrails (input/output/behavioural) are scored in Part 12; security posture is scored in Part 13; both are produced by Agent 07. Part 14 does NOT re-score P1–P12 — overlapping findings reference the principle by number.
+
+---
+
+## Part 14 — Enterprise Guardrail Domain Coverage
+
+[If 08a content is malformed, place a `## Source Integrity` block here with verbatim issues; otherwise omit this block.]
+
+### 14.1 Governance guardrails
+[lifted verbatim from `_review_08a_domains.md`]
+
+### 14.2 Architectural guardrails
+[lifted verbatim]
+
+### 14.3 Specification and demand guardrails
+[lifted verbatim]
+
+### 14.4 Autonomy and agency guardrails
+[lifted verbatim]
+
+### 14.5 Tools, environment, and execution guardrails
+[lifted verbatim]
+
+### 14.6 Data, privacy, and confidentiality guardrails
+[lifted verbatim]
+
+### 14.7 DevSecOps guardrails
+[lifted verbatim]
+
+### 14.8 Supply-chain guardrails
+[lifted verbatim]
+
+### 14.9 Verification, validation, and evidence guardrails
+[lifted verbatim]
+
+### 14.10 Release and deployment guardrails
+[lifted verbatim]
+
+### 14.11 Operational resilience guardrails
+[lifted verbatim]
+
+### 14.12 FinOps and economics guardrails
+[lifted verbatim]
+
+### 14.13 Human guardrails (training, certification, behaviour)
+[lifted verbatim]
+
+### 14.14 Legal, compliance, and policy guardrails
+[lifted verbatim]
+
+### 14.15 Learning, memory, and continuous improvement guardrails
+[lifted verbatim]
+
+### 14.16 Cross-cutting Guardrail × Lifecycle-Phase Coverage Matrix
+
+#### Importance matrix
+[15 × 9 markdown table per §2.1]
+
+#### `[[FRAMEWORK]]` Coverage matrix
+[15 × 9 markdown table per §2.2]
+
+#### Critical/High gaps
+[Numbered list per §2.3; each cites at least one `[[ORGANIZATION]]` business workflow; ≥ 3 entries]
+
+### 14.17 Twelve Non-Negotiable Guardrails
+
+[12-row table per §3 with verbatim evidence and severity]
+
+**Coverage:** N/12 (XX%) — Severity per `prompt.md`. **Partial coverage of an individual non-negotiable counts as 0 for the N/12 formula.**
+
+### 14.18 Agent Card / Task Card Schema Verification
+
+#### 14.18.1 Agent Card field coverage
+[Coverage table per §4.1]
+
+#### 14.18.2 Task Card field coverage
+[Coverage table per §4.2]
+
+**Schema Coverage Score:** XX/100 — Severity per `prompt.md`.
+
+### 14.19 Enterprise Guardrail Maturity Verdict
+
+**Average domain coverage:** XX/100 (computed from the 15 Domain Coverage Scores in §14.1–§14.15)
+**§14.17 coverage:** N/12 (XX%)
+**§14.18 schema coverage:** XX/100
+
+`**Enterprise Guardrail Maturity: <LACKING | PARTIAL | ADEQUATE | MATURE>**`
+
+**Highest-leverage single investment.** [One paragraph naming a specific artefact/mechanism, effort label, and an `[[ORGANIZATION]]` business workflow.]
+
+---
+
+*Assessment prepared YYYY-MM-DD. §14.1–§14.15 lifted verbatim from `_review_08a_domains.md`; §14.16–§14.19 produced by Agent 08b. All findings are based on static review of artefacts; dynamic enterprise-control testing was not performed.*
+```
+
+---
+
+## 7. Hard rules
+
+- **Lift §14.1–§14.15 verbatim from `_review_08a_domains.md`.** Do not rewrite, summarise, or re-score domain content.
+- **Surface 08a malformations in `## Source Integrity`.** Do not silently correct.
+- **Read `[[FRAMEWORK]]` artefacts** only for §14.18 schema verification — agent 08a covers all other framework reading.
+- **Verbatim quotes required** for §14.17 and §14.18.
+- **No re-scoring of P1–P12.** Overlapping findings reference the principle by number.
+- **No re-scoring of Part 12 or Part 13.** Overlapping findings cross-reference without duplication.
+- Severity, effort, and weighting all come from `prompt.md`.
+- Use date format **YYYY-MM-DD** throughout. British English.
+- Cross-references use canonical part numbers.
+- **Out-of-scope corpus / tracked-files-only.** Same prohibitions as `prompt.md`. Output MUST contain zero matches for `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
+
+---
+
+## 8. Self-check before writing — gate
+
+Each item is binary. A single failure blocks the write.
+
+- [ ] All `[[VARIABLE]]` placeholders substituted.
+- [ ] `_review_08a_domains.md` exists, is ≥ 100 lines, and was read end-to-end.
+- [ ] Malformation preflight passed: all 15 domains (14.1–14.15) present in order; each domain has Domain question, tables, Anchors, and Domain Coverage Score (0–100 integer); no sections missing or corrupted.
+- [ ] Any 08a malformations detected during lift are recorded in `## Source Integrity` block; no silent corrections applied.
+- [ ] §14.1 through §14.15 are lifted verbatim from `_review_08a_domains.md` — character-for-character identical, no modifications, no exceptions.
+- [ ] §14.16 contains both the importance matrix (15 × 9) and the `[[FRAMEWORK]]` Coverage matrix (15 × 9), with `n/a` cells in the coverage matrix matching `n/a` cells in the importance matrix.
+- [ ] §14.16 lists ≥ 3 Critical/High gaps citing `[[ORGANIZATION]]` business workflows.
+- [ ] §14.17 has all 12 non-negotiables in the table, each with verbatim evidence and severity per `prompt.md`. The N/12 coverage figure is reported. Partial-coverage rule (counts as 0) is honoured.
+- [ ] §14.18 contains both the Agent Card table and the Task Card table; the Schema Coverage Score is reported.
+- [ ] §14.19 reports the average domain coverage, §14.17 coverage, and §14.18 schema score, then ends with `**Enterprise Guardrail Maturity: <LACKING | PARTIAL | ADEQUATE | MATURE>**` (exact verbatim label) and names the highest-leverage single investment with an effort label and an `[[ORGANIZATION]]` business workflow.
+- [ ] §14.19 verdict label matches the §14.19 thresholds when applied to the computed averages and N/12. Quote the input figures and the resulting band.
+- [ ] No file content re-scores P1–P12 or restates the composite.
+- [ ] Zero matches for any out-of-scope-corpus token.
+- [ ] No banned soft language present.
+- [ ] All severity labels match canonical bands in `prompt.md`. All effort labels match `prompt.md` (S/M/L/XL).
+- [ ] All dates in YYYY-MM-DD format. British English throughout.
+- [ ] Output file path is `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md`.

@@ -10,6 +10,10 @@
 - `[[PRIOR_REVIEWS]]` — comma-separated paths to prior review files for peer comparison, or `none` (e.g., `abcd/abcd_manifesto_alignment_review_merged.md` or `none`)
 - `[[MANIFESTO_HASH]]` — full 40-character SHA-1 commit hash of the agentic engineering manifesto used for this review run (e.g., `112e83f0e2f94e925b3a5e5a89aadf1a372888f5`). **Computed automatically by the `/review` skill; do not substitute manually.** Run `git -C {manifesto_path} rev-parse HEAD` to obtain it.
 
+**Per-invocation variables for `prompt-02-principle.md` (substituted by orchestrator at spawn time, once per principle):**
+- `[[PRINCIPLE_NUMBER]]` — integer 1–12, the principle number this agent reviews.
+- `[[PRINCIPLE_NAME]]` — the canonical short name from the weighting table below (e.g., `Outcomes are the unit of work`). Character-for-character identical to the weighting-table row.
+
 ---
 
 ## Preflight check
@@ -43,7 +47,7 @@ All output files go into `[[FRAMEWORK_LOWER]]/`. Create the directory if it does
 | Agent | Output file |
 | --- | --- |
 | 01 — Quick Overview | `[[FRAMEWORK_LOWER]]_review_01_quick_overview.md` |
-| 02 — Principles | `[[FRAMEWORK_LOWER]]_review_02_principle_p{N}.md` × 12 |
+| 02-pN — Principle (12 parallel agents, N=1..12) | `[[FRAMEWORK_LOWER]]_review_02_principle_p{N}.md` × 12 |
 | 03 — Loop & DoD | `[[FRAMEWORK_LOWER]]_review_03_loop_dod.md` |
 | 04a — Adoption (Part 6) | `[[FRAMEWORK_LOWER]]_review_04a_adoption.md` |
 | 04b — Companion (Part 7) | `[[FRAMEWORK_LOWER]]_review_04b_companion.md` |
@@ -51,8 +55,10 @@ All output files go into `[[FRAMEWORK_LOWER]]/`. Create the directory if it does
 | 05a — Maturity (Part 8) | `[[FRAMEWORK_LOWER]]_review_05a_maturity.md` |
 | 05b — Industry + Combined (Parts 8+9) | `[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md` |
 | 06 — Strengths & Gaps | `[[FRAMEWORK_LOWER]]_review_06_strengths_gaps.md` |
-| 07 — Guardrails & Security | `[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md` |
-| 08 — Merge | `[[FRAMEWORK_LOWER]]_manifesto_alignment_review_merged.md` |
+| 07 — Guardrails & Security (AI/runtime — Parts 12+13) | `[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md` |
+| 08a — Enterprise Guardrail Domains (intermediate, §14.1–§14.15) | `[[FRAMEWORK_LOWER]]_review_08a_domains.md` |
+| 08b — Enterprise Guardrail Synthesis (canonical Part 14) | `[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md` |
+| 09 — Merge | `[[FRAMEWORK_LOWER]]_manifesto_alignment_review_merged.md` |
 
 ## Canonical part numbering
 
@@ -62,7 +68,7 @@ All agents must use this mapping. Cross-references in any output file must use t
 | --- | --- | --- |
 | Part 1 | Overall Scores | 01 |
 | Part 2 | Scoring Methodology | 01 |
-| Part 3 | Manifesto Principles — P1 through P12 | 02 |
+| Part 3 | Manifesto Principles — P1 through P12 | 02-p1 … 02-p12 (12 parallel agents) |
 | Part 4 | Agentic Loop Phase Analysis | 03 |
 | Part 5 | Agentic Definition of Done | 03 |
 | Part 6 | Adoption Document Alignment | 04a (lifted by 04c) |
@@ -71,8 +77,9 @@ All agents must use this mapping. Cross-references in any output file must use t
 | Part 9 | Industry & Client Assessment | 05b |
 | Part 10 | Genuine Strengths | 06 |
 | Part 11 | Gap Analysis: Path to Next Phase | 06 |
-| Part 12 | Guardrails Assessment | 07 |
+| Part 12 | AI/Runtime Guardrails Assessment | 07 |
 | Part 13 | Security Assessment | 07 |
+| Part 14 | Enterprise Guardrail Domain Coverage | 08a (§14.1–§14.15 intermediate) + 08b (synthesis writes canonical Part 14 file) |
 
 ## Score weighting scheme
 
@@ -82,7 +89,7 @@ All agents must use this weighting when computing a composite score. Do not inve
 | --- | --- |
 | P1 — Outcomes are the unit of work | 10% |
 | P2 — Specifications are living artifacts | 8% |
-| P3 — Architecture is defense-in-depth | 8% |
+| P3 — Architecture is defence-in-depth | 8% |
 | P4 — Right-size the swarm | 6% |
 | P5 — Autonomy is a tiered budget | 10% |
 | P6 — Knowledge and memory are infrastructure | 7% |
@@ -117,14 +124,26 @@ All agents that produce remediation roadmaps must use this calibration. Do not u
 | L | Multi-team effort, one quarter (2–3 months) |
 | XL | Organisation-level change, more than one quarter (>3 months) |
 
+## Banned soft language
+
+All agents must avoid hedging language in their outputs. Every output file MUST NOT contain any of the following tokens or phrases:
+
+**Core banned list (all agents):**
+- `consider`, `may`, `could potentially`, `perhaps`, `use judgement`, `use judgment`
+
+Replace each with a specific evidenced claim or an explicit gap statement. Where a fact is unknown, state it as `unknown` — do not hedge.
+
+**Extended banned list (agents 04c, 06 only — applies to remediation guidance):**
+In addition to the core list, avoid the following without an evidence anchor in the same paragraph:
+- `robust`, `comprehensive`, `world-class`, `industry-leading`, `best-in-class`, `leverages`, `empowers`, `enables` (without naming what is enabled), `seamless`, `holistic`, `mature` (without phase number), `production-ready` (without naming what is production), `powerful` (without naming the power)
+
 ## Sub-prompt files
 
 Each agent is fully specified in `prompts/`:
 
 ```
 prompts/prompt-01-quick-overview.md
-prompts/prompt-02-principles.md          # loop orchestration; reads prompt-02-principle-template.md
-prompts/prompt-02-principle-template.md  # canonical per-principle output format (resource, not an agent)
+prompts/prompt-02-principle.md           # SINGLE per-principle prompt; orchestrator spawns 12 parallel instances with [[PRINCIPLE_NUMBER]] / [[PRINCIPLE_NAME]] substituted
 prompts/prompt-03-loop-dod.md
 prompts/prompt-04a-adoption.md           # Part 6: 7 adoption docs
 prompts/prompt-04b-companion.md          # Part 7: 6 companion docs
@@ -132,17 +151,27 @@ prompts/prompt-04c-synthesis.md          # reads 04a+04b; writes combined adopti
 prompts/prompt-05a-maturity.md           # Part 8: generic maturity (no domain file)
 prompts/prompt-05b-industry.md           # Part 9: domain-specific; writes combined maturity_industry.md
 prompts/prompt-06-strengths-gaps.md
-prompts/prompt-07-guardrails-security.md
-prompts/prompt-08-merge.md
+prompts/prompt-07-guardrails-security.md   # Parts 12 (AI/runtime guardrails) + 13 (security)
+prompts/prompt-08a-enterprise-domains.md   # §14.1–§14.15 intermediate (Wave 1a)
+prompts/prompt-08b-enterprise-synthesis.md # reads 08a; lifts §14.1–§14.15 + adds §14.16–§14.19; writes canonical Part 14 file (Wave 1b)
+prompts/prompt-09-merge.md
 ```
 
 ## Execution order
 
 ### Wave 1a — spawn in parallel
 
-Spawn agents 01, 02, 03, 04a, 04b, 05a, and 07 simultaneously.
+Spawn the following agents simultaneously (19 distinct spawns issued in a single response):
+- Agent 01 (`prompt-01-quick-overview.md`)
+- 12 parallel principle agents 02-p1 … 02-p12 (each spawned from `prompt-02-principle.md` with `[[PRINCIPLE_NUMBER]]` and `[[PRINCIPLE_NAME]]` substituted per the weighting table above)
+- Agent 03 (`prompt-03-loop-dod.md`)
+- Agent 04a (`prompt-04a-adoption.md`)
+- Agent 04b (`prompt-04b-companion.md`)
+- Agent 05a (`prompt-05a-maturity.md`)
+- Agent 07 (`prompt-07-guardrails-security.md`)
+- Agent 08a (`prompt-08a-enterprise-domains.md`)
 
-**Wait condition:** Use `Glob` + `Read` (first/last 5 lines, ≥20 lines each) to verify all 18 Wave 1a output files exist and are non-empty before proceeding to Wave 1b:
+**Wait condition:** Use `Glob` + `Read` (first/last 5 lines, ≥20 lines each) to verify all 19 Wave 1a output files exist and are non-empty before proceeding to Wave 1b:
 
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_01_quick_overview.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_02_principle_p1.md` through `[[FRAMEWORK_LOWER]]_review_02_principle_p12.md` (12 files)
@@ -151,29 +180,32 @@ Spawn agents 01, 02, 03, 04a, 04b, 05a, and 07 simultaneously.
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04b_companion.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05a_maturity.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md`
+- `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08a_domains.md`
 
-Agent 02 writes 12 principle files sequentially. Wave 1a is not complete until the Glob check confirms all 18 files.
+**Note on the 08 file naming.** The canonical Part 14 file `_review_08_enterprise_guardrails.md` is produced in **Wave 1b by agent 08b**, not Wave 1a. Wave 1a's 08-related output is the intermediate `_review_08a_domains.md`.
 
-**Recovery:** If any Wave 1a file is missing, re-run only the responsible agent. For agent 02: re-run with explicit instruction to write only the missing principle files.
+**Recovery:** If any Wave 1a file is missing, re-run only the responsible agent. For a missing principle file, re-run only the affected `prompt-02-principle.md` instance with the corresponding `[[PRINCIPLE_NUMBER]]` / `[[PRINCIPLE_NAME]]`.
 
 ### Wave 1b — after Wave 1a is fully complete
 
-Spawn agents 04c and 05b simultaneously. Each has its own dependency:
+Spawn agents 04c, 05b, and 08b simultaneously. Each has its own dependency:
 - **04c** depends on: `_review_04a_adoption.md` and `_review_04b_companion.md` (both Wave 1a outputs)
 - **05b** depends on: `_review_05a_maturity.md` (Wave 1a output)
+- **08b** depends on: `_review_08a_domains.md` (Wave 1a output)
 
-**Wait condition:** Use `Glob` + `Read` to verify both Wave 1b outputs exist and are non-empty:
+**Wait condition:** Use `Glob` + `Read` to verify all three Wave 1b outputs exist and are non-empty:
 
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_04_adoption_companion.md`
 - `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_05_maturity_industry.md`
+- `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_08_enterprise_guardrails.md`
 
 ### Wave 2 — after Wave 1b is fully complete
 
-Spawn agent 06 using the `Agent` tool. Confirm with `Glob` that all 20 Wave 1a + 1b files exist and are non-empty before spawning.
+Spawn agent 06 using the `Agent` tool. Confirm with `Glob` that all 22 Wave 1a + 1b files exist and are non-empty before spawning.
 
 ### Wave 3 — after Wave 2 is fully complete
 
-Spawn agent 08. The following 18 canonical files (read by agent 08) must all exist and be non-empty:
+Spawn agent 09. The following 19 canonical files (read by agent 09) must all exist and be non-empty:
 
 | Source | File | Count |
 | --- | --- | --- |
@@ -184,11 +216,12 @@ Spawn agent 08. The following 18 canonical files (read by agent 08) must all exi
 | Agent 05b | `_review_05_maturity_industry.md` | 1 |
 | Agent 06 | `_review_06_strengths_gaps.md` | 1 |
 | Agent 07 | `_review_07_guardrails_security_appendix.md` | 1 |
-| **Total** | | **18** |
+| Agent 08b (lifts §14.1–§14.15 from 08a) | `_review_08_enterprise_guardrails.md` | 1 |
+| **Total** | | **19** |
 
-Note: The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, and `_review_05a_maturity.md` are NOT direct inputs to agent 08 — they are consumed by agents 04c and 05b respectively.
+Note: The intermediate files `_review_04a_adoption.md`, `_review_04b_companion.md`, `_review_05a_maturity.md`, and `_review_08a_domains.md` are NOT direct inputs to agent 09 — they are consumed by agents 04c, 05b, and 08b respectively.
 
-Use `Glob` to confirm all 18 files before spawning agent 08. **If any source file is missing, do not run agent 08. Report the missing files and stop.**
+Use `Glob` to confirm all 19 files before spawning agent 09. **If any source file is missing, do not run agent 09. Report the missing files and stop.**
 
 If any output file already exists, update it in place. Replace wholesale only if [[FRAMEWORK]] has changed substantially — defined as: more than 30% of source artefacts have changed by content, or a phase, layer, or major structural element has been added or removed.
 

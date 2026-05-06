@@ -1,6 +1,8 @@
-# Sub-prompt 07 — Guardrails & Security
+# Sub-prompt 07 — AI/Runtime Guardrails & Security
 
-**Purpose.** Produce a rigorous, evidence-grounded assessment of `[[FRAMEWORK]]`'s guardrail architecture (Part 12) and security posture (Part 13) as defined by the Agentic Engineering Manifesto and the regulatory requirements applicable to `[[ORGANIZATION]]` in `[[INDUSTRY]]`.
+**Purpose.** Produce a rigorous, evidence-grounded assessment of `[[FRAMEWORK]]`'s **AI/runtime guardrail architecture** (Part 12) and **security posture** (Part 13) as defined by the Agentic Engineering Manifesto and the regulatory requirements applicable to `[[ORGANIZATION]]` in `[[INDUSTRY]]`.
+
+**Scope boundary with Part 14.** Part 12 covers AI/runtime guardrails — controls that act on prompts, retrievals, tool outputs, and agent behaviour at execution time (input/output filters, behavioural caps, perimeter architecture, adversarial scenario). Enterprise-wide guardrail domain coverage — governance, architecture, demand, autonomy, tools/execution, data/privacy, DevSecOps, supply chain, evidence, release, operations, FinOps, human controls, legal/compliance, learning/memory — is scored in **Part 14** by Agents 08a/08b. Where this Part identifies a gap that maps to one of those 15 domains, name the domain (e.g., "see Part 14, §14.5 Tools/execution") and do not duplicate the analysis. Part 12 stays narrowly focused on the AI-runtime perimeter and the adversarial walk-through; Part 14 covers the broader enterprise-delivery perimeter.
 
 **Placeholder reminder.** Before executing this prompt, confirm that `[[FRAMEWORK]]`, `[[FRAMEWORK_LOWER]]`, `[[FRAMEWORK_VERSION]]`, `[[ORGANIZATION]]`, `[[INDUSTRY]]`, `[[DOMAIN_FILE]]`, and `[[PRIOR_REVIEWS]]` have all been substituted. If any `[[...]]` pattern remains, stop and report the unresolved variable.
 
@@ -204,7 +206,7 @@ Produce 3–6 findings. Each MUST have the following labelled fields:
 - **Effort:** S / M / L / XL — using the canonical effort sizing defined in `prompt.md`.
 - **Principles violated:** at least one of P3, P9, P10 cited by name with a one-sentence justification.
 
-Each critical security finding (§13.5) MUST cite at least one of P3, P9, P10. Each guardrail gap (Parts 12.1–12.3) MUST cite the relevant manifesto principle(s): P3 (defense-in-depth), P9 (observability of reasoning), and/or P10 (assume emergence; engineer containment).
+Each critical security finding (§13.5) MUST cite at least one of P3, P9, P10. Each guardrail gap (Parts 12.1–12.3) MUST cite the relevant manifesto principle(s): P3 (defence-in-depth), P9 (observability of reasoning), and/or P10 (assume emergence; engineer containment).
 
 ---
 

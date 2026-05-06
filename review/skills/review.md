@@ -1,6 +1,6 @@
 # /review — Agentic Engineering Manifesto Framework Review
 
-Run a complete manifesto alignment review of a framework across 11 specialised agents in four waves.
+Run a complete manifesto alignment review of a framework across 13 specialised agent roles (with 12 parallel principle agents) in four waves.
 
 ## Usage
 
@@ -111,6 +111,8 @@ Read `{resolved_path}/review/prompt.md` and replace every `[[VARIABLE]]` placeho
 | `[[DOMAIN_FILE]]` | `{DOMAIN_FILE}` |
 | `[[PRIOR_REVIEWS]]` | `{PRIOR_REVIEWS}` (or `none`) |
 | `[[MANIFESTO_HASH]]` | `{MANIFESTO_HASH}` |
+| `[[PRINCIPLE_NUMBER]]` | (only for `prompt-02-principle.md`; values 1..12 across the 12 parallel spawns) |
+| `[[PRINCIPLE_NAME]]` | (only for `prompt-02-principle.md`; per-N short name verbatim from `prompt.md`'s weighting table) |
 
 Do the same substitution for each sub-prompt file when spawning agents (read the file from `{resolved_path}/review/prompts/`, substitute, pass to Agent tool).
 
@@ -122,28 +124,53 @@ Do the same substitution for each sub-prompt file when spawning agents (read the
 
 Follow the substituted `prompt.md`'s execution order exactly.
 
-**Wave 1a** — spawn simultaneously using the `Agent` tool:
+**Wave 1a** — spawn 19 agents using the `Agent` tool with the following batching strategy:
+- **Concurrency cap:** Spawn agents in batches of up to 6–8 concurrent agents per batch (Claude's standard concurrent Agent tool capacity). Do not exceed 10 concurrent spawns in a single batch.
+- **Batching protocol:** If 19 agents exceed the concurrency cap:
+  - Batch 1: agents 01, 02-p1..p6 (7 agents)
+  - Batch 2: agents 02-p7..p12, 03 (7 agents)
+  - Batch 3: agents 04a, 04b, 05a, 07, 08a (5 agents)
+- **Single-batch alternative:** If the Agent tool can sustain ≥ 19 concurrent spawns, issue all 19 calls in a single message for true parallelism.
+- Record which batching strategy is used in the review run manifest.
+
+For each batch, issue all Agent tool calls in the batch simultaneously. Wait for all agents in a batch to complete before spawning the next batch.
+
+Agents in Wave 1a:
 - Agent 01: `{resolved_path}/review/prompts/prompt-01-quick-overview.md`
-- Agent 02: `{resolved_path}/review/prompts/prompt-02-principles.md` (reads `prompt-02-principle-template.md`)
+- Agents 02-p1 through 02-p12 (12 parallel spawns): `{resolved_path}/review/prompts/prompt-02-principle.md` — for each principle N in 1..12, substitute `[[PRINCIPLE_NUMBER]]` = N and `[[PRINCIPLE_NAME]]` = the canonical short name from the weighting table in `prompt.md`:
+  - P1 `Outcomes are the unit of work`
+  - P2 `Specifications are living artifacts`
+  - P3 `Architecture is defence-in-depth`
+  - P4 `Right-size the swarm`
+  - P5 `Autonomy is a tiered budget`
+  - P6 `Knowledge and memory are infrastructure`
+  - P7 `Context is engineered like code`
+  - P8 `Evaluations are the contract`
+  - P9 `Observability covers reasoning`
+  - P10 `Assume emergence, engineer containment`
+  - P11 `Optimize economics of intelligence`
+  - P12 `Accountability requires intelligibility`
 - Agent 03: `{resolved_path}/review/prompts/prompt-03-loop-dod.md`
 - Agent 04a: `{resolved_path}/review/prompts/prompt-04a-adoption.md`
 - Agent 04b: `{resolved_path}/review/prompts/prompt-04b-companion.md`
 - Agent 05a: `{resolved_path}/review/prompts/prompt-05a-maturity.md`
-- Agent 07: `{resolved_path}/review/prompts/prompt-07-guardrails-security.md`
+- Agent 07: `{resolved_path}/review/prompts/prompt-07-guardrails-security.md` (Parts 12 + 13)
+- Agent 08a: `{resolved_path}/review/prompts/prompt-08a-enterprise-domains.md` (Part 14 §14.1–§14.15 intermediate)
 
-**Wait for Wave 1a:** Glob + Read (first/last 5 lines, ≥20 lines each) for all 18 Wave 1a output files. If any are missing after an agent completes, offer to re-run only that agent.
+**Wait for Wave 1a:** Glob + Read (first/last 5 lines, ≥20 lines each) for all 19 Wave 1a output files. If any are missing after an agent completes, offer to re-run only that agent (for a missing principle, re-run only the affected `prompt-02-principle.md` instance with the matching `[[PRINCIPLE_NUMBER]]` / `[[PRINCIPLE_NAME]]`).
 
-**Wave 1b** — spawn simultaneously:
+**Wave 1b** — spawn 3 agents simultaneously:
 - Agent 04c: `{resolved_path}/review/prompts/prompt-04c-synthesis.md`
 - Agent 05b: `{resolved_path}/review/prompts/prompt-05b-industry.md`
+- Agent 08b: `{resolved_path}/review/prompts/prompt-08b-enterprise-synthesis.md` (lifts §14.1–§14.15 from 08a, adds §14.16–§14.19, writes the canonical Part 14 file)
 
-**Wait for Wave 1b:** Verify `_review_04_adoption_companion.md` and `_review_05_maturity_industry.md` exist and are non-empty.
+**Wait for Wave 1b:** Verify `_review_04_adoption_companion.md`, `_review_05_maturity_industry.md`, and `_review_08_enterprise_guardrails.md` exist and are non-empty.
 
 **Wave 2:** Spawn agent 06: `{resolved_path}/review/prompts/prompt-06-strengths-gaps.md`.
 
 Wait for `_review_06_strengths_gaps.md`.
 
-**Wave 3:** Spawn agent 08: `{resolved_path}/review/prompts/prompt-08-merge.md`.
+**Wave 3:** Spawn agent 09: `{resolved_path}/review/prompts/prompt-09-merge.md`.
 
 Wait for `_manifesto_alignment_review_merged.md`.
 
@@ -161,6 +188,45 @@ Wait for `_manifesto_alignment_review_merged.md`.
   Files written: {N} files
   Merged review: {FRAMEWORK_LOWER}/{FRAMEWORK_LOWER}_manifesto_alignment_review_merged.md
 ```
+
+---
+
+## Run manifest
+
+After Wave 3 completes successfully, write `{FRAMEWORK_LOWER}/review_run_manifest.json` containing:
+
+```json
+{
+  "framework": "{FRAMEWORK}",
+  "framework_lower": "{FRAMEWORK_LOWER}",
+  "framework_version": "{FRAMEWORK_VERSION}",
+  "organization": "{ORGANIZATION}",
+  "industry": "{INDUSTRY}",
+  "domain_file": "{DOMAIN_FILE}",
+  "manifesto_hash": "{MANIFESTO_HASH}",
+  "manifesto_hash_short": "{MANIFESTO_HASH_SHORT}",
+  "review_date": "YYYY-MM-DD",
+  "principle_mapping": {
+    "P1": "Outcomes are the unit of work",
+    "P2": "Specifications are living artifacts",
+    "P3": "Architecture is defence-in-depth",
+    "P4": "Right-size the swarm",
+    "P5": "Autonomy is a tiered budget",
+    "P6": "Knowledge and memory are infrastructure",
+    "P7": "Context is engineered like code",
+    "P8": "Evaluations are the contract",
+    "P9": "Observability covers reasoning",
+    "P10": "Assume emergence, engineer containment",
+    "P11": "Optimize economics of intelligence",
+    "P12": "Accountability requires intelligibility"
+  },
+  "wave_1a_batching_strategy": "single-batch | batch-1-7-agents | batch-2-7-agents | batch-3-5-agents",
+  "total_output_files": 24,
+  "merged_review_file": "{FRAMEWORK_LOWER}/{FRAMEWORK_LOWER}_manifesto_alignment_review_merged.md"
+}
+```
+
+This manifest allows reproducibility and cross-reference verification across multiple reviews.
 
 ---
 
