@@ -34,7 +34,7 @@ If the dependency is missing or any malformation is detected, stop and report be
 
 2. **`[[FRAMEWORK]]` source artefacts** — read ONLY for §14.18 schema verification (agent definitions, agent cards, task definitions, task cards). Do NOT re-read `[[FRAMEWORK]]` for §14.16 or §14.17 — those draw evidence exclusively from 08a's domain coverage tables (§14.1–§14.15). Cite 08a evidence by absolute path; do not re-scan the framework.
 
-3. **`manifesto.md`** and `manifesto-principles.md` — for the AEM Loop phase mapping used in §14.16's lifecycle-phase axis.
+3. **`manifesto/manifesto.md`** and the `manifesto-principles` source group — for the AEM Loop phase mapping used in §14.16's lifecycle-phase axis.
 
 4. **`[[DOMAIN_FILE]]`** — for `[[INDUSTRY]]`-specific business workflows that ground §14.16 critical/high gaps and §14.19 highest-leverage investment.
 

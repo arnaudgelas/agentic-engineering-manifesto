@@ -48,12 +48,37 @@ If `pull` fails because there are local uncommitted changes, run `git -C {resolv
 **Verify the manifesto is intact** — these files must exist and be tracked by git (all three resolution paths):
 
 ```
-{resolved_path}/manifesto.md
-{resolved_path}/manifesto-principles.md
-{resolved_path}/manifesto-done.md
+{resolved_path}/manifesto/manifesto.md
+{resolved_path}/manifesto/manifesto-principles.md
+{resolved_path}/manifesto/manifesto-principles-01.md
+{resolved_path}/manifesto/manifesto-principles-02.md
+{resolved_path}/manifesto/manifesto-principles-03.md
+{resolved_path}/manifesto/manifesto-principles-04.md
+{resolved_path}/manifesto/manifesto-principles-05.md
+{resolved_path}/manifesto/manifesto-principles-06.md
+{resolved_path}/manifesto/manifesto-principles-07.md
+{resolved_path}/manifesto/manifesto-principles-08.md
+{resolved_path}/manifesto/manifesto-principles-09.md
+{resolved_path}/manifesto/manifesto-principles-10.md
+{resolved_path}/manifesto/manifesto-principles-11.md
+{resolved_path}/manifesto/manifesto-principles-12.md
+{resolved_path}/manifesto/manifesto-done.md
 {resolved_path}/glossary.md
 {resolved_path}/adoption/path.md
 {resolved_path}/companion/frameworks.md
+{resolved_path}/companion/principles.md
+{resolved_path}/companion/principles-01.md
+{resolved_path}/companion/principles-02.md
+{resolved_path}/companion/principles-03.md
+{resolved_path}/companion/principles-04.md
+{resolved_path}/companion/principles-05.md
+{resolved_path}/companion/principles-06.md
+{resolved_path}/companion/principles-07.md
+{resolved_path}/companion/principles-08.md
+{resolved_path}/companion/principles-09.md
+{resolved_path}/companion/principles-10.md
+{resolved_path}/companion/principles-11.md
+{resolved_path}/companion/principles-12.md
 {resolved_path}/review/prompt.md
 {resolved_path}/review/prompts/prompt-01-quick-overview.md
 ```
@@ -62,7 +87,7 @@ If any are missing, report the error and stop.
 
 **Tracked-files-only.** Every source file the review system reads MUST be tracked by git on the resolved manifesto branch. Files that appear only in the working tree (untracked, `??` in `git status`) are NOT in scope, even if they exist on disk.
 
-**Note:** The review system also reads (when relevant to the agent's task) AEM-relevant content from `{resolved_path}/beyond-agile/`, `{resolved_path}/governance/`, `{resolved_path}/integration/`, `{resolved_path}/regulatory/`, and `{resolved_path}/operational-templates/`. These directories are not strictly required to exist — agents skip cross-references if a directory is absent — but their presence enables fuller coverage. The following are explicitly out of scope and are not read by any agent: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.{md,html}`, `agentic-governance-stack.{md,html}`, `manifesto-evolution-plan.{md,html}`, `phase-assessment-checklist.{md,html}`, `aplc-plan*`, `asdlc-plan*`, and `igm-aent-coherence-review*`.
+**Note:** The review system also reads (when relevant to the agent's task) AEM-relevant content from `{resolved_path}/beyond-agile/`, `{resolved_path}/governance/`, `{resolved_path}/integration/`, `{resolved_path}/regulatory/`, and `{resolved_path}/operational-templates/`. These directories are not strictly required to exist — agents skip cross-references if a directory is absent — but their presence enables fuller coverage. The following are explicitly out of scope and are not read by any agent: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.{md,html}`, `agentic-governance-stack.{md,html}`, `manifesto/manifesto-evolution-plan.{md,html}`, `phase-assessment-checklist.{md,html}`, `aplc-plan*`, `asdlc-plan*`, and `igm-aent-coherence-review*`.
 
 ---
 

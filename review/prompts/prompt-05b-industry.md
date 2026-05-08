@@ -386,7 +386,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
   `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`,
   `agentic-enterprise.md`, `agentic-enterprise.html`,
   `agentic-governance-stack.md`, `agentic-governance-stack.html`,
-  `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`,
+  `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`,
   `phase-assessment-checklist.md`, `phase-assessment-checklist.html`,
   `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the
   output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`,

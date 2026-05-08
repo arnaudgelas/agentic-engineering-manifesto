@@ -28,14 +28,14 @@ Score only against artefacts and capabilities present at `[[FRAMEWORK_VERSION]]`
 Read each of the following files end-to-end. These constitute the Agentic Engineering Manifesto (AEM) corpus that this review scores against:
 
 **Core (mandatory — abort if missing):**
-- `manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify"), the six-phase maturity model, and the evidence-backed deployable definition.
-- `manifesto-principles.md` — all twelve principles, their minimum bars, the four oversight patterns (HITL/HOTL/HOLL/EDL), and their sequencing dependencies.
-- `manifesto-done.md` — the Agentic Definition of Done (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
+- `manifesto/manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify"), the six-phase maturity model, and the evidence-backed deployable definition.
+- `manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md` — all twelve principles, their minimum bars, the four oversight patterns (HITL/HOTL/HOLL/EDL), and their sequencing dependencies.
+- `manifesto/manifesto-done.md` — the Agentic Definition of Done (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
 - `glossary.md` — canonical term definitions.
 
 **Companion corpus (read each end-to-end):**
 - `companion/guide.md` — extended rationale and companion guidance index, Annotated Agent Configuration Template.
-- `companion/principles.md` — specifications-vs-constraints distinction, structural vs. behavioural regression, probability compounding, blast-radius management, accountability paradox.
+- `companion/principles.md` plus `companion/principles-01.md` through `companion/principles-12.md` — specifications-vs-constraints distinction, structural vs. behavioural regression, probability compounding, blast-radius management, accountability paradox.
 - `companion/frameworks.md` — six-phase maturity spectrum failure modes, hard autonomy caps by regulated use-case.
 - `companion/patterns.md` — worked failure-mode patterns (Patterns A–H, Hallucination Loop, Operational Recovery Cycle).
 - `companion/re-framework.md` — requirements engineering paradigm break for agentic systems.
@@ -84,11 +84,11 @@ Read each of the following files end-to-end. These constitute the Agentic Engine
 - `operational-templates/risk-appetite-statement.md` — board-level AI risk appetite.
 - `operational-templates/slo-table.md` — consolidated SLO table including evidence freshness.
 - `operational-templates/decommissioning-checklist.md` — orderly retirement of agents.
-- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record (the ten provenance fields enumerated in `manifesto-done.md`).
-- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record (`manifesto.md` What the Loop Produces).
-- `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope (`manifesto-done.md`).
+- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record (the ten provenance fields enumerated in `manifesto/manifesto-done.md`).
+- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record (`manifesto/manifesto.md` What the Loop Produces).
+- `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope (`manifesto/manifesto-done.md`).
 
-If `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`, or `glossary.md` cannot be read, abort and report the missing file. Do not proceed with scoring.
+If `manifesto/manifesto.md`, the `manifesto-principles` source group, `manifesto/manifesto-done.md`, or `glossary.md` cannot be read, abort and report the missing file. Do not proceed with scoring.
 
 ### Domain file
 
@@ -106,7 +106,7 @@ If `[[PRIOR_REVIEWS]]` is not `none`, treat the comma-separated paths it contain
 
 Score each of the twelve manifesto principles 0–100. Use the canonical 12-principle weighting scheme defined in `prompt.md` (§ Score weighting scheme). Do not invent or copy alternative values. If this prompt and `prompt.md` ever disagree, `prompt.md` wins.
 
-Use the SHORT-FORM principle names from the `prompt.md` weighting table. These are canonical for this review system. Do NOT use the long-form names from `manifesto-principles.md`. The short forms are:
+Use the SHORT-FORM principle names from the `prompt.md` weighting table. These are canonical for this review system. Do NOT use the long-form names from the `manifesto-principles` source group. The short forms are:
 
 - P1 — Outcomes are the unit of work
 - P2 — Specifications are living artifacts
@@ -171,7 +171,7 @@ Score each DoD condition 0–100 (integer) and provide a single-sentence assessm
 - Governed
 - Economical
 
-For each condition, the one-sentence assessment must contain BOTH an evidence-for clause (a specific [[FRAMEWORK]] artefact) AND an evidence-against clause (the specific gap against the DoD definition in `manifesto-done.md`).
+For each condition, the one-sentence assessment must contain BOTH an evidence-for clause (a specific [[FRAMEWORK]] artefact) AND an evidence-against clause (the specific gap against the DoD definition in `manifesto/manifesto-done.md`).
 
 ### 2.6 Maturity phase verdict
 
@@ -318,7 +318,7 @@ The Score column on the Total row is left blank. The Severity column on the Tota
 
 ### P1 — Outcomes are the unit of work (<score>/100 — <severity>)
 
-<One paragraph, 80–120 words. State: (a) what [[FRAMEWORK]] does that supports this principle — name specific artefacts and include at least one verbatim quote with file path; (b) what is absent or insufficient — name the specific gaps against the P1 minimum bar from `manifesto-principles.md`; (c) any [[ORGANIZATION]]-relevant implication from `[[DOMAIN_FILE]]`.>
+<One paragraph, 80–120 words. State: (a) what [[FRAMEWORK]] does that supports this principle — name specific artefacts and include at least one verbatim quote with file path; (b) what is absent or insufficient — name the specific gaps against the P1 minimum bar from the matching `manifesto/manifesto-principles-0N.md` shard; (c) any [[ORGANIZATION]]-relevant implication from `[[DOMAIN_FILE]]`.>
 
 ### P2 — Specifications are living artifacts (<score>/100 — <severity>)
 
@@ -387,7 +387,7 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 6. Every major finding must map to a specific regulatory provision (article, paragraph, or rule number) from `[[DOMAIN_FILE]]` as it applies to [[ORGANIZATION]]. Generic regulation names are insufficient.
 7. Use date format YYYY-MM-DD wherever a date appears. The `Review date` line is the date the agent was invoked.
 8. When cross-referencing another part of the review within the output file, use canonical part numbers (e.g., "see Part 12"). Do not use file names or agent numbers in cross-references.
-9. **Out-of-scope corpus / tracked-files-only.** This review covers the Agentic Engineering Manifesto (AEM) only. Do not read, cite, or reference any file untracked by git on the current branch. Specifically the following are out of scope: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan.md`, `asdlc-plan.html`, `aplc-plan.md`, `aplc-plan.html`, `igm-aent-coherence-review.md`, and `igm-aent-coherence-review.html`. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not forward-propagate out-of-scope references from `[[DOMAIN_FILE]]` or from cross-stack files in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` — paraphrase to manifesto-equivalent terms.
+9. **Out-of-scope corpus / tracked-files-only.** This review covers the Agentic Engineering Manifesto (AEM) only. Do not read, cite, or reference any file untracked by git on the current branch. Specifically the following are out of scope: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan.md`, `asdlc-plan.html`, `aplc-plan.md`, `aplc-plan.html`, `igm-aent-coherence-review.md`, and `igm-aent-coherence-review.html`. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not forward-propagate out-of-scope references from `[[DOMAIN_FILE]]` or from cross-stack files in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` — paraphrase to manifesto-equivalent terms.
 10. The weighted calculation in the footnote must verify arithmetically. Check that `Σ(P{N}_score × decimal_weight)` equals the stated total before saving, and that the header `Overall Score` equals the table sum to one decimal place (or includes the rounding caveat sentence).
 11. The output MUST NOT contain any of the following soft-language tokens: "consider", "may", "could potentially", "it might be worth", "perhaps", "use judgement", "should ideally", "may want to", "appears to", "arguably", "seemingly". Use declarative statements. State what `[[FRAMEWORK]]` does or does not do at `[[FRAMEWORK_VERSION]]`. Do not state what `[[FRAMEWORK]]` will do, plans to do, or could do.
 12. This is a regulator-credible technical review, not a vendor blog post. Do not use marketing language ("robust", "best-in-class", "industry-leading"). Do not soften findings. Do not try to please. Score the framework as it is at HEAD.

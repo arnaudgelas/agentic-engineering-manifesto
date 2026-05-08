@@ -61,11 +61,11 @@ These are the agent's evidence. The agent reads these files end-to-end. The agen
 
 ### 2.2 — Manifesto corpus (read in full, current version on disk)
 
-- `manifesto-principles.md` — canonical P1–P12, autonomy tiers, oversight patterns, minimum bars.
-- `manifesto.md` — Agentic Loop phases, loop-readiness gate, and the six values.
-- `manifesto-done.md` — Agentic Definition of Done, Hardening DoD, and evidence freshness rules.
+- `manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md` — canonical P1–P12, autonomy tiers, oversight patterns, minimum bars.
+- `manifesto/manifesto.md` — Agentic Loop phases, loop-readiness gate, and the six values.
+- `manifesto/manifesto-done.md` — Agentic Definition of Done, Hardening DoD, and evidence freshness rules.
 - `companion/frameworks.md` — six-phase failure modes used to anchor target_phase gates.
-- `companion/principles.md` — extended guidance for principle minimum bars cited in gaps.
+- `companion/principles.md` plus `companion/principles-01.md` through `companion/principles-12.md` — extended guidance for principle minimum bars cited in gaps.
 
 **Cross-stack normative artefacts (lift only AEM-relevant content; apply scope guard from `prompt.md`):**
 - `governance/governance-integration-note.md` — for AEM Tier 4 prerequisites cited in target_phase Phase 6 gaps.
@@ -235,7 +235,7 @@ Each strength uses this exact structure:
 ## Part 11 — Gap Analysis: What's Missing to Reach {target_phase}
 ```
 
-Open with one factual sentence (semicolon-list permitted) stating the `target_phase` requirements that drive the gap list. Cite the manifesto sources that establish those requirements (e.g., `manifesto.md` six-phase model, `manifesto-principles.md` P5 Phase × tier table, `companion/frameworks.md` per-phase failure modes, and `governance/phase-level-matrix.md` AEM column).
+Open with one factual sentence (semicolon-list permitted) stating the `target_phase` requirements that drive the gap list. Cite the manifesto sources that establish those requirements (e.g., `manifesto/manifesto.md` six-phase model, the `manifesto-principles` source group P5 Phase × tier table, `companion/frameworks.md` per-phase failure modes, and `governance/phase-level-matrix.md` AEM column).
 
 Each gap MUST use the EXACT heading format:
 
@@ -317,7 +317,7 @@ Reference specific `[[INDUSTRY]]` regulations and articles throughout.
 ### 4.7 — Footer
 
 ```
-*Review conducted by Agent 06. Source files: 18 upstream outputs listed in the metadata block. Regulatory frameworks sourced from `[[DOMAIN_FILE]]` (sections cited in Part 11 listed inline). Manifesto principles sourced from `manifesto-principles.md`, `manifesto.md`, and `manifesto-done.md`.*
+*Review conducted by Agent 06. Source files: 18 upstream outputs listed in the metadata block. Regulatory frameworks sourced from `[[DOMAIN_FILE]]` (sections cited in Part 11 listed inline). Manifesto principles sourced from the `manifesto-principles` source group, `manifesto/manifesto.md`, and `manifesto/manifesto-done.md`.*
 ```
 
 ---
@@ -333,7 +333,7 @@ These rules are non-negotiable.
 5. **Phase target.** The gap analysis targets `target_phase` as defined by §3.2. The integer phase number replaces every `{N+1}` token before save. Phase 6 ceiling rule applies.
 6. **Cross-references.** Use canonical part numbers ("see Part 12"). Do not use file names or agent numbers in cross-references within output content.
 7. **Date format.** YYYY-MM-DD throughout.
-8. **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not mention or link to `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output or in the agent's reasoning. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
+8. **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not mention or link to `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output or in the agent's reasoning. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
 9. **No `[[DOMAIN_FILE]]` forward-propagation.** Do not introduce regulatory mappings beyond those that appear in `[[DOMAIN_FILE]]`. Do not import regulatory framing from other domain files. The agent does not extend the regulatory taxonomy beyond what `[[DOMAIN_FILE]]` defines.
 10. **Banned soft language.** The output MUST NOT contain any of: `consider`, `may`, `could potentially`, `perhaps`, `use judgement`. Also avoid (without an evidence anchor in the same paragraph): `robust`, `comprehensive`, `world-class`, `industry-leading`, `best-in-class`, `leverages`, `empowers`, `enables` (without naming what is enabled), `seamless`, `holistic`, `mature` (without phase number), `production-ready` (without naming what is production), `powerful` (without naming the power).
 11. **Principal-file score authority.** Principle-file scores override overview scores for all severity determinations. The Score Authority Table records the divergence.

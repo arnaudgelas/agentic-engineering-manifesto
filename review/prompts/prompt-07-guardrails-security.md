@@ -12,7 +12,7 @@
 
 **Banned soft language.** The output file MUST NOT contain any of these tokens or phrases: `consider`, `may`, `could potentially`, `perhaps`, `use judgement`, `use judgment`. State controls, gaps, severities, and remediations as direct facts. Where a fact is unknown, state it as unknown — do not hedge with `may` or `consider`.
 
-**Evidence requirement.** Every claim about `[[FRAMEWORK]]`, `manifesto-principles.md`, or `[[DOMAIN_FILE]]` MUST be supported by a verbatim quote (≤ 3 lines, in backticks or fenced) drawn from the named source file with its absolute path. Paraphrase is not evidence. A claim with no verbatim quote is a self-check failure.
+**Evidence requirement.** Every claim about `[[FRAMEWORK]]`, the `manifesto-principles` source group, or `[[DOMAIN_FILE]]` MUST be supported by a verbatim quote (≤ 3 lines, in backticks or fenced) drawn from the named source file with its absolute path. Paraphrase is not evidence. A claim with no verbatim quote is a self-check failure.
 
 ---
 
@@ -29,12 +29,12 @@ Read all of the following before writing a single scored claim. Do not score fro
    - Kill-switch and circuit-breaker mechanisms: what stops or contains runaway behaviour.
    - Containment controls: injection defence, output filters, scope limits, iteration caps.
 
-2. **`manifesto-principles.md`** — read in full; key anchors for this review:
+2. **`manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md`** — read in full; key anchors for this review:
    - **P3** (Architecture is defence-in-depth): boundaries encoded as machine-enforced policies; deterministic wrappers around probabilistic AI; design for boundary crossing.
    - **P9** (Observability covers reasoning): traces reconstruct *why* something happened; governance-state observability; prompt/response audit trails.
    - **P10** (Assume emergence; engineer containment): threat model covers prompt injection, privilege escalation, data exfiltration, supply-chain attacks, and social engineering; treat every retrieval artefact and tool response as untrusted input. The Governance Failure Modes paragraph (evidence laundering, approval laundering, compliance theater, stale-control reliance, automated rubber-stamping, waiver accumulation) must be engineered against with the same discipline as security threats.
 
-3. **`manifesto-done.md`** — read for:
+3. **`manifesto/manifesto-done.md`** — read for:
    - The Hardening DoD steps and the **agentic provenance record** required fields.
    - The **bundle integrity attestation** requirement (cryptographic hash or digital signature of the assembled bundle).
    - The **security static analysis** requirement (OWASP ASVS-calibrated, no unresolved Critical or High; waivers documented and approved by the accountable human).
@@ -49,7 +49,7 @@ Read all of the following before writing a single scored claim. Do not score fro
    - Hard autonomy caps that apply to `[[ORGANIZATION]]`'s use cases.
    - Regulations with explicit security clauses, as named in `[[DOMAIN_FILE]]`.
    - Fairness and non-discrimination obligations, as named in `[[DOMAIN_FILE]]`.
-   - **Scope guard.** If `[[DOMAIN_FILE]]` references out-of-scope corpora (`asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-governance-stack.md`, `manifesto-evolution-plan.md`, `phase-assessment-checklist.md`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*`), ignore those sections — they are out of scope for this review and MUST NOT be forward-propagated into the output file.
+   - **Scope guard.** If `[[DOMAIN_FILE]]` references out-of-scope corpora (`asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-governance-stack.md`, `manifesto/manifesto-evolution-plan.md`, `phase-assessment-checklist.md`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*`), ignore those sections — they are out of scope for this review and MUST NOT be forward-propagated into the output file.
 
 6. **Regulatory crosswalks (cite when they add specificity to a security finding). Cite a crosswalk only when the regulation it covers also appears in `[[DOMAIN_FILE]]`.**
    - `regulatory/eu-ai-act-addendum.md` — Articles 9 (risk management), 10 (data governance), 12 (record-keeping), 14 (human oversight), 15 (accuracy/robustness/cybersecurity), 27 (FRIA), 72 (post-market monitoring), 73 (serious incident reporting). GPAI obligations (Articles 51–55).
@@ -110,7 +110,7 @@ Assess the overall guardrail architecture as a system. Identify:
 
 ### 2.2.1 Governance Failure Mode Coverage (§12.4 sub-block)
 
-Within §12.4, add a sub-block titled **Governance Failure Modes** that scores `[[FRAMEWORK]]` against the six governance failure modes named in `manifesto-principles.md` P10:
+Within §12.4, add a sub-block titled **Governance Failure Modes** that scores `[[FRAMEWORK]]` against the six governance failure modes named in the P10 shard:
 - **Evidence laundering** — agent assembles its own evidence; no independent verification.
 - **Approval laundering** — human approves an agent-generated summary, not the underlying evidence.
 - **Compliance theater** — controls added to satisfy audit, not to catch failures (back-test against known past failures).
@@ -292,7 +292,7 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 - **Severity, effort, and weighting** all come from `prompt.md`. Do not redefine them in the output. Reference `prompt.md` when a label or band is needed.
 - Use date format **YYYY-MM-DD** throughout.
 - When cross-referencing other parts of the review, use canonical part numbers (e.g., "see Part 9"). Do not use file names or agent numbers in cross-references within output content.
-- **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not read or reference `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. If `[[DOMAIN_FILE]]`, a regulatory crosswalk, a governance file, or an operational template references these paths, ignore those sections and do not forward-propagate them.
+- **Out-of-scope corpus / tracked-files-only.** Every source file cited MUST be tracked by git on the current branch. Do not read or reference `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. If `[[DOMAIN_FILE]]`, a regulatory crosswalk, a governance file, or an operational template references these paths, ignore those sections and do not forward-propagate them.
 
 ---
 
@@ -302,7 +302,7 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 
 - [ ] All `[[VARIABLE]]` placeholders have been substituted.
 - [ ] `[[FRAMEWORK]]` artefacts have been read — specific files are named in the sources-reviewed header.
-- [ ] `manifesto-principles.md` has been read; P3, P9, and P10 are cited by name in the output.
+- [ ] The `manifesto-principles` source group has been read; P3, P9, and P10 are cited by name in the output.
 - [ ] `[[DOMAIN_FILE]]` has been read; at least three specific regulatory articles are cited in Part 13.
 - [ ] Zero matches for any out-of-scope-corpus token (`ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, `igm-aent-coherence-review`) anywhere in the output, even where `[[DOMAIN_FILE]]` or any cross-stack file mentions them. Every cited source file is tracked by git on the current branch.
 - [ ] §12.4 contains a Governance Failure Mode Coverage sub-block scoring all six modes (evidence laundering, approval laundering, compliance theater, stale-control reliance, automated rubber-stamping, waiver accumulation).
@@ -317,5 +317,5 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 - [ ] §13.5 contains 3–6 findings.
 - [ ] Each §13.5 finding has all of: **Evidence** (verbatim with path), **Business impact for `[[ORGANIZATION]]`** (regulation cited), **Remediation** (named artefact), **Severity** label, **Effort** label, **Principles violated** (P3/P9/P10 cited by name).
 - [ ] No banned soft language is present: `consider`, `may`, `could potentially`, `perhaps`, `use judgement`, `use judgment`.
-- [ ] Every claim about `[[FRAMEWORK]]`, `manifesto-principles.md`, or `[[DOMAIN_FILE]]` is supported by a verbatim quote with absolute path.
+- [ ] Every claim about `[[FRAMEWORK]]`, the `manifesto-principles` source group, or `[[DOMAIN_FILE]]` is supported by a verbatim quote with absolute path.
 - [ ] The output file path is `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_security_appendix.md`.

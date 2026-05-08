@@ -20,9 +20,9 @@ Read the following before writing a single score. Do not score from memory or as
 **`[[FRAMEWORK]]` artefacts** — read all source files, configuration, phase-gate logic, and any lifecycle enforcement mechanisms. For every claim made in the output about `[[FRAMEWORK]]`'s behaviour, the supporting evidence MUST be a verbatim quote from a named source file with its path. Pay particular attention to: specification artefacts, phase gate definitions, verification mechanisms, feedback modules, observability plugins, governance and audit trail mechanisms, and any escalation or approval workflows.
 
 **Manifesto corpus:**
-- `manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify" — nine conditions before entry), and the Govern completion conditions.
-- `manifesto-done.md` — for the seven Agentic DoD conditions (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
-- `manifesto-principles.md` — for the four oversight patterns (HITL/HOTL/HOLL/EDL) that bear on the Govern phase and the Human Escalation Architecture sub-section.
+- `manifesto/manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify" — nine conditions before entry), and the Govern completion conditions.
+- `manifesto/manifesto-done.md` — for the seven Agentic DoD conditions (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
+- `manifesto/manifesto-principles.md` plus the matching `manifesto/manifesto-principles-0N.md` shard — for the four oversight patterns (HITL/HOTL/HOLL/EDL) that bear on the Govern phase and the Human Escalation Architecture sub-section.
 - **Evidence Quality Gate (apply throughout).** Every piece of evidence cited in Loop or DoD scoring must be Attributable (named agent/tool + named accountable human), Contemporaneous (recorded during the work, not reconstructed), Queryable (retrievable without heroic manual effort), and Bound-to-outcome (clearly linked to the change/decision/action). Apply this gate regardless of phase; evidence that fails the gate cannot raise a score.
 
 **Cross-stack normative artefacts (lift only the AEM-relevant content; apply the scope guard from `prompt.md`):**
@@ -34,8 +34,8 @@ Read the following before writing a single score. Do not score from memory or as
 - `integration/low-consequence-resolution.md` — use it to score the **Govern** phase per-action accountability bar for low-consequence actions (AEM has no consequence-class carve-out).
 - `operational-templates/slo-table.md` — use it to score the DoD **Observable** and **Governed** conditions (feedback-loop closure SLOs, waiver-expiry SLOs).
 - `operational-templates/agent-inventory-schema.md` — use it to score the DoD **Governed** condition (registered estate is a precondition for governance).
-- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record. Use it to bind DoD `Verified` and the agentic-provenance-record requirement in `manifesto-done.md`.
-- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record. Use it to score the DoD `Governed` condition (`manifesto.md` What the Loop Produces).
+- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record. Use it to bind DoD `Verified` and the agentic-provenance-record requirement in `manifesto/manifesto-done.md`.
+- `operational-templates/control-state-record.json` — JSON Schema for the Control State Record. Use it to score the DoD `Governed` condition (`manifesto/manifesto.md` What the Loop Produces).
 - `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope. Use it to anchor DoD `Verified` evidence-bundle scoring (complement to `governance/evidence-bundle-schema.md`).
 
 **Domain file:** `[[DOMAIN_FILE]]` — read in full. Map every major finding to a specific regulation or risk type identified in this file by article or section number. Do not forward-propagate content from `[[DOMAIN_FILE]]` into `[[FRAMEWORK]]` claims; the framework's behaviour is established only from `[[FRAMEWORK]]`'s own artefacts.
@@ -50,11 +50,11 @@ Read the following before writing a single score. Do not score from memory or as
 
 For each of the nine phases in order (Specify, Design, Plan, Execute, Verify, Validate, Observe, Learn, Govern):
 
-1. Re-read the phase definition in `manifesto.md` to establish the bar before assessing `[[FRAMEWORK]]`. **For Specify**, also assess `[[FRAMEWORK]]`'s handling of the loop-readiness gate (the nine conditions in "What Must Be True Before Entering Specify"): does `[[FRAMEWORK]]` reject or accept work that lacks a validated business need, measurable value, expressible acceptance criteria, identified constraints, named accountable human, blast-radius assessment, or explicit out-of-scope statement? Cross-reference `integration/loop-readiness-for-agent-opportunities.md` for handling of agent-surfaced opportunities. **For Observe**, anchor to the AEM execution trace section of `governance/integrated-audit-trail.md` and the governance-state observability minimum bar in P9. **For Govern**, anchor explicitly to the Govern completion conditions in `manifesto.md` (no outstanding policy violations, accountability signals within threshold, economics review recorded, architectural decisions filed back to Design, tool invocations confirmed within authorised scope), and — if `[[FRAMEWORK]]` claims or supports Tier 4 — to the four Tier 4 prerequisites in `manifesto-principles.md` and `governance/governance-integration-note.md`.
+1. Re-read the phase definition in `manifesto/manifesto.md` to establish the bar before assessing `[[FRAMEWORK]]`. **For Specify**, also assess `[[FRAMEWORK]]`'s handling of the loop-readiness gate (the nine conditions in "What Must Be True Before Entering Specify"): does `[[FRAMEWORK]]` reject or accept work that lacks a validated business need, measurable value, expressible acceptance criteria, identified constraints, named accountable human, blast-radius assessment, or explicit out-of-scope statement? Cross-reference `integration/loop-readiness-for-agent-opportunities.md` for handling of agent-surfaced opportunities. **For Observe**, anchor to the AEM execution trace section of `governance/integrated-audit-trail.md` and the governance-state observability minimum bar in P9. **For Govern**, anchor explicitly to the Govern completion conditions in `manifesto/manifesto.md` (no outstanding policy violations, accountability signals within threshold, economics review recorded, architectural decisions filed back to Design, tool invocations confirmed within authorised scope), and — if `[[FRAMEWORK]]` claims or supports Tier 4 — to the four Tier 4 prerequisites in the P5 shard and `governance/governance-integration-note.md`.
 2. Identify every artefact, function, gate, or mechanism in `[[FRAMEWORK]]` that corresponds to this phase. Name the files and rule text explicitly with full path.
 3. Quote verbatim, with the source file path, at least one passage from a `[[FRAMEWORK]]` source file that directly supports the score.
-4. Quote verbatim, with the source file path, the relevant phase definition from `manifesto.md`.
-5. Assess the gap: name the specific missing artefact, mechanism, or process that `manifesto.md` requires and `[[FRAMEWORK]]` does not demonstrably provide.
+4. Quote verbatim, with the source file path, the relevant phase definition from `manifesto/manifesto.md`.
+5. Assess the gap: name the specific missing artefact, mechanism, or process that `manifesto/manifesto.md` requires and `[[FRAMEWORK]]` does not demonstrably provide.
 6. Assign a score 0–100 (whole integer only) and state evidence for and evidence against separately.
 7. Apply the canonical severity thresholds defined in `prompt.md`.
 8. Map the finding to a specific regulation or risk type from `[[DOMAIN_FILE]]` / `[[INDUSTRY]]`, citing the regulation by article or section number.
@@ -67,8 +67,8 @@ After scoring all nine phases, identify cross-phase failure modes: where the loo
 
 For each of the seven DoD conditions, in canonical order (Shipped, Observable, Verified, Provable, Learned from, Governed, Economical):
 
-1. Re-read the condition definition in `manifesto-done.md` before assessing.
-2. Quote verbatim, with the source file path, at least one passage from `manifesto-done.md` that directly defines the bar for this condition.
+1. Re-read the condition definition in `manifesto/manifesto-done.md` before assessing.
+2. Quote verbatim, with the source file path, at least one passage from `manifesto/manifesto-done.md` that directly defines the bar for this condition.
 3. Quote verbatim, with the source file path, at least one passage from a `[[FRAMEWORK]]` source file that directly supports the score.
 4. Assess `[[FRAMEWORK]]`'s implementation: what exists, what is absent, what is present but insufficient.
 5. Assign a score 0–100 (whole integer only).
@@ -133,7 +133,7 @@ Each phase subsection must contain exactly three labelled paragraphs in this ord
 
 ```
 **What [[FRAMEWORK]] does.** [1 paragraph; include verbatim quote from a [[FRAMEWORK]] source file with path; name specific files and functions]
-**What the manifesto requires.** [1 paragraph; quote the relevant manifesto.md phase definition verbatim with path]
+**What the manifesto requires.** [1 paragraph; quote the relevant manifesto/manifesto.md phase definition verbatim with path]
 **The gap.** [1 paragraph; name the specific missing artefact/mechanism; tie back to [[INDUSTRY]] regulation by article or section]
 ```
 
@@ -174,7 +174,7 @@ A markdown table with exactly four columns and seven rows (in canonical order: S
 
 #### Condition Narratives
 
-One focused paragraph per condition (in the same order as the table). Each paragraph must: state the score, quote verbatim (with path) at least one supporting `[[FRAMEWORK]]` artefact passage, identify the gap against `manifesto-done.md` with a verbatim quote (with path), and note the severity using the canonical thresholds in `prompt.md`.
+One focused paragraph per condition (in the same order as the table). Each paragraph must: state the score, quote verbatim (with path) at least one supporting `[[FRAMEWORK]]` artefact passage, identify the gap against `manifesto/manifesto-done.md` with a verbatim quote (with path), and note the severity using the canonical thresholds in `prompt.md`.
 
 #### DoD Hardening Test
 
@@ -192,7 +192,7 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 ## 4. Hard Rules
 
 - **Read first, score second.** Every score must be grounded in a named file, rule, or function from `[[FRAMEWORK]]`'s own artefacts and from the manifesto's source files. Do not rely on prior knowledge of either.
-- **Verbatim quotes are mandatory.** For every phase and every DoD condition, include at least one verbatim quote from a `[[FRAMEWORK]]` source file (with path) that directly supports the score, and at least one verbatim quote from `manifesto.md` or `manifesto-done.md` (with path) that establishes the bar.
+- **Verbatim quotes are mandatory.** For every phase and every DoD condition, include at least one verbatim quote from a `[[FRAMEWORK]]` source file (with path) that directly supports the score, and at least one verbatim quote from `manifesto/manifesto.md` or `manifesto/manifesto-done.md` (with path) that establishes the bar.
 - **Whole integer scores only.** Scores are 0–100. No decimals, no half-points.
 - **Evidence for and evidence against.** Both must be stated for every score. The DoD Condition Table is the canonical home for DoD evidence; per-phase narratives carry phase evidence.
 - **No praise for undemonstrated capability.** If a mechanism is planned or documented but not present in the current codebase, flag it as planned-not-shipped and score accordingly.
@@ -200,7 +200,7 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 - **Score consistency invariant.** Part 4 per-phase scores and Part 5 per-condition scores MUST equal the corresponding rows in agent 01's Part 1 tables. Agent 03 is the authoritative source for Loop and DoD scores. Agent 01 reads these files to populate Part 1. Agent 09 (merge) detects mismatches.
 - **Dates in YYYY-MM-DD format** everywhere a date appears.
 - **Cross-references use canonical part numbers** (e.g., "see Part 3", "see Part 12"). Do not use file names or agent numbers in cross-references within the output content.
-- **No references to out-of-scope corpora or untracked files.** Every source file cited MUST be tracked by git on the current branch. Do not read or cite `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
+- **No references to out-of-scope corpora or untracked files.** Every source file cited MUST be tracked by git on the current branch. Do not read or cite `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
 - **No forward-propagation from `[[DOMAIN_FILE]]` into framework claims.** Use `[[DOMAIN_FILE]]` only to establish regulatory obligations. Never assert that `[[FRAMEWORK]]` implements behaviour by extrapolating from `[[DOMAIN_FILE]]`.
 - **Banned soft language.** The output MUST NOT contain `consider`, `may`, `could potentially`, `perhaps`, or `use judgement`. Make claims with evidence or do not make them.
 - **Severity labels must use the canonical thresholds** defined in `prompt.md`.
@@ -215,12 +215,12 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 - [ ] All 7 Agentic DoD conditions are scored with an explicit whole-integer numeric score.
 - [ ] Each phase subsection contains exactly the three labelled paragraphs `**What [[FRAMEWORK]] does.**`, `**What the manifesto requires.**`, `**The gap.**`, in this order, with no bullets.
 - [ ] Each phase subsection contains at least one verbatim quote from a `[[FRAMEWORK]]` source file with its path.
-- [ ] Each phase subsection contains at least one verbatim quote from `manifesto.md` with its path.
+- [ ] Each phase subsection contains at least one verbatim quote from `manifesto/manifesto.md` with its path.
 - [ ] Each phase subsection cites a regulation by article or section number from `[[DOMAIN_FILE]]`.
 - [ ] Cross-Phase Failure Modes section contains at least 5 items, each in the mandated format `- **{Phase A}→{Phase B}:** ...`, each citing at least two `[[FRAMEWORK]]` artefacts and at least one regulation by article.
 - [ ] Human Escalation Architecture section contains all four labelled sub-paragraphs (Escalation triggers, Escalation path, Response time, Fitness for `[[ORGANIZATION]]` context) with at least four named regulatory obligations in the Fitness paragraph.
 - [ ] DoD Condition Table has exactly 4 columns (Condition | Score | Evidence For | Evidence Against) and 7 rows in canonical order.
-- [ ] Each condition narrative contains at least one verbatim quote from a `[[FRAMEWORK]]` source file with its path and at least one verbatim quote from `manifesto-done.md` with its path.
+- [ ] Each condition narrative contains at least one verbatim quote from a `[[FRAMEWORK]]` source file with its path and at least one verbatim quote from `manifesto/manifesto-done.md` with its path.
 - [ ] DoD Hardening Test names all 7 DoD conditions and assigns Pass / Partial / Fail to each, ending with the literal phrase "Hardening is complete." or "Hardening is not complete."
 - [ ] Industry-Specific DoD Requirements section is present and references named articles/sections from `[[DOMAIN_FILE]]`.
 - [ ] Part 4 per-phase scores and Part 5 per-condition scores match the corresponding rows of agent 01's Part 1 tables (or this file is treated as authoritative and agent 01 will reconcile).

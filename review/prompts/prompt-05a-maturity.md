@@ -34,16 +34,16 @@ references wherever possible.
 
 1. `[[FRAMEWORK]]` source artefacts — all available files under `[[FRAMEWORK_LOWER]]/`.
    Read enough to form an evidence-grounded opinion on every maturity criterion below.
-2. `manifesto.md` — the six-phase maturity spectrum (Phase 1 through Phase 6) and the
+2. `manifesto/manifesto.md` — the six-phase maturity spectrum (Phase 1 through Phase 6) and the
    Agentic Loop phase definitions.
-3. `manifesto-principles.md` — the AEM Phase × maximum autonomy tier table in P5,
+3. `manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md` — the AEM Phase × maximum autonomy tier table in P5,
    the four oversight patterns, and the Tier 4 prerequisites.
-4. `manifesto-done.md` — the Agentic DoD phase calibration ("phase-calibrated, not
+4. `manifesto/manifesto-done.md` — the Agentic DoD phase calibration ("phase-calibrated, not
    all-or-nothing") and the evidence freshness rules.
 5. `companion/frameworks.md` — the six-phase maturity spectrum failure modes per
    phase, the peer framework comparison table, and the boundary condition guidance.
    (Hard autonomy caps by regulated use case are consumed by 05b, not here.)
-6. `companion/principles.md` — extended guidance on phase progression and structural
+6. `companion/principles.md` plus `companion/principles-01.md` through `companion/principles-12.md` — extended guidance on phase progression and structural
    regression.
 7. `governance/phase-level-matrix.md` — the AEM Phase column with the corresponding
    maximum autonomy tier and the Tier 4 prerequisites. **Read the AEM column only;
@@ -68,12 +68,12 @@ must be attributable (file name, function name, rule text) and contemporaneous (
 the artefacts as they stand, not as they are planned).
 
 **Step 2 — Gate-by-gate assessment.** For each phase in ascending order, derive
-the gate requirements directly from `manifesto.md` (the six-phase model and the
-Agentic Loop / DoD it implies at each phase), `manifesto-principles.md` (P5 Phase
+the gate requirements directly from `manifesto/manifesto.md` (the six-phase model and the
+Agentic Loop / DoD it implies at each phase), the `manifesto-principles` source group (P5 Phase
 × maximum autonomy tier table; principle minimum bars), `companion/frameworks.md`
 (the named failure mode for each phase: e.g., Phase 3 "autonomy without
 verification"; Phase 4 "governance without feedback"; Phase 5 "evaluation
-theater"), `manifesto-done.md` (the phase-calibrated DoD), and
+theater"), `manifesto/manifesto-done.md` (the phase-calibrated DoD), and
 `governance/phase-level-matrix.md` (AEM column only). Mark each gate as: met
 (evidence on file), partial (evidence present but incomplete), or unmet (no
 evidence). An unmet gate at Phase N means `[[FRAMEWORK]]` cannot be placed at
@@ -254,8 +254,8 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
 - **Read `[[FRAMEWORK]]`'s source artefacts before scoring.** Every claim must be
   grounded in a specific file, rule, or phase within `[[FRAMEWORK_LOWER]]/`.
 - **Read the manifesto's own source artefacts before scoring.** At minimum:
-  `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`,
-  `companion/frameworks.md`, `companion/principles.md`, and
+  `manifesto/manifesto.md`, the `manifesto-principles` source group, `manifesto/manifesto-done.md`,
+  `companion/frameworks.md`, the `companion/principles` source group, and
   `governance/phase-level-matrix.md` (AEM column only). Do not score from memory.
 - **Do NOT read `[[DOMAIN_FILE]]`.** This agent is intentionally domain-agnostic.
   Any regulatory, client, or industry-specific content is out of scope and must
@@ -281,7 +281,7 @@ These rules are non-negotiable and mirror the master orchestrator's hard rules.
   `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`,
   `agentic-enterprise-manifesto/`, `agentic-enterprise.md`,
   `agentic-enterprise.html`, `agentic-governance-stack.md`,
-  `agentic-governance-stack.html`, `manifesto-evolution-plan.md`,
+  `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`,
   `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`,
   `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or
   `igm-aent-coherence-review*` anywhere in the output file. The output MUST

@@ -4,7 +4,24 @@
 
 **Per-invocation parameters (substituted by orchestrator).**
 - `[[PRINCIPLE_NUMBER]]` — integer 1–12.
-- `[[PRINCIPLE_NAME]]` — the canonical short name from `prompt.md`'s weighting table (NOT from `manifesto-principles.md`).
+- `[[PRINCIPLE_NAME]]` — the canonical short name from `prompt.md`'s weighting table (NOT from `manifesto/manifesto-principles.md`).
+
+**Shard mapping for this invocation.** Read the matching `manifesto/manifesto-principles-0N.md` and `companion/principles-0N.md` shards for the current principle number:
+
+| P | Manifesto shard | Companion shard |
+| --- | --- | --- |
+| P1 | `manifesto/manifesto-principles-01.md` | `companion/principles-01.md` |
+| P2 | `manifesto/manifesto-principles-02.md` | `companion/principles-02.md` |
+| P3 | `manifesto/manifesto-principles-03.md` | `companion/principles-03.md` |
+| P4 | `manifesto/manifesto-principles-04.md` | `companion/principles-04.md` |
+| P5 | `manifesto/manifesto-principles-05.md` | `companion/principles-05.md` |
+| P6 | `manifesto/manifesto-principles-06.md` | `companion/principles-06.md` |
+| P7 | `manifesto/manifesto-principles-07.md` | `companion/principles-07.md` |
+| P8 | `manifesto/manifesto-principles-08.md` | `companion/principles-08.md` |
+| P9 | `manifesto/manifesto-principles-09.md` | `companion/principles-09.md` |
+| P10 | `manifesto/manifesto-principles-10.md` | `companion/principles-10.md` |
+| P11 | `manifesto/manifesto-principles-11.md` | `companion/principles-11.md` |
+| P12 | `manifesto/manifesto-principles-12.md` | `companion/principles-12.md` |
 
 **Placeholder reminder.** Before executing, confirm every `[[VARIABLE]]` token has been substituted by the orchestrator (including `[[PRINCIPLE_NUMBER]]` and `[[PRINCIPLE_NAME]]`). If any literal `[[...]]` pattern remains, stop and report.
 
@@ -22,9 +39,9 @@ Before scoring, read the following in full. Do not score from memory.
 Read every source file that constitutes `[[FRAMEWORK]]` at version `[[FRAMEWORK_VERSION]]`. Include all documentation, rule files, configuration, architecture artefacts, and lifecycle definitions. Quote exact artefact names, rule identifiers, and phase numbers when making claims.
 
 ### 1.2 Manifesto corpus (mandatory)
-- `manifesto.md` — core values, the Agentic Loop, the loop-readiness gate.
-- `manifesto-principles.md` — authoritative definitions of P1–P12 (used for **definitions and minimum-bar text only**, NOT for the H1 principle name).
-- `manifesto-done.md` — Definition of Done, the four-step Hardening DoD, agentic provenance record, bundle integrity attestation, evidence freshness rules.
+- `manifesto/manifesto.md` — core values, the Agentic Loop, the loop-readiness gate.
+- `manifesto/manifesto-principles.md` and the matching `manifesto/manifesto-principles-0N.md` shard for the current invocation — authoritative definitions of P1–P12 (used for **definitions and minimum-bar text only**, NOT for the H1 principle name).
+- `manifesto/manifesto-done.md` — Definition of Done, the four-step Hardening DoD, agentic provenance record, bundle integrity attestation, evidence freshness rules.
 - `glossary.md` — canonical term definitions.
 
 ### 1.3 Canonical principle names
@@ -47,7 +64,7 @@ These are the authoritative short names used in the H1 heading of every principl
 | P12 | Accountability requires intelligibility |
 
 ### 1.4 Companion corpus
-- `companion/principles.md` — extended guidance, specifications-vs-constraints distinction, blast-radius, accountability paradox.
+- `companion/principles.md` and the matching `companion/principles-0N.md` shard for the current invocation — extended guidance, specifications-vs-constraints distinction, blast-radius, accountability paradox.
 - `companion/frameworks.md` — boundary conditions and hard autonomy caps by regulated use case.
 - `companion/patterns.md` — failure-mode patterns (relevant to P10 containment, P12 accountability).
 - `companion/reference.md` — failure modes (over-governance, evidence theater, rubber-stamping).
@@ -135,7 +152,7 @@ Otherwise rewrite from scratch.
 
 The H1 line MUST end with the literal pattern ` | **NN/100**` where `NN` is an integer 0–100. No decimals. No surrounding text after the score. The principle name MUST be character-for-character identical to the corresponding row of `prompt.md`'s weighting table.
 
-`manifesto-principles.md` is read for the principle's **definition and Minimum-bar paragraph** only — never for the H1 principle name.
+`manifesto/manifesto-principles.md` and the matching `manifesto/manifesto-principles-0N.md` shard are read for the principle's **definition and Minimum-bar paragraph** only — never for the H1 principle name.
 
 ### 3.3 Required sections (in order)
 
@@ -157,7 +174,7 @@ One short paragraph. Describe what `[[FRAMEWORK]]` claims or implies about this 
 
 #### 3.3.3 `## Where it fails the manifesto's bar`
 4–8 bullets. Each bullet MUST:
-1. **Quote the manifesto's actual requirement verbatim** from `manifesto-principles.md` (the Minimum-bar paragraph or principle prose, in double quotes), THEN
+1. **Quote the manifesto's actual requirement verbatim** from the matching `manifesto/manifesto-principles-0N.md` shard (the Minimum-bar paragraph or principle prose, in double quotes), THEN
 2. Show what `[[FRAMEWORK]]` is missing or insufficient — name the specific failure mode (absent, partial, advisory-only, convention-not-enforcement, scope-gap-with-flag).
 3. Tie to a `[[ORGANIZATION]]`-specific regulatory exposure with a specific article or obligation number.
 
@@ -180,7 +197,7 @@ Place the test section **immediately after** `## What [[FRAMEWORK]] asserts abou
 
 ### 4.1 If `[[PRINCIPLE_NUMBER]]` = 1 — `## Seven-Condition DoD Test`
 
-Assess each of the seven evidence conditions from `manifesto-done.md` against `[[FRAMEWORK]]`'s artefacts. Present as a numbered list:
+Assess each of the seven evidence conditions from `manifesto/manifesto-done.md` against `[[FRAMEWORK]]`'s artefacts. Present as a numbered list:
 1. Evaluation reports with pass/fail and metrics
 2. Trace IDs linking to the full decision chain
 3. Diffs showing what changed
@@ -191,7 +208,7 @@ Assess each of the seven evidence conditions from `manifesto-done.md` against `[
 
 For each condition: verdict (Met / Partially met / Absent), followed by a one-to-two sentence explanation citing specific `[[FRAMEWORK]]` evidence with file paths in backticks. If absent, state directly.
 
-After the seven conditions, assess the **Hardening DoD additions** from `manifesto-done.md`:
+After the seven conditions, assess the **Hardening DoD additions** from `manifesto/manifesto-done.md`:
 - Security static analysis results (OWASP ASVS-calibrated, no unresolved Critical/High).
 - **Bundle integrity attestation** (cryptographic hash or digital signature of the assembled bundle).
 - **Agentic provenance record** (foundation model identifier and version, provider category, evaluation/production model parity, system-instruction hash, tool manifest, memory state version, retrieval corpus version, embedding model version, dataset lineage, policy constraints active).
@@ -206,7 +223,7 @@ Three numbered sub-sections:
 
 2. **Isolation mechanisms.** List every containment mechanism `[[FRAMEWORK]]` provides. For each: name the mechanism, state whether it is enforced at runtime or only by convention, and state what class of failure it catches (structural / semantic / both).
 
-3. **Verdict.** State plainly whether `[[FRAMEWORK]]`'s architecture is defense-in-depth or defense-in-line, and why. Reference `manifesto-principles.md` P3's minimum bar.
+3. **Verdict.** State plainly whether `[[FRAMEWORK]]`'s architecture is defense-in-depth or defense-in-line, and why. Reference the P3 shard's minimum bar.
 
 After sub-section 3 (Verdict) and before `## What works`, add this cross-reference placeholder verbatim:
 
@@ -221,9 +238,9 @@ Tier-by-tier analysis:
 - **What requires human approval** within `[[FRAMEWORK]]`'s lifecycle.
 - **What is never autonomous** under `[[FRAMEWORK]]`'s current design.
 - **Tier determination.** State the highest manifesto autonomy tier (Tier 1–4) `[[FRAMEWORK]]` operates at, with structural evidence supporting this.
-- **Oversight pattern.** Name which of the four oversight patterns from `manifesto-principles.md` (HITL synchronous/asynchronous, HOTL, HOLL, EDL) `[[FRAMEWORK]]` instantiates and whether its irreversibility window is measured (HOTL minimum bar) and whether per-action evidence is sufficient to reconstruct accountability without a human witness (HOLL minimum bar).
-- **Tier 4 prerequisites (if claimed).** If `[[FRAMEWORK]]` claims or supports Tier 4, evaluate the four prerequisites from `manifesto-principles.md` and `governance/governance-integration-note.md`: machine-enforced policy envelope; passing control evaluations; instrumented governance observability; active rubber-stamping detection. State Met / Partially met / Absent for each. Absence of any one prerequisite means Tier 4 is "ungoverned production autonomy" per the manifesto.
-- **Phase × tier compatibility.** Cross-check against `governance/phase-level-matrix.md` (AEM Phase column only) and the table in `manifesto-principles.md` P5 to confirm the operating tier is permissible at the framework's phase placement.
+- **Oversight pattern.** Name which of the four oversight patterns from the matching `manifesto/manifesto-principles-0N.md` shard (HITL synchronous/asynchronous, HOTL, HOLL, EDL) `[[FRAMEWORK]]` instantiates and whether its irreversibility window is measured (HOTL minimum bar) and whether per-action evidence is sufficient to reconstruct accountability without a human witness (HOLL minimum bar).
+- **Tier 4 prerequisites (if claimed).** If `[[FRAMEWORK]]` claims or supports Tier 4, evaluate the four prerequisites from the P5 shard and `governance/governance-integration-note.md`: machine-enforced policy envelope; passing control evaluations; instrumented governance observability; active rubber-stamping detection. State Met / Partially met / Absent for each. Absence of any one prerequisite means Tier 4 is "ungoverned production autonomy" per the manifesto.
+- **Phase × tier compatibility.** Cross-check against `governance/phase-level-matrix.md` (AEM Phase column only) and the table in the P5 shard to confirm the operating tier is permissible at the framework's phase placement.
 - **What prevents higher tiers.** Name the specific mechanisms or artefacts that would need to exist for `[[FRAMEWORK]]` to safely operate at a higher tier.
 
 ### 4.4 If `[[PRINCIPLE_NUMBER]]` = 8 — `## Seven-Condition DoD Test (Evaluation Edition)`
@@ -254,7 +271,7 @@ Do not equivocate. If the observability covers only execution, state so; do not 
 
 Two parts. **Part A — Oversight adequacy** is a precondition: oversight that cannot be measured cannot be claimed. **Part B — Structured recovery** is the binding-constraint scoring test.
 
-**Part A — Oversight Adequacy.** For each oversight pattern `[[FRAMEWORK]]` instantiates (HITL synchronous/asynchronous, HOTL, HOLL, EDL — defined in `manifesto-principles.md`), assess:
+**Part A — Oversight Adequacy.** For each oversight pattern `[[FRAMEWORK]]` instantiates (HITL synchronous/asynchronous, HOTL, HOLL, EDL — defined in the matching shard), assess:
 - **HITL:** does `[[FRAMEWORK]]` report override rate, reviewer agreement rate, and review latency by work-item class? Override rate near zero or sustained reviewer agreement >95% indicates accountability diffusion (`adoption/metrics.md`).
 - **HOTL:** has the irreversibility window been measured and confirmed to exceed monitoring detection + notification + assessment + intervention time? If not, HOTL is "the appearance of oversight" per the P5 minimum bar.
 - **HOLL:** is per-action evidence sufficient to reconstruct accountability from logs alone, without any human witness?
@@ -324,7 +341,7 @@ Each item is binary yes/no. If any item fails, fix the file content and re-verif
 - [ ] No occurrence of any prior-framework name (e.g., from `[[PRIOR_REVIEWS]]`) unless `[[FRAMEWORK]]` itself resolves to that name.
 - [ ] No banned soft-language tokens: `consider`, `may`, `could potentially`, `perhaps`, `use judgement`, `use judgment`.
 - [ ] Every bullet in `## What works` and `## Where it fails the manifesto's bar` cites at least one named `[[FRAMEWORK]]` artefact in backticks.
-- [ ] Every bullet in `## Where it fails the manifesto's bar` (i) quotes the manifesto's actual requirement verbatim from `manifesto-principles.md` and (ii) shows what `[[FRAMEWORK]]` is missing.
+- [ ] Every bullet in `## Where it fails the manifesto's bar` (i) quotes the manifesto's actual requirement verbatim from the matching `manifesto/manifesto-principles-0N.md` shard and (ii) shows what `[[FRAMEWORK]]` is missing.
 - [ ] Every bullet in `## [[ORGANIZATION]]-specific implications` cites a specific regulation, article, clause number, or risk framework from `[[DOMAIN_FILE]]`.
 - [ ] All dates in `YYYY-MM-DD`. British English throughout.
 - [ ] All cross-references use canonical part numbers per `prompt.md`'s part-numbering table; no agent numbers or file names appear in cross-references.

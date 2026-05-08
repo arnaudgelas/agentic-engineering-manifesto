@@ -28,9 +28,9 @@ Read all of the following before writing a single scored claim. Do not score fro
 
 1. **`[[FRAMEWORK]]` source artefacts** — read systematically across the 15 domains. For each domain, search for: documented controls, policies, schemas, gates, or checklists; configuration files that encode the control as policy-as-code; runtime mechanisms (functions, decorators, middleware, hooks); templates, runbooks, or operating instructions; evidence-bundle, agent-card, task-card, or release-decision artefacts that prove the control fired.
 
-2. **`manifesto.md`** — the agentic loop, loop-readiness gate, governance fabric, and accountability anchors.
+2. **`manifesto/manifesto.md`** — the agentic loop, loop-readiness gate, governance fabric, and accountability anchors.
 
-3. **`manifesto-principles.md`** — read in full. Cross-reference these principles when scoring each domain:
+3. **`manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md`** — read in full. Cross-reference these principles when scoring each domain:
    - **P1** (Outcomes are the unit of work) — relevant to 14.3 (Specification & demand) and 14.9 (Evidence).
    - **P2** (Specifications are living artifacts) — relevant to 14.3 and 14.15 (Learning/memory).
    - **P3** (Architecture is defence-in-depth) — relevant to 14.2 (Architectural) and 14.5 (Tools/execution).
@@ -44,11 +44,11 @@ Read all of the following before writing a single scored claim. Do not score fro
    - **P11** (Optimize economics of intelligence) — relevant to 14.12 (FinOps).
    - **P12** (Accountability requires intelligibility) — relevant to 14.1 (Governance), 14.13 (Human), 14.14 (Legal/compliance).
 
-4. **`manifesto-done.md`** — the Agentic Definition of Done, evidence-bundle requirements, hardening DoD, agentic provenance record, evidence freshness rules, accountability sign-off.
+4. **`manifesto/manifesto-done.md`** — the Agentic Definition of Done, evidence-bundle requirements, hardening DoD, agentic provenance record, evidence freshness rules, accountability sign-off.
 
 5. **`adoption/path.md`** and `adoption/` directory — phase-specific guardrail expectations (especially Phases 4–6).
 
-6. **`companion/frameworks.md`** and `companion/principles.md` — companion expectations on guardrail coverage and per-phase failure modes.
+6. **`companion/frameworks.md`** and the `companion/principles` source group — companion expectations on guardrail coverage and per-phase failure modes.
 
 7. **Cross-stack normative artefacts (lift only AEM-relevant content; apply scope guard from `prompt.md`):**
    - `governance/evidence-bundle-schema.md` — read the `aem_components` and `bundle_metadata` (integrity / signature) sections. Use to score §14.9.
@@ -170,7 +170,7 @@ For each of the 15 domains below, produce a subsection with this fixed structure
 
 **Domain question.** How much freedom does the agent have?
 
-Map `[[FRAMEWORK]]`'s autonomy model to the **canonical AEM autonomy tiers** in `manifesto-principles.md` P5 (Tier 1 — Suggest; Tier 2 — Suggest+Verify; Tier 3 — Execute-with-approval; Tier 4 — Bounded autonomous). Cite the tier text verbatim.
+Map `[[FRAMEWORK]]`'s autonomy model to the **canonical AEM autonomy tiers** in the P5 shard (Tier 1 — Suggest; Tier 2 — Suggest+Verify; Tier 3 — Execute-with-approval; Tier 4 — Bounded autonomous). Cite the tier text verbatim.
 
 | Control | Description | Lifecycle gate |
 | --- | --- | --- |
@@ -280,7 +280,7 @@ Asset scope is **broader than code dependencies**: prompts, models, datasets, MC
 
 **Domain question.** What proof exists?
 
-The required evidence bundle (assess each component against `manifesto-done.md` and `governance/evidence-bundle-schema.md`):
+The required evidence bundle (assess each component against `manifesto/manifesto-done.md` and `governance/evidence-bundle-schema.md`):
 
 | Component | What it contains |
 | --- | --- |
@@ -523,7 +523,7 @@ Each item is binary. A single failure blocks the write.
 
 - [ ] All `[[VARIABLE]]` placeholders substituted.
 - [ ] `[[FRAMEWORK]]` artefacts have been read — specific files named in sources-reviewed header.
-- [ ] `manifesto.md`, `manifesto-principles.md`, and `manifesto-done.md` have been read.
+- [ ] `manifesto/manifesto.md`, the `manifesto-principles` source group, and `manifesto/manifesto-done.md` have been read.
 - [ ] `[[DOMAIN_FILE]]` has been read; at least three specific regulatory articles or clauses cited across §14.6, §14.10, §14.13, §14.14.
 - [ ] All 15 domain subsections (§14.1 through §14.15) are present and non-empty, each with the per-domain output structure (Domain question, Required controls table, `[[FRAMEWORK]]` coverage table, Manifesto principle anchors, Domain Coverage Score, Top remediation).
 - [ ] Each `[[FRAMEWORK]]` coverage table has every row populated with verbatim evidence (or explicit `Absent — no evidence in `[[FRAMEWORK]]``) and an Enforcement Level of `Infrastructure` / `Instruction` / `Absent`.

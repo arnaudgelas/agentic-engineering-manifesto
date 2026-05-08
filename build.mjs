@@ -29,13 +29,41 @@ const sections = [
   { id: "beyond-sources",    file: "beyond-agile/sources.md",     title: "Sources",              group: "beyond"          },
 
   // The Manifesto
-  { id: "manifesto-core",    file: "manifesto.md",                title: "The Manifesto",        group: "manifesto"       },
-  { id: "principles",        file: "manifesto-principles.md",     title: "Twelve Principles",    group: "manifesto"       },
-  { id: "done",              file: "manifesto-done.md",           title: "Definition of Done",   group: "manifesto"       },
+  { id: "manifesto-core",    file: "manifesto/manifesto.md",      title: "The Manifesto",        group: "manifesto"       },
+  { id: "principles",        file: [
+      "manifesto/manifesto-principles.md",
+      "manifesto/manifesto-principles-01.md",
+      "manifesto/manifesto-principles-02.md",
+      "manifesto/manifesto-principles-03.md",
+      "manifesto/manifesto-principles-04.md",
+      "manifesto/manifesto-principles-05.md",
+      "manifesto/manifesto-principles-06.md",
+      "manifesto/manifesto-principles-07.md",
+      "manifesto/manifesto-principles-08.md",
+      "manifesto/manifesto-principles-09.md",
+      "manifesto/manifesto-principles-10.md",
+      "manifesto/manifesto-principles-11.md",
+      "manifesto/manifesto-principles-12.md",
+    ], title: "Twelve Principles",    group: "manifesto"       },
+  { id: "done",              file: "manifesto/manifesto-done.md", title: "Definition of Done",   group: "manifesto"       },
 
   // Implementation Guide
   { id: "companion-guide",        file: "companion/guide.md",        title: "Companion Guide",    group: "implementation" },
-  { id: "companion-principles",   file: "companion/principles.md",   title: "Principle Guidance",  group: "implementation" },
+  { id: "companion-principles",   file: [
+      "companion/principles.md",
+      "companion/principles-01.md",
+      "companion/principles-02.md",
+      "companion/principles-03.md",
+      "companion/principles-04.md",
+      "companion/principles-05.md",
+      "companion/principles-06.md",
+      "companion/principles-07.md",
+      "companion/principles-08.md",
+      "companion/principles-09.md",
+      "companion/principles-10.md",
+      "companion/principles-11.md",
+      "companion/principles-12.md",
+    ], title: "Principle Guidance",  group: "implementation" },
   { id: "companion-frameworks",   file: "companion/frameworks.md",   title: "Frameworks",          group: "implementation" },
   { id: "companion-patterns",     file: "companion/patterns.md",     title: "Patterns",            group: "implementation" },
   { id: "companion-re-framework", file: "companion/re-framework.md", title: "RE Framework",        group: "implementation" },
@@ -74,7 +102,13 @@ const groups = {
 const domainPages = [];
 
 // Maps source file path → section id, for resolving intra-document links
-const sectionFileMap = new Map(sections.map(s => [path.posix.normalize(s.file), s.id]));
+const sectionFileMap = new Map();
+for (const section of sections) {
+  const files = Array.isArray(section.file) ? section.file : [section.file];
+  for (const file of files) {
+    sectionFileMap.set(path.posix.normalize(file), section.id);
+  }
+}
 
 // Human-authored markdown uses a mix of root-relative conceptual names and
 // folder-local filenames. Normalize those aliases before deciding whether a
@@ -97,6 +131,22 @@ const sourceAliases = new Map([
   ["companion-principles.md", "companion/principles.md"],
   ["companion-re-framework.md", "companion/re-framework.md"],
   ["companion-reference.md", "companion/reference.md"],
+  ["manifesto.md", "manifesto/manifesto.md"],
+  ["manifesto-done.md", "manifesto/manifesto-done.md"],
+  ["manifesto-principles.md", "manifesto/manifesto-principles.md"],
+  ["manifesto-principles-01.md", "manifesto/manifesto-principles-01.md"],
+  ["manifesto-principles-02.md", "manifesto/manifesto-principles-02.md"],
+  ["manifesto-principles-03.md", "manifesto/manifesto-principles-03.md"],
+  ["manifesto-principles-04.md", "manifesto/manifesto-principles-04.md"],
+  ["manifesto-principles-05.md", "manifesto/manifesto-principles-05.md"],
+  ["manifesto-principles-06.md", "manifesto/manifesto-principles-06.md"],
+  ["manifesto-principles-07.md", "manifesto/manifesto-principles-07.md"],
+  ["manifesto-principles-08.md", "manifesto/manifesto-principles-08.md"],
+  ["manifesto-principles-09.md", "manifesto/manifesto-principles-09.md"],
+  ["manifesto-principles-10.md", "manifesto/manifesto-principles-10.md"],
+  ["manifesto-principles-11.md", "manifesto/manifesto-principles-11.md"],
+  ["manifesto-principles-12.md", "manifesto/manifesto-principles-12.md"],
+  ["manifesto-evolution-plan.md", "manifesto/manifesto-evolution-plan.md"],
   ["domains/README.md", "domains/README.md"],
   ["domains/automotive.md", "domains/automotive.md"],
   ["domains/aviation.md", "domains/aviation.md"],
@@ -108,6 +158,30 @@ const sourceAliases = new Map([
   ["glossary.md", "glossary.md"],
   ["manifesto-done.md", "manifesto-done.md"],
   ["manifesto-principles.md", "manifesto-principles.md"],
+  ["manifesto-principles-01.md", "manifesto-principles-01.md"],
+  ["manifesto-principles-02.md", "manifesto-principles-02.md"],
+  ["manifesto-principles-03.md", "manifesto-principles-03.md"],
+  ["manifesto-principles-04.md", "manifesto-principles-04.md"],
+  ["manifesto-principles-05.md", "manifesto-principles-05.md"],
+  ["manifesto-principles-06.md", "manifesto-principles-06.md"],
+  ["manifesto-principles-07.md", "manifesto-principles-07.md"],
+  ["manifesto-principles-08.md", "manifesto-principles-08.md"],
+  ["manifesto-principles-09.md", "manifesto-principles-09.md"],
+  ["manifesto-principles-10.md", "manifesto-principles-10.md"],
+  ["manifesto-principles-11.md", "manifesto-principles-11.md"],
+  ["manifesto-principles-12.md", "manifesto-principles-12.md"],
+  ["companion/principles-01.md", "companion/principles-01.md"],
+  ["companion/principles-02.md", "companion/principles-02.md"],
+  ["companion/principles-03.md", "companion/principles-03.md"],
+  ["companion/principles-04.md", "companion/principles-04.md"],
+  ["companion/principles-05.md", "companion/principles-05.md"],
+  ["companion/principles-06.md", "companion/principles-06.md"],
+  ["companion/principles-07.md", "companion/principles-07.md"],
+  ["companion/principles-08.md", "companion/principles-08.md"],
+  ["companion/principles-09.md", "companion/principles-09.md"],
+  ["companion/principles-10.md", "companion/principles-10.md"],
+  ["companion/principles-11.md", "companion/principles-11.md"],
+  ["companion/principles-12.md", "companion/principles-12.md"],
   ["manifesto.md", "manifesto.md"],
 ]);
 
@@ -122,6 +196,11 @@ function resolveSourceFile(pathPart, currentSourceFile) {
   );
   if (sourceAliases.has(targetFromCurrent)) {
     return sourceAliases.get(targetFromCurrent);
+  }
+
+  const manifestoRelative = targetFromCurrent.replace(/^manifesto\//, "");
+  if (sourceAliases.has(manifestoRelative)) {
+    return sourceAliases.get(manifestoRelative);
   }
 
   const rootRelative = normalizedPath.replace(/^(\.\.\/)+/, "");
@@ -325,23 +404,30 @@ function listMarkdownFiles(rootDir) {
 }
 
 function convertSection(section) {
-  let md;
-  try {
-    md = readMarkdown(section.file);
-  } catch (e) {
-    console.warn(`Warning: could not read ${section.file}, skipping.`);
-    return "";
+  const files = Array.isArray(section.file) ? section.file : [section.file];
+  let html = "";
+
+  for (const file of files) {
+    let md;
+    try {
+      md = readMarkdown(file);
+    } catch {
+      console.warn(`Warning: could not read ${file}, skipping.`);
+      continue;
+    }
+
+    // Strip the first H1 heading — we render our own section header
+    md = stripFirstHeading(md);
+    // Strip github-only blocks (badges, quick-links) — not meaningful in a built doc
+    md = stripGithubOnlyBlocks(md);
+
+    html += convertMarkdown(md, {
+      sourceFile: file,
+      outputFile: "index.html",
+    });
   }
 
-  // Strip the first H1 heading — we render our own section header
-  md = stripFirstHeading(md);
-  // Strip github-only blocks (badges, quick-links) — not meaningful in a built doc
-  md = stripGithubOnlyBlocks(md);
-
-  return convertMarkdown(md, {
-    sourceFile: section.file,
-    outputFile: "index.html",
-  });
+  return html;
 }
 
 // ---------------------------------------------------------------------------

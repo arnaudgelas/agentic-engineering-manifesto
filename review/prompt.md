@@ -228,7 +228,7 @@ If any output file already exists, update it in place. Replace wholesale only if
 ## Hard rules for all agents
 
 - **Read [[FRAMEWORK]]'s source artefacts before scoring.** Every claim must be grounded in a specific file, rule, or phase.
-- **Read the Agentic Engineering Manifesto's own source artefacts before scoring.** At minimum: `manifesto.md`, `manifesto-principles.md`, `manifesto-done.md`, `glossary.md`, and the `adoption/`, `companion/`, and `domains/` directories. Where directly relevant to the agent's task, also read the current files in `beyond-agile/`, `governance/`, `integration/`, `regulatory/`, and `operational-templates/` — these are the additional normative and contextual artefacts that extend AEM. Do not score from memory of the manifesto — read the current files.
+- **Read the Agentic Engineering Manifesto's own source artefacts before scoring.** At minimum: `manifesto/manifesto.md`, the `manifesto-principles` source group (`manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md`), `manifesto/manifesto-done.md`, `glossary.md`, and the `adoption/`, `companion/`, and `domains/` directories. The companion-principles source group is `companion/principles.md` plus `companion/principles-01.md` through `companion/principles-12.md`. Where directly relevant to the agent's task, also read the current files in `beyond-agile/`, `governance/`, `integration/`, `regulatory/`, and `operational-templates/` — these are the additional normative and contextual artefacts that extend AEM. Do not score from memory of the manifesto — read the current files.
 - **Scope guard for cross-stack files.** Files under `governance/`, `integration/`, `regulatory/`, and `operational-templates/` are written for the wider agentic-governance stack and routinely reference IGM, AEnt-M, ASDLC, and APLC. When reading them, lift only the AEM-relevant content (AEM autonomy tiers, AEM evidence-bundle components, AEM Phase 1–6, AEM Definition of Done conditions, AEM Loop phases). Do not propagate IGM, AEnt-M, ASDLC, or APLC vocabulary, file paths, or coverage claims into the review output.
 - **Tracked-files-only rule.** Every source file referenced or read by an agent MUST be tracked by git on this branch. Do not read, cite, or reference files that appear in `git status` as untracked (`??`), files that have been deleted, files outside the repository, or files that exist only on disk. The authoritative list of in-scope source files is `git ls-files` for the manifesto repository; if a path is not in that list, it is not in scope.
 - Scores are 0–100. State the score, then state the evidence for and the evidence against separately.
@@ -252,7 +252,7 @@ This review system covers the Agentic Engineering Manifesto (AEM) **only**. The 
 - `intelligence-governance-manifesto/`
 - `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`
 - `agentic-governance-stack.md`, `agentic-governance-stack.html`
-- `manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`
+- `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`
 - `phase-assessment-checklist.md`, `phase-assessment-checklist.html`
 - `igm-aent-coherence-review.md`, `igm-aent-coherence-review.html`
 - Any file untracked by git on the current branch (verify with `git ls-files`).
