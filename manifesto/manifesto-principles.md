@@ -45,7 +45,7 @@ implementation order.
 - [manifesto-principles-02.md](manifesto-principles-02.md) — Specifications are living artifacts that evolve through steering
 - [manifesto-principles-03.md](manifesto-principles-03.md) — Architecture is defense-in-depth, not a document
 - [manifesto-principles-04.md](manifesto-principles-04.md) — Right-size the swarm to the task
-- [manifesto-principles-05.md](manifesto-principles-05.md) — Autonomy is a tiered budget, not a switch
+- [manifesto-principles-05.md](manifesto-principles-05.md) — Autonomy is a permission ceiling, not a switch
 - [manifesto-principles-06.md](manifesto-principles-06.md) — Knowledge and memory are distinct infrastructure
 - [manifesto-principles-07.md](manifesto-principles-07.md) — Context is engineered like code
 - [manifesto-principles-08.md](manifesto-principles-08.md) — Evaluations are the contract; proofs are a scale strategy

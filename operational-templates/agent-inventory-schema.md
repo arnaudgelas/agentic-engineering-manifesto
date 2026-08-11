@@ -33,7 +33,7 @@ Without a registered estate, no other manifesto control operates: composite-stat
 | `procurement_owner` | string | conditional | Required if any third-party / SaaS / foundation-model dependency. |
 | `dpo_owner` | string | conditional | Required if personal data processed. |
 | `security_owner` | string | yes | Named role responsible for AI-specific security (red-team, attack-surface, incident response). |
-| `autonomy_tier` | enum | yes | AEM Tier per `manifesto-principles.md`: `Tier 1` (Author) / `Tier 2` (Reviewer) / `Tier 3` (Approver) / `Tier 4` (Operate-within-envelope). |
+| `autonomy_tier` | enum | yes | AEM Tier per [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch): `Tier 1` (Observe) / `Tier 2` (Branch) / `Tier 3` (Commit) / `Tier 4` (Operate). |
 | `tier_4_envelope_id` | string | conditional | Required if `autonomy_tier = Tier 4`; matches the envelope approval document. |
 | `consequence_classes_served` | array of enum | yes | Subset of `[Low, Medium, High, Critical]` — every consequence class the agent operates in. |
 | `aentm_relocation_stage_per_class` | object | yes | For each `consequence_classes_served` entry, the AEnt-M relocation stage: `Full synchronous` / `Parallel run` / `Monitored relocation` / `Operational relocation`. |

@@ -25,15 +25,49 @@ was genuine.
 
 **Accountability at scale operates at the policy level, not the action level.**
 When agents process thousands of actions daily, per-action human review is
-neither feasible nor the right model. The resolution is a three-tier framework
+neither feasible nor the right model. The resolution is a four-tier framework
 applied per action class:
 
 | Action class | Human involvement | Accountability mechanism |
 | --- | --- | --- |
-| **Low-risk, reversible** (Tier 1, contained blast radius) | None per action; domain owner reviews statistical samples and trend dashboards | Automated evidence bundle; rollback ready; anomaly alert if pattern deviates |
+| **Propose-only, zero blast radius** (Tier 1) | Human reviews and approves each proposal before it is enacted (HITL); no autonomous action occurs | Proposal record with rationale; nothing executes without human approval |
 | **Medium-risk, governed** (Tier 2, branch + approval) | Human approves merge; does not review every line | Evidence bundle gates approval; trace available on demand |
 | **High-risk, production-impacting** (Tier 3) | Named human reviews evidence and accepts risk per change | Full evidence bundle required; no automated promotion |
 | **Policy-envelope autonomous** (Tier 4) | Human approves and owns the policy envelope; no per-action review; anomaly detection routes deviations to human | Control state record confirms each action fell within the approved envelope; governance observability surfaces drift; kill switch available and tested |
+
+**Answering "who authorized what, under what delegated authority" requires
+recorded identity and delegation state — not a mandated protocol.** For any
+Tier 2–4 action, the accountability chain must be reconstructable from
+recorded state, not reasoned about after the fact: which agent instance took
+the action, under which principal (the human or system of record the agent
+acts on behalf of) it was authorized, what authority was delegated to it
+(scope, action types, resource boundaries — matched to the granularity the
+tier requires), who issued that delegation, when it expires, and whether it
+has since been revoked. These are the properties an implementation must
+expose. AEM does not standardize the protocol stack that exposes them.
+OAuth/OIDC, SPIFFE, SCIM, and NGAC each solve a different piece of this
+problem (token issuance, workload identity, provisioning, policy-based
+access), the standards work for agentic delegation specifically is still in
+draft, and naming one now would freeze the manifesto to a stack likely to be
+superseded before it stabilizes. What is required, regardless of stack:
+
+1. **Agent instance** — a stable identifier for the specific agent that acted,
+   distinguishable from other instances of the same agent definition.
+2. **Principal** — the human or system of record the agent acted on behalf of.
+3. **Delegated authority** — the scope and ceiling of what that principal
+   authorized, expressed at the granularity the action's tier requires.
+4. **Issuer** — who or what granted the delegation.
+5. **Expiry** — a bounded validity window; standing authority with no expiry
+   is not delegation, it is impersonation.
+6. **Revocation state** — queryable at the time of the action, not only at the
+   time of issuance.
+
+Principle 10's revocation mechanism (bounded expiry, central revocation, a
+stated propagation bound) is how (5) and (6) are enforced at the security
+layer. This principle is what makes the resulting record answerable to
+accountability: an auditor asking "who authorized this action, and under
+what authority" must be able to answer from recorded state without
+interviewing anyone.
 
 A domain owner owns the risk policy, the autonomy tier ceiling, the escalation
 path, and the incident response protocol for their domain. They do not approve
@@ -55,7 +89,7 @@ go live. Clear responsibility is not bureaucracy; it is system safety.
 and own the outcome of a production agent, the system is ungoverned.*
 
 **The four oversight patterns define how accountability is exercised, not just
-claimed.** The three-tier action class table above maps action risk to human
+claimed.** The four-tier action class table above maps action risk to human
 involvement. The oversight patterns from P5 specify the structure of that
 involvement. Together they close the gap between "a named human is accountable"
 (a statement about who) and "accountability is actually being exercised" (a

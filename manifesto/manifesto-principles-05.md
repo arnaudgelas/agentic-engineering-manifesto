@@ -1,4 +1,5 @@
-## 5. Autonomy is a tiered budget, not a switch
+## 5. Autonomy is a permission ceiling, not a switch
+
 
 
 Grant permissions by risk tier, least privilege, and blast-radius limits. Agents
@@ -41,8 +42,9 @@ write, deploy to canary but not full rollout, modify test code but not
 application code, change configuration but not schema. Tiers define the
 governance level; permissions define the allowed actions within that level.
 
-*Minimum bar: If you cannot reconstruct an agent's reasoning at any tier, your
-autonomy model has failed.*
+*Minimum bar: If you cannot reconstruct an agent's decision-relevant observable
+evidence and causal execution history at any tier, your autonomy model has
+failed.*
 
 *Minimum bar (tool authorization): If an agent can invoke tools that have not
 been explicitly authorized for its operating tier, the tier model is nominal.

@@ -13,10 +13,10 @@
 ### 1.1 AEM Tier 4 — binary policy envelope
 
 > "Tier 4 — Operate. Agents execute autonomously within a human-approved, machine-enforced policy envelope — without per-change human approval. The human approves the envelope (allowed change classes, blast radius ceiling, required evidence schema, rollback conditions, kill-switch configuration) and retains accountability for its design."
-> — `manifesto-principles.md:203–209`
+> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)
 
 > "Tier 4 is not Tier 3 with the human removed. It is a governance model shift: accountability moves from the action level to the policy level. This only holds when the policy envelope is machine-enforced (not merely documented), control evaluations confirm the governance system itself works (P8), governance observability is instrumented and alerting on stale evidence and drift (P9), and rubber-stamping detection is active (P12)."
-> — `manifesto-principles.md:211–217`
+> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)
 
 AEM Tier 4 is **binary at the envelope level**: either an envelope has been approved (with all four prerequisites — machine enforcement, control evaluations, governance observability, rubber-stamping detection — operational) and the system is in Tier 4 within it, or it has not. AEM does not specify *what may differ inside* an envelope; it specifies what the envelope must contain and the prerequisites for entering Tier 4 at all.
 
@@ -40,8 +40,8 @@ The four stages (`agentic-enterprise-manifesto/companion-guide.md:96–101`):
 > "Governance does not disappear. Its enforcement locus migrates from synchronous pre-action gating to the substrate's own causal architecture. Explicit checks shift from universal requirement to risk-based monitoring and audit sampling — per action class, measurably, reversibly. If the substrate degrades, governance re-tightens for affected action classes."
 > — `intelligence-governance-manifesto/manifesto.md:117`
 
-> "When these principles operate together over time — when confidence is continuously earned, decay is actively governed, contradictions are preserved, and every engagement feeds back — something structural changes: the enforcement locus of governance migrates from synchronous pre-action gating to the substrate's own causal architecture. This is governance relocation. It is not a separate principle. It is the emergent consequence of the twelve principles working in concert on a deepening substrate."
-> — `intelligence-governance-manifesto/manifesto-principles.md:9`
+> "When the twelve principles operate together over time — when epistemic tier is continuously earned, decay is actively governed, contradictions are preserved, and every engagement feeds back — something structural changes: the enforcement locus of governance migrates from synchronous pre-action gating to the substrate's own causal architecture. This is governance relocation. It is not a separate principle. It is the emergent consequence of the twelve principles working in concert on a deepening substrate."
+> — `intelligence-governance-manifesto/manifesto-principles.md`, "the emergent consequence of the twelve principles working in concert"
 
 The IGM phrasing implies that *substrate depth* is what causes relocation. It is silent on (a) what other prerequisites apply and (b) who decides that depth is sufficient.
 
@@ -72,13 +72,24 @@ A system is **either** in a Tier 4 envelope (AEM) **or** it is not. If it is not
 
 **Operationally:** the AEM envelope is the *policy* (what change classes are permitted, what blast radius, what evidence schema, what rollback, what kill-switch). AEnt-M's four relocation stages are the *enforcement modality* per action class within that policy. An action class at AEnt-M Stage 1 (Full synchronous) inside a Tier 4 envelope still requires synchronous pre-action checking for that class; the envelope authorises Tier 4 *governance accountability* (envelope-level approval) but does not by itself remove synchronous enforcement for any individual class.
 
+**The assertion "this system is in a Tier 4 envelope" is a checkable claim, not a label.** Per `manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`, Tier 4 has four prerequisites, and per `manifesto/manifesto-principles-12.md` rubber-stamping detection is one of them. The assertion is falsifiable — and may be made — only if each prerequisite is recorded alongside it as a checkable condition, not merely declared satisfied:
+
+| Prerequisite | Recorded condition that makes it checkable |
+|---|---|
+| Machine-enforced policy envelope | Enforcement mechanism identifier (policy engine, config version) + evidence that it rejects an out-of-envelope action in a test or observed instance |
+| Control evaluations confirm the governance system works (P8) | Evaluation suite identifier, version, pass/fail result, and timestamp of most recent run |
+| Governance observability instrumented and alerting on stale evidence and drift (P9) | Monitoring system identifier, alert rule references, and timestamp of last confirmed-live alert test |
+| Rubber-stamping detection active (P12) | Detection mechanism identifier and timestamp of most recent detection-active check |
+
+A "Tier 4" label with no entry for one or more rows above is not a Tier 4 assertion — it is an unverified claim, and the system defaults to Tier 3 (per-change human approval) until the missing condition is recorded. This table is what the deployment-status disclosure in `manifesto/manifesto-principles-05.md` requires when a team asserts Tier 4 in practice; the worked example in §3 below instantiates it for the envelope parameters.
+
 ### Rule R2 — IGM substrate depth is necessary but not sufficient.
 
 Substrate depth (coverage, connectivity, currency — see `agentic-enterprise-manifesto/companion-guide.md:13–28`) is a precondition for advancing an action class beyond AEnt-M Stage 1. It is not sufficient on its own. The other necessary conditions are:
 
 - **Constraint legibility** (AEnt-M Initiative Condition 2; companion-guide.md:31–41) — institutional constraints are machine-reasonable, not document-buried.
 - **Demonstrated control equivalence** (AEnt-M P7; companion-guide.md:79–91) — decision quality stable or improved under substrate-resident governance.
-- **AEM Tier 4 prerequisites for the envelope** — machine enforcement, control evaluations passing, governance observability, rubber-stamping detection (`manifesto-principles.md:213–217`).
+- **AEM Tier 4 prerequisites for the envelope** — machine enforcement, control evaluations passing, governance observability, rubber-stamping detection ([`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)).
 - **Authority assignment** for the consequence class in question (AEnt-M P8) — a Workflow Owner, Decision Reviewer, Accountable Authority, or Dual Authority must be named *before* relocation can advance for that class.
 
 The IGM phrasing "emergent consequence of the twelve principles working in concert" must therefore be read as *necessary substrate emergence*, not *sufficient operational authorisation*. A deep substrate does not by itself authorise autonomous operation — even if every IGM principle is satisfied. AEM and AEnt-M prerequisites must also be met.
@@ -179,9 +190,9 @@ This is what "one Tier 4 envelope containing Operational, Monitored, and Full-Sy
 
 ### 4.1 Can a class within a Tier 4 envelope be at AEnt-M Stage 1 (Full synchronous)?
 
-**Yes.** AEnt-M Stage 1 is not the same as AEM Tier 3. A Stage-1 class inside a Tier 4 envelope has every action pre-checked synchronously, but the *governance accountability* for the envelope is still envelope-level (AEM Tier 4) and the human reviewer for that specific class is performing their pre-check inside an envelope that has been approved at the policy level. This is precisely the configuration shown in Class C of the worked example.
+**Yes.** AEnt-M Stage 1 is not the same as AEM Tier 3. A Stage-1 class inside a Tier 4 envelope has every action pre-checked synchronously, but the *governance accountability* for the envelope is still envelope-level (AEM Tier 4) and the human reviewer for that specific class is performing their pre-check inside an envelope that has been approved at the policy level — "approved" meaning the four prerequisite conditions in the R1 table above are recorded, not merely asserted. This is precisely the configuration shown in Class C of the worked example.
 
-A class operating *outside* any envelope (no Tier 4 envelope approved) at synchronous pre-check is at AEM Tier 3, not Tier 4 with Stage 1 relocation.
+A class operating *outside* any envelope (no Tier 4 envelope approved, i.e. one or more prerequisite conditions unrecorded) at synchronous pre-check is at AEM Tier 3, not Tier 4 with Stage 1 relocation.
 
 ### 4.2 What if the substrate is sufficiently deep but no envelope has been approved?
 
@@ -222,7 +233,7 @@ Advancement is not automatic. It is a governance decision recorded in the class 
 
 ## 5. What this note does *not* do
 
-- It does not redefine AEM Tier 4. It restates what is in `manifesto-principles.md:194–238` and explains how AEnt-M relocation fits inside it.
+- It does not redefine AEM Tier 4. It restates what is in [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) and explains how AEnt-M relocation fits inside it.
 - It does not replace AEnt-M's four-stage progression. It clarifies the dependency on AEM and IGM.
 - It does not specify the IGM substrate's required depth thresholds. Those are domain-specific (see `agentic-enterprise-manifesto/companion-guide.md:13–29` for the measurable proxies; calibration per domain is the domain owner's decision).
 - It does not address foundation-model-update governance during relocated operation. That is `governance/foundation-model-third-party-register.md` (W1.6, produced by another agent).
