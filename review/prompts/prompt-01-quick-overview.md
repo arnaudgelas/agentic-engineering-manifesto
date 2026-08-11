@@ -30,7 +30,7 @@ Read each of the following files end-to-end. These constitute the Agentic Engine
 **Core (mandatory — abort if missing):**
 - `manifesto/manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify"), the six-phase maturity model, and the evidence-backed deployable definition.
 - `manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md` — all twelve principles, their minimum bars, the four oversight patterns (HITL/HOTL/HOLL/EDL), and their sequencing dependencies.
-- `manifesto/manifesto-done.md` — the Agentic Definition of Done (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
+- `manifesto/manifesto-done.md` — the Agentic Definition of Done (Loop-Complete / Observable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
 - `glossary.md` — canonical term definitions.
 
 **Companion corpus (read each end-to-end):**
@@ -84,7 +84,7 @@ Read each of the following files end-to-end. These constitute the Agentic Engine
 - `operational-templates/risk-appetite-statement.md` — board-level AI risk appetite.
 - `operational-templates/slo-table.md` — consolidated SLO table including evidence freshness.
 - `operational-templates/decommissioning-checklist.md` — orderly retirement of agents.
-- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record (the ten provenance fields enumerated in `manifesto/manifesto-done.md`).
+- `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record (cross-reference against the eleven provenance fields enumerated in `manifesto/manifesto-done.md`, which now leads with **harness identity** per Principle 3/7 — the schema file is a secondary artefact and may lag the prose definition; score against the manifesto text, not the schema, if they diverge).
 - `operational-templates/control-state-record.json` — JSON Schema for the Control State Record (`manifesto/manifesto.md` What the Loop Produces).
 - `operational-templates/evidence-bundle.json` — JSON Schema for the Evidence Bundle envelope (`manifesto/manifesto-done.md`).
 
@@ -163,13 +163,14 @@ For each phase, the one-sentence assessment must contain BOTH an evidence-for cl
 
 Score each DoD condition 0–100 (integer) and provide a single-sentence assessment (≤ 50 words):
 
-- Shipped
+- Loop-Complete
 - Observable
 - Verified
 - Provable
 - Learned from
 - Governed
 - Economical
+- Within Service Envelope
 
 For each condition, the one-sentence assessment must contain BOTH an evidence-for clause (a specific [[FRAMEWORK]] artefact) AND an evidence-against clause (the specific gap against the DoD definition in `manifesto/manifesto-done.md`).
 
@@ -286,13 +287,14 @@ The Score column on the Total row is left blank. The Severity column on the Tota
 
 | Condition | Score | One-sentence assessment |
 |---|---|---|
-| Shipped | <score> | <one sentence with evidence-for and evidence-against, grounded in [[FRAMEWORK]] artefacts> |
+| Loop-Complete | <score> | <one sentence with evidence-for and evidence-against, grounded in [[FRAMEWORK]] artefacts> |
 | Observable | <score> | <one sentence with evidence-for and evidence-against> |
 | Verified | <score> | <one sentence with evidence-for and evidence-against> |
 | Provable | <score> | <one sentence with evidence-for and evidence-against> |
 | Learned from | <score> | <one sentence with evidence-for and evidence-against> |
 | Governed | <score> | <one sentence with evidence-for and evidence-against> |
 | Economical | <score> | <one sentence with evidence-for and evidence-against> |
+| Within Service Envelope | <score> | <one sentence with evidence-for and evidence-against> |
 
 ---
 
@@ -387,7 +389,7 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 6. Every major finding must map to a specific regulatory provision (article, paragraph, or rule number) from `[[DOMAIN_FILE]]` as it applies to [[ORGANIZATION]]. Generic regulation names are insufficient.
 7. Use date format YYYY-MM-DD wherever a date appears. The `Review date` line is the date the agent was invoked.
 8. When cross-referencing another part of the review within the output file, use canonical part numbers (e.g., "see Part 12"). Do not use file names or agent numbers in cross-references.
-9. **Out-of-scope corpus / tracked-files-only.** This review covers the Agentic Engineering Manifesto (AEM) only. Do not read, cite, or reference any file untracked by git on the current branch. Specifically the following are out of scope: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan.md`, `asdlc-plan.html`, `aplc-plan.md`, `aplc-plan.html`, `igm-aent-coherence-review.md`, and `igm-aent-coherence-review.html`. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not forward-propagate out-of-scope references from `[[DOMAIN_FILE]]` or from cross-stack files in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` — paraphrase to manifesto-equivalent terms.
+9. **Out-of-scope corpus / tracked-files-only.** This review covers the Agentic Engineering Manifesto (AEM) only. Do not read, cite, or reference any file untracked by git on the current branch. Specifically the following are out of scope: `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan.md`, `asdlc-plan.html`, `aplc-plan.md`, `aplc-plan.html`, `igm-aent-coherence-review.md`, and `igm-aent-coherence-review.html`. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. Do not forward-propagate out-of-scope references from `[[DOMAIN_FILE]]` or from cross-stack files in `governance/`, `integration/`, `regulatory/`, or `operational-templates/` — paraphrase to manifesto-equivalent terms. **Narrow exception:** `manifesto/manifesto-done.md`'s Loop-Complete condition and "Handoff to the Release Layer" section name ASDLC as AEM's own stated downstream boundary — quoting or citing that specific self-referential language when scoring the Loop-Complete condition is permitted (see `prompt.md`'s Out-of-scope-corpus exception) and is not a violation.
 10. The weighted calculation in the footnote must verify arithmetically. Check that `Σ(P{N}_score × decimal_weight)` equals the stated total before saving, and that the header `Overall Score` equals the table sum to one decimal place (or includes the rounding caveat sentence).
 11. The output MUST NOT contain any of the following soft-language tokens: "consider", "may", "could potentially", "it might be worth", "perhaps", "use judgement", "should ideally", "may want to", "appears to", "arguably", "seemingly". Use declarative statements. State what `[[FRAMEWORK]]` does or does not do at `[[FRAMEWORK_VERSION]]`. Do not state what `[[FRAMEWORK]]` will do, plans to do, or could do.
 12. This is a regulator-credible technical review, not a vendor blog post. Do not use marketing language ("robust", "best-in-class", "industry-leading"). Do not soften findings. Do not try to please. Score the framework as it is at HEAD.
@@ -408,14 +410,14 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 - [ ] Does every severity label in every principle row match the canonical thresholds defined in `prompt.md`?
 - [ ] Does every principle name in the Manifesto Principles Table and in the Principle-by-Principle Score Rationale headers use the SHORT-FORM names from the `prompt.md` weighting table (matching this prompt's Section 2.1 list verbatim)?
 - [ ] Are all dates in the output file in YYYY-MM-DD format, and does the `Review date` equal the date the agent was invoked?
-- [ ] Are there zero references to `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review` anywhere in the output file? Are all source files referenced in the output tracked by git on the current branch?
+- [ ] Are there zero references to `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review` anywhere in the output file (other than the permitted self-referential quote of `manifesto-done.md`'s own Loop-Complete/handoff boundary language)? Are all source files referenced in the output tracked by git on the current branch?
 - [ ] Have any soft-language tokens been removed? (Scan the output for: "consider", "may", "could potentially", "it might be worth", "perhaps", "use judgement", "should ideally", "may want to", "appears to", "arguably", "seemingly".)
 - [ ] Does every principle score paragraph contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does every principle score paragraph contain at least one verbatim quote (≤30 words, in backticks or double quotes) from a `[[FRAMEWORK]]` artefact with the file path stated?
 - [ ] Does every Loop phase row's one-sentence assessment contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does every DoD condition row's one-sentence assessment contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does the Agentic Loop Phases Table contain exactly nine rows in the canonical order (Specify, Design, Plan, Execute, Verify, Validate, Observe, Learn, Govern) and exactly three columns (Phase, Score, One-sentence assessment)?
-- [ ] Does the Agentic Definition of Done Table contain exactly seven rows in the canonical order (Shipped, Observable, Verified, Provable, Learned from, Governed, Economical) and exactly three columns (Condition, Score, One-sentence assessment)?
+- [ ] Does the Agentic Definition of Done Table contain exactly eight rows in the canonical order (Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope) and exactly three columns (Condition, Score, One-sentence assessment)?
 - [ ] Does the Framing Warning section contain exactly four subsections in this order: "What [[FRAMEWORK]] is", "What the manifesto's scope [[FRAMEWORK]] covers by design", "What is out of scope by design (scope gap vs. failure)", "Score interpretation warning"?
 - [ ] Does the Maturity Level header line name a specific phase (Phase 1–6) AND a sentence stating that the next phase's gate requirements are substantially unmet (naming the lowest unmet gate)?
 - [ ] Is the Maturity Phase Verdict bounded by the LOWEST unmet gate (not by the highest demonstrated feature), and does the body name that gate?

@@ -170,7 +170,7 @@ For each of the 15 domains below, produce a subsection with this fixed structure
 
 **Domain question.** How much freedom does the agent have?
 
-Map `[[FRAMEWORK]]`'s autonomy model to the **canonical AEM autonomy tiers** in the P5 shard (Tier 1 — Suggest; Tier 2 — Suggest+Verify; Tier 3 — Execute-with-approval; Tier 4 — Bounded autonomous). Cite the tier text verbatim.
+Map `[[FRAMEWORK]]`'s autonomy model to the **canonical AEM autonomy tiers** in the P5 shard (Tier 1 — Observe; Tier 2 — Branch; Tier 3 — Commit; Tier 4 — Operate). Cite the tier text verbatim.
 
 | Control | Description | Lifecycle gate |
 | --- | --- | --- |

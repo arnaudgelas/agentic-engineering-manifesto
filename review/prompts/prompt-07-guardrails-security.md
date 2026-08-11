@@ -31,7 +31,7 @@ Read all of the following before writing a single scored claim. Do not score fro
 
 2. **`manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md`** — read in full; key anchors for this review:
    - **P3** (Architecture is defence-in-depth): boundaries encoded as machine-enforced policies; deterministic wrappers around probabilistic AI; design for boundary crossing.
-   - **P9** (Observability covers reasoning): traces reconstruct *why* something happened; governance-state observability; prompt/response audit trails.
+   - **P9** (Observability covers reasoning): traces capture decision-relevant observable evidence and causal execution history so "why did this happen" can be answered from environment state — not from the model's own narration, which is an untrusted assertion until checked against what actually happened; governance-state observability; prompt/response audit trails.
    - **P10** (Assume emergence; engineer containment): threat model covers prompt injection, privilege escalation, data exfiltration, supply-chain attacks, and social engineering; treat every retrieval artefact and tool response as untrusted input. The Governance Failure Modes paragraph (evidence laundering, approval laundering, compliance theater, stale-control reliance, automated rubber-stamping, waiver accumulation) must be engineered against with the same discipline as security threats.
 
 3. **`manifesto/manifesto-done.md`** — read for:

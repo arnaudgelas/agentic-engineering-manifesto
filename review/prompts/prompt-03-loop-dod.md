@@ -21,7 +21,7 @@ Read the following before writing a single score. Do not score from memory or as
 
 **Manifesto corpus:**
 - `manifesto/manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify" — nine conditions before entry), and the Govern completion conditions.
-- `manifesto/manifesto-done.md` — for the seven Agentic DoD conditions (Shipped / Observable / Verified / Provable / Learned from / Governed / Economical), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
+- `manifesto/manifesto-done.md` — for the eight Agentic DoD conditions (Loop-Complete / Observable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
 - `manifesto/manifesto-principles.md` plus the matching `manifesto/manifesto-principles-0N.md` shard — for the four oversight patterns (HITL/HOTL/HOLL/EDL) that bear on the Govern phase and the Human Escalation Architecture sub-section.
 - **Evidence Quality Gate (apply throughout).** Every piece of evidence cited in Loop or DoD scoring must be Attributable (named agent/tool + named accountable human), Contemporaneous (recorded during the work, not reconstructed), Queryable (retrievable without heroic manual effort), and Bound-to-outcome (clearly linked to the change/decision/action). Apply this gate regardless of phase; evidence that fails the gate cannot raise a score.
 
@@ -65,7 +65,7 @@ After scoring all nine phases, identify cross-phase failure modes: where the loo
 
 ### 2.3 Agentic Definition of Done Assessment
 
-For each of the seven DoD conditions, in canonical order (Shipped, Observable, Verified, Provable, Learned from, Governed, Economical):
+For each of the eight DoD conditions, in canonical order (Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
 
 1. Re-read the condition definition in `manifesto/manifesto-done.md` before assessing.
 2. Quote verbatim, with the source file path, at least one passage from `manifesto/manifesto-done.md` that directly defines the bar for this condition.
@@ -76,7 +76,7 @@ For each of the seven DoD conditions, in canonical order (Shipped, Observable, V
 
 ### 2.4 DoD Hardening Test
 
-Describe a single concrete audit scenario (e.g., a regulator requests evidence post-incident). For each of the seven DoD conditions, state: (a) what evidence `[[FRAMEWORK]]` would produce, (b) what is missing, (c) Pass / Partial / Fail verdict. Conclude with overall pass/fail and the single largest evidence gap. Use the literal phrase "Hardening is complete." or "Hardening is not complete." in the closing sentence.
+Describe a single concrete audit scenario (e.g., a regulator requests evidence post-incident). For each of the eight DoD conditions, state: (a) what evidence `[[FRAMEWORK]]` would produce, (b) what is missing, (c) Pass / Partial / Fail verdict. Conclude with overall pass/fail and the single largest evidence gap. Use the literal phrase "Hardening is complete." or "Hardening is not complete." in the closing sentence.
 
 ### 2.5 Industry-Specific DoD Requirements
 
@@ -166,7 +166,7 @@ Four required sub-paragraphs, in this order, each labelled:
 
 #### DoD Condition Table
 
-A markdown table with exactly four columns and seven rows (in canonical order: Shipped, Observable, Verified, Provable, Learned from, Governed, Economical):
+A markdown table with exactly four columns and eight rows (in canonical order: Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
 
 ```
 | Condition | Score | Evidence For | Evidence Against |
@@ -178,7 +178,7 @@ One focused paragraph per condition (in the same order as the table). Each parag
 
 #### DoD Hardening Test
 
-Describe a single concrete audit scenario (e.g., a regulator requests evidence post-incident). For each of the seven DoD conditions, state: (a) what evidence `[[FRAMEWORK]]` would produce, (b) what is missing, (c) Pass / Partial / Fail verdict. Conclude with overall pass/fail and the single largest evidence gap. The closing sentence must be the literal phrase "Hardening is complete." or "Hardening is not complete."
+Describe a single concrete audit scenario (e.g., a regulator requests evidence post-incident). For each of the eight DoD conditions, state: (a) what evidence `[[FRAMEWORK]]` would produce, (b) what is missing, (c) Pass / Partial / Fail verdict. Conclude with overall pass/fail and the single largest evidence gap. The closing sentence must be the literal phrase "Hardening is complete." or "Hardening is not complete."
 
 #### Industry-Specific DoD Requirements
 
@@ -200,7 +200,7 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 - **Score consistency invariant.** Part 4 per-phase scores and Part 5 per-condition scores MUST equal the corresponding rows in agent 01's Part 1 tables. Agent 03 is the authoritative source for Loop and DoD scores. Agent 01 reads these files to populate Part 1. Agent 09 (merge) detects mismatches.
 - **Dates in YYYY-MM-DD format** everywhere a date appears.
 - **Cross-references use canonical part numbers** (e.g., "see Part 3", "see Part 12"). Do not use file names or agent numbers in cross-references within the output content.
-- **No references to out-of-scope corpora or untracked files.** Every source file cited MUST be tracked by git on the current branch. Do not read or cite `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`.
+- **No references to out-of-scope corpora or untracked files.** Every source file cited MUST be tracked by git on the current branch. Do not read or cite `asdlc/`, `aplc/`, `agentic-sdlc-handbook/`, `intelligence-governance-manifesto/`, `agentic-enterprise-manifesto/`, `agentic-enterprise.md`, `agentic-enterprise.html`, `agentic-governance-stack.md`, `agentic-governance-stack.html`, `manifesto/manifesto-evolution-plan.md`, `manifesto-evolution-plan.html`, `phase-assessment-checklist.md`, `phase-assessment-checklist.html`, `asdlc-plan*`, `aplc-plan*`, or `igm-aent-coherence-review*` anywhere in the output. The output MUST contain zero matches for the tokens `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, or `agentic-sdlc-handbook`. **Narrow exception:** the Loop-Complete DoD condition requires quoting `manifesto/manifesto-done.md`'s "Handoff to the Release Layer" section, which names ASDLC as AEM's own stated downstream boundary — that specific self-referential quote is permitted (see `prompt.md`'s Out-of-scope-corpus exception) and is not a violation.
 - **No forward-propagation from `[[DOMAIN_FILE]]` into framework claims.** Use `[[DOMAIN_FILE]]` only to establish regulatory obligations. Never assert that `[[FRAMEWORK]]` implements behaviour by extrapolating from `[[DOMAIN_FILE]]`.
 - **Banned soft language.** The output MUST NOT contain `consider`, `may`, `could potentially`, `perhaps`, or `use judgement`. Make claims with evidence or do not make them.
 - **Severity labels must use the canonical thresholds** defined in `prompt.md`.
@@ -212,21 +212,21 @@ ALWAYS required when `[[DOMAIN_FILE]]` specifies a regulated industry. For each 
 **Do not save the output file until every item below is confirmed.**
 
 - [ ] All 9 Agentic Loop phases are scored with an explicit whole-integer numeric score.
-- [ ] All 7 Agentic DoD conditions are scored with an explicit whole-integer numeric score.
+- [ ] All 8 Agentic DoD conditions are scored with an explicit whole-integer numeric score.
 - [ ] Each phase subsection contains exactly the three labelled paragraphs `**What [[FRAMEWORK]] does.**`, `**What the manifesto requires.**`, `**The gap.**`, in this order, with no bullets.
 - [ ] Each phase subsection contains at least one verbatim quote from a `[[FRAMEWORK]]` source file with its path.
 - [ ] Each phase subsection contains at least one verbatim quote from `manifesto/manifesto.md` with its path.
 - [ ] Each phase subsection cites a regulation by article or section number from `[[DOMAIN_FILE]]`.
 - [ ] Cross-Phase Failure Modes section contains at least 5 items, each in the mandated format `- **{Phase A}→{Phase B}:** ...`, each citing at least two `[[FRAMEWORK]]` artefacts and at least one regulation by article.
 - [ ] Human Escalation Architecture section contains all four labelled sub-paragraphs (Escalation triggers, Escalation path, Response time, Fitness for `[[ORGANIZATION]]` context) with at least four named regulatory obligations in the Fitness paragraph.
-- [ ] DoD Condition Table has exactly 4 columns (Condition | Score | Evidence For | Evidence Against) and 7 rows in canonical order.
+- [ ] DoD Condition Table has exactly 4 columns (Condition | Score | Evidence For | Evidence Against) and 8 rows in canonical order.
 - [ ] Each condition narrative contains at least one verbatim quote from a `[[FRAMEWORK]]` source file with its path and at least one verbatim quote from `manifesto/manifesto-done.md` with its path.
-- [ ] DoD Hardening Test names all 7 DoD conditions and assigns Pass / Partial / Fail to each, ending with the literal phrase "Hardening is complete." or "Hardening is not complete."
+- [ ] DoD Hardening Test names all 8 DoD conditions and assigns Pass / Partial / Fail to each, ending with the literal phrase "Hardening is complete." or "Hardening is not complete."
 - [ ] Industry-Specific DoD Requirements section is present and references named articles/sections from `[[DOMAIN_FILE]]`.
 - [ ] Part 4 per-phase scores and Part 5 per-condition scores match the corresponding rows of agent 01's Part 1 tables (or this file is treated as authoritative and agent 01 will reconcile).
 - [ ] All dates are in YYYY-MM-DD format.
 - [ ] No remaining `[[...]]` placeholders appear in the output.
-- [ ] No out-of-scope-corpus references appear anywhere in the output (zero matches for `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review`). Every cited source file is tracked by git on the current branch.
+- [ ] No out-of-scope-corpus references appear anywhere in the output (zero matches for `ASDLC`, `APLC`, `IGM`, `AEnt-M`, `AEnt_M`, `intelligence-governance-manifesto`, `agentic-enterprise-manifesto`, `agentic-enterprise`, `agentic-governance-stack`, `manifesto-evolution-plan`, `phase-assessment-checklist`, `asdlc/`, `aplc/`, `agentic-sdlc-handbook`, `asdlc-plan`, `aplc-plan`, or `igm-aent-coherence-review`), other than the permitted self-referential quote of `manifesto-done.md`'s own Loop-Complete/handoff boundary language. Every cited source file is tracked by git on the current branch.
 - [ ] No banned soft language (`consider`, `may`, `could potentially`, `perhaps`, `use judgement`) appears.
 - [ ] Header metadata block uses exactly the labels `Framework`, `Client context`, `Regulatory overlay`, `Reviewer date`, `Source artefacts read` and lists every source artefact actually read.
 - [ ] Every score states evidence for and evidence against separately.
