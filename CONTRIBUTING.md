@@ -48,6 +48,31 @@ For typos and small clarity fixes, a pull request without a prior issue is fine.
 - Minimum bars must be testable: a team should be able to read a minimum bar and determine whether they meet it.
 - Keep the document self-contained. External links for further reading are fine; external dependencies for comprehension are not.
 
+## Citation Verification Procedure
+
+Every citation, numeric claim, or absence/fabrication claim ("no source supports X") added to a tracked `.md` file must be independently verified before it ships. This procedure is mandatory for all pull requests that add or modify a citation, and it is a required step on the release checklist wherever one exists for this repository.
+
+**The generator-verifier split.** The person or process that produced a citation (wrote the claim, drafted the reference, or generated it with an LLM) may never be the one who resolves and verifies it. A second, independent pass — a different contributor, reviewer, or verification agent that did not generate the original text — must re-resolve the citation against the primary source before it is accepted. A self-check by the author does not satisfy this requirement.
+
+**What the verification pass must record.** The verifier resolves the citation against its canonical source and records, at minimum:
+
+- the source `file:line` making the claim,
+- the cited metadata (title, author, date, URL, etc.) as originally stated,
+- the resolved metadata as confirmed against the primary source,
+- the canonical URL,
+- a retrieval timestamp,
+- an archive or hash anchor where feasible,
+- the **full retrieved passage** supporting or contradicting the claim — not a single sentence,
+- a verdict from a fixed vocabulary (e.g., `clean`, `contested`, `superseded`, `fabricated`, `unresolved`),
+- a confidence level,
+- the generator's identity and the verifier's identity (must differ).
+
+These fields follow the claim-ledger schema defined under `evidence/` (see the remediation plan's T1.1). Every citation added or changed by a PR must have a corresponding ledger row before merge.
+
+**Full-passage rule.** A single retrieved sentence is not proof of a claim, and it is never proof of absence. "This standard does not mention X" or "no source supports Y" must not ship on the strength of a partial excerpt. The verifier must perform a full-text search over the complete document — and, where a source has multiple extant versions (e.g., preprint revisions, superseded standards), over **every** extant version — before an absence or fabrication verdict is recorded. A citation whose supporting passage has not been captured in full does not pass verification.
+
+**Consequence of failing this pass.** A citation that has not been through an independent resolve-and-quote pass, or whose supporting passage is not fully recorded, must not merge. Reviewers should block PRs on missing or incomplete ledger rows the same way they block PRs on missing tests.
+
 ## Review Process
 
 All changes go through pull request review. Expect that:

@@ -1,0 +1,19 @@
+# Allowlist for .github/scripts/check-numeric-claim-citations.mjs.
+#
+# This file is currently EMPTY of entries by design: the checker runs warn-only
+# (see the workflow at .github/workflows/numeric-claim-citations.yml and the
+# header comment in the script itself) precisely because the claim ledger
+# (evidence/claim-ledger.jsonl) is not yet populated. Nothing should be
+# allowlisted here yet: an allowlist entry is a claim that has been
+# individually reviewed and judged acceptable to ship without a
+# citation/ledger row, and no such review has happened in this session.
+#
+# Format (one entry per line, once entries are added):
+#   path/to/file.md:LINE   # short justification + reviewer + date
+#
+# Do not add entries as a way to silence noise before the underlying claim has
+# actually been checked — that defeats the point of this check. Once the
+# ledger is populated and this job moves toward enforcing mode, populate this
+# file only for claims that a human/verifier has confirmed are
+# non-numeric-in-substance (e.g. a version number, not a statistic) or are
+# already covered by a ledger row this script's heuristics failed to detect.

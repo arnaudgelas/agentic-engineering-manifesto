@@ -1,0 +1,44 @@
+name: Cross-Reference Anchors
+
+# ENFORCING CI job for cross-reference anchors.
+#
+# What this does: fails the build when any file:line or file#heading
+# cross-reference anchor in tracked .md files does not resolve — dead target
+# file, out-of-range line number, unknown heading slug, or (when the citation
+# carries a trailing quoted phrase) a quote that isn't actually present at
+# the cited location. See .github/scripts/check-cross-reference-anchors.mjs
+# for the full anchor grammar and resolution rules.
+#
+# Unlike the numeric-claim citations job, this job is enforcing, not
+# warn-only: cross-reference anchor repair across the corpus is already done,
+# so this doesn't depend on an unpopulated claim ledger.
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - ".github/scripts/check-cross-reference-anchors.mjs"
+      - ".github/workflows/anchor-cross-references.yml"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - ".github/scripts/check-cross-reference-anchors.mjs"
+      - ".github/workflows/anchor-cross-references.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-cross-reference-anchors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify cross-reference anchors resolve
+        run: node .github/scripts/check-cross-reference-anchors.mjs

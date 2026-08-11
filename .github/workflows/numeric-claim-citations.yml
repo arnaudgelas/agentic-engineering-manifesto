@@ -1,0 +1,62 @@
+name: Numeric Claim Citations (warn-only)
+
+# WARN-ONLY CI job for numeric-claim citations.
+#
+# What this does: flags numeric claims in tracked .md files that have no
+# citation, link, or claim-ledger reference (see evidence/claim-ledger-schema.md)
+# within the same or adjacent lines.
+#
+# Why this is warn-only and NOT enforcing:
+#   - This depends on populating the claim ledger (beyond-agile/sources.md's
+#     ~60 entries, plus the regulatory/domains corpus). That population pass
+#     has not run yet — evidence/claim-ledger.jsonl currently contains one
+#     worked example row, not a populated ledger.
+#   - Flipping this job to fail the build before the ledger exists would fail
+#     on nearly every tracked file, which is noise, not signal: it would not
+#     tell a contributor whether a flagged claim is actually uncited or
+#     whether the ledger row for it simply hasn't been written yet.
+#   - Do not remove the `continue-on-error: true` below, and do not change the
+#     checker script's exit behavior, until the ledger is populated across the
+#     corpus and that gate has been revisited.
+#
+# When the ledger is populated: populate evidence/citation-check-allowlist.txt
+# for any claims deliberately left uncited with a stated reason, drop
+# `continue-on-error: true` here, and update the checker script's exit code to
+# fail on unallowlisted findings.
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - ".github/scripts/check-numeric-claim-citations.mjs"
+      - ".github/workflows/numeric-claim-citations.yml"
+      - "evidence/citation-check-allowlist.txt"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - ".github/scripts/check-numeric-claim-citations.mjs"
+      - ".github/workflows/numeric-claim-citations.yml"
+      - "evidence/citation-check-allowlist.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-numeric-claim-citations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check numeric claims for adjacent citations (warn-only)
+        # continue-on-error keeps this job non-blocking regardless of the
+        # script's own exit code. Belt-and-braces with the script's own
+        # `process.exit(0)` (see .github/scripts/check-numeric-claim-citations.mjs) —
+        # both must change together when this moves to enforcing mode.
+        continue-on-error: true
+        run: node .github/scripts/check-numeric-claim-citations.mjs
