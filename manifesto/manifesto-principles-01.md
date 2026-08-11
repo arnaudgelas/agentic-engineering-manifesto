@@ -3,7 +3,7 @@
 
 Progress is measured by the cycle **Outcome → Evidence → Learning** — not by
 tokens generated, tasks dispatched, or agents spawned. An agent that says "done"
-has proven nothing. A change is done only when it is shipped, observable,
+has proven nothing. A change is done only when it is loop-complete, observable,
 verified, validated, and learned from.
 
 Four distinct claims must hold before "done" is true:
