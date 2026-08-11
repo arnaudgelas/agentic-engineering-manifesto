@@ -12,7 +12,7 @@
 
 Columns map to the four governance dimensions:
 
-- **IGM authority** — Semantic / Assertion / Inference / Revision (per IGM P6, `intelligence-governance-manifesto/manifesto-principles.md:73–82`).
+- **IGM authority** — Semantic / Assertion / Inference / Revision (per IGM P6, [`intelligence-governance-manifesto/manifesto-principles.md#principle-6-four-authorities-govern-the-graph`](../intelligence-governance-manifesto/manifesto-principles.md#principle-6-four-authorities-govern-the-graph)).
 - **AEnt-M consequence-class role** — Workflow Owner / Decision Reviewer / Accountable Authority / Dual Authority (per AEnt-M P8 + companion-guide.md:124–137).
 - **ASDLC steward** — system steward, release manager, accountable human, security function lead, compliance function lead (per `asdlc/release-governance.md`, `asdlc/maintenance-governance.md`, `asdlc/waiver-governance.md`).
 - **APLC product manager** — product owner, named accountable human, governance authority, evaluation team lead (per `aplc/aplc.md`, `aplc/aplc-guide.md`).
@@ -127,17 +127,17 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
-| Decides | C (substrate-state attestation: deep-enough? Curate active? authorities staffed?) Revision authority | C Accountable Authority for the highest-consequence class in the proposed envelope | **D** ASDLC system steward + accountable human (envelope owner per AEM `manifesto-principles.md:204`) | C APLC governance authority (review of envelope vs APLC Stage 4/5 conformity) |
+| Decides | C (substrate-state attestation: deep-enough? Curate active? authorities staffed?) Revision authority | C Accountable Authority for the highest-consequence class in the proposed envelope | **D** ASDLC system steward + accountable human (envelope owner per AEM [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)) | C APLC governance authority (review of envelope vs APLC Stage 4/5 conformity) |
 | Consulted | — | — | C security function lead, FinOps owner | C product owner for each agent product inside the envelope |
 | Informed | I all four IGM authorities | I all consequence-class roles for classes inside the envelope | I release manager | — |
-| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per `manifesto-principles.md:213–217` | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `governance/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
+| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `governance/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
 | Escalation | If any prerequisite is missing, D is blocked; escalation is to fix the prerequisite, not to override | — | — | — |
 
 #### B4. Tier 4 envelope withdrawal (emergency)
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
-| Decides | I | I | **D** any of: ASDLC system steward, accountable human (envelope owner), security function lead, governance authority — all have unilateral kill-switch authority per `manifesto-principles.md:206` | I product owner |
+| Decides | I | I | **D** any of: ASDLC system steward, accountable human (envelope owner), security function lead, governance authority — all have unilateral kill-switch authority per [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) ("kill-switch configuration") | I product owner |
 | Effect | All classes inside the envelope drop to Tier 3 synchronous gating immediately | — | — | — |
 | Post-event | Mandatory governance authority review within 5 business days; envelope re-approval requires fresh demonstration of all four prerequisites + reason for withdrawal addressed | — | — | — |
 
@@ -231,7 +231,7 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
 | Decides | I | **D** Accountable Authority (per AEM P12 minimum bar — raise automation barriers, lower autonomy tiers) | **D** (jointly) ASDLC system steward — operational realisation of tier reduction | I product owner |
-| Triggers | Override rate ≈ 0% on complex cases; reviewer agreement >95% sustained; review latency below plausible minimum (per AEM `manifesto-principles.md:716–724`) | — | — | — |
+| Triggers | Override rate ≈ 0% on complex cases; reviewer agreement >95% sustained; review latency below plausible minimum (per AEM [`manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "accountability diffusion") | — | — | — |
 | Effect | Tier reduction for affected classes; envelope status reviewed; if envelope was Tier 4 with rubber-stamping detection failing, envelope auto-withdraws (per AEM Tier 4 prerequisites) | — | — | — |
 
 #### D4. Governance-overhead-exceeds-value condition (AEM P11 / AEnt-M P11 economics)
@@ -239,7 +239,7 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
 | Decides | C Revision authority (substrate-burden attestation) | **D** Accountable Authority + governance authority | **D** (jointly) FinOps owner + system steward | C product owner |
-| Triggers | Governance overhead per outcome > value per outcome over rolling window (per AEM `manifesto-principles.md:631–633`) | — | — | — |
+| Triggers | Governance overhead per outcome > value per outcome over rolling window (per AEM [`manifesto-principles-11.md#11-optimize-the-economics-of-intelligence`](../manifesto/manifesto-principles-11.md#11-optimize-the-economics-of-intelligence), "when governance overhead exceeds the value of the work, that is a signal to simplify") | — | — | — |
 | Response | Simplify governance — not add more (per AEM P11). Possible actions: collapse adjacent gates, reduce evaluation frequency, narrow waiver categories, deprecate redundant authorities | — | — | — |
 
 #### D5. Domain-graph integrity attack (claim poisoning, provenance spoofing, indirect prompt injection — per W1.3 / B3)

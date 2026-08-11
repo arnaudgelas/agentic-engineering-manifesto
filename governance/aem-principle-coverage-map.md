@@ -19,7 +19,7 @@
 
 ### AEM Principle 1 — Outcomes are the unit of work
 
-Source: `manifesto-principles.md:30–67`. Minimum bar: deployment + instrumentation + verification + validation.
+Source: [`manifesto-principles-01.md`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work). Minimum bar: deployment + instrumentation + verification + validation.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -30,7 +30,7 @@ Source: `manifesto-principles.md:30–67`. Minimum bar: deployment + instrumenta
 
 ### AEM Principle 2 — Specifications are living artifacts that evolve through steering
 
-Source: `manifesto-principles.md:71–109`. Minimum bar: versioned, reviewable, machine-readable; specification convergence test.
+Source: [`manifesto-principles-02.md`](../manifesto/manifesto-principles-02.md#2-specifications-are-living-artifacts-that-evolve-through-steering). Minimum bar: versioned, reviewable, machine-readable; specification convergence test.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -41,7 +41,7 @@ Source: `manifesto-principles.md:71–109`. Minimum bar: versioned, reviewable, 
 
 ### AEM Principle 3 — Architecture is defense-in-depth, not a document
 
-Source: `manifesto-principles.md:113–135`. Minimum bar: machine-enforced policies; defense-in-depth across structural, semantic, and behavioural layers.
+Source: [`manifesto-principles-03.md`](../manifesto/manifesto-principles-03.md#3-architecture-is-defense-in-depth-not-a-document). Minimum bar: machine-enforced policies; defense-in-depth across structural, semantic, and behavioural layers.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -52,7 +52,7 @@ Source: `manifesto-principles.md:113–135`. Minimum bar: machine-enforced polic
 
 ### AEM Principle 4 — Right-size the swarm to the task
 
-Source: `manifesto-principles.md:139–181`. Minimum bar: typed/versioned/reconciled shared state; orchestrator tier containment; single commit path; conflict resolution.
+Source: [`manifesto-principles-04.md`](../manifesto/manifesto-principles-04.md#4-right-size-the-swarm-to-the-task). Minimum bar: typed/versioned/reconciled shared state; orchestrator tier containment; single commit path; conflict resolution.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -63,7 +63,7 @@ Source: `manifesto-principles.md:139–181`. Minimum bar: typed/versioned/reconc
 
 ### AEM Principle 5 — Autonomy is a tiered budget, not a switch
 
-Source: `manifesto-principles.md:185–353`. Minimum bar: tier authorisation; tool authorisation; Tier 4 prerequisites; oversight pattern (HITL / HOTL / HOLL / EDL); blast-radius assessment.
+Source: [`manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch). Minimum bar: tier authorisation; tool authorisation; Tier 4 prerequisites; oversight pattern (HITL / HOTL / HOLL / EDL); blast-radius assessment.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -74,7 +74,7 @@ Source: `manifesto-principles.md:185–353`. Minimum bar: tier authorisation; to
 
 ### AEM Principle 6 — Knowledge and memory are distinct infrastructure
 
-Source: `manifesto-principles.md:357–410`. Minimum bar: memory expiration, rollback, provenance; revalidation against current architecture.
+Source: [`manifesto-principles-06.md`](../manifesto/manifesto-principles-06.md#6-knowledge-and-memory-are-distinct-infrastructure). Minimum bar: memory expiration, rollback, provenance; revalidation against current architecture.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -85,7 +85,7 @@ Source: `manifesto-principles.md:357–410`. Minimum bar: memory expiration, rol
 
 ### AEM Principle 7 — Context is engineered like code
 
-Source: `manifesto-principles.md:414–432`. Minimum bar: retrieval performance + context quality (no stale embeddings, no semantic precision failures, no authority-weighting errors).
+Source: [`manifesto-principles-07.md`](../manifesto/manifesto-principles-07.md#7-context-is-engineered-like-code). Minimum bar: retrieval performance + context quality (no stale embeddings, no semantic precision failures, no authority-weighting errors).
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -96,7 +96,7 @@ Source: `manifesto-principles.md:414–432`. Minimum bar: retrieval performance 
 
 ### AEM Principle 8 — Evaluations are the contract; proofs are a scale strategy
 
-Source: `manifesto-principles.md:436–492`. Minimum bar: regression cases; verification ≠ validation ≠ independent validation; governance evaluations.
+Source: [`manifesto-principles-08.md`](../manifesto/manifesto-principles-08.md#8-evaluations-are-the-contract-proofs-are-a-scale-strategy). Minimum bar: regression cases; verification ≠ validation ≠ independent validation; governance evaluations.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -107,7 +107,7 @@ Source: `manifesto-principles.md:436–492`. Minimum bar: regression cases; veri
 
 ### AEM Principle 9 — Observability and interoperability cover reasoning, not just uptime
 
-Source: `manifesto-principles.md:496–532`. Minimum bar: traces sufficient to answer "why did this happen"; governance-state observability.
+Source: [`manifesto-principles-09.md`](../manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime). Minimum bar: traces sufficient to answer "why did this happen"; governance-state observability.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -118,7 +118,7 @@ Source: `manifesto-principles.md:496–532`. Minimum bar: traces sufficient to a
 
 ### AEM Principle 10 — Assume emergence; engineer containment
 
-Source: `manifesto-principles.md:536–617`. Minimum bar: chaos-tested + threat-modelled (prompt injection, privilege escalation, exfiltration, supply chain, social engineering); governance failure modes (evidence laundering, approval laundering, compliance theatre, stale-control reliance, automated rubber-stamping, waiver accumulation).
+Source: [`manifesto-principles-10.md`](../manifesto/manifesto-principles-10.md#10-assume-emergence-engineer-containment). Minimum bar: chaos-tested + threat-modelled (prompt injection, privilege escalation, exfiltration, supply chain, social engineering); governance failure modes (evidence laundering, approval laundering, compliance theatre, stale-control reliance, automated rubber-stamping, waiver accumulation).
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -129,7 +129,7 @@ Source: `manifesto-principles.md:536–617`. Minimum bar: chaos-tested + threat-
 
 ### AEM Principle 11 — Optimize the economics of intelligence
 
-Source: `manifesto-principles.md:621–648`. Minimum bar: model choice is runtime decision; total cost of correctness; governance overhead vs value.
+Source: [`manifesto-principles-11.md`](../manifesto/manifesto-principles-11.md#11-optimize-the-economics-of-intelligence). Minimum bar: model choice is runtime decision; total cost of correctness; governance overhead vs value.
 
 | | IGM | AEnt-M |
 |---|---|---|
@@ -140,7 +140,7 @@ Source: `manifesto-principles.md:621–648`. Minimum bar: model choice is runtim
 
 ### AEM Principle 12 — Accountability requires visibility
 
-Source: `manifesto-principles.md:651–760`. Minimum bar: named human; visibility into reasoning; oversight-adequacy metrics; agents may not accept residual risk / approve production exposure / waive controls.
+Source: [`manifesto-principles-12.md`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility). Minimum bar: named human; visibility into reasoning; oversight-adequacy metrics; agents may not accept residual risk / approve production exposure / waive controls.
 
 | | IGM | AEnt-M |
 |---|---|---|

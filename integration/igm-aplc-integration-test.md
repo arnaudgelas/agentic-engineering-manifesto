@@ -171,7 +171,7 @@ The bundle, per the unified schema, contains all of:
 
 ### Cross-references
 
-- `manifesto-principles.md` AEM P8 (evaluations) — the behavioral evaluation portfolio extends AEM P8 layered evaluations.
+- [`manifesto/manifesto-principles-08.md`](../manifesto/manifesto-principles-08.md#8-evaluations-are-the-contract-proofs-are-a-scale-strategy) AEM P8 (evaluations) — the behavioral evaluation portfolio extends AEM P8 layered evaluations.
 - AEnt-M companion-guide P5 (the three governance schemas validated in red-team).
 - IGM P13 (validation events) — every Authoritative-tier claim used has a recorded validation event in the bundle.
 

@@ -21,7 +21,7 @@ The rule is conjunctive (∧), not disjunctive (∨), and not a min over a numer
 ### 1.1 The three gates, formally
 
 **AEM_gate(*a*)** — the AEM autonomy-tier permission gate. Returns *pass* if and only if:
-- The system has been approved to operate at an autonomy tier sufficient for the action's class (per AEM `manifesto-principles.md:194–238`).
+- The system has been approved to operate at an autonomy tier sufficient for the action's class (per AEM [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)).
 - All AEM minimum bars hold for the system at that tier (tool authorisation, tier containment, Tier 4 prerequisites if applicable).
 - The action falls within the tier's permitted operations (e.g., a Tier 2 system cannot autonomously merge to main).
 - For Tier 4: the action is within the approved policy envelope.
@@ -215,7 +215,7 @@ Short-circuit on first block minimises evaluation cost.
 - `governance/evidence-bundle-schema.md` — what gate evaluations produce as bundle records.
 - `governance/integrated-audit-trail.md` — how a gate evaluation appears in a regulator walkthrough.
 - `governance/phase-level-matrix.md` — which AEM Phase × IGM Maturity Level × AEnt-M Phase combinations make this composition rule operationally meaningful.
-- `manifesto-principles.md:194–238` (AEM P5) — the AEM tier model.
+- [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) (AEM P5) — the AEM tier model.
 - `intelligence-governance-manifesto/companion-guide.md:60–69` (IGM confidence-to-action) — the IGM threshold table.
 - `agentic-enterprise-manifesto/companion-guide.md:131–137` (AEnt-M consequence-class accountability) — the AEnt-M role model.
 

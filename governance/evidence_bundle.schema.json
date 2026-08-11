@@ -17,6 +17,1007 @@
     "aentm_components": { "$ref": "#/$defs/aentm_components" },
     "cross_references": { "$ref": "#/$defs/cross_references" }
   },
+  "allOf": [
+    {
+      "$comment": "Required-by-tier matrix (tier-1 x medium) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "medium"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-1"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-1 x high) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "high"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-1"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "memory_updates",
+              "rollback_plan"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-1 x critical) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "critical"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-1"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-2 x low) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "low"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-2"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-2 x medium) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "medium"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-2"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-2 x high) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "high"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-2"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-2 x critical) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "critical"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-2"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-3 x low) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "low"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-3"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-3 x medium) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "medium"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-3"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-3 x high) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "high"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-3"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-3 x critical) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "critical"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-3"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-4 x low) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "low"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-4"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "relocation_stage_at_action",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-4 x medium) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "medium"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-4"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "relocation_stage_at_action",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-4 x high) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "high"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-4"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "relocation_stage_at_action",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    },
+    {
+      "$comment": "Required-by-tier matrix (tier-4 x critical) - governance/evidence-bundle-schema.md section 5.",
+      "if": {
+        "properties": {
+          "bundle_metadata": {
+            "properties": {
+              "consequence_class": {
+                "const": "critical"
+              },
+              "system_under_release": {
+                "properties": {
+                  "autonomy_tier": {
+                    "const": "tier-4"
+                  }
+                },
+                "required": [
+                  "autonomy_tier"
+                ]
+              }
+            },
+            "required": [
+              "consequence_class",
+              "system_under_release"
+            ]
+          }
+        },
+        "required": [
+          "bundle_metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "bundle_metadata": {
+            "required": [
+              "bundle_signature"
+            ]
+          },
+          "aem_components": {
+            "required": [
+              "control_state_record",
+              "deployment_ids",
+              "epistemic_tier_labels",
+              "memory_updates",
+              "rollback_plan",
+              "sbom",
+              "threat_model"
+            ]
+          },
+          "igm_components": {
+            "required": [
+              "contradiction_handling_decisions",
+              "decay_state_attestation",
+              "four_authorities_state",
+              "intelligence_claims_snapshot",
+              "provenance_chain"
+            ]
+          },
+          "aentm_components": {
+            "required": [
+              "epistemic_circuit_breaker_state",
+              "initiative_authorisation_record",
+              "regulatory_source_chain",
+              "relocation_stage_at_action",
+              "response_class_at_runtime"
+            ]
+          }
+        },
+        "required": [
+          "igm_components"
+        ]
+      }
+    }
+  ],
   "$defs": {
     "uuid": {
       "type": "string",
@@ -160,6 +1161,7 @@
         "diffs",
         "policy_check_outputs",
         "rollback_plan",
+        "orchestration_topology_manifest",
         "evidence_freshness_attestation",
         "bundle_integrity_attestation"
       ],
@@ -316,6 +1318,94 @@
             "policy_constraints_active": { "type": "array", "items": { "type": "string" } }
           }
         },
+        "orchestration_topology_manifest": {
+          "type": "object",
+          "required": ["topology_id", "topology_version", "topology_hash", "nodes", "edges"],
+          "properties": {
+            "topology_id": { "type": "string" },
+            "topology_version": { "type": "string" },
+            "topology_hash": { "$ref": "#/$defs/hex_hash_sha256" },
+            "nodes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["node_id", "node_type"],
+                "properties": {
+                  "node_id": { "type": "string" },
+                  "node_type": { "type": "string", "enum": ["agent", "tool", "human-gate", "evaluator"] }
+                }
+              }
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["edge_id", "from_node", "to_node"],
+                "properties": {
+                  "edge_id": { "type": "string" },
+                  "from_node": { "type": "string" },
+                  "to_node": { "type": "string" },
+                  "edge_type": { "type": "string" },
+                  "routing_predicate": { "type": "string" }
+                }
+              }
+            },
+            "state_schema_ref": { "type": "string" },
+            "retry_idempotency_policy": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "edge_id": { "type": "string" },
+                  "retry_policy": { "type": "string" },
+                  "idempotency_key_scope": { "type": "string" }
+                }
+              }
+            },
+            "failure_compensation_handling": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "failure_mode": { "type": "string" },
+                  "compensation_action": { "type": "string" }
+                }
+              }
+            },
+            "human_gates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "gate_id": { "type": "string" },
+                  "node_id": { "type": "string" },
+                  "trigger_condition": { "type": "string" }
+                }
+              }
+            },
+            "evaluator_hooks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "hook_id": { "type": "string" },
+                  "node_id": { "type": "string" },
+                  "gates": { "type": "string" }
+                }
+              }
+            },
+            "allowed_mutation_scope": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node_id": { "type": "string" },
+                  "scope": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
         "bundle_integrity_attestation": {
           "type": "object",
           "required": ["hash_algorithm", "hash_value", "signed_by", "signed_at"],
@@ -389,6 +1479,7 @@
     "igm_components": {
       "type": "object",
       "additionalProperties": false,
+      "required": [],
       "properties": {
         "intelligence_claims_snapshot": {
           "type": "array",
