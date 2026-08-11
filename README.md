@@ -23,10 +23,10 @@ matters for agentic work.*
 In agentic workflows, generation, verification, and deployment run at machine
 speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
 review-first pipelines — become bottlenecks and blind spots. Early empirical
-evidence, including the SWE-CI benchmark showing regression rates above 75%
-per CI iteration across 18 models (arXiv:2603.03823), confirms that agentic
-systems require purpose-built engineering discipline, not retrofitted Agile
-ceremonies.
+evidence, including the SWE-CI benchmark, where most of 18 evaluated models
+achieved zero-regression rates below 0.25 across 100 long-horizon maintenance
+tasks (arXiv:2603.03823v1), confirms that agentic systems require
+purpose-built engineering discipline, not retrofitted Agile ceremonies.
 
 This repository provides a complete alternative: the case for change, the
 manifesto itself, a companion implementation guide, an organizational adoption
@@ -62,7 +62,7 @@ The Agentic Engineering Manifesto, ASDLC, and APLC are a layered set, but each i
 | --- | --- |
 | **An AI agent already in market or about to be**, and you cannot describe its behavior, prove its drift, or govern foundation-model updates that change it without warning | **[APLC](https://github.com/arnaudgelas/aplc)** — the Agentic Product Lifecycle. Governs the agent product itself: behavioral specification, evaluation, drift, foundation-model update governance, regulated retirement. |
 | **Software delivery by teams using AI agents to write code**, where the inner loop runs faster than your demand validation, release governance, or operational readiness can keep up | **[ASDLC](https://github.com/arnaudgelas/asdlc)** — the Agentic Software Delivery Lifecycle. Governs the four-layer delivery lifecycle around agent-built software: demand, execution, release, operations. |
-| **Engineering practice itself** — how humans steer intent, how agents execute within governed boundaries, what verified outcomes look like inside the inner loop | **[Manifesto](https://github.com/arnaudgelas/agentic-engineering-manifesto)** — the Agentic Engineering Manifesto. Defines the inner engineering loop that both APLC Stage 3 and ASDLC Layer 2 reference. |
+| **Engineering practice itself** — how humans steer intent, how agents execute within governed boundaries, what verified outcomes look like across a full specify-to-govern cycle | **[Manifesto](https://github.com/arnaudgelas/agentic-engineering-manifesto)** — the Agentic Engineering Manifesto. Governs the outer engineering loop (Specify → Design → Plan → Execute → Verify → Validate → Observe → Learn → Govern) that both APLC Stage 3 and ASDLC Layer 2 reference — the nine phases run at task/change cadence (minutes to days), not the seconds-to-minutes generate-test-patch cadence of an agent's inner execution loop, which AEM does not govern. |
 
 Each framework is independently useful. Together they form a complete governance stack for organisations dealing with both agent-built software and agent products in market.
 
@@ -132,7 +132,7 @@ The loop is the system. The principles are how you keep it honest.
   in values, practices, and conceptual coverage.
 - [beyond-agile/landscape.md](beyond-agile/landscape.md): Critical comparison
   of competing manifestos, standards, and frameworks.
-- [beyond-agile/sources.md](beyond-agile/sources.md): Twenty-three cited
+- [beyond-agile/sources.md](beyond-agile/sources.md): Sixty cited
   sources including academic benchmarks (SWE-CI, Feldt et al.), industry
   frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives.
 
@@ -164,6 +164,13 @@ The loop is the system. The principles are how you keep it honest.
 - [companion/reference.md](companion/reference.md): Failure modes and skill
   requirements.
 
+#### Where AEM stands on current terminology
+
+- [companion/vocabulary-bridge.md](companion/vocabulary-bridge.md): Maps
+  current practitioner terms (orchestration, harness, graph, and others) to
+  the existing AEM construct that already covers the underlying concern —
+  non-normative, one citable answer per term.
+
 ### 4) Adoption Playbook (Organizational Transition)
 
 - [adoption/playbook.md](adoption/playbook.md): Playbook overview and new way
@@ -183,7 +190,7 @@ The loop is the system. The principles are how you keep it honest.
 
 - [domains/README.md](domains/README.md): Navigation and disclaimers.
 - [domains/aviation.md](domains/aviation.md): DO-178C, DO-330, DO-333,
-  ARP 4754A.
+  ARP4754B.
 - [domains/medical-devices.md](domains/medical-devices.md): IEC 62304,
   ISO 14971, ISO 13485, FDA SaMD.
 - [domains/pharma.md](domains/pharma.md): GAMP 5, CSA, 21 CFR Part 11, ICH.
@@ -198,4 +205,5 @@ The loop is the system. The principles are how you keep it honest.
 This is a living document. Contributions are welcome — see
 [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on proposing changes,
 submitting worked patterns, or reporting issues. See [AUTHORS.md](AUTHORS.md)
-for contributors. See [LICENSE](LICENSE) for terms.
+for contributors. See [LICENSE](LICENSE) for terms. See [errata.md](errata.md)
+for a dated record of corrections made to previously published content.

@@ -154,7 +154,10 @@ that selects and compacts context, the tools that retrieve it, and the runtime
 that preserves or constrains state across sessions. In practice, treating
 "context engineering" as a standalone discipline without connecting it to the
 harness and runtime is how teams end up with excellent retrieval feeding
-poorly-governed execution loops.
+poorly-governed execution loops. For where AEM stands on "harness engineering"
+specifically — what it maps to, what it does not claim, and the evidence
+behind that position — see the [harness engineering row](vocabulary-bridge.md#harness-engineering)
+of the vocabulary bridge.
 
 As of early 2026, four open interface patterns are crystallizing around this
 stack:

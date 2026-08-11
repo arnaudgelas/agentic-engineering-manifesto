@@ -68,6 +68,7 @@ const sections = [
   { id: "companion-patterns",     file: "companion/patterns.md",     title: "Patterns",            group: "implementation" },
   { id: "companion-re-framework", file: "companion/re-framework.md", title: "RE Framework",        group: "implementation" },
   { id: "companion-reference",    file: "companion/reference.md",    title: "Reference",           group: "implementation" },
+  { id: "companion-vocabulary-bridge", file: "companion/vocabulary-bridge.md", title: "Vocabulary Bridge", group: "implementation" },
 
   // Organizational Adoption
   { id: "adoption-playbook", file: "adoption/playbook.md",        title: "Playbook",             group: "adoption"        },

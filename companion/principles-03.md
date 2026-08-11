@@ -1,5 +1,7 @@
 ## Principle 3 — Architecture: Extended Guidance
 
+*Status: **NON-NORMATIVE** — explanatory/supporting material; it does not itself impose requirements. The AEM normative core is `manifesto/*.md`.*
+
 
 *See Principle 3 in the manifesto for the core statement and minimum bar.*
 
@@ -49,5 +51,15 @@ must capture dependency provenance.
 See [companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
 for the cross-domain analysis and [domains/](domains/README.md) for
 domain-specific classification requirements.
+
+### On "harness engineering" and "graph engineering"
+
+Principle 3 already requires the harness identity — including the
+orchestration topology (node types, typed edges, routing predicates, retry
+and human-gate handling) — to be versioned, hashed, and re-evaluated on
+change. If you have encountered "harness engineering" or "graph engineering"
+as terms in vendor or practitioner material, see the
+[Vocabulary Bridge](vocabulary-bridge.md#harness-engineering) for how AEM
+positions those terms against this construct.
 
 ---
