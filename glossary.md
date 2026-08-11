@@ -141,10 +141,13 @@ enters them and when items are pruned or archived.
 
 **Definition of Done (DoD)**
 The set of conditions a change must satisfy before it is considered complete.
-The agentic DoD requires a change to be: shipped, observable, verified, provable
-(when risk requires it), learned from, governed, and economical. The DoD is
-phase-calibrated — the bar rises with phase maturity and risk level.
-See [manifesto-done.md](manifesto-done.md).
+The agentic DoD requires a change to be: Loop-Complete, Observable, Verified,
+Provable (when risk requires it), Learned from, Governed, Economical, and
+Within Service Envelope. "Loop-Complete" — not "shipped": AEM's loop ends at a
+release candidate with a complete evidence bundle; shipment, production
+deployment, and live operations are governed by the downstream release and
+operations layers, not by this DoD. The DoD is phase-calibrated — the bar
+rises with phase maturity and risk level. See [manifesto-done.md](manifesto-done.md).
 
 **Demand backlog**
 The managed queue of validated business needs awaiting specification and loop
@@ -186,10 +189,12 @@ evaluations that pass while production incidents go unpredicted. See
 [Detecting Evaluation Theater](companion-principles.md#detecting-evaluation-theater).
 
 **Evidence bundle**
-The artifact package attached to a completed change, required for every automated
-merge at Phase 3 and above. Minimum contents: passing evaluation results, diff,
-trace IDs for the relevant agent session, and policy check outputs. At Phase 4+,
-evidence bundles also include formal proof artifacts for critical workflows.
+The artifact package attached to a completed change, required for every
+automated merge (`manifesto-done.md`). Always-required contents: passing
+evaluation reports with timestamps, trace IDs, diffs showing exactly what
+changed, and policy check outputs. Not yet in place at Phase 1-2, where no
+evaluation suite or evidence bundle exists (P5); at Phase 4+, evidence bundles
+also include formal proof artifacts for critical workflows.
 
 ---
 
@@ -265,10 +270,30 @@ normatively in P4. See *P4 — Swarm Topology* in
 
 **Phase** (adoption phase)
 One of six maturity levels describing an organization's adoption of agentic
-engineering, from Phase 1 (first structured agent use) through Phase 6
-(recursive self-improvement with full governance infrastructure). Phases are
-descriptive, not prescriptive; movement between phases is governed by go/no-go
-evidence gates, not calendar schedules.
+engineering: Phase 1 (Guided Exploration — unstructured, single-prompt use),
+Phase 2 (Assisted Delivery — AI as autocomplete), Phase 3 (Agentic
+Prototyping — single-session autonomous execution, limited verification),
+Phase 4 (Agentic Delivery — autonomy tiers defined, evaluations gate changes),
+Phase 5 (Agentic Engineering — structured autonomy at scale, the full Agentic
+Loop operating continuously), and Phase 6 (Adaptive Systems — self-improving
+infrastructure within governed boundaries; a frontier, not a destination — see
+the [Phase 6 Self-Modification Gate](companion-frameworks.md#the-phase-6-self-modification-gate)).
+Maturity is domain-specific, not organization-wide: a team can be at a
+different phase in different domains. Phases are descriptive, not
+prescriptive; movement between phases is governed by go/no-go evidence gates,
+not calendar schedules. See [Companion Frameworks](companion-frameworks.md#the-agentic-maturity-spectrum).
+
+**Policy envelope**
+The human-approved, machine-enforced set of ceilings (allowed change classes,
+blast radius ceiling, required conditions) within which a Tier 4 agent
+operates without per-action human review. The domain owner approves the
+envelope and retains full accountability for actions taken within it;
+approval requires passing control evaluations and active governance
+observability (P5, P12). This is the current term for what earlier drafts
+called an "autonomy budget" — that name implied allocation/consumption/
+exhaustion/renewal semantics the mechanism does not have, so it was renamed
+to describe what it actually is: a ceiling, not a budget. See also *Autonomy
+tier*, Tier 4.
 
 **Prompt injection**
 An adversarial technique in which malicious input causes an agent to override

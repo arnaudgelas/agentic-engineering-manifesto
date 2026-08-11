@@ -60,6 +60,16 @@ It is enforced constraints, verified outcomes, persistent learning, and human
 accountability — applied to systems that include AI agents as first-class
 participants in the engineering process.
 
+**Evidentiary stage.** This manifesto is an **operable specification**: a
+coherent, testable set of principles, minimum bars, and mechanisms that a team
+can adopt, practice against, and audit today. It is **not yet a validated
+discipline** — that status requires independent teams applying it across
+multiple organizations and reporting outcomes, including failures, and that
+body of evidence does not yet exist at scale. Read every principle and
+threshold accordingly: as a claim to be tested and revised, not a proven
+result. See [On evidence](#how-to-read-this-manifesto) for how individual
+claims are labeled and how that will change as evidence accumulates.
+
 ---
 
 ## The Agentic Loop
@@ -338,9 +348,11 @@ document describes the floor, these documents describe the walls and ceiling.
 that standard to our own claims: empirically supported claims carry citations;
 threshold values are labeled as practitioner heuristics; deductive arguments
 are stated as arguments so they can be evaluated independently. Some claims in
-an emerging discipline necessarily precede the empirical grounding they ideally
-require. Treat those claims as hypotheses and revise them as evidence
-accumulates. That is what a living specification means in practice.
+an operable specification that is not yet a validated discipline (see
+[Evidentiary stage](#what-this-is-and-what-it-is-not) above) necessarily
+precede the empirical grounding they ideally require. Treat those claims as
+hypotheses and revise them as evidence accumulates. That is what a living
+specification means in practice.
 
 Concretely: numeric thresholds in this document — for example, the 80%
 first-pass verification rate and three-iteration specification stability gate
@@ -363,9 +375,9 @@ emergence and containment, economics, and accountability.
 
 ### [The Agentic Definition of Done](manifesto-done.md)
 
-What "done" means in agentic engineering: shipped, observable, verified,
-provable, learned from, governed, and economical. Phase-calibrated, not
-all-or-nothing.
+What "done" means in agentic engineering: Loop-Complete, observable, verified,
+provable, learned from, governed, economical, and within service envelope.
+Phase-calibrated, not all-or-nothing.
 
 ### [Glossary](glossary.md)
 
