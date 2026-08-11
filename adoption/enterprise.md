@@ -171,8 +171,8 @@ Enterprise adoption costs fall into three categories:
 
 The investment case rests on three measurable returns:
 
-1. **Defect reduction.** The SWE-CI benchmark data suggests that governed agentic pipelines (Phase 4+) reduce regression rates by 40-60% compared to ungoverned agentic use (Phase 2-3). Measure: escaped defect rate pre/post adoption.
-2. **Cost optimisation.** Economics-aware routing ([Principle 11](manifesto-principles.md)) reduces inference costs by routing routine tasks to cheaper models. Organisations without routing typically overspend on inference by 30-50%. Measure: inference cost per verified outcome.
+1. **Defect reduction.** Governed agentic pipelines (Phase 4+) are expected to lower escaped-defect rates compared to ungoverned agentic use (Phase 2-3), because verification gates catch regressions before they reach production. Measure: escaped defect rate pre/post adoption.
+2. **Cost optimisation.** Economics-aware routing ([Principle 11](manifesto-principles.md)) reduces inference costs by routing routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Measure: inference cost per verified outcome.
 3. **Compliance cost avoidance.** Evidence bundles and autonomy tiers reduce the cost of audit evidence production and regulatory response. Measure: audit preparation time pre/post adoption.
 
 The break-even point for most enterprises: 2-3 quarters after Wave 1 completion, driven primarily by defect reduction and cost optimisation.

@@ -65,41 +65,83 @@ the metric, not the goal.*
 At this phase, agents can propose contract refinements and invariant updates,
 but proof systems and governance gates must validate changes before adoption.
 
+### The Phase 6 Self-Modification Gate
+
+Treating Phase 6 as a frontier does not mean leaving "self-improving" as an
+unexamined phrase. A self-change — to the harness (execution loop, hooks,
+skills, tool registry, permissions, routing policy, evaluator configuration)
+or to a specification the system maintains itself — may not be promoted to
+production unless the evidence bundle for that promotion contains all of the
+following:
+
+1. **Pre-change harness identity.** The versioned harness identity (Principle 3,
+   Principle 7; Definition of Done's agentic provenance record) in effect
+   immediately before the proposed change.
+2. **Post-change harness identity.** The resulting versioned harness identity
+   if the change is promoted. Because harness identity is a single composite
+   value, any material change to one of its components — execution loop, tool
+   registry, permissions, routing policy, evaluator version, and so on —
+   produces a new identity value, not a sub-version of the old one.
+3. **The proposed change**, stated as a diff against the pre-change
+   configuration or specification.
+4. **Predicted effect.** The change's stated expectation, recorded before
+   evaluation results are seen, so predicted and actual effect can be compared
+   after the fact rather than rationalized together.
+5. **Evaluation delta.** The difference in evaluation-suite results between the
+   pre-change and post-change harness identities, produced under Principle 8's
+   verifier-independence minimum bar: a hermetic promotion executor the system
+   cannot invoke or configure, immutable versioned holdouts it cannot read or
+   write, and the evaluator's own identity recorded alongside the result.
+6. **Rollback path.** A tested procedure — not merely documented — that reverts
+   to the pre-change harness identity within a defined window, per the
+   Hardening DoD.
+7. **Promotion authority.** A named human, organizationally distinct from
+   whoever or whatever authored the change, who reviews conditions 1–6 and
+   authorizes or rejects promotion. This is independent validation (Principle
+   8) applied to the harness itself, not to a feature.
+8. **Protected verifier result.** The pass/fail outcome of the post-change
+   harness identity against the evaluation suite, produced by the same
+   protected harness described in condition 5 — never a result asserted by the
+   system that just changed itself.
+
+**The invariant this gate exists to enforce: self-change invalidates the
+evidence that authorised the previous self.** An evaluation run that passed
+under the pre-change harness identity does not carry over to the post-change
+harness identity — this is the same rule the agentic provenance record already
+states for any harness-identity change. Concretely, a system cannot promote
+its own successor by citing the evaluation results that justified the version
+it is about to replace; those results were produced by, and only certify, the
+harness that no longer exists once the change lands. Every promotion re-runs
+the full evaluation suite against the new identity, under the protected
+verifier, before promotion authority signs off — there is no shortcut that
+reuses pre-change evidence for a post-change harness.
+
+This gate makes Phase 6 self-modification auditable. It does not make Phase 6
+routine, required, or safe by default — see the frontier caveat above.
+
 Every phase transition has distinct challenges. Phase 2→3 is where the
 supervision paradox first hits. Phase 3→4 is where governance overhead must
 justify itself. Phase 4→5 requires organizational change, not just tooling.
 See the [Adoption Playbook](adoption-playbook.md) for detailed transition
 guidance for each phase, role changes, and pilot design.
 
-### Empirical Phase Profiles: Evidence from SWE-CI
+### Long-Horizon Failure Signal: What SWE-CI Motivates
 
-The SWE-CI benchmark (arXiv:2603.03823) provides the first empirical evidence
-for what each maturity phase looks like in measurable agent performance. SWE-CI
-evaluates agents across 100 tasks spanning an average of 233 days and 71 commits
-of real-world development history, using an Architect–Programmer dual-agent CI
-loop.
+The SWE-CI benchmark (arXiv:2603.03823) evaluates agents across 100 tasks
+spanning an average of 233 days and 71 commits of real-world development
+history, using an Architect–Programmer dual-agent CI loop. It was not designed
+to test AEM's five-phase model, and no independent validation maps its metrics
+onto phase boundaries — it is not empirical evidence for the phase model.
 
-- **Phase 1-2 performance**: Agents at these phases fail SWE-CI entirely. They
-  lack the iterative capability to sustain a CI loop and cannot integrate
-  feedback across cycles.
-- **Phase 3 performance**: Agents pass early iterations but accumulate
-  regressions at a high rate. Most models achieve a zero-regression rate below
-  0.25 — matching Phase 3's canonical failure mode: "autonomy without
-  verification." The agent produces plausible output but erodes the codebase
-  iteration by iteration.
-- **Phase 4 performance**: Agents show basic CI-loop competence with evidence
-  per iteration but struggle with cross-iteration learning. Regression rates
-  improve but do not plateau. Governance catches individual failures but does
-  not address the structural regression pattern.
-- **Phase 5+ performance**: Only top-performing models exhibit Phase 5
-  characteristics: specification convergence across iterations, declining
-  regression rates over time, and improving EvoScore. This matches Phase 5's
-  description: the full Agentic Loop operating as a continuous system.
-
-These profiles are descriptive, not normative — SWE-CI tests a specific task
-type (long-term code maintenance), and phase maturity is domain-specific. But
-they provide a concrete, measurable calibration point for teams self-assessing
-their maturity.
+What SWE-CI does show is that long-horizon, autonomous agent loops accumulate
+regressions at a high rate without continuous verification: most frontier
+models achieve a zero-regression rate below 0.25 across CI iterations,
+meaning regressions appear in at least three of every four cycles for most
+agents. That pattern is consistent with the manifesto's general claim that
+autonomy without verification degrades quality over time, and it motivates
+stronger, continuous verification as systems move toward greater autonomy —
+but it should not be read as validating, or mapping onto, any specific phase
+of AEM's maturity model.
 
 Use this benchmark family as a calibration aid, not as a universal scorecard.
 Public agent benchmarks age quickly, can be contaminated, and tend to attract
@@ -312,7 +354,7 @@ Tier 1-2; SIL 1 → full tier range with evidence controls.
 For detailed mappings between the manifesto and specific regulatory frameworks,
 see the [Domain Regulatory Alignment](domains/README.md) documents:
 
-- [Aviation](domains/aviation.md) — DO-178C, DO-330, DO-333, ARP 4754A
+- [Aviation](domains/aviation.md) — DO-178C, DO-330, DO-333, ARP4754B
 - [Medical Devices](domains/medical-devices.md) — IEC 62304, ISO 14971,
   ISO 13485, FDA SaMD
 - [Pharma / Life Sciences](domains/pharma.md) — GAMP 5, CSA, 21 CFR Part 11,

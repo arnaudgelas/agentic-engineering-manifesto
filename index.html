@@ -97,10 +97,10 @@ code. That world no longer exists.</strong></p>
 <p>In agentic workflows, generation, verification, and deployment run at machine
 speed. Legacy ceremonies — sprint cadence, velocity scoring, manual
 review-first pipelines — become bottlenecks and blind spots. Early empirical
-evidence, including the SWE-CI benchmark showing regression rates above 75%
-per CI iteration across 18 models (arXiv:2603.03823), confirms that agentic
-systems require purpose-built engineering discipline, not retrofitted Agile
-ceremonies.</p>
+evidence, including the SWE-CI benchmark, where most of 18 evaluated models
+achieved zero-regression rates below 0.25 across 100 long-horizon maintenance
+tasks (arXiv:2603.03823v1), confirms that agentic systems require
+purpose-built engineering discipline, not retrofitted Agile ceremonies.</p>
 <p>This repository provides a complete alternative: the case for change, the
 manifesto itself, a companion implementation guide, an organizational adoption
 playbook, and domain-specific regulatory alignment for six industries.</p>
@@ -233,7 +233,7 @@ insufficient for agentic systems.</li>
 in values, practices, and conceptual coverage.</li>
 <li><a href="#beyond-landscape">beyond-agile/landscape.md</a>: Critical comparison
 of competing manifestos, standards, and frameworks.</li>
-<li><a href="#beyond-sources">beyond-agile/sources.md</a>: Twenty-three cited
+<li><a href="#beyond-sources">beyond-agile/sources.md</a>: Sixty cited
 sources including academic benchmarks (SWE-CI, Feldt et al.), industry
 frameworks (AWS, P3 Group, ISO 5338), and practitioner perspectives.</li>
 </ul>
@@ -294,7 +294,8 @@ DO-326A, NIST AI RMF.</li>
 <p>This is a living document. Contributions are welcome — see
 <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for guidelines on proposing changes,
 submitting worked patterns, or reporting issues. See <a href="AUTHORS.html">AUTHORS.md</a>
-for contributors. See <a href="LICENSE">LICENSE</a> for terms.</p>
+for contributors. See <a href="LICENSE">LICENSE</a> for terms. See <a href="errata.html">errata.md</a>
+for a dated record of corrections made to previously published content.</p>
 </div></section><section id="beyond" class="doc-section" data-group="beyond"><div class="section-inner"><p><em>The Agile Manifesto was written for a world where humans wrote all the code. That world no longer exists.</em></p>
 <hr>
 <h2 id="the-agile-manifesto-is-twenty-five-years-old-and-it-shows">The Agile Manifesto Is Twenty-Five Years Old — and It Shows</h2><p>In February 2001, seventeen software developers gathered at a ski lodge in Snowbird, Utah, and wrote a document that would reshape an industry. The Agile Manifesto was a rebellion against waterfall bureaucracy, and it won. Its four values — individuals and interactions, working software, customer collaboration, responding to change — liberated a generation of engineers from Gantt charts and heavyweight process.</p>
@@ -334,7 +335,7 @@ to-have optimization. It becomes part of the control plane for learning systems
 <hr>
 <h2 id="the-urgency">The Urgency</h2><p>Current industry forecasts and long-horizon maintenance benchmarks suggest that agentic delivery fails when teams force probabilistic systems through legacy SDLC workflows <sup><a href="#ref-8">8</a></sup><sup><a href="#ref-22">22</a></sup>. The signal is strongest for maintenance-heavy, multi-iteration work, not every software activity. Methodology mismatch is one failure mode among several; cost, governance, tool quality, and organizational incentives also matter.</p>
 <p>The failure is not only technical — it is organizational. Enterprises are trying to adopt agentic technology using Agile governance structures designed for human teams. The Sprint Review is the governance checkpoint, but who reviews agent output at machine speed? The Scrum Master is the process guardian, but who governs a recursive feedback loop? The Product Owner is the requirements authority, but who owns the specification that constrains agent behavior across a swarm? These roles do not map to agentic engineering, and the P3 Group&#39;s observation that organizations face a choice between evolutionary and revolutionary adoption <sup><a href="#ref-5">5</a></sup> understates the challenge: most organizations are attempting neither, clinging instead to methodologies calibrated for a world that no longer exists.</p>
-<p>The industry is repeating the pattern it followed with every previous paradigm shift: rushing to adopt the new technology while clinging to the old methodology. The two-week sprint does not accommodate machine-speed execution. Story points do not measure probabilistic output. Human code review does not scale to agent-generated volume. Standups do not synchronize digital swarms. Early empirical evidence confirms the scale of the problem: the SWE-CI benchmark, testing 18 models across 100 tasks spanning an average of 233 days of real development history, found that most agents introduce at least one regression in three out of four CI iterations — many of them structural regressions that pass current tests but degrade the codebase&#39;s capacity for future change <sup><a href="#ref-22">22</a></sup>.</p>
+<p>The industry is repeating the pattern it followed with every previous paradigm shift: rushing to adopt the new technology while clinging to the old methodology. The two-week sprint does not accommodate machine-speed execution. Story points do not measure probabilistic output. Human code review does not scale to agent-generated volume. Standups do not synchronize digital swarms. Early empirical evidence confirms the scale of the problem: the SWE-CI benchmark, testing 18 models across 100 tasks spanning an average of 233 days of real development history, found that most evaluated models achieve zero-regression rates below 0.25 — many of the regressions they do introduce are structural, passing current tests but degrading the codebase&#39;s capacity for future change <sup><a href="#ref-22">22</a></sup> (arXiv:2603.03823v1).</p>
 <p>The question is not whether the Agile Manifesto needs a successor. The question is whether the successor will emerge from principled engineering or from the wreckage of failed projects.</p>
 <p>The window is closing. Every month without a coherent engineering discipline for agentic systems is another month of &quot;vibe coding&quot; masquerading as engineering, another month of hallucination loops shipping to production, another month of technical debt accruing at machine speed. The organizations that adopt a rigorous agentic engineering manifesto now — with verified outcomes, governed autonomy, curated memory, defense-in-depth architecture, economics-aware routing, formal verification where risk warrants it, and human accountability at every tier — will define the next era of software. The rest risk becoming Gartner&#39;s statistic.</p>
 <p><em>Exploration is a phase. Engineering is a discipline.</em></p>
@@ -368,10 +369,10 @@ frameworks get right and miss. All references link to
 <p>The Agile Manifesto has no vocabulary for emergence, containment, hallucination loops, memory poisoning, or probability-compounding across multi-agent systems <sup><a href="#ref-4">4</a></sup><sup><a href="#ref-13">13</a></sup>. These are not edge cases — they are routine operating conditions in agentic engineering.</p>
 <p>It is worth noting that even current enterprise guidance — including McKinsey&#39;s <em>AI Transformation Manifesto</em> — reproduces this gap at the strategic level. McKinsey&#39;s theme on agentic engineering (#11 of their twelve themes) describes the challenge as &quot;ingesting unstructured data, extending AI platforms with agentic capabilities, automating guardrails and controls.&quot; This describes Agile-era configuration management dressed in agentic vocabulary. It has no concept of blast radius, swarm topology, correlated failure modes, or the verification/validation distinction that separates &quot;the agent said it worked&quot; from &quot;we can prove it worked.&quot; The absence of non-determinism vocabulary in enterprise AI guidance is not a strategic oversight — it is a symptom of the same conceptual gap that limits Agile: the framework was designed for human executors, and the vocabulary has not caught up to probabilistic ones.</p>
 <h3 id="9-no-concept-of-systems-that-learn-from-their-own-execution">9. No Concept of Systems That Learn from Their Own Execution</h3><p>In agentic systems, this may be the most consequential failure — the one that generates all the others. Agile&#39;s feedback loop is the retrospective: humans reflecting on what happened, deciding what to change, implementing changes in the next sprint. That loop runs on a two-week cadence because it requires human cognition. The feedback is soft — &quot;we should try shorter sprints,&quot; &quot;let&#39;s refine our definition of done.&quot;</p>
-<p>Agentic systems have a qualitatively different feedback loop. Errors, logs, successes, and failures feed back into the system in real-time. The system does not wait for a retrospective. It does not require human reflection to adapt. The feedback is hard, unambiguous signals: passing tests, zero runtime errors, validated API responses, converging evaluation metrics <sup><a href="#ref-2">2</a></sup><sup><a href="#ref-17">17</a></sup>. This is not merely faster iteration — it is a different kind of learning. Reasoning consolidation cycles can compress chains of inference using reinforcement-learning algorithms in seconds. Meta-cognitive layers enable systems to monitor and modify their own operational parameters. Self-optimizing architectures adapt query and retrieval strategies in microseconds based on access patterns <sup><a href="#ref-19">19</a></sup>.</p>
+<p>Agentic systems have a qualitatively different feedback loop. Errors, logs, successes, and failures feed back into the system in real-time. The system does not wait for a retrospective. It does not require human reflection to adapt. The feedback is hard, unambiguous signals: passing tests, zero runtime errors, validated API responses, converging evaluation metrics <sup><a href="#ref-2">2</a></sup><sup><a href="#ref-17">17</a></sup>. This is not merely faster iteration — it is a different kind of learning. Reasoning consolidation cycles can compress chains of inference using reinforcement-learning algorithms in seconds. Self-optimizing architectures adapt query and retrieval strategies in microseconds based on access patterns <sup><a href="#ref-19">19</a></sup>.</p>
 <p>The Agile Manifesto has no concept of a system that improves its own process without human intervention. It assumes the learner is human, the cadence is weekly, and the feedback requires interpretation. In agentic systems, the learner is the system itself, the cadence is continuous, and the feedback is machine-readable. This is not an incremental improvement over retrospectives — it is a paradigm shift that Agile&#39;s vocabulary cannot express <sup><a href="#ref-2">2</a></sup>.</p>
 <h3 id="10-no-treatment-of-memory-as-infrastructure">10. No Treatment of Memory as Infrastructure</h3><p>In agentic systems, Agile&#39;s concept of institutional memory — tribal knowledge and documentation that nobody reads — is fatally insufficient. There is no Agile practice for curating, governing, or versioning what the organization <em>knows</em> — let alone what it has <em>learned</em>. In an agentic system, this gap is fatal.</p>
-<p>An agent without persistent memory — whether internalized or externalized through retrieval layers, episodic stores, or vector databases — must be reconstructed from scratch for every task. Some architectures externalize memory entirely, separating the agent from its state. But the memory still exists as infrastructure; it still requires curation, governance, and retrieval engineering. The question is not whether memory is needed but where it lives and who governs it. In practice, the distinction between a stateless tool and a memory-augmented agent is the ability to accumulate, curate, and act on context across invocations <sup><a href="#ref-19">19</a></sup>. And memory itself is not monolithic: knowledge (what was given) and learned memory (what was discovered through execution) are distinct infrastructure with different curation, governance, and retrieval requirements <sup><a href="#ref-17">17</a></sup>.</p>
+<p>An agent without persistent memory — whether internalized or externalized through retrieval layers or episodic stores — must be reconstructed from scratch for every task. Some architectures externalize memory entirely, separating the agent from its state. But the memory still exists as infrastructure; it still requires curation, governance, and retrieval engineering. The question is not whether memory is needed but where it lives and who governs it. In practice, the distinction between a stateless tool and a memory-augmented agent is the ability to accumulate, curate, and act on context across invocations <sup><a href="#ref-19">19</a></sup>. And memory itself is not monolithic: knowledge (what was given) and learned memory (what was discovered through execution) are distinct infrastructure with different curation, governance, and retrieval requirements <sup><a href="#ref-17">17</a></sup>.</p>
 <p>Context windows are finite. What goes into them determines what comes out. <strong>Memory governance</strong> — the discipline of deciding what to retain, what to forget, how to retrieve, and how to prevent poisoning of an agent&#39;s accumulated context — is an engineering discipline as consequential as database design. The Agile Manifesto treats memory as overhead. Agentic engineering treats it as infrastructure <sup><a href="#ref-3">3</a></sup>.</p>
 </div></section><section id="beyond-landscape" class="doc-section" data-group="beyond"><div class="section-inner"><p><em>A critical review of every competing framework.</em></p>
 <p>See <a href="#beyond">Beyond Agile</a> for the full argument.
@@ -380,9 +381,9 @@ All references link to <a href="#beyond-sources">Sources</a>.</p>
 <hr>
 <p>The industry has not been idle. Multiple manifestos and frameworks have emerged to fill the vacuum. But none of them are sufficient.</p>
 <h2 id="casey-wests-agentic-manifesto">Casey West&#39;s Agentic Manifesto</h2><p><strong>What it gets right:</strong> The shift from verification (&quot;did it do what I said?&quot;) to validation (&quot;did it do what I wanted?&quot;). The Agentic Delivery Lifecycle (ADLC) across five non-linear phases. The &quot;Determinism Gap&quot; — the fundamental difference between a system whose output is known in advance and one whose output is discovered in real-time. The emphasis on continuous flow over time-boxed sprints. The insistence that human engineers and agents must work together continuously, rejecting fully unsupervised delegation <sup><a href="#ref-4">4</a></sup>.</p>
-<p><strong>What it misses:</strong> No treatment of memory as infrastructure — West does not distinguish knowledge from learned memory or address memory governance. No economics-aware routing — no recognition that model choice is a runtime decision with cost implications <sup><a href="#ref-17">17</a></sup>. No framework for formal verification or proof generation — and this matters because when execution is non-deterministic, at least one layer of the verification pyramid must be provably correct; executable specification languages and model checkers are now production-viable for this purpose <sup><a href="#ref-12">12</a></sup><sup><a href="#ref-19">19</a></sup>. No treatment of swarm topology as an engineering decision. No recognition that alignment must move from the single-agent prompt layer toward institutional alignment across interacting agents, tools, and humans <sup><a href="#ref-59">59</a></sup>. The manifesto reads as a philosophical reframe of Agile rather than a new engineering discipline.</p>
+<p><strong>What it misses:</strong> No treatment of memory as infrastructure — West does not distinguish knowledge from learned memory or address memory governance. No economics-aware routing — no recognition that model choice is a runtime decision with cost implications <sup><a href="#ref-17">17</a></sup>. No framework for formal verification or proof generation — and this matters because when execution is non-deterministic, at least one layer of the verification pyramid must be provably correct. No treatment of swarm topology as an engineering decision. No recognition that alignment must move from the single-agent prompt layer toward institutional alignment across interacting agents, tools, and humans <sup><a href="#ref-59">59</a></sup>. The manifesto reads as a philosophical reframe of Agile rather than a new engineering discipline.</p>
 <h2 id="the-sase-framework-academic-se-30">The SASE Framework (Academic SE 3.0)</h2><p><strong>What it gets right:</strong> The dual modality of SE4H (Software Engineering for Humans) and SE4A (Software Engineering for Agents). The elevation of the developer from syntax author to &quot;Agent Coach.&quot; The structured artifacts: BriefingScripts, Merge-Readiness Packs (MRPs), Consultation Request Packs (CRPs). The separation of Agent Command Environment (ACE) and Agent Execution Environment (AEE). The Plan-Do-Assess-Review (PDAR) loop with agent-initiated callbacks <sup><a href="#ref-12">12</a></sup>.</p>
-<p><strong>What it misses:</strong> Overly academic — lacks operational tooling references. No treatment of cost-quality routing. No framework for memory governance beyond &quot;institutional memory.&quot; No recognition that formal verification and statistical evaluation are complementary disciplines with different cost curves <sup><a href="#ref-19">19</a></sup>. No treatment of self-improving recursive systems or of skill memory as an external learning substrate that must itself be governed <sup><a href="#ref-60">60</a></sup>.</p>
+<p><strong>What it misses:</strong> Overly academic — lacks operational tooling references. No treatment of cost-quality routing. No framework for memory governance beyond &quot;institutional memory.&quot; No recognition that formal verification and statistical evaluation are complementary disciplines. No treatment of self-improving recursive systems or of skill memory as an external learning substrate that must itself be governed <sup><a href="#ref-60">60</a></sup>.</p>
 <h2 id="the-dev-community-agentic-manifesto">The DEV Community &quot;Agentic Manifesto&quot;</h2><p><strong>What it gets right:</strong> Four values that correctly reframe priorities: human intent over exhaustive requirements, continuous flow over sprints, architectural integrity over feature output, automated validation over manual estimation <sup><a href="#ref-11">11</a></sup>.</p>
 <p><strong>What it misses:</strong> Values without principles are aspirational, not operational. No definition of &quot;done.&quot; No treatment of observability, memory, domain boundaries, or accountability. No framework for what happens when architectural integrity conflicts with continuous flow. No recognition that &quot;automated validation&quot; requires a multi-layered verification pyramid (deterministic → statistical → formal → human) rather than a single binary gate <sup><a href="#ref-13">13</a></sup>.</p>
 <h2 id="the-p3-groups-from-sprints-to-swarms">The P3 Group&#39;s &quot;From Sprints to Swarms&quot;</h2><p><strong>What it gets right:</strong> The most thorough deconstruction of how specific Agile practices (standups, sprints, estimation, retrospectives) fail under agentic workflows. The strategic framing of evolutionary versus revolutionary adoption paths. The recognition that the Agile Manifesto&#39;s <em>values</em> can survive as governance principles even as its <em>practices</em> become obsolete <sup><a href="#ref-5">5</a></sup>.</p>
@@ -820,9 +821,9 @@ is a misreading of the document.</p>
 specifications, architecture, swarm topology, autonomy tiers, knowledge and
 memory, context, evaluations and proofs, observability and interoperability,
 emergence and containment, economics, and accountability.</p>
-<h3 id="the-agentic-definition-of-donemanifesto-donemd"><a href="manifesto-done.html">The Agentic Definition of Done</a></h3><p>What &quot;done&quot; means in agentic engineering: shipped, observable, verified,
-provable, learned from, governed, and economical. Phase-calibrated, not
-all-or-nothing.</p>
+<h3 id="the-agentic-definition-of-donemanifesto-donemd"><a href="manifesto-done.html">The Agentic Definition of Done</a></h3><p>What &quot;done&quot; means in agentic engineering: Loop-Complete, observable, verified,
+provable, learned from, governed, economical, and within service envelope.
+Phase-calibrated, not all-or-nothing.</p>
 <h3 id="glossaryglossarymd"><a href="glossary.html">Glossary</a></h3><p>Canonical definitions for terms used across this document set: agent,
 autonomy tier, blast radius, evidence bundle, evaluation, knowledge, learned
 memory, specification, trace, verification, validation, and more.</p>
@@ -906,7 +907,7 @@ implementation order.</p>
 <p>See the split files below for the full Manifesto Principles corpus.</p>
 <h2 id="1-outcomes-are-the-unit-of-work">1. Outcomes are the unit of work</h2><p>Progress is measured by the cycle <strong>Outcome → Evidence → Learning</strong> — not by
 tokens generated, tasks dispatched, or agents spawned. An agent that says &quot;done&quot;
-has proven nothing. A change is done only when it is shipped, observable,
+has proven nothing. A change is done only when it is loop-complete, observable,
 verified, validated, and learned from.</p>
 <p>Four distinct claims must hold before &quot;done&quot; is true:</p>
 <p><strong>Evaluation</strong> is the contract that defines correctness. Evaluations are
@@ -1625,11 +1626,10 @@ assertions?</p>
 but degrades the codebase&#39;s capacity for future change is not truly done — it
 has traded short-term correctness for structural regression. Chen et al.,
 <em>SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via
-Continuous Integration</em> (2026, <a href="https://arxiv.org/abs/2603.03823">https://arxiv.org/abs/2603.03823</a>), reports
+Continuous Integration</em> (2026, <a href="https://arxiv.org/abs/2603.03823v1">https://arxiv.org/abs/2603.03823v1</a>), reports
 that most frontier models achieve zero-regression rates below 0.25 across
 100 maintenance tasks averaging 71 consecutive commits and 233 days of
-repository history — i.e., regressions appear in at least three of every
-four CI iterations for most agents. Independent measurements corroborate
+repository history. Independent measurements corroborate
 the long-horizon collapse: Deng et al., <em>SWE-Bench Pro: Can AI Agents Solve
 Long-Horizon Software Engineering Tasks?</em> (2025,
 <a href="https://arxiv.org/abs/2509.16941">https://arxiv.org/abs/2509.16941</a>), reports frontier-model success rates
@@ -2864,12 +2864,12 @@ confusion across iterations, architectural choices that increase coupling,
 dependency structures that make the next change harder. Structural regression
 does not fail any test today; it fails the test that you will need to write
 tomorrow.</p>
-<p>The SWE-CI benchmark (arXiv:2603.03823) provides the first empirical evidence
-for this distinction. Across 100 tasks spanning an average of 233 days of
-development history, most agents achieve a zero-regression rate below 0.25 —
-meaning in over 75% of CI iterations, agents introduce at least one regression.
-Many of these regressions are structural: the agent&#39;s decisions in early
-iterations create friction that compounds across subsequent iterations. The
+<p>The SWE-CI benchmark (arXiv:2603.03823v1) provides the first empirical
+evidence for this distinction. Across 100 tasks spanning an average of 233
+days of development history, most evaluated models achieve a zero-regression
+rate below 0.25. Many of the regressions they do introduce are structural:
+the agent&#39;s decisions in early iterations create friction that compounds
+across subsequent iterations. The
 benchmark&#39;s EvoScore metric captures this by measuring functional correctness on
 future modifications — not just current tests.</p>
 <p><strong>Detecting structural regression:</strong></p>
@@ -3301,33 +3301,20 @@ supervision paradox first hits. Phase 3→4 is where governance overhead must
 justify itself. Phase 4→5 requires organizational change, not just tooling.
 See the <a href="#adoption-playbook">Adoption Playbook</a> for detailed transition
 guidance for each phase, role changes, and pilot design.</p>
-<h3 id="empirical-phase-profiles-evidence-from-swe-ci">Empirical Phase Profiles: Evidence from SWE-CI</h3><p>The SWE-CI benchmark (arXiv:2603.03823) provides the first empirical evidence
-for what each maturity phase looks like in measurable agent performance. SWE-CI
-evaluates agents across 100 tasks spanning an average of 233 days and 71 commits
-of real-world development history, using an Architect–Programmer dual-agent CI
-loop.</p>
-<ul>
-<li><strong>Phase 1-2 performance</strong>: Agents at these phases fail SWE-CI entirely. They
-lack the iterative capability to sustain a CI loop and cannot integrate
-feedback across cycles.</li>
-<li><strong>Phase 3 performance</strong>: Agents pass early iterations but accumulate
-regressions at a high rate. Most models achieve a zero-regression rate below
-0.25 — matching Phase 3&#39;s canonical failure mode: &quot;autonomy without
-verification.&quot; The agent produces plausible output but erodes the codebase
-iteration by iteration.</li>
-<li><strong>Phase 4 performance</strong>: Agents show basic CI-loop competence with evidence
-per iteration but struggle with cross-iteration learning. Regression rates
-improve but do not plateau. Governance catches individual failures but does
-not address the structural regression pattern.</li>
-<li><strong>Phase 5+ performance</strong>: Only top-performing models exhibit Phase 5
-characteristics: specification convergence across iterations, declining
-regression rates over time, and improving EvoScore. This matches Phase 5&#39;s
-description: the full Agentic Loop operating as a continuous system.</li>
-</ul>
-<p>These profiles are descriptive, not normative — SWE-CI tests a specific task
-type (long-term code maintenance), and phase maturity is domain-specific. But
-they provide a concrete, measurable calibration point for teams self-assessing
-their maturity.</p>
+<h3 id="long-horizon-failure-signal-what-swe-ci-motivates">Long-Horizon Failure Signal: What SWE-CI Motivates</h3><p>The SWE-CI benchmark (arXiv:2603.03823) evaluates agents across 100 tasks
+spanning an average of 233 days and 71 commits of real-world development
+history, using an Architect–Programmer dual-agent CI loop. It was not designed
+to test AEM&#39;s five-phase model, and no independent validation maps its metrics
+onto phase boundaries — it is not empirical evidence for the phase model.</p>
+<p>What SWE-CI does show is that long-horizon, autonomous agent loops accumulate
+regressions at a high rate without continuous verification: most frontier
+models achieve a zero-regression rate below 0.25 across CI iterations,
+meaning regressions appear in at least three of every four cycles for most
+agents. That pattern is consistent with the manifesto&#39;s general claim that
+autonomy without verification degrades quality over time, and it motivates
+stronger, continuous verification as systems move toward greater autonomy —
+but it should not be read as validating, or mapping onto, any specific phase
+of AEM&#39;s maturity model.</p>
 <p>Use this benchmark family as a calibration aid, not as a universal scorecard.
 Public agent benchmarks age quickly, can be contaminated, and tend to attract
 optimization pressure from the ecosystem. Treat them as one input into maturity
@@ -4516,9 +4503,10 @@ Definitions), monitor coupling and dependency trajectories across iterations,
 and include structural quality indicators in evaluation portfolios alongside
 behavioral regression tests. See the
 <a href="#behavioral-regression-vs-structural-regression">Structural Regression</a>
-section in P8 extended guidance. The SWE-CI benchmark (arXiv:2603.03823)
-provides empirical evidence: most agents introduce regressions in over 75% of
-CI iterations, many of which are structural rather than behavioral.</p>
+section in P8 extended guidance. The SWE-CI benchmark (arXiv:2603.03823v1)
+provides empirical evidence: most evaluated models achieve zero-regression
+rates below 0.25, and many of the regressions they do introduce are
+structural rather than behavioral.</p>
 </li>
 </ul>
 <p>The corrective action is always the same: reduce ceremony, increase signal, and
@@ -6793,8 +6781,8 @@ Outcome: Competitive advantage through governed agentic systems at scale.</p>
 <p><strong>Governance overhead.</strong> Enterprise governance board operation, cross-domain verification design, evidence standard maintenance. Estimated at 0.5 FTE ongoing after Wave 1.</p>
 <h3 id="return-model">Return Model</h3><p>The investment case rests on three measurable returns:</p>
 <ol>
-<li><strong>Defect reduction.</strong> The SWE-CI benchmark data suggests that governed agentic pipelines (Phase 4+) reduce regression rates by 40-60% compared to ungoverned agentic use (Phase 2-3). Measure: escaped defect rate pre/post adoption.</li>
-<li><strong>Cost optimisation.</strong> Economics-aware routing (<a href="manifesto-principles.html">Principle 11</a>) reduces inference costs by routing routine tasks to cheaper models. Organisations without routing typically overspend on inference by 30-50%. Measure: inference cost per verified outcome.</li>
+<li><strong>Defect reduction.</strong> Governed agentic pipelines (Phase 4+) are expected to lower escaped-defect rates compared to ungoverned agentic use (Phase 2-3), because verification gates catch regressions before they reach production. Measure: escaped defect rate pre/post adoption.</li>
+<li><strong>Cost optimisation.</strong> Economics-aware routing (<a href="manifesto-principles.html">Principle 11</a>) reduces inference costs by routing routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Measure: inference cost per verified outcome.</li>
 <li><strong>Compliance cost avoidance.</strong> Evidence bundles and autonomy tiers reduce the cost of audit evidence production and regulatory response. Measure: audit preparation time pre/post adoption.</li>
 </ol>
 <p>The break-even point for most enterprises: 2-3 quarters after Wave 1 completion, driven primarily by defect reduction and cost optimisation.</p>
