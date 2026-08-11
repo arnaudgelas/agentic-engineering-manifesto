@@ -3,8 +3,14 @@
 
 Evaluations define what "correct" means in terms the system can check
 autonomously. Every change must be verified against the evaluation suite — and
-every change must preserve or improve evaluation performance. Without
-evaluations, verification is assertion. Without verification, done is a claim.
+every change must not regress the versioned critical metrics beyond their
+agreed thresholds. When the evaluation suite itself changes — a test is
+corrected, a metric is redefined, coverage is strengthened — the resulting
+score shift is not a regression to hide; it is a recorded, approved tradeoff:
+log the old and new metric definitions, the reason for the change, and the
+before/after scores. What is never permitted is a silent drop against an
+unchanged evaluation suite. Without evaluations, verification is assertion.
+Without verification, done is a claim.
 
 Evaluations evolve with the system: coverage of the happy path, adversarial
 cases, regression scenarios, and behavioral checks. They are the machine-
@@ -20,6 +26,26 @@ through more contracts, the contracts themselves become worth proving.
 
 *Minimum bar: If evaluations do not include regression cases, verification is
 incomplete.*
+
+*Minimum bar (verifier independence): If the evaluation harness runs inside
+the agent's write scope, "evaluations passed" is a self-report, not
+verification. The harness must sit outside the agent's write scope, and this
+is testable against six concrete conditions: (1) promotion runs through a
+hermetic executor the agent cannot invoke, configure, or write to directly;
+(2) test and holdout-scenario definitions carry immutable, versioned
+provenance — content-addressed and diffable run-over-run, so a changed
+evaluation is a logged decision, not a silent edit; (3) holdout scenarios are
+stored in a location the agent has neither read nor write access to; (4) the
+evaluator and judge model, prompt, and configuration versions are recorded in
+the release identity alongside the code version, so a passing run is bound to
+a specific evaluator, not "an evaluator"; (5) the evaluation harness runs
+under least-privilege credentials distinct from the agent's, which the agent
+does not hold and cannot escalate to; and (6) the evaluation suite includes
+meta-tests that specifically probe for evaluator-bypass attempts — unauthorized
+reads of holdout scenarios, writes to the harness or its recorded results, or
+execution paths that route around the recorded evaluator — and fail the build
+when detected. A system that cannot demonstrate all six is not verified
+against an independent evaluator; it is grading its own homework.*
 
 **Verification, validation, and independent validation are distinct disciplines.**
 Passing evaluations satisfies verification. It does not satisfy validation or

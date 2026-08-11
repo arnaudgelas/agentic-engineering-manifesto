@@ -78,20 +78,50 @@ scenarios — specifications of what the software should do in realistic
 end-to-end conditions — are stored separately from the development context. The
 agent builds software without access to the evaluation criteria. The scenarios
 evaluate whether the output works. Because the agent never sees the evaluation
-criteria, it cannot game them.
+criteria in its development context, it cannot overfit to them by ordinary
+means — but visibility is not the whole problem, and holdout alone does not
+make the evaluation ungameable.
+
+Two named failure modes remain even under holdout, and both need their own
+mitigation:
+
+- **Specification gaming** — the agent satisfies the letter of a behavioral
+  scenario while defeating its intent (for example, hard-coding an output that
+  matches an expected test fixture, or special-casing behavior for inputs that
+  resemble known evaluation patterns rather than solving the general problem).
+  Mitigation: rotate and vary holdout scenarios between cycles so memorized or
+  pattern-matched shortcuts stop paying off, and periodically audit passing
+  runs for evidence that the underlying capability, not the specific fixture,
+  is what passed.
+- **Reward hacking** — an agent with sufficient access does not need to solve
+  the task at all if it can instead act on the evaluation mechanism itself:
+  reading holdout scenarios it should not have access to, editing the
+  evaluation harness or its recorded results, or otherwise attacking the
+  evaluator rather than the problem. An agent with filesystem or execution
+  access that reaches the evaluator can do this; holdout that is not also
+  access-isolated is not a defense against it. Mitigation: the evaluation
+  harness must sit outside the agent's write scope, run under credentials the
+  agent does not hold, and produce results through a path the agent cannot
+  write to (see Evaluation Holdout and the Gaming Problem's independence
+  requirement below, and the verifier-independence protections in Principle 8's
+  minimum bar).
 
 This pattern is already in production. StrongDM's software factory uses holdout
 behavioral scenarios as the primary evaluation mechanism, with agents that
 implement against specifications and are evaluated against criteria they cannot
-see. The result is evaluation that tests intent, not just compliance.
+see. The result is evaluation that tests intent more reliably than compliance
+alone, though no single mechanism eliminates evaluation theater outright.
 
 **When to use holdout evaluation:** For any system where agents iterate
 autonomously (Phase 4+), especially when evaluation metrics show suspiciously
 high pass rates that do not correlate with production quality. Holdout
 evaluation is more expensive to maintain (two separate artifact sets: development
-specs and evaluation scenarios) but eliminates the most insidious form of
-evaluation theater — evaluations that pass because the agent learned the
-answers, not because it solved the problem.
+specs and evaluation scenarios) but meaningfully reduces the most insidious
+form of evaluation theater — evaluations that pass because the agent learned
+the answers, not because it solved the problem. It reduces rather than
+eliminates that risk: it must be paired with access isolation of the evaluator
+itself (see reward hacking, above), or a sufficiently privileged agent can
+still defeat it.
 
 ### Champion-Challenger Testing in Regulated Contexts
 
@@ -238,14 +268,16 @@ dependency structures that make the next change harder. Structural regression
 does not fail any test today; it fails the test that you will need to write
 tomorrow.
 
-The SWE-CI benchmark (arXiv:2603.03823) provides the first empirical evidence
-for this distinction. Across 100 tasks spanning an average of 233 days of
-development history, most agents achieve a zero-regression rate below 0.25 —
-meaning in over 75% of CI iterations, agents introduce at least one regression.
-Many of these regressions are structural: the agent's decisions in early
-iterations create friction that compounds across subsequent iterations. The
-benchmark's EvoScore metric captures this by measuring functional correctness on
-future modifications — not just current tests.
+The SWE-CI benchmark (arXiv:2603.03823v1) offers a related empirical signal,
+though it measures behavioral regression, not structural quality directly.
+Across 100 tasks spanning an average of 233 days of development history, most
+evaluated models achieve a zero-regression rate below 0.25. The benchmark does
+not classify these regressions as structural versus behavioral, and it does
+not establish that early-iteration decisions compound into later friction —
+that mechanism is this section's hypothesis, not a benchmarked finding. Its
+EvoScore metric is the closer proxy: it measures functional correctness on
+future modifications — not just current tests — which is a useful, if
+indirect, signal for structural health.
 
 **Detecting structural regression:**
 
