@@ -15,8 +15,8 @@ P5](../companion-principles.md#principle-5-autonomy-extended-guidance).  This
 document maps those definitions to aviation certification requirements; it does
 not redefine them.
 
-**Scope:** DO-178C, DO-330, DO-333, ARP 4754A, ARP 4761/4761A, DO-326A,
-DO-356A, DO-278A.
+**Scope:** DO-178C, DO-330, DO-333, ARP4754B (supersedes ARP4754A), ARP
+4761/4761A, DO-326A, DO-356A, DO-278A.
 
 **Audience:** DERs, ODA unit members, certification liaisons, software leads,
 and systems engineers evaluating where agentic engineering practices can
@@ -27,8 +27,8 @@ operate within existing certification constraints.
 > compliance or certification advice. Consult your DER, ODA, or certification
 > authority for compliance determinations.
 >
-> **Regulatory currency:** This document reflects DO-178C, DO-330, DO-333, ARP
-> 4754A, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at the
+> **Regulatory currency:** This document reflects DO-178C, DO-330, DO-333,
+> ARP4754B, ARP 4761/4761A, DO-326A, DO-356A, and DO-278A as understood at the
 > time of last review. These standards evolve; EASA, FAA, and TCCA guidance
 > material is updated periodically. Verify currency against official sources
 > before relying on this content. **Last reviewed: April 2026.** Proposed
@@ -52,7 +52,7 @@ tied to the software component's Design Assurance Level.
 | E | No Effect | Tier 1-4 -- Full tier range | Standard manifesto adoption path applies; Tier 4 additionally requires validated governance infrastructure per P5 | No certification objectives apply. Normal manifesto governance is sufficient. Tier 4 permitted only when machine-enforced policy envelope, passing control evaluations, and active governance observability are all confirmed operational. |
 
 **Key constraint:** DAL assignment is determined by the system safety
-assessment (ARP 4754A/4761A), not by the development team. The DAL dictates the
+assessment (ARP4754B/4761A), not by the development team. The DAL dictates the
 ceiling; the team cannot raise it.
 
 ---
@@ -171,13 +171,14 @@ evidence in ways that test-only approaches cannot.
 
 ---
 
-## ARP 4754A System-Level Mapping
+## ARP4754B System-Level Mapping
 
-ARP 4754A governs the system development process that produces the safety
-requirements and DAL assignments flowing down to DO-178C software development.
-Agents can assist at this level, but human accountability is absolute.
+ARP4754B (which supersedes ARP4754A) governs the system development process
+that produces the safety requirements and DAL assignments flowing down to
+DO-178C software development. Agents can assist at this level, but human
+accountability is absolute.
 
-| ARP 4754A Process | Agent Role (Manifesto Alignment) | Human Accountability |
+| ARP4754B Process | Agent Role (Manifesto Alignment) | Human Accountability |
 | --- | --- | --- |
 | Functional Hazard Assessment (FHA) | Agent assists with analysis: identifies failure modes from system architecture, cross-references historical FHA databases (P6 -- Knowledge). | Human owns hazard classification. FHA severity assignments require engineering judgment and regulatory agreement. |
 | Preliminary System Safety Assessment (PSSA) | Agent drafts fault trees and dependency diagrams from architectural models; proposes failure rates from component databases (P1 -- Evidence bundles). | Human approves safety assessment. PSSA conclusions drive DAL allocation and must be defensible to the certification authority. |

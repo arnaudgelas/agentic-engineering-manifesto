@@ -85,9 +85,12 @@ Applied poorly, this manifesto can fail through:
   and include structural quality indicators in evaluation portfolios alongside
   behavioral regression tests. See the
   [Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
-  section in P8 extended guidance. The SWE-CI benchmark (arXiv:2603.03823)
-  provides empirical evidence: most agents introduce regressions in over 75% of
-  CI iterations, many of which are structural rather than behavioral.
+  section in P8 extended guidance. The SWE-CI benchmark (arXiv:2603.03823v1)
+  provides empirical evidence: most evaluated models achieve zero-regression
+  rates below 0.25. The benchmark measures behavioral regression; it does not
+  itself classify which regressions are structural versus behavioral, so
+  treat that distinction as this guide's inference, not a finding from the
+  paper.
 
 The corrective action is always the same: reduce ceremony, increase signal, and
 measure cycle time, defect rate, and incident severity together.

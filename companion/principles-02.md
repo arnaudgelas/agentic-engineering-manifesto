@@ -132,14 +132,17 @@ Architect observes the results, refines the specification, and the Programmer
 iterates.
 
 This pattern is a concrete instantiation of the Agentic Loop's Observe → Learn
-→ Specify cycle. The SWE-CI benchmark (arXiv:2603.03823) validates it
-empirically: across 100 tasks spanning an average of 233 days and 71 commits of
-real-world development history, the Architect's ability to transform CI feedback
-into actionable requirements was the primary differentiator in long-term code
-maintainability. The three-step Architect protocol — Summarize (review failures),
-Locate (attribute to deficiencies), Design (produce requirements) — maps
-directly to the manifesto's convergence criteria: specifications that sharpen as
-evidence accumulates.
+→ Specify cycle, and it mirrors the Architect–Programmer harness that SWE-CI
+(arXiv:2603.03823v1) uses to *evaluate* agents across 100 tasks spanning an
+average of 233 days and 71 commits of real-world development history. SWE-CI
+does not isolate the Architect's specification quality as a variable, so it is
+not evidence that this ability is the primary differentiator in long-term code
+maintainability — only that most evaluated models achieve zero-regression rates
+below 0.25 on the task overall. The three-step Architect protocol — Summarize
+(review failures), Locate (attribute to deficiencies), Design (produce
+requirements) — is drawn from SWE-CI's harness design and maps directly to the
+manifesto's convergence criteria: specifications that sharpen as evidence
+accumulates.
 
 **When to use this pattern:** Long-running maintenance tasks where the
 specification must evolve across many iterations. For bounded, short-horizon

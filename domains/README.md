@@ -23,7 +23,7 @@ practices align with it.
 
 | Document | Scope |
 |----------|-------|
-| [Aviation](aviation.md) | DO-178C, DO-330, DO-333, ARP 4754A, DO-326A — airborne software and systems assurance |
+| [Aviation](aviation.md) | DO-178C, DO-330, DO-333, ARP4754B, DO-326A — airborne software and systems assurance |
 | [Medical Devices](medical-devices.md) | IEC 62304, ISO 14971, ISO 13485, FDA SaMD, EU MDR — medical device software lifecycle |
 | [Pharma / Life Sciences](pharma.md) | GAMP 5, CSA, 21 CFR Part 11, EU Annex 11, ICH Q8-Q12 — pharmaceutical computerized systems |
 | [Financial Services](financial-services.md) | SR 11-7, DORA, EU AI Act, SOX, Three Lines of Defense — banking, insurance, capital markets |

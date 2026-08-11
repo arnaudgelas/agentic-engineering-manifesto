@@ -47,13 +47,17 @@ single context.
 
 For **long-term maintenance tasks** — where the specification must evolve across
 dozens of iterations based on accumulated evidence — the Architect–Programmer
-separation may be structurally necessary, not just a preference. The SWE-CI
-benchmark (arXiv:2603.03823) provides evidence: across tasks spanning an average
-of 233 days and 71 commits, separating specification generation (Architect) from
-implementation (Programmer) is the minimal viable structure for sustained code
-maintainability. A single agent attempting both roles must hold implementation
-context and specification-steering context simultaneously, which degrades at the
-timescales long-term maintenance requires.
+separation may be structurally necessary, not just a preference. This is a
+design hypothesis, not a benchmarked finding: the SWE-CI benchmark
+(arXiv:2603.03823v1) uses an Architect–Programmer harness to *evaluate* agents,
+but it does not compare that topology against a single-agent baseline, so it is
+not evidence that separation is the minimal viable structure. What SWE-CI does
+show is that long-horizon maintenance is hard: across 100 tasks spanning an
+average of 233 days and 71 commits, most evaluated models achieve zero-regression
+rates below 0.25. A single agent attempting both roles must hold implementation
+context and specification-steering context simultaneously, which plausibly
+degrades at the timescales long-term maintenance requires — but this specific
+mechanism has not been isolated experimentally.
 
 The practical rule: default to a single agent for bounded tasks. Adopt the
 Architect–Programmer topology when the task horizon exceeds what a single
@@ -77,6 +81,12 @@ but build the abstraction layer that allows the topology to change without
 rebuilding the system. The practical test: can you switch from hierarchy to mesh
 for a given task class without rewriting coordination logic? If not, the topology
 is hardcoded, and you will pay for that rigidity as the ecosystem matures.
+
+If your team frames this as adopting "graph engineering" — an explicit,
+typed graph of nodes and routing predicates in place of a linear chain — see
+the [Vocabulary Bridge](vocabulary-bridge.md#graph-engineering) for how AEM
+positions that label against the topology requirements P3 and P4 already
+impose.
 
 ### Coordination Discipline
 
