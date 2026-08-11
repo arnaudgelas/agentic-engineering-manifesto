@@ -25,7 +25,33 @@ through the same model tier when consistency matters more than cost; and
 treating cross-model disagreement on shared artifacts as an observable quality
 signal rather than a coordination annoyance.
 
-*Minimum bar: If model choice is a configuration constant instead of a runtime
-decision, you are overspending.*
+**What determines the cost outcome.** Whether a given routing policy over- or
+under-spends, and whether a given observation window is enough to validate a
+cost claim, are not settled by model choice or elapsed time alone — they
+depend on variables that must be stated, not assumed:
+- **Units.** State whether cost is measured per task, per token, per outcome,
+  or per unit of verified quality; these do not move together, and a claim in
+  one unit does not transfer to another.
+- **Task population.** Routing gains depend on the mix of task complexity in
+  the population being routed. A population dominated by uniformly complex
+  tasks yields little from tiering; a population with a long tail of simple,
+  low-risk tasks yields more.
+- **Uncertainty treatment.** State whether cost and pass-rate figures are
+  point estimates or carry confidence intervals, and over what sample size and
+  time window they were measured.
+- **Severity and tail risk.** A cheaper model with a higher failure rate on
+  high-severity tasks can cost more in expectation than a more expensive
+  model, even when its average per-task cost is lower. Tail events, not
+  averages, often dominate total cost of correctness.
+- **Concentration and switching costs.** Routing across models concentrates or
+  diversifies vendor, data-handling, and correlated-failure exposure. The cost
+  of qualifying, monitoring, and switching providers is part of the total cost
+  of correctness, not a one-time setup expense to be amortized away.
+
+*Minimum bar: State the units, task population, and observation window behind
+any cost-per-task, overspend, or "validated" cost-model claim before acting on
+it. Whether a fixed model-choice policy overspends, and whether a given
+validation window is sufficient, depends on the variables above — neither
+holds unconditionally.*
 
 ---

@@ -87,10 +87,18 @@ actual_outcome: [pass / fail / rework]
 actual_cost: [inference + verification + remediation]
 ```
 
-Feed these records into a FinOps dashboard quarterly. Within three months of
-operation, you will have an empirical cost model that makes routing decisions
-data-driven rather than intuition-driven. The goal is not the cheapest model —
-it is the model with the lowest total cost of correctness for that task class.
+Feed these records into a FinOps dashboard quarterly. How long it takes to
+reach an empirical, data-driven cost model depends on task volume and the
+diversity of the task population being routed, not on elapsed time alone: a
+team routing thousands of tasks per week across a narrow set of task classes
+may have a usable model within weeks, while a team routing dozens per month,
+or covering task classes with rare but high-severity failure modes, may need
+a year or more of records before failure rates in the tail are estimated with
+any confidence. Track sample size per task class explicitly, and treat the
+cost model as provisional for any class that has not yet accumulated enough
+observed outcomes to bound its failure rate. The goal is not the cheapest
+model — it is the model with the lowest total cost of correctness for that
+task class, once that cost is actually known.
 
 **DORA concentration risk note.** In regulated financial services, model routing
 is not only an economics decision — it is a DORA third-party risk control.
