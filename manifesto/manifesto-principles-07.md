@@ -11,6 +11,13 @@ windows are finite and reasoning quality degrades as low-signal context
 accumulates. Engineer explicit context budgeting: hierarchical retrieval,
 rolling summaries, state compaction, and authority-weighted pruning.
 
+The compaction policy in force is one component of the harness's versioned
+identity (Principle 3): changing how context gets summarized or pruned
+changes what the agent can see, which changes what any evaluation run
+against it can be trusted to mean. Treat a compaction-policy change with the
+same rigor as a model or tool-registry change — it increments the harness
+identity value and invalidates evaluations run under the prior policy.
+
 *Minimum bar: If retrieval takes longer than the reasoning loop tolerates,
 context is broken infrastructure. But slow is not the only failure mode: stale
 embeddings, conflicting sources, semantic precision failures (fast retrieval of

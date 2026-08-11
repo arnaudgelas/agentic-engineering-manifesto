@@ -74,6 +74,28 @@ more time in constraint engineering: defining what agents may and must not do,
 choosing swarm topologies, and designing the evaluation portfolios that verify
 agent output at scale.
 
+**Accountable owner of the harness identity.** The tech lead is the named
+accountable owner of the harness identity: the single versioned
+configuration that binds the execution loop, hooks/skills/instruction
+files, tool registry, permission set, runtime image, routing policy,
+compaction policy, evaluator versions, and orchestration topology
+(Principle 3, Principle 7). When any one of those components changes
+materially, the tech lead is accountable for ensuring the identity value
+changes accordingly, that the change is recorded in the evidence bundle,
+and that evaluations run under the superseded identity are treated as
+invalidated rather than silently carried forward.
+
+**Accountable owner of the agent identity and delegation record.** The tech
+lead is also accountable for ensuring the accountability chain required by
+Principle 12 is answerable from recorded state for every Tier 2–4 action:
+which agent instance acted, under which principal, with what delegated
+authority, issued by whom, valid until when, and whether that authority has
+since been revoked. This is a set of properties the harness must expose, not
+a specific identity protocol — the tech lead selects and operates whatever
+stack (OAuth/OIDC, SPIFFE, SCIM, NGAC, or another) fits the organization's
+existing identity infrastructure, and is accountable for the record being
+queryable, not for the choice of standard.
+
 ### QA Engineers
 
 **Before:** Own test plans, manual testing, and test automation. Verify that

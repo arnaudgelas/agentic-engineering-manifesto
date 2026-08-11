@@ -12,8 +12,8 @@
 
 The coherence review (`igm-aent-coherence-review.md` §3 B7, B9) found that:
 
-- AEM's evidence bundle (`manifesto-done.md`, `manifesto-principles.md:60–64`) lists evaluation reports, trace IDs, diffs, deployment IDs, rollback plans, policy-check outputs, memory updates, control state record.
-- IGM provenance (`intelligence-governance-manifesto/manifesto-principles.md:31–35`) lists source type, acquisition mode, social challenge process, epistemic tier, decay window — per claim.
+- AEM's evidence bundle (`manifesto-done.md`, [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work), "Evidence means") lists evaluation reports, trace IDs, diffs, deployment IDs, rollback plans, policy-check outputs, memory updates, control state record.
+- IGM provenance ([`intelligence-governance-manifesto/manifesto-principles.md#principle-2-provenance-is-non-negotiable`](../intelligence-governance-manifesto/manifesto-principles.md#principle-2-provenance-is-non-negotiable) for source type / acquisition mode / social challenge process; [`#principle-3-epistemic-tier-is-earned-not-assigned`](../intelligence-governance-manifesto/manifesto-principles.md#principle-3-epistemic-tier-is-earned-not-assigned) for epistemic tier; [`#principle-5-intelligence-decays-govern-the-decay`](../intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay) for decay window) lists source type, acquisition mode, social challenge process, epistemic tier, decay window — per claim.
 - AEnt-M traceability (`agentic-enterprise-manifesto/manifesto.md:159`) lists regulatory source → claim → contradiction → human approval → composite-state.
 
 A bundle complete by any one definition can fail the others. A regulator asking for "the audit trail" should receive *one* artefact, not three. This schema defines that artefact.
@@ -54,12 +54,12 @@ The bundle is required-by-tier (autonomy tier × consequence class). Section 5 b
 
 ### 3.2 `aem_components` — AEM Definition-of-Done
 
-Required components (per `manifesto-principles.md:60–64`, `manifesto-done.md`, and `asdlc/release-governance.md`):
+Required components (per [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work) "Evidence means", `manifesto-done.md`, and `asdlc/release-governance.md`):
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `evaluation_reports` | array | always | Each entry: `{eval_id, eval_suite_version, ran_at, pass_count, fail_count, regression_pass_count, adversarial_pass_count, holdout_pass_count, metrics{...}, trace_id, status (pass/fail/waived)}`. |
-| `trace_ids` | array of strings | always | OpenTelemetry-compatible trace IDs spanning specification → execution → output. Must be replayable. |
+| `trace_ids` | array of strings | always | OpenTelemetry-compatible trace IDs spanning specification → execution → output. Guarantee event reconstruction (replay level 1, per [`manifesto/manifesto-principles-09.md`](../manifesto/manifesto-principles-09.md)) on their own; they support deterministic simulation (level 2) only where `agentic_provenance_record` also pins the tool-response fixtures and model checkpoint used. They do not guarantee live re-execution (level 3) or counterfactual reproduction (level 4) — both are defeated by service or model changes since the run, and by model nondeterminism. Do not describe `trace_ids` as "replayable" without stating which level. |
 | `diffs` | array | always | Each entry: `{diff_id, repo, base_ref, head_ref, summary, files_changed_count, lines_added, lines_removed, links}`. |
 | `deployment_ids` | array | required at release | Each entry: `{deployment_id, environment, deployed_at, deployed_by, system_version, foundation_model_version, status}`. |
 | `rollback_plan` | object | always | `{rollback_id, plan_summary, last_tested_at, last_test_status, mean_rollback_time_seconds, executor_role}`. |
@@ -67,6 +67,7 @@ Required components (per `manifesto-principles.md:60–64`, `manifesto-done.md`,
 | `memory_updates` | array | required when memory is in scope | Each entry: `{memory_store_id, change_summary, provenance_label (per AEM P6), reviewer_role, reviewed_at}`. |
 | `control_state_record` | object | required at release for Tier 2+ | Per `asdlc/release-governance.md` — `{controls[{control_id, status (pass/fail/waived/stale/requires-human-decision), evidence_artefact_id, waiver_owner?, waiver_expiry?, compensating_control?}], generated_at, generator_role}`. |
 | `agentic_provenance_record` | object | required when foundation model present | Per `manifesto-done.md:147–186` — `{foundation_model_id, foundation_model_version, provider_category, deployment_mode, eval_model_parity (bool), system_prompt_hash, tool_manifest[], memory_state_version, retrieval_corpus_version, embedding_model_version, dataset_lineage, policy_constraints_active[]}`. |
+| `orchestration_topology_manifest` | object | always | Per [`manifesto/manifesto-principles-03.md`](../manifesto/manifesto-principles-03.md) — the typed, versioned orchestration topology bound into harness identity: `{topology_id, topology_version, topology_hash, nodes[{node_id, node_type (agent/tool/human-gate/evaluator)}], edges[{edge_id, from_node, to_node, edge_type, routing_predicate}], state_schema_ref, retry_idempotency_policy[{edge_id, retry_policy, idempotency_key_scope}], failure_compensation_handling[{failure_mode, compensation_action}], human_gates[{gate_id, node_id, trigger_condition}], evaluator_hooks[{hook_id, node_id, gates}], allowed_mutation_scope[{node_id, scope}]}`. A change to any listed element changes `topology_hash` and invalidates the harness identity it is bound into. |
 | `bundle_integrity_attestation` | object | required at release | `{hash_algorithm, hash_value, signature_algorithm?, signature_value?, signed_by, signed_at}`. |
 | `epistemic_tier_labels` | array | required at release for Tier 2+ | Per artefact in the bundle: `{artefact_id, label}` where label ∈ {`human-authored`, `tool-generated`, `agent-proposed-with-human-review`, `agent-generated`}. (Note: this is AEM's "epistemic tier label" for *artefact origin*. It is distinct from IGM's "epistemic tier" for *claim confidence*; both terms appear because AEM's `release-governance.md:189` uses "epistemic tier" for artefact origin labels. The two senses are namespaced: `epistemic_tier_labels` for AEM artefact origin, `epistemic_tier` for IGM claim tier.) |
 | `evidence_freshness_attestation` | object | always | `{threat_model_status, sbom_status, security_static_analysis_status, cost_forecast_status, runbook_status, dpia_status, model_eval_run_status, rollback_test_status, agentic_provenance_record_status}` — each ∈ {`fresh`, `stale`, `projected-stale`, `n/a`}. Per `manifesto-done.md:211–253`. |
@@ -151,6 +152,7 @@ The matrix below specifies which top-level components and fields are mandatory f
 | `memory_updates` (when memory in scope) | R | R | M | M | M | M | M | M | M | M | M | M | M | M | M | M |
 | `control_state_record` | – | – | R | R | M | M | M | M | M | M | M | M | M | M | M | M |
 | `agentic_provenance_record` (when FM in use) | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M |
+| `orchestration_topology_manifest` | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M |
 | `bundle_integrity_attestation` | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M |
 | `epistemic_tier_labels` (artefact origin) | – | – | R | R | M | M | M | M | M | M | M | M | M | M | M | M |
 | `evidence_freshness_attestation` | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M | M |
@@ -219,6 +221,7 @@ A bundle that fails schema validation fails ASDLC Release Gate Condition 1 (per 
 - `governance/integrated-audit-trail.md` — how the bundle's three components interleave for regulator examination.
 - `asdlc/release-governance.md` Condition 1 — the gate that enforces this bundle at release.
 - `manifesto-done.md` Evidence Freshness — the freshness rules for AEM components.
+- `manifesto/manifesto-principles-03.md` — the harness identity and orchestration topology this bundle's `agentic_provenance_record` and `orchestration_topology_manifest` fields record.
 - `glossary.md` (repo root) — term-collision appendix.
 
 ---
