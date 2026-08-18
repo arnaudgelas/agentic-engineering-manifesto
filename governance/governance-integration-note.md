@@ -13,10 +13,10 @@
 ### 1.1 AEM Tier 4 — binary policy envelope
 
 > "Tier 4 — Operate. Agents execute autonomously within a human-approved, machine-enforced policy envelope — without per-change human approval. The human approves the envelope (allowed change classes, blast radius ceiling, required evidence schema, rollback conditions, kill-switch configuration) and retains accountability for its design."
-> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)
+> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)
 
 > "Tier 4 is not Tier 3 with the human removed. It is a governance model shift: accountability moves from the action level to the policy level. This only holds when the policy envelope is machine-enforced (not merely documented), control evaluations confirm the governance system itself works (P8), governance observability is instrumented and alerting on stale evidence and drift (P9), and rubber-stamping detection is active (P12)."
-> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)
+> — [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)
 
 AEM Tier 4 is **binary at the envelope level**: either an envelope has been approved (with all four prerequisites — machine enforcement, control evaluations, governance observability, rubber-stamping detection — operational) and the system is in Tier 4 within it, or it has not. AEM does not specify *what may differ inside* an envelope; it specifies what the envelope must contain and the prerequisites for entering Tier 4 at all.
 
@@ -89,7 +89,7 @@ Substrate depth (coverage, connectivity, currency — see `agentic-enterprise-ma
 
 - **Constraint legibility** (AEnt-M Initiative Condition 2; companion-guide.md:31–41) — institutional constraints are machine-reasonable, not document-buried.
 - **Demonstrated control equivalence** (AEnt-M P7; companion-guide.md:79–91) — decision quality stable or improved under substrate-resident governance.
-- **AEM Tier 4 prerequisites for the envelope** — machine enforcement, control evaluations passing, governance observability, rubber-stamping detection ([`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)).
+- **AEM Tier 4 prerequisites for the envelope** — machine enforcement, control evaluations passing, governance observability, rubber-stamping detection ([`manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)).
 - **Authority assignment** for the consequence class in question (AEnt-M P8) — a Workflow Owner, Decision Reviewer, Accountable Authority, or Dual Authority must be named *before* relocation can advance for that class.
 
 The IGM phrasing "emergent consequence of the twelve principles working in concert" must therefore be read as *necessary substrate emergence*, not *sufficient operational authorisation*. A deep substrate does not by itself authorise autonomous operation — even if every IGM principle is satisfied. AEM and AEnt-M prerequisites must also be met.
@@ -233,7 +233,7 @@ Advancement is not automatic. It is a governance decision recorded in the class 
 
 ## 5. What this note does *not* do
 
-- It does not redefine AEM Tier 4. It restates what is in [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) and explains how AEnt-M relocation fits inside it.
+- It does not redefine AEM Tier 4. It restates what is in [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) and explains how AEnt-M relocation fits inside it.
 - It does not replace AEnt-M's four-stage progression. It clarifies the dependency on AEM and IGM.
 - It does not specify the IGM substrate's required depth thresholds. Those are domain-specific (see `agentic-enterprise-manifesto/companion-guide.md:13–29` for the measurable proxies; calibration per domain is the domain owner's decision).
 - It does not address foundation-model-update governance during relocated operation. That is `governance/foundation-model-third-party-register.md` (W1.6, produced by another agent).

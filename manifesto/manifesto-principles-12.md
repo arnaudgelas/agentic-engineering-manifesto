@@ -70,13 +70,18 @@ what authority" must be able to answer from recorded state without
 interviewing anyone.
 
 A domain owner owns the risk policy, the autonomy tier ceiling, the escalation
-path, and the incident response protocol for their domain. They do not approve
-every low-risk action — they own the framework that governs those actions, and
-they carry the accountability when that framework fails. When trace volume
-exceeds meaningful review capacity, the correct response is to raise automation
-barriers (tighten evaluation thresholds, lower autonomy tiers) until oversight
-signal quality is restored — not to accept degraded oversight as a workload
-problem.
+path, and the incident response protocol for their domain. Above Tier 1, they
+do not approve every action — they own the framework that governs those
+actions (the constraints, the evaluation portfolio, the policy envelope, the
+sampling strategy), and they carry the accountability when that framework
+fails. Tier 1 is the exception by design: it is the tier with no autonomous
+action at all, so "approval" there is not a review workload to be scaled back
+— it is the mechanism that makes the action safe to take in the first place.
+When trace volume at Tier 2 or above exceeds meaningful review capacity, the
+correct response is to raise automation barriers (tighten evaluation
+thresholds, lower autonomy tiers) until oversight signal quality is restored —
+not to accept degraded oversight as a workload problem, and not to weaken
+Tier 1's per-proposal approval requirement to relieve that volume.
 
 Failures are data: errors and crashes are learning opportunities, and
 hallucinations can become a hallucination loop where plausible-but-wrong early

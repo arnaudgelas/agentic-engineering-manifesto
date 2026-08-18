@@ -62,7 +62,7 @@ mechanism has not been isolated experimentally.
 The practical rule: default to a single agent for bounded tasks. Adopt the
 Architect–Programmer topology when the task horizon exceeds what a single
 context window can sustain, or when specification quality is the primary
-bottleneck. See the [Architect Pattern](companion-principles.md#the-architect-pattern-agent-generated-specifications)
+bottleneck. See the [Architect Pattern](principles-02.md#the-architect-pattern-agent-generated-specifications)
 in the P2 extended guidance for operational detail.
 
 ### Topology as a Runtime Concern

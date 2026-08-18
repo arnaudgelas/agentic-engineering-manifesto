@@ -151,7 +151,7 @@ A normative artefact required for every AI system within scope of the manifestos
 | `last_review_date` | ISO date | `2026-04-15` |
 | `next_review_date` | ISO date | `2026-07-15` |
 | `register_owner` | Named accountable role | "Workflow owner — settlement ops" |
-| `linked_artefacts` | Cross-references | `regulatory/iso-42001-crosswalk.md#aia-template`, `regulatory/eu-ai-act-addendum.md#article-27-fria` |
+| `linked_artefacts` | Cross-references | `regulatory/iso-42001-crosswalk.md#31-ai-impact-assessment-aia-template-a5-control`, `regulatory/eu-ai-act-addendum.md#4-article-27-fundamental-rights-impact-assessment-fria` |
 
 This register satisfies NIST MP.1.1, MP.1.5, MP.3.2, MP.4.1 simultaneously and feeds into the ISO 42001 AI Impact Assessment template (`regulatory/iso-42001-crosswalk.md`).
 

@@ -214,7 +214,7 @@ mechanisms that this document does not cover.
 **For software delivery (ASDLC):**
 
 - *Upstream (Layer 1):* Business need validation, demand prioritisation, portfolio
-  governance, specification readiness. See [Demand & Value](asdlc.md#layer-1).
+  governance, specification readiness. See [Demand & Value](../asdlc/asdlc.md#layer-1-demand-value).
 - *Downstream — delivery (Layer 3):* Release gates, environment promotion,
   change management, compliance documentation. See [release-governance.md](release-governance.md).
 - *Downstream — operations (Layer 4):* Incident management, SLO governance,
@@ -313,7 +313,7 @@ the domain and the manifesto's specification requirements (machine-readable
 acceptance criteria, versioned constraints, blast-radius framing).
 
 For the full evolution of these roles through the ASDLC maturity phases, see
-[Demand & Value — Roles](asdlc.md#roles).
+[Demand & Value — Roles](../asdlc/demand/value.md#roles).
 ```
 
 ---

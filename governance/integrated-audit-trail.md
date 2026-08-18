@@ -28,7 +28,7 @@ The AEM execution trace records:
 
 ### 1.2 IGM provenance chain (per claim)
 
-Source: IGM P2 ([`#principle-2-provenance-is-non-negotiable`](../intelligence-governance-manifesto/manifesto-principles.md#principle-2-provenance-is-non-negotiable)), P3 ([`#principle-3-epistemic-tier-is-earned-not-assigned`](../intelligence-governance-manifesto/manifesto-principles.md#principle-3-epistemic-tier-is-earned-not-assigned)), P5 ([`#principle-5-intelligence-decays-govern-the-decay`](../intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay)), P11 ([`#principle-11-traceability-is-the-response-to-acceleration`](../intelligence-governance-manifesto/manifesto-principles.md#principle-11-traceability-is-the-response-to-acceleration)) + claim model (`intelligence-governance-manifesto/companion-guide.md:9–69`).
+Source: IGM P2 ([`#principle-2-provenance-is-non-negotiable`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-2-provenance-is-non-negotiable)), P3 ([`#principle-3-epistemic-tier-is-earned-not-assigned`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-3-epistemic-tier-is-earned-not-assigned)), P5 ([`#principle-5-intelligence-decays-govern-the-decay`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay)), P11 ([`#principle-11-traceability-is-the-response-to-acceleration`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-11-traceability-is-the-response-to-acceleration)) + claim model (`intelligence-governance-manifesto/companion-guide.md:9–69`).
 
 Per claim, the IGM provenance chain records:
 
@@ -251,7 +251,7 @@ To produce integrated audit trails at the quality the worked walkthrough demonst
 - `governance/composition-rule.md` — the gate evaluations recorded in the bundle.
 - `governance/foundation-model-third-party-register.md` (planned, W1.6) — DORA Pillar 4 register linked from `cross_references.register_links`.
 - [`manifesto/manifesto-principles-09.md`](../manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime) (AEM P9) — Trail 1 source.
-- [`intelligence-governance-manifesto/manifesto-principles.md`](../intelligence-governance-manifesto/manifesto-principles.md#principle-2-provenance-is-non-negotiable) (IGM P2), [`#principle-11`](../intelligence-governance-manifesto/manifesto-principles.md#principle-11-traceability-is-the-response-to-acceleration) (P11) — Trail 2 source.
+- [`intelligence-governance-manifesto/manifesto-principles.md`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-2-provenance-is-non-negotiable) (IGM P2), [`#principle-11`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-11-traceability-is-the-response-to-acceleration) (P11) — Trail 2 source.
 - `agentic-enterprise-manifesto/manifesto.md:159` — AEnt-M Trail 3 worked example.
 - `glossary.md` (repo root) — term-collision appendix.
 

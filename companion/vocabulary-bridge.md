@@ -1,9 +1,5 @@
 # Vocabulary Bridge
 
-*Status: **NON-NORMATIVE** — explanatory/supporting material; it does not
-itself impose requirements or create new constructs, tiers, phases, or
-layers. The AEM normative core is `manifesto/*.md`.*
-
 This page maps current practitioner vocabulary — terms that circulate in
 blog posts, vendor material, and preprints but are not AEM's own words — to
 the existing AEM constructs that already cover the underlying concern. It
@@ -11,8 +7,8 @@ exists so that a reader who arrives asking "where does AEM stand on
 [current term]?" gets one citable answer instead of silence. It does not
 add anything to what AEM requires.
 
-Read the [Manifesto](manifesto.md) for the core values and minimum bars.
-See the [Companion Guide](companion-guide.md) for the full table of contents.
+Read the [Manifesto](../manifesto/manifesto.md) for the core values and minimum bars.
+See the [Companion Guide](guide.md) for the full table of contents.
 
 ---
 
@@ -195,5 +191,5 @@ Every row uses exactly these seven fields, in this order:
 
 ## Related pages
 
-- [Companion Guide](companion-guide.md) — full table of contents.
+- [Companion Guide](guide.md) — full table of contents.
 - [Frameworks](frameworks.md) — maturity spectrum and cross-cutting definitions.

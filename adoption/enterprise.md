@@ -172,10 +172,10 @@ Enterprise adoption costs fall into three categories:
 The investment case rests on three measurable returns:
 
 1. **Defect reduction.** Governed agentic pipelines (Phase 4+) are expected to lower escaped-defect rates compared to ungoverned agentic use (Phase 2-3), because verification gates catch regressions before they reach production. Measure: escaped defect rate pre/post adoption.
-2. **Cost optimisation.** Economics-aware routing ([Principle 11](manifesto-principles.md)) reduces inference costs by routing routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Measure: inference cost per verified outcome.
+2. **Cost optimisation (hypothesis to measure, not a guarantee).** Economics-aware routing ([Principle 11](manifesto-principles.md)) routes routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Whether that lowers total cost is conditional on the task population, the quality delta between tiers, tail-risk severity, and switching costs — it is not an unconditional return. Measure: inference cost per verified outcome, tracked against those conditioning factors rather than assumed.
 3. **Compliance cost avoidance.** Evidence bundles and autonomy tiers reduce the cost of audit evidence production and regulatory response. Measure: audit preparation time pre/post adoption.
 
-The break-even point for most enterprises: 2-3 quarters after Wave 1 completion, driven primarily by defect reduction and cost optimisation.
+The break-even point for most enterprises: 2-3 quarters after Wave 1 completion, driven primarily by defect reduction, with cost optimisation contributing where routing conditions in fact favor it.
 
 ## Common Enterprise Failure Modes
 

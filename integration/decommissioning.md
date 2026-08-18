@@ -167,7 +167,7 @@ Impact analysis must be exhaustive enough to catch this. If a claim that was tho
 
 ### 4.2 What if a claim retirement cascade triggers a wave of agent retirements?
 
-Each agent retirement starts its own workflow per §3 above. A cascade of retirements is governed by IGM P16 (containment for substrate-driven emergence — [`intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence`](../intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence)) and the substrate-level circuit-breaker pauses cascades exceeding thresholds for human review. The 30-day grace period applies to each retirement individually but they may be batched if they share execution dates.
+Each agent retirement starts its own workflow per §3 above. A cascade of retirements is governed by IGM P16 (containment for substrate-driven emergence — [`intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence)) and the substrate-level circuit-breaker pauses cascades exceeding thresholds for human review. The 30-day grace period applies to each retirement individually but they may be batched if they share execution dates.
 
 ### 4.3 What if a regulator orders an agent's immediate retirement?
 

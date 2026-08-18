@@ -38,27 +38,27 @@ Several themes recur across all domains and are addressed at the manifesto
 level rather than in domain-specific documents:
 
 - **Independent validation** as a governance principle — see
-  [Companion Principles P8](../companion-principles.md#independent-verification-in-regulated-contexts)
+  [Companion Principles P8](../companion/principles-08.md#independent-verification-in-regulated-contexts)
 - **SOUP / agent-as-tool categorization** — see
-  [Companion Principles P3](../companion-principles.md#agent-as-tool-and-software-of-unknown-provenance)
+  [Companion Principles P3](../companion/principles-03.md#agent-as-tool-and-software-of-unknown-provenance)
 - **Data classification as an agent constraint** — see
   [Companion Frameworks](../companion-frameworks.md#cross-domain-regulatory-insights)
 - **ALCOA+ compliance** — see
   [Companion Frameworks](../companion-frameworks.md#alcoa-alignment)
 - **Champion-challenger testing** — see
-  [Companion Principles P8](../companion-principles.md#champion-challenger-testing-in-regulated-contexts)
+  [Companion Principles P8](../companion/principles-08.md#champion-challenger-testing-in-regulated-contexts)
 - **Fairness and bias testing** — see
-  [Companion Principles P8](../companion-principles.md#fairness-and-bias-testing-in-high-risk-ai)
+  [Companion Principles P8](../companion/principles-08.md#fairness-and-bias-testing-in-high-risk-ai)
 - **Cross-domain incident classification** — see
   [Companion Patterns](../companion-patterns.md#cross-domain-incident-classification-framework)
 - **Supplier and vendor qualification** — see
   [Companion Reference](../companion-reference.md#cross-domain-supplier-and-vendor-qualification)
 - **Memory governance in regulated environments** — see
-  [Companion Principles P6](../companion-principles.md#memory-governance-in-regulated-environments)
+  [Companion Principles P6](../companion/principles-06.md#memory-governance-in-regulated-environments)
 - **Open interoperability requirements** — see
-  [Companion Principles P9](../companion-principles.md#interoperability-requirements)
+  [Companion Principles P9](../companion/principles-09.md#interoperability-requirements)
 - **Benchmark instability and private holdouts** — see
-  [Companion Principles P8](../companion-principles.md#benchmark-instability-and-contamination-risk)
+  [Companion Principles P8](../companion/principles-08.md#benchmark-instability-and-contamination-risk)
 
 ---
 

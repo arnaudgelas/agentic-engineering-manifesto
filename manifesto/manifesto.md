@@ -337,7 +337,7 @@ The two-layer framing is accurate but incomplete. The minimum bars in the
 principles are necessary conditions; they are not sufficient for safe operation
 at Phase 4 and above. At higher phases, certain companion content becomes
 operationally essential rather than supplementary: the
-[Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints)
+[Specifications vs. Constraints](../companion/principles-02.md#specifications-vs-constraints)
 distinction (P2), [rubber-stamping detection](adoption-metrics.md#team-health-metrics-all-phases)
 (P12), the [Adaptation Envelope — Layer 4](companion-re-framework.md#4-the-behavioral-envelope)
 (P6), and the [worked failure-mode patterns](companion-patterns.md) (P10/P12)
@@ -375,7 +375,7 @@ emergence and containment, economics, and accountability.
 
 ### [The Agentic Definition of Done](manifesto-done.md)
 
-What "done" means in agentic engineering: Loop-Complete, observable, verified,
+What "done" means in agentic engineering: Loop-Complete, traceable, verified,
 provable, learned from, governed, economical, and within service envelope.
 Phase-calibrated, not all-or-nothing.
 

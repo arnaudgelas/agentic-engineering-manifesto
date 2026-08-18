@@ -80,7 +80,7 @@ trail. See also: *trace*.
 
 Tier assignment is a governance decision driven by blast radius, reversibility,
 and confidence maturity. See [Tier Assignment Decision
-Checklist](companion-principles.md#tier-assignment-decision-checklist).
+Checklist](companion/principles-05.md#tier-assignment-decision-checklist).
 
 ---
 
@@ -127,7 +127,7 @@ of what the system may do, typically safety, compliance, or architectural in
 nature. Constraints require a governed review process to relax; they do not
 evolve within an iteration. Contrast with *specification*, which may be refined
 as evidence accumulates within an iteration.  See [Specifications vs.
-Constraints](companion-principles.md#specifications-vs-constraints).
+Constraints](companion/principles-02.md#specifications-vs-constraints).
 
 **Context window**
 The bounded working memory visible to a model at inference time: the accumulated
@@ -141,7 +141,7 @@ enters them and when items are pruned or archived.
 
 **Definition of Done (DoD)**
 The set of conditions a change must satisfy before it is considered complete.
-The agentic DoD requires a change to be: Loop-Complete, Observable, Verified,
+The agentic DoD requires a change to be: Loop-Complete, Traceable, Verified,
 Provable (when risk requires it), Learned from, Governed, Economical, and
 Within Service Envelope. "Loop-Complete" — not "shipped": AEM's loop ends at a
 release candidate with a complete evidence bundle; shipment, production
@@ -186,7 +186,7 @@ Evaluations that pass but do not test what matters: happy-path-only coverage,
 no adversarial cases, no holdout separation, or metrics optimized for the
 development session rather than production behavior. The primary symptom is
 evaluations that pass while production incidents go unpredicted. See
-[Detecting Evaluation Theater](companion-principles.md#detecting-evaluation-theater).
+[Detecting Evaluation Theater](companion/principles-08.md#evaluation-theater).
 
 **Evidence bundle**
 The artifact package attached to a completed change, required for every

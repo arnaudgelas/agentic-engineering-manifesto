@@ -30,7 +30,7 @@ Read each of the following files end-to-end. These constitute the Agentic Engine
 **Core (mandatory — abort if missing):**
 - `manifesto/manifesto.md` — core values, the Agentic Loop definition (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify"), the six-phase maturity model, and the evidence-backed deployable definition.
 - `manifesto/manifesto-principles.md` plus `manifesto/manifesto-principles-01.md` through `manifesto/manifesto-principles-12.md` — all twelve principles, their minimum bars, the four oversight patterns (HITL/HOTL/HOLL/EDL), and their sequencing dependencies.
-- `manifesto/manifesto-done.md` — the Agentic Definition of Done (Loop-Complete / Observable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
+- `manifesto/manifesto-done.md` — the Agentic Definition of Done (Loop-Complete / Traceable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the four-step Hardening DoD, the agentic provenance record, the bundle integrity attestation, and the evidence freshness rules.
 - `glossary.md` — canonical term definitions.
 
 **Companion corpus (read each end-to-end):**
@@ -164,7 +164,7 @@ For each phase, the one-sentence assessment must contain BOTH an evidence-for cl
 Score each DoD condition 0–100 (integer) and provide a single-sentence assessment (≤ 50 words):
 
 - Loop-Complete
-- Observable
+- Traceable
 - Verified
 - Provable
 - Learned from
@@ -288,7 +288,7 @@ The Score column on the Total row is left blank. The Severity column on the Tota
 | Condition | Score | One-sentence assessment |
 |---|---|---|
 | Loop-Complete | <score> | <one sentence with evidence-for and evidence-against, grounded in [[FRAMEWORK]] artefacts> |
-| Observable | <score> | <one sentence with evidence-for and evidence-against> |
+| Traceable | <score> | <one sentence with evidence-for and evidence-against> |
 | Verified | <score> | <one sentence with evidence-for and evidence-against> |
 | Provable | <score> | <one sentence with evidence-for and evidence-against> |
 | Learned from | <score> | <one sentence with evidence-for and evidence-against> |
@@ -417,7 +417,7 @@ These rules apply without exception. They mirror the hard rules in `prompt.md`.
 - [ ] Does every Loop phase row's one-sentence assessment contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does every DoD condition row's one-sentence assessment contain both an evidence-for clause AND an evidence-against clause?
 - [ ] Does the Agentic Loop Phases Table contain exactly nine rows in the canonical order (Specify, Design, Plan, Execute, Verify, Validate, Observe, Learn, Govern) and exactly three columns (Phase, Score, One-sentence assessment)?
-- [ ] Does the Agentic Definition of Done Table contain exactly eight rows in the canonical order (Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope) and exactly three columns (Condition, Score, One-sentence assessment)?
+- [ ] Does the Agentic Definition of Done Table contain exactly eight rows in the canonical order (Loop-Complete, Traceable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope) and exactly three columns (Condition, Score, One-sentence assessment)?
 - [ ] Does the Framing Warning section contain exactly four subsections in this order: "What [[FRAMEWORK]] is", "What the manifesto's scope [[FRAMEWORK]] covers by design", "What is out of scope by design (scope gap vs. failure)", "Score interpretation warning"?
 - [ ] Does the Maturity Level header line name a specific phase (Phase 1–6) AND a sentence stating that the next phase's gate requirements are substantially unmet (naming the lowest unmet gate)?
 - [ ] Is the Maturity Phase Verdict bounded by the LOWEST unmet gate (not by the highest demonstrated feature), and does the body name that gate?

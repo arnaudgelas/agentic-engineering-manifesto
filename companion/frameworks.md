@@ -264,7 +264,7 @@ can still adopt the manifesto's principles selectively:
 The principles that require caution in regulated environments are primarily
 Principle 5 at Tier 3 (production-impacting agent actions), Principle 6
 (memory governance in data-restricted environments — see
-[P6 extended guidance](companion-principles.md#memory-governance-in-regulated-environments)),
+[P6 extended guidance](principles-06.md#memory-governance-in-regulated-environments)),
 and Principle 10 (chaos testing in safety-critical systems — validate
 chaos experiments in isolated environments before running on production
 equivalents).
@@ -272,7 +272,7 @@ equivalents).
 For viable starting points by domain, see:
 [Aviation](domains/aviation.md#viable-starting-points) ·
 [Medical Devices](domains/medical-devices.md#viable-starting-points) ·
-[Pharma](domains/pharma.md#viable-starting-points) ·
+[Pharma](domains/pharma.md#10-viable-starting-points) ·
 [Financial Services](domains/financial-services.md#market-specific-autonomy-guidance)
 
 ### What Would Need to Change
@@ -301,7 +301,7 @@ regulated contexts must be verified through independent means. This maps to
 the manifesto's tier model: at Tier 1-2, human review provides independence;
 at Tier 3, independent evaluation infrastructure (separate models, holdout
 scenarios) provides the independence guarantee. See
-[P8 extended guidance](companion-principles.md#independent-verification-in-regulated-contexts).
+[P8 extended guidance](principles-08.md#independent-verification-in-regulated-contexts).
 
 **SOUP / agent-as-tool categorization.** Multiple regulatory frameworks require
 classification of software components by provenance and qualification status:
@@ -313,7 +313,7 @@ chosen during execution), and agent-generated code (may incorporate
 training-data patterns as implicit unclassified software). The manifesto's
 defense-in-depth response: treat the agent as an unqualified tool and
 independently verify all output through qualified means. See
-[P3 extended guidance](companion-principles.md#agent-as-tool-and-software-of-unknown-provenance).
+[P3 extended guidance](principles-03.md#agent-as-tool-and-software-of-unknown-provenance).
 
 **Data classification as an agent constraint.** Agents operating in regulated
 environments must respect data classification boundaries. Classification
@@ -384,7 +384,7 @@ phase and risk tier.
 **Total cost of correctness**: `inference + verification + governance overhead +
 incident remediation + opportunity cost + context-switching cost`. Optimize this
 composite, not any single component. See
-[Principle 11 guidance](companion-principles.md#principle-11-economics-extended-guidance).
+[Principle 11 guidance](principles-11.md#principle-11-economics-extended-guidance).
 
 **Evolution-weighted correctness (EvoScore)**: a metric that measures functional
 correctness on future modifications, not just current tests. Agents whose early
@@ -392,13 +392,13 @@ decisions facilitate subsequent evolution score higher; agents that accumulate
 structural technical debt see progressively declining performance. Introduced by
 the SWE-CI benchmark (arXiv:2603.03823). Use evolution-weighted metrics as a
 complement to total cost of correctness for long-running agent pipelines. See
-[Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
+[Structural Regression](principles-08.md#behavioral-regression-vs-structural-regression)
 in the P8 extended guidance.
 
 **Structural regression**: a change that passes all current tests but degrades
 the codebase's capacity for future change. Distinguished from behavioral
 regression (breaking existing functionality). See
-[P8 guidance](companion-principles.md#behavioral-regression-vs-structural-regression).
+[P8 guidance](principles-08.md#behavioral-regression-vs-structural-regression).
 
 Phase-calibrated evidence examples:
 - **Phase 3**: tests, diff, trace link, rollback note.

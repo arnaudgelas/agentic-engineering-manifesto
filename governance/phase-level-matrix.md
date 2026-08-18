@@ -12,7 +12,7 @@
 
 ### 1.1 AEM Phase (1–6)
 
-Phase progression for AEM teams (per [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch), "Maximum available tier" phase table, and the broader AEM adoption discussion):
+Phase progression for AEM teams (per [`manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch), "Maximum available tier" phase table, and the broader AEM adoption discussion):
 
 | Phase | Description | Maximum autonomy tier |
 |---|---|---|
@@ -156,7 +156,7 @@ Per the W2.17 specification, the matrix should identify 5–8 unsafe combination
 | **U5** | AEnt-M Phase 4 + IGM Level ≤ 3 | Domain expansion requires IGM substrate at L4+ (cross-domain edges). L3 is single-domain; multi-domain operation at L3 has no cross-domain edge structure for agents to reason over. |
 | **U6** | AEM Phase 6 + IGM Level 1 | The combination the W2.17 specification gives explicitly: *"evaluations against an ungoverned substrate are unverifiable."* AEM P8 evaluations against claims with no provenance, no tier, no decay management produce metrics that are statistical artefacts, not governance evidence. Tier 4 envelope prerequisites cannot be satisfied. |
 | **U7** | AEnt-M Phase 5 + IGM Level ≤ 3 | Enterprise-scale initiative requires substrate fertility (IGM L5 property). At L3, substrate does not compound through operation; "initiative" claimed at L3 is initiative theatre (per AEnt-M failure mode). |
-| **U8** | Tier 4 envelope (AEM Phase 6) + IGM Level 2 | Tier 4 prerequisites include "control evaluations confirm the governance system itself works" ([`manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)). At IGM L2, no governance authorities are staffed; control evaluations of the substrate-governance system are vacuously meaningless. |
+| **U8** | Tier 4 envelope (AEM Phase 6) + IGM Level 2 | Tier 4 prerequisites include "control evaluations confirm the governance system itself works" ([`manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)). At IGM L2, no governance authorities are staffed; control evaluations of the substrate-governance system are vacuously meaningless. |
 
 ---
 
@@ -197,7 +197,7 @@ The matrix is consulted at:
 - `governance/composition-rule.md` — formal rule that depends on the safe combinations.
 - `governance/authority-accountability-matrix.md` — authority assignments that presuppose IGM Level ≥ 3.
 - `governance/evidence-bundle-schema.md` — required-by-tier matrix that presupposes AEM Phase ≥ 4 for Tier 2+ bundles.
-- [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) (AEM phase × tier table) — AEM phase progression source.
+- [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) (AEM phase × tier table) — AEM phase progression source.
 - `intelligence-governance-manifesto/manifesto.md:147–158` (IGM Definition of Done) — IGM Level criteria source.
 - `agentic-enterprise-manifesto/manifesto.md:236–274` (AEnt-M Adoption Path) — AEnt-M phase descriptions source.
 - `glossary.md` (repo root) — term-collision appendix.

@@ -1,8 +1,5 @@
 ## Principle 3 — Architecture: Extended Guidance
 
-*Status: **NON-NORMATIVE** — explanatory/supporting material; it does not itself impose requirements. The AEM normative core is `manifesto/*.md`.*
-
-
 *See Principle 3 in the manifesto for the core statement and minimum bar.*
 
 ### Prompt Drift and Enforcement

@@ -43,6 +43,35 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
+// Companion frameworks that live in their own separate git repositories,
+// checked out locally (if at all) as untracked directories alongside this
+// repo — see `review/prompts/prompt-01-quick-overview.md`'s "Out-of-scope
+// corpus / tracked-files-only" clause, which documents the same boundary.
+// Citations into them are cross-repo references, not local cross-references:
+// the target file is never expected to exist in this repo's checkout (CI
+// included), so anchor resolution is skipped rather than flagged broken.
+const EXTERNAL_CORPUS_PREFIXES = [
+  "aplc/",
+  "asdlc/",
+  "intelligence-governance-manifesto/",
+  "agentic-enterprise-manifesto/",
+];
+const EXTERNAL_CORPUS_FILES = new Set(["igm-aent-coherence-review.md"]);
+
+function isExternalCorpusPath(citedPath, citingFileRelPath) {
+  const candidates = [
+    path.posix.normalize(
+      path.posix.join(path.posix.dirname(citingFileRelPath), citedPath),
+    ),
+    path.posix.normalize(citedPath),
+  ];
+  return candidates.some(
+    (candidate) =>
+      EXTERNAL_CORPUS_FILES.has(candidate) ||
+      EXTERNAL_CORPUS_PREFIXES.some((prefix) => candidate.startsWith(prefix)),
+  );
+}
+
 // Bare-basename aliases a citing file may use instead of a repo-root-relative
 // path, mirrored from build.mjs's `sourceAliases` map (kept in sync manually
 // — see build.mjs if the site's canonical file layout changes).
@@ -263,6 +292,8 @@ function extractAnchors(content) {
 // ---------------------------------------------------------------------------
 
 function verifyAnchor(anchor, citingFileRelPath, findings) {
+  if (isExternalCorpusPath(anchor.citedPath, citingFileRelPath)) return;
+
   const targetRelPath = resolveTargetPath(anchor.citedPath, citingFileRelPath);
   const where = `${citingFileRelPath}:${anchor.sourceLine}`;
   const raw = `${anchor.citedPath}${anchor.suffix}`;

@@ -220,7 +220,7 @@ Added "Which layer are you governing?" decision section under "Intelligence, Not
 | Reconciliation | Source |
 |---|---|
 | `manifesto.md:73–79` Value 3 tightened: "preserve always; halt action when contradiction is material AND consequence class is High/Critical." | Coherence review punch-list |
-| `companion-guide.md:45–69` vs `glossary.md:24–32` confidence-table divergence: aligned to single canonical *Epistemic tiers* table; companion-guide section retitled and references the canonical table. | Coherence review punch-list |
+| companion-guide.md (confidence-table section, since restructured into companion-principles.md) vs `glossary.md:24–32` confidence-table divergence: aligned to single canonical *Epistemic tiers* table; companion-guide section retitled and references the canonical table. | Coherence review punch-list |
 | `implementation-guide.md` Level 2 "informal confidence" vs intelligence-theatre failure pattern: clarified Level 2 informal tier acceptable as transient stage, not steady state, and not for above-Low consequence actions. Matching note added to glossary `Intelligence theatre` entry. | Coherence review punch-list |
 
 ### Cross-references added (manifesto.md)

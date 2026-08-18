@@ -22,13 +22,23 @@ AEM's loop ends here: shipment, production deployment, and live operations
 are governed by ASDLC's release and operations layers, not by this document.
 See [Handoff to the Release Layer](#handoff-to-the-release-layer) below.
 
-**Observable** — instrumented and logged so decision-relevant observable
-evidence and causal execution history can be inspected from traces, with any
-model-authored rationale checked against actual environment state rather than
-accepted on its own. This is loop-time observability — it covers Specify
-through Govern. Once a release candidate is handed off, live production
-observability, alerting, and SLO monitoring belong to the downstream
-operations layer; AEM does not define or govern them.
+**Traceable** — instrumented and logged so every decision in the loop can be
+reconstructed to its cause: which specification, which model configuration,
+which tool call, which environment state produced it. Instrumentation alone
+does not satisfy this criterion — logs that exist but cannot be followed back
+to a cause are observability without traceability. Any model-authored
+rationale must be checked against actual environment state rather than
+accepted on its own; a plausible explanation that does not match what
+actually happened in the environment fails this criterion regardless of how
+complete the logging is. This is loop-time traceability — it covers Specify
+through Govern, and it is what the trace IDs required under the Verified
+criterion above and the Agentic provenance record (see
+[Definition of Done for Hardening](#definition-of-done-for-hardening) below)
+exist to support; this criterion is the outcome those mechanisms are built to
+produce, not a separate logging requirement layered on top of them. Once a release
+candidate is handed off, live production observability, alerting, and SLO
+monitoring belong to the downstream operations layer; AEM does not define or
+govern them.
 
 **Verified** — evaluated against regression tests (and adversarial cases),
 with an evidence bundle (diffs, trace IDs, policy check outputs) required for
@@ -67,8 +77,12 @@ not done. Correctness alone is not sufficient evidence for the "Within
 Service Envelope" criterion above. At minimum, the envelope must specify:
 
 - **Reliability** — the defined success/error-rate target the agent must meet
-  under the evaluation portfolio and, once in production, under real traffic;
-  failure modes are enumerated and bounded, not open-ended.
+  under the evaluation portfolio, measured and evidenced before handoff;
+  failure modes are enumerated and bounded, not open-ended. Confirming that
+  target holds under real production traffic is a release/operations-layer
+  acceptance criterion, applied downstream of the handoff boundary — AEM's DoD
+  requires the target be defined and met in the evaluation portfolio, not that
+  it be re-measured in production.
 - **Latency** — the response-time budget (e.g., p50/p95/p99 as applicable) for
   the workload's autonomy tier. A correct answer delivered outside the
   latency budget does not satisfy the DoD.
@@ -119,7 +133,7 @@ Both risks are real and distinct. At Phase 4 and above, "verified" should
 include evolution-weighted signals beyond CI pass rates — static analysis for
 coupling growth, module boundary stability, and change amplification —
 alongside the behavioral regression coverage the benchmark measures. See
-[Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
+[Structural Regression](../companion/principles-08.md#behavioral-regression-vs-structural-regression)
 in the Companion Guide.
 
 **Why it matters:** This forces the system to optimize for actual business
@@ -160,7 +174,7 @@ in the loop.
 
 **What "Observe" means once operations sit outside AEM.** During the loop,
 "Observe" means monitoring runtime behavior, drift, and cost as evidence for
-Verify, Validate, and Govern — see the [Observable](#the-agentic-definition-of-done)
+Verify, Validate, and Govern — see the [Traceable](#the-agentic-definition-of-done)
 DoD criterion above. Once a release candidate is handed off, live production
 observability, alerting, and SLO monitoring are the responsibility of the
 downstream operations layer. AEM does not define or govern that monitoring;

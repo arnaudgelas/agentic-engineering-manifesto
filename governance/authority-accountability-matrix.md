@@ -12,7 +12,7 @@
 
 Columns map to the four governance dimensions:
 
-- **IGM authority** — Semantic / Assertion / Inference / Revision (per IGM P6, [`intelligence-governance-manifesto/manifesto-principles.md#principle-6-four-authorities-govern-the-graph`](../intelligence-governance-manifesto/manifesto-principles.md#principle-6-four-authorities-govern-the-graph)).
+- **IGM authority** — Semantic / Assertion / Inference / Revision (per IGM P6, [`intelligence-governance-manifesto/manifesto-principles.md#principle-6-four-authorities-govern-the-graph`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-6-four-authorities-govern-the-graph)).
 - **AEnt-M consequence-class role** — Workflow Owner / Decision Reviewer / Accountable Authority / Dual Authority (per AEnt-M P8 + companion-guide.md:124–137).
 - **ASDLC steward** — system steward, release manager, accountable human, security function lead, compliance function lead (per `asdlc/release-governance.md`, `asdlc/maintenance-governance.md`, `asdlc/waiver-governance.md`).
 - **APLC product manager** — product owner, named accountable human, governance authority, evaluation team lead (per `aplc/aplc.md`, `aplc/aplc-guide.md`).
@@ -127,17 +127,17 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
-| Decides | C (substrate-state attestation: deep-enough? Curate active? authorities staffed?) Revision authority | C Accountable Authority for the highest-consequence class in the proposed envelope | **D** ASDLC system steward + accountable human (envelope owner per AEM [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch)) | C APLC governance authority (review of envelope vs APLC Stage 4/5 conformity) |
+| Decides | C (substrate-state attestation: deep-enough? Curate active? authorities staffed?) Revision authority | C Accountable Authority for the highest-consequence class in the proposed envelope | **D** ASDLC system steward + accountable human (envelope owner per AEM [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)) | C APLC governance authority (review of envelope vs APLC Stage 4/5 conformity) |
 | Consulted | — | — | C security function lead, FinOps owner | C product owner for each agent product inside the envelope |
 | Informed | I all four IGM authorities | I all consequence-class roles for classes inside the envelope | I release manager | — |
-| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `governance/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
+| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `governance/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
 | Escalation | If any prerequisite is missing, D is blocked; escalation is to fix the prerequisite, not to override | — | — | — |
 
 #### B4. Tier 4 envelope withdrawal (emergency)
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
-| Decides | I | I | **D** any of: ASDLC system steward, accountable human (envelope owner), security function lead, governance authority — all have unilateral kill-switch authority per [`manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) ("kill-switch configuration") | I product owner |
+| Decides | I | I | **D** any of: ASDLC system steward, accountable human (envelope owner), security function lead, governance authority — all have unilateral kill-switch authority per [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) ("kill-switch configuration") | I product owner |
 | Effect | All classes inside the envelope drop to Tier 3 synchronous gating immediately | — | — | — |
 | Post-event | Mandatory governance authority review within 5 business days; envelope re-approval requires fresh demonstration of all four prerequisites + reason for withdrawal addressed | — | — | — |
 

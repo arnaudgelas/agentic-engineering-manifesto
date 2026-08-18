@@ -201,8 +201,8 @@ Assess each of the seven evidence conditions from `manifesto/manifesto-done.md` 
 1. Evaluation reports with pass/fail and metrics
 2. Trace IDs linking to the full decision chain
 3. Diffs showing what changed
-4. Deployment IDs confirming what shipped
-5. Rollback plans confirming reversibility
+4. Control state record confirming what is ready for handoff
+5. Rollback plans confirming reversibility (tested, not just documented)
 6. Policy check outputs confirming constraint compliance
 7. Memory updates confirming what was learned
 

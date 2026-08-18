@@ -16,7 +16,7 @@ evolve within those invariants. An agent can propose a revised acceptance
 criterion without governance overhead; proposing a relaxed constraint triggers a
 governed review. If the system cannot distinguish these two change types,
 specification iteration will silently erode architectural boundaries. See
-[Specifications vs. Constraints](companion-principles.md#specifications-vs-constraints)
+[Specifications vs. Constraints](../companion/principles-02.md#specifications-vs-constraints)
 in the extended guidance.
 
 *Minimum bar: If a specification cannot be versioned, reviewed, and revised

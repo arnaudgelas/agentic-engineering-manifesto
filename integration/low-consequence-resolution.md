@@ -2,11 +2,11 @@
 
 **Status:** Normative cross-framework artefact (Wave 1, item W1.9 / B10).
 **Audience:** AEM authors, AEnt-M authors, ASDLC release managers, internal audit (3rd line), regulators.
-**Purpose:** Reconcile AEM Principle 12's Tier 1 ("Low-risk, reversible") accountability model with AEnt-M Principle 8's "Low consequence" class (post-hoc audit sampling at the workflow level). AEM P12 already provides a per-class model that does not require per-action review at Tier 1 ([`manifesto/manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "Low-risk, reversible" action-class table row); the two documents describe closely related mechanisms without cross-referencing each other or aligning their criteria. This artefact maps the two and states shared criteria and terminology — it does not resolve a conflict, because AEM does not in fact impose a uniform per-action floor across all consequence classes.
+**Purpose:** Reconcile AEM Principle 12's Tier 4 ("Policy-envelope autonomous") accountability model with AEnt-M Principle 8's "Low consequence" class (post-hoc audit sampling at the workflow level). AEM P12 already provides a per-class model that does not require per-action review at Tier 4 ([`manifesto/manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "Policy-envelope autonomous" action-class table row); the two documents describe closely related mechanisms without cross-referencing each other or aligning their criteria. This artefact maps the two and states shared criteria and terminology — it does not resolve a conflict, because AEM does not in fact impose a uniform per-action floor across all consequence classes.
 
 ---
 
-## 1. AEM Tier 1 and AEnt-M Low, sourced
+## 1. AEM Tier 4 and AEnt-M Low, sourced
 
 ### 1.1 AEM Principle 12 — the minimum bar
 
@@ -18,7 +18,7 @@ AEM P12 sets a per-action accountability floor for Medium consequence and above,
 > "A named human who has reviewed the evidence bundle, accepted that the DoD conditions are satisfied, and accepts production accountability for the outcome (P12). This is not a rubber stamp — it is the governance record that the evidence was reviewed."
 > — `manifesto/manifesto.md:129–132`
 
-AEM P12 itself already recognizes a lowest tier that does not require per-action human review: "Low-risk, reversible (Tier 1, contained blast radius) | None per action; domain owner reviews statistical samples and trend dashboards" ([`manifesto/manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "Low-risk, reversible" action-class table row). So AEM's floor is not uniformly per-action across all consequence classes — Tier 1 is already a statistical-sampling, workflow-level model, not a per-action one.
+AEM P12 itself already recognizes a tier that does not require per-action human review: "Policy-envelope autonomous (Tier 4) | Human approves and owns the policy envelope; no per-action review; anomaly detection routes deviations to human | Control state record confirms each action fell within the approved envelope; governance observability surfaces drift; kill switch available and tested" ([`manifesto/manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "Policy-envelope autonomous" action-class table row). So AEM's floor is not uniformly per-action across all consequence classes — Tier 4 is already a policy-envelope, workflow-level model, not a per-action one.
 
 ### 1.2 AEnt-M Principle 8 — Low consequence weakens to workflow-level
 
@@ -30,11 +30,13 @@ AEnt-M P8 introduces consequence-class accountability with a Low class that drop
 > "Low | Workflow owner | Post-hoc audit sampling | Action log with reasoning chain | Continue with enhanced monitoring"
 > — `agentic-enterprise-manifesto/companion-guide.md:134`
 
-AEnt-M's Low class is a workflow-level, post-hoc-sampling model. That is not weaker than AEM's *own* Tier 1 (per §1.1) — it is directionally the same model AEM P12 already applies at Tier 1. What is missing is not an AEM floor that AEnt-M falls below; it is an explicit mapping between AEM's Tier 1 and AEnt-M's Low class so a reader does not have to infer that the two are describing the same thing in different vocabulary.
+AEnt-M's Low class is a workflow-level, post-hoc-sampling model. That is not weaker than AEM's *own* Tier 4 (per §1.1) — it is the same *pattern* (no mandatory per-action review; workflow/envelope-level accountability; post-hoc detection of drift) that AEM P12 already applies at Tier 4.
+
+**Caution: this is a pattern analogy, not an axis correspondence.** AEM autonomy tier and AEnt-M consequence class are orthogonal dimensions — tier is a permission ceiling on what the *system* may do; consequence class determines which *human accountability model* applies to an action, independent of tier (`governance/composition-rule.md:1-19`). They do not co-vary: a Low-consequence action still requires whatever tier its own operation demands (a branch write requires at least Tier 2 regardless of consequence class — `governance/composition-rule.md` §2.3), and Tier 4 envelopes routinely govern Critical-consequence actions under dual-authority signoff, not just Low ones (`governance/composition-rule.md` §2.1). "Low corresponds to Tier 4" is false as a general statement; at most, *both* axes independently license a no-per-action-review pattern at their respective low/high end, for different reasons. What is missing is not a mapping from AEnt-M's Low class onto AEM's Tier 4 — no such mapping exists to make — but an explicit note that the two patterns are structurally similar without being the same gate, so a reader does not conflate them into a single axis.
 
 ### 1.3 What remains to be reconciled
 
-The two documents describe materially similar mechanisms (statistical/post-hoc sampling, workflow- or domain-owner-level accountability, no mandatory per-action review) using different names, different trigger criteria, and no cross-reference between them. Left unreconciled, a reader of AEM alone would not know that AEnt-M's Low class corresponds to AEM's Tier 1, and a reader of AEnt-M alone would not know that AEM already licenses this model rather than merely tolerating a deviation from it. The remaining work is terminological and criteria alignment between AEM P12 Tier 1 and AEnt-M P8 Low — not the invention of a carve-out AEM does not otherwise have. (Reconciling the tier/class taxonomy itself, including naming, is tracked separately — see `manifesto/manifesto-principles-05.md` and `manifesto/manifesto-principles-12.md` for the two AEM tier definitions this document's Tier 1 references.)
+The two documents describe materially similar *mechanisms* (policy-envelope/post-hoc sampling, workflow- or domain-owner-level accountability, no mandatory per-action review) on two different axes, using different names, different trigger criteria, and no cross-reference between them. Left unreconciled, a reader of AEM alone would not know that AEnt-M's Low class uses a workflow-level accountability pattern structurally similar to AEM's own Tier 4 pattern (not that it *corresponds to* Tier 4 — the two axes are independent, per `governance/composition-rule.md`), and a reader of AEnt-M alone would not know that AEM already licenses this *pattern* elsewhere rather than merely tolerating a deviation from it. The remaining work is terminological and criteria alignment between AEM P12 Tier 4 and AEnt-M P8 Low — not the invention of a carve-out AEM does not otherwise have, and not a claim that a Low-consequence action is thereby exempt from AEM's own tier/permission gate (P5), which applies independently of consequence class (`governance/composition-rule.md` §2.3–2.4). (Reconciling the tier/class taxonomy itself, including naming, is tracked separately — see `manifesto/manifesto-principles-05.md` and `manifesto/manifesto-principles-12.md` for the two AEM tier definitions this document's Tier 4 references.)
 
 ---
 
@@ -54,9 +56,11 @@ Bring AEnt-M Low into AEM compliance by requiring per-action accountability even
 - May produce *rubber-stamping* (AEM P12's named failure mode — `manifesto.md:131`): named humans approving fast-volume actions without genuine review, which is itself a P12 violation. The cure is worse than the disease.
 - Makes AEM itself more burdensome to adopt for use cases where the institutional cost of error is genuinely small.
 
-### Option B — Carve "Low consequence" out of AEM scope explicitly
+### Option B — Carve "Low consequence" out of AEM's per-action accountability floor explicitly
 
-Declare that AEM principles apply to actions whose consequence class is Medium or higher, and that AEnt-M's "Low consequence" class is explicitly *below the AEM-governed envelope*. Below-envelope actions are governed by post-hoc audit sampling and workflow-level accountability, not by per-action AEM bars. Criteria for Low classification are tightened so the carve-out is narrow and defensible.
+**Scope note (corrects an earlier drafting error in this section).** "AEM-governed envelope" and "AEM scope" below refer specifically to AEM P12's per-action human-accountability floor — not to AEM as a whole. AEM's autonomy-tier permission gate (P5) is a separate, independently-required axis and is **not** part of this carve-out: a Low-consequence action still requires whatever tier its own operation demands, exactly as any other action does (`governance/composition-rule.md` §1, §2.3–2.4). Tier and consequence class are orthogonal — Low does not correspond to any particular tier, and this carve-out does not make it correspond to one. Read every "outside AEM scope" / "AEM-governed envelope" phrase in this section 3 under that restriction.
+
+Declare that AEM P12's per-action accountability floor applies to actions whose consequence class is Medium or higher, and that AEnt-M's "Low consequence" class is explicitly *below that floor*. Below-floor actions are governed by post-hoc audit sampling and workflow-level accountability instead of per-action AEM P12 review — but remain fully subject to AEM's tier/permission gate (P5) like any other action. Criteria for Low classification are tightened so the carve-out is narrow and defensible.
 
 **Pros.**
 - Makes the scope boundary explicit. Readers can tell whether any given action is AEM-governed.
@@ -91,13 +95,16 @@ If any one criterion fails, the action class is **not** Low. It is at minimum Me
 
 ### 3.2 What "outside AEM scope" means operationally
 
-Within the carve-out, the AEM principles do not apply *to those specific actions*. Specifically:
+Within the carve-out, AEM P12's per-action human-accountability floor does not apply *to those specific actions*. This carve-out is scoped to P12 (accountability) only — it does **not** touch P5 (autonomy tier as permission ceiling). Specifically:
 
 - AEM P12's per-action review requirement does not apply.
 - AEM Definition of Done's per-action evidence bundle is not required.
-- AEM autonomy-tier gating per-action is replaced by workflow-tier gating.
 
-What does apply:
+What still applies, unaffected by the carve-out:
+
+- **AEM tier/permission gating (P5).** The system must still be authorised at whatever autonomy tier the action itself requires (e.g., any write requires at least Tier 2; Tier 1 is read-only regardless of consequence class). Low consequence class does not raise, lower, or bypass the tier requirement — the two are independent gates that both apply per `governance/composition-rule.md` §2.3 ("even this low-consequence allowance requires Tier 2 authorisation"). A Low-consequence action still fails at the AEM gate if the system is not authorised at the tier the action requires.
+
+What newly applies under the carve-out:
 
 - **Workflow-level accountability.** A named human owns the workflow as a whole and is accountable for the workflow's design, its consequence-class assignment, its scope, and its periodic review. This is AEnt-M P8 Low at workflow granularity.
 - **Post-hoc audit sampling.** A statistically valid sample of actions is reviewed by a named human at a defined cadence (recommended: monthly review of ≥1% of actions or ≥30 actions per workflow per month, whichever is larger; calibrated to risk appetite per workflow).
@@ -135,7 +142,7 @@ The Low row of the consequence-class table (`agentic-enterprise-manifesto/compan
 
 > **DRAFT — author review needed.** Whether AEM's `manifesto.md` "What this manifesto does not cover" section (`manifesto.md:295–312`) should add a line declaring the carve-out is *recommended*. Without it, the carve-out is declared in AEnt-M but not acknowledged in AEM, which is the same readability problem in reverse. The recommended addition:
 
-> "Low-consequence actions explicitly carved out per AEnt-M Principle 8 and `integration/low-consequence-resolution.md`. Actions in this class operate under workflow-level accountability with post-hoc audit sampling rather than per-action review. The AEM principles do not apply to actions in this class; criteria for the carve-out are stated in the integration document."
+> "Low-consequence actions explicitly carved out of AEM P12's per-action accountability floor per AEnt-M Principle 8 and `integration/low-consequence-resolution.md`. Actions in this class operate under workflow-level accountability with post-hoc audit sampling rather than per-action review. This carve-out affects P12 only; AEM's autonomy-tier permission gate (P5) still applies independently of consequence class — see `governance/composition-rule.md`. Criteria for the carve-out are stated in the integration document."
 
 This edit is left to the AEM author's discretion. The carve-out is operationally workable without it but is more readable with it.
 
@@ -175,7 +182,7 @@ No. The seven criteria are the floor. Industries with lighter regulatory environ
 
 The current bullet for Low (text along the lines of "Low consequence (internal research, non-client-facing analysis) — human accountability at the workflow level. Named human owns the workflow. Individual actions are logged with audit trail.") is replaced by:
 
-> "*Low consequence* — explicitly carved out of the AEM-governed envelope per `/integration/low-consequence-resolution.md`. Action classes qualify as Low only when **all** of the following hold: no client impact, no regulatory exposure, no irreversibility, no PII processing, no financial exposure, no safety implications, no precedent-creation. The AEM per-action accountability minimum bar ([`manifesto/manifesto-principles-12.md`](/manifesto/manifesto-principles-12.md#12-accountability-requires-visibility) P12) does not apply to actions in this class. Instead: workflow-level accountability — a named human owns the workflow, accepts accountability for its design, its class assignment, and its periodic review. Individual actions are logged with reasoning chain, claims cited (if any), and the workflow tag. Post-hoc audit sampling (recommended: ≥1% or ≥30 actions per workflow per month, whichever is larger) is reviewed by the workflow owner. Any action that breaches any of the seven criteria is immediately reclassified and AEM-governed remediation applies."
+> "*Low consequence* — explicitly carved out of AEM P12's per-action accountability floor per `/integration/low-consequence-resolution.md`. This carve-out is scoped to accountability (AEM P12); it does not exempt actions from AEM's autonomy-tier permission gate (P5), which applies independently of consequence class — a Low-consequence action still requires whatever tier its own operation demands (see `governance/composition-rule.md`). Action classes qualify as Low only when **all** of the following hold: no client impact, no regulatory exposure, no irreversibility, no PII processing, no financial exposure, no safety implications, no precedent-creation. The AEM per-action accountability minimum bar ([`manifesto/manifesto-principles-12.md`](/manifesto/manifesto-principles-12.md#12-accountability-requires-visibility) P12) does not apply to actions in this class. Instead: workflow-level accountability — a named human owns the workflow, accepts accountability for its design, its class assignment, and its periodic review. Individual actions are logged with reasoning chain, claims cited (if any), and the workflow tag. Post-hoc audit sampling (recommended: ≥1% or ≥30 actions per workflow per month, whichever is larger) is reviewed by the workflow owner. Any action that breaches any of the seven criteria is immediately reclassified and AEM-governed remediation applies."
 
 ### 6.2 Replacement for the companion-guide table row
 
@@ -188,7 +195,7 @@ The Low row of the table at `agentic-enterprise-manifesto/companion-guide.md:134
 
 A new row of explanatory text below the table is added:
 
-> "Low is the only class outside the AEM-governed envelope. Qualification requires all seven carve-out criteria in `/integration/low-consequence-resolution.md` §3.1. Defaulting to Low without those criteria demonstrably true is a governance failure, not a tier election."
+> "Low is the only class carved out of AEM P12's per-action accountability floor. This carve-out does not affect AEM's autonomy-tier permission gate (P5), which still applies independently — see `governance/composition-rule.md`. Qualification requires all seven carve-out criteria in `/integration/low-consequence-resolution.md` §3.1. Defaulting to Low without those criteria demonstrably true is a governance failure, not a tier election."
 
 ---
 
@@ -198,7 +205,8 @@ A new row of explanatory text below the table is added:
 - `manifesto.md:295–312` — AEM "What this manifesto does not cover", which the optional AEM edit (§4.3) extends.
 - `agentic-enterprise-manifesto/manifesto.md` Principle 8 — the AEnt-M paragraph being edited.
 - `agentic-enterprise-manifesto/companion-guide.md:131–137` — the AEnt-M consequence-class table being edited.
-- `governance/governance-integration-note.md` — Tier 4 + relocation + substrate-depth integration; the carve-out applies *inside* a Tier 4 envelope as an additional class scoping rule.
+- `governance/composition-rule.md` — states that AEM tier and AEnt-M consequence class are orthogonal, conjunctively-required gates (§1, §2.3–2.4); this carve-out is scoped to the AEnt-M/P12 accountability axis only and does not touch the AEM tier gate.
+- `governance/governance-integration-note.md` — Tier 4 + relocation + substrate-depth integration; the carve-out applies *inside* a Tier 4 envelope as an additional class scoping rule (Tier 4 is not implied by or coextensive with Low — see `governance/composition-rule.md`).
 - `governance/authority-accountability-matrix.md` (DRAFT) — workflow-owner authority is named here.
 - `integration/loop-readiness-for-agent-opportunities.md` — note that Low-class action classes still produce demand candidates that pass through the same loop-readiness gate; the carve-out is about action-execution accountability, not about specification creation.
 
@@ -210,3 +218,4 @@ A new row of explanatory text below the table is added:
 - **DRAFT — author review needed.** The seven carve-out criteria in §3.1 are stated as conjunctive (all must hold). Whether any specific criterion can be relaxed for specific operational contexts is a regulatory-counsel question.
 - **DRAFT — author review needed.** The sampling cadence in §3.2 ("≥1% or ≥30 actions / workflow / month, whichever is larger") is illustrative. Calibration should be by domain owner against historical incident rates.
 - **DRAFT — author review needed.** Whether AEM's `manifesto.md:295–312` should be edited (§4.3). Recommended for readability; left to AEM author's judgment for whether to amend AEM itself.
+- **Correction applied (review finding).** Earlier drafts of §1 and §3–§6 equated AEnt-M's Low consequence class with AEM's Tier 4 and stated that "the AEM principles do not apply" / actions are "outside the AEM-governed envelope" without qualification. This was wrong: `governance/composition-rule.md` establishes tier and consequence class as orthogonal, conjunctively-required gates — a Low-consequence action still requires whatever AEM tier its own operation demands (composition-rule §2.3: "even this low-consequence allowance requires Tier 2 authorisation"), and Tier 4 routinely governs Critical-consequence actions (composition-rule §2.1), so Tier 4 does not correspond to Low. The carve-out in this document is scoped to AEM P12's per-action accountability floor only; AEM's tier/permission gate (P5) is unaffected and applies independently. §1.2, §1.3, §3, §4.3, and §6 have been corrected accordingly and cross-referenced to `governance/composition-rule.md`. Author review of the corrected language is still recommended before ratification.

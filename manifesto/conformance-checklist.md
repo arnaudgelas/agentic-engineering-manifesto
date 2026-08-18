@@ -1,10 +1,5 @@
 # AEM Conformance Checklist
 
-*Status: **NORMATIVE** — this document is part of the AEM normative core (`manifesto/*.md`). It
-restates, as a checklist, the minimum bars stated in `manifesto-principles-01.md` through
-`manifesto-principles-12.md`. It does not add, relax, or reinterpret any requirement. Where this
-checklist and a principle's own "Minimum bar" text appear to diverge, the principle text governs.*
-
 **Purpose.** Let a team self-assess AEM conformance from this one page plus two JSON Schemas —
 without re-reading the full manifesto. Every row below is a direct restatement of a "Minimum bar"
 sentence from the corresponding principle file; nothing here was added editorially.

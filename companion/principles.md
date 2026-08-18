@@ -1,7 +1,5 @@
 # Companion Guide — Principle-by-Principle Guidance
 
-*Status: **NON-NORMATIVE** — explanatory/supporting material; it does not itself impose requirements. The AEM normative core is `manifesto/*.md`.*
-
 *Extended guidance, tradeoffs, and operational detail for each principle
 in the Agentic Engineering Manifesto.*
 

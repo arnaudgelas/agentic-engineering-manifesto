@@ -19,9 +19,13 @@ agent's output satisfies the acceptance criteria.
 
 **Validation** is the judgment that the specification itself was worth building.
 Validation answers: *did we build the right thing?* It checks fitness for
-real-world use: does the deployed behavior produce the intended business outcome?
-Verification can pass completely while validation fails — you can build exactly
-what the specification said, correctly, and ship the wrong thing.
+real-world use against the evidence available at release-candidate handoff —
+staged runs, simulated traffic, and evaluation-portfolio results — not live
+production outcomes, which sit downstream of AEM's loop in the release and
+operations layers (see [the Definition of Done's handoff
+boundary](manifesto-done.md#handoff-to-the-release-layer)). Verification can
+pass completely while validation fails — you can build exactly what the
+specification said, correctly, and hand off the wrong thing.
 
 **Independent validation** is the organizational challenge of whether
 verification and validation were genuinely rigorous. It answers: *were the first
@@ -30,12 +34,14 @@ organizationally independent from the team that developed and verified the
 system. It is not a technical step — it is a governance requirement.
 
 Evidence means: evaluation reports with pass/fail and metrics, trace IDs linking
-to the full decision chain, diffs showing what changed, deployment IDs
-confirming what shipped, rollback plans confirming reversibility, policy check
-outputs confirming constraint compliance, and memory updates confirming what was
-learned. Anything less is assertion, not evidence.
+to the full decision chain, diffs showing what changed, the control state record
+confirming what is ready for handoff, rollback plans confirming reversibility
+(tested, not just documented), policy check outputs confirming constraint
+compliance, and memory updates confirming what was learned. Anything less is
+assertion, not evidence.
 
-*Minimum bar: If it is not deployed, instrumented, verified against evaluations,
-and validated against real-world outcomes, it is not done.*
+*Minimum bar: If it is not instrumented for traceability, verified against
+evaluations, validated against the evidence available at handoff, and packaged
+into a complete evidence bundle ready for release-layer handoff, it is not done.*
 
 ---

@@ -61,9 +61,9 @@ Source: [`manifesto-principles-04.md`](../manifesto/manifesto-principles-04.md#4
 | What's missing | No IGM rule about how multiple agents reading/writing the substrate concurrently coordinate. Conflict resolution at the substrate level is implied by inference + revision authorities but not specified for agent-write contention. | No AEnt-M rule about right-sizing the agent set, single commit path, conflict resolution between agents on shared substrate. |
 | Gap-closing | IGM stub: substrate-write contention is governed by Assertion authority + write-path access controls (W1.3). Multiple agents writing the same claim simultaneously requires Assertion authority adjudication. Add to IGM W2.3. | New AEnt-M section / principle for swarm coordination on substrate (W2.3): orchestrator tier containment in the AEnt-M sense (no agent in the enterprise can perform an action class above the consequence-class authorisation of its orchestrator), conflict resolution, single commit path on the substrate. |
 
-### AEM Principle 5 — Autonomy is a tiered budget, not a switch
+### AEM Principle 5 — Autonomy is a permission ceiling, not a switch
 
-Source: [`manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch). Minimum bar: tier authorisation; tool authorisation; Tier 4 prerequisites; oversight pattern (HITL / HOTL / HOLL / EDL); blast-radius assessment.
+Source: [`manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch). Minimum bar: tier authorisation; tool authorisation; Tier 4 prerequisites; oversight pattern (HITL / HOTL / HOLL / EDL); blast-radius assessment.
 
 | | IGM | AEnt-M |
 |---|---|---|

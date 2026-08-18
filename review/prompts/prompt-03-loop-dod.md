@@ -21,18 +21,18 @@ Read the following before writing a single score. Do not score from memory or as
 
 **Manifesto corpus:**
 - `manifesto/manifesto.md` — for the nine Agentic Loop phase definitions (Specify / Design / Plan / Execute / Verify / Validate / Observe / Learn / Govern), the loop-readiness gate ("What Must Be True Before Entering Specify" — nine conditions before entry), and the Govern completion conditions.
-- `manifesto/manifesto-done.md` — for the eight Agentic DoD conditions (Loop-Complete / Observable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
+- `manifesto/manifesto-done.md` — for the eight Agentic DoD conditions (Loop-Complete / Traceable / Verified / Provable / Learned from / Governed / Economical / Within Service Envelope), the Hardening Steps (Capture / Extract Specification / Build Evaluation Portfolio / Verify and Refactor), the evidence bundle requirements (agentic provenance record, bundle integrity attestation, security static analysis, evidence freshness rules).
 - `manifesto/manifesto-principles.md` plus the matching `manifesto/manifesto-principles-0N.md` shard — for the four oversight patterns (HITL/HOTL/HOLL/EDL) that bear on the Govern phase and the Human Escalation Architecture sub-section.
 - **Evidence Quality Gate (apply throughout).** Every piece of evidence cited in Loop or DoD scoring must be Attributable (named agent/tool + named accountable human), Contemporaneous (recorded during the work, not reconstructed), Queryable (retrievable without heroic manual effort), and Bound-to-outcome (clearly linked to the change/decision/action). Apply this gate regardless of phase; evidence that fails the gate cannot raise a score.
 
 **Cross-stack normative artefacts (lift only the AEM-relevant content; apply the scope guard from `prompt.md`):**
 - `governance/evidence-bundle-schema.md` — read the `aem_components` section. Use it to score the DoD's evidence-bundle conditions and the agentic provenance record.
-- `governance/integrated-audit-trail.md` — read the AEM execution trace section. Use it to score the **Observe** phase, the DoD **Observable** condition, and the Human Escalation Architecture sub-section.
+- `governance/integrated-audit-trail.md` — read the AEM execution trace section. Use it to score the **Observe** phase, the DoD **Traceable** condition, and the Human Escalation Architecture sub-section.
 - `governance/governance-integration-note.md` — read the AEM Tier 4 binary policy envelope section. Use it to score the **Govern** phase Tier 4 prerequisites.
 - `governance/authority-accountability-matrix.md` — read the AEM column. Use it for the Human Escalation Architecture sub-section.
 - `integration/loop-readiness-for-agent-opportunities.md` — use it to score the **Specify** phase's handling of agent-surfaced opportunities against AEM's nine-condition loop-readiness gate.
 - `integration/low-consequence-resolution.md` — use it to score the **Govern** phase per-action accountability bar for low-consequence actions (AEM has no consequence-class carve-out).
-- `operational-templates/slo-table.md` — use it to score the DoD **Observable** and **Governed** conditions (feedback-loop closure SLOs, waiver-expiry SLOs).
+- `operational-templates/slo-table.md` — use it to score the DoD **Traceable** and **Governed** conditions (feedback-loop closure SLOs, waiver-expiry SLOs).
 - `operational-templates/agent-inventory-schema.md` — use it to score the DoD **Governed** condition (registered estate is a precondition for governance).
 - `operational-templates/agentic-provenance-record.json` — JSON Schema for the agentic provenance record. Use it to bind DoD `Verified` and the agentic-provenance-record requirement in `manifesto/manifesto-done.md`.
 - `operational-templates/control-state-record.json` — JSON Schema for the Control State Record. Use it to score the DoD `Governed` condition (`manifesto/manifesto.md` What the Loop Produces).
@@ -65,7 +65,7 @@ After scoring all nine phases, identify cross-phase failure modes: where the loo
 
 ### 2.3 Agentic Definition of Done Assessment
 
-For each of the eight DoD conditions, in canonical order (Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
+For each of the eight DoD conditions, in canonical order (Loop-Complete, Traceable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
 
 1. Re-read the condition definition in `manifesto/manifesto-done.md` before assessing.
 2. Quote verbatim, with the source file path, at least one passage from `manifesto/manifesto-done.md` that directly defines the bar for this condition.
@@ -166,7 +166,7 @@ Four required sub-paragraphs, in this order, each labelled:
 
 #### DoD Condition Table
 
-A markdown table with exactly four columns and eight rows (in canonical order: Loop-Complete, Observable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
+A markdown table with exactly four columns and eight rows (in canonical order: Loop-Complete, Traceable, Verified, Provable, Learned from, Governed, Economical, Within Service Envelope):
 
 ```
 | Condition | Score | Evidence For | Evidence Against |

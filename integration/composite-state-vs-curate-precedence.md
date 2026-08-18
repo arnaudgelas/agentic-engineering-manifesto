@@ -169,7 +169,7 @@ These are routine substrate maintenance and are Class 1 by default. The class as
 
 ### 4.6 What about cascading demotions (one demotion triggers dependent claim demotions)?
 
-Each individual demotion is classified independently. A cascade may include Class 1, Class 2, and Class 3 events simultaneously. AEnt-M's P9 acceptance pathways operate per-event, with the cascade as a whole governed by IGM P16 (containment for substrate-driven emergence — [`intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence`](../intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence)). Cascades exceeding the AEM/IGM circuit-breaker thresholds (per IGM P16 minimum bar) pause for human review regardless of individual event classes.
+Each individual demotion is classified independently. A cascade may include Class 1, Class 2, and Class 3 events simultaneously. AEnt-M's P9 acceptance pathways operate per-event, with the cascade as a whole governed by IGM P16 (containment for substrate-driven emergence — [`intelligence-governance-manifesto/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-16-containment-is-required-for-substrate-driven-emergence)). Cascades exceeding the AEM/IGM circuit-breaker thresholds (per IGM P16 minimum bar) pause for human review regardless of individual event classes.
 
 ### 4.7 What about the L3 layer (architecture changes to the substrate)?
 
@@ -187,7 +187,7 @@ The current paragraph "The enterprise must detect, evaluate, and explicitly acce
 
 ### 5.2 Edit to `intelligence-governance-manifesto/manifesto-principles.md` Principle 5
 
-The minimum bar of IGM P5 ([`intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay`](../intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay)) — "Every claim has an expected validity window. Claims past their window trigger review alerts. Staleness metrics are tracked per domain." — is augmented:
+The minimum bar of IGM P5 ([`intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay)) — "Every claim has an expected validity window. Claims past their window trigger review alerts. Staleness metrics are tracked per domain." — is augmented:
 
 > Append to the minimum-bar paragraph: "Curate events on claims that affect any agent product's composite state follow the class-based precedence in [`/integration/composite-state-vs-curate-precedence.md`](../../integration/composite-state-vs-curate-precedence.md), which specifies the AEnt-M P9 acceptance pathway per class (routine pre-accepted; consequential 4-hour SLO; emergency bypass with 24h post-hoc review). The Revision authority is responsible for class assignment at decision time."
 

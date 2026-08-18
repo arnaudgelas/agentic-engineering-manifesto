@@ -68,7 +68,7 @@ Applied poorly, this manifesto can fail through:
   evaluation results to business outcomes, define stop criteria (not just
   acceptance criteria) for every specification, and make business
   assumptions explicit before the Loop begins. See the
-  [Validation vs. Verification](companion-principles.md#validation-vs-verification)
+  [Validation vs. Verification](principles-02.md#validation-vs-verification)
   section in P2 extended guidance.
 
 - **Structural regression without detection**: Every change passes current
@@ -84,7 +84,7 @@ Applied poorly, this manifesto can fail through:
   Definitions), monitor coupling and dependency trajectories across iterations,
   and include structural quality indicators in evaluation portfolios alongside
   behavioral regression tests. See the
-  [Structural Regression](companion-principles.md#behavioral-regression-vs-structural-regression)
+  [Structural Regression](principles-08.md#behavioral-regression-vs-structural-regression)
   section in P8 extended guidance. The SWE-CI benchmark (arXiv:2603.03823v1)
   provides empirical evidence: most evaluated models achieve zero-regression
   rates below 0.25. The benchmark measures behavioral regression; it does not

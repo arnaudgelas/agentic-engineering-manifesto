@@ -96,7 +96,7 @@
 
 - IGM `manifesto-principles.md` — P4, P5, P10, P11.
 - AEnt-M `manifesto.md` — P9, P11; companion-guide.md decay-class table.
-- AEM [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-tiered-budget-not-a-switch) — Tier 4 prerequisites; AEM [`manifesto/manifesto-principles-10.md`](../manifesto/manifesto-principles-10.md#10-assume-emergence-engineer-containment) — waiver model.
+- AEM [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) — Tier 4 prerequisites; AEM [`manifesto/manifesto-principles-10.md`](../manifesto/manifesto-principles-10.md#10-assume-emergence-engineer-containment) — waiver model.
 - EU AI Act Article 73 (serious-incident reporting); Article 86 (explanation right).
 - DORA Pillar 2 (incident classification and reporting): RTS on classification of major ICT-related incidents.
 - GDPR Articles 22, 33, 34.
