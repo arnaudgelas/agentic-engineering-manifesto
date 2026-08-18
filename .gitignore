@@ -14,3 +14,6 @@ Thumbs.db
 .env.local
 
 node_modules/
+
+# Claude Code local settings (machine/session-specific; not shared)
+.claude/settings.local.json
