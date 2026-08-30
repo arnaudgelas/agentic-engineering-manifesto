@@ -1,6 +1,6 @@
 # /review — Agentic Engineering Manifesto Framework Review
 
-Run a complete manifesto alignment review of a framework across 13 specialised agent roles (with 12 parallel principle agents) in four waves.
+Run a complete manifesto alignment review of a framework across 17 specialised agent roles (with 12 parallel principle agents) in four waves.
 
 ## Usage
 
@@ -101,9 +101,19 @@ This check applies to case 1 (running from inside the manifesto, which is the Qu
 ### Step 2 — Record the manifesto hash
 
 ```bash
-MANIFESTO_HASH=$(git -C {resolved_path} rev-parse HEAD)
-MANIFESTO_HASH_SHORT=$(git -C {resolved_path} rev-parse --short HEAD)
+# The CORPUS commit — the last commit touching files agents score against.
+# Not repo HEAD: tooling commits under review/ must not change provenance.
+CORPUS="manifesto companion adoption domains glossary.md governance integration regulatory operational-templates beyond-agile"
+MANIFESTO_HASH=$(git -C {resolved_path} log -1 --format=%H -- $CORPUS)
+MANIFESTO_HASH_SHORT=$(git -C {resolved_path} log -1 --format=%h -- $CORPUS)
+
+# Repo HEAD, recorded separately so the run itself stays reproducible.
+TOOLING_HASH=$(git -C {resolved_path} rev-parse HEAD)
 ```
+
+Note for zsh: `$CORPUS` does not word-split unquoted; use `${=CORPUS}` or list the
+paths literally, or the pathspec collapses to one word and the command silently
+returns nothing.
 
 Display to the user:
 > Manifesto: `arnaudgelas/agentic-engineering-manifesto@{MANIFESTO_HASH_SHORT}` ([full hash: {MANIFESTO_HASH}](https://github.com/arnaudgelas/agentic-engineering-manifesto/commit/{MANIFESTO_HASH}))
@@ -159,7 +169,7 @@ Display to the user:
 
 **Derive `[[PRINCIPLE_NAME]]` from the live shard, not from a cached table.** For each N in 1..12, read line 1 of the matching zero-padded shard file listed in the "Verify the manifesto is intact" list above (`manifesto-principles-01.md` … `manifesto-principles-12.md` — for N ≥ 10 this is `-10`/`-11`/`-12.md`, NOT `-010`/`-011`/`-012.md`) and strip the `## N. ` prefix to get the full heading text. `prompt.md`'s weighting table carries a short-form cache of these names for convenience; if the cache and the live heading disagree in substance (not just punctuation), use the live heading's substance and flag the drift to the user so `prompt.md` can be corrected.
 
-**Assemble the Universal Prepend Block once per run** per `prompt.md`'s "Universal Prepend Block" — from `prompt.md`'s current weighting/severity/effort/banned-language tables (after any `[[PRINCIPLE_NAME]]` correction above) AND its "Idempotency policy," "Hard rules for all agents," and "Out-of-scope corpus" sections, verbatim. This block is what carries the manifesto-side tracked-files scope, the verbatim-manifesto-quote carve-out, the reading-budget disclosure rule, the provenance-line requirement, and the canonical idempotency rule to every spawned agent — those rules live only in `prompt.md`, which is never itself passed to the `Agent` tool, so omitting any of them from this assembled block makes them invisible to every sub-prompt.
+**Assemble the Universal Prepend Block once per run** per `prompt.md`'s "Universal Prepend Block" — from `prompt.md`'s current weighting/severity/effort/banned-language tables (after any `[[PRINCIPLE_NAME]]` correction above) AND its "Severity for findings that carry no score," "What the composite does and does not measure," "Idempotency policy," "Hard rules for all agents," and "Out-of-scope corpus" sections, verbatim. **This list must match `prompt.md`'s own Universal Prepend Block template exactly** — if the two disagree, `prompt.md` is authoritative and this list is stale; fix it before running. This block is what carries the manifesto-side tracked-files scope, the verbatim-manifesto-quote carve-out, the reading-budget disclosure rule, the provenance-line requirement, and the canonical idempotency rule to every spawned agent — those rules live only in `prompt.md`, which is never itself passed to the `Agent` tool, so omitting any of them from this assembled block makes them invisible to every sub-prompt.
 
 **For each sub-prompt file** (read from `{resolved_path}/review/prompts/`): substitute all double-bracket placeholders with the resolved values, prepend the Universal Prepend Block, then pass the result to the `Agent` tool per Step 5.
 
@@ -171,34 +181,36 @@ Display to the user:
 
 Follow the substituted `prompt.md`'s execution order exactly.
 
-**Wave 1a** — spawn 19 agents using the `Agent` tool.
-- **No specific concurrent-spawn limit is documented for this tool as of this writing** — the prior guidance citing "Claude's standard concurrent Agent tool capacity" as a fixed number was unsourced and is removed. Attempt all 19 `Agent` tool calls in a single response first.
-- **If the harness rejects or silently drops calls beyond some count** (observed by fewer than 19 agents actually starting), fall back to this batching plan, chosen to respect the true dependency structure — Wave 1a agents have no dependencies on each other, so any grouping is correct, but this grouping keeps the 12 principle agents together for easier tracking:
-  - Batch 1: agents 01, 02-p1..p6 (7 agents)
-  - Batch 2: agents 02-p7..p12, 03 (7 agents)
-  - Batch 3: agents 04a, 04b, 05a, 07, 08a (5 agents)
-- Record which strategy was actually used (single-batch or the 3-batch fallback) in the review run manifest — this is an observation about what happened, not a policy choice made in advance.
+**Wave 1a** — spawn 22 agents using the `Agent` tool, **at most 6 at a time**, waiting for each batch to finish before the next. **The batch list is in `prompt.md` § "Wave 1a — spawn in batches of at most 6"; use it as written and do not restate it here** — two copies of a schedule drift, and a drifted schedule silently drops or double-runs an agent.
 
-For each batch, issue all Agent tool calls in the batch simultaneously. Wait for all agents in a batch to complete before spawning the next batch.
+- After any agent dies from a stream error or stall, drop the limit to 3 for the rest of the run and split any remaining batch that exceeds it.
+- Every spawn message must tell the agent not to spawn sub-agents of its own; the binding version of that rule is in the Universal Prepend Block's "Hard rules for all agents", which is what actually reaches the agent.
+- Record in the manifest: the limit used, whether it was degraded, total spawns, and how many were re-runs.
+
+**Completion check.** Accept an output file only if `tail -n 2 <file> | grep -q '<!-- SELF-CHECK: PASSED -->'` succeeds; otherwise delete it and re-spawn that agent. This gates every wave barrier, not just the failure path. Never read a failed agent's output into your own context. After a re-run, regenerate whatever **reads** that agent's file, per `prompt.md` § Idempotency policy.
 
 Agents in Wave 1a:
 - Agent 01: `{resolved_path}/review/prompts/prompt-01-quick-overview.md`
-- Agents 02-p1 through 02-p12 (12 parallel spawns): `{resolved_path}/review/prompts/prompt-02-principle.md` — for each principle N in 1..12, substitute `[[PRINCIPLE_NUMBER]]` = N and `[[PRINCIPLE_NAME]]` = **the live-shard-derived value already resolved in Step 4** ("Derive `[[PRINCIPLE_NAME]]` from the live shard, not from a cached table"). Do not source `[[PRINCIPLE_NAME]]` from `prompt.md`'s weighting table or from any hand-copied list here — that cached table is a convenience reference only and can drift from the manifesto shards (that is the exact failure mode Step 4's live-shard derivation exists to prevent). Use only the 12 values already resolved in Step 4.
-- Agent 03: `{resolved_path}/review/prompts/prompt-03-loop-dod.md`
+- Agents 02-p1 through 02-p12 (12 parallel spawns): `{resolved_path}/review/prompts/prompt-02-principle.md` — for each principle N in 1..12, substitute `[[PRINCIPLE_NUMBER]]` = N and `[[PRINCIPLE_NAME]]` = **the live-shard-derived value already resolved in Step 4** ("Derive `[[PRINCIPLE_NAME]]` from the live shard, not from a cached table"). Do not source `[[PRINCIPLE_NAME]]` from `prompt.md`'s weighting table or from any hand-copied list here — that cached table is a convenience reference only and can drift from the manifesto shards (that is the exact failure mode Step 4's live-shard derivation exists to prevent). Use only the 12 values already resolved in Step 4. For P1, P3, P5, P8, P9, and P12, also append the matching principle-specific test fragment per `prompt.md` § "Spawn mechanism" step 4.
+- Agent 03a: `{resolved_path}/review/prompts/prompt-03a-loop-upstream.md` (Part 3 §3.1–§3.3 — Specify, Design, Plan)
+- Agent 03b: `{resolved_path}/review/prompts/prompt-03b-loop-build.md` (Part 3 §3.4–§3.6 — Execute, Verify, Validate)
+- Agent 03c: `{resolved_path}/review/prompts/prompt-03c-loop-runtime.md` (Part 3 §3.7–§3.10 — Observe, Learn, Govern, Human Escalation)
+- Agent 03d: `{resolved_path}/review/prompts/prompt-03d-loop-integrity.md` (Part 3 §3.11 — seams, feedback arrows, remediation, loop output, end-to-end trace, iteration)
 - Agent 04a: `{resolved_path}/review/prompts/prompt-04a-adoption.md`
 - Agent 04b: `{resolved_path}/review/prompts/prompt-04b-companion.md`
 - Agent 05a: `{resolved_path}/review/prompts/prompt-05a-maturity.md`
 - Agent 07: `{resolved_path}/review/prompts/prompt-07-guardrails-security.md` (Parts 12 + 13)
 - Agent 08a: `{resolved_path}/review/prompts/prompt-08a-enterprise-domains.md` (Part 14 §14.1–§14.15 intermediate)
 
-**Wait for Wave 1a:** Glob + Read (first/last 5 lines, ≥20 lines each) for all 19 Wave 1a output files. If any are missing after an agent completes, offer to re-run only that agent (for a missing principle, re-run only the affected `prompt-02-principle.md` instance with the matching `[[PRINCIPLE_NUMBER]]` / `[[PRINCIPLE_NAME]]`).
+**Wait for Wave 1a:** apply the completion check to all 22 Wave 1a output files. If any are missing after an agent completes, offer to re-run only that agent (for a missing principle, re-run only the affected `prompt-02-principle.md` instance with the matching `[[PRINCIPLE_NUMBER]]` / `[[PRINCIPLE_NAME]]`).
 
-**Wave 1b** — spawn 3 agents simultaneously:
+**Wave 1b** — spawn these 4 agents once their own inputs pass the completion check (per `prompt.md` § Spawn mechanism, an agent is gated on its inputs, not on its wave; 03e and 05b need 05a, 04c needs 04a and 04b, 08b needs 08a — none reads a principle file):
+- Agent 03e: `{resolved_path}/review/prompts/prompt-03e-dod.md` (Part 4; reads the `**Maturity Verdict: Phase {N}**` line from `_review_05a_maturity.md` to set the phase-calibrated DoD bar)
 - Agent 04c: `{resolved_path}/review/prompts/prompt-04c-synthesis.md`
 - Agent 05b: `{resolved_path}/review/prompts/prompt-05b-industry.md`
-- Agent 08b: `{resolved_path}/review/prompts/prompt-08b-enterprise-synthesis.md` (lifts §14.1–§14.15 from 08a, adds §14.16–§14.19, writes the canonical Part 14 file)
+- Agent 08b: `{resolved_path}/review/prompts/prompt-08b-enterprise-synthesis.md` (reads 08a as evidence; writes §14.16–§14.19 only — agent 09 merges §14.1–§14.15 from 08a directly)
 
-**Wait for Wave 1b:** Verify `_review_04_adoption_companion.md`, `_review_05_maturity_industry.md`, and `_review_08_enterprise_guardrails.md` exist and are non-empty.
+**Wait for Wave 1b:** apply the completion check to `_review_03e_dod.md`, `_review_04c_synthesis.md`, `_review_05b_industry.md`, and `_review_08b_enterprise_synthesis.md`.
 
 **Wave 2:** Spawn agent 06: `{resolved_path}/review/prompts/prompt-06-strengths-gaps.md`.
 
@@ -211,6 +223,27 @@ Wait for `_manifesto_alignment_review_merged.md`.
 ---
 
 ### Step 6 — Report completion
+
+**Check the merged review's `## Source Integrity` first.** If it contains a `**Maturity-versus-DoD inconsistency**` entry (agent 09 check 4c), the run did **not** produce a settled maturity verdict: agent 05a placed the framework at a phase that agent 03e's phase-calibrated audit contradicts. Report `⚠ Review complete — maturity verdict contested` instead of `✓ Review complete`, name the failing DoD conditions, and give the operator the resolution procedure below. Do not report a clean `✓` over an unresolved contradiction.
+
+**Resolution procedure for a contested maturity verdict.** The dependency runs one way — 05a sets the phase, 03e scores against it — so a contradiction is resolved by re-running 05a with the DoD evidence in hand, not by re-parameterising 03e. Agent 03e has no phase input of its own: it reads the phase verbatim from `_review_05a_maturity.md` and its self-check rejects any phase not taken from that file. Do not attempt to "re-run 03e at N−1"; there is no supported way to do it.
+
+**First, split the failing conditions by whether their applicability is domain-driven.** Agent 05a is **domain-agnostic** — its own prompt forbids it from reading `[[DOMAIN_FILE]]` — and agent 03e's `Provable` trigger can be met *solely* because `[[DOMAIN_FILE]]` names an obligation requiring proof (03e §2.2 Gate 1). Feeding a domain-triggered failure back into 05a would make the same framework receive different "domain-agnostic" Phase 8 verdicts for different clients. So:
+
+- **Domain-independent failures** (a condition failing on `[[FRAMEWORK]]` evidence alone) are maturity evidence and may go to 05a.
+- **Domain-triggered failures** (applicability established only via `[[DOMAIN_FILE]]`) are **deployment-fitness** evidence. They belong to Part 9, not Part 8. Never pass them to 05a.
+
+If **every** failing condition is domain-triggered, do not re-run anything: the phase verdict is not contested, the framework is simply unfit for this client's domain at that phase. Record that in Source Integrity, ensure Part 9's Red Line reflects it, and report the run as contested-on-deployment-fitness rather than contested-on-maturity.
+
+Otherwise:
+
+1. **Re-run agent 05a**, appending only the **domain-independent** failing conditions: condition name, score, and the phase bar it was scored against. Pass **no** regulatory citation, no `[[DOMAIN_FILE]]` text, and no client context — 05a must stay domain-agnostic and its output reusable across clients. Agent 05a already places the framework at the **lowest unmet gate** with no partial credit, so this is new gate evidence for a decision it already owns, not a new authority.
+2. **Re-run agent 03e** against whatever phase 05a now returns, **then agent 05b** — 05b's Part 9 is bound by the phase and restates the verdict line, so skipping it leaves Part 9 on the stale verdict — then agents 06 and 09, in that order.
+3. **If 05a returns the same phase**, the contradiction is not a placement error: 05a's gate evidence and 03e's DoD evidence genuinely disagree. Keep both verdicts, keep the Source Integrity entry, and report the run as contested. Escalate to the named human reviewer — this is exactly the case human sign-off exists for.
+
+Repeat at most **once**. If a second pass still contests, stop and escalate; do not loop.
+
+This is an operator decision, not an automated one: agent 09 has no evidence base of its own, and adding an arbitrator agent would create a scoring authority with no primary evidence. Agent 05a is the correct place to resolve it because it already owns phase placement — it simply needs the DoD evidence it could not have had on the first pass.
 
 ```
 ✓ Review complete
@@ -236,7 +269,7 @@ Wait for `_manifesto_alignment_review_merged.md`.
 
 ## Run manifest
 
-After Wave 3 completes successfully, write `{FRAMEWORK_LOWER}/review_run_manifest.json` with every `{PLACEHOLDER}` below replaced by its actual resolved value (these use `{X}` brace syntax, not the `[[X]]` syntax used elsewhere in this system — the `[[...]]` final scan in Step 4 does NOT cover this file, so scan the written JSON separately for any remaining literal `{` `}` around an identifier before treating this step as complete). The `principle_mapping` object below is illustrative only — populate it with the 12 live-shard-derived `[[PRINCIPLE_NAME]]` values actually resolved for this run in Step 4/5, not copied verbatim from this template, which can drift from the current manifesto shards:
+After Wave 3 completes successfully, write `{FRAMEWORK_LOWER}/review_run_manifest.json` with every `{PLACEHOLDER}` below replaced by its actual resolved value (these use `{X}` brace syntax, not the `[[X]]` syntax used elsewhere in this system — the `[[...]]` final scan in Step 4 does NOT cover this file. **Validate the written file by parsing it as JSON** — a brace scan is insufficient, because several template values are unbraced sentinels (`true_or_false`, `number_or_null`, `true_or_false_or_null`) that a brace scan will not catch, and `"tool-layer_or_unavailable"` is a syntactically valid string that will pass silently. Parsing catches the unquoted sentinels; for `token_usage_source`, additionally assert the value is exactly `tool-layer` or `unavailable`. Also confirm no `{` `}` remains around any identifier). The `principle_mapping` object below is illustrative only — populate it with the 12 live-shard-derived `[[PRINCIPLE_NAME]]` values actually resolved for this run in Step 4/5, not copied verbatim from this template, which can drift from the current manifesto shards:
 
 ```json
 {
@@ -248,10 +281,11 @@ After Wave 3 completes successfully, write `{FRAMEWORK_LOWER}/review_run_manifes
   "industry": "{INDUSTRY}",
   "domain_file": "{DOMAIN_FILE}",
   "manifesto_hash": "{MANIFESTO_HASH}",
+  "tooling_hash": "{TOOLING_HASH}",
   "manifesto_hash_short": "{MANIFESTO_HASH_SHORT}",
   "manifesto_working_tree_dirty": true_or_false,
   "review_date": "{REVIEW_DATE}",
-  "agents_spawned": "{AGENT_COUNT}",
+  "agents_spawned": {AGENT_COUNT},
   "reviewer_name": null,
   "reviewer_signoff_date": null,
   "prior_reviews_confidentiality_confirmed": true_or_false_or_null,
@@ -269,11 +303,18 @@ After Wave 3 completes successfully, write `{FRAMEWORK_LOWER}/review_run_manifes
     "P11": "Optimize economics of intelligence",
     "P12": "Accountability requires visibility"
   },
-  "wave_1a_batching_strategy": "single-batch | batch-1-7-agents | batch-2-7-agents | batch-3-5-agents",
-  "total_output_files": 24,
+  "max_concurrent_agents": 6,
+  "concurrency_degraded": true_or_false,
+  "agent_reruns": number,
+  "approx_total_output_tokens": number_or_null,
+  "token_usage_source": "tool-layer_or_unavailable",
+  "maturity_verdict_contested": true_or_false,
+  "total_output_files": 28,
   "merged_review_file": "{FRAMEWORK_LOWER}/{FRAMEWORK_LOWER}_manifesto_alignment_review_merged.md"
 }
 ```
+
+`agents_spawned` (above), `max_concurrent_agents`, `concurrency_degraded`, `agent_reruns`, and `approx_total_output_tokens` together satisfy the canonical cost-and-run-accounting rule in `prompt.md` § Universal rules. Token usage is recorded only when the tool layer actually reports it: set `approx_total_output_tokens` to the number and `token_usage_source` to `tool-layer`, or set it to `null` with `token_usage_source` as `unavailable`. Never estimate a token count — an invented figure is worse than a recorded absence. `maturity_verdict_contested` is `true` when agent 09 check 4c fired (see Step 6).
 
 This manifest supports reproducibility on the **manifesto side only** — `manifesto_hash` pins the exact manifesto commit scored against, and `manifesto_working_tree_dirty` flags when that pin does not reflect what was actually read. It does NOT make the **framework side** reproducible when `framework_version` is `unknown`: without a real version, tag, or commit hash for `{FRAMEWORK_PATH}`, nobody can later recover the exact framework state that was scored. Treat `unknown` as a known gap in this manifest, not a resolved field. `reviewer_name` and `reviewer_signoff_date` start `null` — fill them in after a named human has reviewed the merged output (see Step 6's sign-off note); a manifest with both fields still `null` records that no human sign-off has happened yet.
 
@@ -284,4 +325,4 @@ This manifest supports reproducibility on the **manifesto side only** — `manif
 - Output files go into `{FRAMEWORK_LOWER}/` relative to the working directory when the skill is invoked, not relative to the manifesto root. `{FRAMEWORK_LOWER}/` is write-only for this review system — `{FRAMEWORK_PATH}` is the read source for `{FRAMEWORK}`'s own artefacts.
 - Every output file will contain `Manifesto: arnaudgelas/agentic-engineering-manifesto@{MANIFESTO_HASH}` in its header — this is enforced by a hard rule in `prompt.md`, including for the 02-pN principle files (their own hard gate checks for it explicitly).
 - To check review progress at any point, use `/review-status {FRAMEWORK_LOWER}`.
-- **Idempotency (single rule — see `prompt.md`):** re-running `/review` regenerates an output file if any of its declared inputs are newer than it, or if the file fails its own hard-gate self-check; otherwise it is skipped. "Exists and is non-empty" is NOT sufficient on its own — a truncated or malformed file that happens to be non-empty is still regenerated. When re-running after a single agent's failure, re-run every agent whose output is mutually cross-checked with the failed one (e.g., agent 01's table and the 12 principle files) together, not the failed agent alone — regenerating only one side of a cross-check reintroduces the mismatch the recovery was meant to fix.
+- **Idempotency (single rule — see `prompt.md`):** re-running `/review` regenerates an output file if any of its declared inputs are newer than it, or if it fails its completion check; otherwise it is skipped. "Exists and is non-empty" is NOT sufficient. After a re-run, regenerate the agents that **read** the re-run agent's output — not siblings that merely score the same subject. Agent 01 does not read the `02-pN` files, so the two never invalidate each other.
