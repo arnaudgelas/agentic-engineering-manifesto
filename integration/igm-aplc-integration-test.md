@@ -4,7 +4,16 @@
 **Audience:** AEM authors, IGM authors, AEnt-M authors, ASDLC release managers, APLC product managers, internal audit, regulators.
 **Purpose:** Demonstrate that the five-layer governance stack composes operationally over a single agent's full lifecycle. The scenario doubles as a structured test: each phase enumerates the artefacts that must exist, the named authorities that must act, and the cross-framework references that must resolve. A failure to produce any required artefact is a failure of the integration claim, not a documentation gap.
 
-**Use case.** A regulated trade-settlement penalty calculation agent for a European custodian under CSDR (EU Regulation 909/2014). The agent computes settlement-fail penalties per Article 7(2) with jurisdictional handling for cross-border settlements (EU CSDR vs UK CREST). High consequence (regulatory filing implications), client impact, partial reversibility within filing window. Annex III high-risk classification under the EU AI Act.
+**Use case.** A regulated trade-settlement penalty calculation agent for a European custodian under CSDR (EU Regulation 909/2014). The agent computes settlement-fail penalties per Article 7(2) with jurisdictional handling for cross-border settlements (EU CSDR vs UK CREST). High consequence (regulatory filing implications), client impact, partial reversibility within filing window. **Not a high-risk AI system under the EU AI Act** — see the classification note below.
+
+**Classification note (corrected 2026-09-02; verified against Regulation (EU) 2024/1689).** Earlier revisions of this worked example classified the agent as **Annex III high-risk**. That was wrong, and every obligation scoped from it was over-scoped.
+
+- **Article 6(1) is not met.** High risk under Art. 6(1) requires **both** that "*the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I*" **and** that the product "*is required to undergo a third-party conformity assessment*". CSDR (Reg. (EU) No 909/2014) is not Annex I harmonisation legislation, and the agent is not a safety component of an Annex I product.
+- **Article 6(2)/Annex III is not met.** Annex III's eight areas are exhaustive and contain no post-trade financial market infrastructure. The closest point, **Annex III 5(b)**, reaches AI systems "*intended to be used to evaluate the creditworthiness of natural persons or establish their credit score*" — not wholesale settlement-fail penalty calculation between institutions.
+- **Consequence.** Articles 27 (FRIA), 49 (registration), 73 (serious-incident reporting) and the Chapter III provider obligations **do not bind this deployment**. Art. 27 fails on a second, independent ground: its deployer trigger reaches bodies governed by public law, private entities providing public services, and deployers under Annex III 5(b)/(c). A custodian is none of these.
+- **What does bind:** CSDR Art. 7, DORA, and the firm's own model-risk and operational-risk frameworks.
+
+**The example is kept, and the AI Act artefacts below are kept, on a corrected footing: they are produced *by firm policy*, not by legal obligation.** Every AI Act reference downstream in this document is marked accordingly. This is the same posture the corpus takes on SR 26-2 — the instrument does not reach the system, and the institution's own practices govern — and a worked example that manufactures an obligation to demonstrate a control is worth less than one that shows the control standing without it. **High consequence is a fact about the deployment; high-risk is a legal classification. They are not the same claim, and conflating them is what produced the original error.**
 
 ---
 
@@ -32,7 +41,7 @@ ASDLC Release Gate (Layer 2 → Layer 3)
         │
         ▼
 APLC Stage 4 (Release)
-   ─── EU AI Act Article 13/14 documentation; FRIA per Article 27
+   ─── EU AI Act Art. 13/14-equivalent documentation (by policy; not high-risk — see §1)
    ─── AEM Tier 4 envelope decision (per `governance/governance-integration-note.md`)
    ─── AEnt-M relocation stage assignment per action class
         │
@@ -53,7 +62,7 @@ APLC Stage 7 (Retire)
 
 ### Artefacts produced
 
-- **Agent product brief** (`aplc/aplc.md` Stage 1; `agent-conception.md`): Trade-Settlement Penalty Calculator agent. Purpose: compute Article 7(2) settlement-fail penalties for EU CSDR and UK CREST, generating regulator-ready reports. Trust architecture: principal hierarchy (settlement-operations-officer = operator; auditor = read-only; clearing-broker = consumer-tier). Persona: deterministic-procedural agent; minimal latitude on tone; no creative output. Regulatory classification (`agent-regulatory-classification.md`): EU AI Act Annex III high-risk (financial-services AI assisting in regulated settlement obligations); CSDR Article 7(2) regulated process; DORA in scope (operationally critical). Accountable human: Settlement Operations Product Manager (named: J. Director).
+- **Agent product brief** (`aplc/aplc.md` Stage 1; `agent-conception.md`): Trade-Settlement Penalty Calculator agent. Purpose: compute Article 7(2) settlement-fail penalties for EU CSDR and UK CREST, generating regulator-ready reports. Trust architecture: principal hierarchy (settlement-operations-officer = operator; auditor = read-only; clearing-broker = consumer-tier). Persona: deterministic-procedural agent; minimal latitude on tone; no creative output. Regulatory classification (`agent-regulatory-classification.md`): **not** an EU AI Act high-risk AI system — Art. 6(1) and Annex III both fail (see §1); CSDR Article 7(2) regulated process; DORA in scope (operationally critical); AI Act transparency obligations assessed and Art. 50 held inapplicable (no human interaction, no synthetic content). Accountable human: Settlement Operations Product Manager (named: J. Director).
 - **IGM substrate readiness statement.** A per-IGM-Definition-of-Done (`intelligence-governance-manifesto/manifesto.md:151–161`) attestation that the relevant substrate domains exist at minimum readiness:
   - *Populated.* Claims for: CSDR Article 7(2) penalty methodology; CSD-list and reconciliation rules; CSDR fines/penalty rate tables; UK CREST equivalent rates; ESMA implementing technical standards; jurisdictional-divergence claims (EU↔UK).
   - *Connected.* Cross-domain edges: CSDR ↔ T2S settlement workflow; CSDR ↔ UK CREST jurisdictional divergence; CSDR ↔ collateral-management workflow.
@@ -71,7 +80,7 @@ APLC Stage 7 (Retire)
 | FS Architect (Inference authority, IGM) | Defines admissible inferences over the regulatory substrate. |
 | Compliance Officer (Revision authority, IGM) | Owns curation cadence and decay management. |
 | Substrate-security owner (per IGM P14) | Confirms integrity controls operational. |
-| Regulatory owner | Confirms EU AI Act Annex III + DORA classification; FRIA scoping decision. |
+| Regulatory owner | Confirms the EU AI Act classification **as non-high-risk against Art. 6(1) and Annex III, recording the test applied** + DORA classification; decides which AI Act artefacts the firm adopts by policy. |
 
 ### Gate to clear
 
@@ -149,7 +158,7 @@ The bundle, per the unified schema, contains all of:
 - AEM evidence-bundle components (`manifesto-done.md`).
 - IGM provenance + epistemic-tier record per claim cited (per IGM P11).
 - AEnt-M traceability chain (regulatory source → claim → contradiction → human approval → composite-state).
-- APLC behavioral baseline + composite state manifest + red-team report + EU AI Act conformity documentation (Articles 13/14/27 — see Stage 4).
+- APLC behavioral baseline + composite state manifest + red-team report + EU AI Act-equivalent documentation adopted by policy (Art. 13/14 pattern; **no Art. 27 FRIA — not high-risk**, see §1 and Stage 4).
 - Intelligence-specific required fields per IGM P11/P13: `intelligence_claims_snapshot`, `feedback_observations`, `contradiction_handling_decisions`, `claim_staleness_at_deployment` — per IGM/ASDLC integration item W1.7.
 
 ### Authorities acting
@@ -183,9 +192,9 @@ The bundle, per the unified schema, contains all of:
 
 - **Composite state manifest** filed (per `aplc/agent-composite-versioning.md`).
 - **Behavioral baseline document** (Stage 4 release-time measurement).
-- **EU AI Act Article 13 deployer instructions** complete.
-- **FRIA per Article 27** complete (this is a high-risk financial-services deployer use case).
-- **EU AI Act Article 49 registration** in the EU database completed.
+- **Article 13-pattern deployer instructions** complete — adopted by firm policy, not owed under the AI Act (see §1).
+- **No FRIA.** Article 27 does not bind: the agent is not an Annex III high-risk system, and a custodian is not a public-law body, a private entity providing a public service, or a deployer under Annex III 5(b)/(c). **The fundamental-rights question is instead answered inside the firm's own operational-risk assessment**, which is where it belongs when no instrument compels it. *(Prior revisions asserted a completed FRIA here. It was scoped from the false classification and is withdrawn, not re-worded.)*
+- **No Article 49 registration.** The EU database under Art. 71 covers Annex III high-risk systems. Nothing is filed.
 - **DORA register entry** for any third-party foundation model components (per W1.6 register).
 - **AEM Tier 4 envelope decision.** The envelope is *approved* with: allowed change classes (the three action classes); blast-radius ceiling (≤€5M direct exposure per action; no actions affecting cross-border systemic-risk-class clients without dual-authority signoff); required evidence schema (the unified bundle); rollback conditions (composite-state mismatch auto-rollback within 4h); kill-switch (domain owner + system steward + governance authority can each independently revoke within 60s).
 - **AEnt-M relocation-stage assignment per action class.** At launch:
@@ -201,7 +210,7 @@ The bundle, per the unified schema, contains all of:
 | APLC product manager | Owns Stage 4 conditions and accountable human declaration. |
 | AEM domain owner | Approves Tier 4 envelope. |
 | AEnt-M Workflow Owner / Decision Reviewer / Accountable Authority / Dual Authority | Per consequence class — authorise their respective action classes' relocation stages. |
-| Regulatory owner | Confirms FRIA + Article 13 + Article 49 documentation; DORA register filing. |
+| Regulatory owner | Records the non-high-risk determination with the test applied; confirms the Art. 13-pattern documentation adopted by policy; DORA register filing. |
 | ASDLC release manager | Authorises the release. |
 | Substrate-security owner | Confirms substrate integrity controls live in production. |
 
@@ -288,7 +297,7 @@ After 3 years of operation, the agent's regulatory framework changes (CSDR Refit
 - Action classes the agent operates: standard-fail-calc, cross-border-fail-calc, calculation-preview.
 - Claims maintained primarily for this agent: the CSDR-Refit pre-amendment regulatory claims (now superseded), the CSD-list claims, the agent-specific operational workaround claims.
 - Other consumers of those claims: the new CSDR-Refit-compatible successor agent (in build); some claims (CSD list) are shared with collateral-management agents.
-- Regulatory retention: EU AI Act Article 62 — high-risk AI system technical documentation must be retained 10 years after market placement.
+- Regulatory retention: the 10-year technical-documentation retention duty is **AI Act Article 18** (*"Documentation keeping"*), not Article 62 (*"Measures for providers and deployers, in particular SMEs"*) — **a wrong article, independent of the classification error and carried since the original draft.** It binds **providers of high-risk systems**, so it does not reach this deployment either. Retention here is 10 years under **CSDR/MiFID II record-keeping and the firm's own retention policy**, which is the operative source and produces the same period.
 
 **Phase 3 — Disposition decisions.** Per `/integration/decommissioning.md` matrix:
 - Pre-amendment CSDR claims (no other consumers, regulator-required for retrospective audit, training-data value): **preserve-for-regulator** at reduced curation cadence; move to `regulator-retention` tier for 10 years.
@@ -331,7 +340,7 @@ After 3 years of operation, the agent's regulatory framework changes (CSDR Refit
 | Agent-surfaced opportunities (when applicable) follow the demand-candidate → loop-readiness path. | §2 cross-reference (where the conception originated from a substrate event). |
 | The Low-consequence carve-out (per `/integration/low-consequence-resolution.md`) is *not* applicable here — the agent is High/Critical throughout, and the carve-out is correctly excluded. | §3 (P8 assignments — no class is Low). |
 | Decommissioning follows the integrated workflow with named-authority chain across IGM, APLC, ASDLC, AEnt-M. | §8 (Stage 7 5-phase workflow). |
-| EU AI Act Article 13/14/27/49/62/73 obligations are addressable within the stack. | §5 (FRIA + register) + §8 (Article 49 update + Article 62 retention). |
+| The stack **produces the artefacts the EU AI Act's high-risk regime would require, for a deployment the regime does not reach** — Art. 13/14-pattern documentation and Art. 18-pattern retention, adopted by firm policy. | §1 (classification, with the Art. 6(1) and Annex III tests) + §5 + §8. **The claim is deliberately weaker than the earlier "Article 13/14/27/49/62/73 obligations are addressable" form, which asserted obligations this deployment does not carry and cited Art. 62 for a duty in Art. 18.** |
 | The audit trail is regulator-readable end to end: from regulatory source through every transition to operational outcome. | §6 (worked event Day 30) + §7 (feedback loop) + §8 (retirement audit). |
 
 A failure to produce any of the named artefacts is a failure of the integration claim.

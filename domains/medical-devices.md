@@ -249,9 +249,36 @@ dual compliance obligations.
 | MDR Art. 83-86 | Post-market surveillance / vigilance | P9 (Observability), Learn + Govern phases | Continuous observability exceeds minimum PMS requirements. Vigilance reporting timelines are regulatory obligations outside manifesto scope. |
 
 Notes:
-- Class IIa+ devices with AI components = high-risk AI system automatically
-  under AI Act Article 6(1) via Annex I, Section A. No separate risk
-  classification is needed on the AI Act side.
+- **AI Act Article 6(1) is a cumulative two-part test, and it must be applied
+  per system — there is no automatic rule.** Verbatim, Reg. (EU) 2024/1689
+  Art. 6(1): an AI system is high-risk where **both** of the following are
+  fulfilled — "(a) the AI system is intended to be used as a safety component
+  of a product, or the AI system is itself a product, covered by the Union
+  harmonisation legislation listed in Annex I; (b) the product whose safety
+  component pursuant to point (a) is the AI system, or the AI system itself as
+  a product, is required to undergo a third-party conformity assessment ...
+  pursuant to the Union harmonisation legislation listed in Annex I."
+  MDR (Reg. (EU) 2017/745) is Annex I, Section A legislation, and Class IIa+
+  requires notified-body involvement, so **(b) is generally satisfied for
+  Class IIa+ — but (a) is not automatic.**
+  - **Standalone AI/ML medical device software** classified IIa or above is
+    itself the product: both limbs are met, and it is high-risk.
+  - **An AI component inside a Class IIa+ device** is high-risk **only if it
+    is a safety component** — Art. 3(14): "a component of a product or of an
+    AI system which fulfils a safety function for that product or AI system,
+    or the failure or malfunctioning of which endangers the health and safety
+    of persons or property." A sub-component handling display preferences,
+    non-clinical data transmission or similar fails limb (a) and is not
+    high-risk, notwithstanding the device class.
+  - **Record the determination and the limb it turns on.** "Class IIa, so
+    high-risk" is not a classification; it is the error this note replaces.
+  *(Corrected 2026-09-02. The earlier bullet asserted "Class IIa+ devices with
+  AI components = high-risk AI system automatically ... No separate risk
+  classification is needed on the AI Act side." That contradicted this
+  document's own prose above, and it over-scoped: it would have pulled
+  non-safety sub-components into the full Chapter III regime. Article text
+  verified against the Official Journal consolidated text of Reg. (EU)
+  2024/1689; see `inputs/20260902-arnaud/AIAct_verification_record.md`.)*
 - Notified bodies must assess both MDR and AI Act conformity. A single
   evidence bundle strategy that satisfies both regimes reduces audit burden.
   The manifesto's evidence model is designed for this consolidation.
