@@ -50,7 +50,7 @@ Agentic Engineering Manifesto (AEM)
        └─ inherits AEM principles
 ```
 
-ASDLC, APLC, IGM, and AEnt-M extend AEM and inherit its twelve principles. Earlier framings of the relationship as "complementary" or "companion" are retired in favour of the layered model above. See [`agentic-governance-stack.md`](agentic-governance-stack.md) for the canonical one-page reference, the layer-by-layer scope, and the term-collision preface that resolves cross-stack vocabulary collisions (e.g. *confidence*, *autonomy tier*, *governance*, *initiative*).
+ASDLC, APLC, IGM, and AEnt-M extend AEM and inherit its twelve principles. Earlier framings of the relationship as "complementary" or "companion" are retired in favour of the layered model above. See [`agentic-governance-stack.md`](agentic-governance-stack.md) for the canonical one-page reference, the layer-by-layer scope, and the term-collision preface, which names the cross-stack vocabulary collisions (*confidence*, *autonomy tier*, *governance*, *scope*, *validation*, *evidence bundle*, *initiative*) and defers their resolution to the repo-root [`glossary.md`](glossary.md) — which resolves most of them but not yet *initiative*, checked 07.09.2026.
 
 ---
 
