@@ -130,7 +130,7 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 | Decides | C (substrate-state attestation: deep-enough? Curate active? authorities staffed?) Revision authority | C Accountable Authority for the highest-consequence class in the proposed envelope | **D** ASDLC system steward + accountable human (envelope owner per AEM [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch)) | C APLC governance authority (review of envelope vs APLC Stage 4/5 conformity) |
 | Consulted | — | — | C security function lead, FinOps owner | C product owner for each agent product inside the envelope |
 | Informed | I all four IGM authorities | I all consequence-class roles for classes inside the envelope | I release manager | — |
-| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `governance/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
+| Required prerequisites (before D may be exercised) | All four AEM Tier 4 prerequisites operational (machine enforcement, control evaluations, governance observability, rubber-stamping detection) per [`manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) | All consequence classes in scope have named roles | Foundation-model-third-party register up to date (per `regulatory/foundation-model-third-party-register.md`) | EU AI Act conformity assessment current for any high-risk classes inside the envelope |
 | Escalation | If any prerequisite is missing, D is blocked; escalation is to fix the prerequisite, not to override | — | — | — |
 
 #### B4. Tier 4 envelope withdrawal (emergency)
@@ -182,7 +182,7 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 | Required | Behavioral-evaluation portfolio (APLC Layer 2 + Layer 3 minimum) re-run before acceptance | — | — | — |
 | Escalation | Joint disagreement at AEnt-M-level resolves at governance authority within 24h (Critical) / 5 business days (High) / 10 business days (Medium); a default-reject under AEnt-M P9 cannot be overridden by ASDLC or APLC | — | — | — |
 
-> **Resolution of B6 from coherence review:** the foundation-model-third-party register (DORA Pillar 4) must be current before C4 is exercised; absence of register entry = automatic reject. See `governance/foundation-model-third-party-register.md`.
+> **Resolution of B6 from coherence review:** the foundation-model-third-party register (DORA Pillar 4) must be current before C4 is exercised; absence of register entry = automatic reject. See `regulatory/foundation-model-third-party-register.md`.
 
 #### C5. Specification readiness (ASDLC Layer 1 → Layer 2 transition)
 
@@ -234,6 +234,8 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 | Triggers | Override rate ≈ 0% on complex cases; reviewer agreement >95% sustained; review latency below plausible minimum (per AEM [`manifesto-principles-12.md#12-accountability-requires-visibility`](../manifesto/manifesto-principles-12.md#12-accountability-requires-visibility), "accountability diffusion") | — | — | — |
 | Effect | Tier reduction for affected classes; envelope status reviewed; if envelope was Tier 4 with rubber-stamping detection failing, envelope auto-withdraws (per AEM Tier 4 prerequisites) | — | — | — |
 
+**Asymmetry of these triggers, stated because it changes how they may be used.** The three trigger signals are behavioural proxies a reviewer can satisfy without engaging (see `adoption/metrics.md`, "What these signals cannot do"). They are adequate to *fire* this condition — a breach is a reason to reduce tier — and inadequate to *clear* it: their absence is not evidence that review is substantive, and neither is a declining override or intervention rate, which falls identically under a system that stopped erring and a reviewer who stopped looking. Restoring a tier requires a positive engagement result under the Engagement Falsification Protocol (`adoption/metrics.md`) for a class the protocol can reach, or, where it cannot, an explicit record that the restoration rests on envelope design and post-hoc audit rather than on a measurement of oversight.
+
 #### D4. Governance-overhead-exceeds-value condition (AEM P11 / AEnt-M P11 economics)
 
 | | IGM | AEnt-M | ASDLC | APLC |
@@ -248,17 +250,17 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 |---|---|---|---|---|
 | Decides | **D** Revision authority + security function lead (joint, emergency) | I (notification of affected workflows) | **D** ASDLC security function lead | I product owner |
 | Effect | Affected claims quarantined; consuming action classes auto-revert to synchronous; integrity-monitoring forensics initiated | — | — | — |
-| Post-event | Mandatory regulatory-incident assessment (EU AI Act Art. 73 — see `governance/foundation-model-third-party-register.md` for incident-reporting workflow); knowledge governance committee review | — | — | — |
+| Post-event | Mandatory regulatory-incident assessment (EU AI Act Art. 73 — see `regulatory/foundation-model-third-party-register.md` for incident-reporting workflow); knowledge governance committee review | — | — | — |
 
 #### D6. Regulatory-incident reporting (EU AI Act Art. 73 / DORA Pillar 2)
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
 | Decides | I (substrate-state evidence for the incident bundle) | C (consequence-class evidence) | C (operational evidence) | **D** APLC accountable human + governance authority + compliance function lead |
-| Required | Article 73 clocks: 2-day for death/widespread infringement; 15-day for serious-but-non-catastrophic | — | — | — |
+| Required | Article 73 clocks: **2-day** for widespread infringement or Art. 3(49)(b) critical-infrastructure disruption (Art. 73(3)); **10-day** for death of a person (Art. 73(4)); **15-day** for every other serious incident (Art. 73(2)). *(Corrected 2026-09-06: this row previously put death on the 2-day clock — see `errata.md`.)* | — | — | — |
 | Escalation | Compliance function lead has unilateral filing authority on time pressure; product owner cannot block a regulatory filing | — | — | — |
 
-> Cross-reference: `governance/foundation-model-third-party-register.md` (W1.6) specifies the incident workflow and the named recipient authorities.
+> Cross-reference: `regulatory/foundation-model-third-party-register.md` (W1.6) specifies the incident workflow and the named recipient authorities.
 
 ### Section E — Cross-framework conflict-resolution
 

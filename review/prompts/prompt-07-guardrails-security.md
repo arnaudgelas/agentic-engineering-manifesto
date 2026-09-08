@@ -291,7 +291,7 @@ Write the file `[[FRAMEWORK_LOWER]]/[[FRAMEWORK_LOWER]]_review_07_guardrails_sec
 
 - **Verbatim quotes required.** Where the evidence is a function, rule, test, or configuration, quote the exact identifier or text in backticks with the file path. A claim with no verbatim quote is unsupported and fails the self-check gate.
 - **Separate evidence for and evidence against** each finding. Where `[[FRAMEWORK]]` has a partial control that addresses part of the gap, state that explicitly — do not present a partial control as a full gap, and do not present it as full coverage.
-- **Ground every regulatory claim in a specific clause.** "DORA requires security controls" is not a citation. "DORA Art. 9(2)(b) requires that ICT systems are protected against ICT attacks" is.
+- **Ground every regulatory claim in a specific clause.** "DORA requires security controls" is not a citation. A citation names the provision and quotes it: DORA Art. 9(4)(c) requires financial entities to "implement policies that limit the physical or logical access to information assets and ICT assets to what is required for legitimate and approved functions and activities only". Note that the closing punctuation sits outside the quotation marks, so the quoted span is exactly the provision's words and nothing else.
 - **No praise without evidence.** Do not credit `[[FRAMEWORK]]` for controls that are documented in a standard but not implemented in the artefacts.
 
 ---

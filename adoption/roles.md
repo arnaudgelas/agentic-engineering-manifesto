@@ -2,9 +2,9 @@
 
 *How roles evolve and how to manage the human dimension of the transition.*
 
-Read the [Manifesto](manifesto.md) for the core principles.  See the [Adoption
-Playbook](adoption-playbook.md) for the full table of contents.  See the
-[Adoption Path](adoption-path.md) for incremental steps and phase transitions.
+Read the [Manifesto](../manifesto/manifesto.md) for the core principles.  See the [Adoption
+Playbook](playbook.md) for the full table of contents.  See the
+[Adoption Path](path.md) for incremental steps and phase transitions.
 
 ---
 
@@ -132,7 +132,7 @@ failure patterns (hallucination loops, memory poisoning, tier violations).
 
 The process-level definition of these roles — what each role does in the
 demand-to-specification workflow — is in [Demand &
-Value](asdlc/demand-value.md).  This section covers the organizational and
+Value](../../asdlc/demand/value.md).  This section covers the organizational and
 team-evolution perspective: how these roles emerge, what skills they require,
 and how they develop through the ASDLC maturity phases.
 
@@ -166,7 +166,7 @@ framing).
 
 For the authoritative process-level definition of these roles and their
 responsibilities in the demand layer workflow, see [Demand &
-Value](asdlc/demand-value.md).
+Value](../../asdlc/demand/value.md).
 
 ---
 
@@ -300,11 +300,16 @@ reinforcing. It looks like productivity from the outside (velocity charts go
 up, more PRs merged, more features shipped) while quality quietly erodes,
 technical debt accumulates, and the people doing the work run on fumes.
 
-The **perception gap** makes the trap invisible from inside. A rigorous 2025
-study found that experienced developers using AI tools took 19% longer to
-complete tasks than developers working without them — while believing AI made
-them 24% faster. They were wrong not just about the magnitude but about the
-direction of the change. This perception gap is where the acceleration trap
+The **perception gap** makes the trap invisible from inside. METR's 2025
+randomized controlled trial ("Measuring the Impact of Early-2025 AI on
+Experienced Open-Source Developer Productivity") found that experienced
+developers using AI tools took 19% longer to complete tasks than developers
+working without them — while believing AI made them 24% faster. METR's own
+Appendix B cautions against over-generalizing: the study's developers and
+repositories are not claimed to represent a majority or plurality of software
+development work, and the result should not be read as evidence that AI tools
+fail to help most developers. They were wrong not just about the magnitude but
+about the direction of the change. This perception gap is where the acceleration trap
 becomes self-reinforcing: teams believe they have more capacity, take on more
 work, and never measure whether the capacity was real. When the J-curve
 adoption dip arrives — productivity declining before improving as new workflows

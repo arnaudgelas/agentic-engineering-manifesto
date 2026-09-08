@@ -32,8 +32,8 @@ In both modes the manifesto governs the inner engineering execution loop — Spe
 
 **Summary of changes:**
 - `manifesto.md` — 3 additions: upstream interface section, downstream interface section, scope section update (now references both ASDLC and APLC)
-- `adoption-roles.md` — 1 addition: demand-layer roles forward reference
-- `adoption-path.md` — 1 addition: ASDLC framing note
+- `adoption/roles.md` — 1 addition: demand-layer roles forward reference
+- `adoption/path.md` — 1 addition: ASDLC framing note
 - `glossary.md` — additions after both ASDLC and APLC documents are written
 
 ---
@@ -91,7 +91,7 @@ include. Absent this, scope expands during execution — a common driver of
 specification drift inside the loop.
 
 If these conditions are not met, the work belongs in the demand layer (Layer 1
-of the ASDLC — see the [ASDLC overview](asdlc.md)), not in the Specify phase.
+of the ASDLC — see the [ASDLC overview](../../asdlc/asdlc.md)), not in the Specify phase.
 Entering the loop without a loop-ready specification does not save time — it
 produces well-executed work on the wrong problem.
 
@@ -149,7 +149,7 @@ output. A release layer that accepts an evidence bundle without a named accounta
 human is accepting ungoverned output. Both are governance failures at the boundary,
 not in the loop.
 
-See [Release & Deployment Governance](release-governance.md) for how the release
+See [Release & Deployment Governance](../../asdlc/release-governance.md) for how the release
 layer receives and acts on these artefacts.
 ```
 
@@ -191,10 +191,10 @@ the ASDLC governs the full software delivery lifecycle.
 
 | ASDLC Layer | Name | Scope | Document |
 | --- | --- | --- | --- |
-| 1 | Demand & Value | Business need → loop-ready specification | [asdlc.md](asdlc.md) |
+| 1 | Demand & Value | Business need → loop-ready specification | [asdlc.md](../../asdlc/asdlc.md) |
 | **2** | **Engineering Execution** | **Specify → Govern → loop output** | **This manifesto** |
-| 3 | Release & Deployment | Loop output → production | [release-governance.md](release-governance.md) |
-| 4 | Operations & Maintenance | Production → operated, patched, retired | [operations-governance.md](operations-governance.md) |
+| 3 | Release & Deployment | Loop output → production | [release-governance.md](../../asdlc/release-governance.md) |
+| 4 | Operations & Maintenance | Production → operated, patched, retired | [operations-governance.md](../../asdlc/operations/governance.md) |
 
 **When the deliverable is an agent system — use the APLC.** The agent itself
 is the product, serving a business purpose directly (a claims agent, a trading
@@ -202,7 +202,7 @@ agent, a regulatory reporting agent). This manifesto still governs the
 engineering build phase; the APLC governs the full agent product lifecycle:
 conception, behavioral specification, behavioral release, behavioral operations,
 model update governance, and regulated retirement. The two delivery modes differ
-at every layer beyond the inner loop. See [aplc.md](aplc.md).
+at every layer beyond the inner loop. See [aplc.md](../../aplc/aplc.md).
 
 The manifesto's principles apply fully as the engineering execution engine in
 both modes. They are relevant starting points for the outer layers, but those
@@ -214,22 +214,22 @@ mechanisms that this document does not cover.
 **For software delivery (ASDLC):**
 
 - *Upstream (Layer 1):* Business need validation, demand prioritisation, portfolio
-  governance, specification readiness. See [Demand & Value](../asdlc/asdlc.md#layer-1-demand-value).
+  governance, specification readiness. See [Demand & Value](../../asdlc/asdlc.md#layer-1-demand-value).
 - *Downstream — delivery (Layer 3):* Release gates, environment promotion,
-  change management, compliance documentation. See [release-governance.md](release-governance.md).
+  change management, compliance documentation. See [release-governance.md](../../asdlc/release-governance.md).
 - *Downstream — operations (Layer 4):* Incident management, SLO governance,
-  security patching, ownership transfer, deprecation. See [operations-governance.md](operations-governance.md).
+  security patching, ownership transfer, deprecation. See [operations-governance.md](../../asdlc/operations/governance.md).
 
 **For agent product delivery (APLC):**
 
 - *Stage 1 (Conceive):* Agent product brief, trust model design, persona design,
-  EU AI Act risk classification. See [agent-conception.md](agent-conception.md).
+  EU AI Act risk classification. See [agent-conception.md](../../aplc/agent/agent-conception.md).
 - *Stage 2 (Specify Behaviorally):* Behavioral envelope at the product level,
   use-case coverage, uncertainty protocol, escalation design. See
-  [agent-behavioral-specification.md](agent-behavioral-specification.md).
+  [agent-behavioral-specification.md](../../aplc/agent/agent-behavioral-specification.md).
 - *Stages 4–7 (Release through Retire):* Behavioral release gate, composite state
   versioning, behavioral drift governance, model update governance, regulated
-  retirement. See [aplc.md](aplc.md).
+  retirement. See [aplc.md](../../aplc/aplc.md).
 
 **Out of scope in all frameworks:**
 - Training, fine-tuning, or evaluating foundation models.
@@ -246,7 +246,7 @@ mechanisms that this document does not cover.
 
 ---
 
-## Change 4 — `adoption-path.md`: Add ASDLC Framing Note
+## Change 4 — `adoption/path.md`: Add ASDLC Framing Note
 
 **Location:** At the top of the document, after the existing callout block about V-model organisations and before the "Incremental Adoption Path" heading.
 
@@ -263,7 +263,7 @@ mechanisms that this document does not cover.
 > before entering the loop), the release layer (how governed the path to
 > production is), or the operations layer (how well the team can maintain and
 > operate what has been delivered). Those layers have their own maturity
-> assessment, covered in the [ASDLC](asdlc.md).
+> assessment, covered in the [ASDLC](../../asdlc/asdlc.md).
 >
 > Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
 > delivery in at least one domain) before investing heavily in outer-layer
@@ -275,7 +275,7 @@ mechanisms that this document does not cover.
 
 ---
 
-## Change 5 — `adoption-roles.md`: Add Demand-Layer Roles Forward Reference
+## Change 5 — `adoption/roles.md`: Add Demand-Layer Roles Forward Reference
 
 **Location:** At the end of the "How Roles Evolve" section, after the last existing role description (before any organisational or transition guidance).
 
@@ -313,7 +313,7 @@ the domain and the manifesto's specification requirements (machine-readable
 acceptance criteria, versioned constraints, blast-radius framing).
 
 For the full evolution of these roles through the ASDLC maturity phases, see
-[Demand & Value — Roles](../asdlc/demand/value.md#roles).
+[Demand & Value — Roles](../../asdlc/demand/value.md#roles).
 ```
 
 ---
@@ -331,7 +331,7 @@ The following terms should be added to `glossary.md` once the ASDLC documents ex
 - **Steward** — The named human accountable for a system's maintenance, long-term health, and eventual deprecation. Distinct from the accountable human at deployment time (P12).
 - **Demand backlog** — The managed queue of validated business needs awaiting specification and loop entry. Governed by ASDLC Layer 1.
 - **Release DoD** — The ASDLC Layer 3 Definition of Done. Defined in `release-governance.md`.
-- **Operational DoD** — The ASDLC Layer 4 Definition of Done. Defined in `operations-dod.md`.
+- **Operational DoD** — The ASDLC Layer 4 Definition of Done. Defined in `asdlc/operations/dod.md`.
 - **Value realisation** — The business-level outcome measured post-deployment against the success criterion defined at the specification readiness gate.
 
 **APLC terms to add** (after APLC documents are written):
@@ -356,7 +356,7 @@ These changes can be executed in this order:
 
 1. **Changes 1–3** (`manifesto.md`) — can be done together in one session. Changes 1 and 2 add new sections with no dependencies. Change 3 replaces the scope section and adds forward links to ASDLC documents (use placeholder links that resolve once ASDLC documents exist).
 
-2. **Changes 4–5** (`adoption-path.md`, `adoption-roles.md`) — can be done in parallel with Changes 1–3, or immediately after.
+2. **Changes 4–5** (`adoption/path.md`, `adoption/roles.md`) — can be done in parallel with Changes 1–3, or immediately after.
 
 3. **Change 6** (`glossary.md`) — do this last, after both ASDLC and APLC documents are written and canonical definitions are stable. ASDLC terms can be added once ASDLC is written; APLC terms follow when APLC is written.
 
@@ -371,7 +371,7 @@ Before merging these changes, verify:
 - [ ] The Specification Readiness Gate section is internally consistent with `specification-readiness.md` once that document exists.
 - [ ] The Loop Output Contract section is consistent with the evidence bundle definition in P1 and the DoD.
 - [ ] The updated scope section links resolve (all referenced ASDLC documents exist before publishing).
-- [ ] The forward references in `adoption-roles.md` resolve to the correct anchors in `asdlc.md`.
+- [ ] The forward references in `adoption/roles.md` resolve to the correct anchors in `asdlc.md`.
 - [ ] No existing principle text has been altered.
 - [ ] No existing minimum bar has been changed.
 - [ ] `glossary.md` additions do not duplicate or contradict existing definitions.

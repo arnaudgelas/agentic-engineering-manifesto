@@ -4,7 +4,7 @@
 **Audience:** AI governance authority, engineering steward, IGM revision authority, accountable authority, procurement steward, DPO, security reviewer, internal audit.
 **Purpose:** Standard checklist for the orderly retirement of (a) AI agents and (b) IGM claims (or claim families). Implements ISO/IEC 42001 A.6.2.6 + A.10 retirement obligations, NIST AI RMF GV.1.7 (decommissioning processes with stakeholder communication), MG.2.3 (deactivation procedures), COBIT DSS04 Managed Continuity (transition planning), AEnt-M Principle 12 (retirement lifecycle), and IGM Principle 5 (Curate / retire).
 
-**This checklist dovetails with `integration/decommissioning.md` (planned by A8 — `integration/` directory currently empty).** When that document is produced, this template becomes the operational artefact it references; cross-link both directions at adoption.
+**This checklist dovetails with `integration/decommissioning.md`**, which specifies the cross-framework retirement workflow this template operationalises; cross-link both directions at adoption.
 
 **Cross-references:** `operational-templates/agent-inventory-schema.md`, `operational-templates/ai-risk-register.md`, `regulatory/foundation-model-third-party-register.md`, `regulatory/iso-42001-crosswalk.md`, `governance/authority-accountability-matrix.md`.
 
@@ -68,7 +68,7 @@ For each retired agent, every item below is completed and evidenced. The checkli
 - [ ] **Production traffic terminated.** Network egress and inference-API access revoked.
 - [ ] **Credentials and secrets rotated and revoked.** Foundation-model API keys, knowledge-base read tokens, integration credentials.
 - [ ] **Memory-state checkpointed and archived.** For audit-reconstruction purposes.
-- [ ] **Observability sources retained for retention period.** Logs, traces, evidence bundles per retention policy and applicable regulatory record-keeping rules (EU AI Act Article 19, DORA, GDPR Art 30/32, sectoral).
+- [ ] **Observability sources retained for retention period.** Logs, traces, evidence bundles per retention policy and applicable regulatory record-keeping rules (EU AI Act **Art. 26(6)** for a *deployer*'s automatically generated logs — at least six months, and Art. 19(1) for a *provider*'s; DORA; GDPR Art 30/32; sectoral).
 - [ ] **Risk register rows closed or transferred.** Open rows either resolved (treatment delivered by retirement) or transferred to successor.
 - [ ] **Supplier register entries reconciled.** Foundation-model dependencies removed if not used by other agents; supplier register row updated.
 - [ ] **Inventory status updated.** `status = Decommissioning` → `Retired`; row preserved (not deleted) for audit.
@@ -128,7 +128,7 @@ For each retired claim or claim family, every item below is completed and eviden
 
 ## 5. Open DRAFT items requiring author judgment
 
-- **DRAFT — author review needed:** retention periods are jurisdiction-dependent and out of scope here; institutions must reconcile against EU AI Act Article 19, DORA, sectoral retention obligations, GDPR storage-limitation, and litigation-hold processes.
+- **DRAFT — author review needed:** retention periods are jurisdiction-dependent and out of scope here; institutions must reconcile against EU AI Act **Art. 26(6)** (deployer log retention, at least six months) and Art. 19 (the *provider*-facing equivalent), DORA, sectoral retention obligations, GDPR storage-limitation, and litigation-hold processes. *(Corrected 2026-09-06: both sites cited Art. 19 alone — a provider-facing article — in a checklist written for deployers. Same defect already recorded in `errata.md` for `regulatory/eu-ai-act-addendum.md`; these were the surviving twins.)*
 - **DRAFT — author review needed:** the "no deletion" rule may need a privacy carve-out for personal-data-bearing artefacts; coordinate with DPO.
 - **DRAFT — author review needed:** when `integration/decommissioning.md` (A8) is produced, this checklist is the operational artefact it references; cross-links should be added in both directions and any duplication resolved (this checklist takes precedence on operational detail; integration/decommissioning.md takes precedence on integration patterns).
 
@@ -147,4 +147,4 @@ For each retired claim or claim family, every item below is completed and eviden
 - `regulatory/foundation-model-third-party-register.md` — supplier-register reconciliation.
 - `regulatory/iso-42001-crosswalk.md` — Annex A obligations.
 - `governance/authority-accountability-matrix.md` — owner naming.
-- `integration/decommissioning.md` (planned, A8) — to be cross-linked when produced.
+- `integration/decommissioning.md` — cross-link both directions at adoption.

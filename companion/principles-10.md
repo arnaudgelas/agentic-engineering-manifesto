@@ -39,18 +39,20 @@ anomaly detection for cross-agent trust edges.
 
 The OpenClaw ecosystem (2025-2026) provides instructive case studies. OpenClaw
 itself — an open-source autonomous agent with 247K GitHub stars — demonstrated
-how rapidly agentic systems scale when governance is absent. The Moltbook
-incident (February 2026) exposed 1.5 million registered agents (only 17,000
-human owners) through a misconfigured Supabase database with full read/write
-access. The failure hit every threat category above: no identity controls, no
-domain scoping, no blast-radius limits, no audit trail.
+how rapidly agentic systems scale when governance is absent (see
+[Sources](../beyond-agile/sources.md) ref 42). The Moltbook incident (February
+2026) exposed 1.5 million registered agents (only 17,000 human owners) through
+a misconfigured Supabase database with full read/write access (see
+[Sources](../beyond-agile/sources.md) ref 61). The failure hit every threat
+category above: no identity controls, no domain scoping, no blast-radius
+limits, no audit trail.
 
 NVIDIA's response — NemoClaw (GTC 2026) — is an enterprise-hardened fork that
-adds YAML-based permission policies, audit logging, and guardrail constraints.
-This is containment engineering in practice: the same agent runtime, now with
-the governance layer the manifesto requires. The pattern validates the core
-P10 claim: emergence is not a feature to celebrate but a hazard to engineer
-around. Systems that scale without containment infrastructure will produce
-incidents at scale.
+adds YAML-based permission policies, audit logging, and guardrail constraints
+(see [Sources](../beyond-agile/sources.md) ref 40). This is containment
+engineering in practice: the same agent runtime, now with the governance layer
+the manifesto requires. The pattern validates the core P10 claim: emergence is
+not a feature to celebrate but a hazard to engineer around. Systems that scale
+without containment infrastructure will produce incidents at scale.
 
 ---

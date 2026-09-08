@@ -179,16 +179,18 @@ agent that produced it. Concretely:
 
 This is not a new principle — it is a regulated-environment application of the
 existing evaluation-as-contract pattern. See
-[companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
-for the cross-domain analysis and [domains/](domains/README.md) for
+[companion-frameworks.md](frameworks.md#cross-domain-regulatory-insights)
+for the cross-domain analysis and [domains/](../domains/README.md) for
 domain-specific independence requirements.
 
 ### Fairness and Bias Testing in High-Risk AI
 
 EU AI Act Article 10 requires that training, validation, and testing datasets
-for high-risk AI systems are "free of errors and complete" and that they account
-for "characteristics or elements that are particular to the specific geographical,
-behavioural or functional setting." In practice, this mandates bias testing
+for high-risk AI systems are, "to the best extent possible, free of errors and
+complete" (Art. 10(3)), and that they account for the "characteristics or
+elements that are particular to the specific geographical, contextual,
+behavioural or functional setting" within which the high-risk AI system is
+intended to be used (Art. 10(4)). In practice, this mandates bias testing
 as part of the evaluation portfolio for any high-risk AI system.
 
 This is a cross-domain obligation, not a financial-services-specific one:
@@ -321,7 +323,7 @@ The manifesto's position is intentionally conservative: external benchmarks help
 calibrate ambition, but promotion between maturity phases should be based on the
 evidence your own system can produce under your own operating conditions.
 
-See also [Verification without validation](companion-reference.md#failure-modes-of-this-manifesto)
+See also [Verification without validation](reference.md#failure-modes-of-this-manifesto)
 in the Failure Modes section, which describes the related but distinct case
 where verification machinery confirms correctness without confirming value.
 

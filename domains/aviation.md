@@ -1,15 +1,15 @@
 # Aviation / Avionics Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) principles to
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) principles to
 aviation certification frameworks.*
 
-See [companion-frameworks.md](../companion-frameworks.md) for boundary
+See [companion-frameworks.md](../companion/frameworks.md) for boundary
 conditions on regulated-industry adoption. See
-[adoption-vmodel.md](../adoption-vmodel.md) for the V-model adoption path
+[adoption-vmodel.md](../adoption/vmodel.md) for the V-model adoption path
 applicable to verification-heavy lifecycles.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 Autonomy tier assignment criteria are in [companion-principles.md —
 P5](../companion/principles-05.md#principle-5-autonomy-extended-guidance).  This
 document maps those definitions to aviation certification requirements; it does
@@ -300,7 +300,7 @@ unqualified tool with independent verification of all output.
 Aviation configuration management (DO-178C Section 7) requires data integrity
 standards that parallel ALCOA+ requirements. The manifesto's evidence model
 satisfies these by construction. See [Companion Frameworks — ALCOA+
-Alignment](../companion-frameworks.md#alcoa-alignment) for the complete mapping
+Alignment](../companion/frameworks.md#alcoa-alignment) for the complete mapping
 table.
 
 For aviation-specific application:
@@ -448,6 +448,6 @@ lifecycle data under DO-178C Section 7? The conservative position is yes.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Aviation Domain Guidance](../asdlc/domains/aviation.md).
+For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Aviation Domain Guidance](../../asdlc/domains/aviation.md).
 
-For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see [APLC Aviation Domain Guidance](../aplc/domains/aviation.md).
+For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see [APLC Aviation Domain Guidance](../../aplc/domains/aviation.md).

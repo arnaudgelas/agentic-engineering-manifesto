@@ -170,7 +170,7 @@ Source: [`manifesto-principles-12.md`](../manifesto/manifesto-principles-12.md#1
 
 **Five clusters of gaps** (per the coherence review's Theme T2):
 
-- **Architecture (P3) and Containment (P10)** — both manifestos missing; closed by `governance/foundation-model-third-party-register.md` (third-party / supply chain), W1.3 (claims as attack surfaces), W2.5 (multi-agent containment), W3.8 (machine-enforced retrieval / reasoning / action layer separation).
+- **Architecture (P3) and Containment (P10)** — both manifestos missing; closed by `regulatory/foundation-model-third-party-register.md` (third-party / supply chain), W1.3 (claims as attack surfaces), W2.5 (multi-agent containment), W3.8 (machine-enforced retrieval / reasoning / action layer separation).
 - **Swarm coordination (P4)** — both manifestos missing; closed by W2.3.
 - **Evaluations (P8)** — both missing; closed by W1.2 (IGM) + W2.5 (AEnt-M).
 - **Economics (P11)** — IGM weakened, AEnt-M missing; closed by extending IGM P12 + adding AEnt-M economics principle (W2.4).

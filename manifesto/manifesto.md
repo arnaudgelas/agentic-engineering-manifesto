@@ -271,7 +271,7 @@ enforce architectural constraints at runtime and monitor for violations. They
 observe behavior, surface anomalies, and maintain the feedback loops that make
 everything else work. They forget what no longer serves them.
 
-See [Roles and the Human Side](adoption-roles.md) for how each role evolves
+See [Roles and the Human Side](../adoption/roles.md) for how each role evolves
 through the phase transitions.
 
 ---
@@ -331,16 +331,16 @@ Use two layers:
   rationale, tradeoffs, worked patterns, failure modes, organizational change
   management, and domain-specific regulatory alignment. Come here when
   implementing. The companion layer is itself multi-document; the full map
-  is in [companion-guide.md](companion-guide.md).
+  is in [companion-guide.md](../companion/guide.md).
 
 The two-layer framing is accurate but incomplete. The minimum bars in the
 principles are necessary conditions; they are not sufficient for safe operation
 at Phase 4 and above. At higher phases, certain companion content becomes
 operationally essential rather than supplementary: the
 [Specifications vs. Constraints](../companion/principles-02.md#specifications-vs-constraints)
-distinction (P2), [rubber-stamping detection](adoption-metrics.md#team-health-metrics-all-phases)
-(P12), the [Adaptation Envelope — Layer 4](companion-re-framework.md#4-the-behavioral-envelope)
-(P6), and the [worked failure-mode patterns](companion-patterns.md) (P10/P12)
+distinction (P2), [rubber-stamping detection](../adoption/metrics.md#team-health-metrics-all-phases)
+(P12), the [Adaptation Envelope — Layer 4](../companion/re-framework.md#4-the-behavioral-envelope)
+(P6), and the [worked failure-mode patterns](../companion/patterns.md) (P10/P12)
 are required reading before operating autonomy above Tier 1. If the core
 document describes the floor, these documents describe the walls and ceiling.
 
@@ -379,7 +379,7 @@ What "done" means in agentic engineering: Loop-Complete, traceable, verified,
 provable, learned from, governed, economical, and within service envelope.
 Phase-calibrated, not all-or-nothing.
 
-### [Glossary](glossary.md)
+### [Glossary](../glossary.md)
 
 Canonical definitions for terms used across this document set: agent,
 autonomy tier, blast radius, evidence bundle, evaluation, knowledge, learned

@@ -140,7 +140,7 @@ The Low row of the consequence-class table (`agentic-enterprise-manifesto/compan
 
 ### 4.3 Cross-reference into AEM (recommended but optional)
 
-> **DRAFT — author review needed.** Whether AEM's `manifesto.md` "What this manifesto does not cover" section (`manifesto.md:295–312`) should add a line declaring the carve-out is *recommended*. Without it, the carve-out is declared in AEnt-M but not acknowledged in AEM, which is the same readability problem in reverse. The recommended addition:
+> **DRAFT — author review needed.** Whether AEM's `manifesto/manifesto.md` "What this manifesto does not cover" section (`manifesto/manifesto.md:295–312`) should add a line declaring the carve-out is *recommended*. Without it, the carve-out is declared in AEnt-M but not acknowledged in AEM, which is the same readability problem in reverse. The recommended addition:
 
 > "Low-consequence actions explicitly carved out of AEM P12's per-action accountability floor per AEnt-M Principle 8 and `integration/low-consequence-resolution.md`. Actions in this class operate under workflow-level accountability with post-hoc audit sampling rather than per-action review. This carve-out affects P12 only; AEM's autonomy-tier permission gate (P5) still applies independently of consequence class — see `governance/composition-rule.md`. Criteria for the carve-out are stated in the integration document."
 

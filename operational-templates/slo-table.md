@@ -44,11 +44,14 @@
 | 14 | Default decision when SLO 13 expires | Reject (suspend) | n/a | All | Engineering steward (executes) | n/a | AEnt-M P9 default reject |
 | 15 | Provider-side composite-state advisory ingestion latency | ≤ 24 hours from provider notice to inventory entry | Per provider notice | All | Engineering steward + procurement steward | Breach → 2nd-line challenge | Supplier register change-management clause |
 | **Incident reporting — regulator** | | | | | | | |
-| 16 | EU AI Act Article 73 — serious-incident notification, death / widespread infringement | ≤ 2 days from awareness | Per incident | Critical (typically) | Governance authority + General Counsel | Breach → board notification; regulatory exposure | EU AI Act addendum §Article 73 |
-| 17 | EU AI Act Article 73 — serious-incident notification, other categories | ≤ 15 days from awareness | Per incident | High / Critical | Governance authority + General Counsel | Breach → board notification | EU AI Act addendum |
-| 18 | DORA Pillar 2 — major ICT-related incident initial notification | ≤ 4 hours from classification | Per incident | High / Critical | Governance authority + operational-resilience function | Breach → ICT regulator escalation; board notification | DORA Pillar 2 |
-| 19 | DORA Pillar 2 — intermediate report | ≤ 72 hours | Per incident | High / Critical | Operational-resilience function | Breach → escalation | DORA Pillar 2 |
-| 20 | DORA Pillar 2 — final report | ≤ 1 month | Per incident | High / Critical | Operational-resilience function | Breach → escalation | DORA Pillar 2 |
+| 16 | EU AI Act Article 73(3) — serious-incident notification, widespread infringement or Art. 3(49)(b) critical-infrastructure disruption | ≤ 2 days from awareness | Per incident | Critical (typically) | Governance authority + General Counsel | Breach → board notification; regulatory exposure | EU AI Act addendum §6.1 |
+| 16a | EU AI Act Article 73(4) — serious-incident notification, **death of a person** | ≤ 10 days from awareness | Per incident | Critical | Governance authority + General Counsel | Breach → board notification; regulatory exposure | EU AI Act addendum §6.1 |
+| 17 | EU AI Act Article 73(2) — serious-incident notification, all other categories incl. Art. 3(49)(c) fundamental-rights infringement | ≤ 15 days from awareness | Per incident | High / Critical | Governance authority + General Counsel | Breach → board notification | EU AI Act addendum §6.1 |
+
+*(Rows 16/16a/17 corrected 2026-09-06 against Regulation (EU) 2024/1689, sha256 prefix `a0f437e89667`. Row 16 previously grouped **death of a person** with widespread infringement on the 2-day clock. Art. 73(4) gives death **10 days**; the 2-day clock of Art. 73(3) covers widespread infringement and Art. 3(49)(b) only. See `errata.md`.)*
+| 18 | DORA Pillar 2 — major ICT-related incident initial notification | ≤ 4 hours from classification — **firm operating target (`F2`), not a DORA Article 19 deadline** | Per incident | High / Critical | Governance authority + operational-resilience function | Breach → ICT regulator escalation; board notification | DORA Art. 19(1)/19(4) (duty); **the period is set by the RTS under Art. 20, first paragraph, point (a)(ii) — record the version relied on**. DORA itself states no hour or day. |
+| 19 | DORA Pillar 2 — intermediate report | ≤ 72 hours — **firm operating target (`F2`), not a DORA Article 19 deadline**; the anchor event is fixed by the RTS, not by this row | Per incident | High / Critical | Operational-resilience function | Breach → escalation | DORA Art. 19(4)(b) (duty); **period set by the RTS under Art. 20, first paragraph, point (a)(ii) — record the version** |
+| 20 | DORA Pillar 2 — final report | ≤ 1 month — **firm operating target (`F2`), not a DORA Article 19 deadline**; the anchor event is fixed by the RTS, not by this row | Per incident | High / Critical | Operational-resilience function | Breach → escalation | DORA Art. 19(4)(c) (duty); **period set by the RTS under Art. 20, first paragraph, point (a)(ii) — record the version** |
 | 21 | GDPR Article 33 — data-breach notification to supervisory authority | ≤ 72 hours from awareness | Per personal-data breach | Per data scope | DPO + governance authority | Breach → GDPR enforcement risk | GDPR Art 33 |
 | 22 | GDPR Article 34 — communication to data subjects (high-risk to rights and freedoms) | "Without undue delay" — institution sets internal SLO ≤ 5 business days | Per qualifying breach | Per data scope | DPO + General Counsel | Breach → enforcement risk | GDPR Art 34 |
 | **Incident reporting — internal** | | | | | | | |
@@ -68,8 +71,8 @@
 | 33 | Time from automated-scan flag of unregistered agent to triage decision | ≤ 5 business days | Continuous | All | Engineering steward + governance authority | Breach → 2nd-line challenge | Agent inventory schema §3.2 |
 | 34 | Time from triage-as-AI-system to gate-passed registration or decommissioning | ≤ 30 days | Per discovery | All | Engineering steward + accountable authority | Breach → governance authority paper | Agent inventory schema §3.3 |
 | **Stakeholder-rights handling** | | | | | | | |
-| 35 | GDPR Article 22 / EU AI Act Article 86 explanation request response | ≤ 30 days from request (per GDPR Art 12) | Per request | All scoped systems | Accountable authority + DPO | Breach → GDPR enforcement risk; complaint pathway | GDPR Art 22; EU AI Act Art 86 |
-| 36 | Article 22 right-to-human-review request handling | ≤ 30 days | Per request | All scoped | Accountable authority | Breach → escalation | GDPR Art 22 |
+| 35 | GDPR Article 22 / EU AI Act Article 86 explanation request response | Without undue delay and in any event **within one month** of receipt — Art. 12(3)’s own unit, not 30 days; extendable **by two further months** where justified by complexity and number of requests, with the data subject informed of the extension within one month | Per request | All scoped systems | Accountable authority + DPO | Breach → GDPR enforcement risk; complaint pathway | GDPR Art 12(3) (period); GDPR Art 22; EU AI Act Art 86 |
+| 36 | Article 22 right-to-human-review request handling | Same clock as row 35 — **within one month** of receipt under Art. 12(3), extendable by two further months; not 30 days | Per request | All scoped | Accountable authority | Breach → escalation | GDPR Art 12(3); GDPR Art 22 |
 
 ---
 
@@ -98,7 +101,7 @@
 - AEnt-M `manifesto.md` — P9, P11; companion-guide.md decay-class table.
 - AEM [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) — Tier 4 prerequisites; AEM [`manifesto/manifesto-principles-10.md`](../manifesto/manifesto-principles-10.md#10-assume-emergence-engineer-containment) — waiver model.
 - EU AI Act Article 73 (serious-incident reporting); Article 86 (explanation right).
-- DORA Pillar 2 (incident classification and reporting): RTS on classification of major ICT-related incidents.
+- DORA Pillar 2 (incident classification and reporting): classification criteria are **Art. 18(1)** of Regulation (EU) 2022/2554, with materiality thresholds further specified by RTS under Art. 18(3)(a); the **reporting time limits in rows 18–20 are RTS-level under Art. 20, first paragraph, point (a)(ii) — Article 19 fixes none of them**. *(Corrected 2026-09-06 at the hashed DORA primary, sha256 prefix `25328c7e39c4`: `4 hours` 0, `24 hours` 0, `72 hours` 0, `1 month` 0, against `major ict related incident` 44 as positive control. See `errata.md`.)*
 - GDPR Articles 22, 33, 34.
 - Cloud Security Alliance, *Autonomous but Not Controlled*, April 2026.
 - `operational-templates/ai-risk-register.md` — paired register.

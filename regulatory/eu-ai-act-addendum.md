@@ -19,23 +19,23 @@ The EU AI Act applies to (a) providers placing AI systems on the Union market or
 
 ### 1.1 High-risk classification under Annex III
 
-The following table maps the typical use cases targeted by the AEnt-M companion guide and the `domains/` files against Annex III (high-risk areas) of the EU AI Act. **Annex III is exhaustive for "high-risk by use" — if a use case is not in Annex III and not a safety component under Annex I, it is not high-risk by virtue of Annex III.** Other obligations may still apply (Art. 50 transparency, GPAI provisions, prohibited practices Art. 5).
+The following table maps the typical use cases targeted by the AEnt-M companion guide and the `domains/` files against Annex III (high-risk areas) of the EU AI Act. **Annex III is exhaustive for "high-risk by use": a use case that is not in Annex III is not high-risk by virtue of Annex III.** **The Annex I route is separate, and Art. 6(1) is a cumulative two-limb test — a system is high-risk only where both conditions are fulfilled:** (a) it "is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I"; **and** (b) that product "is required to undergo a third-party conformity assessment, with a view to the placing on the market or the putting into service of that product pursuant to the Union harmonisation legislation listed in Annex I". **Limb (a) reaches an AI system that is itself an Annex I product as well as one that is a safety component of an Annex I product; and limb (a) alone is never sufficient** — a product not required to undergo a third-party conformity assessment fails limb (b) and is not high-risk on the Annex I route. *(Corrected 2026-09-06 — this sentence previously carried the clause: and not a safety component under Annex I. That reduced Art. 6(1) to limb (a), and then halved limb (a) by dropping its second alternative, the AI system that is itself an Annex I product. Both limbs, and the whole of (a), are restored above from the hashed primary, `OJ_L_202401689_AIAct.html.gz`, sha256 prefix `a0f437e89667`.)* Other obligations may still apply (Art. 50 transparency, GPAI provisions, prohibited practices Art. 5).
 
 | Manifesto domain / use case | Annex III point | High-risk? | Notes |
 |---|---|---|---|
 | **Settlement-instruction reconciliation** (custodian operations agent — `domains/financial-services.md`) | Not in Annex III | **No** by Annex III | Operational, not credit-scoring or insurance-pricing. Other obligations apply (DORA, MAR, transparency under Art. 50 if interacting with natural persons). |
-| **Credit scoring / creditworthiness evaluation of natural persons** (retail bank, consumer credit) | Annex III, point 5(b) | **Yes** | Carve-out: AI used to detect financial fraud is excluded (point 5(b)). |
-| **Risk assessment and pricing for life and health insurance** | Annex III, point 5(c) | **Yes** | Property and casualty insurance pricing is *not* in Annex III — verify with legal review per product. |
+| **Credit scoring / creditworthiness evaluation of natural persons** (retail bank, consumer credit) | EU AI Act Annex III, point 5(b), which ends "with the exception of AI systems used for the purpose of detecting financial fraud" | **Yes**, except where the system's purpose is detecting financial fraud | The exception is the point's own wording: fraud-detection systems are excepted from 5(b) rather than captured by it. |
+| **Risk assessment and pricing for life and health insurance** | EU AI Act Annex III, point 5(c), which reaches risk assessment and pricing in relation to natural persons only "in the case of life and health insurance" | **Yes**, for life and health insurance only | Property and casualty insurance pricing is *not* within point 5(c) and is not otherwise in Annex III — verify with legal review per product. |
 | **Insurance fraud detection** | Not in Annex III, point 5(b) carve-out applies analogously by recital reasoning | **No** typically | Document the analysis; mark in evidence bundle. |
 | **Employment screening and CV filtering** (HR agent reading résumés, ranking candidates) | Annex III, point 4(a) | **Yes** | Includes AI used to advertise vacancies, screen, evaluate candidates. Recital 57. |
 | **Workforce performance and behaviour monitoring** | Annex III, point 4(b) | **Yes** | Includes promotion/demotion decisions and termination. |
-| **Healthcare diagnosis support** (clinical-decision-support agent) | Annex I + Annex III, point 5(d) | **Yes** | Annex I if it is a medical device under MDR/IVDR (most diagnostic CDS will be). Annex III, 5(d) covers AI used to evaluate eligibility for essential healthcare services. |
+| **Healthcare diagnosis support** (clinical-decision-support agent) | EU AI Act Annex I via Art. 6(1); Annex III **point 5(a)** for eligibility decisions, **point 5(d)** for emergency triage/dispatch | **Yes** on the Annex III route, for 5(a) eligibility and 5(d) triage/dispatch. On the **Annex I route, only where both limbs of Art. 6(1) are met**: MDR/IVDR device status goes to limb (a) alone, and **limb (b) additionally requires that the device be required to undergo a third-party conformity assessment** — so a **Class I** device, which under MDR Art. 52(7) is self-declared with no notified body, **satisfies (a), fails (b), and is not high-risk on the EU AI Act Annex I route**; **Class IIa and above** carries notified-body involvement and generally satisfies (b). Record the limb the determination turns on. | **Corrected 2026-09-06 (second correction):** the High-risk cell read a bare "Yes" and this cell read that the system is EU AI Act Annex I if it is a medical device under MDR/IVDR — a classification reached on limb (a) alone, contradicting `domains/medical-devices.md` (§ EU MDR + AI Act Dual Compliance), which states that Class IIa+ requires notified-body involvement so limb (b) is generally satisfied for Class IIa+ but limb (a) is not automatic. The condition now sits in the verdict cell. MDR Art. 52(7), at the hashed primary (`mdr.html.gz`, sha256 prefix `cac04f2a970b`), provides that manufacturers of class I devices other than custom-made or investigational devices "shall declare the conformity of their products by issuing the EU declaration of conformity referred to in Article 19 after drawing up the technical documentation set out in Annexes II and III"; notified-body involvement is required for class I devices only where they are placed on the market in sterile condition, have a measuring function, or are reusable surgical instruments, and even then it is limited to those aspects — not a third-party conformity assessment of the device as a whole. **Corrected 2026-09-06 (first correction):** this cell previously said, of the EU AI Act, "Annex III, 5(d) covers AI used to evaluate eligibility for essential healthcare services". At the primary, **point 5(a)** covers evaluating eligibility for essential public assistance benefits and services *including healthcare services*; **point 5(d)** is emergency-call evaluation and classification, dispatch or dispatch-priority of emergency first response, and emergency healthcare patient triage. Classify against 5(a) for eligibility and 5(d) for triage/dispatch. |
 | **Public-sector benefit eligibility decisions** | Annex III, point 5(a) | **Yes** | Public authorities or on their behalf. |
-| **Law-enforcement risk assessment for natural persons** | Annex III, point 6(a) | **Yes** | Strict; deployer obligations elevated. |
-| **Border-management migration/asylum processing** | Annex III, point 7 | **Yes** | |
-| **Administration of justice / democratic processes** | Annex III, point 8 | **Yes** | Includes AI used to assist judicial decision-making. |
-| **Education and vocational training admission/evaluation** | Annex III, point 3 | **Yes** | |
-| **Critical infrastructure operation** | Annex III, point 2 | **Yes** | Power grid management, water, gas, road safety. |
+| **Law-enforcement risk assessment for natural persons** | EU AI Act Annex III, point 6(a), which is *victim* risk — "to assess the risk of a natural person becoming the victim of criminal offences"; risk of a person **offending or re-offending** is point 6(d), which reaches such systems only where the assessment is "not solely on the basis of the profiling of natural persons as referred to in Article 3(4) of Directive (EU) 2016/680" | **Yes**, and only "in so far as their use is permitted under relevant Union or national law" (point 6 chapeau) | **Corrected 2026-09-06:** this row cited 6(a) without distinguishing victim risk from offender risk and omitted 6(d)'s profiling qualifier and the point 6 chapeau. Strict; deployer obligations elevated. |
+| **Border-management migration/asylum processing** | EU AI Act Annex III, point 7, whose (d) reaches detecting, recognising or identifying natural persons in the migration, asylum or border-control context "with the exception of the verification of travel documents" | **Yes**, and only "in so far as their use is permitted under relevant Union or national law" (point 7 chapeau); travel-document verification is excepted from 7(d) rather than captured by it | **Corrected 2026-09-06:** this row cited point 7 with no limits at all. |
+| **Administration of justice / democratic processes** | EU AI Act Annex III, point 8 — (a) assisting a judicial authority, and (b) influencing the outcome of an election or referendum or voting behaviour, which "does not include AI systems to the output of which natural persons are not directly exposed, such as tools used to organise, optimise or structure political campaigns from an administrative or logistical point of view" | **Yes**, except for the administrative or logistical campaign tools 8(b) excludes | **Corrected 2026-09-06:** 8(b)'s exclusion was absent. Includes AI used to assist judicial decision-making. Point 8 ends at (b): there is no point 8(c) and no point 9. |
+| **Education and vocational training admission/evaluation** | EU AI Act Annex III, point 3, whose four sub-points are each confined to "educational and vocational training institutions at all levels" | **Yes** where the use is within or in the context of such an institution | Corporate or in-house training that is not delivered within or in the context of an educational or vocational training institution is not within point 3. |
+| **Critical infrastructure operation** | EU AI Act Annex III, point 2, which reaches only AI systems "intended to be used as safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity" | **Yes only where the system is a safety component** in one of those sectors; operational AI in them that is not a safety component is not point 2, and the sector list is closed — rail, aviation and air traffic are absent from it | **Corrected 2026-09-06:** this row cited point 2 for critical-infrastructure operation generally, with the safety-component test absent, and that test is the whole of the point. Power grid, water, gas, heating, road traffic. |
 
 **Substantial-modification rule (Art. 25 + Recital 84).** A deployer that substantially modifies a high-risk AI system, or markets it under their own brand, becomes a *provider* and inherits provider obligations (Articles 16–22). Fine-tuning a foundation model on enterprise data, or wrapping a third-party model in an enterprise-branded agent, may cross this threshold. **DRAFT — legal review needed:** define an explicit threshold in `regulatory/substantial-modification-policy.md` (planned, Wave 2).
 
@@ -51,7 +51,7 @@ The following table maps the typical use cases targeted by the AEnt-M companion 
 The following are **prohibited** regardless of risk class. Deployer-side compliance check:
 
 - Subliminal manipulation, exploitation of vulnerabilities (Art. 5(1)(a)–(b)).
-- Social scoring by public authorities (Art. 5(1)(c)).
+- Social scoring (Art. 5(1)(c)) — **not limited to public authorities**: Art. 5(1)(c) reaches "*the placing on the market, the putting into service or the use of AI systems for the evaluation or classification of natural persons or groups of persons over a certain period of time based on their social behaviour or known, inferred or predicted personal or personality characteristics*" by any operator. *(Corrected 2026-09-06 — this line previously read "Social scoring by public authorities", a narrowing the provision does not carry.)*
 - Real-time remote biometric identification in public spaces for law enforcement (Art. 5(1)(h)) with narrow exceptions.
 - Workplace and education emotion-recognition (Art. 5(1)(f)) with carve-outs for medical/safety.
 - Biometric categorisation of sensitive attributes (Art. 5(1)(g)).
@@ -64,7 +64,7 @@ The AEM-internal "Loop-readiness" gate and AEnt-M Principle 5 (constraint legibi
 
 ## 2. Article 13 — Deployer instructions artefact
 
-Art. 13 requires that high-risk AI systems be accompanied by **instructions for use** that include the items listed in Art. 13(2)(a)–(f) and Art. 13(3). The provider must furnish; the deployer must read, follow, and use them as the basis for human-oversight design under Art. 14 and FRIA under Art. 27.
+Art. 13 requires that high-risk AI systems be accompanied by **instructions for use** (Art. 13(2)) whose required content is the list at **Art. 13(3)(a)–(f)**. *(Corrected 2026-09-06 against the primary: this sentence previously hung an (a)–(f) list off **Art. 13(2)** as well as Art. 13(3). **Art. 13(2) has no lettered sub-items** — it is one unlettered sentence requiring instructions "*in an appropriate digital format or otherwise that include concise, complete, correct and clear information*". The (a)–(f) enumeration is Art. 13(3) alone. Same defect class as the sub-items withdrawn from Art. 73(6) in §6.2; see `errata.md`.)* The provider must furnish; the deployer must read, follow, and use them as the basis for human-oversight design under Art. 14 and FRIA under Art. 27.
 
 ### 2.1 Required content (Art. 13(3))
 
@@ -72,12 +72,16 @@ Art. 13 requires that high-risk AI systems be accompanied by **instructions for 
 |---|---|
 | (a) Identity and contact of provider | `regulatory/foundation-model-third-party-register.md` (W1.6) |
 | (b) Characteristics, capabilities, limitations of performance, including intended purpose and level of accuracy, robustness, cybersecurity (Art. 15 metrics) | AEnt-M Principle 9 composite-state record + IGM substrate-state attestation |
-| (c) Known or foreseeable circumstances that may lead to risks to health, safety, fundamental rights | FRIA (§4) + AEnt-M response classes |
-| (d) Performance regarding specific persons or groups on which it is intended to be used | IGM domain claims + AEnt-M consequence-class assignment |
-| (e) Specifications for input data, training, validation, testing data sets used | AEM evidence bundle + IGM provenance + ASDLC data-governance artefact |
-| (f) Information enabling deployers to interpret output | IGM epistemic-tier record per cited claim + AEnt-M traceability chain |
-| Human oversight measures including technical measures put in place by provider (Art. 13(3)(d)) | AEM Principle 5 Tier 4 envelope + AEnt-M relocation stage + IGM authorities |
-| Expected lifetime and maintenance + log retention (Art. 13(3)(e)–(f)) | ASDLC maintenance-governance + IGM decay/curate cycle + foundation-model register exit-trigger schedule |
+| **(b)(iii)** Known or foreseeable circumstances (intended use or reasonably foreseeable misuse) that may lead to risks to health and safety or fundamental rights referred to in Art. 9(2) | FRIA (§4) + AEnt-M response classes |
+| **(b)(v)** Performance regarding specific persons or groups on which it is intended to be used | IGM domain claims + AEnt-M consequence-class assignment |
+| **(b)(vi)** Specifications for input data, or other relevant information on the training, validation and testing data sets used | AEM evidence bundle + IGM provenance + ASDLC data-governance artefact |
+| **(b)(vii)** Information enabling deployers to interpret the output and use it appropriately | IGM epistemic-tier record per cited claim + AEnt-M traceability chain |
+| **(c)** Changes to the system and its performance pre-determined by the provider at the moment of the initial conformity assessment, if any | AEnt-M P9 pre-declared composite-state envelope + §8.4 substantial-modification boundary |
+| **(d)** Human oversight measures referred to in Art. 14, including technical measures put in place by the provider | AEM Principle 5 Tier 4 envelope + AEnt-M relocation stage + IGM authorities |
+| **(e)** Computational and hardware resources needed, expected lifetime, and necessary maintenance and care measures including their frequency | ASDLC maintenance-governance + IGM decay/curate cycle + foundation-model register exit-trigger schedule |
+| **(f)** Description of the mechanisms allowing deployers to collect, store and interpret the logs in accordance with Art. 12 | §5.1 logging fields + evidence-bundle log-integrity component |
+
+*(Corrected 2026-09-06 against Regulation (EU) 2024/1689, sha256 prefix `a0f437e89667`. Four rows of this table were labelled (c), (d), (e) and (f) but carried the content of **Art. 13(3)(b)(iii), (v), (vi) and (vii)** — the roman sub-items nested inside (b) — while the real Art. 13(3)(c), pre-determined changes, was absent entirely. The table then cited the genuine 13(3)(d) and 13(3)(e)–(f) two rows further down, so the document contradicted itself within one table. All rows are now keyed to the primary's own lettering. See `errata.md`.)*
 
 ### 2.2 Template — Deployer Instructions Artefact
 
@@ -111,13 +115,13 @@ Annex III classification:  <point N(letter)>
    - Edge cases requiring synchronous review: <list — feeds AEnt-M relocation stages>
    - Foundation-model GPAI dependency notes: <link to register>
 
-4. Foreseeable misuse and risk circumstances (Art. 13(3)(c))
+4. Foreseeable misuse and risk circumstances (Art. 13(3)(b)(iii))
    - Reasonably foreseeable misuse: <list, paired with Art. 5 attestations>
    - Risks to health: <materiality assessment>
    - Risks to safety: <materiality assessment>
    - Risks to fundamental rights: <link to FRIA>
 
-5. Data governance (Art. 13(3)(e) cross Art. 10)
+5. Data governance (Art. 13(3)(b)(vi) cross Art. 10)
    - Training data sources, characteristics, biases known: <bullets>
    - Validation set design: <bullets>
    - Testing set design + holdout strategy: <bullets>
@@ -129,12 +133,12 @@ Annex III classification:  <point N(letter)>
    - Authority assignments per consequence class: <link to authority matrix>
    - Override procedures: <link>
 
-7. Expected lifetime and maintenance (Art. 13(3)(e)–(f))
+7. Expected lifetime, resources and maintenance (Art. 13(3)(e))
    - Retraining cadence: <e.g., quarterly>
    - Substrate revalidation cadence: <link to IGM decay-class table>
    - Foundation-model version-pinning strategy: <link to register>
 
-8. Logs (Art. 12) — automatic logging configuration
+8. Logs (Art. 12; described to the deployer per Art. 13(3)(f)) — logging configuration
    - Events logged: <link to §5 of this addendum>
    - Retention period: <≥ 6 months by default, longer per sectoral law>
    - Log-integrity mechanism: <hashing, append-only, KMS>
@@ -169,7 +173,7 @@ Art. 14(1) requires high-risk AI systems to be designed and developed such that 
 | (c) Correctly interpret output | P9 observability | Per-claim epistemic-tier record + provenance chain | Traceability chain (regulatory source → claim → action) |
 | (d) Decide not to use the output / disregard / reverse | P5 Tier 4 envelope kill-switch | P5 Curate retire authority | P9 composite-state-change "reject" default |
 | (e) Intervene or interrupt operation through "stop" button | P5 envelope kill-switch (≤ 60s propagation) | — | Class-level reversion (R3 of integration note) + Block response class |
-| (5) For Annex III point 1(a) biometric: two-natural-persons rule | — | — | P8 Dual Authority (matches by structure) |
+| (5) For Annex III point 1(a) biometric: two-natural-persons rule — **subject to the Art. 14(5), second subparagraph derogation**: the separate-verification requirement "*shall not apply to high-risk AI systems used for the purposes of law enforcement, migration, border control or asylum*" where Union or national law considers it disproportionate | — | — | P8 Dual Authority (matches by structure) |
 
 ### 3.2 Checklist — mapping manifesto oversight artefacts to Article 14
 
@@ -210,6 +214,10 @@ ARTICLE 14 OVERSIGHT CHECKLIST
     Evidence: AEnt-M P8 Dual Authority assigned; both signatures
               recorded for every action.
     Manifesto artefact: Authority-matrix row for biometric class.
+    Derogation: does NOT apply to law-enforcement, migration, border-control
+              or asylum use where Union or national law considers it
+              disproportionate (Art. 14(5), 2nd subpara). Record the
+              disproportionality determination if relied on.
 ```
 
 ### 3.3 Authority anchor
@@ -220,7 +228,9 @@ For each high-risk system, **one named natural person** must be the Art. 14 over
 
 ## 4. Article 27 — Fundamental Rights Impact Assessment (FRIA)
 
-Art. 27 imposes a FRIA obligation on **deployers that are bodies governed by public law, private operators providing public services, or deployers of certain Annex III systems** (creditworthiness — point 5(b); life and health insurance pricing — point 5(c)). Member-state law may extend the obligation. The FRIA is performed **before first use** and updated when material elements change (Art. 27(2)).
+Art. 27 imposes a FRIA obligation on **deployers that are bodies governed by public law, private entities providing public services, or deployers of certain Annex III systems** (creditworthiness — point 5(b); life and health insurance pricing — point 5(c)). Member-state law may extend the obligation. The FRIA is performed **before first use** and updated when any element listed in Art. 27(1) has changed or is no longer up to date (Art. 27(2)).
+
+**Scope exception, added 2026-09-06:** Art. 27(1) applies to high-risk systems referred to in Art. 6(2) "*with the exception of high-risk AI systems intended to be used in the area listed in point 2 of Annex III*" — **critical infrastructure is carved out of the FRIA obligation**, and the same point-2 carve-out limits the Art. 86 right to explanation. The critical-infrastructure row of §1.1 — high-risk only where the system is a safety component in one of point 2's closed list of sectors — is therefore high-risk, where it is high-risk at all, without being FRIA-bearing.
 
 ### 4.1 Required content (Art. 27(1))
 
@@ -231,7 +241,7 @@ Art. 27 imposes a FRIA obligation on **deployers that are bodies governed by pub
 (e) Description of human oversight measures.
 (f) Measures to be taken in case those risks materialise — including internal governance and complaint mechanisms.
 
-The deployer must notify the market-surveillance authority of the **results** of the FRIA via the AI Office template (Art. 27(5)) — to be published; bridging template in §4.3.
+The deployer must notify the market-surveillance authority of the **results** of the FRIA (**Art. 27(3)**), submitting the filled-out template that the AI Office is mandated to develop under Art. 27(5) — to be published; bridging template in §4.3. Deployers in the Art. 46(1) case may be exempt from that notification. *(Corrected 2026-09-06: the notification duty was previously cited to Art. 27(5), which mandates only the template.)*
 
 ### 4.2 Template — FRIA artefact
 
@@ -309,8 +319,12 @@ Next material review by:   <YYYY-MM-DD>
          are summarised for the affected person>
 
 7. DPIA cross-reference (GDPR Art. 35)
-   For systems also requiring a DPIA, FRIA may be combined with DPIA
-   per Art. 27(4). State whether combined and link both documents.
+   Where an obligation under EU AI Act Art. 27 is already met through the DPIA
+   conducted under GDPR Art. 35 (or Art. 27 of Directive (EU) 2016/680),
+   EU AI Act Art. 27(4) says the FRIA *"shall complement that data
+   protection impact assessment"* — it complements; it does not merge
+   into the DPIA or substitute for it.
+   State the relationship and link both documents.
 
 8. Approval signatures
    <Accountable Authority>      <DPO>      <Legal Counsel>      <Date>
@@ -331,18 +345,22 @@ Until the AI Office template (Art. 27(5)) is published, deployers should submit 
 
 ### 5.1 Article 12 — Automatic logging over the system lifetime
 
-Art. 12 requires high-risk AI systems to **automatically record events ("logs")** over the lifetime of the system. Art. 12(2) requires logs to ensure a level of traceability appropriate to the intended purpose. For systems under Annex III point 1(a) (remote biometric identification), Art. 12(3) mandates specific log content. Logs must be kept for a period appropriate to the intended purpose, **at least 6 months unless sectoral law specifies otherwise** (Art. 19).
+Art. 12(1) requires high-risk AI systems to **technically allow for the automatic recording of events ("logs")** over the lifetime of the system. Art. 12(2) requires the logging capability to enable recording of events relevant for (a) identifying situations where the system may present a risk within the meaning of Art. 79(1) or undergo a substantial modification, (b) facilitating post-market monitoring under Art. 72, and (c) monitoring the operation of high-risk systems under Art. 26(5). **Only for systems under Annex III point 1(a) (remote biometric identification)** does Art. 12(3) prescribe minimum log content.
 
-### Required logging content (Art. 12(2)–(3))
+**Who keeps the logs, and for how long.** Providers keep the Art. 12(1) logs under their control for a period appropriate to the intended purpose, **at least six months** unless Union or national law provides otherwise (Art. 19(1)); provider financial institutions keep them within their financial-services documentation (Art. 19(2)). The **deployer's** own six-month log-retention duty — the one this addendum's audience carries — is **Art. 26(6)**, not Art. 19. *(Corrected 2026-09-06: retention was cited to Art. 19 alone, a provider-facing article, in a deployer-facing document.)*
 
-| Event class | Logged fields | Retention |
+### Minimum logging content — Art. 12(3)(a)–(d), **Annex III point 1(a) systems only**
+
+The four rows below are the Art. 12(3) minimum for remote-biometric-identification systems. **Corrected 2026-09-06:** this table was headed "Required logging content (Art. 12(2)–(3))" and read as a general Annex-III requirement. Its content is Art. 12(3) alone, and Art. 12(3) is scoped "*For high-risk AI systems referred to in point 1 (a), of Annex III*"; Art. 12(2) prescribes no fields at all, only the three purposes restated above. For other Annex-III classes these fields are **this document's recommended baseline**, not an Art. 12 obligation.
+
+| Event class (Art. 12(3)) | Logged fields | Retention |
 |---|---|---|
 | Each use period | start/end timestamp, system version, composite-state hash, operator (if attended) | ≥ 6 months |
 | Reference database against which input data has been checked (when applicable) | DB ID, version, query hash | ≥ 6 months |
 | Input data leading to a match (when applicable) | hashed reference (preserve privacy), match confidence | ≥ 6 months |
 | Identification of natural persons involved in result verification | named human ID, role, decision (approved/overrode) | ≥ 6 months |
 
-The IGM substrate-state attestation, AEnt-M traceability chain, and AEM evidence bundle together produce the Art. 12 logs. The unified schema (`governance/evidence-bundle-schema.md`) **must include Art. 12 fields as required for any Annex-III system**.
+The IGM substrate-state attestation, AEnt-M traceability chain, and AEM evidence bundle together produce the Art. 12 logs. The unified schema (`governance/evidence-bundle-schema.md`) **must include the Art. 12(2) purposes for any Annex-III system, and the Art. 12(3)(a)–(d) fields for point 1(a) systems**, on which they are legally required.
 
 ### 5.2 Article 72 — Post-market monitoring
 
@@ -403,25 +421,37 @@ When the Commission template is published, replace this section with the officia
 
 ## 6. Article 73 — Serious-incident reporting
 
-Art. 73 requires providers (and deployers acting as providers per Art. 25) of high-risk AI systems to **report serious incidents to the market-surveillance authority of the Member State where that incident occurred**. A "serious incident" (Art. 3(49)) means an incident or malfunction directly or indirectly leading to (a) death or serious damage to health, (b) serious and irreversible disruption of critical infrastructure, (c) infringement of obligations under Union law intended to protect fundamental rights, (d) serious damage to property or environment.
+Art. 73 requires providers (and deployers acting as providers per Art. 25) of high-risk AI systems to **report serious incidents to the market-surveillance authority of the Member State where that incident occurred**. A "serious incident" (Art. 3(49)) means an incident or malfunctioning of an AI system that directly or indirectly leads to (a) the death of a person, or serious harm to a person's health; (b) a serious and irreversible disruption of the **management or operation** of critical infrastructure; (c) the infringement of obligations under Union law intended to protect fundamental rights; (d) serious harm to property **or the environment**. *(Tightened 2026-09-06 to the primary's own wording: the paraphrase had dropped "management or operation of" from (b) and read (a) and (d) more narrowly than the definition does.)*
 
 ### 6.1 Reporting timers (Art. 73(2)–(4))
 
-| Trigger class | Initial-report deadline | Detail |
-|---|---|---|
-| Death of a person, or *widespread infringement* (Art. 3(61): infringement harming or affecting persons in three or more Member States, or one Member State if substantial harm) | **2 days** from awareness | Initial information; updates as info becomes available |
-| Other serious incidents (a)–(d) | **15 days** from awareness | |
-| Malfunction breaching obligations under Union law intended to protect fundamental rights | **10 days** from awareness | |
+| Trigger class | Initial-report deadline | Source | Detail |
+|---|---|---|---|
+| *Widespread infringement* (Art. 3(61)), **or** a serious incident as defined in Art. 3(49)(b) — serious and irreversible disruption of the management or operation of critical infrastructure | **2 days** from awareness | Art. 73(3) | "immediately, and not later than two days" |
+| **Death of a person** | **10 days** from awareness | Art. 73(4) | Immediately after a causal relationship is established "or as soon as it suspects" one, and not later than 10 days |
+| Every other serious incident, including Art. 3(49)(c) infringement of obligations under Union law intended to protect fundamental rights and Art. 3(49)(d) serious harm to property or the environment | **15 days** from awareness | Art. 73(2) | Immediately after a causal link (or its reasonable likelihood) is established, and in any event not later than 15 days; the period "shall take account of the severity of the serious incident" |
 
-The deployer must inform the provider without undue delay (Art. 26(5)) and may have a parallel obligation to report (Art. 73(7)) where the deployer becomes aware. **Both clocks may run.**
+*(Corrected 2026-09-06 against Regulation (EU) 2024/1689, sha256 prefix `a0f437e89667`. The table previously put **death of a person on the 2-day clock**, put **fundamental-rights malfunction on a 10-day clock** that the instrument does not contain, and glossed Art. 3(61) as reaching three or more Member States, or one Member State where the harm is substantial. Art. 73(4) gives death **10 days**; Art. 73(3) gives the 2-day clock to widespread infringement and to Art. 3(49)(b) only; an Art. 3(49)(c) fundamental-rights malfunction takes the general 15-day clock of Art. 73(2). Art. 3(61) has no one-Member-State limb: (a) is harm to individuals residing in **at least two Member States other than** the Member State of origin/establishment, (b) is concurrent harm with common features by the same operator in **at least three Member States**. See `errata.md`.)*
 
-### 6.2 Required content (Art. 73(6))
+**Two limits on what must be notified at all.** For Annex III systems whose providers are already subject to equivalent Union reporting obligations, notification is limited to Art. 3(49)(c) incidents (Art. 73(9)); the same limit, and a different recipient, applies to systems that are or are in medical devices under Regulations (EU) 2017/745 and 2017/746 (Art. 73(10)). Where reporting is genuinely urgent, an **incomplete initial report followed by a complete one** is expressly permitted (Art. 73(5)).
+
+The deployer's own duties on identifying a serious incident are in **Art. 26(5)**: inform the provider first, then the importer or distributor and the relevant market surveillance authorities — and "*If the deployer is not able to reach the provider, Article 73 shall apply mutatis mutandis*". **Both clocks may run.**
+
+*(Corrected 2026-09-06: this paragraph previously cited **Art. 73(7)** for a deployer's parallel reporting obligation. Art. 73(7) is not addressed to deployers — it obliges the receiving market surveillance authority to inform the Art. 77(1) fundamental-rights bodies on an Art. 3(49)(c) notification, and mandates Commission guidance by 2 August 2025.)*
+
+### 6.2 Report content — this document's own construction, not an Art. 73 list
+
+**Art. 73 prescribes no content for the serious-incident report.** Read in full at the hashed primary, Art. 73 has **eleven paragraphs**, and **Art. 73(6) carries no lettered sub-items**: it is two unlettered subparagraphs obliging the provider, *after* reporting, to "*perform the necessary investigations in relation to the serious incident and the AI system concerned*", including "*a risk assessment of the incident, and corrective action*", and to cooperate with the competent authorities and any notified body without altering the system in a way that may affect the evaluation of causes before informing them. The only forthcoming source of prescribed report content is the **Commission guidance mandated by Art. 73(7)**, due 2 August 2025 and to be assessed regularly; adopt it in place of the fields below once it is available.
+
+The five fields below are therefore **this document's own construction** — a deployer-side checklist assembled so that the Art. 73(6) investigation, risk assessment, corrective action and cooperation duties are evidenced from the first filing. They are **not** an enumeration of anything in the Regulation:
 
 (a) Description of the incident or malfunction.
 (b) AI system identification (provider, model, version, composite-state hash).
 (c) Description of harm caused.
-(d) Corrective measures taken or envisaged.
-(e) Investigation cooperation undertaking.
+(d) Corrective measures taken or envisaged — the Art. 73(6) "corrective action" duty, evidenced early.
+(e) Investigation cooperation undertaking — the Art. 73(6) cooperation duty, evidenced early.
+
+*(Corrected 2026-09-06. This subsection was headed "Required content (Art. 73(6))" and its first four fields were cited through §6.4 as lettered sub-items (a) to (d) of **Art. 73(6)**. Art. 73(6) has no lettered sub-items and sets out no report content; the citation is withdrawn at all six sites and the content is kept, marked as this document's construction. See `errata.md`.)*
 
 ### 6.3 Workflow
 
@@ -433,7 +463,8 @@ T0 — Incident detected (by AEnt-M observability, customer complaint, third-par
 
 Step 1 — Triage (≤ 2 hours from T0)
     Performed by:    On-call Accountable Authority for the affected system
-    Output:          Trigger-class assessment (Art. 73(2)(a) / (b) / fundamental-rights / not Art. 73)
+    Output:          Trigger-class assessment (Art. 73(3) 2-day / Art. 73(4) death 10-day /
+                     Art. 73(2) 15-day / not a serious incident under Art. 3(49))
     Tooling:         Decision tree in regulatory/incident-triage-tree.md
     Compose with:    DORA major-incident assessment (foundation-model register §4) — both
                      classifications run in parallel.
@@ -447,11 +478,15 @@ Step 3 — Initial report to NCA (≤ 2 / 10 / 15 days per trigger class)
     Performed by:    Accountable Authority (deployer) / Provider liaison (if separate)
     Recipient:       Market-surveillance authority of Member State where incident occurred
                      (list at regulatory/eu-ncas-by-member-state.md)
-    Format:          Per Art. 73(6) — see §6.4 template below
+    Format:          §6.4 template below — this document's own construction; Art. 73
+                     prescribes no report content (see §6.2). Replace with the
+                     Commission's Art. 73(7) guidance once issued.
     Cooperation:     Parallel cross-border notification via EU AI Office for widespread infringement
 
 Step 4 — Investigation and follow-up reports
-    Cadence:         Updates as further information becomes available (Art. 73(5))
+    Cadence:         An incomplete initial report may be followed by a complete report
+                     (Art. 73(5)); investigation, risk assessment and corrective action
+                     without delay, with cooperation duties (Art. 73(6))
     Final report:    Submitted on completion of investigation
 
 Step 5 — Lessons-learned (≤ 30 days post-final-report)
@@ -475,19 +510,22 @@ ART. 73 SERIOUS INCIDENT — INITIAL REPORT
 
 Filed by:                 <Provider / Deployer-as-provider entity>
 Filed on (UTC):           <YYYY-MM-DD HH:MM>
-Trigger class:            [ ] death/widespread (2d)  [ ] FR-malfunction (10d)
-                          [ ] other serious (15d)
+Trigger class:            [ ] widespread infringement or Art. 3(49)(b) critical-
+                              infrastructure disruption — 2 days (Art. 73(3))
+                          [ ] death of a person — 10 days (Art. 73(4))
+                          [ ] any other serious incident, incl. Art. 3(49)(c)
+                              fundamental-rights infringement — 15 days (Art. 73(2))
 Awareness timestamp:      <YYYY-MM-DD HH:MM, UTC, when provider/deployer became aware>
 Recipient authority:      <NCA name, country, reference>
 Cross-border notification: <yes/no — EU AI Office>
 
-1. Incident description (Art. 73(6)(a))
+1. Incident description  [own construction — see §6.2]
    - Onset: <UTC>
    - Detection: <UTC + detection mechanism>
    - Containment: <UTC + action>
    - Geography of impact: <Member States>
 
-2. AI system identification (Art. 73(6)(b))
+2. AI system identification  [own construction — see §6.2]
    - System ID:               <stable id>
    - Annex III class:         <point>
    - Provider:                <legal entity>
@@ -495,18 +533,18 @@ Cross-border notification: <yes/no — EU AI Office>
    - Version + composite-state hash at time of incident: <hash>
    - Tier-4 envelope ID + status: <link>
 
-3. Harm caused (Art. 73(6)(c))
+3. Harm caused  [own construction — see §6.2]
    - Persons affected: <numbers + categories from FRIA §3>
    - Health/safety harm: <description>
    - Fundamental-rights impact: <CFR articles + description>
    - Property/environmental: <description>
 
-4. Corrective measures (Art. 73(6)(d))
+4. Corrective measures  [evidences the Art. 73(6) corrective-action duty]
    - Immediate (≤ 24h): <list>
    - Short-term (≤ 30 days): <list>
    - Investigation plan: <scope, owner, completion target>
 
-5. Cooperation undertaking
+5. Cooperation undertaking  [evidences the Art. 73(6) cooperation duty]
    - Single point of contact: <name, role, 24/7 reachable>
    - Provider–deployer division of labour for follow-up: <description>
 
@@ -529,10 +567,10 @@ The market-surveillance authority is determined by the Member State where the in
 
 The EU AI Act distinguishes:
 
-- **GPAI model provider** (Art. 53): obligations include model documentation, copyright training-data summary (Art. 53(1)(d)), cooperation with AI Office, transparency to downstream system providers.
-- **GPAI model with systemic risk** (Art. 51): additional obligations under Art. 55 — model evaluations including adversarial testing, systemic-risk assessment, serious-incident tracking, cybersecurity, energy reporting.
+- **GPAI model provider** (Art. 53): technical documentation of the model per Annex XI (Art. 53(1)(a)); information and documentation to downstream system providers per Annex XII (Art. 53(1)(b)); a **policy to comply with Union copyright law**, including the Art. 4(3) DSM reservation of rights under Directive (EU) 2019/790 (Art. 53(1)(**c**)); and a **publicly available, sufficiently detailed summary of the content used for training**, to an AI Office template (Art. 53(1)(**d**)). Art. 53(2) exempts free-and-open-source models from (a) and (b) — but not models with systemic risk. Cooperation with the Commission and national competent authorities is Art. 53(3).
+- **GPAI model with systemic risk** (Art. 51): additional obligations under Art. 55(1) — (a) model evaluation to state-of-the-art protocols including documented adversarial testing, (b) assessment and mitigation of Union-level systemic risks, (c) tracking, documenting and reporting serious incidents and corrective measures to the AI Office without undue delay, (d) an adequate level of cybersecurity for the model and its physical infrastructure. *(Corrected 2026-09-06: energy reporting was listed here as an Art. 55 obligation. **Art. 55 contains no energy provision** — the word energy does not occur anywhere in the article. Known or estimated energy consumption is an **Annex XI point 2(e)** documentation element, reached through Art. 53(1)(a), and applies to GPAI providers generally rather than to systemic-risk providers specifically.)*
 - **Downstream provider** (the enterprise integrating a GPAI into a high-risk AI system): inherits Art. 16–22 provider obligations for the integrated high-risk system; relies on the GPAI provider's documentation per Art. 53.
-- **Deployer** of the high-risk system: Art. 26 obligations (use per instructions, monitor, log, FRIA where applicable, incident reporting per Art. 73).
+- **Deployer** of the high-risk system: Art. 26 obligations (use per instructions, monitor per Art. 26(5), keep logs per Art. 26(6), FRIA where applicable). **Art. 73 binds providers**, not deployers: on identifying a serious incident the deployer informs the provider first and then the importer/distributor and the market surveillance authorities under Art. 26(5), and Art. 73 applies to the deployer only *mutatis mutandis* where the provider cannot be reached. *(Corrected 2026-09-06 — "incident reporting per Art. 73" stated a duty-holder the instrument does not impose here; see §6.1.)*
 
 ### 7.2 Systemic-risk classification (Art. 51)
 
@@ -561,7 +599,7 @@ Art. 43 specifies the conformity-assessment procedure for high-risk AI systems.
 
 ### 8.1 Internal-control conformity (Annex VI)
 
-For most Annex III systems (other than Annex III point 1 biometric, in some cases), conformity is assessed via **internal control** (Annex VI). The provider:
+For **all** Annex III systems in points 2 to 8, Art. 43(2) requires conformity to be assessed via **internal control** (Annex VI): "*for high-risk AI systems referred to in points 2 to 8 of Annex III, providers shall follow the conformity assessment procedure based on internal control as referred to in Annex VI, which does not provide for the involvement of a notified body*". For Annex III **point 1** (biometrics) the Annex VI route is available as one of two options under Art. 43(1) where harmonised standards or common specifications have been applied — see §8.2. Annex I Section A products follow their own sectoral procedure instead (Art. 43(3)). The provider:
 
 - Establishes a quality-management system (Art. 17) — ISO/IEC 42001 is a strong path; harmonised standard expected.
 - Drafts the technical documentation (Art. 11 + Annex IV).
@@ -570,11 +608,19 @@ For most Annex III systems (other than Annex III point 1 biometric, in some case
 
 ### 8.2 Notified-body conformity (Annex VII)
 
-Required for Annex III point 1(a) remote biometric identification, and for systems where a harmonised standard or common specification has not been (fully) applied. The notified body audits the provider's QMS and the technical documentation.
+**Available only within Annex III point 1 — and not automatically even there.** Art. 43(1) is scoped "*For high-risk AI systems listed in point 1 of Annex III*" — the whole of point 1 (Biometrics: (a) remote biometric identification, (b) biometric categorisation, (c) emotion recognition), not only point 1(a). Where the provider has applied harmonised standards under Art. 40 or common specifications under Art. 41, it "*shall opt for one of the following conformity assessment procedures based on: (a) the internal control referred to in Annex VI; or (b) the assessment of the quality management system and the assessment of the technical documentation, with the involvement of a notified body, referred to in Annex VII*" — a choice, not a requirement.
+
+Annex VII becomes **obligatory** for a point 1 system only under Art. 43(1), second subparagraph, in four listed cases: harmonised standards "*do not exist, and common specifications referred to in Article 41 are not available*"; "*the provider has not applied, or has applied only part of, the harmonised standard*"; "*the common specifications referred to in point (a) exist, but the provider has not applied them*"; or a harmonised standard "*has been published with a restriction, and only on the part of the standard that was restricted*".
+
+**For Annex III points 2 to 8 the Annex VII route is not available at all.** Art. 43(2) requires the Annex VI internal-control procedure, "*which does not provide for the involvement of a notified body*"; subjecting those points to Annex VII would take a delegated act under Art. 43(6), which empowers the Commission "*in order to subject high-risk AI systems referred to in points 2 to 8 of Annex III to the conformity assessment procedure referred to in Annex VII*". Annex I Section A products are routed by Art. 43(3) through the sectoral act's own procedure, which may itself involve a notified body.
+
+Where the Annex VII route does apply, the notified body audits the provider's QMS and the technical documentation, and the provider "*may choose any of the notified bodies*" (Art. 43(1), third subparagraph), except that for systems intended to be put into service by law enforcement, immigration or asylum authorities or by Union institutions, bodies, offices or agencies the market surveillance authority under Art. 74(8) or (9) acts as the notified body.
+
+*(Corrected 2026-09-05 against Regulation (EU) 2024/1689, sha256 prefix `a0f437e89667`. This paragraph previously read "Required for Annex III point 1(a) remote biometric identification, and for systems where a harmonised standard or common specification has not been (fully) applied" — an inversion of Art. 43(2) carrying four faults; see `errata.md`.)*
 
 ### 8.3 ISO/IEC 42001 as a path
 
-ISO/IEC 42001:2023 (AI management systems) is widely treated as a candidate for harmonisation under Art. 40. Adopting ISO/IEC 42001 with Annex A controls fulfils a substantial part of Art. 17 QMS obligations. Cross-reference `regulatory/iso-42001-crosswalk.md` (planned, Wave 2 W2.10) for the mapping.
+ISO/IEC 42001:2023 (AI management systems) is widely treated as a candidate for harmonisation under Art. 40. Adopting ISO/IEC 42001 with Annex A controls fulfils a substantial part of Art. 17 QMS obligations. Cross-reference `regulatory/iso-42001-crosswalk.md` for the mapping.
 
 ### 8.4 Substantial-modification triggers re-assessment
 
@@ -589,14 +635,16 @@ Art. 99 sets administrative fines applied by Member States, with the following c
 | Infringement | Cap (the higher of) | Article reference |
 |---|---|---|
 | **Prohibited practices** (Art. 5) | **€35M / 7% global turnover** | Art. 99(3) |
-| **Non-compliance with other provisions** (high-risk obligations Art. 8–22, deployer Art. 26, transparency Art. 50, GPAI Art. 53/55, etc.) | **€15M / 3% global turnover** | Art. 99(4) |
+| **Non-compliance with the provisions Art. 99(4) enumerates**: provider obligations under **Art. 16** (a), authorised representatives Art. 22 (b), importers Art. 23 (c), distributors Art. 24 (d), **deployers Art. 26** (e), notified bodies Art. 31/33(1),(3),(4)/34 (f), transparency **Art. 50** (g) | **€15M / 3% global turnover** | Art. 99(4) |
 | **Supply of incorrect, incomplete, or misleading information** to NCAs / notified bodies | **€7.5M / 1% global turnover** | Art. 99(5) |
 
-For SMEs and start-ups, the lower of the fixed amount or the percentage applies (Art. 99(6)).
+For SMEs and start-ups, the lower of the fixed amount or the percentage applies (Art. 99(6)). Art. 99(7)(a)–(g) lists the factors weighed in setting an individual fine.
+
+*(Corrected 2026-09-06. The Art. 99(4) row previously read "high-risk obligations Art. 8–22, deployer Art. 26, transparency Art. 50, GPAI Art. 53/55, etc.". Art. 99(4) is a **closed list of seven points**; within it the provider limb is **Art. 16 only**, not Art. 8–22, and **GPAI Art. 53/55 do not appear at all** — GPAI provider fines are the Commission's under Art. 101, cited correctly below.)*
 
 In addition: GPAI-specific fines under Art. 101 — **up to 3% of global turnover or €15M** — for GPAI providers' breaches.
 
-Member States may impose criminal sanctions (Art. 99(1)). Individual liability for managers may arise under member-state law.
+**Criminal sanctions are not provided for by Art. 99.** Art. 99(1) requires Member States to lay down rules on penalties and other enforcement measures "*which may also include warnings and non-monetary measures*", effective, proportionate and dissuasive. *(Corrected 2026-09-06: this line previously read "Member States may impose criminal sanctions (Art. 99(1))". No criminal-sanctions provision appears in the enacting terms; the Regulation's own references to "criminal penalties" are in the Art. 3(45)/(46) law-enforcement definitions and Art. 5(1)(h), unrelated to enforcement of this Regulation.)* **Unsourced in this document:** whether individual liability for managers arises is a question of member-state law implementing Art. 99(1), and no such national rule is cited here.
 
 ---
 
@@ -630,7 +678,7 @@ This addendum is **DRAFT — author/legal review needed** and must be reviewed b
 - Authoritative consolidated text: https://artificialintelligenceact.eu/ (mirror) — Official Journal text controls.
 - AEnt-M Principle 8 (consequence-class accountability): `agentic-enterprise-manifesto/manifesto.md` lines covering P8 (per `igm-aent-coherence-review.md` §3 B10).
 - AEnt-M Principle 9 (composite state): `agentic-enterprise-manifesto/manifesto.md`.
-- AEM Principle 12 (accountability): `manifesto-principles.md`.
+- AEM Principle 12 (accountability): `manifesto/manifesto-principles.md`.
 - IGM Principle 6 (authorities): `intelligence-governance-manifesto/manifesto.md` line 156.
 - IGM Principle 14 (claims are attack surfaces — Wave 1 W1.3): `intelligence-governance-manifesto/manifesto.md` line 170.
 - Governance Integration Note (Tier 4 / relocation / substrate): `governance/governance-integration-note.md`.

@@ -3,9 +3,9 @@
 *Extended guidance, tradeoffs, and operational detail for each principle
 in the Agentic Engineering Manifesto.*
 
-Read the [Manifesto](manifesto.md) for the core values and minimum bars.
-See the [Companion Guide](companion-guide.md) for the full table of contents.
-See the [Adoption Playbook](adoption-playbook.md) for organizational change
+Read the [Manifesto](../manifesto/manifesto.md) for the core values and minimum bars.
+See the [Companion Guide](guide.md) for the full table of contents.
+See the [Adoption Playbook](../adoption/playbook.md) for organizational change
 management, role transitions, and pilot design.
 
 ---

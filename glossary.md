@@ -4,8 +4,8 @@
 documents, and domain pages. When a term is used in any manifesto document, it
 carries the meaning defined here unless the document explicitly states otherwise.*
 
-See the [Manifesto](manifesto.md) for core values and the Agentic Loop.
-See the [Twelve Principles](manifesto-principles.md) for the normative principle
+See the [Manifesto](manifesto/manifesto.md) for core values and the Agentic Loop.
+See the [Twelve Principles](manifesto/manifesto-principles.md) for the normative principle
 statements.
 
 ---
@@ -43,7 +43,7 @@ autocomplete).
 **Agentic loop**
 The core feedback cycle: Specify → Design → Plan → Execute → Verify → Validate
 → Observe → Learn → Govern → Repeat. Any phase can trigger a return to an
-earlier phase on evidence. See [manifesto.md](manifesto.md#the-agentic-loop) for
+earlier phase on evidence. See [manifesto.md](manifesto/manifesto.md#the-agentic-loop) for
 the full description and feedback arrows.
 
 **APLC**
@@ -76,7 +76,14 @@ trail. See also: *trace*.
   machine-enforced policy envelope without per-change human approval. The domain
   owner approves the envelope and retains full accountability. Requires passing
   control evaluations and active governance observability. Blast radius:
-  policy-bounded.
+  policy-bounded. *Note on the assurance basis:* because Tier 4 has no
+  per-action human decision, no engagement measurement reaches in-envelope
+  execution — the rubber-stamping screens and the Engagement Falsification
+  Protocol in [adoption/metrics.md](adoption/metrics.md) apply to the
+  envelope-change decisions and the post-hoc audit function, not to the actions
+  inside the envelope. In-envelope assurance rests on envelope design,
+  machine enforcement and post-hoc audit, and a declining intervention rate is
+  not evidence for it.
 
 Tier assignment is a governance decision driven by blast radius, reversibility,
 and confidence maturity. See [Tier Assignment Decision
@@ -147,7 +154,7 @@ Within Service Envelope. "Loop-Complete" — not "shipped": AEM's loop ends at a
 release candidate with a complete evidence bundle; shipment, production
 deployment, and live operations are governed by the downstream release and
 operations layers, not by this DoD. The DoD is phase-calibrated — the bar
-rises with phase maturity and risk level. See [manifesto-done.md](manifesto-done.md).
+rises with phase maturity and risk level. See [manifesto-done.md](manifesto/manifesto-done.md).
 
 **Demand backlog**
 The managed queue of validated business needs awaiting specification and loop
@@ -190,7 +197,7 @@ evaluations that pass while production incidents go unpredicted. See
 
 **Evidence bundle**
 The artifact package attached to a completed change, required for every
-automated merge (`manifesto-done.md`). Always-required contents: passing
+automated merge (`manifesto/manifesto-done.md`). Always-required contents: passing
 evaluation reports with timestamps, trace IDs, diffs showing exactly what
 changed, and policy check outputs. Not yet in place at Phase 1-2, where no
 evaluation suite or evidence bundle exists (P5); at Phase 4+, evidence bundles
@@ -247,7 +254,7 @@ enter the Agentic Loop's Specify phase. See `specification-readiness.md`.
 ## O
 
 **Operational DoD**
-The ASDLC Layer 4 Definition of Done. Defined in `operations-dod.md`.
+The ASDLC Layer 4 Definition of Done. Defined in `asdlc/operations/dod.md`.
 
 **Operational readiness gate**
 The ASDLC Layer 3→4 interface: the conditions a deployed system must satisfy
@@ -262,7 +269,7 @@ delegate actions that would exceed its own authorized autonomy tier; tier
 elevation requires the same approval path regardless of whether the request
 originates from a human or an orchestrating agent. This requirement is stated
 normatively in P4. See *P4 — Swarm Topology* in
-[manifesto-principles.md](manifesto-principles.md).
+[manifesto-principles.md](manifesto/manifesto-principles.md).
 
 ---
 
@@ -277,11 +284,11 @@ Phase 4 (Agentic Delivery — autonomy tiers defined, evaluations gate changes),
 Phase 5 (Agentic Engineering — structured autonomy at scale, the full Agentic
 Loop operating continuously), and Phase 6 (Adaptive Systems — self-improving
 infrastructure within governed boundaries; a frontier, not a destination — see
-the [Phase 6 Self-Modification Gate](companion-frameworks.md#the-phase-6-self-modification-gate)).
+the [Phase 6 Self-Modification Gate](companion/frameworks.md#the-phase-6-self-modification-gate)).
 Maturity is domain-specific, not organization-wide: a team can be at a
 different phase in different domains. Phases are descriptive, not
 prescriptive; movement between phases is governed by go/no-go evidence gates,
-not calendar schedules. See [Companion Frameworks](companion-frameworks.md#the-agentic-maturity-spectrum).
+not calendar schedules. See [Companion Frameworks](companion/frameworks.md#the-agentic-maturity-spectrum).
 
 **Policy envelope**
 The human-approved, machine-enforced set of ceilings (allowed change classes,

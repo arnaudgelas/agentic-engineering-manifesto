@@ -114,7 +114,7 @@ Substrate-level events propagate *through* the class-level trigger — they do n
 
 The evidence required for an action under each framework is additive, not alternative. An action in an envelope at AEnt-M Operational relocation, drawing on substrate at IGM High Confidence (now: epistemic tier "High Confidence"), must produce:
 
-- AEM evidence bundle components (`manifesto-done.md`, `asdlc/release-governance.md`).
+- AEM evidence bundle components (`manifesto/manifesto-done.md`, `asdlc/release-governance.md`).
 - IGM provenance and epistemic-tier record (per claim cited).
 - AEnt-M traceability chain (regulatory source → claim → contradiction → human approval → composite-state).
 
@@ -236,7 +236,7 @@ Advancement is not automatic. It is a governance decision recorded in the class 
 - It does not redefine AEM Tier 4. It restates what is in [`manifesto/manifesto-principles-05.md`](../manifesto/manifesto-principles-05.md#5-autonomy-is-a-permission-ceiling-not-a-switch) and explains how AEnt-M relocation fits inside it.
 - It does not replace AEnt-M's four-stage progression. It clarifies the dependency on AEM and IGM.
 - It does not specify the IGM substrate's required depth thresholds. Those are domain-specific (see `agentic-enterprise-manifesto/companion-guide.md:13–29` for the measurable proxies; calibration per domain is the domain owner's decision).
-- It does not address foundation-model-update governance during relocated operation. That is `governance/foundation-model-third-party-register.md` (W1.6, produced by another agent).
+- It does not address foundation-model-update governance during relocated operation. That is `regulatory/foundation-model-third-party-register.md` (W1.6, produced by another agent).
 - It does not specify how the integrated audit trail is delivered to a regulator. That is `governance/integrated-audit-trail.md`.
 
 ---
@@ -248,7 +248,7 @@ Advancement is not automatic. It is a governance decision recorded in the class 
 - `governance/evidence-bundle-schema.md` — the unified evidence schema referenced by Rule R4.
 - `governance/integrated-audit-trail.md` — how the three trails interleave for regulator examination.
 - `governance/phase-level-matrix.md` — safe operating points for AEM Phase × IGM Maturity Level × AEnt-M Phase combinations.
-- `governance/foundation-model-third-party-register.md` (planned, W1.6) — DORA Pillar 4 register of foundation-model third parties; relevant when a model update changes composite state inside a relocated envelope.
+- `regulatory/foundation-model-third-party-register.md` (planned, W1.6) — DORA Pillar 4 register of foundation-model third parties; relevant when a model update changes composite state inside a relocated envelope.
 - `glossary.md` (repo root, extended by other agents) — term-collision appendix including the "epistemic tier" rename.
 
 ---

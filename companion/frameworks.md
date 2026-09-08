@@ -3,9 +3,9 @@
 *Maturity spectrum, boundary conditions, and operational definitions that
 apply across all twelve principles.*
 
-Read the [Manifesto](manifesto.md) for the core values and minimum bars.
-See the [Companion Guide](companion-guide.md) for the full table of contents.
-See the [Adoption Playbook](adoption-playbook.md) for organizational change
+Read the [Manifesto](../manifesto/manifesto.md) for the core values and minimum bars.
+See the [Companion Guide](guide.md) for the full table of contents.
+See the [Adoption Playbook](../adoption/playbook.md) for organizational change
 management, role transitions, and pilot design.
 
 ---
@@ -122,7 +122,7 @@ routine, required, or safe by default — see the frontier caveat above.
 Every phase transition has distinct challenges. Phase 2→3 is where the
 supervision paradox first hits. Phase 3→4 is where governance overhead must
 justify itself. Phase 4→5 requires organizational change, not just tooling.
-See the [Adoption Playbook](adoption-playbook.md) for detailed transition
+See the [Adoption Playbook](../adoption/playbook.md) for detailed transition
 guidance for each phase, role changes, and pilot design.
 
 ### Long-Horizon Failure Signal: What SWE-CI Motivates
@@ -171,8 +171,12 @@ phases but emphasize the human role transition:
 Anecdotal practitioner reports suggest many teams overestimate their AI-native
 maturity — most operate closer to Level 2 than they believe. The gap between
 perceived and actual maturity is the most common failure mode in agentic
-adoption. A 2025 study reported that experienced developers using AI tools took
-19% longer to complete tasks while believing AI made them 24% faster. The manifesto's phase-calibrated evidence requirements exist
+adoption. METR's 2025 randomized controlled trial ("Measuring the Impact of
+Early-2025 AI on Experienced Open-Source Developer Productivity") reported
+that experienced developers using AI tools took 19% longer to complete tasks
+while believing AI made them 24% faster — a result METR's own Appendix B
+scopes to its study population and does not claim generalizes to most
+developers or repositories. The manifesto's phase-calibrated evidence requirements exist
 precisely to close this perception gap — your phase is determined by the
 evidence you can produce, not by the practices you believe you follow.
 
@@ -216,12 +220,12 @@ each domain document for the complete use-case-specific cap table.
 
 | Domain | Conservative Default Cap | Regulatory Basis | Domain Document |
 | --- | --- | --- | --- |
-| **Aviation** (airborne software DAL A/B) | Tier 1 (observe only) | DO-178C; DO-330 tool qualification | [aviation.md](domains/aviation.md) |
-| **Medical Devices** (IEC 62304 Class C; EU AI Act high-risk) | Tier 1 (observe only) | IEC 62304; EU MDR + AI Act (Class IIa+) | [medical-devices.md](domains/medical-devices.md) |
-| **Pharma** (GMP context; GxP record modification) | Tier 1 (observe only) | GAMP 5; 21 CFR Part 11; EU GMP Annex 11 | [pharma.md](domains/pharma.md) |
-| **Financial Services** (credit/insurance decisions; algorithmic trading) | Tier 1 (observe only) | EU AI Act Annex III §5; GDPR Art. 22; MiFID II | [financial-services.md](domains/financial-services.md) |
-| **Automotive** (ASIL C/D safety functions) | Tier 1 (observe only) | ISO 26262; UN Regulation 157 | [automotive.md](domains/automotive.md) |
-| **Defense / Government** (classified or ITAR-controlled systems) | Tier 1 (observe only) | CMMC; ITAR 22 CFR 120-130; FedRAMP | [defense-government.md](domains/defense-government.md) |
+| **Aviation** (airborne software DAL A/B) | Tier 1 (observe only) | DO-178C; DO-330 tool qualification | [aviation.md](../domains/aviation.md) |
+| **Medical Devices** (IEC 62304 Class C; EU AI Act high-risk) | Tier 1 (observe only) | IEC 62304; EU MDR + AI Act (Class IIa+) | [medical-devices.md](../domains/medical-devices.md) |
+| **Pharma** (GMP context; GxP record modification) | Tier 1 (observe only) | GAMP 5; 21 CFR Part 11; EU GMP Annex 11 | [pharma.md](../domains/pharma.md) |
+| **Financial Services** (credit/insurance decisions; algorithmic trading) | Tier 1 (observe only) | EU AI Act Annex III §5(b) (creditworthiness and credit scoring, excepting financial-fraud detection) and §5(c) (risk assessment and pricing, life and health insurance only); GDPR Art. 22; MiFID II | [financial-services.md](../domains/financial-services.md) |
+| **Automotive** (ASIL C/D safety functions) | Tier 1 (observe only) | ISO 26262; UN Regulation 157 | [automotive.md](../domains/automotive.md) |
+| **Defense / Government** (classified or ITAR-controlled systems) | Tier 1 (observe only) | CMMC; ITAR 22 CFR 120-130; FedRAMP | [defense-government.md](../domains/defense-government.md) |
 
 The rows above show conservative defaults for the most restrictive category in
 each domain. Lower-risk workflows in the same domain may permit higher tiers if
@@ -270,10 +274,10 @@ chaos experiments in isolated environments before running on production
 equivalents).
 
 For viable starting points by domain, see:
-[Aviation](domains/aviation.md#viable-starting-points) ·
-[Medical Devices](domains/medical-devices.md#viable-starting-points) ·
-[Pharma](domains/pharma.md#10-viable-starting-points) ·
-[Financial Services](domains/financial-services.md#market-specific-autonomy-guidance)
+[Aviation](../domains/aviation.md#viable-starting-points) ·
+[Medical Devices](../domains/medical-devices.md#viable-starting-points) ·
+[Pharma](../domains/pharma.md#10-viable-starting-points) ·
+[Financial Services](../domains/financial-services.md#market-specific-autonomy-guidance)
 
 ### What Would Need to Change
 
@@ -352,20 +356,20 @@ Tier 1-2; SIL 1 → full tier range with evidence controls.
 ### Domain-Specific Regulatory Alignment
 
 For detailed mappings between the manifesto and specific regulatory frameworks,
-see the [Domain Regulatory Alignment](domains/README.md) documents:
+see the [Domain Regulatory Alignment](../domains/README.md) documents:
 
-- [Aviation](domains/aviation.md) — DO-178C, DO-330, DO-333, ARP4754B
-- [Medical Devices](domains/medical-devices.md) — IEC 62304, ISO 14971,
+- [Aviation](../domains/aviation.md) — DO-178C, DO-330, DO-333, ARP4754B
+- [Medical Devices](../domains/medical-devices.md) — IEC 62304, ISO 14971,
   ISO 13485, FDA SaMD
-- [Pharma / Life Sciences](domains/pharma.md) — GAMP 5, CSA, 21 CFR Part 11,
+- [Pharma / Life Sciences](../domains/pharma.md) — GAMP 5, CSA, 21 CFR Part 11,
   ICH
-- [Financial Services](domains/financial-services.md) — SR 11-7, DORA,
+- [Financial Services](../domains/financial-services.md) — SR 11-7, DORA,
   EU AI Act, SOX
-- [Automotive](domains/automotive.md) — ISO 26262, ASPICE, UN Regulation 157
-- [Defense / Government](domains/defense-government.md) — CMMC, FedRAMP,
+- [Automotive](../domains/automotive.md) — ISO 26262, ASPICE, UN Regulation 157
+- [Defense / Government](../domains/defense-government.md) — CMMC, FedRAMP,
   NIST SP 800-53, ITAR/EAR
 
-For V-model organizations, see [adoption-vmodel.md](adoption-vmodel.md) for
+For V-model organizations, see [adoption-vmodel.md](../adoption/vmodel.md) for
 a V-model-specific adoption path.
 
 ---

@@ -1,6 +1,6 @@
 # Financial Services Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) principles to
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) principles to
 financial services regulatory frameworks.*
 
 > **Disclaimer** -- This document maps concepts from the Agentic Engineering
@@ -12,8 +12,8 @@ financial services regulatory frameworks.*
 > (EU 2022/2554), EU AI Act, GDPR, MiFID II, and SEC/FINRA model risk guidance
 > as understood at the time of last review. Financial services regulation
 > varies significantly by jurisdiction; this document uses conservative
-> cross-jurisdictional defaults, not jurisdiction-specific advice.  The EU AI
-> Act implementation timeline and Annex III classifications are subject to
+> cross-jurisdictional defaults, not jurisdiction-specific advice.  The
+> EU AI Act implementation timeline and Annex III classifications are subject to
 > ongoing guidance; verify current status before relying on AI Act references
 > here. **Last reviewed: April 2026.** Proposed changes not yet enacted are
 > flagged as such.
@@ -22,16 +22,16 @@ financial services regulatory frameworks.*
 
 ## Preamble
 
-This document is a companion to [manifesto.md](../manifesto.md). It assumes
-familiarity with the [boundary conditions](../companion-frameworks.md) and the
-[Agentic V-Model](../adoption-vmodel.md) transition framework. Financial
+This document is a companion to [manifesto.md](../manifesto/manifesto.md). It assumes
+familiarity with the [boundary conditions](../companion/frameworks.md) and the
+[Agentic V-Model](../adoption/vmodel.md) transition framework. Financial
 services already operates the governance infrastructure the manifesto demands:
 model risk management, three lines of defense, change control, audit trails.
 The bridge to agentic engineering is extension of existing frameworks, not
 construction of new ones.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 This document maps those definitions to financial services regulatory
 requirements; it does not redefine them.
 
@@ -171,13 +171,13 @@ The gap is the classification framework itself and the escalation workflow.
 
 ## EU AI Act
 
-Financial AI systems frequently fall into the high-risk category under Annex
-III. The mapping below focuses on high-risk system obligations, which apply to
+Financial AI systems frequently fall into the high-risk category under Annex III.
+The mapping below focuses on high-risk system obligations, which apply to
 most financial use cases involving automated decision-making.
 
 | AI Act Requirement | Article | Manifesto Principle | Notes |
 | --- | --- | --- | --- |
-| Risk classification | Art. 6, Annex III | -- | Financial AI systems are frequently high-risk: credit scoring, insurance pricing, fraud detection, AML screening. Classification triggers the full set of high-risk obligations. |
+| Risk classification | Art. 6, Annex III | -- | Financial AI systems are frequently high-risk, within the limits each point carries: creditworthiness evaluation and credit scoring of natural persons under **point 5(b)**, which ends "with the exception of AI systems used for the purpose of detecting financial fraud" — so **fraud detection is excepted from 5(b), not captured by it**; and risk assessment and pricing under **point 5(c)**, which reaches those only "in the case of life and health insurance" and so does not reach property and casualty pricing. **AML screening is not listed anywhere in Annex III** and is not high-risk by that route. Where a point is met on its own terms, classification triggers the full set of high-risk obligations. *(Corrected 2026-09-06: this cell offered fraud detection as an Annex III high-risk example, which asserts the opposite of point 5(b)'s own exception, and gave insurance pricing and AML screening unbounded.)* |
 | Risk management system | Art. 9 | P3, P5, P10 | Defense-in-depth, autonomy tiers, and containment engineering collectively satisfy risk management system requirements. Must be documented as a continuous iterative process. |
 | Data governance | Art. 10 | P7 context engineering | Data quality, relevance, representativeness, and freedom from errors. Context quality engineering directly maps. Training data governance for fine-tuned models adds scope beyond P7. |
 | Technical documentation | Art. 11 | P1 evidence, P2 specifications | Evidence bundles and versioned specifications satisfy technical documentation. Must include intended purpose, foreseeable misuse, and interaction with other systems. |
@@ -185,21 +185,48 @@ most financial use cases involving automated decision-making.
 | Transparency and information to deployers | Art. 13 | P9 observability | Structured traces satisfy transparency obligations. Traces and documentation must be accessible to deployers in a form they can understand and act upon. |
 | Human oversight measures | Art. 14 | P12 accountability, P5 autonomy | Tier-calibrated governance provides graduated human oversight proportional to risk. System must allow human intervention, including ability to override or stop the system. |
 | Accuracy, robustness, cybersecurity | Art. 15 | P8 evaluations, P10 containment | Evaluation portfolios address accuracy requirements. Chaos testing addresses robustness. Cybersecurity must cover adversarial attacks specific to agent systems. |
-| Conformity assessment | Art. 43 | P1 evidence bundles | Evidence bundles structured to serve as conformity assessment documentation. Financial services AI may require third-party conformity assessment under sector-specific rules. |
+| Conformity assessment | Art. 43 | P1 evidence bundles | Evidence bundles structured to serve as conformity assessment documentation. **The Annex III point 5 financial systems in this table are assessed by internal control (Annex VI), not by a notified body:** Art. 43(2) provides that "*for high-risk AI systems referred to in points 2 to 8 of Annex III, providers shall follow the conformity assessment procedure based on internal control as referred to in Annex VI, which does not provide for the involvement of a notified body*". The Annex VII notified-body route reaches only Annex III point 1 (Art. 43(1)), and financial services legislation is not Union harmonisation legislation listed in Section A of Annex I, so the Art. 43(3) sectoral route does not apply either. Any third-party model review a firm undergoes (e.g. supervisory internal-model or IRB approval) is a **sector supervisory requirement, not an AI Act conformity assessment** — `F2`: no instrument is cited here for it, and none has been established. |
 | Post-market monitoring | Art. 72 | P9 observability | Ongoing monitoring through traces, evaluation regression tracking, and performance drift detection. Must feed back into the risk management system. |
 
-**High-risk classification in financial services.** Under Annex III, Section 5,
-the following financial use cases are explicitly listed as high-risk:
+**High-risk classification in financial services.** Under Annex III, point 5,
+the following financial use cases are listed as high-risk, each only within the
+limit its own sub-point states:
 
-- Creditworthiness assessment of natural persons.
-- Risk assessment and pricing for life and health insurance.
-- Evaluation of credit scoring or establishment of credit scores.
+- Evaluating the creditworthiness of natural persons or establishing their
+  credit score — point 5(b), which ends "with the exception of AI systems used
+  for the purpose of detecting financial fraud", so a system whose purpose is
+  detecting financial fraud is excepted from this point rather than captured
+  by it.
+- Risk assessment and pricing in relation to natural persons — point 5(c), and
+  only "in the case of life and health insurance", which does not reach
+  property and casualty pricing.
 
-Additional financial use cases may qualify as high-risk under the general
-criteria in Art. 6(2) when they significantly affect decisions about natural
-persons. Organizations should conduct a risk classification assessment for each
-agent system and document the rationale, including cases where the system is
-determined to be non-high-risk.
+Art. 6(2) adds no criteria of its own. It provides, in full, that "*In addition
+to the high-risk AI systems referred to in paragraph 1, AI systems referred to in
+Annex III shall be considered to be high-risk*" — a closed cross-reference to
+Annex III. So a financial use case is high-risk **by use** only where it falls
+inside one of the Annex III points above, which are exhaustive and amendable
+only by the Commission by delegated act under Art. 7. A use case outside Annex III
+can still be high-risk on the separate **Annex I** route, but only where
+**both** limbs of Art. 6(1) are met. Art. 6(3) runs the opposite way: it is a
+derogation *out of* high-risk for a listed system that "*does not pose a
+significant risk of harm to the health, safety or fundamental rights of natural
+persons, including by not materially influencing the outcome of decision
+making*", and relying on it requires the Art. 6(4) documented assessment and
+Art. 49(2) registration. Organizations should conduct a risk classification
+assessment for each agent system and document the rationale, including cases
+where the system is determined to be non-high-risk. *(Corrected 2026-09-06: this
+paragraph previously read "Additional financial use cases may qualify as
+high-risk under the general criteria in Art. 6(2) when they significantly affect
+decisions about natural persons." Art. 6(2) contains no criteria at all, and
+neither "general criteria" nor "significantly affect decisions about natural
+persons" appears anywhere in the Regulation — both probed ABSENT against the
+hashed primary, `OJ_L_202401689_AIAct.html.gz`, sha256 prefix `a0f437e89667`, on
+a harness whose positive controls return the Art. 6(2), 6(3) and Annex III
+point 5 text as PRESENT. The sentence was therefore an invented test rather than
+a miscitation, and it inverted Art. 6(3)'s derogation out of high-risk into an
+open-ended residual route in. `F2`: no provision of the Act creates a route into
+high-risk outside Annex III and Annex I, and none is cited here for one.)*
 
 ---
 
@@ -259,10 +286,10 @@ exceed these caps for the listed use cases.
 
 | Use Case | Maximum Tier | Regulatory Basis | Key Constraints |
 | --- | --- | --- | --- |
-| Credit and insurance underwriting, pricing, limit-setting | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5 (high-risk); GDPR Art. 22; Fair Lending (ECOA, FHA) | Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory. |
+| Credit and insurance underwriting, pricing, limit-setting | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5(b) for creditworthiness and credit scoring, which excepts systems used for detecting financial fraud, and §5(c) for risk assessment and pricing in the case of life and health insurance only (property and casualty pricing is outside it); GDPR Art. 22; Fair Lending (ECOA, FHA) | Agent may analyze and recommend. Human makes every decision. Full explainability required. Fairness testing mandatory. |
 | Algorithmic trading, execution, market making | **Tier 1** (observe only, conservative default) | MiFID II Art. 17; MAR; Reg SCI | Kill switches mandatory and must operate sub-second. Agent cannot execute trades autonomously. |
 | AML/KYC screening, SAR filing | **Tier 2** max | AMLD6; FinCEN BSA; Wolfsberg Principles | Human review on every SAR. Agent assists triage and evidence assembly; does not make filing determinations. |
-| Customer credit decisions (lending, card limits) | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5; Consumer Credit Directive | Right to human review of automated credit decisions cannot be waived. |
+| Customer credit decisions (lending, card limits) | **Tier 1** (observe only, conservative default) | EU AI Act Annex III §5(b) (creditworthiness and credit scoring, excepting systems used for detecting financial fraud); Consumer Credit Directive | Right to human review of automated credit decisions cannot be waived. |
 | Claims decisioning affecting payout | **Tier 1** (observe only, conservative default) | EU AI Act high-risk; FCA Consumer Duty | Agent may triage and summarize. Human adjudicates every claim. |
 | Fraud detection triggering account action | **Tier 2** max | Consumer Duty; GDPR | Agent may score and flag. Human authorises account restriction or closure. |
 | Regulatory reporting (drafting, consistency checks) | **Tier 2** max | COREP/FINREP; various reporting regulations | Accuracy requirements are absolute. Agent drafts; human approves before submission. |
@@ -391,7 +418,7 @@ change log.
 
 The manifesto's evidence model satisfies ALCOA+ data integrity requirements by
 construction. See [Companion Frameworks — ALCOA+
-Alignment](../companion-frameworks.md#alcoa-alignment) for the complete mapping
+Alignment](../companion/frameworks.md#alcoa-alignment) for the complete mapping
 table.
 
 For financial services, this means:
@@ -473,7 +500,17 @@ compliance obligations may emerge.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 14, EU AI Act Article 15, FCA PS21/3), see [ASDLC Financial Services Domain Guidance](../asdlc/domains/financial-services.md).
+For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 9(4)(e), EU AI Act Article 15, FCA PS21/3), see [ASDLC Financial Services Domain Guidance](../../asdlc/domains/financial-services.md).
 
-For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see [APLC Financial Services Domain Guidance](../aplc/domains/financial-services.md).
+*(Citation corrected 2026-09-05: this cross-reference read "DORA Article 14"
+until this date. Article 14 of Regulation (EU) 2022/2554 is* Communication
+*-- crisis-communication plans (¶1), communication policies for internal
+staff and external stakeholders (¶2), and a person tasked with the public and
+media function (¶3) -- and carries no ICT change-management obligation. The
+change-management obligation the linked guidance maps to ASDLC Layer 3 is
+Article 9(4)(e), which requires financial entities to implement documented
+policies, procedures and controls for ICT change management. Read at primary
+against the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+(sha256 prefix `25328c7e39c4`). See [errata.md](../errata.md).)*
 
+For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see [APLC Financial Services Domain Guidance](../../aplc/domains/financial-services.md).

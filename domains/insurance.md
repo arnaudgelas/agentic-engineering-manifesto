@@ -1,6 +1,6 @@
 # Insurance Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) principles to
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) principles to
 insurance regulatory frameworks.*
 
 > **Disclaimer** — This document maps concepts from the Agentic Engineering
@@ -23,9 +23,9 @@ insurance regulatory frameworks.*
 
 ## Preamble
 
-This document is a companion to [manifesto.md](../manifesto.md). It assumes
-familiarity with the [boundary conditions](../companion-frameworks.md) and the
-[Agentic V-Model](../adoption-vmodel.md) transition framework. Insurance
+This document is a companion to [manifesto.md](../manifesto/manifesto.md). It assumes
+familiarity with the [boundary conditions](../companion/frameworks.md) and the
+[Agentic V-Model](../adoption/vmodel.md) transition framework. Insurance
 already operates extensive model governance infrastructure — actuarial model
 validation, internal model approval under Solvency II, conduct oversight under
 the IDD — and the bridge to agentic engineering is extension of these existing
@@ -35,7 +35,7 @@ the principal discipline is making that mapping explicit so internal audit, the
 actuarial function, and the regulator can follow it.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 This document maps those definitions to insurance regulatory requirements; it
 does not redefine them.
 
@@ -80,7 +80,7 @@ model identification and versioning information the QRTs require.
 minor is a governance decision that must be made at Stage 1 of the APLC for any
 change to an agent product in Solvency II model scope. The APLC's composite
 versioning model in
-[aplc/agent-composite-versioning.md](../aplc/agent-composite-versioning.md)
+[aplc/agent-composite-versioning.md](../../aplc/agent/agent-composite-versioning.md)
 provides the change audit trail that demonstrates how each change was
 classified and governed. A major model change deployed without supervisory
 approval is a Solvency II compliance breach; the APLC release gate for major
@@ -260,7 +260,7 @@ cases.
 
 | Use Case | Maximum Tier | Regulatory Basis | Key Constraints |
 | --- | --- | --- | --- |
-| Underwriting decisions for individual cover (personal lines) | **Tier 1** (observe only) | EU AI Act Annex III §5(b) (high-risk); GDPR Art. 22 (health/genetic data); EIOPA AI guidelines | Agent may analyse and recommend; human underwrites every individual risk. Full explainability required. Fairness testing mandatory. |
+| Underwriting decisions for individual cover (personal lines) | **Tier 1** (observe only) | EU AI Act Annex III §5(c), which reaches risk assessment and pricing in relation to natural persons only "in the case of life and health insurance" — personal-lines property and casualty underwriting is outside it, and §5(b) does not reach underwriting at all (it is creditworthiness and credit scoring); GDPR Art. 22 (health/genetic data); EIOPA AI guidelines | Agent may analyse and recommend; human underwrites every individual risk. Full explainability required. Fairness testing mandatory. |
 | Claims decisions affecting coverage or payout | **Tier 1** (observe only) | EU AI Act high-risk; FCA Consumer Duty; GDPR Art. 22 where health data involved | Agent may triage and summarise; human adjudicates every claim. Right to contestation must be operational, not nominal. |
 | IDD-scope customer advisory (products advice) | **Tier 1** (observe only) | IDD suitability requirement; FCA ICOBS | Suitability assessment must be demonstrably connected to individual customer demands and needs. Automated advice without human confirmation is IDD non-compliant in most jurisdictions. |
 | Fraud detection triggering account/claim action | **Tier 2** max | Consumer Duty; GDPR | Agent may score and flag; human authorises account restriction or claim suspension. |
@@ -285,6 +285,6 @@ cases.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Insurance Domain Guidance](../asdlc/domains/insurance.md).
+For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Insurance Domain Guidance](../../asdlc/domains/insurance.md).
 
-For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see [APLC Insurance Domain Guidance](../aplc/domains/insurance.md).
+For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see [APLC Insurance Domain Guidance](../../aplc/domains/insurance.md).

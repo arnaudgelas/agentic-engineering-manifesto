@@ -1,16 +1,16 @@
 # Enterprise Adoption: Scaling Agentic Engineering Across the Organisation
 
-> The [adoption playbook](adoption-playbook.md) addresses how a single team adopts the manifesto. This document addresses how an enterprise - dozens of teams, multiple business units, existing governance structures, and competing priorities - assesses readiness, sequences adoption, and governs the transition at scale. It draws on implementation patterns from large-scale system integration engagements.
+> The [adoption playbook](playbook.md) addresses how a single team adopts the manifesto. This document addresses how an enterprise - dozens of teams, multiple business units, existing governance structures, and competing priorities - assesses readiness, sequences adoption, and governs the transition at scale. It draws on implementation patterns from large-scale system integration engagements.
 
 ## Why Enterprise Adoption Is Different
 
-A single team can adopt the manifesto in weeks. Give them domain boundaries, autonomy tiers, evidence gates, and let them run a pilot. The [adoption path](adoption-path.md) covers this well.
+A single team can adopt the manifesto in weeks. Give them domain boundaries, autonomy tiers, evidence gates, and let them run a pilot. The [adoption path](path.md) covers this well.
 
 Enterprise adoption faces five problems that single-team adoption does not:
 
 1. **Heterogeneous maturity.** Some teams operate at Phase 2 (AI as autocomplete), others at Phase 3 (agentic prototyping), a few already at Phase 4. A uniform adoption mandate either bores the advanced teams or overwhelms the lagging ones.
 2. **Governance overlap.** Most enterprises already have compliance frameworks, audit structures, change management boards, and risk committees. The manifesto introduces new governance concepts (autonomy tiers, evidence bundles, memory governance) that must integrate with - not replace - existing structures.
-3. **Cross-domain dependencies.** When Team A's agents produce artefacts consumed by Team B's agents, the verification and governance requirements multiply. The [probability compounding problem](manifesto-principles.md) applies across teams, not just within agent chains.
+3. **Cross-domain dependencies.** When Team A's agents produce artefacts consumed by Team B's agents, the verification and governance requirements multiply. The [probability compounding problem](../manifesto/manifesto-principles.md) applies across teams, not just within agent chains.
 4. **Budget and prioritisation.** The infrastructure the manifesto requires - observability, memory governance, evaluation pipelines - competes with other transformation investments. Leadership needs a phased investment case, not a total-cost-of-transformation number.
 5. **Political dynamics.** Adopting agentic engineering changes who makes decisions about what. Autonomy tier assignments are power decisions. Evidence requirements create accountability where ambiguity previously existed. These are organisational politics, not engineering problems.
 
@@ -20,7 +20,7 @@ Before sequencing adoption, assess the organisation across six dimensions. Each 
 
 ### Dimension 1: Current Agentic Maturity Distribution
 
-Map every team to the manifesto's [maturity spectrum](companion-frameworks.md) (Phase 1-6). This produces a maturity heatmap:
+Map every team to the manifesto's [maturity spectrum](../companion/frameworks.md) (Phase 1-6). This produces a maturity heatmap:
 
 | Phase | Description | Typical indicators |
 |-------|-------------|-------------------|
@@ -61,7 +61,7 @@ Assessment should classify each as: exists, partially exists (can be extended), 
 
 ### Dimension 4: Skill Distribution
 
-The manifesto requires skills that are rare in 2026 (see [companion-reference.md](companion-reference.md)):
+The manifesto requires skills that are rare in 2026 (see [companion-reference.md](../companion/reference.md)):
 
 - Specification engineering: expressing intent precisely enough for agents (Phase 3+)
 - Evaluation design: building verification pyramids (Phase 3+)
@@ -137,7 +137,7 @@ Explicitly exclude from Wave 1:
 
 Single-team governance is straightforward: the team owns its domain boundaries, autonomy tiers, and evidence gates. Enterprise governance adds three concerns:
 
-**Cross-domain verification.** When agents in Domain A produce artefacts consumed by agents in Domain B, who verifies the interface? The manifesto's [Principle 3](manifesto-principles.md) (defense-in-depth) applies at the enterprise level: domain boundaries must include contract-based verification at integration points.
+**Cross-domain verification.** When agents in Domain A produce artefacts consumed by agents in Domain B, who verifies the interface? The manifesto's [Principle 3](../manifesto/manifesto-principles.md) (defense-in-depth) applies at the enterprise level: domain boundaries must include contract-based verification at integration points.
 
 **Autonomy tier consistency.** If Team A operates at Tier 2 and Team B operates at Tier 3, what tier governs their interaction? The conservative answer: the lower tier. The practical answer: define interaction-specific tiers in the enterprise governance framework.
 
@@ -151,7 +151,7 @@ Establish a lightweight governance body responsible for:
 2. Reviewing and approving cross-domain autonomy tier escalations
 3. Setting enterprise evidence standards (minimum evidence bundle contents per domain classification)
 4. Governing shared memory infrastructure (what is shared, what is domain-isolated)
-5. Reviewing enterprise-level metrics quarterly (see [adoption-metrics.md](adoption-metrics.md))
+5. Reviewing enterprise-level metrics quarterly (see [adoption-metrics.md](metrics.md))
 
 Membership: CTO or VP Engineering (chair), domain leads from Wave 1 teams, QA/evaluation lead, operations lead, one representative from risk/compliance. Keep it small. Meets monthly during Wave 1-2, quarterly after Wave 2.
 
@@ -172,7 +172,7 @@ Enterprise adoption costs fall into three categories:
 The investment case rests on three measurable returns:
 
 1. **Defect reduction.** Governed agentic pipelines (Phase 4+) are expected to lower escaped-defect rates compared to ungoverned agentic use (Phase 2-3), because verification gates catch regressions before they reach production. Measure: escaped defect rate pre/post adoption.
-2. **Cost optimisation (hypothesis to measure, not a guarantee).** Economics-aware routing ([Principle 11](manifesto-principles.md)) routes routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Whether that lowers total cost is conditional on the task population, the quality delta between tiers, tail-risk severity, and switching costs — it is not an unconditional return. Measure: inference cost per verified outcome, tracked against those conditioning factors rather than assumed.
+2. **Cost optimisation (hypothesis to measure, not a guarantee).** Economics-aware routing ([Principle 11](../manifesto/manifesto-principles.md)) routes routine tasks to cheaper models instead of defaulting every task to the most capable (and most expensive) model. Whether that lowers total cost is conditional on the task population, the quality delta between tiers, tail-risk severity, and switching costs — it is not an unconditional return. Measure: inference cost per verified outcome, tracked against those conditioning factors rather than assumed.
 3. **Compliance cost avoidance.** Evidence bundles and autonomy tiers reduce the cost of audit evidence production and regulatory response. Measure: audit preparation time pre/post adoption.
 
 The break-even point for most enterprises: 2-3 quarters after Wave 1 completion, driven primarily by defect reduction, with cost optimisation contributing where routing conditions in fact favor it.
@@ -201,4 +201,4 @@ Targeting Phase 5 (multi-domain agentic engineering) before Phase 4 is stable ac
 
 ---
 
-*This document is part of the [Agentic Engineering Manifesto](manifesto.md). See also: [Roles and the Human Side](adoption-roles.md) for leadership-level implications, [Adoption Playbook](adoption-playbook.md) for single-team adoption, and [Adoption Path](adoption-path.md) for phase transitions.*
+*This document is part of the [Agentic Engineering Manifesto](../manifesto/manifesto.md). See also: [Roles and the Human Side](roles.md) for leadership-level implications, [Adoption Playbook](playbook.md) for single-team adoption, and [Adoption Path](path.md) for phase transitions.*

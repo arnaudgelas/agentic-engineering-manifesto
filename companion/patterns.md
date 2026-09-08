@@ -3,9 +3,9 @@
 *Concrete scenarios showing how the manifesto's principles apply in practice,
 including both successful applications and governed failures.*
 
-Read the [Manifesto](manifesto.md) for the core values and minimum bars.
-See the [Companion Guide](companion-guide.md) for the full table of contents.
-See the [Companion Principles](companion-principles.md) for extended guidance
+Read the [Manifesto](../manifesto/manifesto.md) for the core values and minimum bars.
+See the [Companion Guide](guide.md) for the full table of contents.
+See the [Companion Principles](principles.md) for extended guidance
 on each principle.
 
 ---
@@ -364,7 +364,7 @@ calibrations are listed below.
   modifies or corrupts GxP records without a valid audit trail is Severity 1.
   Deviation and CAPA procedures apply.
 - **Financial services**: Use the DORA Severity 1-4 taxonomy defined in the
-  [financial-services.md](domains/financial-services.md#dora-digital-operational-resilience-act)
+  [financial-services.md](../domains/financial-services.md#dora-digital-operational-resilience-act)
   domain document. DORA notification timelines are strict; track them as a
   first-class workflow trigger.
 - **Automotive**: Any agent action affecting ASIL C/D safety function

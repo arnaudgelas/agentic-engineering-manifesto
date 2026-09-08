@@ -194,7 +194,7 @@ This is governed by `/integration/composite-state-vs-curate-precedence.md`. A Cl
 Add a cross-reference at IGM P5 (the decay-management principle, where the Curate stage's terminal action — retirement — lives) and at IGM P6 (the four-authorities principle, where the Revision authority's responsibility for retirement decisions is named). The minimum-bar edit at P5 is in `/integration/composite-state-vs-curate-precedence.md` §5.2; the additional edit here is to P6's text on the Revision authority.
 
 > Append to the Revision-authority paragraph in P6:
-> "Retirement workflows for agents and claims follow [`/integration/decommissioning.md`](../../integration/decommissioning.md), which specifies the five-phase workflow (trigger → impact analysis → disposition decisions → 30-day grace period → execution → post-retirement audit), the disposition matrix for claims maintained primarily for a retiring agent, and the named-authority chain (Revision + Assertion + APLC product manager + system steward + AEnt-M P8 authorities for affected action classes)."
+> "Retirement workflows for agents and claims follow [`/integration/decommissioning.md`](decommissioning.md), which specifies the five-phase workflow (trigger → impact analysis → disposition decisions → 30-day grace period → execution → post-retirement audit), the disposition matrix for claims maintained primarily for a retiring agent, and the named-authority chain (Revision + Assertion + APLC product manager + system steward + AEnt-M P8 authorities for affected action classes)."
 
 ### 5.2 Optional edit to `aplc/aplc.md` Stage 7 description
 

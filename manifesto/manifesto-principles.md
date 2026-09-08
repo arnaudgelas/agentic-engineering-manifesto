@@ -35,7 +35,7 @@ Principle 2 (specifications) before Principle 8 (evaluations); Principle 3
 (architecture) before Principle 5 (autonomy tiers); Principle 6
 (knowledge/memory) before Principle 7 (context); Principle 9 (observability)
 before Principle 12 (accountability). The
-[Incremental Adoption Path](adoption-path.md) gives the recommended
+[Incremental Adoption Path](../adoption/path.md) gives the recommended
 implementation order.
 
 ---

@@ -176,7 +176,7 @@ Per stakeholder category, assess:
 | Fairness | Disparate-impact risk on protected characteristics? Mitigations? Fairness testing in TEVV portfolio? |
 | Health & safety | Could erroneous output cause physical or psychological harm? |
 | Autonomy | Does the system constrain individual choice or agency? |
-| Redress | What remedies are available if the system errs? Cross-reference: `regulatory/eu-ai-act-addendum.md` (Article 86). |
+| Redress | What remedies are available if the system errs? Cross-reference: `regulatory/eu-ai-act-addendum.md` (EU AI Act Article 86). |
 
 #### 3.1.5 Societal impact analysis
 

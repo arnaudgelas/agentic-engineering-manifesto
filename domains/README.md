@@ -1,7 +1,7 @@
 # Domain-Specific Regulatory Alignment
 
 These documents map the principles of the
-[Agentic Engineering Manifesto](../manifesto.md) to the regulatory frameworks
+[Agentic Engineering Manifesto](../manifesto/manifesto.md) to the regulatory frameworks
 that govern specific industries. They bridge the gap between the manifesto's
 domain-agnostic guidance and the concrete standards teams must satisfy in
 regulated environments.
@@ -42,17 +42,17 @@ level rather than in domain-specific documents:
 - **SOUP / agent-as-tool categorization** — see
   [Companion Principles P3](../companion/principles-03.md#agent-as-tool-and-software-of-unknown-provenance)
 - **Data classification as an agent constraint** — see
-  [Companion Frameworks](../companion-frameworks.md#cross-domain-regulatory-insights)
+  [Companion Frameworks](../companion/frameworks.md#cross-domain-regulatory-insights)
 - **ALCOA+ compliance** — see
-  [Companion Frameworks](../companion-frameworks.md#alcoa-alignment)
+  [Companion Frameworks](../companion/frameworks.md#alcoa-alignment)
 - **Champion-challenger testing** — see
   [Companion Principles P8](../companion/principles-08.md#champion-challenger-testing-in-regulated-contexts)
 - **Fairness and bias testing** — see
   [Companion Principles P8](../companion/principles-08.md#fairness-and-bias-testing-in-high-risk-ai)
 - **Cross-domain incident classification** — see
-  [Companion Patterns](../companion-patterns.md#cross-domain-incident-classification-framework)
+  [Companion Patterns](../companion/patterns.md#cross-domain-incident-classification-framework)
 - **Supplier and vendor qualification** — see
-  [Companion Reference](../companion-reference.md#cross-domain-supplier-and-vendor-qualification)
+  [Companion Reference](../companion/reference.md#cross-domain-supplier-and-vendor-qualification)
 - **Memory governance in regulated environments** — see
   [Companion Principles P6](../companion/principles-06.md#memory-governance-in-regulated-environments)
 - **Open interoperability requirements** — see
@@ -75,7 +75,7 @@ links to the domain that has developed the most specific framing.
 | 2 | **Model version change revalidation scope**: When the underlying model is updated (e.g., model version bump by the provider), what revalidation is required? Does a minor version change trigger full re-IQ/OQ/PQ? Full independent model validation? Or only a behavioral regression test? | Medical, Pharma, Financial | Open — PCCP (FDA) partially addresses anticipated modifications but not infrastructure-level model changes |
 | 3 | **Memory accumulation as a change control event**: At what point does accumulated learned memory constitute a change to a validated system? No domain has a threshold or methodology. | Pharma (most developed), Medical, Financial | Open — GAMP 5 open question; no regulatory body has published guidance |
 | 4 | **Open-source model supplier responsibility**: When a deploying organization uses an open-source model with no identifiable supplier, how should GAMP 5 supplier qualification, ISO 13485 §7.4 purchasing controls, and SR 11-7 vendor model management apply? | Pharma, Medical, Financial | Open — conservative position is to assume full supplier responsibility; regulatory validation of this approach is untested |
-| 5 | **GDPR Art. 22 and agent-assisted decisions**: When an agent produces a recommendation that a human rubber-stamps, does that constitute "solely automated decision-making" under GDPR Art. 22? The boundary between meaningful human review and rubber-stamping is undefined in regulatory guidance. | Financial, Medical, All customer-facing | Open — rubber-stamping detection metrics (see adoption-metrics.md) partially address the engineering side; the legal question is unresolved |
+| 5 | **GDPR Art. 22 and agent-assisted decisions**: When an agent produces a recommendation that a human rubber-stamps, does that constitute solely automated decision-making within the meaning of GDPR Art. 22? (This row formerly quoted the phrase "solely automated decision-making" as Art. 22 itself; that exact wording does not occur in Art. 22 -- see [errata.md](../errata.md).) The boundary between meaningful human review and rubber-stamping is undefined in regulatory guidance. | Financial, Medical, All customer-facing | Open — rubber-stamping detection metrics (see [adoption/metrics.md](../adoption/metrics.md)) partially address the engineering side; the legal question is unresolved |
 | 6 | **Protocol and evidence portability**: What level of interoperability should regulated teams require for tool invocation, agent delegation, trace export, and replay before an agent platform can be treated as operationally governable rather than vendor-bound? | All | Open — open protocols are emerging, but regulatory expectations for portability, replay, and audit export are not yet settled |
 
 ---
@@ -114,7 +114,7 @@ How to configure agent tooling (hooks, RBAC, MCP allowlists, model pinning)
 to satisfy the domain's audit trail and data classification requirements.
 
 ## ALCOA+ or Equivalent Data Integrity Cross-Reference
-Cross-reference to companion-frameworks.md#alcoa-alignment with any
+Cross-reference to [companion/frameworks.md#alcoa-alignment](../companion/frameworks.md#alcoa-alignment) with any
 domain-specific additions.
 
 ## Open Regulatory Questions
@@ -126,9 +126,9 @@ cross-domain questions in this README where applicable.
 
 ## Recommended Reading Path
 
-1. [companion-frameworks.md](../companion-frameworks.md) — boundary conditions
+1. [companion-frameworks.md](../companion/frameworks.md) — boundary conditions
    for regulated-industry adoption
-2. [adoption-vmodel.md](../adoption-vmodel.md) — V-model-specific adoption
+2. [adoption-vmodel.md](../adoption/vmodel.md) — V-model-specific adoption
    path for verification-heavy organizations
 3. Your domain document (above) — map manifesto principles to your specific
    regulatory framework

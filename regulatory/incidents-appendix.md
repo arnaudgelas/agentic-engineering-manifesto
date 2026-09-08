@@ -124,7 +124,7 @@ This appendix is a *learning artefact*. It is not a comprehensive AI-incident da
 - **What failed.** Cosmetic human review treated as the safeguard; no defined per-action accountability with substantive review of reasoning chain; no Article 22 register; no explanation-on-request workflow.
 - **Manifesto principles that would have addressed it.**
   - **AEnt-M Principle 8 — Per-action accountability with named human reviewer.** For Medium-and-above consequence classes, the named human reviews the agent's reasoning chain and epistemic-quality summary; this is structural, not cosmetic.
-  - **AEM Principle 12 — Rubber-stamping detection.** A Tier 4 prerequisite. If rubber-stamping detection is not active, Tier 4 is not authorised.
+  - **AEM Principle 12 — Rubber-stamping detection.** A Tier 4 prerequisite: if rubber-stamping detection is not active, Tier 4 is not authorised. **Stated with its limit, because the limit bears directly on the Art. 22 point above:** the detection signals in `adoption/metrics.md` are behavioural proxies a reviewer can satisfy without engaging, and no engagement measurement reaches in-envelope Tier 4 execution, where there is no per-action human decision to instrument. The prerequisite is therefore a floor on the envelope-change and audit functions, not a demonstration that human review is substantive. Cosmetic review is what Art. 22 enforcement targets, and neither the screens nor the proposed Engagement Falsification Protocol should be presented to a supervisor as evidence that it has been excluded.
   - **EU AI Act Article 86 — Right to explanation of individual decision-making (high-risk systems, post Aug 2026).** Already operational in `regulatory/eu-ai-act-addendum.md`.
   - **SLO row 35–36 — explanation-request and human-review-request response within 30 days.**
 - **Severity for FS use cases.** **Critical** for credit, insurance, fraud, anti-money-laundering, and any client-affecting decision pipeline. Article 22 + Article 86 + Article 73 form a cluster: a system that fails one likely fails the others.
@@ -203,7 +203,7 @@ Each item above lists its sources inline. Cross-cutting:
 
 - IGM `manifesto-principles.md` — P2, P3, P5, P7, P14, P15.
 - AEnt-M `manifesto.md` — P5, P8, P9, P11, P14, P16.
-- AEM `manifesto-principles.md` — Tier 4, P12 (rubber-stamping detection).
+- AEM `manifesto/manifesto-principles.md` — Tier 4, P12 (rubber-stamping detection).
 - `operational-templates/ai-risk-register.md`, `operational-templates/agent-inventory-schema.md`, `operational-templates/decommissioning-checklist.md`, `operational-templates/risk-appetite-statement.md`, `operational-templates/slo-table.md`.
 - `regulatory/eu-ai-act-addendum.md` — Articles 22 / 73 / 86 detail.
 - `regulatory/foundation-model-third-party-register.md` — DORA Pillar 4.
