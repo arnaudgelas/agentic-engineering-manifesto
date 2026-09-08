@@ -20,3 +20,7 @@ node_modules/
 
 # claude-flow local state
 .claude-flow/
+
+# Generated HTML
+*.html
+!/index.html

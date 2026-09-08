@@ -21,6 +21,7 @@ import { marked } from "marked";
 const sections = [
   // Home
   { id: "overview",          file: "README.md",                   title: "Overview",             group: "overview"        },
+  { id: "errata",            file: "errata.md",                   title: "Errata",               group: "overview"        },
 
   // The Case for Change
   { id: "beyond",            file: "beyond-agile/main.md",        title: "Beyond Agile",         group: "beyond"          },
@@ -69,6 +70,7 @@ const sections = [
   { id: "companion-re-framework", file: "companion/re-framework.md", title: "RE Framework",        group: "implementation" },
   { id: "companion-reference",    file: "companion/reference.md",    title: "Reference",           group: "implementation" },
   { id: "companion-vocabulary-bridge", file: "companion/vocabulary-bridge.md", title: "Vocabulary Bridge", group: "implementation" },
+  { id: "glossary",                file: "glossary.md",                  title: "Glossary",             group: "implementation" },
 
   // Organizational Adoption
   { id: "adoption-playbook", file: "adoption/playbook.md",        title: "Playbook",             group: "adoption"        },
@@ -157,6 +159,7 @@ const sourceAliases = new Map([
   ["domains/medical-devices.md", "domains/medical-devices.md"],
   ["domains/pharma.md", "domains/pharma.md"],
   ["glossary.md", "glossary.md"],
+  ["errata.md", "errata.md"],
   ["manifesto-done.md", "manifesto-done.md"],
   ["manifesto-principles.md", "manifesto-principles.md"],
   ["manifesto-principles-01.md", "manifesto-principles-01.md"],
