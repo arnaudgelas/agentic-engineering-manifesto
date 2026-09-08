@@ -196,7 +196,7 @@ Where a single human holds multiple authorities, the matrix is unchanged — eac
 
 | | IGM | AEnt-M | ASDLC | APLC |
 |---|---|---|---|---|
-| Decides | C (substrate-state attestation for any claim family the agent reasons over) Revision + Assertion authorities | C Accountable Authority for the highest-consequence class | **D** (combined gate record per `aplc/aplc.md:196–198`) APLC product owner + ASDLC release manager + accountable human | **D** (joint with ASDLC) |
+| Decides | C (substrate-state attestation for any claim family the agent reasons over) Revision + Assertion authorities | C Accountable Authority for the highest-consequence class | **D** (combined gate record per `aplc/aplc.md`, "Stage 4 — combined gate record") APLC product owner + ASDLC release manager + accountable human | **D** (joint with ASDLC) |
 | Consulted | C Inference authority (contradiction state, circuit-breaker calibration) | — | C security function lead, FinOps owner | C evaluation team lead |
 | Informed | I all four authorities | I all consequence-class roles | — | — |
 

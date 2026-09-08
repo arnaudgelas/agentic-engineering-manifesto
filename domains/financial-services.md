@@ -500,7 +500,7 @@ compliance obligations may emerge.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 9(4)(e), EU AI Act Article 15, FCA PS21/3), see [ASDLC Financial Services Domain Guidance](../../asdlc/domains/financial-services.md).
+For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 9(4)(e), EU AI Act Article 15, FCA PS21/3), see [ASDLC Financial Services Domain Guidance](https://github.com/arnaudgelas/asdlc/blob/main/domains/financial-services.md).
 
 *(Citation corrected 2026-09-05: this cross-reference read "DORA Article 14"
 until this date. Article 14 of Regulation (EU) 2022/2554 is* Communication
@@ -513,4 +513,4 @@ policies, procedures and controls for ICT change management. Read at primary
 against the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
 (sha256 prefix `25328c7e39c4`). See [errata.md](../errata.md).)*
 
-For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see [APLC Financial Services Domain Guidance](../../aplc/domains/financial-services.md).
+For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see [APLC Financial Services Domain Guidance](https://github.com/arnaudgelas/aplc/blob/main/domains/financial-services.md).
