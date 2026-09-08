@@ -1,6 +1,6 @@
 # Automotive Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) principles to
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) principles to
 automotive functional safety and software process frameworks.*
 
 > **Disclaimer** — This document maps concepts from the Agentic Engineering
@@ -15,13 +15,13 @@ automotive functional safety and software process frameworks.*
 > before publication. **Last reviewed: April 2026.** Proposed changes not yet
 > enacted are flagged as such.
 
-See [companion-frameworks.md](../companion-frameworks.md) for boundary
+See [companion-frameworks.md](../companion/frameworks.md) for boundary
 conditions on regulated-industry adoption. See
-[adoption-vmodel.md](../adoption-vmodel.md) for the V-model adoption path
+[adoption-vmodel.md](../adoption/vmodel.md) for the V-model adoption path
 applicable to verification-heavy lifecycles.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 This document maps those definitions to automotive regulatory requirements; it
 does not redefine them.
 
@@ -285,6 +285,6 @@ automotive standards do not address this explicitly.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see [ASDLC Automotive Domain Guidance](../asdlc/domains/automotive.md).
+For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see [ASDLC Automotive Domain Guidance](../../asdlc/domains/automotive.md).
 
-For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see [APLC Automotive Domain Guidance](../aplc/domains/automotive.md).
+For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see [APLC Automotive Domain Guidance](../../aplc/domains/automotive.md).

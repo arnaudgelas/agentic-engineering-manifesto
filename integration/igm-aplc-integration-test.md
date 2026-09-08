@@ -8,9 +8,9 @@
 
 **Classification note (corrected 2026-09-02; verified against Regulation (EU) 2024/1689).** Earlier revisions of this worked example classified the agent as **Annex III high-risk**. That was wrong, and every obligation scoped from it was over-scoped.
 
-- **Article 6(1) is not met.** High risk under Art. 6(1) requires **both** that "*the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I*" **and** that the product "*is required to undergo a third-party conformity assessment*". CSDR (Reg. (EU) No 909/2014) is not Annex I harmonisation legislation, and the agent is not a safety component of an Annex I product.
-- **Article 6(2)/Annex III is not met.** Annex III's eight areas are exhaustive and contain no post-trade financial market infrastructure. The closest point, **Annex III 5(b)**, reaches AI systems "*intended to be used to evaluate the creditworthiness of natural persons or establish their credit score*" — not wholesale settlement-fail penalty calculation between institutions.
-- **Consequence.** Articles 27 (FRIA), 49 (registration), 73 (serious-incident reporting) and the Chapter III provider obligations **do not bind this deployment**. Art. 27 fails on a second, independent ground: its deployer trigger reaches bodies governed by public law, private entities providing public services, and deployers under Annex III 5(b)/(c). A custodian is none of these.
+- **EU AI Act Article 6(1) is not met.** High risk under Art. 6(1) requires **both** that *"the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I"* **and** that the product *"is required to undergo a third-party conformity assessment"*. CSDR (Reg. (EU) No 909/2014) is not EU AI Act Annex I harmonisation legislation, and the agent is not a safety component of an Annex I product.
+- **EU AI Act Article 6(2)/Annex III is not met.** Annex III's eight areas are exhaustive and contain no post-trade financial market infrastructure. The closest point, **Annex III 5(b)**, reaches AI systems *"intended to be used to evaluate the creditworthiness of natural persons or establish their credit score"* — not wholesale settlement-fail penalty calculation between institutions.
+- **Consequence.** Articles 27 (FRIA), 49 (registration), 73 (serious-incident reporting) and the Chapter III provider obligations **do not bind this deployment**. Art. 27 fails on a second, independent ground: its deployer trigger reaches bodies governed by public law, private entities providing public services, and deployers under EU AI Act Annex III 5(b)/(c). A custodian is none of these.
 - **What does bind:** CSDR Art. 7, DORA, and the firm's own model-risk and operational-risk frameworks.
 
 **The example is kept, and the AI Act artefacts below are kept, on a corrected footing: they are produced *by firm policy*, not by legal obligation.** Every AI Act reference downstream in this document is marked accordingly. This is the same posture the corpus takes on SR 26-2 — the instrument does not reach the system, and the institution's own practices govern — and a worked example that manufactures an obligation to demonstrate a control is worth less than one that shows the control standing without it. **High consequence is a fact about the deployment; high-risk is a legal classification. They are not the same claim, and conflating them is what produced the original error.**
@@ -88,7 +88,7 @@ APLC Stage 7 (Retire)
 
 ### Cross-references
 
-- AEnt-M Principle 1 (`agentic-enterprise-manifesto/manifesto.md:84`) — the substrate is enterprise infrastructure; the substrate readiness statement is the AEnt-M-side commitment.
+- AEnt-M Principle 1 (`agentic-enterprise-manifesto/manifesto.md`, "The domain graph is enterprise infrastructure, not an agent feature") — the substrate is enterprise infrastructure; the substrate readiness statement is the AEnt-M-side commitment.
 - `governance/governance-integration-note.md` — Tier 4 envelope feasibility evaluated here even if not yet authorised.
 - `/integration/loop-readiness-for-agent-opportunities.md` — the conception is itself the result of an upstream demand-governance decision; if originated from an agent-surfaced opportunity, the opportunity record's `record_id` is the trigger reference.
 
@@ -126,7 +126,7 @@ APLC Stage 7 (Retire)
 
 - AEnt-M Principle 5 (retrieval/reasoning/action governance) — the three schemas are the operational artefacts.
 - AEnt-M Principle 11 — the response classes wired into the escalation design.
-- `governance/composition-rule.md` (planned) — the action-permission rule (action permitted = MIN of AEM tier × IGM epistemic tier × AEnt-M consequence class) is operationalised in the action-governance schema.
+- `governance/composition-rule.md` — the action-permission rule (action permitted = MIN of AEM tier × IGM epistemic tier × AEnt-M consequence class) is operationalised in the action-governance schema.
 
 ---
 
@@ -155,7 +155,7 @@ APLC Stage 7 (Retire)
 
 The bundle, per the unified schema, contains all of:
 
-- AEM evidence-bundle components (`manifesto-done.md`).
+- AEM evidence-bundle components (`manifesto/manifesto-done.md`).
 - IGM provenance + epistemic-tier record per claim cited (per IGM P11).
 - AEnt-M traceability chain (regulatory source → claim → contradiction → human approval → composite-state).
 - APLC behavioral baseline + composite state manifest + red-team report + EU AI Act-equivalent documentation adopted by policy (Art. 13/14 pattern; **no Art. 27 FRIA — not high-risk**, see §1 and Stage 4).
@@ -221,7 +221,7 @@ The bundle, per the unified schema, contains all of:
 ### Cross-references
 
 - `governance/governance-integration-note.md` — the Tier-4-envelope-with-mixed-relocation pattern is exactly the operational shape of this release.
-- `governance/foundation-model-third-party-register.md` — DORA Pillar 4 register entry for any model providers in scope.
+- `regulatory/foundation-model-third-party-register.md` — DORA Pillar 4 register entry for any model providers in scope.
 - `governance/authority-accountability-matrix.md` (DRAFT) — names every authority involved.
 
 ---
@@ -349,7 +349,7 @@ A failure to produce any of the named artefacts is a failure of the integration 
 
 ## 10. Cross-references
 
-- `manifesto.md` (AEM) — the engineering loop and DoD.
+- `manifesto/manifesto.md` (AEM) — the engineering loop and DoD.
 - `intelligence-governance-manifesto/manifesto.md` + `manifesto-principles.md` — substrate; lifecycle; sixteen principles.
 - `agentic-enterprise-manifesto/manifesto.md` + `companion-guide.md` — enterprise coordination; consequence classes; response classes; relocation stages.
 - `asdlc/asdlc.md` + `asdlc/release-governance.md` — four-layer model; release gate.

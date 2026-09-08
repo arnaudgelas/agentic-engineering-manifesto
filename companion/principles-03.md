@@ -45,8 +45,8 @@ architecturally equivalent to treating retrieval as untrusted input (above).
 The infrastructure must enforce dependency allow-lists, and evidence bundles
 must capture dependency provenance.
 
-See [companion-frameworks.md](companion-frameworks.md#cross-domain-regulatory-insights)
-for the cross-domain analysis and [domains/](domains/README.md) for
+See [companion-frameworks.md](frameworks.md#cross-domain-regulatory-insights)
+for the cross-domain analysis and [domains/](../domains/README.md) for
 domain-specific classification requirements.
 
 ### On "harness engineering" and "graph engineering"

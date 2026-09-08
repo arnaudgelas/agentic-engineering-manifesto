@@ -51,7 +51,8 @@ These thresholds define the boundary between "within appetite" (operate as desig
 | | MTTR for High/Critical incidents | ≤ 24 hours | 24–72 hours | > 72 hours |
 | **Operational — financial exposure** | € exposure per AI-attributable incident (single-event) | ≤ €100k | €100k – €500k | > €500k |
 | | Annual aggregate AI-attributable losses | ≤ €1m | €1m – €3m | > €3m |
-| **Regulatory — reporting clocks** | EU AI Act Article 73 2-day clock missed (per year) | 0 | n/a (immediate escalation on miss) | ≥ 1 |
+| **Regulatory — reporting clocks** | EU AI Act Article 73(3) 2-day clock missed (widespread infringement / critical-infrastructure disruption) (per year) | 0 | n/a (immediate escalation on miss) | ≥ 1 |
+| | EU AI Act Article 73(4) 10-day clock missed (death of a person) | 0 | n/a (immediate escalation) | ≥ 1 |
 | | EU AI Act Article 73 15-day clock missed | 0 | n/a (immediate escalation) | ≥ 1 |
 | | DORA Pillar 2 4h notification clock missed | 0 | n/a (immediate escalation) | ≥ 1 |
 | | GDPR Art 33 72h breach-notification clock missed | 0 | n/a (immediate escalation) | ≥ 1 |
@@ -103,7 +104,7 @@ These thresholds define the boundary between "within appetite" (operate as desig
 - **Automated decisions producing legal or similarly significant effect on a natural person without an Article 22 / Article 86 pathway** documented in the system's AIA.
 - **AI-related public statements without evidence-bundle backing.** AI-washing pattern (DocGo SDNY 2025) is unacceptable; the General Counsel and CRO must signoff on material public statements concerning AI capability.
 - **Procurement of AI systems without ISO 42001 A.10 / supplier-register entry.** No exception.
-- **Failure to meet regulatory reporting clocks (EU AI Act Article 73 2-day / 15-day; DORA Pillar 2 4h / 72h / 1-month; GDPR Art 33 72h).** Immediate board escalation; remediation plan required at next board meeting.
+- **Failure to meet regulatory reporting clocks (EU AI Act Article 73 2-day / 10-day / 15-day; DORA Pillar 2 4h / 72h / 1-month; GDPR Art 33 72h).** Immediate board escalation; remediation plan required at next board meeting.
 - **Foundation-model concentration above 75% on Critical-class systems** without an active diversification programme.
 
 ### 4.3 Areas where the Board reserves judgment

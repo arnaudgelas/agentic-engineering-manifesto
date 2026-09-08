@@ -2,13 +2,13 @@
 
 *For organizations transitioning from a traditional V-model SDLC to agentic
 engineering. This is a V-model-specific variant of
-[adoption-path.md](adoption-path.md).*
+[adoption-path.md](path.md).*
 
-Read the [Manifesto](manifesto.md) for the core principles. Read the
-[Companion Guide](companion-guide.md) for implementation depth. Read the
-[Adoption Playbook](adoption-playbook.md) for organizational change management.
+Read the [Manifesto](../manifesto/manifesto.md) for the core principles. Read the
+[Companion Guide](../companion/guide.md) for implementation depth. Read the
+[Adoption Playbook](playbook.md) for organizational change management.
 
-For generic (non-V-model) adoption steps, see [adoption-path.md](adoption-path.md).
+For generic (non-V-model) adoption steps, see [adoption-path.md](path.md).
 
 ---
 

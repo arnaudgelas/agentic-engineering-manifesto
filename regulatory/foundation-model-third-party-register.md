@@ -18,16 +18,18 @@
 
 ### 1.1 Foundation-model providers are ICT third-party services under DORA
 
-DORA Art. 3(21) defines an "ICT third-party service provider" as an undertaking providing ICT services. Art. 3(20) defines "ICT services" broadly to include digital and data services, including those provided by cloud-computing services, **AI services**, and software services. **Foundation-model providers fit squarely.** Recitals 30 and 63 confirm the intent to capture cloud + AI providers.
+DORA **Art. 3(19)** defines an "ICT third-party service provider" as "an undertaking providing ICT services", and **Art. 3(21)** defines "ICT services" as "digital and data services provided through ICT systems to one or more internal or external users on an ongoing basis, including hardware as a service and hardware services which includes the provision of technical support via software or firmware updates by the hardware provider, excluding traditional analogue telephone services" — the adjacent **Art. 3(20)** is a third and different definition ("ICT intra-group service provider") and is not the services definition. **Foundation-model providers fit the Art. 3(21) definition on its own terms** — a hosted model is a digital and data service provided through ICT systems to external users on an ongoing basis — and not by being named in it. **Recital 63** — a recital, which is interpretive and not binding, unlike an Article — says the Regulation "should cover a wide range of ICT third-party service providers, including providers of cloud computing services, software, data analytics services and providers of data centre services", a list that names neither AI nor foundation models; the phrases *AI services* and *artificial intelligence* each occur **zero times in the whole of DORA**, so nothing in the instrument captures foundation-model providers by name and the conclusion above rests on the Art. 3(21) definition alone.
+
+*(Corrected 2026-09-06 against the Official Journal text of Regulation (EU) 2022/2554, sha256 prefix `25328c7e39c4`, with the Article 3 definitions (18) to (22) read in sequence and positive controls confirming the search resolves against that file. This paragraph was wrong three ways in one sentence: it gave **two definition numbers that were both wrong and swapped** for the provider and services definitions; it attributed the cloud/software list to **Article 3 — a binding article — when the list is Recital 63’s**, an interpretive one, and the recital’s actual list omits AI; and it added **AI services** to that list, a phrase the Regulation does not contain anywhere. It also cited Recital 30, which concerns the absence of Union-level rules and supervisory mandates on ICT-third-party concentration and does not bear on the scope of the provider definition. The previous wording is reproduced in `errata.md`.)*
 
 The financial entities in scope of DORA (Art. 2 — credit institutions, payment institutions, investment firms, insurers and intermediaries, AIFMs/UCITS, CCPs, CSDs, trading venues, crypto-asset service providers, and others) must therefore:
 
 - Maintain a **register of information on contractual arrangements with ICT third-party providers** (Art. 28(3)) — the foundation-model contract is in this register.
 - **Assess concentration risk** (Art. 29) before contracting and on an ongoing basis.
-- **Assess and document criticality** of ICT third-party services (Art. 28(2)) — including whether the service supports a critical or important function (CIF).
+- **Assess and document criticality** of ICT third-party services (Art. 28(4)(a), with the register distinguishing CIF-supporting arrangements under Art. 28(3)) — including whether the service supports a critical or important function (CIF).
 - **Manage sub-contracting risks** (Art. 29(2) + Delegated Regulation 2024/1773) — sub-processors, hyperscaler infrastructure, data labellers, fine-tuning providers.
 - **Plan and document exit strategies** (Art. 28(8)) — proportionate to criticality.
-- **Stress-test resilience** (Art. 24 + Art. 26(2) for TLPT on critical providers).
+- **Stress-test resilience** (Art. 24 testing programme; **Art. 26(3)** is the paragraph that requires the financial entity to secure an ICT third-party provider's participation in TLPT, with Art. 30(3)(d) the matching contractual obligation — Art. 26(2) is the coverage-and-live-production rule). *(Corrected 2026-09-06 at the hashed primary, sha256 prefix `25328c7e39c4`.)*
 
 ### 1.2 The four operational events DORA captures that AEnt-M P9 alone does not
 
@@ -139,7 +141,7 @@ Next review due:            <YYYY-MM-DD>
        composite-state change, requiring explicit re-acceptance of every dependent
        agent product.
 
-7. CRITICALITY ASSESSMENT (DORA Art. 28(2))
+7. CRITICALITY ASSESSMENT (DORA Art. 28(4)(a))
    7.1 Supports a Critical or Important Function (CIF)?  yes / no
    7.2 If yes, name CIFs supported:                       <bullets>
    7.3 Materiality of disruption:                         <quantified — revenue,
@@ -207,14 +209,14 @@ The register is held in the same artefact store as the unified evidence bundle. 
 
 ### 2.3 Update triggers
 
-The entry must be updated within **5 business days** of any of:
+The entry must be updated within **5 business days** of any of the following. **The 5-business-day period is this framework's own (`F2`)**: DORA Art. 28(3) requires the register of information to be maintained and updated and reported to the competent authority at least yearly, but fixes no update period.
 
 - AEnt-M Principle 9 detected composite-state change touching the entry's model.
 - Provider notification of sub-processor change.
 - Provider notification of model-version deprecation / new release.
 - Pricing change.
 - Certification update (gain or loss).
-- Security incident at provider (Art. 19 DORA major-incident class) or at sub-processor that touches deployer data.
+- Security incident at provider (a major ICT-related incident — classified against DORA **Art. 18(1)** and reportable under **Art. 19**) or at sub-processor that touches deployer data.
 - Litigation, regulatory action, or material adverse event involving the provider.
 - Any concentration-risk threshold crossed.
 
@@ -228,15 +230,20 @@ The update event is itself an entry in the unified evidence bundle's "operationa
 
 Art. 28 imposes the foundational obligations:
 
-- **Art. 28(1)** — sound management of ICT third-party risk.
-- **Art. 28(2)** — assess whether the ICT services support a CIF; document the assessment.
-- **Art. 28(3)** — maintain a register of information on all contractual arrangements with ICT third-party providers, in a format prescribed by ITS (Implementing Reg. 2024/2956); annual reporting to the competent authority for CIF-supporting arrangements.
-- **Art. 28(4)** — pre-contractual due diligence and risk assessment.
-- **Art. 28(5)** — contractual provisions (auditable list — see Art. 30).
-- **Art. 28(6)** — exit strategy proportionate to function criticality.
-- **Art. 28(7)** — board approval for contracts supporting CIFs.
+- **Art. 28(1)** — manage ICT third-party risk as an integral component of ICT risk within the ICT risk management framework, in accordance with the stated general principles (full responsibility retained by the financial entity; proportionality).
+- **Art. 28(2)** — adopt and regularly review a **strategy on ICT third-party risk**, including a policy on the use of ICT services supporting CIFs; and the **management body** must, on the basis of an assessment of the overall risk profile, "*regularly review the risks identified in respect to contractual arrangements on the use of ICT services supporting critical or important functions*".
+- **Art. 28(3)** — maintain a register of information on all contractual arrangements with ICT third-party providers, in a format prescribed by ITS (Implementing Reg. 2024/2956); the register must distinguish CIF-supporting arrangements from the rest; report at least yearly to the competent authority, and inform it in a timely manner of any planned CIF-supporting arrangement.
+- **Art. 28(4)** — before entering into an arrangement: assess whether it covers ICT services supporting a CIF (point (a)); assess supervisory conditions; identify and assess all relevant risks including concentration risk under Art. 29; undertake due diligence; identify conflicts of interest.
+- **Art. 28(5)** — contract only with providers complying with appropriate information security standards, and for CIF-supporting arrangements take due consideration of the most up-to-date and highest-quality standards before concluding. (The **mandatory contractual provisions** are **Art. 30**, not Art. 28(5).)
+- **Art. 28(6)** — pre-determine, on a risk-based approach, the frequency and areas of audits and inspections, and verify auditor competence where the arrangement entails high technical complexity.
+- **Art. 28(7)** — ensure contractual arrangements **may be terminated** in the four listed circumstances (provider breach; monitoring findings altering performance; evidenced ICT-risk-management weaknesses; loss of effective supervision).
+- **Art. 28(8)** — **exit strategies** for ICT services supporting CIFs: comprehensive, documented, tested and periodically reviewed, with transition plans and contingency measures.
+- **Art. 28(9)** — mandate to the ESAs, through the Joint Committee, to develop draft **implementing** technical standards establishing the standard templates for the register of information referred to in paragraph 3 (delivered as Implementing Reg. 2024/2956, cited in the 28(3) row above).
+- **Art. 28(10)** — mandate to the ESAs, through the Joint Committee, to develop draft **regulatory** technical standards further specifying the detailed content of the policy referred to in paragraph 2 for CIF-supporting arrangements.
 
-Each register entry per §2 above is therefore the **firm-internal expansion** of the Art. 28(3) register row for that arrangement, plus the exit plan (Art. 28(6)) and the criticality assessment (Art. 28(2)).
+**Correction (2026-09-05; read at the primary, Regulation (EU) 2022/2554, sha256 prefix `25328c7e39c4`).** Four rows of this list previously named the wrong paragraph: the CIF-support assessment was attributed to 28(2) (it is **28(4)(a)**), the mandatory contractual provisions to 28(5) (they are **Art. 30**), the exit strategy to 28(6) (it is **28(8)**, as §1 and the §2 register template of this document already said), and board approval of CIF-supporting contracts to 28(7) (**28(7) is termination**). Each wrong paragraph is a neighbour of the right one and reads plausibly on its own, which is why the list survived earlier review; all **ten** paragraphs of Art. 28 were read end to end at the primary to repair it, not just the paragraphs named. *(Count corrected 2026-09-05: this note said "nine". Art. 28 of Regulation (EU) 2022/2554 has ten numbered paragraphs — 28(9) is the ESA implementing-technical-standards mandate for the register template referred to in paragraph 3, and 28(10) the ESA regulatory-technical-standards mandate for the policy referred to in paragraph 2. Enumerated at the hashed primary, sha256 prefix `25328c7e39c4`.)*
+
+Each register entry per §2 above is therefore the **firm-internal expansion** of the Art. 28(3) register row for that arrangement, plus the exit plan (Art. 28(8)) and the criticality assessment (Art. 28(4)(a)).
 
 ### 3.2 Article 29 — Concentration risk
 
@@ -264,50 +271,58 @@ These are not deployer determinations in isolation — they are the deployer's v
 
 ### 3.4 Article 30 — Contractual provisions
 
-Art. 30 enumerates mandatory contractual provisions, materially elevated for CIF-supporting arrangements (Art. 30(3)). The register §5.5 (incident notification) and §5.6 (audit rights) are placeholders for the full clause set, which must include:
+Art. 30 enumerates mandatory contractual provisions, materially elevated for CIF-supporting arrangements (Art. 30(3)). Art. 30(1) requires the rights and obligations of both parties to be clearly allocated and **set out in writing in one written document** that includes the service level agreements. The register §5.5 (incident notification) and §5.6 (audit rights) are placeholders for the full clause set.
 
-(a) Description of services.
-(b) Locations of service / data.
-(c) Provisions for accessibility, availability, integrity, security, protection of personal data.
-(d) Service-level descriptions and quantitative/qualitative performance targets.
-(e) Cooperation rights for competent authorities and resolution authorities.
-(f) Termination rights and notice periods.
-(g) Sub-contracting conditions.
-(h) Exit-plan obligations.
-(i) Cooperation in TLPT and other resilience testing.
+**Art. 30(2) — the minimum for every ICT-services arrangement.** The letters below are DORA's own; they are not a summary numbering:
+
+(a) A clear and complete description of all functions and ICT services, indicating whether **subcontracting** of an ICT service supporting a CIF (or material parts of it) is permitted and, if so, on what conditions.
+(b) The locations — regions or countries — where the contracted or subcontracted functions and ICT services are provided and where data is processed, including the storage location, plus a duty on the provider to notify the entity in advance of any change of location.
+(c) Provisions on **availability, authenticity, integrity and confidentiality** in relation to the protection of data, including personal data.
+(d) Provisions ensuring **access, recovery and return** of personal and non-personal data in an easily accessible format on insolvency, resolution, discontinuation of business or termination.
+(e) Service level descriptions, including updates and revisions.
+(f) The provider's obligation to assist the entity **at no additional cost, or at a cost that is determined ex-ante**, when an ICT incident related to the service occurs.
+(g) The provider's obligation to cooperate fully with the entity's **competent authorities and resolution authorities**, including persons appointed by them.
+(h) Termination rights and related **minimum notice periods**, in accordance with the expectations of competent and resolution authorities.
+(i) Conditions for the provider's participation in the entity's ICT security awareness programmes and digital operational resilience training, per Art. 13(6).
+
+**Art. 30(3) — additional minimum for CIF-supporting arrangements**, on top of Art. 30(2): (a) **full** service level descriptions with precise quantitative and qualitative performance targets; (b) notice periods and reporting obligations, including notification of any development materially affecting the provider's ability to deliver; (c) requirements to implement and test business contingency plans and to maintain ICT security measures, tools and policies; (d) the obligation to **participate and fully cooperate in the financial entity’s TLPT** under Arts. 26 and 27; (e) the right to monitor performance on an ongoing basis — unrestricted access, inspection and audit rights (i), alternative assurance levels where other clients' rights are affected (ii), cooperation during on-site inspections (iii), and details of scope, procedure and frequency (iv); (f) **exit strategies**, in particular a mandatory adequate transition period during which the provider continues to deliver (i) and which allows migration to another provider or to an in-house solution (ii). A microenterprise may, by derogation from point (e), agree that its access, inspection and audit rights are delegated to an independent third party appointed by the provider. Art. 30(4) requires both parties to consider **standard contractual clauses developed by public authorities**; Art. 30(5) mandates the ESAs to develop RTS specifying the Art. 30(2)(a) subcontracting elements further. *(Corrected 2026-09-06: two bolded renderings were each a word off the primary — (2)(f) read "at a cost determined ex ante" for "at a cost that is determined ex-ante", and (3)(d) read "the entity’s TLPT" for "the financial entity’s TLPT". Bold is emphasis in this file, not a verbatim marker — quotation marks carry verbatim, and bold nests inside them at §4 — so neither asserted what it did not say; both were made exact anyway, because a one-word divergence survives review in a way an invented sentence does not. Re-derived at the hashed primary, sha256 prefix `25328c7e39c4`.)*
+
+*(Corrected 2026-09-06: this section previously carried a nine-item list lettered (a)–(i) that did **not** correspond to DORA's own letters — its (h) read "exit-plan obligations" where Art. 30(2)(h) is termination rights, its (i) read "cooperation in TLPT" where Art. 30(2)(i) is training, and it silently mixed Art. 30(2) with Art. 30(3) items. A reader following the letters would have cited the wrong point. Re-enumerated at the hashed primary, sha256 prefix `25328c7e39c4`.)*
 
 ### 3.5 Resilience testing — Article 24 + Article 26
 
-DORA Pillar 3 mandates a digital operational resilience testing programme (Art. 24). Threat-Led Penetration Testing (TLPT) under Art. 26 is required for significant financial entities and **ICT third-party providers may be required to participate**. CTPP-designated foundation-model providers will be included.
+DORA Pillar 3 mandates a digital operational resilience testing programme (Art. 24(1), for financial entities other than microenterprises). Threat-Led Penetration Testing under Art. 26(1) is carried out **at least every 3 years** by the entities identified in accordance with Art. 26(8), third subparagraph — not by "significant financial entities" as a class — and the competent authority may require that frequency to be reduced or increased. Where ICT third-party providers are in the scope of a TLPT, **Art. 26(3)** requires the financial entity to take the measures and safeguards needed to ensure their participation while retaining full responsibility for compliance; **Art. 26(4)** allows a pooled TLPT where direct participation would adversely affect the provider's other customers. CTPP-designated foundation-model providers will be included. *(Corrected 2026-09-06: the scope of Art. 26(1) and the paragraph carrying third-party participation were both restated at the hashed primary, sha256 prefix `25328c7e39c4`.)*
 
 For non-CTPP foundation-model providers, the deployer's TLPT scope should include the foundation-model integration boundary — prompt injection, model-output validation, abuse of model capabilities — even if the provider itself cannot be tested. AI red-teaming protocols (cross-ref AEM Principle 8 and the contradiction-injection attack class added under Wave 1 W1.3 / Wave 2 W2.23) feed into the resilience test evidence.
 
 ---
 
-## 4. DORA Pillar 2 incident reporting (Article 19) — alignment with EU AI Act Art. 73
+## 4. DORA Pillar 2 incident reporting (Art. 19 duty, Art. 20 RTS clocks) — alignment with EU AI Act Art. 73
 
-### 4.1 Incident-reporting timers (Art. 19 + Commission Delegated/Implementing Regs.)
+### 4.1 Incident-reporting timers — Article 19 sets none of them
 
-DORA major-ICT-incident reporting timers:
+**Where the clocks are not.** Art. 19(1) imposes the duty to report a major ICT-related incident to the relevant competent authority, and Art. 19(4) requires an initial notification, an intermediate report and a final report — but expressly *"within the time limits **to be laid down in accordance with Article 20, first paragraph, point (a), point (ii)**"*. Art. 20, first paragraph, point (a)(ii) directs the ESAs, through the Joint Committee, to *"determine the time limits for the initial notification and for each report referred to in Article 19(4)"* by regulatory technical standards. **The Regulation itself fixes no hour and no day.** Read at the hashed EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA), sha256 prefix `25328c7e39c4`, normalised: `4 hours` **0**, `four hours` **0**, `24 hours` **0**, `72 hours` **0**, `1 month` **0**; `one month` occurs **once** and is the **Art. 31(5)** CTPP oversight start date, not a reporting clock — against `major ict related incident` **44**, `initial notification` **9**, `intermediate report` **1**, `final report` **1** as positive controls, and a nonsense needle **0**.
 
-| Report | Deadline from classification as major | Detail |
-|---|---|---|
-| **Initial notification** | within **4 hours** of classification, and not later than 24h after detection | Brief: nature, scope, classification |
-| **Intermediate report** | within **72 hours** of classification | Status, impact, remediation |
-| **Final report** | within **1 month** of incident closure | Full root-cause, remediation, lessons |
+The three figures below are **this framework's own operating targets**. They are marked `F2`: **no RTS text is on disk**, so they have not been read at a primary here, and **none of them may be attributed to Article 19**. Before relying on the table, open the RTS adopted under Art. 20, first paragraph, point (a)(ii), read the three periods **and the event each one runs from**, and record the version in the cell. *(Corrected 2026-09-06: this table previously stated the three figures as DORA Article 19 deadlines running from classification and from incident closure. Article 19 states no period, and the anchor events are RTS-level, not DORA-level. See `errata.md`.)*
 
-Major-incident classification criteria are set in RTS — clients affected, data losses, duration, geographical spread, economic impact, reputational impact, criticality of services affected.
+| Report | Firm operating target — **not an Article 19 deadline** (`F2`) | Where the binding period actually lives | Detail |
+|---|---|---|---|
+| **Initial notification** | within **4 hours** of classification as major, and not later than **24h** after detection — firm target, not read at a primary | RTS under Art. 20, first paragraph, point (a)(ii) — record the version relied on | Brief: nature, scope, classification |
+| **Intermediate report** | within **72 hours** — firm target, not read at a primary; **the anchor event (classification, or the initial notification) is fixed by the RTS, not by this table** | RTS under Art. 20, first paragraph, point (a)(ii) — record the version relied on | Status, impact, remediation |
+| **Final report** | within **1 month** — firm target, not read at a primary; **the anchor event (incident closure, or the intermediate report) is fixed by the RTS, not by this table** | RTS under Art. 20, first paragraph, point (a)(ii) — record the version relied on | Full root-cause, remediation, lessons |
+
+Major-incident **classification criteria are in the Regulation itself, at Art. 18(1)**: the number and/or relevance of clients or financial counterparts affected and whether the incident caused reputational impact (a); duration, including service downtime (b); geographical spread, particularly if more than two Member States are affected (c); data losses in relation to availability, authenticity, integrity or confidentiality (d); criticality of the services affected (e); economic impact in absolute and relative terms (f). What the RTS adds, under **Art. 18(3)(a)**, is the further specification of those criteria **including the materiality thresholds** for determining that an incident is major. *(Corrected 2026-09-06: this paragraph said the criteria "are set in RTS". Art. 18(1) sets them; the RTS sets the thresholds. Read at the hashed primary, sha256 prefix `25328c7e39c4`.)*
 
 ### 4.2 Cross-reference with EU AI Act Art. 73
 
 The two reporting regimes overlap but are **independent**:
 
-| Trigger | DORA Art. 19 | EU AI Act Art. 73 |
+| Trigger | DORA Art. 19 (reporting duty; **clocks are RTS-level, not Art. 19** — §4.1) | EU AI Act Art. 73 |
 |---|---|---|
 | A foundation-model failure causes service disruption to bank clients | **Yes** if classified major | **Yes** if the system is high-risk and the malfunction caused (a)–(d) under Art. 3(49) |
-| A foundation-model output causes discriminatory credit decision | **No** (not an ICT incident as defined) | **Yes** if classified Art. 73(2) trigger (FR malfunction → 10 days; or other serious → 15 days) |
+| A foundation-model output causes discriminatory credit decision | **No** (not an ICT incident as defined) | **Yes** if it meets the Art. 3(49)(c) serious-incident definition — infringement of obligations under Union law intended to protect fundamental rights. Clock: **15 days** (Art. 73(2)). *(Corrected 2026-09-06: this cell previously read "classified Art. 73(2) trigger (FR malfunction → 10 days; or other serious → 15 days)". Art. 73(2) sets no trigger classes and carries no lettered sub-items; the **10-day** clock is Art. 73(4) and belongs to **death of a person** only. See `errata.md` and `regulatory/eu-ai-act-addendum.md` §6.1.)* |
 | A foundation-model provider outage with no client harm | **Possibly** depending on materiality | **No** unless the malfunction causes Art. 3(49) harm |
-| A widespread fraud caused by manipulated agent | **Yes** if disruptive at threshold | **Yes** if widespread infringement → 2 days |
+| A widespread fraud caused by manipulated agent | **Yes** if disruptive at threshold (classification criteria Art. 18(1); no DORA clock — see §4.1) | **Yes** if widespread infringement → **two days** under **Art. 73(3)** (which covers widespread infringement and Art. 3(49)(b) serious incidents only) |
 
 **Operational rule (normative):** the on-call Accountable Authority for an Annex-III financial-services agent product must run **both classifications in parallel** during incident triage. The triage tree at `regulatory/incident-triage-tree.md` (planned, Wave 2) implements this.
 
@@ -372,7 +387,7 @@ TLPT findings affecting the foundation-model boundary feed directly into the reg
 
 ## 6. Worked example — a bank using OpenAI GPT-4o + Anthropic Claude Opus 4.7 + a hosted local model
 
-This worked example illustrates the register, CTPP analysis, exit plan, and concentration-risk treatment for a hypothetical European universal bank operating four agent products in production: (a) settlement-instruction reconciliation (Class A), (b) cross-border CSDR penalty assessment (Class B), (c) consumer-credit pre-screening (Class C — high-risk under EU AI Act Annex III point 5(b)), (d) internal employee Q&A (Class D — non-high-risk).
+This worked example illustrates the register, CTPP analysis, exit plan, and concentration-risk treatment for a hypothetical European universal bank operating four agent products in production: (a) settlement-instruction reconciliation (Class A), (b) cross-border CSDR penalty assessment (Class B — **not** high-risk under the EU AI Act; see the classification note in §6.3), (c) consumer-credit pre-screening (Class C — high-risk under EU AI Act Annex III point 5(b)), (d) internal employee Q&A (Class D — non-high-risk).
 
 The bank's foundation-model portfolio:
 
@@ -480,9 +495,19 @@ Phase B (T+5 to T+30 d) — Re-routing of non-critical:
 - Class A (settlement reconciliation) shifted from primary OpenAI to primary Anthropic with Mistral fallback; full evaluation portfolio re-run; AEnt-M relocation drops one stage during validation.
 
 Phase C (T+30 to T+90 d) — Re-routing of critical:
-- Class B (CSDR penalty) and Class C (credit pre-screening) require FRIA refresh (these are Annex III high-risk); evaluation portfolio re-run; Art. 13 instructions re-issued; composite-state changes accepted explicitly.
+- Class C (credit pre-screening) requires FRIA refresh — it is EU AI Act Annex III point 5(b) high-risk. **Class B (CSDR penalty) is not an EU AI Act Annex III system and no FRIA is owed for it** (see the classification note immediately below); its evaluation portfolio is re-run, deployer-facing instructions re-issued, and composite-state changes accepted explicitly — **by firm policy**, not by AI Act obligation.
 - Tier-4 envelopes for these classes are temporarily withdrawn; agents return to Tier 3 synchronous gating during validation.
 - Re-entry to Tier 4 only after AEM P8 evaluations pass and AEnt-M control-equivalence evidence accumulates.
+
+**Classification note (corrected 2026-09-05; verified against Regulation (EU) 2024/1689).** Earlier revisions of this Phase C step classified **Class B (CSDR penalty)** as EU AI Act Annex III high-risk alongside Class C. That was wrong, and the FRIA refresh scoped from it was over-scoped.
+
+- **EU AI Act Annex III is exhaustive** and contains no post-trade financial market infrastructure. The words *settlement*, *post-trade* and *securities* occur **zero times** anywhere in the Regulation.
+- The closest point, **EU AI Act Annex III 5(b)**, reaches AI systems *"intended to be used to evaluate the creditworthiness of natural persons or establish their credit score, with the exception of AI systems used for the purpose of detecting financial fraud"* — not wholesale settlement-fail penalty calculation between institutions.
+- **Class C (consumer-credit pre-screening) is unaffected**: it is squarely 5(b), and Art. 27 (FRIA) reaches it and not Class B.
+- **How this was found, and why it is recorded here.** The identical correction was made to the identical worked scenario in [`../integration/igm-aplc-integration-test.md`](../integration/igm-aplc-integration-test.md) on **2026-09-02** — and landed there and not here, so this file carried the withdrawn classification for three further days. A withdrawal pass scoped to the file where the error was noticed leaves the same claim standing wherever else the corpus asserts it; nothing in a per-file review or a diff shows the surviving twin. Only an enumeration of every site classifying this scenario found it.
+- **High consequence is a fact about the deployment; high-risk is a legal classification.** Class B remains High consequence and stays in its Monitored-relocation envelope on grounds that do not depend on the AI Act: CSDR Art. 7, DORA, and the bank's own model-risk and operational-risk frameworks.
+
+Primary consulted: the Official Journal HTML snapshot of Regulation (EU) 2024/1689 (sha256 prefix `a0f437e89667`).
 
 Phase D (T+90 to T+180 d) — Provider relationship close:
 - Final billing reconciled.
@@ -497,7 +522,7 @@ Phase D (T+90 to T+180 d) — Provider relationship close:
 - **Industry-level:** documented in the cross-provider analysis. Acknowledged that diversification at the firm level cannot fully mitigate.
 - **Sub-processor:** distinct sub-processor stacks (Azure vs AWS vs bank-owned) reduce sub-processor concentration.
 
-The concentration-risk assessment is reviewed quarterly by TPRM and reported annually to the board (DORA Art. 5(2) governance).
+The concentration-risk assessment is reviewed **quarterly** by TPRM and reported **annually** to the board. **Both cadences are this framework's own (`F2`)** — DORA Art. 5(2) makes the management body define, approve, oversee and be responsible for the ICT risk management framework and, at Art. 5(2)(h), approve and periodically review the policy on ICT third-party arrangements, but it sets **no quarterly and no annual period**; the only annual duty in the neighbourhood is the Art. 28(3) report of the register of information to the competent authority at least yearly. *(Corrected 2026-09-06: the two cadences were attributed in-cell to Art. 5(2). Read at the hashed primary, sha256 prefix `25328c7e39c4`.)*
 
 ---
 
@@ -562,7 +587,12 @@ Owner: <TPRM officer + business sponsor + CISO delegate + AEnt-M Accountable
 [ ] G15. Contract review against DORA Art. 30 mandatory provisions
          Output: gap list; remediation plan or board waiver per §3.5.
 
-[ ] G16. Board approval for arrangements supporting CIFs (DORA Art. 28(7))
+[ ] G16. Management-body review of the risks in CIF-supporting arrangements
+         (DORA Art. 28(2)). DORA requires no board approval of an individual
+         arrangement — Art. 5(2)(h) requires the management body to approve and
+         periodically review the *policy* on ICT third-party arrangements, and
+         Art. 28(7) (previously cited here) is termination, not approval. The
+         per-arrangement board approval this gate calls for is firm policy.
          Output: board minute reference.
 
 Gate decision (record in register §14):

@@ -12,7 +12,7 @@
 
 ### 1.1 AEM execution trace
 
-Source: AEM P9 ([`manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime`](../manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime)) + AEM Definition of Done (`manifesto-done.md`).
+Source: AEM P9 ([`manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime`](../manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime)) + AEM Definition of Done (`manifesto/manifesto-done.md`).
 
 The AEM execution trace records:
 
@@ -193,7 +193,7 @@ The bundle's `aentm_components.composite_state_hash_at_action` and `composite_st
 
 If the model provider had auto-updated `model-XYZ` to `v3.2.2` before the action, the composite-state hash at action time would not match the manifest accepted for this action class, and AEnt-M P9's default-reject would have fired. The bundle confirms: at action time, composite state matched the accepted manifest.
 
-The regulator can now ask: *"Show me the foundation-model third-party register entry for model-XYZ."* The bundle's `cross_references.register_links.foundation_model_third_party_register_entry_id` returns the entry ID (per `governance/foundation-model-third-party-register.md`, which is W1.6 produced by another agent). The register answers: provider, sub-processors, exit plan, CTPP designation, last-update date, change-notification handling.
+The regulator can now ask: *"Show me the foundation-model third-party register entry for model-XYZ."* The bundle's `cross_references.register_links.foundation_model_third_party_register_entry_id` returns the entry ID (per `regulatory/foundation-model-third-party-register.md`, which is W1.6 produced by another agent). The register answers: provider, sub-processors, exit plan, CTPP designation, last-update date, change-notification handling.
 
 ### 3.6 Question 6 — "Could the agent have acted on stale information?"
 
@@ -249,7 +249,7 @@ To produce integrated audit trails at the quality the worked walkthrough demonst
 - `governance/governance-integration-note.md` — the worked example referenced by the walkthrough.
 - `governance/authority-accountability-matrix.md` — who decides at each integration point.
 - `governance/composition-rule.md` — the gate evaluations recorded in the bundle.
-- `governance/foundation-model-third-party-register.md` (planned, W1.6) — DORA Pillar 4 register linked from `cross_references.register_links`.
+- `regulatory/foundation-model-third-party-register.md` (planned, W1.6) — DORA Pillar 4 register linked from `cross_references.register_links`.
 - [`manifesto/manifesto-principles-09.md`](../manifesto/manifesto-principles-09.md#9-observability-and-interoperability-cover-reasoning-not-just-uptime) (AEM P9) — Trail 1 source.
 - [`intelligence-governance-manifesto/manifesto-principles.md`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-2-provenance-is-non-negotiable) (IGM P2), [`#principle-11`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-11-traceability-is-the-response-to-acceleration) (P11) — Trail 2 source.
 - `agentic-enterprise-manifesto/manifesto.md:159` — AEnt-M Trail 3 worked example.

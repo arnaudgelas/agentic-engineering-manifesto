@@ -4,17 +4,17 @@
 principle in the Agentic Engineering Manifesto.*
 
 This guide provides the deeper rationale, advanced bars, and operational detail
-behind each principle. Read the [Manifesto](manifesto.md) first for the core
+behind each principle. Read the [Manifesto](../manifesto/manifesto.md) first for the core
 values and minimum bars. Come here when implementing.
 
-See the [Adoption Playbook](adoption-playbook.md) for organizational change
+See the [Adoption Playbook](../adoption/playbook.md) for organizational change
 management, role transitions, and pilot design.
 
 ---
 
 ## Contents
 
-### [Principle-by-Principle Guidance](companion-principles.md)
+### [Principle-by-Principle Guidance](principles.md)
 
 Extended guidance for each of the twelve principles: Outcomes, Specifications,
 Architecture, Swarm Topology, Autonomy, Knowledge & Memory, Context,
@@ -23,7 +23,7 @@ Containment, Economics, and Accountability. Includes the Accountability
 Paradox, retrieval SLOs, context budgeting, tier boundary design, and memory
 governance operational detail.
 
-### [Cross-Cutting Frameworks](companion-frameworks.md)
+### [Cross-Cutting Frameworks](frameworks.md)
 
 - **The Agentic Maturity Spectrum** — six phases from Guided Exploration to
   Adaptive Systems, with failure modes for each
@@ -32,7 +32,7 @@ governance operational detail.
 - **Operational Definitions** — blast radius, right-sized, evidence bundle
   with phase-calibrated examples
 
-### [Worked Patterns and Failure Patterns](companion-patterns.md)
+### [Worked Patterns and Failure Patterns](patterns.md)
 
 Six worked patterns (A-F) showing the manifesto applied to concrete
 scenarios: single-domain reliability, cross-domain coordination, memory
@@ -40,7 +40,7 @@ poisoning recovery, economics routing, runtime tier escalation, and a
 governed failure where governance didn't prevent the incident. Plus the
 Hallucination Loop and Operational Recovery Cycle failure patterns.
 
-### [Failure Modes and Skill Requirements](companion-reference.md)
+### [Failure Modes and Skill Requirements](reference.md)
 
 - **Failure Modes of This Manifesto** — over-governance, evidence theater,
   control theater, security theater, adoption theater, maturity inflation
@@ -48,7 +48,7 @@ Hallucination Loop and Operational Recovery Cycle failure patterns.
   Reorient, Split, Acquire) for each principle with adoption bottleneck
   identification
 
-### [Requirements Engineering Framework](companion-re-framework.md)
+### [Requirements Engineering Framework](re-framework.md)
 
 Reference framework for specifying agentic systems: the two-axes
 classification matrix (system type × artifact consumer), behavioral envelope

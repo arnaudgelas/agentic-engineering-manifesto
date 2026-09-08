@@ -3,8 +3,8 @@
 *How to adopt the Agentic Engineering Manifesto in your organization:
 incremental steps, role evolution, change management, and success metrics.*
 
-Read the [Manifesto](manifesto.md) for the core principles. Read the
-[Companion Guide](companion-guide.md) for implementation depth and worked
+Read the [Manifesto](../manifesto/manifesto.md) for the core principles. Read the
+[Companion Guide](../companion/guide.md) for implementation depth and worked
 patterns. Use this playbook to plan and drive the organizational change.
 
 ---
@@ -139,26 +139,26 @@ can support it.
 
 ## Contents
 
-### [Roles and the Human Side](adoption-roles.md)
+### [Roles and the Human Side](roles.md)
 
 How roles evolve (Developers, Tech Leads, QA Engineers, Operations Engineers)
 and the human dimension of the transition: naming the loss, the supervision
 paradox, the acceleration trap, sustainable pace, and protecting the junior
 pipeline.
 
-### [Adoption Path and Phase Transitions](adoption-path.md)
+### [Adoption Path and Phase Transitions](path.md)
 
 The six-step incremental adoption path (technical infrastructure for Phase 3+)
 and organizational change guidance for every phase transition from Phase 1→2
 through Phase 5→6.
 
-### [Resistance, Politics, and Your First Pilot](adoption-pilot.md)
+### [Resistance, Politics, and Your First Pilot](pilot.md)
 
 Navigating organizational friction (productivity dip, velocity metrics, cost
 conversation, incentive misalignment) and a concrete guide for running your
 first governed pilot.
 
-### [Success Metrics and Failure Modes](adoption-metrics.md)
+### [Success Metrics and Failure Modes](metrics.md)
 
 Metrics by phase transition, team health indicators, quarterly review cadence,
 and common failure modes of the organizational change program.

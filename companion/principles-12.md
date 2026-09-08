@@ -22,7 +22,7 @@ If your agents process thousands of actions per day, human review of every
 action is not just impractical — it is impossible. A domain owner who
 "approves" 200 changes per day is not governing; they are rubber-stamping.
 The manifesto's accountability model, applied literally at volume, collapses
-into control theater (see [Failure Modes](companion-reference.md#failure-modes-of-this-manifesto)).
+into control theater (see [Failure Modes](reference.md#failure-modes-of-this-manifesto)).
 
 This is not a minor gap. It is the central tension of the entire manifesto:
 the principles require human accountability, and the economics of agentic
@@ -91,9 +91,13 @@ like when the constraints, evaluations, and evidence infrastructure are mature
 enough to replace line-by-line review entirely.
 
 The manifesto does not prescribe Level 5 as a target. Most teams are not ready
-for it — and the perception gap is real: a 2025 study reported that experienced
-developers using AI tools took 19% longer to complete tasks while believing AI
-made them 24% faster. Teams that believe they are operating at Level 4 or 5 are
+for it — and the perception gap is real: METR's 2025 randomized controlled
+trial ("Measuring the Impact of Early-2025 AI on Experienced Open-Source
+Developer Productivity") reported that experienced developers using AI tools
+took 19% longer to complete tasks while believing AI made them 24% faster.
+METR's own Appendix B cautions that its developers and repositories are not
+claimed to represent a majority or plurality of software development work.
+Teams that believe they are operating at Level 4 or 5 are
 often stuck at Level 2, confusing tool adoption with workflow transformation.
 The maturity spectrum (Phase 1-6) and the evidence requirements at each phase
 exist precisely to prevent this self-assessment inflation.
@@ -165,7 +169,7 @@ nominally accountable but operationally blind — is the most common governance
 failure at scale and cannot be detected from the outside. Detect it from the
 inside by monitoring the signals that distinguish meaningful review from
 rubber-stamping. The
-[Rubber-stamping detection table](adoption-metrics.md#team-health-metrics-all-phases)
+[Rubber-stamping detection table](../adoption/metrics.md#team-health-metrics-all-phases)
 in the adoption metrics document provides a quantitative baseline: median review
 time, PR rejection rate, inline comment density, and rework rate within one
 week. These thresholds are operational heuristics, not empirically validated

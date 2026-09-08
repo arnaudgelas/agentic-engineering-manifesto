@@ -164,7 +164,7 @@ satisfies it. Mitigate with the evidence freshness rules in the Definition of
 Done.
 - **Automated rubber-stamping** — human review rate collapses under volume;
   reviewers approve without meaningful inspection. Detectable via review-time
-distribution metrics as defined in adoption-metrics.md; requires the response
+distribution metrics as defined in [adoption/metrics.md](../adoption/metrics.md); requires the response
 defined in Principle 12: raise automation barriers, lower autonomy tiers until
 oversight signal quality is restored.
 - **Waiver accumulation** — waivers granted for specific circumstances persist

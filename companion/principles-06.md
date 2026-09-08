@@ -33,7 +33,7 @@ practice:
   to undo the damage. Implementation: versioned memory snapshots (daily or per
   significant learning event), with the ability to revert a domain's learned
   memory to a known-good state. Test rollback before you need it. See
-  [Pattern C (Memory Poisoning Recovery)](companion-patterns.md#pattern-c-memory-poisoning-recovery)
+  [Pattern C (Memory Poisoning Recovery)](patterns.md#pattern-c-memory-poisoning-recovery)
   in the Worked Patterns.
 
 - **Domain scoping**: A lesson learned in the payments domain should not
@@ -88,7 +88,7 @@ adaptation, who may write to persistent memory and under what conditions,
 provenance requirements, retention and expiry policy, rollback mechanisms, and
 which behavioral changes trigger a revalidation cycle — is the **Adaptation
 Envelope (Layer 4)** of the behavioral envelope framework. See
-[companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)](companion-re-framework.md#4-the-behavioral-envelope)
+[companion-re-framework.md, Section 4 (Behavioral Envelope, Layer 4)](re-framework.md#4-the-behavioral-envelope)
 for the complete specification. Principle 6 names the governance properties;
 Layer 4 specifies what to actually write.
 
@@ -145,7 +145,7 @@ volume:**
 production domain, define one known-good query with an expected result. Run it
 on every retrieval cycle. If retrieved results deviate from expected, isolate
 the shard immediately and alert. This catches poisoning before agents act on
-bad context. Pattern C in [companion-patterns.md](companion-patterns.md) shows
+bad context. Pattern C in [companion-patterns.md](patterns.md) shows
 this as a recovery step — it should be a permanent fixture, not a post-incident
 addition.
 
@@ -219,9 +219,9 @@ The standard memory entry schema fields (`provenance`, `expires_at`,
 trail complete.
 
 See the domain documents for domain-specific memory classification
-requirements: [financial-services.md](domains/financial-services.md#data-residency-and-classification) ·
-[pharma.md](domains/pharma.md#7-data-integrity-for-agent-systems) ·
-[medical-devices.md](domains/medical-devices.md#tool-configuration-notes) ·
-[aviation.md](domains/aviation.md#export-control-itarear)
+requirements: [financial-services.md](../domains/financial-services.md#data-residency-and-classification) ·
+[pharma.md](../domains/pharma.md#7-data-integrity-for-agent-systems) ·
+[medical-devices.md](../domains/medical-devices.md#tool-configuration-notes) ·
+[aviation.md](../domains/aviation.md#export-control-itarear)
 
 ---

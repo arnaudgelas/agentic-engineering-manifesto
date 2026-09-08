@@ -1,6 +1,6 @@
 # Defense / Government Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) principles to
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) principles to
 defense and government regulatory frameworks.*
 
 > **Disclaimer** — This document maps concepts from the Agentic Engineering
@@ -20,11 +20,11 @@ defense and government regulatory frameworks.*
 > before making infrastructure decisions.  **Last reviewed: April 2026.**
 > Proposed changes not yet enacted are flagged as such.
 
-See [companion-frameworks.md](../companion-frameworks.md) for boundary
+See [companion-frameworks.md](../companion/frameworks.md) for boundary
 conditions on regulated-industry adoption.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 This document maps those definitions to defense and government regulatory
 requirements; it does not redefine them.
 
@@ -57,8 +57,11 @@ be used at all, on what infrastructure, and with what controls.
 **The hard rule:** No classified information may enter any commercial AI
 system, regardless of the system's other security controls. This is not a risk
 decision — it is a legal obligation under the National Industrial Security
-Program Operating Manual (NISPOM, 32 CFR Part 2004) and applicable security
-classification guides.
+Program Operating Manual (NISPOM, 32 CFR Part 117) and applicable security
+classification guides. (32 CFR Part 2004 is the ISOO National Industrial
+Security Program directive, whose § 2004.20(a)(3) requires the Executive Agent
+to issue and maintain the NISPOM; the NISPOM itself is codified at 32 CFR
+Part 117.)
 
 ---
 
@@ -310,4 +313,4 @@ fine-tuning without explicit legal and security review.
 
 ## ASDLC Regulatory Guidance
 
-For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see [ASDLC Defense/Government Domain Guidance](../asdlc/domains/defense-government.md).
+For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see [ASDLC Defense/Government Domain Guidance](../../asdlc/domains/defense-government.md).

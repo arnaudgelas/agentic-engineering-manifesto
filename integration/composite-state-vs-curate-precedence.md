@@ -189,7 +189,7 @@ The current paragraph "The enterprise must detect, evaluate, and explicitly acce
 
 The minimum bar of IGM P5 ([`intelligence-governance-manifesto/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay)) — "Every claim has an expected validity window. Claims past their window trigger review alerts. Staleness metrics are tracked per domain." — is augmented:
 
-> Append to the minimum-bar paragraph: "Curate events on claims that affect any agent product's composite state follow the class-based precedence in [`/integration/composite-state-vs-curate-precedence.md`](../../integration/composite-state-vs-curate-precedence.md), which specifies the AEnt-M P9 acceptance pathway per class (routine pre-accepted; consequential 4-hour SLO; emergency bypass with 24h post-hoc review). The Revision authority is responsible for class assignment at decision time."
+> Append to the minimum-bar paragraph: "Curate events on claims that affect any agent product's composite state follow the class-based precedence in [`/integration/composite-state-vs-curate-precedence.md`](composite-state-vs-curate-precedence.md), which specifies the AEnt-M P9 acceptance pathway per class (routine pre-accepted; consequential 4-hour SLO; emergency bypass with 24h post-hoc review). The Revision authority is responsible for class assignment at decision time."
 
 ---
 

@@ -281,8 +281,8 @@ Applied across IGM `companion-guide.md` and `implementation-guide.md` everywhere
 - `regulatory/concentration-risk-analysis.md` — cross-provider concentration view (separate from per-entry register concentration field).
 - `regulatory/foundation-model-register.schema.json` — machine-readable form of register schema.
 - Both artefacts marked **DRAFT — author/legal review needed**; require regulatory specialist + in-house counsel + DPO + CISO + Accountable Authority sign-off before operational reliance.
-- Pending Commission template for Art. 72 PMM (due Feb 2026): adopt on publication and re-stamp §5.2 of the addendum.
-- Pending AI Office template for Art. 27 FRIA notification: adopt on publication and re-stamp §4.3.
+- Pending Commission template for EU AI Act Art. 72 PMM (due Feb 2026): adopt on publication and re-stamp §5.2 of the addendum.
+- Pending AI Office template for EU AI Act Art. 27 FRIA notification: adopt on publication and re-stamp §4.3.
 - CTPP designations under DORA Art. 31 are pending for major foundation-model providers; quarterly re-check committed in the register schema.
 
 ---

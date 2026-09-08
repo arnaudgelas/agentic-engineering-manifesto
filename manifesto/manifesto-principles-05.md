@@ -82,7 +82,7 @@ blast radius.
 | Phase 5+ with validated governance infrastructure | Tier 4 (policy-envelope autonomous operation) | Machine-enforced envelope, passing control evaluations, active governance observability, and rubber-stamping detection all confirmed operational |
 
 In regulated industries, use-case-specific caps apply independently of phase.
-See [Companion Frameworks](companion-frameworks.md#hard-autonomy-caps-by-regulated-use-case)
+See [Companion Frameworks](../companion/frameworks.md#hard-autonomy-caps-by-regulated-use-case)
 for the regulated-industry cap table.
 
 **Phase maturity and task blast radius are independent checks.** Team phase

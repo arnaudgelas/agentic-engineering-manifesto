@@ -2,9 +2,9 @@
 
 *How this manifesto can fail, and the skills teams need to implement it.*
 
-Read the [Manifesto](manifesto.md) for the core values and minimum bars.
-See the [Companion Guide](companion-guide.md) for the full table of contents.
-See the [Adoption Playbook](adoption-playbook.md) for organizational change
+Read the [Manifesto](../manifesto/manifesto.md) for the core values and minimum bars.
+See the [Companion Guide](guide.md) for the full table of contents.
+See the [Adoption Playbook](../adoption/playbook.md) for organizational change
 management, role transitions, and pilot design.
 
 ---
@@ -14,7 +14,7 @@ management, role transitions, and pilot design.
 These are failure modes of the manifesto's technical implementation. For
 failure modes of the organizational change process (adoption without support,
 incentive mismatch, skipping phases), see the
-[Adoption Playbook](adoption-metrics.md#common-failure-modes-of-the-change-program).
+[Adoption Playbook](../adoption/metrics.md#common-failure-modes-of-the-change-program).
 
 Applied poorly, this manifesto can fail through:
 
@@ -53,7 +53,7 @@ Applied poorly, this manifesto can fail through:
   phase descriptions are aspirational enough to pattern-match to current
   practice. The tell: a team claims Phase 4 but cannot produce an evidence
   bundle for a recent change. The fix: use the phase-calibrated evidence
-  examples ([Operational Definitions](companion-frameworks.md#operational-definitions))
+  examples ([Operational Definitions](frameworks.md#operational-definitions))
   as a litmus test — the evidence you can actually produce determines your
   phase, not the practices you intend to adopt.
 
@@ -80,7 +80,7 @@ Applied poorly, this manifesto can fail through:
   frequency rises, time per change increases, and specification convergence
   slows — all while current test pass rates remain high. The fix: track
   evolution-weighted metrics (see
-  [EvoScore](companion-frameworks.md#operational-definitions) in Operational
+  [EvoScore](frameworks.md#operational-definitions) in Operational
   Definitions), monitor coupling and dependency trajectories across iterations,
   and include structural quality indicators in evaluation portfolios alongside
   behavioral regression tests. See the
@@ -101,7 +101,7 @@ measure cycle time, defect rate, and incident severity together.
 
 Not all principles require the same skills. This table helps teams identify
 capability gaps before they become adoption blockers. See the
-[Adoption Playbook](adoption-playbook.md) for guidance on building these
+[Adoption Playbook](../adoption/playbook.md) for guidance on building these
 capabilities.
 
 | Principle | Core Skill Required | Team Readiness | Notes |
@@ -130,7 +130,7 @@ capabilities.
 Principles marked "Acquire" are the adoption bottlenecks. Do not attempt
 these at full depth without investing in the skill. Start with "Ready" and
 "Reorient" principles (P1, P3, P5, P9, P12) and build toward the harder
-ones incrementally. The [Adoption Playbook](adoption-playbook.md) maps these
+ones incrementally. The [Adoption Playbook](../adoption/playbook.md) maps these
 skills to specific phase transitions.
 
 ---
@@ -296,13 +296,13 @@ provides neutral governance across these protocols.
 **Specification-driven development frameworks:** Multiple open-source frameworks
 enforce the specification-first workflow described in P2: specify before
 implementing, treat specs as code artifacts, and consume them at agent runtime.
-See [Sources](beyond-agile-sources.md) refs 43–47 for specific projects.
+See [Sources](../beyond-agile/sources.md) refs 43–47 for specific projects.
 
 **Memory and coordination infrastructure:** Git-native agent memory systems,
 autonomous agent runtimes with infrastructure-level policy enforcement, and
 continuous integration benchmarks for structural regression. See
-[Sources](beyond-agile-sources.md) refs 40–42 for specifics.
+[Sources](../beyond-agile/sources.md) refs 40–42 for specifics.
 
 The manifesto does not endorse specific tools. Its contribution is the
-governance model that applies across them. The [Sources](beyond-agile-sources.md)
+governance model that applies across them. The [Sources](../beyond-agile/sources.md)
 file carries the dated references; this guide carries the principles.

@@ -1,6 +1,6 @@
 # Medical Device Regulatory Alignment Mapping
 
-*Mapping the [Agentic Engineering Manifesto](../manifesto.md) to medical device
+*Mapping the [Agentic Engineering Manifesto](../manifesto/manifesto.md) to medical device
 regulatory frameworks.*
 
 > **Disclaimer** — This document maps concepts from the Agentic Engineering
@@ -16,12 +16,12 @@ regulatory frameworks.*
 > Act classifications in this document.  **Last reviewed: April 2026.**
 > Proposed changes not yet enacted are flagged as such.
 
-See also: [Companion Frameworks](../companion-frameworks.md) (boundary
-conditions, ALCOA+ mapping), [Agentic V-Model](../adoption-vmodel.md) (V-model
+See also: [Companion Frameworks](../companion/frameworks.md) (boundary
+conditions, ALCOA+ mapping), [Agentic V-Model](../adoption/vmodel.md) (V-model
 lifecycle transition for regulated industries).
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](../manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 This document maps those definitions to medical device regulatory requirements;
 it does not redefine them.
 
@@ -172,7 +172,7 @@ evidence bundle. This assessment identifies any new dependencies introduced,
 any training-data-derived patterns detected (where feasible), and confirms
 that independent verification was performed on the output.
 
-See [Companion Frameworks -- Boundary Conditions](../companion-frameworks.md)
+See [Companion Frameworks -- Boundary Conditions](../companion/frameworks.md)
 for SOUP treatment in the cross-cutting regulated-industry guidance.
 
 ---
@@ -258,7 +258,7 @@ Notes:
   component pursuant to point (a) is the AI system, or the AI system itself as
   a product, is required to undergo a third-party conformity assessment ...
   pursuant to the Union harmonisation legislation listed in Annex I."
-  MDR (Reg. (EU) 2017/745) is Annex I, Section A legislation, and Class IIa+
+  MDR (Reg. (EU) 2017/745) is EU AI Act Annex I, Section A legislation, and Class IIa+
   requires notified-body involvement, so **(b) is generally satisfied for
   Class IIa+ — but (a) is not automatic.**
   - **Standalone AI/ML medical device software** classified IIa or above is
@@ -278,7 +278,7 @@ Notes:
   document's own prose above, and it over-scoped: it would have pulled
   non-safety sub-components into the full Chapter III regime. Article text
   verified against the Official Journal consolidated text of Reg. (EU)
-  2024/1689; see `inputs/20260902-arnaud/AIAct_verification_record.md`.)*
+  2024/1689.)*
 - Notified bodies must assess both MDR and AI Act conformity. A single
   evidence bundle strategy that satisfies both regimes reduces audit burden.
   The manifesto's evidence model is designed for this consolidation.
@@ -315,7 +315,7 @@ Agents must NOT:
 ## ALCOA+ Compliance
 
 The manifesto's evidence model satisfies ALCOA+ data integrity requirements
-by construction. See [Companion Frameworks -- ALCOA+ Alignment](../companion-frameworks.md)
+by construction. See [Companion Frameworks -- ALCOA+ Alignment](../companion/frameworks.md)
 for the complete mapping table.
 
 For medical device applications, this means evidence bundles produced through

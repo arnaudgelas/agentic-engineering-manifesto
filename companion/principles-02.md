@@ -35,7 +35,7 @@ code artifacts, baked into workflows, and consumed by agents before
 implementation begins — whether through specify-plan-implement pipelines,
 state-machine-governed iteration, or composable skill-driven workflows. This
 validates P2's core claim at practitioner scale. See
-[Sources](beyond-agile-sources.md) for specific framework references.
+[Sources](../beyond-agile/sources.md) for specific framework references.
 
 ### Convergence Criteria
 
@@ -90,7 +90,7 @@ quarter.
 
 Traditional RE was designed for deterministic systems. Agentic and hybrid
 systems require an extended framework. The key extensions are covered in
-`companion-re-framework.md`. The three most important for specification work:
+`re-framework.md`. The three most important for specification work:
 
 **Two-axes classification.** Every requirements artifact sits on two axes:
 (1) system type — deterministic, agentic, or hybrid; and (2) artifact consumer
@@ -112,7 +112,7 @@ representations — governance prose, machine-readable encoding, evaluation
 criteria, compliance mapping — are derived projections. Independent authoring
 of separate documents is a divergence schedule.
 
-See `companion-re-framework.md` for the full framework: two-axes matrix, hard
+See `re-framework.md` for the full framework: two-axes matrix, hard
 requirements vs. probabilistic assurance targets, behavioral envelope structure,
 tiered lifecycle, per-requirement checklist, and academic references
 (arXiv:2602.22302, arXiv:2503.18666, NIST AI 600-1, ISO/IEC 5338).

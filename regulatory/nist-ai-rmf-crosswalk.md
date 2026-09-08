@@ -25,7 +25,7 @@
 | **Govern (GV)** — culture, accountability, oversight, policy | Strong (P6 four authorities; P11 traceability; P13 validation; P14 attack-surface controls) | Strong (P5 three governance layers; P7 governance relocation; P8 consequence-class accountability; P14 enterprise governance) | NIST GV.1.5 (legal & regulatory) — partial: needs explicit EU AI Act / DORA / GDPR mapping (covered by addenda). |
 | **Map (MP)** — context of use, impact, stakeholders | **Partial** — IGM frames context as claim scope (P1) and decay class (P5) but does not register impacted populations | **Partial** — AEnt-M consequence classes imply impact but no stakeholder register | **MISSING:** stakeholder / impacted-population register. New template required (see §3.1). |
 | **Measure (MS)** — testing, evaluation, metrics | **Partial** — IGM has corroboration (P3) and validation (P13) but no TEVV/red-team portfolio | **Partial** — AEnt-M decision-quality monitoring (P7) and metrics block but no adversarial testing | **MISSING:** TEVV portfolio, adversarial-testing register, red-team protocols. See §3.2. |
-| **Manage (MG)** — response, recovery, communication | Strong (P4 contradictions; P5 decay; P15 architectural enforcement; P16 containment) | Strong (P9 composite-state; P11 response classes; P12 lifecycles; P15 economics; P16 supplier governance) | Partial: incident-reporting workflow with regulator clocks → addressed in `regulatory/eu-ai-act-addendum.md` Article 73 section. |
+| **Manage (MG)** — response, recovery, communication | Strong (P4 contradictions; P5 decay; P15 architectural enforcement; P16 containment) | Strong (P9 composite-state; P11 response classes; P12 lifecycles; P15 economics; P16 supplier governance) | Partial: incident-reporting workflow with regulator clocks → addressed in `regulatory/eu-ai-act-addendum.md` EU AI Act Article 73 section. |
 
 ---
 
@@ -123,7 +123,7 @@ Coverage codes: **S** = Strong (principle directly addresses subcategory); **P**
 | MG.3.2 | Pre-trained models from third parties monitored | M | P (P9 composite-state) | Foundation-model third-party register. |
 | MG.4.1 | Post-deployment monitoring | S (P5/P10) | S (P9) | EU AI Act Article 72 PMM template. |
 | MG.4.2 | Mechanisms for change-tracking on monitoring metrics | S (P9 IGM Curate) | S (P9 AEnt-M composite-state) | None. |
-| MG.4.3 | Incident response & recovery plans | P (P16 containment) | P (P11 response) | **Adopt incident-reporting workflow** with EU AI Act Article 73 (2-day / 15-day) and DORA Pillar 2 (4h / 72h / 1-month) clocks. See `regulatory/eu-ai-act-addendum.md`. |
+| MG.4.3 | Incident response & recovery plans | P (P16 containment) | P (P11 response) | **Adopt incident-reporting workflow** with EU AI Act Article 73 (2-day Art. 73(3) / 10-day Art. 73(4) death / 15-day Art. 73(2)) and DORA Pillar 2 (4h / 72h / 1-month) clocks. See `regulatory/eu-ai-act-addendum.md`. |
 
 ---
 
@@ -147,7 +147,7 @@ A normative artefact required for every AI system within scope of the manifestos
 | `vulnerable_populations` | Groups requiring heightened consideration (NIST MP.4.1) | "Smaller buy-side participants with limited reconciliation capacity." |
 | `stakeholders_consulted` | Names / roles consulted during MAP | "ESMA liaison; CSD-industry working group; internal compliance committee." |
 | `feedback_channels` | How affected parties raise concerns (GV.5.1) | "Incident hotline; client-services case management; regulator submission portal." |
-| `rights_and_remedies` | Linked to GDPR Article 22, CoE Article 11, EU AI Act Article 86 | "GDPR Art 22 right to obtain human review; explanation request handled by accountable authority within 30 days." |
+| `rights_and_remedies` | Linked to GDPR Article 22, CoE Article 11, EU AI Act Article 86 | "GDPR Art 22 right to obtain human review; explanation request handled by accountable authority within one month of receipt, the period Art. 12(3) actually sets (not 30 days), extendable by two further months." |
 | `last_review_date` | ISO date | `2026-04-15` |
 | `next_review_date` | ISO date | `2026-07-15` |
 | `register_owner` | Named accountable role | "Workflow owner — settlement ops" |

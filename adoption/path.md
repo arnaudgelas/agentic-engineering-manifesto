@@ -3,32 +3,32 @@
 *The technical infrastructure for governed delivery and organizational change
 guidance for every phase transition.*
 
-Read the [Manifesto](manifesto.md) for the core principles.  See the [Adoption
-Playbook](adoption-playbook.md) for the full table of contents.  See the [Roles
-and the Human Side](adoption-roles.md) for how roles evolve during the
+Read the [Manifesto](../manifesto/manifesto.md) for the core principles.  See the [Adoption
+Playbook](playbook.md) for the full table of contents.  See the [Roles
+and the Human Side](roles.md) for how roles evolve during the
 transition.
 
 **Canonical sources.** Normative principle definitions (P1–P12) and autonomy
-tier definitions are in [manifesto-principles.md](manifesto-principles.md).
+tier definitions are in [manifesto-principles.md](../manifesto/manifesto-principles.md).
 Phase transition criteria and go/no-go thresholds in this document are
 *heuristics* — calibrate to local domain and baseline before applying.  See
-[glossary.md](glossary.md) for canonical term definitions.
+[glossary.md](../glossary.md) for canonical term definitions.
 
 > **For V-model organizations:** If your organization operates a traditional
 > V-model SDLC (common in life sciences, medtech, aerospace, automotive, and
-> regulated financial services), see [adoption-vmodel.md](adoption-vmodel.md)
+> regulated financial services), see [adoption-vmodel.md](vmodel.md)
 > for a V-model-specific variant of this adoption path that preserves your
 > existing verification structure while transitioning to agentic execution.
 
 > **ASDLC context:** The phases and transitions described in this document are
 > **Layer 2 maturity phases** — the maturity of the engineering execution loop,
-> as defined in the [Agentic Engineering Manifesto](manifesto.md). A team at
+> as defined in the [Agentic Engineering Manifesto](../manifesto/manifesto.md). A team at
 > Phase 5 of the inner loop has highly mature engineering execution. That does
 > not imply maturity in the demand layer (how well business needs are validated
 > before entering the loop), the release layer (how governed the path to
 > production is), or the operations layer (how well the team can maintain and
 > operate what has been delivered). Those layers have their own maturity
-> assessment, covered in the [ASDLC](asdlc.md).
+> assessment, covered in the [ASDLC](../../asdlc/asdlc.md).
 >
 > Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
 > delivery in at least one domain) before investing heavily in outer-layer
@@ -160,7 +160,7 @@ verification — it is contract-first development on a narrow scope.
 
 **Who leads:** Senior engineers with architecture responsibility. May require
 external expertise in formal methods — see the [Skill Requirements
-table](companion-reference.md#skill-requirements-by-principle) in the Companion
+table](../companion/reference.md#skill-requirements-by-principle) in the Companion
 Guide.
 
 **Timeline:** 4-8 weeks for initial pilot.
@@ -186,7 +186,7 @@ quarters. Total cost of correctness declining per outcome. Human oversight load
 ## Organizational Change by Phase Transition
 
 The manifesto defines six maturity phases. The [Companion
-Guide](companion-frameworks.md#the-agentic-maturity-spectrum) provides full
+Guide](../companion/frameworks.md#the-agentic-maturity-spectrum) provides full
 definitions and failure modes for each. Here is a summary for reference:
 
 - **Phase 1 — Guided Exploration.** Single prompts, no structure, no memory.
@@ -324,7 +324,7 @@ because it requires organizational change, not just tooling.
 - Create platform ownership for agent runtime, routing, and memory governance
 - Formalize security reviews for tools, connectors, and shared state
 - Invest in the "Rare" skills identified in the Companion Guide's [Skill
-  Requirements table](companion-reference.md#skill-requirements-by-principle):
+  Requirements table](../companion/reference.md#skill-requirements-by-principle):
 distributed systems design, memory governance, ML/retrieval engineering, chaos
 engineering
 

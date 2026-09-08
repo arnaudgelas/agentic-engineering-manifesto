@@ -3,7 +3,7 @@
 *Sources are classified by type: [P] press/trade, [B] blog/opinion,
 [I] industry/vendor, [A] academic, [S] standard, [R] internal reference.*
 
-See [Beyond Agile](beyond_agile.md) for the full argument.
+See [Beyond Agile](main.md) for the full argument.
 
 ---
 
@@ -144,3 +144,5 @@ and practitioner signal, not evidentiary grounding for technical claims.
 <a id="ref-59"></a>[59] J. Evans, B. Bratton, and B. Agüera y Arcas, "Agentic AI and the next intelligence explosion," *Science*, 2026. [A] https://www.science.org/doi/10.1126/science.aeg1895
 
 <a id="ref-60"></a>[60] H. Zhou et al., "Memento-Skills: Let Agents Design Agents," *arXiv:2603.18743*, Mar 2026. [A] https://arxiv.org/abs/2603.18743
+
+<a id="ref-61"></a>[61] G. Nagli, "Hacking Moltbook: The AI Social Network Any Human Can Control," *Wiz Blog*, Feb 2026. [I] https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys

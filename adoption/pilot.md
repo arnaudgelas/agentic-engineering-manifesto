@@ -2,16 +2,16 @@
 
 *Navigating organizational friction and running your first governed pilot.*
 
-Read the [Manifesto](manifesto.md) for the core principles.
-See the [Adoption Playbook](adoption-playbook.md) for the full table of contents.
-See the [Roles and the Human Side](adoption-roles.md) for the human dimension
+Read the [Manifesto](../manifesto/manifesto.md) for the core principles.
+See the [Adoption Playbook](playbook.md) for the full table of contents.
+See the [Roles and the Human Side](roles.md) for the human dimension
 of the transition.
 
 ---
 
 ## Navigating Resistance and Politics
 
-The [Human Side of the Transition](adoption-roles.md#the-human-side-of-the-transition)
+The [Human Side of the Transition](roles.md#the-human-side-of-the-transition)
 covers the emotional and cognitive challenges individuals face. This section
 covers the organizational and political friction points that leaders must
 navigate.
@@ -28,7 +28,7 @@ Budget for a 2-4 week productivity dip per domain. Measure the dip so you
 can show the recovery. Protect the team from "why is velocity down?" pressure
 by communicating the plan to leadership in advance. This is where the
 acceleration trap (described in
-[The Human Side](adoption-roles.md#the-acceleration-trap)) is most dangerous:
+[The Human Side](roles.md#the-acceleration-trap)) is most dangerous:
 the temptation to skip governance and reclaim velocity is strongest when the
 dip is visible to leadership.
 
@@ -53,7 +53,7 @@ infrastructure, evaluation pipelines. The investment must be justified before
 results are fully proven.
 
 **What to do:** Start with a narrow pilot (Step 1 in the
-[adoption path](adoption-path.md#incremental-adoption-path)) where costs are
+[adoption path](path.md#incremental-adoption-path)) where costs are
 containable and measurable. Track total cost of correctness from day one, so
 you can demonstrate economics improvement as the pilot matures. Frame the
 comparison against the true cost of the status quo: escaped defects, incident
@@ -78,7 +78,7 @@ measure than "PRs merged" but they measure what actually matters.
 This pilot is designed to take your team from Phase 3 (agents executing
 autonomously without governance) to Phase 4 (governed delivery with evidence
 bundles and autonomy tiers). It maps to Steps 1-3 of the
-[Incremental Adoption Path](adoption-path.md#incremental-adoption-path). Do
+[Incremental Adoption Path](path.md#incremental-adoption-path). Do
 not attempt this pilot until your team has worked through Phase 2→3: agents
 are executing whole tasks, your team has documented initial failure patterns,
 and engineers are writing specifications with acceptance criteria (even if

@@ -12,7 +12,7 @@
 
 The coherence review (`igm-aent-coherence-review.md` §3 B7, B9) found that:
 
-- AEM's evidence bundle (`manifesto-done.md`, [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work), "Evidence means") lists evaluation reports, trace IDs, diffs, deployment IDs, rollback plans, policy-check outputs, memory updates, control state record.
+- AEM's evidence bundle (`manifesto/manifesto-done.md`, [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work), "Evidence means") lists evaluation reports, trace IDs, diffs, deployment IDs, rollback plans, policy-check outputs, memory updates, control state record.
 - IGM provenance ([`intelligence-governance-manifesto/manifesto-principles.md#principle-2-provenance-is-non-negotiable`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-2-provenance-is-non-negotiable) for source type / acquisition mode / social challenge process; [`#principle-3-epistemic-tier-is-earned-not-assigned`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-3-epistemic-tier-is-earned-not-assigned) for epistemic tier; [`#principle-5-intelligence-decays-govern-the-decay`](https://github.com/witoldreichhart/intelligence-governance-manifesto/blob/main/manifesto-principles.md#principle-5-intelligence-decays-govern-the-decay) for decay window) lists source type, acquisition mode, social challenge process, epistemic tier, decay window — per claim.
 - AEnt-M traceability (`agentic-enterprise-manifesto/manifesto.md:159`) lists regulatory source → claim → contradiction → human approval → composite-state.
 
@@ -54,7 +54,7 @@ The bundle is required-by-tier (autonomy tier × consequence class). Section 5 b
 
 ### 3.2 `aem_components` — AEM Definition-of-Done
 
-Required components (per [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work) "Evidence means", `manifesto-done.md`, and `asdlc/release-governance.md`):
+Required components (per [`manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work`](../manifesto/manifesto-principles-01.md#1-outcomes-are-the-unit-of-work) "Evidence means", `manifesto/manifesto-done.md`, and `asdlc/release-governance.md`):
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -116,7 +116,7 @@ Required components (per AEnt-M P7, P8, P9, P11, P12; `agentic-enterprise-manife
 | `successor_bundle_id` | string | filled by future bundle | Bidirectional supersession traceability. |
 | `incident_links` | array | required if any related incident | Each entry: `{incident_id, incident_class (quality/behavioral/safety/persona/adversarial/regulatory-art-73/dora-pillar-2), severity, related_to_this_bundle_via}`. |
 | `waiver_links` | array | required if any related waiver | Each entry: `{waiver_id, condition_waived, waiver_owner, expiry, status}`. |
-| `register_links` | object | required for foundation-model components | `{foundation_model_third_party_register_entry_id, ctpp_designation (bool), exit_plan_link}` — per `governance/foundation-model-third-party-register.md`. |
+| `register_links` | object | required for foundation-model components | `{foundation_model_third_party_register_entry_id, ctpp_designation (bool), exit_plan_link}` — per `regulatory/foundation-model-third-party-register.md`. |
 
 ---
 
@@ -220,7 +220,7 @@ A bundle that fails schema validation fails ASDLC Release Gate Condition 1 (per 
 - `governance/composition-rule.md` — the MIN rule for permitted action.
 - `governance/integrated-audit-trail.md` — how the bundle's three components interleave for regulator examination.
 - `asdlc/release-governance.md` Condition 1 — the gate that enforces this bundle at release.
-- `manifesto-done.md` Evidence Freshness — the freshness rules for AEM components.
+- `manifesto/manifesto-done.md` Evidence Freshness — the freshness rules for AEM components.
 - `manifesto/manifesto-principles-03.md` — the harness identity and orchestration topology this bundle's `agentic_provenance_record` and `orchestration_topology_manifest` fields record.
 - `glossary.md` (repo root) — term-collision appendix.
 
