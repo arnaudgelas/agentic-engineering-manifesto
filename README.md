@@ -98,7 +98,7 @@ Each framework is independently useful. Together they form a complete governance
 11. **Optimize the economics of intelligence**
 12. **Accountability requires visibility**
 
-See full text in [manifesto-principles.md](manifesto-principles.md).
+See full text in [manifesto-principles.md](manifesto/manifesto-principles.md).
 
 ---
 
@@ -115,8 +115,8 @@ The loop is the system. The principles are how you keep it honest.
 
 | If you are | Start with |
 | --- | --- |
-| New to agentic engineering | [Beyond Agile](beyond-agile/main.md) → [The Manifesto](manifesto.md) → [Adoption Playbook](adoption/playbook.md) |
-| A practitioner implementing now | [Twelve Principles](manifesto-principles.md) → [Principle Guidance](companion/principles.md) → [Patterns](companion/patterns.md) → [Adoption Path](adoption/path.md) |
+| New to agentic engineering | [Beyond Agile](beyond-agile/main.md) → [The Manifesto](manifesto/manifesto.md) → [Adoption Playbook](adoption/playbook.md) |
+| A practitioner implementing now | [Twelve Principles](manifesto/manifesto-principles.md) → [Principle Guidance](companion/principles.md) → [Patterns](companion/patterns.md) → [Adoption Path](adoption/path.md) |
 | An engineering leader or change owner | [Beyond Agile Landscape](beyond-agile/landscape.md) → [Adoption Roles](adoption/roles.md) → [Metrics](adoption/metrics.md) |
 | In a regulated industry | [Domain Overview](domains/README.md) → your domain document |
 
@@ -138,11 +138,11 @@ The loop is the system. The principles are how you keep it honest.
 
 ### 2) The Manifesto (Normative Core)
 
-- [manifesto.md](manifesto.md): Core values, scope, Agentic Loop, and reading
+- [manifesto.md](manifesto/manifesto.md): Core values, scope, Agentic Loop, and reading
   guide.
-- [manifesto-principles.md](manifesto-principles.md): Twelve principles with
+- [manifesto-principles.md](manifesto/manifesto-principles.md): Twelve principles with
   minimum bars.
-- [manifesto-done.md](manifesto-done.md): Agentic Definition of Done (seven
+- [manifesto-done.md](manifesto/manifesto-done.md): Agentic Definition of Done (seven
   criteria plus evolvability) and Definition of Done for Hardening (vibe-to-prod
   path).
 - [glossary.md](glossary.md): Canonical definitions for all terms used across
