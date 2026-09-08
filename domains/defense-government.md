@@ -313,4 +313,4 @@ fine-tuning without explicit legal and security review.
 
 ## ASDLC Regulatory Guidance
 
-For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see [ASDLC Defense/Government Domain Guidance](../../asdlc/domains/defense-government.md).
+For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see [ASDLC Defense/Government Domain Guidance](https://github.com/arnaudgelas/asdlc/blob/main/domains/defense-government.md).

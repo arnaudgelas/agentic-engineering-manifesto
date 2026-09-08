@@ -28,7 +28,7 @@ Phase transition criteria and go/no-go thresholds in this document are
 > before entering the loop), the release layer (how governed the path to
 > production is), or the operations layer (how well the team can maintain and
 > operate what has been delivered). Those layers have their own maturity
-> assessment, covered in the [ASDLC](../../asdlc/asdlc.md).
+> assessment, covered in the [ASDLC](https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md).
 >
 > Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
 > delivery in at least one domain) before investing heavily in outer-layer

@@ -183,7 +183,7 @@ system layers.
 > For agent products — systems where the agent itself is the delivered product
 > rather than an instrument of software delivery — the behavioral envelope
 > model is extended to the product level in
-> [`agent-behavioral-specification.md`](../../aplc/agent/agent-behavioral-specification.md).
+> [`agent-behavioral-specification.md`](https://github.com/arnaudgelas/aplc/blob/main/agent/agent-behavioral-specification.md).
 > The business purpose, user model, and trust architecture from Stage 1
 > (Conception) are additional inputs that shape every section of the
 > product-level behavioral specification. The companion RE framework remains

@@ -4525,7 +4525,7 @@ a bad incident, a corrupt retrieval shard, or a flawed evaluation — you need
 to undo the damage. Implementation: versioned memory snapshots (daily or per
 significant learning event), with the ability to revert a domain&#39;s learned
 memory to a known-good state. Test rollback before you need it. See
-<a href="#pattern-c-memory-poisoning-recovery">Pattern C (Memory Poisoning Recovery)</a>
+<a href="#pattern-c--memory-poisoning-recovery">Pattern C (Memory Poisoning Recovery)</a>
 in the Worked Patterns.</p>
 </li>
 <li><p><strong>Domain scoping</strong>: A lesson learned in the payments domain should not
@@ -5881,7 +5881,7 @@ required quality and latency targets at acceptable total cost of correctness.</p
 phase and risk tier.</p>
 <p><strong>Total cost of correctness</strong>: <code>inference + verification + governance overhead + incident remediation + opportunity cost + context-switching cost</code>. Optimize this
 composite, not any single component. See
-<a href="#principle-11-economics-extended-guidance">Principle 11 guidance</a>.</p>
+<a href="#principle-11--economics-extended-guidance">Principle 11 guidance</a>.</p>
 <p><strong>Evolution-weighted correctness (EvoScore)</strong>: a metric that measures functional
 correctness on future modifications, not just current tests. Agents whose early
 decisions facilitate subsequent evolution score higher; agents that accumulate
@@ -6487,7 +6487,7 @@ specification structures for the engineering-level behavioral specification.
 For agent products — systems where the agent itself is the delivered product
 rather than an instrument of software delivery — the behavioral envelope
 model is extended to the product level in
-<a href="../aplc/agent/agent-behavioral-specification.html"><code>agent-behavioral-specification.md</code></a>.
+<a href="https://github.com/arnaudgelas/aplc/blob/main/agent/agent-behavioral-specification.md"><code>agent-behavioral-specification.md</code></a>.
 The business purpose, user model, and trust architecture from Stage 1
 (Conception) are additional inputs that shape every section of the
 product-level behavioral specification. The companion RE framework remains
@@ -8149,7 +8149,7 @@ layers. They monitor not just uptime but behavioral drift, cost anomalies, and
 evaluation regression. Incident response expands to include agent-specific
 failure patterns (hallucination loops, memory poisoning, tier violations).</p>
 <h3 id="demand-layer-roles">Demand-Layer Roles</h3><p>The process-level definition of these roles — what each role does in the
-demand-to-specification workflow — is in <a href="../asdlc/demand/value.html">Demand &amp;
+demand-to-specification workflow — is in <a href="https://github.com/arnaudgelas/asdlc/blob/main/demand/value.md">Demand &amp;
 Value</a>.  This section covers the organizational and
 team-evolution perspective: how these roles emerge, what skills they require,
 and how they develop through the ASDLC maturity phases.</p>
@@ -8178,7 +8178,7 @@ understands both the domain and the manifesto&#39;s specification requirements
 (machine-readable acceptance criteria, versioned constraints, blast-radius
 framing).</p>
 <p>For the authoritative process-level definition of these roles and their
-responsibilities in the demand layer workflow, see <a href="../asdlc/demand/value.html">Demand &amp;
+responsibilities in the demand layer workflow, see <a href="https://github.com/arnaudgelas/asdlc/blob/main/demand/value.md">Demand &amp;
 Value</a>.</p>
 <hr>
 <h2 id="talent-density-and-organizational-design">Talent Density and Organizational Design</h2><p>Role evolution tells you <em>what</em> people do differently. Talent density tells you
@@ -8387,7 +8387,7 @@ not imply maturity in the demand layer (how well business needs are validated
 before entering the loop), the release layer (how governed the path to
 production is), or the operations layer (how well the team can maintain and
 operate what has been delivered). Those layers have their own maturity
-assessment, covered in the <a href="../asdlc/asdlc.html">ASDLC</a>.</p>
+assessment, covered in the <a href="https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md">ASDLC</a>.</p>
 <p>Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
 delivery in at least one domain) before investing heavily in outer-layer
 governance. A team with no reliable inner loop cannot benefit from improved
@@ -10207,7 +10207,7 @@ conditions on regulated-industry adoption. See
 applicable to verification-heavy lifecycles.</p>
 <p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
 tier definitions are in <a href="manifesto-principles.html">manifesto-principles.md</a>.
-Autonomy tier assignment criteria are in <a href="#principle-5-autonomy-extended-guidance">companion-principles.md —
+Autonomy tier assignment criteria are in <a href="#principle-5--autonomy-extended-guidance">companion-principles.md —
 P5</a>.  This
 document maps those definitions to aviation certification requirements; it does
 not redefine them.</p>
@@ -10943,8 +10943,8 @@ lifecycle data under DO-178C Section 7? The conservative position is yes.</p>
 </li>
 </ol>
 <hr>
-<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see <a href="../asdlc/domains/aviation.html">ASDLC Aviation Domain Guidance</a>.</p>
-<p>For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see <a href="../aplc/domains/aviation.html">APLC Aviation Domain Guidance</a>.</p>
+<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For aviation-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/aviation.md">ASDLC Aviation Domain Guidance</a>.</p>
+<p>For agent product regulatory guidance (EU AI Act, EASA, FAA Part 21) applicable to aviation agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/aviation.md">APLC Aviation Domain Guidance</a>.</p>
 </div></section><section id="domains-medical" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> to medical device
 regulatory frameworks.</em></p>
 <blockquote>
@@ -12849,8 +12849,8 @@ track FDA, EMA, MHRA, and PIC/S publications for emerging positions.</p>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For pharma and life sciences-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (GAMP 5, 21 CFR Part 11, EU Annex 11, GxP validation), see <a href="../asdlc/domains/pharma.html">ASDLC Pharma Domain Guidance</a>.</p>
-<p>For agent product regulatory guidance applicable to pharmaceutical agent products governed by the APLC, see <a href="../aplc/domains/pharma.html">APLC Pharma Domain Guidance</a>.</p>
+<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For pharma and life sciences-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (GAMP 5, 21 CFR Part 11, EU Annex 11, GxP validation), see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/pharma.md">ASDLC Pharma Domain Guidance</a>.</p>
+<p>For agent product regulatory guidance applicable to pharmaceutical agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/pharma.md">APLC Pharma Domain Guidance</a>.</p>
 </div></section><section id="domains-financial" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> principles to
 financial services regulatory frameworks.</em></p>
 <blockquote>
@@ -13642,7 +13642,7 @@ conformity assessment and existing financial services supervisory frameworks
 compliance obligations may emerge.</li>
 </ul>
 <hr>
-<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 9(4)(e), EU AI Act Article 15, FCA PS21/3), see <a href="../asdlc/domains/financial-services.html">ASDLC Financial Services Domain Guidance</a>.</p>
+<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For financial services-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (SR 11-7, DORA Article 9(4)(e), EU AI Act Article 15, FCA PS21/3), see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/financial-services.md">ASDLC Financial Services Domain Guidance</a>.</p>
 <p><em>(Citation corrected 2026-09-05: this cross-reference read &quot;DORA Article 14&quot;
 until this date. Article 14 of Regulation (EU) 2022/2554 is</em> Communication
 <em>-- crisis-communication plans (¶1), communication policies for internal
@@ -13653,7 +13653,7 @@ Article 9(4)(e), which requires financial entities to implement documented
 policies, procedures and controls for ICT change management. Read at primary
 against the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
 (sha256 prefix <code>25328c7e39c4</code>). See <a href="#errata">errata.md</a>.)</em></p>
-<p>For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see <a href="../aplc/domains/financial-services.html">APLC Financial Services Domain Guidance</a>.</p>
+<p>For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/financial-services.md">APLC Financial Services Domain Guidance</a>.</p>
 </div></section><section id="domains-insurance" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> principles to
 insurance regulatory frameworks.</em></p>
 <blockquote>
@@ -13721,7 +13721,7 @@ model identification and versioning information the QRTs require.</p>
 minor is a governance decision that must be made at Stage 1 of the APLC for any
 change to an agent product in Solvency II model scope. The APLC&#39;s composite
 versioning model in
-<a href="../aplc/agent/agent-composite-versioning.html">aplc/agent-composite-versioning.md</a>
+<a href="https://github.com/arnaudgelas/aplc/blob/main/agent/agent-composite-versioning.md">aplc/agent-composite-versioning.md</a>
 provides the change audit trail that demonstrates how each change was
 classified and governed. A major model change deployed without supervisory
 approval is a Solvency II compliance breach; the APLC release gate for major
@@ -14090,8 +14090,8 @@ cases.</p>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see <a href="../asdlc/domains/insurance.html">ASDLC Insurance Domain Guidance</a>.</p>
-<p>For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see <a href="../aplc/domains/insurance.html">APLC Insurance Domain Guidance</a>.</p>
+<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/insurance.md">ASDLC Insurance Domain Guidance</a>.</p>
+<p>For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/insurance.md">APLC Insurance Domain Guidance</a>.</p>
 </div></section><section id="domains-automotive" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> principles to
 automotive functional safety and software process frameworks.</em></p>
 <blockquote>
@@ -14607,8 +14607,8 @@ automotive standards do not address this explicitly.</p>
 </li>
 </ol>
 <hr>
-<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see <a href="../asdlc/domains/automotive.html">ASDLC Automotive Domain Guidance</a>.</p>
-<p>For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see <a href="../aplc/domains/automotive.html">APLC Automotive Domain Guidance</a>.</p>
+<h2 id="asdlc-and-aplc-regulatory-guidance">ASDLC and APLC Regulatory Guidance</h2><p>For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/automotive.md">ASDLC Automotive Domain Guidance</a>.</p>
+<p>For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/automotive.md">APLC Automotive Domain Guidance</a>.</p>
 </div></section><section id="domains-defense" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> principles to
 defense and government regulatory frameworks.</em></p>
 <blockquote>
@@ -15127,7 +15127,7 @@ fine-tuning without explicit legal and security review.</p>
 </ol>
 <hr>
 <hr>
-<h2 id="asdlc-regulatory-guidance">ASDLC Regulatory Guidance</h2><p>For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see <a href="../asdlc/domains/defense-government.html">ASDLC Defense/Government Domain Guidance</a>.</p>
+<h2 id="asdlc-regulatory-guidance">ASDLC Regulatory Guidance</h2><p>For defense and government-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (CMMC, FedRAMP, NIST SP 800-53, ATO process), see <a href="https://github.com/arnaudgelas/asdlc/blob/main/domains/defense-government.md">ASDLC Defense/Government Domain Guidance</a>.</p>
 </div></section>
       <footer class="site-footer">
         <em>Exploration is a phase. Engineering is a discipline.</em>

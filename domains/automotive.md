@@ -285,6 +285,6 @@ automotive standards do not address this explicitly.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see [ASDLC Automotive Domain Guidance](../../asdlc/domains/automotive.md).
+For automotive-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (ISO 26262, ASPICE, UN Regulation 157, SUMS), see [ASDLC Automotive Domain Guidance](https://github.com/arnaudgelas/asdlc/blob/main/domains/automotive.md).
 
-For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see [APLC Automotive Domain Guidance](../../aplc/domains/automotive.md).
+For agent product regulatory guidance applicable to automotive agent products governed by the APLC, see [APLC Automotive Domain Guidance](https://github.com/arnaudgelas/aplc/blob/main/domains/automotive.md).

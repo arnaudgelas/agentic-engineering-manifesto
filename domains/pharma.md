@@ -519,6 +519,6 @@ Manifesto principles referenced throughout this document.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For pharma and life sciences-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (GAMP 5, 21 CFR Part 11, EU Annex 11, GxP validation), see [ASDLC Pharma Domain Guidance](../../asdlc/domains/pharma.md).
+For pharma and life sciences-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4 (GAMP 5, 21 CFR Part 11, EU Annex 11, GxP validation), see [ASDLC Pharma Domain Guidance](https://github.com/arnaudgelas/asdlc/blob/main/domains/pharma.md).
 
-For agent product regulatory guidance applicable to pharmaceutical agent products governed by the APLC, see [APLC Pharma Domain Guidance](../../aplc/domains/pharma.md).
+For agent product regulatory guidance applicable to pharmaceutical agent products governed by the APLC, see [APLC Pharma Domain Guidance](https://github.com/arnaudgelas/aplc/blob/main/domains/pharma.md).

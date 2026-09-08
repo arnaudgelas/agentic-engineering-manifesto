@@ -80,7 +80,7 @@ model identification and versioning information the QRTs require.
 minor is a governance decision that must be made at Stage 1 of the APLC for any
 change to an agent product in Solvency II model scope. The APLC's composite
 versioning model in
-[aplc/agent-composite-versioning.md](../../aplc/agent/agent-composite-versioning.md)
+[aplc/agent-composite-versioning.md](https://github.com/arnaudgelas/aplc/blob/main/agent/agent-composite-versioning.md)
 provides the change audit trail that demonstrates how each change was
 classified and governed. A major model change deployed without supervisory
 approval is a Solvency II compliance breach; the APLC release gate for major
@@ -285,6 +285,6 @@ cases.
 
 ## ASDLC and APLC Regulatory Guidance
 
-For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Insurance Domain Guidance](../../asdlc/domains/insurance.md).
+For insurance-specific regulatory requirements mapped to ASDLC Layers 1, 3, and 4, see [ASDLC Insurance Domain Guidance](https://github.com/arnaudgelas/asdlc/blob/main/domains/insurance.md).
 
-For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see [APLC Insurance Domain Guidance](../../aplc/domains/insurance.md).
+For agent product regulatory guidance applicable to insurance agent products governed by the APLC, see [APLC Insurance Domain Guidance](https://github.com/arnaudgelas/aplc/blob/main/domains/insurance.md).

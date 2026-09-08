@@ -11,7 +11,7 @@
 ### 1.1 Agent retirement (APLC Stage 7)
 
 > "Stage 7 is the governed decommission of the agent product. It includes user migration planning, decision record preservation, composite state manifest archive, and regulated decommission confirmation. For EU high-risk AI systems, technical documentation must be retained for ten years after market placement. Silent abandonment — switching off the agent without migration, retention, or regulatory notification — is a governance failure, not an operational convenience."
-> — `aplc/aplc.md:122–124`
+> — `aplc/aplc.md`, "Stage 7 — Retire" (anchor: "Stage 7 is the governed decommission of the agent product")
 
 Agent retirement removes a *consumer* from the substrate. It does not address what should happen to claims that were maintained primarily because that consumer needed them.
 
@@ -124,7 +124,7 @@ The retirement evidence bundle is retained per the longest applicable retention 
 ### Phase 1 — Trigger
 
 Either:
-- *Agent retirement trigger* (APLC Stage 7 — `aplc/aplc.md:120`): behavioural quality cannot be restored to specification despite recalibration; business purpose no longer achievable; regulatory classification change requiring capabilities the architecture cannot support; foundation model changes incompatible; accountable human declares end-of-life. Trigger is recorded with the named declaring authority.
+- *Agent retirement trigger* (APLC Stage 7 — `aplc/aplc.md`, "Retirement Trigger conditions"): behavioural quality cannot be restored to specification despite recalibration; business purpose no longer achievable; regulatory classification change requiring capabilities the architecture cannot support; foundation model changes incompatible; accountable human declares end-of-life. Trigger is recorded with the named declaring authority.
 - *Claim retirement trigger* (IGM Curate decision per Revision authority — `intelligence-governance-manifesto/manifesto.md:103`): claim has reached end-of-validity-window with no successor; claim has been superseded; claim is retired on integrity grounds (per IGM P14, Class 3 per `/integration/composite-state-vs-curate-precedence.md`); claim has zero consumers and no other matrix-row criterion applies.
 
 ### Phase 2 — Impact analysis
@@ -179,7 +179,7 @@ GDPR Article 17 (right to erasure) and equivalent rules apply. Memory-state arch
 
 ### 4.5 What if a retired agent's behavioural baseline is needed for a successor agent?
 
-The behavioural baseline is preserved per APLC retention rules (`aplc/aplc.md:122–124` — 10-year retention for high-risk EU AI Act systems). The successor agent's APLC Stage 1 conception phase may reference the baseline as input. The retirement evidence bundle's "Execution record" notes that the baseline has been transferred to the successor's archive, not destroyed.
+The behavioural baseline is preserved per APLC retention rules (`aplc/aplc.md`, "Stage 7 — Retire" — 10-year retention for high-risk EU AI Act systems). The successor agent's APLC Stage 1 conception phase may reference the baseline as input. The retirement evidence bundle's "Execution record" notes that the baseline has been transferred to the successor's archive, not destroyed.
 
 ### 4.6 What if a claim retirement happens while an agent is mid-action consuming it?
 
@@ -198,7 +198,7 @@ Add a cross-reference at IGM P5 (the decay-management principle, where the Curat
 
 ### 5.2 Optional edit to `aplc/aplc.md` Stage 7 description
 
-> Recommended addition to the Stage 7 paragraph (`aplc/aplc.md:122–124`):
+> Recommended addition to the Stage 7 paragraph (`aplc/aplc.md`, "Stage 7 — Retire"):
 > "Stage 7 retirement integrates with the IGM substrate via the workflow specified in [`/integration/decommissioning.md`](../integration/decommissioning.md): claims maintained primarily for the retiring agent are reviewed against the disposition matrix (preserve / preserve-for-regulator / demote-to-archive / retire) and the cascade of consequences for other agent products is managed under the 30-day grace period."
 
 ### 5.3 Optional edit to `aplc/agent-retirement.md`
@@ -209,7 +209,7 @@ Add a section "IGM substrate disposition" cross-referencing this artefact and Ru
 
 ## 6. Cross-references
 
-- `aplc/aplc.md:120–124` — APLC Stage 7 retirement triggers and conditions.
+- `aplc/aplc.md`, "Retirement Trigger conditions" and "Stage 7 — Retire" — APLC Stage 7 retirement triggers and conditions.
 - `intelligence-governance-manifesto/manifesto.md:103` — Curate stage (terminal Curate action is retirement).
 - `intelligence-governance-manifesto/manifesto-principles.md` P5 (decay), P6 (four authorities), P14 (substrate as attack surface — Class 3 trigger), P16 (containment for cascade retirements).
 - `agentic-enterprise-manifesto/manifesto.md` Principle 8 (consequence-class roles), Principle 9 (composite state, default reject).

@@ -132,7 +132,7 @@ failure patterns (hallucination loops, memory poisoning, tier violations).
 
 The process-level definition of these roles — what each role does in the
 demand-to-specification workflow — is in [Demand &
-Value](../../asdlc/demand/value.md).  This section covers the organizational and
+Value](https://github.com/arnaudgelas/asdlc/blob/main/demand/value.md).  This section covers the organizational and
 team-evolution perspective: how these roles emerge, what skills they require,
 and how they develop through the ASDLC maturity phases.
 
@@ -166,7 +166,7 @@ framing).
 
 For the authoritative process-level definition of these roles and their
 responsibilities in the demand layer workflow, see [Demand &
-Value](../../asdlc/demand/value.md).
+Value](https://github.com/arnaudgelas/asdlc/blob/main/demand/value.md).
 
 ---
 

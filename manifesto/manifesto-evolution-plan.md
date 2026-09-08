@@ -91,7 +91,7 @@ include. Absent this, scope expands during execution — a common driver of
 specification drift inside the loop.
 
 If these conditions are not met, the work belongs in the demand layer (Layer 1
-of the ASDLC — see the [ASDLC overview](../../asdlc/asdlc.md)), not in the Specify phase.
+of the ASDLC — see the [ASDLC overview](https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md)), not in the Specify phase.
 Entering the loop without a loop-ready specification does not save time — it
 produces well-executed work on the wrong problem.
 
@@ -149,7 +149,7 @@ output. A release layer that accepts an evidence bundle without a named accounta
 human is accepting ungoverned output. Both are governance failures at the boundary,
 not in the loop.
 
-See [Release & Deployment Governance](../../asdlc/release-governance.md) for how the release
+See [Release & Deployment Governance](https://github.com/arnaudgelas/asdlc/blob/main/release-governance.md) for how the release
 layer receives and acts on these artefacts.
 ```
 
@@ -191,10 +191,10 @@ the ASDLC governs the full software delivery lifecycle.
 
 | ASDLC Layer | Name | Scope | Document |
 | --- | --- | --- | --- |
-| 1 | Demand & Value | Business need → loop-ready specification | [asdlc.md](../../asdlc/asdlc.md) |
+| 1 | Demand & Value | Business need → loop-ready specification | [asdlc.md](https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md) |
 | **2** | **Engineering Execution** | **Specify → Govern → loop output** | **This manifesto** |
-| 3 | Release & Deployment | Loop output → production | [release-governance.md](../../asdlc/release-governance.md) |
-| 4 | Operations & Maintenance | Production → operated, patched, retired | [operations-governance.md](../../asdlc/operations/governance.md) |
+| 3 | Release & Deployment | Loop output → production | [release-governance.md](https://github.com/arnaudgelas/asdlc/blob/main/release-governance.md) |
+| 4 | Operations & Maintenance | Production → operated, patched, retired | [operations-governance.md](https://github.com/arnaudgelas/asdlc/blob/main/operations/governance.md) |
 
 **When the deliverable is an agent system — use the APLC.** The agent itself
 is the product, serving a business purpose directly (a claims agent, a trading
@@ -202,7 +202,7 @@ agent, a regulatory reporting agent). This manifesto still governs the
 engineering build phase; the APLC governs the full agent product lifecycle:
 conception, behavioral specification, behavioral release, behavioral operations,
 model update governance, and regulated retirement. The two delivery modes differ
-at every layer beyond the inner loop. See [aplc.md](../../aplc/aplc.md).
+at every layer beyond the inner loop. See [aplc.md](https://github.com/arnaudgelas/aplc/blob/main/aplc.md).
 
 The manifesto's principles apply fully as the engineering execution engine in
 both modes. They are relevant starting points for the outer layers, but those
@@ -214,22 +214,22 @@ mechanisms that this document does not cover.
 **For software delivery (ASDLC):**
 
 - *Upstream (Layer 1):* Business need validation, demand prioritisation, portfolio
-  governance, specification readiness. See [Demand & Value](../../asdlc/asdlc.md#layer-1-demand-value).
+  governance, specification readiness. See [Demand & Value](https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md#layer-1-demand--value).
 - *Downstream — delivery (Layer 3):* Release gates, environment promotion,
-  change management, compliance documentation. See [release-governance.md](../../asdlc/release-governance.md).
+  change management, compliance documentation. See [release-governance.md](https://github.com/arnaudgelas/asdlc/blob/main/release-governance.md).
 - *Downstream — operations (Layer 4):* Incident management, SLO governance,
-  security patching, ownership transfer, deprecation. See [operations-governance.md](../../asdlc/operations/governance.md).
+  security patching, ownership transfer, deprecation. See [operations-governance.md](https://github.com/arnaudgelas/asdlc/blob/main/operations/governance.md).
 
 **For agent product delivery (APLC):**
 
 - *Stage 1 (Conceive):* Agent product brief, trust model design, persona design,
-  EU AI Act risk classification. See [agent-conception.md](../../aplc/agent/agent-conception.md).
+  EU AI Act risk classification. See [agent-conception.md](https://github.com/arnaudgelas/aplc/blob/main/agent/agent-conception.md).
 - *Stage 2 (Specify Behaviorally):* Behavioral envelope at the product level,
   use-case coverage, uncertainty protocol, escalation design. See
-  [agent-behavioral-specification.md](../../aplc/agent/agent-behavioral-specification.md).
+  [agent-behavioral-specification.md](https://github.com/arnaudgelas/aplc/blob/main/agent/agent-behavioral-specification.md).
 - *Stages 4–7 (Release through Retire):* Behavioral release gate, composite state
   versioning, behavioral drift governance, model update governance, regulated
-  retirement. See [aplc.md](../../aplc/aplc.md).
+  retirement. See [aplc.md](https://github.com/arnaudgelas/aplc/blob/main/aplc.md).
 
 **Out of scope in all frameworks:**
 - Training, fine-tuning, or evaluating foundation models.
@@ -263,7 +263,7 @@ mechanisms that this document does not cover.
 > before entering the loop), the release layer (how governed the path to
 > production is), or the operations layer (how well the team can maintain and
 > operate what has been delivered). Those layers have their own maturity
-> assessment, covered in the [ASDLC](../../asdlc/asdlc.md).
+> assessment, covered in the [ASDLC](https://github.com/arnaudgelas/asdlc/blob/main/asdlc.md).
 >
 > Recommended sequencing: build Phase 3 inner-loop maturity (governed agentic
 > delivery in at least one domain) before investing heavily in outer-layer
@@ -313,7 +313,7 @@ the domain and the manifesto's specification requirements (machine-readable
 acceptance criteria, versioned constraints, blast-radius framing).
 
 For the full evolution of these roles through the ASDLC maturity phases, see
-[Demand & Value — Roles](../../asdlc/demand/value.md#roles).
+[Demand & Value — Roles](https://github.com/arnaudgelas/asdlc/blob/main/demand/value.md#roles).
 ```
 
 ---
