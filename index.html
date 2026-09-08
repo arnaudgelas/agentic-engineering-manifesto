@@ -304,6 +304,1407 @@ for contributors. See <a href="LICENSE">LICENSE</a> for terms. See <a href="#err
 for a dated record of corrections made to previously published content.</p>
 </div></section><section id="errata" class="doc-section" data-group="overview"><div class="section-inner"><p>Dated corrections to previously published content in this repository. Each entry
 records what was wrong, what was done about it, and when.</p>
+<h2 id="2026-09-06">2026-09-06</h2><ul>
+<li><p><strong><code>D-62</code> closed in <code>domains/pharma.md</code>: four EU GMP Annex 11 citations moved to
+the paragraph that carries the obligation each row claims.</strong> All four were live
+at <code>HEAD</code> (<code>c1d0d19</code>) at exactly the register&#39;s line numbers — <code>:124</code>, <code>:209</code>,
+<code>:311</code>, <code>:423</code> — and live in the working tree at <code>:153</code>, <code>:238</code>, <code>:340</code>,
+<code>:460</code> when this pass began (06.09.2026, 20:14 CEST). <strong>Both sets of locators
+are recorded because they address different trees</strong>, and the register&#39;s four
+are correct against <code>HEAD</code> and stale against the worktree. <strong>The census this
+pass was briefed from gave the worktree locators as <code>:154</code>, <code>:239</code>, <code>:341</code>,
+<code>:461</code> — one greater than measured at every one of the four.</strong> Read at primary
+against <code>inputs/20260905-arnaud/prep/pharma/sources/annex11.pdf</code>, SHA-256
+<code>8ec11211ba33bf88ad4e71acc6bf60fd0e7823cfa495b116872e2c287e4aebbb</code> (EudraLex
+Vol. 4, Annex 11 <em>Computerised Systems</em>, rev. 1, in force 30 June 2011),
+through its extracted text <code>annex11.txt</code>, SHA-256
+<code>8465d1b02b5dd60f080451446881a8b4c2809733e8bea8195c402949463b8786</code> — retrieved
+and hashed by the <code>T6.3.q7</code> pass, reused and not re-fetched; and against
+<code>part211.txt</code> for 21 CFR 211.68. The annex was read end to end, Principle to
+Glossary, not searched.</p>
+<ul>
+<li><strong><code>:124</code> / worktree <code>:153</code>, <em>Data backup and recovery</em>, <code>s 7.1</code> → <code>s 7.2</code>.</strong>
+§7.1 is <em>Data Storage</em> and requires stored data to be secured and checked for
+accessibility, readability and accuracy; it does not require restore testing.
+§7.2 is the backup provision and is the only place the annex says <em>&quot;the
+ability to restore the data should be checked during validation and monitored
+periodically&quot;</em>.</li>
+<li><strong><code>:209</code> / worktree <code>:238</code>, <em>Agent-generated data as &quot;original&quot; data</em>,
+<code>Annex 11 s 8</code> dropped.</strong> §8 is <em>Printouts</em> — §8.1 clear printed copies, §8.2
+printouts for batch release showing changes since the original entry — and it
+defines no source or original record. <em>Original</em> is an ALCOA attribute; the
+row now cites PIC/S PI 041-1 and WHO TRS 1033 Annex 4, which the metadata row
+immediately below already cited correctly, and tightens <code>21 CFR 211.68</code> to
+<code>211.68(b)</code>.</li>
+<li><strong><code>:311</code> / worktree <code>:340</code>, GMP batch-record modification cap,
+<code>Annex 11 §9</code> → <code>§15</code>.</strong> §9 is <em>Audit Trails</em>: it records that a change
+occurred and restricts nobody. <strong>§15 <em>Batch release</em></strong> is the provision that
+restricts execution — <em>&quot;the system should allow only Qualified Persons to
+certify the release of the batches&quot;</em>, using an electronic signature — and §15
+was cited <strong>nowhere</strong> in the file. The cap itself was never in doubt: it
+survives on the co-cited <code>21 CFR 211.68(b)</code>, <em>&quot;changes in master production
+and control records or other records are instituted only by authorized
+personnel&quot;</em>, now quoted in the row.</li>
+<li><strong><code>:423</code> / worktree <code>:460</code>, memory accumulation as a change,
+<code>Annex 11 s 11</code> → <code>s 10</code>.</strong> §11 is <em>Periodic evaluation</em>; §10 is <em>Change and
+Configuration Management</em>, <strong>which the same table already cited correctly two
+and one rows above</strong>, at <code>:421</code>–<code>:422</code> / worktree <code>:458</code>–<code>:459</code>. This is the
+one of the four that needed no primary at all.</li>
+<li><strong>The two uncited provisions the entry required in the same edit are in it.</strong>
+<strong>§12.4</strong> — <em>&quot;record the identity of operators entering, changing, confirming
+or deleting data including date and time&quot;</em> — now carries the identity, date
+and time elements the <em>Agent-modified data</em> row credited to §9 alone. <strong>§3
+<em>Suppliers and Service Providers</em></strong> now opens §8 <em>Supplier Qualification</em>,
+which had cited only GAMP 5 and EU GMP Chapter 7 although §3 is the direct EU
+provision behind it: §3.1 formal agreements stating the third party&#39;s
+responsibilities, §3.2 risk-based audit, §3.3 review of COTS documentation,
+§3.4 supplier quality and audit information available to inspectors on
+request.</li>
+<li><strong>Nothing is retracted. Every substantive claim in the four rows stands
+unchanged</strong> — that is this defect class&#39;s close condition, and each row now
+names in the same sentence the provision it formerly cited, so a reader
+holding the old text can see what moved (<code>F2</code>).</li>
+</ul>
+</li>
+<li><p><strong>The register&#39;s <code>aplc</code> extension of <code>D-62</code> was verified rather than assumed,
+and it is complete.</strong> <code>agent/agent-annex-iv-mapping.md:28</code> cited <strong>Art. 48</strong>
+(CE marking) for the EU declaration of conformity; the working tree there now
+cites <strong>Art. 47</strong>, with 47(2)/Annex V for the content and 47(1) for the
+provider&#39;s 10-year duty. Checked at the hashed AI Act primary
+(<code>a0f437e8966746b88b15d35bc9e7a9dbe930e2938a941548524a565121c7929b</code>), read in
+sequence: <strong>Art. 47 is <em>EU declaration of conformity</em>, Art. 48 is <em>CE
+marking</em></strong>, 48(2) being digital CE marking, and no paragraph of Art. 48 touches
+the declaration. <strong>Enumerated in both trees rather than taken from the
+register</strong>: <code>aplc</code> <code>HEAD</code> (<code>821e242</code>) carries <strong>2</strong> <code>Art. 47</code>/<code>Art. 48</code> lines
+in 2 files — the one wrong site and a <strong>Solvency II Art. 48</strong> (<em>Actuarial
+function</em>) correctly left alone; the working tree carries <strong>14</strong> in 5 files,
+every one of them Art. 47 and correct. <strong>The register&#39;s own figure of &quot;25
+occurrences in 8 files&quot; is reproducible against neither tree</strong>, and it does not
+say which tree it addressed.</p>
+</li>
+<li><p><strong>This repository&#39;s own Art. 47/48 usage was checked for consistency with that
+repair and needs no edit.</strong> <code>regulatory/eu-ai-act-addendum.md:607</code> reads
+<em>&quot;Issues the EU declaration of conformity (Art. 47) and affixes CE marking
+(Art. 48)&quot;</em> on the provider row — both correct; <code>:290</code> is Art. 47 of the
+Charter of Fundamental Rights (effective remedy), a different instrument.</p>
+</li>
+<li><p><strong>Gates, run 06.09.2026 20:19 CEST from the corpus root.</strong>
+<code>tools/register-crossref.sh</code> <strong>exit 0, four consecutive runs, byte-identical</strong>
+(md5 <code>14bf051ba840a746a583484a7d9313fe</code>), defects <strong>73</strong>, tasks <strong>55</strong>.
+<code>tools/link-check.sh</code> <strong>broken 4 / total 1051 across 5 repos</strong>, against <strong>1046</strong>
+before this pass. <strong>The movement was named before the run and it landed
+exactly</strong>: <strong>+5</strong>, being the four <code>../errata.md</code> links added by the <code>D-62</code> edit
+in <code>domains/pharma.md</code> and one added in <code>aplc</code>. <strong>Broken did not move and was
+not expected to</strong> — no link was removed and every added link resolves.</p>
+</li>
+<li><p><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>thirteenth</strong>
+time. <strong>No <code>.html</code> was hand-patched.</strong> A thirteenth rebuild must carry
+<code>domains/pharma.html</code> in this repository. <code>aplc</code> contains <strong>no <code>.html</code> at
+all</strong>, so its edit needs no rebuild.</p>
+</li>
+<li><p><strong>Tracking (<code>D-73</code>).</strong> This file is tracked, so
+<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry.
+<strong><code>agentic-engineering-manifesto</code> last committed 02.09.2026 at <code>c1d0d19</code></strong> and
+this pass committed nothing, so <strong>none of the four <code>D-62</code> repairs above reaches
+a reader holding <code>HEAD</code> of this repository</strong>, and all four remain live there at
+<code>:124</code>, <code>:209</code>, <code>:311</code> and <code>:423</code>. The checkout is on branch <strong><code>alignment</code></strong>,
+which <code>git rev-parse main alignment origin/main</code> reports identical to <code>main</code> at
+<code>c1d0d19</code>. <strong><code>aplc/errata.md</code> is no longer untracked</strong> — it is <strong>staged and
+uncommitted</strong> (<code>git -C aplc status --short errata.md</code> → <code>A </code>, 20:17 CEST) — so
+the register&#39;s <code>D-73</code> and <code>D-57</code> statements about it are stale as of today;
+<code>aplc</code> itself last committed <strong>02.05.2026</strong>. <strong>No struck-string row is added
+for any of this</strong>, per the <code>D-63</code> precedent: a row green in a working tree and
+red at <code>HEAD</code> fails the next checkout.</p>
+</li>
+<li><p><strong>An invented Art. 6(2) test in <code>domains/financial-services.md</code>, creating a
+route into high-risk that the Regulation does not contain.</strong> The
+&quot;High-risk classification in financial services&quot; section closed with
+&quot;Additional financial use cases may qualify as high-risk under the general
+criteria in Art. 6(2) when they significantly affect decisions about natural
+persons.&quot; Re-read at the hashed primary
+(the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256 prefix
+<code>a0f437e89667</code>), Art. 6(2) reads in full: &quot;In addition to the high-risk AI
+systems referred to in paragraph 1, AI systems referred to in Annex III shall
+be considered to be high-risk.&quot; It is a closed cross-reference to Annex III
+and contains no criteria and no natural-persons threshold. <strong>Both quoted
+phrases are absent from the entire Act</strong> — &quot;general criteria&quot; and
+&quot;significantly affect decisions about natural persons&quot; each probed ABSENT on a
+harness that returned the Art. 6(2), Art. 6(3), Art. 6(4), Art. 7(1) and
+Annex III point 5 text PRESENT as positive controls — so this was a fabrication
+rather than a miscitation. It also ran backwards: the nearest real provision,
+Art. 6(3), is a derogation <em>out of</em> high-risk, so a reader following the
+sentence would have classified systems <strong>into</strong> high-risk that the Act
+classifies out. The sentence contradicted <code>regulatory/eu-ai-act-addendum.md</code>
+§1.1 (&quot;Annex III is exhaustive for &#39;high-risk by use&#39;&quot;), the preceding bullets
+in its own file, and <code>aplc/agent/agent-regulatory-classification.md</code> § Step 2
+(&quot;eight points and no more ... a category cited outside that structure does
+not exist&quot;). The paragraph was re-attributed rather than deleted: it now
+states that Annex III is the only &quot;by use&quot; route and is amendable only by the
+Commission by delegated act under Art. 7, that the separate Annex I route
+requires both limbs of Art. 6(1), and that Art. 6(3) runs the other way and
+costs the Art. 6(4) documented assessment and Art. 49(2) registration —
+marked <code>F2</code> for the residual entry route, which nothing in the Act supports.
+A flattened, whitespace-normalized scan of all six repositories (325 <code>.md</code>,
+<code>.html</code> and <code>.txt</code> files) found the claim at one Markdown source only; a
+line-based grep for &quot;general criteria&quot; returns a false zero even inside the
+affected file, because the phrase wraps across a line break. No other route
+into high-risk outside Annex III and Annex I was found in the corpus.</p>
+</li>
+<li><p><strong>A high-risk classification reached on one of Art. 6(1)&#39;s two limbs, in
+<code>regulatory/eu-ai-act-addendum.md</code> §1.1 -- and contradicting this repository&#39;s
+own <code>domains/medical-devices.md</code> by omission.</strong> The <em>Healthcare diagnosis
+support</em> row put <strong>Yes</strong> in the High-risk column and explained it, in the
+Notes cell, by reference to the EU AI Act, as &quot;Annex I if it is a medical device under MDR/IVDR (most
+diagnostic CDS will be)&quot;. Device status is limb (a) only. Re-read at the
+hashed primary (the Official Journal HTML snapshot of Regulation (EU) 2024/1689,
+sha256 prefix <code>a0f437e89667</code>), EU AI Act Art. 6(1) makes a system high-risk only where
+<strong>both</strong> conditions are fulfilled, and limb (b) additionally requires that the
+product &quot;is required to undergo a third-party conformity assessment, with a
+view to the placing on the market or the putting into service of that product
+pursuant to the Union harmonisation legislation listed in Annex I&quot;.
+MDR Art. 52(7), at the hashed primary
+(the EUR-Lex HTML snapshot of Regulation (EU) 2017/745 (MDR), sha256 prefix
+<code>cac04f2a970b</code>), provides that manufacturers of class I devices other than
+custom-made or investigational devices &quot;shall declare the conformity of their
+products by issuing the EU declaration of conformity referred to in Article 19
+after drawing up the technical documentation set out in Annexes II and III&quot; --
+self-declaration, no notified body; the only class I exceptions (sterile
+condition, measuring function, reusable surgical instruments) draw
+notified-body involvement limited to those aspects alone. A class I CDS device
+therefore satisfies (a) and <strong>fails (b)</strong>. <code>domains/medical-devices.md</code>
+(§ EU MDR + AI Act Dual Compliance) already had this right -- Class IIa+
+requires notified-body involvement, so (b) is generally satisfied for Class
+IIa+ but (a) is not automatic -- and the addendum table contradicted it by
+omission, which is how the wrong version becomes the one a reader trusts.
+<strong>Nothing was deleted and the classification was not withdrawn</strong>: the verdict
+is bounded and the condition now sits <strong>in the verdict&#39;s own cell</strong>, not in a
+note below the table, because a table cell travels alone. The cell now reads
+Yes on the Annex III route for 5(a) eligibility and 5(d) triage/dispatch, and
+on the Annex I route only where both limbs of Art. 6(1) are met, naming Class
+I as failing (b) and Class IIa and above as generally satisfying it, and
+directing that the limb the determination turns on be recorded.</p>
+</li>
+<li><p><strong>Art. 6(1) reduced to limb (a), and limb (a) itself halved, in the lead-in to
+the same table.</strong> <code>regulatory/eu-ai-act-addendum.md:22</code> read &quot;if a use case is
+not in Annex III and not a safety component under Annex I, it is not high-risk
+by virtue of Annex III&quot;. That clause states the Annex I route as the
+safety-component test alone. At the primary, limb (a) is &quot;the AI system is
+intended to be used as a safety component of a product, <strong>or the AI system is
+itself a product</strong>, covered by the Union harmonisation legislation listed in
+Annex I&quot; -- a standalone AI system that is itself an Annex I product is inside
+limb (a) and outside the clause as written -- and limb (a) is in any event not
+sufficient without limb (b). Both limbs are now quoted in full in the lead-in,
+with the cumulative &quot;both&quot; stated and the point made explicitly that limb (a)
+alone is never enough.</p>
+</li>
+<li><p><strong>The pattern was enumerated across this repository, not assumed to be two
+sites.</strong> <code>command grep</code> was run from inside the repository (the shell <code>grep</code>
+wraps <code>ugrep --ignore-files</code> and the root <code>.gitignore</code> lists this repository,
+so a root-level search returns nothing from it; <code>git grep</code> would also have
+missed <code>errata.md</code>, which is untracked). Quoted globs throughout -- an
+unquoted <code>--include=*.md</code> is a zsh glob failure and returns a <strong>false zero</strong>,
+reproduced deliberately. Counts: <code>Art. 6(1)</code> 6 · <code>Article 6(1)</code> 2 ·
+<code>Annex[ -]I($|[^IVX])</code> 11 · <code>safety component</code> 7 · <code>third-party conformity assessment</code> 3, over 247 <code>.md</code> files; positive controls <code>Annex III</code> 96,
+<code>AI Act</code> 182, <code>conformity assessment</code> 19. Every Art. 6(1) and Annex I site was
+read. <strong>Beyond the two corrected here, no further site states or applies the
+Art. 6(1) test on one limb</strong>: <code>domains/medical-devices.md:252-263</code> and
+<code>integration/igm-aplc-integration-test.md:11</code> each quote both limbs verbatim;
+<code>igm-aplc-integration-test.md:65</code>, <code>:83</code> and <code>:343</code> are cross-references to
+the correct statement in the same file&#39;s §1; <code>domains/medical-devices.md:247</code>
+is the <strong>MDR&#39;s own</strong> Annex I (general safety and performance requirements), a
+homonym, not the AI Act&#39;s. <strong>Further sites of the same pattern: 0.</strong>
+Not verified: whether an MDR notified-body route under Annexes IX to XI is a
+&quot;third-party conformity assessment&quot; within the meaning of Art. 6(1)(b) of the EU AI Act. That
+step is asserted nowhere in this repository and was not adjudicated here.</p>
+</li>
+<li><p><strong>The EU AI Act Annex III 5(b) fraud-detection inversion is withdrawn from
+<code>domains/financial-services.md</code> -- it had been corrected in the APLC twin and
+never ported here, and this repository carried no errata entry for it.</strong>
+<code>domains/financial-services.md:180</code> offered <em>credit scoring, insurance
+pricing, fraud detection, AML screening</em> as EU AI Act Annex III high-risk examples.
+Re-read at the primary (<code>OJ_L_202401689_AIAct.html.gz</code>, sha256 prefix
+<code>a0f437e89667</code>, <code>ANNEX III</code> through <code>ANNEX IV</code>), point 5(b) reaches AI systems
+&quot;intended to be used to evaluate the creditworthiness of natural persons or
+establish their credit score, with the exception of AI systems used for the
+purpose of detecting financial fraud&quot;. The cell therefore asserted the
+opposite of the provision it cited. APLC withdrew the identical claim at its
+own <code>domains/financial-services.md:57-63</code> and <code>domains/insurance.md:75-82</code> on
+2026-09-05; the withdrawal was written into the <code>domains/</code> files of one repo
+only and no port reached AEM, which is the third time in this programme a
+correction has stopped at one twin. <strong>The claim was not deleted</strong>: the cell
+now names 5(b) for creditworthiness and credit scoring with the fraud
+exception stated in the same sentence, bounds the insurance-pricing example to 5(c)&#39;s
+&quot;in the case of life and health insurance&quot;, and records that AML screening
+is not listed anywhere in Annex III. The prose list eleven lines below
+(<code>:191</code>), which stated the life-and-health limit correctly but omitted the
+fraud exception -- so that the file asserted the exception&#39;s opposite above
+and its subject below -- was rewritten to carry both limits in the sentences
+that make the claims.</p>
+</li>
+<li><p><strong>Personal-lines underwriting re-attributed from Annex III §5(b) to §5(c) and
+bounded, in <code>domains/insurance.md</code> -- the D-65 withdrawal never reached this
+repository and no errata entry existed here.</strong> <code>domains/insurance.md:263</code>
+cited &quot;EU AI Act Annex III §5(b) (high-risk)&quot; as the regulatory basis for
+the row <em>Underwriting decisions for individual cover (personal lines)</em>. At the
+primary, §5(b) is creditworthiness evaluation and credit scoring and does not
+reach underwriting at all; underwriting is §5(c), which reaches risk
+assessment and pricing in relation to natural persons only &quot;in the case of
+life and health insurance&quot; -- so personal-lines property and casualty cover
+is outside it. The row was <strong>re-attributed and bounded rather than deleted</strong>:
+it now cites §5(c) with the life-and-health limit and the P&amp;C exclusion in the
+same cell as the claim, and says what §5(b) actually is. The same §5-family
+over-reach at <code>domains/financial-services.md:262</code> and <code>:265</code> and at
+<code>companion/frameworks.md:226</code> -- each citing a bare &quot;Annex III §5&quot; for credit
+and insurance decisions -- was bounded to 5(b) and 5(c) with their limits in
+place. The Tier caps themselves are unchanged; only the regulatory basis is.</p>
+</li>
+<li><p><strong>Four Annex III scope limits restored to the mapping table in
+<code>regulatory/eu-ai-act-addendum.md</code> §1.1.</strong> Each row asserted a point without
+the limit that point carries, and in three of them the Notes cell was empty.
+<code>:38</code> cited <strong>point 2</strong> for the row <em>Critical infrastructure operation</em> with the
+safety-component test absent, and that test is the whole of the point: it
+reaches only systems &quot;intended to be used as safety components in the
+management and operation of critical digital infrastructure, road traffic, or
+in the supply of water, gas, heating or electricity&quot;. The sector list is
+closed; <strong>rail, aviation and air traffic are absent from the Annex III body</strong>.
+<code>:34</code> cited <strong>point 6(a)</strong> for the row <em>Law-enforcement risk assessment for natural
+persons</em> without distinguishing that 6(a) is <em>victim</em> risk (&quot;to assess the
+risk of a natural person becoming the victim of criminal offences&quot;) from
+offender and re-offending risk, which is 6(d) and reaches such systems only
+&quot;not solely on the basis of the profiling of natural persons as referred to
+in Article 3(4) of Directive (EU) 2016/680&quot;; point 6&#39;s chapeau limit (&quot;in so
+far as their use is permitted under relevant Union or national law&quot;) was also
+missing. <code>:35</code> cited <strong>point 7</strong> with an empty Notes cell, omitting both that
+chapeau and 7(d)&#39;s &quot;with the exception of the verification of travel
+documents&quot;. <code>:36</code> cited <strong>point 8</strong> without 8(b)&#39;s exclusion of &quot;AI systems
+to the output of which natural persons are not directly exposed, such as tools
+used to organise, optimise or structure political campaigns from an
+administrative or logistical point of view&quot;. In every case the limit was
+placed <strong>in the same cell as the claim it qualifies</strong>, not in the Notes cell
+or a flag below, because a caveat separated from its claim is stripped when
+the claim travels. Two further rows in the same table were bounded in the same
+pass: <code>:27</code> (the 5(b) fraud carve-out was in the Notes cell, not the claim),
+<code>:28</code> (5(c)&#39;s life-and-health limit likewise), and <code>:37</code> (point 3, whose four
+sub-points are each confined to &quot;educational and vocational training
+institutions at all levels&quot;, had an empty Notes cell). No row&#39;s high-risk
+answer was deleted; each was qualified.</p>
+</li>
+<li><p><strong>NISPOM re-cited from 32 CFR Part 2004 to 32 CFR Part 117.</strong>
+<code>domains/defense-government.md</code> grounded the hard rule on classified
+information in &quot;the National Industrial Security Program Operating Manual
+(NISPOM, <strong>32 CFR Part 2004</strong>)&quot;. Both parts were retrieved free from the
+official eCFR versioner API on 2026-09-06, pinned to <code>title-32</code>&#39;s
+<code>latest_issue_date</code> 2026-08-17, and hashed
+(the official eCFR snapshots of Parts 117 and 2004): <strong>32 CFR Part 117</strong>,
+sha256 prefix <code>94b7bbe1c4b1</code>, and <strong>32 CFR Part 2004</strong>, sha256 prefix
+<code>19a0cc8f8a6f</code>. <strong>Part 117 is the NISPOM</strong> -- its own heading reads
+<code>PART 117-NATIONAL INDUSTRIAL SECURITY PROGRAM OPERATING MANUAL (NISPOM)</code>
+and § 117.1 <em>Purpose</em> states it &quot;implements policy, assigns
+responsibilities, establishes requirements, and provides procedures ... for
+the protection of classified information that is disclosed to, or developed
+by contractors of the U.S. Government&quot; (85 FR 83312, Dec. 21, 2020).
+<strong>Part 2004 is the ISOO National Industrial Security Program directive</strong> --
+heading <code>PART 2004-NATIONAL INDUSTRIAL SECURITY PROGRAM (NISP)</code>, § 2004.1
+<em>Purpose and scope</em> &quot;sets out the National Industrial Security Program ...
+ISOO maintains policy oversight over the NISP&quot; (83 FR 19951, May 7, 2018),
+and § 2004.20(a)(3) directs the Executive Agent to &quot;issue[] and maintain[]
+the National Industrial Security Program Operating Manual (NISPOM)&quot;. Part
+2004 therefore <em>requires</em> the NISPOM; it is not the NISPOM, and the string
+<code>part 117</code> occurs in it zero times (whole-token probe, proven against a
+<code>part 2004</code> control that HITs the same file). <strong>The claim survives with the
+correct Part</strong>: the citation was re-attributed to Part 117 and a parenthesis
+added recording what Part 2004 actually is, rather than the claim being
+deleted. The other two <code>32 CFR</code> citations in this repository --
+<code>domains/defense-government.md:53</code> and <code>companion/principles-06.md:204</code> --
+both cite <strong>32 CFR Part 2002 (CUI)</strong>, which is the correct Part for
+Controlled Unclassified Information; they were checked and left untouched.</p>
+</li>
+<li><p><strong>The Article 73(6) sub-items in <code>regulatory/eu-ai-act-addendum.md</code> are
+withdrawn: the obligation is real, the report-content list is not.</strong> §6.2 was
+headed &quot;Required content (Art. 73(6))&quot; and its fields were cited at four
+template sites and one workflow line as lettered sub-items (a) to (d) of
+Art. 73(6). Article 73 of Regulation (EU) 2024/1689 was read in full at the
+hashed primary (the Official Journal HTML snapshot of Regulation (EU) 2024/1689,
+sha256 prefix <code>a0f437e89667</code>) -- <strong>all eleven paragraphs</strong>. <strong>Art. 73(6) has
+no lettered sub-items</strong>: it is two unlettered subparagraphs obliging the
+provider, <em>after</em> reporting, to <em>&quot;perform the necessary investigations in
+relation to the serious incident and the AI system concerned&quot;</em>, including
+<em>&quot;a risk assessment of the incident, and corrective action&quot;</em>, and to
+cooperate with the competent authorities and any notified body without
+altering the system in a way that may affect the evaluation of causes.
+<strong>Article 73 prescribes no report content anywhere.</strong> The only source of
+prescribed content is the Commission guidance mandated by <strong>Art. 73(7)</strong>,
+due 2 August 2025. So this is an <strong>invention, not a miscitation</strong>: the five
+fields are kept because they are useful, but the citation is withdrawn at
+all six sites and the list is now marked in-sentence as this document&#39;s own
+construction, with (d) and (e) tied to the genuine Art. 73(6) corrective-
+action and cooperation duties.</p>
+</li>
+<li><p><strong>The same file&#39;s Article 73 reporting timers were scrambled, which is the
+more dangerous of the two defects.</strong> §6.1 put <strong>death of a person on the
+2-day clock</strong> and invented a <strong>10-day clock for fundamental-rights
+malfunction</strong>. At the primary: <strong>Art. 73(3)</strong> gives the 2-day clock to a
+widespread infringement or an Art. 3(49)(b) critical-infrastructure
+disruption; <strong>Art. 73(4)</strong> gives <strong>death of a person 10 days</strong>;
+<strong>Art. 73(2)</strong> gives every other serious incident, including the
+Art. 3(49)(c) fundamental-rights infringement, <strong>15 days</strong>. A deployer
+following the withdrawn table would have filed a death two days early and a
+fundamental-rights infringement five days late. The same inversion was
+propagated and is corrected at <code>operational-templates/slo-table.md:47</code>
+(row 16 split into 16/16a/17), <code>governance/authority-accountability-matrix.md</code>
+D6, <code>regulatory/foundation-model-third-party-register.md</code> §4.2,
+<code>regulatory/nist-ai-rmf-crosswalk.md</code> MG.4.3 and
+<code>regulatory/iso-23894-23053-crosswalk.md</code> <code>risk-csdr-004</code>.
+<code>governance/_swarm-changelog.md:266</code> records the old clocks as history and is
+left as written.</p>
+</li>
+<li><p><strong>Article 3(61) had a limb the Regulation does not contain.</strong> The §6.1 table
+glossed &quot;widespread infringement&quot; as harming persons &quot;in three or more Member
+States, or one Member State if substantial harm&quot;. Art. 3(61)(a) is harm to
+the collective interests of individuals residing in <strong>at least two Member
+States other than</strong> the Member State of origin or establishment;
+Art. 3(61)(b) is concurrent harm with common features by the same operator in
+<strong>at least three Member States</strong>. There is no one-Member-State limb.</p>
+</li>
+<li><p><strong>Article 73(7) was cited for a duty it does not impose.</strong> §6.1 read &quot;the
+deployer ... may have a parallel obligation to report (Art. 73(7))&quot;.
+Art. 73(7) obliges the receiving market surveillance authority to inform the
+Art. 77(1) fundamental-rights bodies, and mandates Commission guidance. The
+deployer&#39;s duty is <strong>Art. 26(5)</strong> -- inform the provider first, then the
+importer or distributor and the market surveillance authorities -- with
+Art. 73 applying to the deployer only <em>mutatis mutandis</em> &quot;<em>If the deployer is
+not able to reach the provider</em>&quot;. The same wrong duty-holder is corrected at
+§7.1. <strong>Art. 73 binds providers.</strong></p>
+</li>
+<li><p><strong>A third fabricated sub-clause structure, in a different article of the same
+file, found by enumeration rather than by the flagged line.</strong> §2 read that
+the instructions for use &quot;include the items listed in Art. 13(2)(a)-(f) and
+Art. 13(3)&quot;. <strong>Art. 13(2) has no lettered sub-items</strong> -- it is one unlettered
+sentence -- and the (a)-(f) enumeration is Art. 13(3) alone. Worse, four rows
+of the §2.1 table were <strong>labelled (c), (d), (e) and (f) while carrying the
+content of Art. 13(3)(b)(iii), (v), (vi) and (vii)</strong> -- the roman sub-items
+nested inside (b) -- and the genuine Art. 13(3)(c), pre-determined changes,
+was absent from the document entirely. The table then cited the real
+13(3)(d) and 13(3)(e)-(f) two rows further down, so <strong>the same table
+contradicted itself</strong>. All rows are re-keyed to the primary&#39;s lettering, the
+missing (c) row is added, and the §2.2 template&#39;s two mis-keyed items are
+corrected.</p>
+</li>
+<li><p><strong>Six further citation faults from the same audit, each corrected in place.</strong>
+(1) §1.1 said Annex III point <strong>5(d)</strong> &quot;covers AI used to evaluate
+eligibility for essential healthcare services&quot;; 5(d) is emergency-call
+triage and dispatch, and eligibility is <strong>5(a)</strong>. (2) §1.3 read &quot;Social
+scoring <strong>by public authorities</strong> (Art. 5(1)(c))&quot;; Art. 5(1)(c) is not
+limited to public authorities, and the narrowing would clear a private
+operator&#39;s social scoring. (3) §4 cited <strong>Art. 27(5)</strong> for the duty to notify
+the market surveillance authority of the FRIA results; that duty is
+<strong>Art. 27(3)</strong>, and 27(5) mandates only the AI Office template. §4 also
+omitted that Art. 27(1) <strong>excepts Annex III point 2</strong> (critical
+infrastructure) from the FRIA obligation, and that §7 read Art. 27(4) as
+permitting a combined FRIA/DPIA when it says the FRIA &quot;<em>shall complement</em>&quot;
+the DPIA. (4) §5.1&#39;s logging table was headed &quot;Required logging content
+(Art. 12(2)-(3))&quot; and read as general; its four rows are <strong>Art. 12(3)(a)-(d)
+alone</strong>, which the primary scopes &quot;<em>For high-risk AI systems referred to in
+point 1 (a), of Annex III</em>&quot;. Art. 12(2) prescribes no fields. Retention was
+cited to <strong>Art. 19</strong>, a provider-facing article, in a deployer-facing
+document; the deployer&#39;s six-month duty is <strong>Art. 26(6)</strong>. (5) §7.1 listed
+&quot;energy reporting&quot; among the <strong>Art. 55</strong> systemic-risk obligations. The word
+&quot;energy&quot; does not occur in Art. 55; known or estimated energy consumption is
+an <strong>Annex XI point 2(e)</strong> documentation element reached through
+Art. 53(1)(a). §7.1 also attributed the copyright obligation to
+Art. 53(1)(d); the copyright policy is <strong>53(1)(c)</strong> and (d) is the
+training-content summary. (6) §9&#39;s Art. 99(4) row claimed the €15M/3% ceiling
+covers &quot;high-risk obligations Art. 8-22 ... GPAI Art. 53/55&quot;. <strong>Art. 99(4) is
+a closed list of seven points</strong>; its provider limb is <strong>Art. 16 only</strong>, and
+GPAI does not appear -- GPAI fines are the Commission&#39;s under Art. 101,
+already cited correctly two lines below. §9&#39;s &quot;Member States may impose
+criminal sanctions (Art. 99(1))&quot; is <strong>withdrawn</strong>: no criminal-sanctions
+provision exists in the enacting terms, and the adjoining manager-liability
+sentence is now marked unsourced in-sentence rather than deleted.</p>
+</li>
+<li><p><strong>The headline is not the four lines: it is that this file had already been
+corrected twice.</strong> The Article 43 conformity inversion (four faults) and the
+DORA Article 28 paragraph count were both fixed on 2026-09-05, and a third
+and fourth distinct defect class survived both passes. <strong>The point fix was
+therefore replaced by a full-file citation audit</strong>: every Article/Annex
+citation in <code>regulatory/eu-ai-act-addendum.md</code> was extracted by script,
+checked structurally against a paragraph-and-letter index built from the
+hashed primary&#39;s own 113 enacting articles, and every load-bearing claim was
+read against the article text. <strong>292 citation occurrences checked; 19 faults
+found across 9 of the document&#39;s 11 sections; all 19 corrected in place.</strong>
+Two of the nineteen -- the Art. 73(6) letters and the Art. 13(2) letters --
+are the same mechanical defect the checker&#39;s §4 test catches; <strong>it saw one of
+the six Art. 73(6) sites and neither Art. 13 site</strong>, because its
+20-line attribution window does not reach a section heading or a code-fence
+template. <strong>Seventeen of the nineteen were invisible to every check in this
+programme</strong>, because a citation that names a real paragraph of a real article
+and then describes the wrong thing is structurally indistinguishable from a
+correct one. That recall gap is handed to the tool owner, not worked around.</p>
+</li>
+<li><p><strong>Enumerated by command, not sampled.</strong> <code>command grep -rn &#39;Art\. 73\|Article 73&#39; --include=&#39;*.md&#39; .</code> run from inside the repository -&gt; <strong>80 lines across
+22 files</strong> before this pass&#39;s edits (12 files / 52 lines in this repository,
+7 files / 17 lines in <code>aplc/</code>, 3 files / 11 lines in <code>inputs/</code>), of which
+<strong>18 lines are in <code>regulatory/eu-ai-act-addendum.md</code></strong> (the
+brief&#39;s hypothesis of four sites plus a heading and a template was low: the
+Art. 73(6) claim alone stood at <strong>six</strong> sites, and the file carries twelve
+further Art. 73 citations). The shell&#39;s <code>grep</code> wraps <code>ugrep --ignore-files</code>
+and the root <code>.gitignore</code> lists this repository, so a root-level search is
+blind here; <code>command grep</code> was used for every count in this entry.
+<strong>Handed back, outside this pass&#39;s write scope:</strong> seven <code>aplc/</code> sites
+(<code>domains/financial-services.md</code>, <code>insurance.md</code>, <code>automotive.md</code>,
+<code>aviation.md</code>, <code>pharma.md</code>, <code>agent/agent-operations.md</code>,
+<code>governance/knowledge-base.md</code>) describe Art. 73 as binding &quot;providers and
+operators&quot; and state no clocks at all -- the duty-holder blur the T6.3
+domain-files packet recorded as UNSIGNED, still open, now joined by the
+finding that the clocks those files omit were <strong>stated wrongly</strong> in the one
+file that did state them.</p>
+</li>
+<li><p><strong>The DORA Article 3 sentence in
+<code>regulatory/foundation-model-third-party-register.md</code> was wrong three separate
+ways, and is re-stated rather than deleted.</strong> Section 1.1 opened: <em>&quot;DORA
+Art. 3(21) defines an &#39;ICT third-party service provider&#39; as an undertaking
+providing ICT services. Art. 3(20) defines &#39;ICT services&#39; broadly to include
+digital and data services, including those provided by cloud-computing
+services, <strong>AI services</strong>, and software services. <strong>Foundation-model providers
+fit squarely.</strong> Recitals 30 and 63 confirm the intent to capture cloud + AI
+providers.&quot;</em> Article 3 of Regulation (EU) 2022/2554 was read at the hashed
+primary (the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA),
+sha256 prefix <code>25328c7e39c4</code>), definitions <strong>(18) through (22) in sequence</strong>.
+<strong>(1) Both definition numbers were wrong, and swapped.</strong> The provider
+definition is <strong>Art. 3(19)</strong> (&quot;an undertaking providing ICT services&quot;), not
+3(21); the services definition is <strong>Art. 3(21)</strong> (&quot;digital and data services
+provided through ICT systems to one or more internal or external users on an
+ongoing basis, including hardware as a service and hardware services which
+includes the provision of technical support via software or firmware updates
+by the hardware provider, excluding traditional analogue telephone services&quot;),
+not 3(20). <strong>Art. 3(20) is a third definition entirely</strong> -- &quot;ICT intra-group
+service provider&quot; -- which the passage never meant to cite. A neighbouring
+definition that merely sounds right is how this class of error forms, which is
+why the surrounding definitions were read in sequence rather than looked up
+one at a time.
+<strong>(2) A recital was cited as an article.</strong> The cloud/software list is <strong>not in
+Article 3 at all</strong>. It is <strong>Recital 63</strong>, which reads &quot;should cover a wide
+range of ICT third-party service providers, including providers of cloud
+computing services, software, data analytics services and providers of data
+centre services&quot;. Recitals are interpretive and articles are binding, so
+citing one as the other misstates the legal weight of the claim; the corrected
+text now names Recital 63 as a recital <strong>and says in the same sentence what
+that means</strong>, and keeps the load-bearing conclusion on the Article 3(21)
+definition, which is binding.
+<strong>(3) The list was wrong even as a recital.</strong> Recital 63&#39;s list contains no AI
+limb, and <strong><em>AI services</em> and <em>artificial intelligence</em> each occur zero times
+in the entire Regulation</strong> -- measured over the whole text with the citation
+checker&#39;s own <code>normalizeForMatch</code>, against <strong>thirteen probes of which eight
+were positive controls</strong> (including the three definitions verbatim and
+Recital 63&#39;s list verbatim) proving the search resolves against that file, and
+five prefix-safe negative controls (<code>services</code>-&gt;<code>products</code>,
+<code>intra</code>-&gt;<code>extra</code>, <code>ongoing</code>-&gt;<code>periodic</code>, <code>telephone</code>-&gt;<code>telegraph</code>,
+<code>software</code>-&gt;<code>hardware</code>) all correctly ABSENT. One of this task&#39;s own probes
+was caught lying before any verdict was recorded: a bare <code>&quot; ai &quot;</code> token count
+returned 330 because <code>normalizeForMatch</code> trims its argument and the search
+degenerated to the substring &quot;ai&quot; inside words such as &quot;remain&quot;; re-run
+without the trim, the token count is <strong>0</strong>. A zero from a broken search is
+worse than no check.
+<strong>Recital 30 is also dropped from the sentence.</strong> It concerns the absence of
+Union-level rules and of national supervisory mandates on ICT-third-party
+concentration; it names no cloud list and no AI, and does not bear on the
+scope of the provider definition.
+<strong>The claim itself survives</strong>, because it never needed the naming: a hosted
+foundation model is a digital and data service provided through ICT systems to
+external users on an ongoing basis, and so falls inside Art. 3(21) on the
+definition&#39;s own terms.
+<strong>Enumerated, not spot-fixed.</strong> Every <code>Art. 3(</code> / <code>Article 3(</code> citation in
+this repository was listed by command from inside the repository
+(<code>command grep -rEn &quot;Art(icle)?\.? ?3\(&quot; --include=&#39;*.md&#39; .</code>) -- <strong>26 sites
+across 7 files</strong>. Twenty-five are <strong>EU AI Act</strong> citations, not DORA, and all
+twenty-five were checked against Regulation (EU) 2024/1689 at primary
+(sha256 prefix <code>a0f437e89667</code>): 3(3) provider, 3(4) deployer, 3(14) safety
+component, 3(45)/(46) law enforcement, 3(49) serious incident and 3(61)
+widespread infringement each define what the citing site says they define.
+<strong>The one DORA site is the one corrected here</strong>, so the single site named in
+the hand-back was the whole of this defect class -- but this is the <strong>fifth
+distinct defect class</strong> found in this one file, after a wrong EU AI Act Annex III
+classification, five wrong DORA paragraph numbers, a <em>nine paragraphs</em> count
+where Art. 28 has ten, and the Art. 43 conformity inversion.</p>
+</li>
+<li><p><strong>A table gave DORA Article 19 three reporting clocks the Regulation does not
+contain -- and a verb-based sweep could never have seen it, because a table
+row is a duty with the verb removed.</strong>
+<code>regulatory/foundation-model-third-party-register.md</code> section 4.1, under a
+heading reading &quot;DORA Pillar 2 incident reporting (Article 19)&quot;, tabulated an
+initial notification &quot;within <strong>4 hours</strong> of classification&quot;, an intermediate
+report &quot;within <strong>72 hours</strong> of classification&quot; and a final report &quot;within
+<strong>1 month</strong> of incident closure&quot;. Re-derived at the hashed primary
+(the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA),
+sha256 prefix <code>25328c7e39c4</code> -- confirmed by <code>shasum -a 256</code>, not by eye),
+normalised through the checker&#39;s own <code>normalizeForMatch</code> (lower-cased, dashes
+mapped to spaces, whitespace collapsed, trimmed, then padded), Regulation (EU)
+2022/2554 gives <code>4 hours</code> <strong>0</strong>, <code>four hours</code> <strong>0</strong>, <code>24 hours</code> <strong>0</strong>,
+<code>twenty four hours</code> <strong>0</strong>, <code>72 hours</code> <strong>0</strong>, <code>seventy two hours</code> <strong>0</strong>,
+<code>1 month</code> <strong>0</strong>. <code>one month</code> occurs <strong>once</strong> and is the <strong>Art. 31(5)</strong> CTPP
+oversight start date, not a reporting clock. The zeros are demonstrated
+absences, not dead searches: the same harness returns <code>major ict related incident</code> <strong>44</strong>, <code>initial notification</code> <strong>9</strong>, <code>intermediate report</code> <strong>1</strong>,
+<code>final report</code> <strong>1</strong>, <code>regulatory technical standards</code> <strong>40</strong> and
+<code>time limits</code> <strong>3</strong>, and a nonsense needle <strong>0</strong>. Prefix-safe, whole-token
+controls with digit-width swaps: <code>article 19</code> <strong>9</strong> against <code>article 1 </code>
+<strong>59</strong>, and <code>article 20</code> <strong>4</strong> against <code>article 2 </code> <strong>71</strong> -- so neither
+count is a prefix of its neighbour&#39;s.
+<strong>What Art. 19(4) actually does is defer.</strong> It requires the three submissions
+*&quot;within the time limits <strong>to be laid down in accordance with Article 20,
+first paragraph, point (a), point (ii)</strong>&quot;*, and Art. 20, first paragraph,
+point (a)(ii) directs the ESAs, through the Joint Committee, to <em>&quot;determine
+the time limits for the initial notification and for each report referred to
+in Article 19(4)&quot;</em> by regulatory technical standards. DORA sets no clock at
+all. <strong>The figures were re-attributed, not deleted</strong>: they are plausibly the
+RTS values and a firm has to operate to something, so each row now names
+itself this framework&#39;s own operating target, marked <code>F2</code> <strong>in the cell</strong>,
+because a row travels alone and the paragraph above it does not travel with
+it; each row points at the RTS under Art. 20, first paragraph, point (a)(ii)
+as where the binding period lives and requires the version relied on to be
+recorded. <strong>No RTS text is on disk</strong>, so the figures are explicitly <em>not</em>
+asserted as read at a primary, and the <strong>anchor events</strong> (&quot;of classification&quot;,
+&quot;of incident closure&quot;) are flagged as RTS-level too -- an anchor is half a
+deadline, and both halves were being asserted from the wrong instrument.
+The row was <strong>not</strong> relabelled NIS2: NIS2 Art. 23(4) does set 24h / 72h /
+one month (with the one month running from the 72-hour notification, not from
+awareness), but the surrounding claim is about DORA, and a row stating a DORA
+obligation does not become a NIS2 row because a NIS2 period happens to
+coincide with the figure the row carried. <strong>The row&#39;s defect was that it named
+no source for its own numbers</strong>, and the source it now names is the one the
+paragraph above establishes: DORA&#39;s own deferral to the RTS. Whether NIS2 is
+cited anywhere else in this tree has no bearing on that, and the sentence that
+used to claim it was not is withdrawn in the entry at the end of this
+section.
+<strong>The whole table was read, not the flagged row, and every table and lettered
+duty list in the file stating a period or a numbered duty was audited against
+the primaries on disk. Seven further sites were wrong</strong>, all corrected in
+place and each with its own dated note:
+(1) the section 4.1 sentence &quot;major-incident classification criteria are set
+in RTS&quot; -- <strong>the exact mirror of the same defect</strong>: the criteria are in the
+DORA Regulation, at <strong>Art. 18(1)</strong>(a)-(f), and what the RTS adds under
+<strong>Art. 18(3)(a)</strong> is the materiality thresholds;
+(2) the section 3.4 clause list, lettered <strong>(a)-(i)</strong> as though those were
+DORA&#39;s own letters when they were not -- its (h) read &quot;exit-plan obligations&quot;
+where <strong>Art. 30(2)(h) is termination rights</strong>, its (i) read &quot;cooperation in
+TLPT&quot; where <strong>Art. 30(2)(i) is security-awareness training</strong>, and it silently
+merged Art. 30(2) items with Art. 30(3) items, so a reader following the
+letters would have cited the wrong point; the list is re-enumerated as DORA&#39;s
+own Art. 30(1), 30(2)(a)-(i), 30(3)(a)-(f), 30(4) and 30(5);
+(3) section 1.1 cited <strong>Art. 26(2)</strong> for TLPT participation by ICT
+third-party providers -- 26(2) is the coverage-and-live-production rule;
+participation is <strong>Art. 26(3)</strong>, with <strong>Art. 30(3)(d)</strong> the contractual limb;
+(4) section 3.5 stated TLPT is &quot;required for significant financial entities&quot;,
+a class DORA does not use -- <strong>Art. 26(1)</strong> scopes it to entities other than
+those in Art. 16(1) first subparagraph and other than microenterprises,
+identified per Art. 26(8) third subparagraph, <strong>at least every 3 years</strong>,
+adjustable by the competent authority, with <strong>Art. 26(4)</strong> pooled testing
+where direct participation would harm the provider&#39;s other customers;
+(5) section 6.4 attributed a <strong>quarterly</strong> TPRM review and an <strong>annual</strong>
+board report in-cell to &quot;DORA Art. 5(2) governance&quot; -- Art. 5(2) sets no
+period at all (Art. 5(2)(h) is <em>periodically review the policy</em>); both
+cadences are now marked <code>F2</code> as this framework&#39;s own;
+(6) section 2.3&#39;s <strong>5-business-day</strong> register-update trigger, unattributed
+but sitting inside a DORA section, is now explicitly <code>F2</code> -- Art. 28(3)
+requires the register to be maintained and reported at least yearly and fixes
+no update period; and section 2.3&#39;s &quot;Art. 19 DORA major-incident class&quot; now
+splits classification (<strong>Art. 18(1)</strong>) from reporting (<strong>Art. 19</strong>);
+(7) the section 4.2 cross-reference table asserted &quot;widespread infringement
+-&gt; 2 days&quot; with no provision, one cell away from a cell citing Art. 73(2);
+the two-day clock is <strong>Art. 73(3)</strong> and covers widespread infringement and
+Art. 3(49)(b) serious incidents only -- now stated in the cell.
+<strong>The same three DORA figures were then found carrying a framework label
+rather than a provision label in two further files of this repository</strong>,
+which is exactly where the 2026-09-05 <code>aplc</code> entry said they would survive:
+<code>operational-templates/slo-table.md</code> rows <strong>18, 19 and 20</strong> sourced 4h / 72h
+/ 1 month to &quot;DORA Pillar 2&quot;, and its Sources list said the RTS covers
+classification when it is the <em>time limits</em> that are RTS-level. All four are
+corrected. <code>operational-templates/decommissioning-checklist.md</code> lines 71 and
+131 were also found citing <strong>EU AI Act Art. 19</strong> -- a <em>provider</em>-facing log
+article -- for a <em>deployer</em>&#39;s retention duty, which is <strong>Art. 26(6)</strong>; that
+is the surviving twin of a correction this file already recorded for
+<code>regulatory/eu-ai-act-addendum.md</code>, and both sites are fixed.
+<strong>This is the sixth distinct defect class in
+<code>regulatory/foundation-model-third-party-register.md</code> in one night</strong>, after a
+wrong EU AI Act Annex III classification, five wrong DORA paragraph numbers, a <em>nine
+paragraphs</em> count where Art. 28 has ten, the Art. 43 conformity inversion and
+the DORA Art. 3 definition swap. <strong>The lesson is the medium, not the digit:</strong>
+every sweep run tonight was verb- or modal-keyed, and a table row carries a
+duty with the verb deleted, so <strong>no enumeration run tonight could have
+reached this row</strong> -- it was reached only by following a neighbouring
+finding. <strong>The searching claim that stood here is withdrawn -- see the entry
+on burned negative controls at the end of this section.</strong> It gave a wrap-safe
+file count for the four-hour figure, said the line-anchored form reached
+fewer files, and offered a nonsense needle returning nothing as the check on
+both. Re-derivation supports none of the three, and the needle had been
+spelled out in this file&#39;s 2026-08-11 section weeks before this sentence
+called it clean. <strong>No number replaces the withdrawn ones, and the finding
+above does not need one:</strong> this row was missed because it states a duty in a
+table cell with the verb deleted, which is the mechanism named two sentences
+above. Primaries consulted:
+Regulation (EU) 2022/2554 (sha256 prefix <code>25328c7e39c4</code>) and Regulation (EU)
+2024/1689 (the Official Journal text snapshot of the Regulation).
+<strong>No RTS and no NIS2 figure is asserted from memory anywhere in these edits.</strong></p>
+</li>
+<li><p><strong>Ten annex citations that named no instrument on their own line, and were
+therefore read as the CSDR&#39;s or MiFID II&#39;s, now name the EU AI Act. Nothing
+was withdrawn and no citation was renumbered.</strong> All ten are EU AI Act annexes,
+discussing that Regulation&#39;s own annexes while naming another instrument as
+the subject matter of the scenario. Sites, each read before it was touched:
+<code>errata.md</code> (the 2026-09-05 CSDR withdrawal entry, the sentence that states
+what the withdrawn text had said and what is true instead),
+<code>integration/igm-aplc-integration-test.md:12</code> and <code>:13</code>, and
+<code>regulatory/foundation-model-third-party-register.md:504</code> and <code>:505</code>. Two
+further sites of the same shape in <code>errata.md</code> and in
+<code>foundation-model-third-party-register.md</code> are <strong>left standing and named
+here</strong>: they sit inside verbatim quotations of the withdrawn wording or of the
+primary, where the instrument cannot be inserted without altering quoted text.
+· <strong>Two quotations were re-marked, not re-worded.</strong> At
+<code>integration/igm-aplc-integration-test.md:12</code> and
+<code>regulatory/foundation-model-third-party-register.md:505</code> the emphasis markers
+sat inside the quotation marks rather than outside them, so a quoted-span
+reader extracted the markers as part of the quotation and could not match it
+against the primary. The markers were moved outside the quotation marks. The
+quoted words are unchanged and both quotations are verbatim at the hashed
+primary (the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256
+prefix <code>a0f437e89667</code>), which is what the move makes visible.
+· Two more annex citations in <code>errata.md</code> and in <code>domains/medical-devices.md</code>
+were <strong>read and deliberately left alone because they are correct</strong>: they cite
+the medical-devices Regulation&#39;s own annexes, the homonym this file&#39;s own
+2026-09-06 entry already records. Naming the EU AI Act on them would have been
+a new defect. <code>domains/medical-devices.md:261</code> is the converse case and is
+<strong>named rather than fixed</strong>: it is an EU AI Act annex read as the
+medical-devices Regulation&#39;s, of the same class as the ten above, and is left
+for a pass that can price it.
+· This file is tracked in git. The three files edited in this repository all
+have built <code>.html</code> twins, so a rebuild was run and the built pages carry the
+named instrument.</p>
+</li>
+<li><p><strong>Remaining annex attributions closed -- the class was re-derived and had
+grown again.</strong> The 2026-09-06 entry above closed twenty-two of these and named
+fifteen more, at eight sites, as still open. Re-derived rather than inherited,
+the same class is <strong>twenty citations at twelve sites</strong>: the earlier
+enumeration had filtered the run&#39;s own refusal list to four instruments and so
+could not see four sites where the same defect files an EU AI Act annex under
+DORA or the GDPR. Fixed in this repository, every one a <strong>pure insertion of
+the instrument name on the line</strong>, no citation deleted, re-worded or
+renumbered, and every edited file at exactly the line count it had before:
+seven annex citations plus two cumulative-test article citations in one table
+row of <code>regulatory/eu-ai-act-addendum.md:32</code>; <code>domains/medical-devices.md:261</code>
+(the converse case the entry above named and left);
+<code>integration/igm-aplc-integration-test.md:11</code> (two annex citations plus two
+article citations); <code>regulatory/foundation-model-third-party-register.md:498</code>
+and <code>:502</code>; and <code>errata.md:46</code>, <code>:410</code>, <code>:509</code> and <code>:656</code> in this file.
+· <strong>One re-wrap, for a stated reason.</strong> <code>domains/financial-services.md:15-16</code>
+split the instrument&#39;s name across the line break, so the annex citation on
+<code>:16</code> carried the name of a different instrument named four lines above. The
+two lines were re-wrapped so the name sits on the line it attributes; with the
+blockquote markers stripped the pair is byte-identical before and after under
+the checker&#39;s own normalisation, and the paragraph still occupies the same
+number of lines. This is the second live instance of that shape; the first was
+corrected in another repository on the same day.
+· <strong>Five sites were read and deliberately left alone because they are
+correct.</strong> <code>domains/medical-devices.md:247</code>, <code>:248</code> and <code>:418</code>, and
+<code>errata.md:104</code>, cite the medical-devices Regulation&#39;s <strong>own</strong> annexes, the
+homonym this file already records; naming the EU AI Act on any of them would
+have been a new defect. <code>errata.md:53</code> is an EU AI Act annex citation that
+sits <strong>inside a verbatim quotation</strong> of the cumulative-test article, with no
+unquoted text ahead of it on its line: the instrument cannot be named there
+without altering quoted words, so it is recorded and not changed.
+· <strong>Two emphasis markers were moved from inside a pair of quotation marks to
+outside them</strong> at <code>integration/igm-aplc-integration-test.md:11</code>, so that a
+span being made attributable could not be read as quoting the markers. Both
+quotations are verbatim at the hashed primary; the quoted words are untouched.
+· <strong>One site outside this corpus&#39;s writable scope remains open and is named
+rather than fixed:</strong> <code>papers/01_READ_FIRST/00_SSRN_INDEX.md:4</code> carries an
+annex citation of the 2026 amending Regulation that reads as the supervisory
+letter&#39;s, because the letter is named earlier in the same line.
+· This file is tracked in git. Three of the four files edited here have built
+<code>.html</code> twins, so a rebuild was run and the built pages carry the named
+instrument.</p>
+</li>
+<li><p><strong>Annex citations hidden by a line break, closed; and the quotation site
+closed without altering the quotation.</strong> Three of the sixteen line-break-split
+annex citations described in <code>aplc/errata.md</code> are in this repository —
+<code>domains/financial-services.md</code> at 174-175 and 209-210, and this file at
+21-22. These produce <strong>no citation record at all</strong> rather than a mis-filed
+one. Each was closed by moving <strong>one word</strong> across the break: nothing added,
+removed or re-worded, line counts unchanged, and the text byte-identical
+under the checker&#39;s own normalisation once markers are stripped.
+· <strong><code>errata.md:53</code> — the site the 2026-09-06 entry above named rather than
+fixed — is now closed, and not one character of the quotation moved.</strong> The
+annex citation sits inside a verbatim quotation of the Act&#39;s limb (b) test
+with no unquoted text ahead of it on its line, so the instrument cannot be
+named there. Naming it inside the quotation was refused. Two content-
+preserving edits close it instead: the trailing <code>MDR Art.</code> that began the
+<strong>next</strong> sentence was moved onto its own line — where it also reunites with
+its own paragraph number, which had been split off the same way — and the
+instrument this repository&#39;s own primary re-read is about was named in the
+unquoted lead-in at <code>:49</code>, which had itself been reading as the device
+regulation&#39;s. With no instrument named on <code>:53</code>, the carried instrument is
+now the right one. The quoted span at <code>:51-53</code> was extracted before and after
+and compared: <strong>identical</strong>. A pure re-wrap alone was built first and
+<strong>measured not to close it</strong>, which is why the lead-in was named as well.
+· <strong><code>papers/01_READ_FIRST/00_SSRN_INDEX.md:4</code>, named as out of scope above,
+is closed.</strong> Read at its site and corroborated at four other sites in
+<code>papers/</code>, the annex it cites is the <strong>AI Act&#39;s</strong>, whose high-risk
+obligations the 2026 amending Regulation deferred to 2 December 2027 — not
+the supervisory letter&#39;s and not an annex of the amending Regulation. The
+instrument name was inserted, and the sentence was moved onto its own line so
+that the name does not also capture the adjacent scare-quoted phrase about a
+provisional agreement — which, measured, it otherwise does, manufacturing a
+fabricated-quotation flag out of a phrase that claims to quote nothing.
+Recorded in <code>papers/01_READ_FIRST/_CORRECTIONS_TRACK.md</code> section G, which is
+where <code>papers/</code> keeps its record.
+· This file is tracked in git. Two of the files edited here have built
+<code>.html</code> twins, so a rebuild was run and the built pages carry the change.</p>
+</li>
+<li><p><strong>The last four extractor mis-attributions are closed in the prose, not in
+the extractor: three lines now name their instrument and the fourth needed no
+edit.</strong> Each fix is a <em>pure insertion</em> -- remove the inserted name and the
+line is byte-identical to its predecessor, including under the citation
+checker&#39;s own <code>normalizeForMatch</code>, which trims and maps dashes to spaces. The
+writing script asserted that property per line and refused to write
+otherwise. No citation was deleted and no wording withdrawn, and the quoted
+span each triage row is anchored on survives verbatim on all three lines, so
+no adjudication row is voided by these edits.
+· <strong><code>errata.md:107</code></strong> named no instrument of its own, and the line above it
+describes a notified-body route under the <code>MDR</code>, so the checker carried that
+name onto the number. The provision is the EU AI Act&#39;s, re-read this pass at
+the hashed primary (<code>OJ_L_202401689_AIAct.html.gz</code>, sha256 prefix
+<code>a0f437e8</code>): EU AI Act <code>Art. 6(1)</code> carries exactly the limbs (a) and (b), and
+limb (b) is the third-party conformity-assessment condition the sentence asks
+about. The MDR reading is impossible on its own terms -- at the hashed MDR
+primary (sha256 prefix <code>cac04f2a</code>) that instrument&#39;s Article 6 is <em>Distance
+sales</em>, four paragraphs, none of them lettered. The site now names
+EU AI Act Art. 6(1)(b) on the line itself, so no carried name reaches it.
+· <strong><code>errata.md:465</code></strong> said only that the major-incident classification
+criteria are in <em>the Regulation</em>, nine lines below a paragraph that declines
+a <code>NIS2</code> relabelling, so the checker carried that name forward onto it.
+Re-read at the hashed DORA primary (sha256 prefix <code>25328c7e</code>): DORA
+<code>Art. 18(1)</code> carries exactly the (a)-(f) the site claims, DORA
+<code>Art. 18(3)(a)</code> is the materiality thresholds, and DORA <code>Art. 17(3)(b)</code>
+independently cross-refers to the criteria set out in Article 18(1). The line
+now opens <code>the DORA Regulation, at Art. 18(1)(a)-(f)</code>.
+· <strong><code>errata.md:466</code> was left alone, because it is already right.</strong> It is the
+second half of the sentence :465 begins, so once :465 names the instrument
+the clause reads unambiguously and needs no insertion of its own; the checker
+attributes it correctly for the same reason. A site left alone because it is
+right is a result, not an omission.
+· <strong><code>regulatory/eu-ai-act-addendum.md:570</code></strong> named its instrument only by the
+bare abbreviation DSM, which the line neither expanded nor accompanied with
+an instrument name. The provision is the copyright reservation of rights
+that EU AI Act <code>Art. 53(1)(c)</code> cross-refers <strong>out</strong> to, and the Directive it
+points at is now named on the line. The extractor still cannot follow this
+one: that Directive is not among its recognised instruments, and adding it
+was measured at 1 right against 22 wrong and refused, so the number stays
+filed under the EU AI Act and stays in the checker&#39;s declared-unchecked list.
+The prose, not the tool, is what this edit fixes.
+· Measured on one frozen snapshot, before and after: taken alone, the three
+insertions move the citation checker&#39;s <code>no structure data</code> from 4 to 1 and
+its sub-clause <code>OK</code> from 584 to 587, leave the total triple count, the
+disagreeing pairs, the fabricated findings and the adjudication rows exactly
+where they were, and change nothing else in the report. The further movement
+a reader will see is this entry&#39;s own prose, which carries citations of its
+own and is checked like any other text in the corpus.
+· This file is tracked in git. Two of the edited files have built <code>.html</code>
+twins, so a rebuild was run and the built pages carry the change.</p>
+</li>
+<li><p><strong>The bullet above counted a string, in prose that contains that string --
+the count was false the moment it was written, and is now removed rather
+than restated.</strong> As first published, the note on
+<code>regulatory/eu-ai-act-addendum.md:570</code> read that the bare abbreviation
+occurred &quot;exactly once in this repository&quot;. Re-derived this pass with
+<code>command grep -rInIE &#39;\bDSM\b&#39; --exclude-dir=.git .</code> run from the repository
+root over 4570 readable files, against a nonsense needle of the same shape --
+described here rather than spelled out, for the reason given in the entry at
+the end of this section -- which returned nothing on that identical command
+and file set while the sweep itself returned matches. <strong>On the tree as it
+stood before this entry was written</strong>, the abbreviation was present on five
+lines in five files: the
+cited addendum line and its built <code>.html</code> twin, the note itself, and the
+note&#39;s two built copies in <code>errata.html</code> and <code>index.html</code>. Three of the five
+existed only because the note had been written and the site rebuilt. That
+count is stated with its snapshot precisely because this entry does not
+escape the effect it describes: quoting the pattern above puts the letters
+back into this file -- they slip the word-boundary sweep only because the
+preceding escape leaves the D non-initial, and a plain substring search
+counts them -- and the rebuild copies this entry into two built pages.
+<strong>No live number replaces the false one.</strong> A count excluding the note would
+have been honest but not stable: this file has built twins, so the same
+sentence would go stale at the next rebuild without a word of it changing.
+The
+bullet now describes the defect at its own site -- unexpanded, with no
+instrument name beside it -- which is a claim about one line and cannot be
+moved by anything written elsewhere. The substance is untouched: a bare,
+unexpanded abbreviation still cannot carry an instrument name, and the
+insertion naming the Directive on the addendum line stands.
+· This is this corpus&#39;s recorded rule about its own documentation entering
+its own search space, applied rather than rediscovered -- the same rule that
+governs the burned control strings recorded in this file (the negative
+control quoted at <code>errata.md:518</code>, and quoted again lower down, is live in
+the corpus for exactly that reason) and is stated in full in the corpus
+execution plan for 2026-09-05. Nothing general is claimed here that is not
+already written down there.
+· The backticks around the abbreviation were dropped with the count. The
+citation checker treats a backticked span as an identifier and excludes it,
+and an instrument name so excluded falls back onto the nearest carried name;
+the abbreviation names an instrument, so it is now set as plain prose.
+· Guarded counts were read before and after this edit and none moved: the
+link checker reports broken 4, the cross-reference checker passes, and the
+citation checker reports disagreeing pairs 68, sub-clause OK 594 with
+fabricated 1 and no-structure-data 1, and section 3c rows 168 with VOID 0,
+REGRESSED 0 and CONFLICT 0, no truly new fabrication. The citation checker
+itself was modified by other work between the before and after readings, and
+gained a report section this edit did not cause; the two readings taken
+after the change are byte-identical to each other, and the guarded numbers
+above are the ones compared. This file&#39;s built twins were rebuilt so the
+pages carry the change.</p>
+</li>
+<li><p><strong>A NIS2 absence claim, refuted by the line two above it -- withdrawn, not
+restated with a corrected number.</strong> As first published, the DORA-clock note
+asserted that this repository held no citations of NIS2 at all, offering the
+pattern <code>\bNIS ?2\b|Directive ?\(EU\) ?2022/2555</code> and a result of 0 as the
+evidence. No span of the withdrawn sentence is reproduced here, because a
+claim quoted back verbatim beside an instrument&#39;s name is read as a quotation
+from that instrument. <strong>Two lines above that sentence, the same paragraph
+cites NIS2 Art. 23 by name and by article</strong>, so the claim was refuted by its own
+immediate neighbour and was false at the moment it was written -- the pattern
+it quoted matches that neighbour, and it matches the quoted pattern itself.
+· <strong>Re-derived rather than inherited.</strong> The pattern was re-run this pass with
+<code>command grep -rnE</code> from inside this repository, over 250 readable files with
+<code>.git</code> and <code>node_modules</code> excluded, alongside a fresh long negative control
+(<code>quartzflumox_negctl_20260906</code>, joined with a nonexistent directive number)
+returning nothing over the same sweep on 06.09.2026 and the positive control
+<code>\bthe\b</code> returning five figures, so the pattern is live and not silently
+rejected — and in the same breath, because a caveat that travels separately
+from its claim is not a caveat: <strong>that negative control is spent from the
+commit that printed it</strong>, since spelling the needle put it in this file and
+the rebuild puts it in both built twins, so the zero above is reproducible
+only by a reader who generates a needle of their own. <strong>The weight therefore
+sits on the positive control, which this entry cannot burn because that
+pattern is supposed to be present.</strong> The cost is stated rather than talked
+down: a reader cannot re-run a control they cannot see. The needle is left
+spelled rather than deleted, because deleting it here would not un-spend it —
+it is already in the two built pages — and a burn list that quietly loses an
+entry is worse than one that keeps it. [noted 06.09.2026, <code>D-72</code> / <code>T6.1</code>]
+Every line the pattern reaches sits in this file or in one of its two built
+copies; <strong>no number from that sweep is restated here, and this entry states
+no count of anything it contains</strong>, because it contains the pattern, the
+instrument&#39;s short name and the instrument&#39;s full directive number, and this
+file is rebuilt into two more pages that would carry all three.
+· <strong>No count replaces the false one, and the reason is one pass old.</strong> The
+sibling note lower in this section withdrew an &quot;exactly once&quot; count over the
+same trap and recorded why: a count scoped to exclude its own note is honest
+but not stable, because this file has built twins and the same sentence goes
+stale at the next rebuild without a word of it changing. That is the identical
+trap one order out here -- a claimed absence against a string the claim&#39;s own
+paragraph puts on the page, in a file that is copied twice. The sentence is
+now a claim about the
+row it is defending: a row stating a DORA obligation does not become a NIS2
+row because a NIS2 period coincides with the figure the row carried, and what
+the row needed was the source of its own numbers. Nothing written elsewhere
+in this corpus can move that.
+· <strong>The substance is withdrawn too, not only the number -- and the substance
+was the weaker half.</strong> The sentence was doing work: it offered the absence of
+NIS2 from this corpus as a reason not to relabel the row. That reason no
+longer stands and, on inspection, never carried the argument. NIS2 has since
+been retrieved from the official source and hashed, it holds an article-
+structure entry of its own with a declared last article and an exhaustively
+enumerated Art. 23, and it is cited with sub-clause locators in a sibling
+repository. In the other direction, the two classification-criteria sites at
+<code>errata.md:465</code> and <code>:466</code> -- which the checker had carried onto NIS2 by name
+-- were re-read against the hashed DORA primary and are DORA&#39;s, so the
+citations that made the corpus look like a NIS2 citer were not NIS2&#39;s either.
+<strong>Both movements are recorded elsewhere and neither is asserted from memory
+here.</strong> What survives is the part that never depended on a count: the
+surrounding claim is about DORA, DORA defers its periods, and a coincidence
+of figures is not an attribution.
+· <strong>No instrument short name is backticked anywhere in this entry.</strong> A pass
+tonight put an instrument name inside backticks in a note; the citation
+checker treats a backticked span as an identifier and excludes it, the name
+on that line fell back onto the nearest carried name, and the entry
+re-created the defect it had just closed. The sibling note dropped its
+backticks for the same reason. The only backticked spans here are file paths
+and search patterns.
+· <strong>A sweep of this file&#39;s other corpus-scoped absence and count claims was
+run and is reported to the brief rather than acted on</strong>, because two of the
+findings sit outside the defect this entry closes and one of them is another
+burned control string. Claims this file makes about the text of external
+primaries are a different class and cannot be moved by this file at all.
+· <strong>Guarded counts were read before and after and none moved</strong>: the link
+checker reports broken 4, the cross-reference checker passes, and the citation
+checker reports disagreeing pairs 68, sub-clause OK 594 with fabricated 1 and
+no-structure-data 1, section 3c rows 168 with VOID 0, REGRESSED 0 and
+CONFLICT 0, no truly new fabrication, and the known-only run exits 0. Two
+consecutive readings taken before the edit are byte-identical to each other.
+This file is tracked in git and has two built copies, so a rebuild was run and
+the built pages carry the change.</p>
+</li>
+<li><p><strong>Two negative controls were written out in this file; one of them had
+already been burned by this same file at the moment it was called clean.</strong>
+Both are withdrawn, and the general remedy they point at is proposed here
+rather than applied across the corpus by fiat.
+· <strong>The site earlier in this section.</strong> A wrap-safe searching claim offered a
+two-word nonsense needle as returning nothing across this tree. Re-run on the
+command and the file set that sentence itself printed, the needle is reached
+in this very file: an entry in the 2026-08-11 section had already spelled it
+out weeks earlier as its own control. That older entry is sound and is not
+disturbed here -- its control was run against a hashed primary&#39;s text, not
+against this tree, and it still holds on that reading. What the later
+sentence did was assert a repository-wide absence for a string its own file
+already carried, and the entry carrying it predates the claim, so <strong>this is
+not drift: the claim was false at the moment it was written.</strong> That is the
+failure mode the corpus&#39;s execution plan for 2026-09-05 records as the only
+one that returns a green result -- a burned control raises nothing, it
+silently certifies every zero it was offered to validate, and the certificate
+reads the same either way.
+· <strong>Both the number and the claim are corrected there, and which is which is
+said at the site.</strong> Re-derivation also fails the other two halves of that
+sentence. The command as printed reaches one more file than the number beside
+it, because the number quietly assumed an exclusion the command does not
+carry; and the line-anchored form it was contrasted against reaches the same
+files, not fewer, so for that needle the contrast has nothing behind it. The
+finding the sentence was decorating is untouched and never rested on it -- a
+table row states a duty with the verb deleted, so verb- and modal-keyed
+sweeps cannot reach it -- and the corrected passage now says that with no
+number at all. <strong>A burned control does not make a finding wrong. It makes the
+evidence offered for that finding stop standing</strong>, and the two have to be
+separated in writing or the correction reads as a retraction.
+· <strong>The sibling entry&#39;s own control, and why its scoping was not left to
+carry it.</strong> The entry earlier in this section that withdrew a
+bare-abbreviation count named its fresh needle in the same breath. The needle
+was genuinely clean when it was run, and <em>re-derived this pass</em> scopes the
+re-derivation -- but it does not reach into the parenthetical, which was
+written in the present tense and called the needle fresh. A reader re-running
+it does not get nothing. The string sat in three files, every one of them
+created by the sentence that named it, until this pass removed it. So the
+scoping was enough to keep that entry honest and not enough to keep its
+control usable, which are different things: the reader is not misled, and the
+instrument is still destroyed. The needle is now described there rather than
+spelled, on the same footing as the site above. Its measured figure keeps its
+snapshot and its own statement that it does not escape the effect it
+describes; that half needed nothing.
+· <strong>The remedy, proposed with its cost and not applied everywhere.</strong> Six
+controls in this corpus have now been burned by being written down. The
+corpus documents its own verification, and that documentation lives inside
+the search space it documents, so a control named in published prose is burned
+by the act of publishing it -- not later, and not by anybody&#39;s mistake. The
+proposal is narrow: <strong>describe the negative control instead of spelling it,
+and let the positive control carry the weight.</strong> A positive control cannot be
+burned this way, because it is supposed to be present, and it establishes the
+same thing the negative one was there for -- that the command is live and is
+not silently rejecting its own pattern. This file already contains that form,
+written on 2026-08-11: an entry in the last section reports a newly generated
+needle returning nothing, whole and by halves, against positive controls on
+the identical commands, and names none of them. <strong>The cost is real and should
+not be talked down: a reader cannot re-run a control they cannot see.</strong> The
+negative half stops being independently reproducible on the page and becomes
+something taken on the author&#39;s word, recorded in the working notes for the
+pass instead. That is a loss of exactly the kind this file exists to prevent,
+which is why it is offered as a judgement to be argued with rather than a
+rule, and why it is applied at the two sites this entry corrects and nowhere
+else.
+· <strong>This entry names no control string and states no count of anything it
+contains.</strong> Both needles are described rather than reproduced, so nothing
+written here can burn them further or be burned by them, and the commands,
+file counts and controls behind the re-derivation are recorded in the working
+notes for this pass rather than as live figures on this page. No phrase
+withdrawn from beside an instrument&#39;s name is quoted back here.
+· <strong>Guarded counts were read twice before and twice after and none moved</strong>:
+the link checker reports broken 4, the cross-reference checker passes, and the
+citation checker reports disagreeing pairs 68, sub-clause OK 594 with
+fabricated 1 and no-structure-data 1, section 3c rows 168 with VOID 0,
+REGRESSED 0 and CONFLICT 0, no truly new fabrication, and the known-only run
+exits 0. Line re-anchoring in section 3c moves as a mechanical consequence of
+this file gaining lines; that is not a verdict change. This file is tracked in
+git and has two built copies, so a rebuild was run and the built pages carry
+the change.</p>
+</li>
+</ul>
+<h2 id="2026-09-05">2026-09-05</h2><ul>
+<li><p><strong>The Article 43 conformity inversion in <code>regulatory/eu-ai-act-addendum.md</code>
+§8.2 is withdrawn and replaced by the instrument&#39;s own rule -- one sentence,
+four faults.</strong> The paragraph read: &quot;Required for Annex III point 1(a) remote
+biometric identification, and for systems where a harmonised standard or
+common specification has not been (fully) applied.&quot; Article 43 of Regulation
+(EU) 2024/1689 was read in full at the hashed primary
+(the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256 prefix
+<code>a0f437e89667</code>) -- all six paragraphs, both lettered lists inside paragraph 1,
+and the third subparagraph of paragraph 1. <strong>(1) The harmonised-standard
+triggers do not generalise.</strong> They are the (a)-(d) items of Art. 43(1),
+second subparagraph, and Art. 43(1) is scoped &quot;<em>For high-risk AI systems
+listed in point 1 of Annex III</em>&quot;; stating them as a free-standing rule
+asserts the inverse of Art. 43(2), under which providers of the systems
+&quot;<em>referred to in points 2 to 8 of Annex III</em>&quot; follow the internal-control
+procedure of Annex VI, &quot;<em>which does not provide for the involvement of a
+notified body</em>&quot;. Art. 43(6) settles it: subjecting points 2 to 8 to Annex VII
+would take a delegated act. <strong>(2) &quot;Required&quot; is wrong even inside point 1.</strong>
+Where harmonised standards or common specifications have been applied,
+Art. 43(1) says the provider &quot;<em>shall opt for one of the following conformity
+assessment procedures</em>&quot; -- Annex VI or Annex VII. It is a choice; Annex VII
+becomes obligatory only in the four cases of the second subparagraph.
+<strong>(3) &quot;Point 1(a)&quot; under-scopes the provision.</strong> Art. 43(1) reaches the whole
+of Annex III point 1 (Biometrics), which is (a) remote biometric
+identification, (b) biometric categorisation and (c) emotion recognition.
+<strong>(4) The four triggers were compressed into one.</strong> &quot;Has not been (fully)
+applied&quot; drops the case where standards &quot;<em>do not exist, and common
+specifications referred to in Article 41 are not available</em>&quot;, and drops the
+limit that a restricted standard sends only &quot;<em>the part of the standard that
+was restricted</em>&quot; to Annex VII. §8.1 carried the matching hedge (&quot;for most
+Annex III systems ... in some cases&quot;) and is restated as the Art. 43(2) rule
+it is. Nothing was deleted: the notified body&#39;s audit function, the
+free choice of notified body and the Art. 74(8)/(9) market-surveillance
+substitution are all now stated where the route actually applies.
+<strong>This is the same defect corrected across nine sites in <code>aplc/</code> on
+2026-09-05; that pass did not reach this repository.</strong></p>
+</li>
+<li><p><strong>Why no citation check could have found it: the sentence cited no
+provision.</strong> The corrected paragraph named no article number -- &quot;Annex VII&quot;
+is a heading and &quot;harmonised standard&quot; is prose -- so it carried no
+<code>(instrument, article)</code> triple and could never be paired against the <code>aplc/</code>
+site that contradicted it. <code>tools/citation-consistency.mjs</code> §2 keys on
+<code>Art. N</code>. It was found instead by <code>command grep -rn &#39;Annex VII&#39;</code>. <strong>A claim
+about a provision that does not cite the provision is invisible to every
+citation-based check in this programme</strong>, and a claim stated confidently
+enough needs no citation to be believed. The recall gap is recorded here and
+handed back to the tool owner rather than worked around.</p>
+</li>
+<li><p><strong>Every conformity-assessment claim in this repository was enumerated by
+command, not sampled.</strong> <code>command grep -rniE &#39;(annex (vi|vii)([^i]|$)|notified body|third-party (conformity )?assessment|self-assessment|internal control)&#39; --include=&#39;*.md&#39; .</code> run from inside the repository -&gt; <strong>13 lines across 9
+files</strong>; a second, wider pass on <code>conformity assess|Art(icle)?\.? ?43|CE mark|Annex V</code> -&gt; 18 lines across 7 files. <code>command grep</code> was used for every
+count in this entry: the shell&#39;s <code>grep</code> wraps <code>ugrep --ignore-files</code>, and the
+root <code>.gitignore</code> lists this repository, so a root-level search returns
+nothing from it. <strong>Wrong: 3</strong> -- <code>regulatory/eu-ai-act-addendum.md:573</code> (the
+inversion), <code>:564</code> (the matching hedge in §8.1) and
+<code>domains/financial-services.md:188</code>. The remaining ten are sound and were
+left alone: <code>domains/medical-devices.md:259</code> and
+<code>integration/igm-aplc-integration-test.md:11</code> quote the Art. 6(1) two-limb
+test correctly, <code>domains/defense-government.md:75</code> and
+<code>regulatory/coso-cobit-crosswalk.md:80</code> are CMMC and COBIT rather than the AI
+Act, and <code>companion/reference.md:47</code> and <code>companion/principles-12.md:103</code> use
+&quot;self-assessment&quot; of maturity models, not of conformity.</p>
+</li>
+<li><p><strong><code>domains/financial-services.md:188</code> resolved: the hedge was hiding a route
+the Act forecloses.</strong> The Art. 43 row read &quot;Financial services AI may require
+third-party conformity assessment under sector-specific rules.&quot; It is hedged
+and attributed to sector rules rather than to the Act, so it was not a false
+statement about Art. 43 -- but it sits in a table whose own Annex III section
+classifies these systems under point 5, and a reader arriving at it reads an
+Annex VII path that Art. 43(2) forecloses for points 2 to 8. The row now
+states the Art. 43(2) rule in its own cell, records that financial services
+legislation is not Union harmonisation legislation listed in Section A of
+Annex I so the Art. 43(3) sectoral route does not apply either, and marks the
+surviving claim <code>F2</code>: a supervisory internal-model or IRB approval is a
+sector supervisory requirement, <strong>not</strong> an AI Act conformity assessment. The
+claim is re-attributed, not deleted, because a firm may well face such a
+review -- what was wrong was the instrument it was hung on.</p>
+</li>
+<li><p><strong>DORA Article 28 has ten paragraphs, not nine, and the file that said
+otherwise had been corrected hours earlier for five wrong paragraph numbers
+in the same list.</strong> <code>regulatory/foundation-model-third-party-register.md:240</code>
+said &quot;all nine paragraphs of Art. 28 were read end to end at the primary&quot;.
+Enumerated at the hashed primary
+(the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA),
+sha256 prefix <code>25328c7e39c4</code>), Art. 28 of Regulation (EU) 2022/2554 runs
+1 to 10: <strong>28(9)</strong> is the ESA implementing-technical-standards mandate for
+the register template referred to in paragraph 3, and <strong>28(10)</strong> the ESA
+regulatory-technical-standards mandate for the policy referred to in
+paragraph 2. The same undercount stood in this errata file&#39;s own 2026-09-05
+entry (&quot;Reading Art. 28(1) through 28(9)&quot;) and is corrected there too. The
+count is corrected in place, and the §3.1 obligation list -- which stopped at
+28(8) -- now carries rows for 28(9) and 28(10) so that the list and the claim
+about it agree. <strong>The lesson is the entry, not the digit:</strong> a claim about
+<em>how thoroughly a primary was read</em>, made inside a correction note, is the
+least likely sentence in a document to be re-checked, and it survived a pass
+that rewrote four rows immediately above it. That pass also wrote &quot;verified
+against&quot; as its verdict; the word is replaced with &quot;read at the primary&quot;,
+since no model verifies anything.</p>
+</li>
+<li><p><strong>EU AI Act Annex III misclassification of the CSDR penalty class withdrawn -- the twin
+a 2026-09-02 correction left standing.</strong>
+<code>regulatory/foundation-model-third-party-register.md</code> §6.3 stated that
+&quot;Class B (CSDR penalty) and Class C (credit pre-screening) require FRIA
+refresh (these are Annex III high-risk)&quot;, citing the EU AI Act. Class B is not an EU AI Act Annex III system.
+Annex III of Regulation (EU) 2024/1689 is exhaustive and contains no
+post-trade financial market infrastructure; the words <em>settlement</em>,
+<em>post-trade</em> and <em>securities</em> occur zero times anywhere in the Regulation,
+a demonstrated absence rather than a dead search, with one-word-swap
+negative controls and positive controls confirming the search resolves
+against the file. The nearest point, Annex III 5(b), reaches AI systems
+&quot;intended to be used to evaluate the creditworthiness of natural persons or
+establish their credit score, with the exception of AI systems used for the
+purpose of detecting financial fraud&quot; -- not wholesale settlement-fail
+penalty calculation between institutions. Class C (consumer-credit
+pre-screening) is squarely 5(b) and is unaffected; the FRIA obligation
+scoped to Class B was over-scoped and is withdrawn, and the Phase C step
+now carries a dated classification note in place. <strong>The lesson is recorded
+with the correction:</strong> the identical correction was made to the identical
+worked scenario in <code>integration/igm-aplc-integration-test.md</code> on
+<strong>2026-09-02</strong> and landed in that file only, so this file carried the
+withdrawn classification for three further days. Nothing in a per-file
+review or in <code>git diff</code> shows a surviving twin -- only an enumeration of
+every site in the repository that classifies the scenario finds it, and
+that enumeration is the reason this entry exists. Primary consulted:
+the Official Journal HTML snapshot of Regulation (EU) 2024/1689
+(sha256 prefix <code>a0f437e89667</code>).</p>
+</li>
+<li><p><strong>DORA Article 28 paragraph attributions corrected in four places -- right
+instrument, wrong paragraph, four times over.</strong>
+<code>regulatory/foundation-model-third-party-register.md</code> attributed a board-
+approval duty for CIF-supporting arrangements to <strong>DORA Art. 28(7)</strong> in two
+places (the §3.1 obligation list and procurement-gate item G16). Art. 28(7)
+of Regulation (EU) 2022/2554 is termination: it requires financial entities
+to &quot;ensure that contractual arrangements on the use of ICT services may be
+terminated&quot; in four listed circumstances. Reading Art. 28(1) through 28(10)
+end to end -- rather than only the paragraph named -- showed that DORA
+imposes no board approval of an individual arrangement at all: Art. 28(2)
+requires the management body to &quot;regularly review the risks identified in
+respect to contractual arrangements on the use of ICT services supporting
+critical or important functions&quot;, and Art. 5(2)(h) requires it to &quot;approve
+and periodically review the financial entity&#39;s policy on arrangements
+regarding the use of ICT services provided by ICT third-party service
+providers&quot; -- a policy, not a contract. The phrase &quot;board approval&quot; does not
+occur anywhere in DORA. G16 is re-attributed to Art. 28(2) and now says in
+the same sentence as the claim that per-arrangement board approval is firm
+policy, not a DORA requirement. Reading the whole Article also exposed three
+further neighbour errors in the same list, each corrected in place: the
+CIF-support assessment was attributed to 28(2) (it is <strong>28(4)(a)</strong>), the
+mandatory contractual provisions to 28(5) (they are <strong>Art. 30</strong>; 28(5) is
+information-security standards), and the exit strategy to 28(6) (it is
+<strong>28(8)</strong>; 28(6) is audit and inspection rights) -- the last of these
+contradicting §1.1 and §6 of the same document, which already cited 28(8).
+Every wrong paragraph is a plausible-sounding neighbour of the right one,
+which is how the list survived earlier review. Primary consulted:
+the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+(sha256 prefix <code>25328c7e39c4</code>).</p>
+</li>
+<li><p><strong>GDPR Art. 12(3) response period restated in the Regulation&#39;s own unit --
+three sites, not the one reported.</strong>
+<code>operational-templates/slo-table.md</code> rows 35 and 36 set the data-subject
+explanation and right-to-human-review clocks at &quot;≤ 30 days&quot;, the first of
+them attributed in the same cell to &quot;GDPR Art 12&quot;, and
+<code>regulatory/nist-ai-rmf-crosswalk.md:150</code> carried the same 30-day figure in
+its <code>rights_and_remedies</code> field example. Article 12(3) of Regulation (EU)
+2016/679 sets no such period: the controller shall provide information on
+action taken &quot;without undue delay and in any event within one month of
+receipt of the request&quot;, and &quot;that period may be extended by two further
+months where necessary, taking into account the complexity and number of the
+requests&quot;, with the data subject informed of the extension within one month.
+The strings &quot;30 days&quot; and &quot;60 days&quot; occur zero times anywhere in the
+Regulation, with one-word-swap negative controls (month → 30 days; two →
+three further months) and positive controls confirming the search resolves
+against the file. <strong>A month is not thirty days</strong>, and the error is worse than
+its size because an SLO table is precisely where a reader takes a number and
+builds a timer from it: February would over-run a 28-day month and every
+31-day month would run three days short of the real deadline. The periods are
+restated in the Regulation&#39;s own wording rather than converted to days, and
+the paragraph is now cited as Art. 12(3) rather than Art. 12. <strong>The lesson is
+recorded with the correction:</strong> the defect was handed over as one site in a
+different repository; enumerating every figure stated near a data-subject
+right across this repository found three, and none of them where they were
+said to be. Primary consulted:
+the EUR-Lex HTML snapshot of Regulation (EU) 2016/679 (GDPR)
+(sha256 prefix <code>9952f3f336d4</code>).</p>
+</li>
+<li><p><strong>EU AI Act Art. 10(4) quotation restored; paragraph numbers added.</strong>
+<code>companion/principles-08.md</code> asserted that Article 10 requires datasets to
+account for &quot;characteristics or elements that are particular to the specific
+geographical, behavioural or functional setting.&quot; The word <strong>contextual</strong> had
+been dropped from inside the quotation marks. Art. 10(4) of Regulation (EU)
+2024/1689 reads &quot;the characteristics or elements that are particular to the
+specific geographical, contextual, behavioural or functional setting within
+which the high-risk AI system is intended to be used&quot;. The quotation is
+restored with &quot;contextual&quot; and the paragraph is now cited as Art. 10(4). The
+article number held: the obligation is in Article 10, not a neighbouring
+provision, and the text was read in the Article body -- not in Recital 67 or
+Article 42, which carry near-identical wording in a different word order and
+would have made a wrong-provision citation look correct. The companion
+&quot;free of errors and complete&quot; quotation, which comes from Art. 10(3) and not
+from 10(4), is now attributed to 10(3) and carries the Act&#39;s own qualifier
+&quot;to the best extent possible&quot;, which the previous sentence had dropped,
+stating an absolute duty the Act does not impose. Primary consulted:
+the Official Journal HTML snapshot of Regulation (EU) 2024/1689
+(sha256 prefix <code>a0f437e89667</code>).</p>
+</li>
+<li><p><strong>DORA citation exemplar corrected -- a bad citation was being taught as the
+model of a good one.</strong> <code>review/prompts/prompt-07-guardrails-security.md</code>
+offered, as its <em>positive</em> exemplar of a properly grounded regulatory claim,
+&quot;DORA Art. 9(2)(b) requires that ICT systems are protected against ICT
+attacks&quot;. No such provision exists. In Regulation (EU) 2022/2554, Article 9
+is <em>Protection and prevention</em>; Art. 9(2) is unlettered prose about security
+policies, procedures, protocols and tools, and only Art. 9(3) carries points
+(a)-(d). The defect is worse than its size, because the artefact&#39;s purpose is
+to teach reviewers what a well-grounded citation looks like: an exemplar that
+is itself unsupported propagates the defect into every review written from
+the prompt, under the authority of the rule it illustrates. It was not
+repaired by renumbering to 9(3)(b), which exists and would have looked
+plausible: 9(3)(b) requires ICT solutions and processes to &quot;minimise the risk
+of corruption or loss of data, unauthorised access and technical flaws that
+may hinder business activity&quot;, which is not what the sentence claimed. The
+phrase &quot;ICT attacks&quot; does not occur anywhere in DORA. The exemplar is
+replaced with Art. 9(4)(c), which unconditionally requires financial entities
+to &quot;implement policies that limit the physical or logical access to
+information assets and ICT assets to what is required for legitimate and
+approved functions and activities only&quot;. Art. 9(4)(b) was considered and
+rejected: it mentions cyber-attacks only inside a &quot;may include&quot; hedge, and
+quoting a permissive clause as a requirement would have reproduced the same
+class of error. The replacement also places the sentence&#39;s full stop outside
+the closing quotation mark, so the quoted span is exactly the provision&#39;s
+words. Primary consulted:
+the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+(sha256 prefix <code>25328c7e39c4</code>).</p>
+</li>
+<li><p><strong>Declining intervention rate withdrawn as evidence; rubber-stamping
+screens demoted; a proposed engagement test added.</strong> <code>adoption/metrics.md</code>
+presented four behavioural signals (median review time, rejection rate,
+inline comments, rework rate) as quantitative rubber-stamping detection.
+Every one is a proxy a reviewer can satisfy without doing the cognitive
+work, and the research literature on monitoring highly reliable automation
+reports rapid habituation to controls of exactly that kind. The signals are
+retained as continuous screens and are now explicitly stated to be adequate
+to fire an alert and inadequate to clear one; they are no longer an
+assurance basis for an autonomy decision. Added in their place, as a
+<strong>proposed and unvalidated</strong> design: the Engagement Falsification Protocol
+(double-blind synthetic fault injection, with blinding to reviewers and
+their supervisors, a hard interception interlock, pre-registered outcomes of
+supported-within-scope / contradicted / inconclusive, and <em>d&#39;</em> rather than a
+raw hit rate as the primary endpoint). Its limits are stated in the text
+alongside it, not in a footnote: it does not reach in-envelope Tier 4
+execution, it excludes irreversible and person-affecting actions, and it
+cannot be powered on a low-volume queue -- run unpowered it returns
+&quot;supported&quot; by default. Nothing in the repository authorises live fault
+injection. The same section now states that a declining intervention or
+override rate is not evidence that oversight can relax, and that the
+decision-quality qualifier does not repair it.</p>
+</li>
+<li><p><strong>No numeric pass criterion is asserted for the protocol.</strong> The commissioned
+research synthesis behind it carries a numeric pass threshold only inside an
+embedded figure image, with no text equivalent anywhere in the document. The
+criterion is therefore stated structurally -- detection on injected faults
+must not decline with the baseline rate -- and no numeral is quoted for it.</p>
+</li>
+<li><p><strong>Tier 4 assurance basis corrected.</strong> <code>glossary.md</code> and
+<code>regulatory/incidents-appendix.md</code> conditioned Tier 4 authorisation on
+rubber-stamping detection being active without recording that no engagement
+measurement reaches in-envelope Tier 4 execution, where there is no
+per-action human decision to instrument. Both now state that the
+prerequisite bounds the envelope-change and audit functions only, and that
+in-envelope assurance rests on envelope design, machine enforcement and
+post-hoc audit. <code>governance/authority-accountability-matrix.md</code>&#39;s D3 trigger
+row carries the same asymmetry note and now requires a positive engagement
+result, or an explicit record of its absence, to restore a tier.</p>
+</li>
+<li><p><strong>Fabricated FDA CSA quotations withdrawn.</strong> <code>domains/pharma.md</code> attributed
+seven quoted phrases to FDA&#39;s Computer Software Assurance guidance --
+five in a &quot;CSA Principle&quot; table (<code>:102-106</code> as then numbered) and two in
+a prose bullet on formal verification (<code>:338-339</code>) -- plus a propagated
+eighth site in an Open Regulatory Questions row (<code>:424</code>, &quot;leverage
+supplier testing&quot;). None of the eight occurs in either the 2022 CSA
+draft or the live 2026 final, checked at primary with whitespace- and
+hyphen-insensitive matching. The quotations were cut; the table and
+prose bullet were not replaced with alternate quotations, per this
+repository&#39;s cut-not-softened standard. The checks covered the FDA&#39;s 2022
+draft and 3 February 2026 final guidance, using whitespace- and
+hyphen-insensitive matching.</p>
+</li>
+<li><p><strong>Section 2 scope defect flagged, not rewritten.</strong> The same file&#39;s
+§2 headline -- &quot;the strongest alignment point between the manifesto and
+pharma regulation&quot; -- rests on FDA CSA guidance whose own Scope section
+states it applies &quot;for medical devices&quot; under 21 CFR Part 820, not the
+210/211 and EU GMP Annex 11 basis pharma GMP validation actually runs
+on; the guidance has also been superseded twice since the 2022 draft the
+file cites. A dated scope note was added recording this; the section&#39;s
+argument was left standing for its author to revise. See the same
+packet, claim C6.</p>
+</li>
+<li><p><strong>GDPR Art. 22 quotation corrected.</strong> <code>domains/README.md</code>&#39;s
+cross-domain open-questions table quoted &quot;solely automated
+decision-making&quot; as GDPR Art. 22 itself; that exact wording does not
+occur in Art. 22 (Art. 22(1) reads &quot;a decision based solely on
+automated processing&quot;). The quotation marks and direct attribution were
+removed; the question was kept, unquoted, since it stands on its own.
+No replacement quotation was asserted.</p>
+</li>
+<li><p><strong>DORA Article 14 cross-reference corrected -- the withdrawal that ran in
+two other repositories never reached this one.</strong> <code>domains/financial-services.md</code>
+(§ ASDLC and APLC Regulatory Guidance) listed &quot;DORA Article 14&quot; among the
+financial-services requirements mapped to ASDLC Layers 1, 3 and 4. Article 14
+of Regulation (EU) 2022/2554 is <em>Communication</em> -- crisis-communication plans
+(¶1), communication policies for internal staff and external stakeholders
+(¶2), and a person tasked with the public and media function (¶3) -- and
+carries no ICT change-management obligation. The obligation the linked ASDLC
+guidance maps to Layer 3 is Article 9(4)(e), documented policies, procedures
+and controls for ICT change management; the cross-reference now cites that,
+with an in-place note. Read at primary against
+the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+(sha256 prefix <code>25328c7e39c4</code>). Recorded for the next reader, because a
+correction elsewhere in this programme asserted that Article 14 has no
+paragraph 2: <strong>it does</strong> -- the text is quoted above -- and what does not
+exist is lettered sub-paragraphs under it. Neither this file nor its note
+repeats that claim. The site was missed by the earlier sweep because nothing
+had been withdrawn here, so there was no withdrawal marker to find; it was
+reachable only by searching for the withdrawn string itself.</p>
+</li>
+<li><p><strong>CSA §2 headline: the scope caveat moved out of the blockquote and into the
+claim.</strong> <code>domains/pharma.md</code> §2 asserted that &quot;The FDA&#39;s 2022 CSA guidance
+replaces traditional CSV with risk-based, critical-thinking-driven assurance&quot;
+and that &quot;This is the strongest alignment point between the manifesto and
+pharma regulation&quot;, with the qualification carried in a <code>&gt; **Scope note**</code>
+blockquote <em>above</em> the sentences. A separated caveat is stripped the moment
+the figure or claim is lifted into a deck, so the qualification is now in the
+sentences themselves: the guidance does not say it &quot;replaces&quot; CSV; &quot;critical
+thinking&quot; occurs zero times in the 2022 draft and zero times in the
+3 February 2026 final, so &quot;critical-thinking-driven&quot; is this document&#39;s gloss
+and not the instrument&#39;s language; and the alignment judgement is marked as
+asserted on this document&#39;s own account against a guidance whose stated scope
+is computer software assurance &quot;for medical devices&quot; under 21 CFR Part 820.
+<strong>No claim was deleted</strong> -- each is now marked unsourced in its own sentence,
+and the scope note is retained and updated to say the qualification has moved.
+Sources checked: the FDA&#39;s 2022 draft and 3 February 2026 final guidance.</p>
+</li>
+<li><p><strong>PAT bullet: the caveat now governs what survived the cut, not what was
+removed.</strong> In <code>domains/pharma.md</code>, the bullet &quot;<strong>FDA CSA alignment</strong>: targeted
+formal verification on critical paths can support replacing exhaustive
+scripted test matrices&quot; was followed by a parenthetical recording that two
+CSA quotations had been cut from it. That parenthetical qualified <strong>the
+deleted quotations only</strong> -- so the bullet went on attributing the practice to
+FDA CSA in its own label with nothing behind it, next to a caveat a reader
+would take as covering it. &quot;formal verification&quot; occurs zero times in the 2022
+CSA draft and zero times in the 2026 final. The bullet now carries, in its own
+sentence, that the alignment is asserted on this document&#39;s account and is not
+sourced to the guidance; the withdrawal parenthetical is kept and now says so.
+The claim was not deleted.</p>
+</li>
+<li><p><strong>Two unquoted CSA tables carried the withdrawn quotations onward.</strong> The same
+day&#39;s withdrawal of the seven fabricated FDA CSA quotations (entry above) was
+aimed at quoted strings, and it cleared every one of them. It did not reach
+two tables in <code>domains/pharma.md</code> that attribute phrases to the guidance
+<strong>without quotation marks</strong>: the CSV-versus-CSA comparison table in §2 and the
+CSA column of Appendix A&#39;s alignment summary. Both carried &quot;Intended use
+drives assurance&quot; -- byte-identical to the withdrawn &quot;CSA Principle&quot; table row
+-- as a live, unmarked attribution to the guidance, so the fabrication
+survived the pass that was supposed to end it. It was found by a ground-truth
+regression row (<code>RESOLVED-D60-CSA-4</code> in
+<code>tools/citation-quotation-known-cases.tsv</code>) that reported the string
+unexpectedly present, not by re-reading the section. Both cells were reworded
+to &quot;Assurance effort follows intended use and risk&quot;; the claim was not
+deleted, because the guidance is genuinely intended-use- and risk-driven
+(&quot;intended use&quot; occurs 54 times in the 2022 draft and 81 times in the
+3 February 2026 final). All <strong>seven</strong> entries in the §2 comparison table&#39;s
+CSA (2022) column were then checked at primary, not just the flagged one:
+&quot;Risk-based documentation&quot;, &quot;Unscripted + scripted testing&quot;, &quot;Critical
+thinking&quot;, &quot;Test to the risk&quot;, &quot;Assurance commensurate with risk&quot;, the former
+&quot;Intended use drives assurance&quot; and &quot;Continual assurance&quot; each occur <strong>zero
+times</strong> in both texts, with one-word-swap negative controls and five positive
+controls confirming the search resolves against both files. The table now
+carries a note in place stating that the column is this document&#39;s paraphrase
+and not the guidance&#39;s wording; the Appendix A cell carries the same
+qualification inline. <strong>The lesson is recorded with the correction:</strong> a
+withdrawal pass scoped to quotation marks leaves the identical fabricated
+wording standing wherever the corpus asserts it unquoted, and only an
+enumeration of the surrounding tables -- not of the flagged line -- finds it.</p>
+</li>
+</ul>
 <h2 id="2026-08-11">2026-08-11</h2><ul>
 <li><strong>Fabricated ROI/overspend figures removed.</strong> <code>adoption/enterprise.md</code> carried
 a &quot;40–60% defect-reduction&quot; figure attributed to SWE-CI and an unsourced
@@ -328,6 +1729,215 @@ withdrawn rather than left standing on an unconfirmed citation.</li>
 behavior that were presented with an empirical framing they did not earn
 were rewritten to remove the empirical framing, pending independently
 verified support.</li>
+</ul>
+<h3 id="d-57-d-60-regulatoryfoundation-model-third-party-registermd283-288-two-bolded-renderings-of-art-30-each-a-word-off">D-57 / D-60 · <code>regulatory/foundation-model-third-party-register.md:283, :288</code> — two bolded renderings of Art. 30, each a word off</h3><ul>
+<li><strong>Struck.</strong> <em>&quot;at no additional cost, or at a cost determined ex ante&quot;</em>
+(Art. 30(2)(f)) and <em>&quot;participate and fully cooperate in the entity&#39;s TLPT&quot;</em>
+(Art. 30(3)(d)). Both <strong>bold, neither quotation-marked</strong>.</li>
+<li><strong>The primary.</strong> Art. 30(2)(f) reads <em>&quot;at no additional cost, or at a cost
+that is determined ex-ante&quot;</em> — the register dropped <strong>&quot;that is&quot;</strong>. Art. 30(3)(d)
+reads <em>&quot;participate and fully cooperate in the financial entity&#39;s TLPT&quot;</em> — the
+register dropped <strong>&quot;financial&quot;</strong>. Both corrected forms now return <strong>1</strong> at the
+hashed DORA primary (sha256 prefix <code>25328c7e39c4</code>) through the checker&#39;s own
+<code>normalizeForMatch</code>; negative control <code>zorkmid frotzwibble</code> <strong>0</strong>. Both spans
+<strong>wrap across a hard line break</strong>, so a line-based <code>grep</code> misses them and they
+were located wrap-safe.</li>
+<li><strong>Does bold read as verbatim in this file? No — and the file settles it
+itself.</strong> The decisive evidence is <strong>nesting</strong>: at §4 the register writes
+*&quot;within the time limits <strong>to be laid down in accordance with Article 20,
+first paragraph, point (a), point (ii)</strong>&quot;* — bold <strong>inside</strong> quotation marks.
+If bold were the verbatim marker that nesting would be redundant; instead the
+quotation marks carry verbatim and bold carries emphasis within it. The
+distribution agrees: <strong>166</strong> bold spans against <strong>15</strong> quoted spans, and bold
+falls on <strong>Yes</strong>, <strong>No</strong>, <strong>not</strong>, <strong>full</strong>, <strong>Art. 30</strong>, <strong>Art. 26(3)</strong>,
+section headings and whole analytical sentences — none of them quotations. The
+file&#39;s explicit <em>&quot;Citation convention.&quot;</em> note at :13 governs article
+short-forms and the authoritative text, and says nothing promoting bold to a
+verbatim marker. <strong>A reader would not take bold here as verbatim.</strong> The
+adjudication&#39;s view is upheld on independently re-derived grounds.</li>
+<li><strong>Corrected anyway, and that is the judgment.</strong> The verdict on bold decides
+whether these <em>asserted</em> something false; it does not decide whether to fix
+them. A near-verbatim rendering a word off is the <strong>D-60 shape whether or not
+it carries marks</strong>, because <strong>a one-word divergence survives review in a way an
+invented sentence does not</strong> — a reader checking the register against DORA
+finds the sentence, matches it approximately, and moves on. Making them exact
+costs nothing, removes the ambiguity permanently, and does not depend on the
+house rule never changing; leaving them would bank on it. Content retained,
+attribution corrected, no control deleted.</li>
+<li><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>eleventh</strong> time.
+No <code>.html</code> was hand-patched. An eleventh rebuild must carry: the two corrected
+Art. 30 spans and their correction note in <code>regulatory/foundation-model-third-party-register.html</code>,
+and, if the site build inlines them, the register&#39;s rendered twins in
+<code>index.html</code>. Nothing else in this repo was edited by this pass.</li>
+<li><strong>Tracking, corrected against the brief.</strong> The brief for this pass stated that
+all three repositories&#39; <code>errata.md</code> are untracked under <code>D-57</code>. That holds for
+<code>aplc/errata.md</code> and <code>asdlc/errata.md</code> (<code>git -C &lt;repo&gt; status --porcelain errata.md</code> -&gt; <code>?? errata.md</code> for both), but <strong>not for this file</strong>: AEM&#39;s
+<code>errata.md</code> is tracked (<code>MM</code>, and <code>git -C agentic-engineering-manifesto ls-files --error-unmatch errata.md</code> succeeds), so
+<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry. Measured,
+not assumed.</li>
+</ul>
+<h3 id="d-57-d-61-six-bare-article-citations-carried-onto-the-wrong-instrument-five-of-them-in-this-repository-and-a-judgment-on-whether-_swarm-changelogmd-is-a-claim-surface">D-57 / D-61 · six bare article citations carried onto the wrong instrument, five of them in this repository — and a judgment on whether <code>_swarm-changelog.md</code> is a claim surface</h3><p><strong>Note on how this entry is written.</strong> Every instrument name below is
+backticked, and no span is quotation-marked. That is deliberate and it is the
+same discipline <code>aplc/errata.md</code> records at its <code>D-57 / aplc-guide.md:296</code>
+entry: an errata entry that spells a needle in citable form becomes a citation
+site itself, moves the census it is reporting on, and can manufacture
+truly-new fabricated-quotation flags out of its own correction note. Measured,
+not supposed — the first draft of this entry did exactly that, adding two
+§2 groups, displacing a §2 representative pair, and producing <strong>four</strong>
+truly-new flags. The counts are kept here; the needles are not.</p>
+<ul>
+<li><strong>Five sites in this repository:</strong> <code>governance/_swarm-changelog.md:284</code> and
+<code>:285</code>, <code>regulatory/eu-ai-act-addendum.md:322</code>,
+<code>regulatory/iso-42001-crosswalk.md:179</code>, and
+<code>regulatory/nist-ai-rmf-crosswalk.md:28</code>. Each line cited a bare article
+number and named no instrument, so the attribution mechanism supplied the
+nearest one on a preceding line — <code>GDPR</code> in all five cases. <strong>Every one of
+them is an <code>EU AI Act</code> citation.</strong> A sixth site of the identical shape,
+<code>agent/agent-release-governance.md:156</code>, is in <code>aplc</code> and is recorded there.</li>
+<li><strong>The instrument is now named on the line. No citation was deleted, no number
+changed, and no other word on any of the six lines was touched:</strong> each edit is
+a pure ten-byte insertion, and each edited line is <strong>byte-identical to its
+predecessor once the inserted instrument name is removed</strong>, compared through
+the checker&#39;s own <code>normalizeForMatch</code> — normalised first, padded after.</li>
+<li><strong>Re-derived at the hashed primaries, not inherited from the pass that handed
+them back.</strong> <code>GDPR</code> at
+the EUR-Lex HTML snapshot of Regulation (EU) 2016/679 (GDPR) — <strong>zero</strong>
+annex subdivision ids against a positive control of <strong>198</strong> article
+subdivision ids in the same file — and the <code>EU AI Act</code> at
+the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256 prefix
+<code>a0f437e89667</code>, <strong>13</strong> annex ids against <strong>226</strong> article ids. Each of the six
+article headings was read on both instruments and they are not near-misses of
+one another: on <code>GDPR</code> the six numbers head <em>Procedure</em>, <em>Representatives of
+controllers or processors not established in the Union</em> (twice), <em>Processing
+and public access to official documents</em>, <em>Chair</em>, and <em>International
+cooperation for the protection of personal data</em>; on the <code>EU AI Act</code> the same
+six numbers head <em>Post-market monitoring by providers and post-market
+monitoring plan</em>, <em>Fundamental rights impact assessment</em> (twice), <em>Right to
+explanation of individual decision-making</em>, <em>Reporting of serious incidents</em>,
+and <em>Transparency obligations for providers and deployers of certain AI
+systems</em>. Every corpus line matches the second reading and none matches the
+first.</li>
+<li><strong>The <code>_swarm-changelog.md:284</code> case is settled by the primary, not by
+inference.</strong> The <code>EU AI Act</code> post-market-monitoring article&#39;s third paragraph
+obliges the Commission to adopt an implementing act laying down a template for
+the post-market monitoring plan <strong>by 2 February 2026</strong> — which is exactly the
+corpus line&#39;s <em>pending Commission template … due Feb 2026</em>. <strong>One inherited
+detail is corrected while we are here:</strong> the hand-back described the <code>GDPR</code>
+article of that number as the election of the chair. It is not — that is the
+<em>next</em> <code>GDPR</code> article; the one at issue is <em>Procedure</em>. The trap the hand-back
+described is real, because <code>GDPR</code> genuinely carries an article of that number
+and so no last-article bound can refuse it, but the heading it named was the
+wrong one. Re-deriving found that; inheriting would have carried it.</li>
+<li><strong>Is <code>_swarm-changelog.md</code> a claim surface? No — and the fix is a different
+fix because of it.</strong> The earlier exclusion stands and is <strong>not</strong> reopened by
+this edit. This file is an append-only build log, 14% of the §2 queue on its
+own, and its lines record <em>what was done on a date</em>, not what the law
+provides; a §2 &quot;disagreement&quot; between a log line and a domain file compares a
+record against a claim, which is not a disagreement about anything. <strong>But
+not-a-claim-surface is not not-a-citation-site.</strong> The line still carries a
+citation token that both a reader and the mechanism resolve, and it was
+resolving to the wrong instrument. On a domain file the fix would be to
+correct the <em>assertion</em>; <strong>on a build log the record must not be rewritten</strong>,
+so the fix here is a <strong>disambiguating gloss and nothing more</strong> — it names the
+instrument the entry already meant. That is provable from the entry&#39;s own
+wording rather than assumed: the same entry&#39;s <strong>goal line at <code>:262</code></strong> already
+names the <code>EU AI Act</code> and the very article numbers at issue as the blocker it
+was closing, and the sibling bullet at <code>:286</code> already names <code>DORA</code> explicitly
+where <code>DORA</code> is meant. <strong>No date, no outcome, no description of work done, and
+no wording of what was done was altered.</strong> The entry asserts nothing today
+that it did not assert before. Applying a domain-file fix to a build log —
+rewriting the record to say what we now know — would have been its own error,
+and was not done.</li>
+<li><strong>Both shapes enumerated, and what the enumeration found beyond the named
+lines is reported rather than silently fixed.</strong> <code>command grep</code> run from
+<strong>inside each repository</strong> with <strong>quoted globs</strong> and
+<code>--exclude-dir=node_modules</code>, cross-referenced against the checker&#39;s own
+<code>--dump-triples</code> and its recogniser table with backticked spans masked per the
+identifier-drag guard. The <code>command grep</code> file set — <strong>113</strong> here, <strong>30</strong> in
+<code>aplc</code> — was proved equal to <code>git ls-files</code> plus
+<code>git ls-files --others --exclude-standard</code>, so the <strong>untracked</strong>
+<code>aplc/errata.md</code> is inside the scan and is not missed the way <code>git grep</code>
+would miss it.<ul>
+<li><strong>Bare article citations on an instrument-less line, both repositories:
+548.</strong> Forty resolve to <code>GDPR</code>; <strong>six of those forty are wrong and all six
+are fixed by this pass</strong> (five here, one in <code>aplc</code>). The remaining
+thirty-four are correct <code>GDPR</code> citations, read at the site. <strong>They came in
+clusters, not as singletons:</strong> <code>:284</code> and <code>:285</code> are adjacent bullets of one
+list, both dragged by a single <code>GDPR</code> token in the bullet at <code>:280</code>, and
+<code>:322</code>, <code>:179</code> and <code>:28</code> are each dragged by a <em>correct</em> <code>GDPR</code> mention one
+to four lines above them.</li>
+<li><strong>Bare annex citations on an instrument-less line, both repositories: 326.</strong>
+Beyond the one the no-annex bound refuses — <code>aplc/agent/agent-conception.md:286</code>,
+corrected in that repository&#39;s errata — <strong>22 further annex citations are
+carried onto an instrument that is not the <code>EU AI Act</code></strong>: <code>CSDR</code> <strong>8</strong>,
+<code>MDR</code> <strong>6</strong>, <code>MiFID II</code> <strong>4</strong>, <code>Solvency II</code> <strong>4</strong>. Read at the site, every
+one of the 22 is an <code>EU AI Act</code> annex. Eleven are here — <code>errata.md:626</code>,
+<code>integration/igm-aplc-integration-test.md:12</code> and <code>:13</code>,
+<code>regulatory/foundation-model-third-party-register.md:504</code> and <code>:505</code>
+(carried to <code>CSDR</code>), and <code>errata.md:110</code> and <code>:114</code> (carried to <code>MDR</code>) —
+and eleven are in <code>aplc</code>, listed there. <strong>They are reported, not fixed.</strong> No
+bound reaches them: the annex-existence fact is <strong>UNKNOWN</strong> for <code>CSDR</code>,
+<code>MiFID II</code> and <code>Solvency II</code>, and absent means unknown rather than &quot;assume
+none&quot;. Re-attributing 22 sites at once would change the membership and the
+representative pairs of five §2 annex groups — the same census trade T4.36
+priced and declined — and each needs adjudication at its own site.
+<strong><code>reported</code> is not <code>fixed</code>, and this entry says which it is.</strong></li>
+<li>A <strong>wrap-safe</strong> scan (<code>command grep -rlEz</code> with a quoted <code>--include=&#39;*.md&#39;</code>
+glob and a <code>word[[:space:]]+word</code> pattern) and a normalised whole-file scan
+with dashes mapped to spaces were run alongside the line-scoped scan and
+added <strong>no file</strong> the line-scoped scan missed here. The scan for an
+<em>instrument name</em> split from its citation by the newline found <strong>29</strong> files
+here and <strong>19</strong> in <code>aplc</code>, none of them wrap-only — but the shape is live at
+<code>aplc/domains/insurance.md:118-119</code>, where the instrument name is broken
+across the line ending and the annex on the next line is filed under
+<code>Solvency II</code> in consequence.</li>
+</ul>
+</li>
+<li><strong>Fresh long negative control, proved against a positive.</strong> A newly generated
+two-word needle returned <strong>0</strong> whole and <strong>0</strong> for each half, line-scoped and
+wrap-safe, in both repositories and on the six edited lines. It is a real
+absence and not a dead scanner: positive controls on the <strong>identical</strong>
+commands returned <strong>203</strong> annex-word hits over <strong>113</strong> files scanned here and
+<strong>317</strong> over <strong>30</strong> in <code>aplc</code>, and the inserted instrument name returned
+exactly <strong>1</strong> on each edited line after the edit. <strong>None of the four needles
+this corpus has already burned in errata entries was used</strong> — recording a
+control in errata retires it, and those four are recorded.</li>
+<li><strong>Prefix-safe controls, whole tokens, because a digit is not a word.</strong> On the
+changelog line, a seven-only pattern with a following-digit exclusion matched
+<strong>0</strong> while the seven-two pattern matched <strong>1</strong>, and a digit-width swap to a
+three-digit number matched <strong>0</strong>. On the <code>aplc</code> annex line, the single-numeral
+annex pattern with a following-numeral exclusion matched <strong>0</strong> while the
+four-numeral pattern matched <strong>1</strong>, and both a longer-numeral variant and the
+three-numeral variant matched <strong>0</strong>. The short form does not match the long
+form under the controls used, in either direction.</li>
+<li><strong>Movement, isolated and named.</strong> Across both repositories: triples
+<strong>1882 → 1883</strong>; <code>GDPR</code> <strong>234 → 228</strong>; <code>EU AI Act</code> <strong>1146 → 1153</strong>;
+unattributed <strong>460 → 459</strong>; no-annex refusals <strong>6 → 5</strong>. The <code>--dump-triples</code>
+diff against the frozen baseline is <strong>exactly</strong> the six moves plus the one
+annex citation the bound had refused and now no longer must — nothing else
+moved, in either direction. <strong>Everything else is unchanged line for line:</strong>
+§2 pairs <strong>73</strong>, §2 groups <strong>96</strong>, truly new <strong>0</strong>, sub-clause OK <strong>564</strong> /
+fabricated <strong>1</strong> / no structure data <strong>27</strong>, §3c rows <strong>158</strong> (live 154, VOID
+0, REGRESSED 0, DUPLICATE KEYS 3), §6 verbatim OK <strong>127</strong>,
+<code>--known-only</code> exit <strong>0</strong>, <code>./tools/register-crossref.sh</code> exit <strong>0</strong>,
+<code>./tools/link-check.sh</code> <strong>broken 4 / total 1043 across 5 repos</strong>,
+<code>aplc/tools/check_overview_counts.py</code> exit <strong>0</strong>. Full run exit <strong>1</strong>, twice,
+<strong>byte-identical</strong>.</li>
+<li><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>twelfth</strong> time.
+<strong>No <code>.html</code> was hand-patched.</strong> A twelfth rebuild must carry exactly four
+files in this repository — <code>governance/_swarm-changelog.html</code>,
+<code>regulatory/eu-ai-act-addendum.html</code>, <code>regulatory/nist-ai-rmf-crosswalk.html</code>
+and <code>regulatory/iso-42001-crosswalk.html</code>. <strong><code>index.html</code> is NOT stale from
+this pass</strong>, and that was measured rather than assumed: all four edited
+strings return <strong>0</strong> in it against a positive control returning <strong>1</strong> and a
+negative control returning <strong>0</strong>, so the file was actually read. <code>aplc</code>
+contains <strong>no <code>.html</code> at all</strong>, so its two edits need no rebuild. Nothing else
+in either repository was edited by this pass.</li>
+<li><strong>Tracking.</strong> This file is tracked, so
+<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry — unlike
+<code>aplc/errata.md</code>, which is untracked under <code>D-57</code>, is not walked by the
+checker&#39;s <code>git ls-files</code> at all, and whose companion entry <code>git -C aplc diff</code>
+will not show.</li>
 </ul>
 <hr>
 <p><a href="#overview">← Back to README</a></p>
