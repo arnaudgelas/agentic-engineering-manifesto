@@ -64,7 +64,7 @@ records what was wrong, what was done about it, and when.
     names in the same sentence the provision it formerly cited, so a reader
     holding the old text can see what moved (`F2`).
 - **The register's `aplc` extension of `D-62` was verified rather than assumed,
-  and it is complete.** `agent/agent-annex-iv-mapping.md:28` cited **Art. 48**
+  and it is complete.** `aplc/agent/agent-annex-iv-mapping.md:28` cited **Art. 48**
   (CE marking) for the EU declaration of conformity; the working tree there now
   cites **Art. 47**, with 47(2)/Annex V for the content and 47(1) for the
   provider's 10-year duty. Checked at the hashed AI Act primary
@@ -203,7 +203,7 @@ records what was wrong, what was done about it, and when.
   read. **Beyond the two corrected here, no further site states or applies the
   Art. 6(1) test on one limb**: `domains/medical-devices.md:252-263` and
   `integration/igm-aplc-integration-test.md:11` each quote both limbs verbatim;
-  `igm-aplc-integration-test.md:65`, `:83` and `:343` are cross-references to
+  `integration/igm-aplc-integration-test.md:65`, `:83` and `:343` are cross-references to
   the correct statement in the same file's §1; `domains/medical-devices.md:247`
   is the **MDR's own** Annex I (general safety and performance requirements), a
   homonym, not the AI Act's. **Further sites of the same pattern: 0.**
@@ -1472,7 +1472,7 @@ truly-new flags. The counts are kept here; the needles are not.
   number and named no instrument, so the attribution mechanism supplied the
   nearest one on a preceding line — `GDPR` in all five cases. **Every one of
   them is an `EU AI Act` citation.** A sixth site of the identical shape,
-  `agent/agent-release-governance.md:156`, is in `aplc` and is recorded there.
+  `aplc/agent/agent-release-governance.md:156`, is in `aplc` and is recorded there.
 - **The instrument is now named on the line. No citation was deleted, no number
   changed, and no other word on any of the six lines was touched:** each edit is
   a pure ten-byte insertion, and each edited line is **byte-identical to its
@@ -1496,7 +1496,7 @@ truly-new flags. The counts are kept here; the needles are not.
   and *Transparency obligations for providers and deployers of certain AI
   systems*. Every corpus line matches the second reading and none matches the
   first.
-- **The `_swarm-changelog.md:284` case is settled by the primary, not by
+- **The `governance/_swarm-changelog.md:284` case is settled by the primary, not by
   inference.** The `EU AI Act` post-market-monitoring article's third paragraph
   obliges the Commission to adopt an implementing act laying down a template for
   the post-market monitoring plan **by 2 February 2026** — which is exactly the
