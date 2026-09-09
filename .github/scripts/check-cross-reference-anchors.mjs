@@ -55,6 +55,7 @@ const EXTERNAL_CORPUS_PREFIXES = [
   "asdlc/",
   "intelligence-governance-manifesto/",
   "agentic-enterprise-manifesto/",
+  "papers/",
 ];
 const EXTERNAL_CORPUS_FILES = new Set(["igm-aent-coherence-review.md"]);
 
