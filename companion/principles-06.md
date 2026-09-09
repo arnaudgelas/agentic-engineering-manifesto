@@ -33,7 +33,7 @@ practice:
   to undo the damage. Implementation: versioned memory snapshots (daily or per
   significant learning event), with the ability to revert a domain's learned
   memory to a known-good state. Test rollback before you need it. See
-  [Pattern C (Memory Poisoning Recovery)](patterns.md#pattern-c--memory-poisoning-recovery)
+  [Pattern C (Memory Poisoning Recovery)](patterns.md#pattern-c-memory-poisoning-recovery)
   in the Worked Patterns.
 
 - **Domain scoping**: A lesson learned in the payments domain should not
