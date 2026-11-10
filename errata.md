@@ -1,11 +1,106 @@
 # Errata
 
-Dated corrections to previously published content in this repository. Each entry
-records what was wrong, what was done about it, and when.
+A dated record of corrections to content this repository has already
+published. If you cited, quoted or relied on a passage here, check below
+whether it has since changed.
+
+## How to read this file
+
+- **Start with the [index](#index).** Each row gives the date, the file
+  corrected, what changed, and a link to the full entry.
+- **Entries are grouped by date, newest first.** The date is the day the
+  correction was made, not the day the error was introduced.
+- **Each entry opens with a sentence in bold, and that sentence is the
+  erratum.** It says what was wrong and what was done. The rest of the entry is
+  the evidence: what the text said, what the source actually says, what the
+  text says now, and what was deliberately left unchanged.
+- **Bullets that have no row in the index are working records, not
+  corrections.** They are headed *Gates*, *Rebuild*, *Tracking*,
+  *Enumerated...* or similar, and log checker runs, search counts, HTML
+  rebuilds and git state for the pass that made the correction. Nothing in
+  them changes what a reader should believe, so skip them unless you are
+  auditing the work.
+
+### What the recurring terms mean
+
+| Term | Meaning |
+|---|---|
+| **Withdrawn** | The claim is no longer asserted. |
+| **Re-attributed / re-cited** | The claim stands; the source it was credited to changed. |
+| **Bounded** | The claim stands, with a limit added in the same sentence. |
+| **Flagged** | The defect is recorded here but the text was not rewritten. |
+| **Primary** | The official text of the instrument (regulation, guidance, standard), read directly rather than through a summary. |
+| **sha256 prefix** | Identifies the exact copy of a primary that was read. The copies are kept in the review programme's working inputs, not in this repository. |
+| **Positive / negative control** | A search for text known to be present (or absent), run beside the real search to prove the search could have found what it was looking for. |
+| **`:123`, `file.md:123`** | A line number in the file *as it stood when the entry was written*. Later edits move lines, so find the passage today by its quoted text or section name. |
+| **`D-nn`, `Tn.n`, `Fn`** | Defect, task and rule identifiers from the review programme's working register, which is not published in this repository. `F2` is the rule that a caveat must sit in the same sentence as the claim it limits. |
+
+### Writing a new entry
+
+Add it under a `## YYYY-MM-DD` heading at the top, give it an anchor, and add
+a row to the index. Open with one bold sentence naming the file and saying
+what was wrong and what was done. Then give, in this order: what the text
+said; what the source says, with the copy read; what the text says now; what
+was not changed and why. Keep checker output and git state out of the entry,
+or put it in a separate bullet headed as a working record.
+
+## Index
+
+| Date | File | Correction | |
+|---|---|---|---|
+| 2026-11-09 | `domains/pharma.md` | The document's own *critical-thinking-driven* gloss was credited to FDA CSA guidance; attribution corrected | [entry](#e-2026-11-09-01) |
+| 2026-09-06 | `domains/pharma.md` | Four EU GMP Annex 11 citations pointed at the wrong section; re-cited, no claim changed | [entry](#e-2026-09-06-01) |
+| 2026-09-06 | `domains/financial-services.md` | An invented EU AI Act test created a route into high-risk that the Act does not contain; replaced | [entry](#e-2026-09-06-02) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | Clinical decision support classed high-risk on one of the two conditions the Act requires; bounded | [entry](#e-2026-09-06-03) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | The same table's lead-in stated the product-safety route incompletely; both conditions now quoted | [entry](#e-2026-09-06-04) |
+| 2026-09-06 | `domains/financial-services.md` | Fraud detection listed as EU AI Act high-risk although the Act excepts it; corrected | [entry](#e-2026-09-06-05) |
+| 2026-09-06 | `domains/insurance.md`, `domains/financial-services.md`, `companion/frameworks.md` | Insurance underwriting cited to the credit-scoring point; re-cited and limited to life and health cover | [entry](#e-2026-09-06-06) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | Seven rows of the high-risk mapping table omitted the scope limit of the point they cited; limits restored | [entry](#e-2026-09-06-07) |
+| 2026-09-06 | `domains/defense-government.md` | NISPOM cited to the wrong part of the US Code of Federal Regulations; re-cited | [entry](#e-2026-09-06-08) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | A serious-incident report-content list was cited to the Act, which prescribes none; citation withdrawn | [entry](#e-2026-09-06-09) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` and five other files | EU AI Act serious-incident reporting deadlines were assigned to the wrong incident types; corrected | [entry](#e-2026-09-06-10) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | The definition of *widespread infringement* had a limb the Act does not contain; removed | [entry](#e-2026-09-06-11) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | The deployer's reporting duty was cited to a provision that does not impose it; re-cited | [entry](#e-2026-09-06-12) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | Instructions-for-use items were mis-lettered and one was missing; table re-keyed | [entry](#e-2026-09-06-13) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | Six further citation faults from the same full-file audit; each corrected, one claim withdrawn | [entry](#e-2026-09-06-14) |
+| 2026-09-06 | `regulatory/eu-ai-act-addendum.md` | Summary: full-file citation audit, 19 faults found and corrected | [entry](#e-2026-09-06-15) |
+| 2026-09-06 | `regulatory/foundation-model-third-party-register.md` | DORA definitions cited by the wrong numbers, a recital cited as an article, and an AI limb DORA does not contain | [entry](#e-2026-09-06-16) |
+| 2026-09-06 | `regulatory/foundation-model-third-party-register.md` | A table gave DORA incident reporting three deadlines DORA does not contain; corrected | [entry](#e-2026-09-06-17) |
+| 2026-09-06 | several files | Ten annex citations that read as another instrument's now name the EU AI Act | [entry](#e-2026-09-06-18) |
+| 2026-09-06 | several files | The remaining annex citations of the same kind now name their instrument | [entry](#e-2026-09-06-19) |
+| 2026-09-06 | `domains/financial-services.md`, this file | Annex citations split across a line break, rejoined; no wording changed | [entry](#e-2026-09-06-20) |
+| 2026-09-06 | several files | The last four mis-attributed citations of the same kind closed | [entry](#e-2026-09-06-21) |
+| 2026-09-06 | this file | Correction to this log: a search count in an earlier entry was false and is removed | [entry](#e-2026-09-06-22) |
+| 2026-09-06 | this file | Correction to this log: a claim that NIS2 is never cited was refuted by its own paragraph; withdrawn | [entry](#e-2026-09-06-23) |
+| 2026-09-06 | this file | Correction to this log: two search controls written out in full were withdrawn | [entry](#e-2026-09-06-24) |
+| 2026-09-06 | `regulatory/foundation-model-third-party-register.md` | Two renderings of a DORA contract requirement were each a word off the text; corrected | [entry](#e-2026-09-06-25) |
+| 2026-09-06 | five files | Six bare article citations read as the wrong instrument; the instrument is now named | [entry](#e-2026-09-06-26) |
+| 2026-09-05 | `regulatory/eu-ai-act-addendum.md` | When an EU AI Act conformity assessment needs a notified body was stated inverted; replaced | [entry](#e-2026-09-05-01) |
+| 2026-09-05 | `domains/financial-services.md` | A hedge on conformity assessment for financial-services AI hid a route the Act forecloses; resolved | [entry](#e-2026-09-05-02) |
+| 2026-09-05 | `regulatory/foundation-model-third-party-register.md` | A DORA article's paragraph count was wrong; corrected | [entry](#e-2026-09-05-03) |
+| 2026-09-05 | `regulatory/foundation-model-third-party-register.md` | A CSDR penalty use case was classed EU AI Act high-risk; withdrawn | [entry](#e-2026-09-05-04) |
+| 2026-09-05 | `regulatory/foundation-model-third-party-register.md` | Four DORA paragraph attributions corrected | [entry](#e-2026-09-05-05) |
+| 2026-09-05 | `operational-templates/slo-table.md`, `regulatory/nist-ai-rmf-crosswalk.md` | The GDPR response period was stated as 30 days; restated in the Regulation's own unit | [entry](#e-2026-09-05-06) |
+| 2026-09-05 | `companion/principles-08.md` | A word dropped from inside an EU AI Act quotation restored | [entry](#e-2026-09-05-07) |
+| 2026-09-05 | `review/prompts/prompt-07-guardrails-security.md` | A non-existent DORA provision was taught as the model of a good citation; corrected | [entry](#e-2026-09-05-08) |
+| 2026-09-05 | `adoption/metrics.md` | Behavioural signals presented as rubber-stamping detection demoted to screens | [entry](#e-2026-09-05-09) |
+| 2026-09-05 | `glossary.md`, `regulatory/incidents-appendix.md` | The Tier 4 assurance basis claimed more than engagement measurement can reach; corrected | [entry](#e-2026-09-05-10) |
+| 2026-09-05 | `domains/pharma.md` | Seven fabricated quotations attributed to FDA CSA guidance withdrawn | [entry](#e-2026-09-05-11) |
+| 2026-09-05 | `domains/pharma.md` | FDA CSA guidance scope defect flagged, not rewritten | [entry](#e-2026-09-05-12) |
+| 2026-09-05 | `domains/README.md` | A GDPR quotation corrected | [entry](#e-2026-09-05-13) |
+| 2026-09-05 | `domains/financial-services.md` | A DORA article cited for a topic it does not cover; corrected | [entry](#e-2026-09-05-14) |
+| 2026-09-05 | `domains/pharma.md` | The FDA CSA scope caveat moved into the claim it limits | [entry](#e-2026-09-05-15) |
+| 2026-09-05 | `domains/pharma.md` | A caveat re-aimed at the text that survived an earlier cut | [entry](#e-2026-09-05-16) |
+| 2026-09-05 | `domains/pharma.md` | Two tables still carried the withdrawn FDA CSA quotations; corrected | [entry](#e-2026-09-05-17) |
+| 2026-08-11 | `adoption/enterprise.md` | Unsupported ROI and overspend figures removed | [entry](#e-2026-08-11-01) |
+| 2026-08-11 | `README.md`, `beyond-agile/sources.md` | Cited-source count and a front-page attribution corrected | [entry](#e-2026-08-11-02) |
+| 2026-08-11 | five files | SWE-CI benchmark findings restated in the benchmark's own unit of analysis | [entry](#e-2026-08-11-03) |
+| 2026-08-11 | — | Unverifiable Hoda/Hassan attributions withdrawn | [entry](#e-2026-08-11-04) |
+| 2026-08-11 | — | Empirical framing of phase-profile claims removed | [entry](#e-2026-08-11-05) |
 
 ## 2026-11-09
 
-- **`domains/pharma.md` §2: a gloss the section had already disowned was still
+- <a id='e-2026-11-09-01'></a>**`domains/pharma.md` §2: a gloss the section had already disowned was still
   credited to the FDA CSA guidance two paragraphs later — the attribution is
   corrected, the argument is not.** The section's opening paragraph (`:83-96`)
   states that *critical-thinking-driven* is this document's own gloss and not
@@ -31,7 +126,7 @@ records what was wrong, what was done about it, and when.
 
 ## 2026-09-06
 
-- **`D-62` closed in `domains/pharma.md`: four EU GMP Annex 11 citations moved to
+- <a id='e-2026-09-06-01'></a>**`D-62` closed in `domains/pharma.md`: four EU GMP Annex 11 citations moved to
   the paragraph that carries the obligation each row claims.** All four were live
   at `HEAD` (`c1d0d19`) at exactly the register's line numbers — `:124`, `:209`,
   `:311`, `:423` — and live in the working tree at `:153`, `:238`, `:340`,
@@ -135,7 +230,7 @@ records what was wrong, what was done about it, and when.
   for any of this**, per the `D-63` precedent: a row green in a working tree and
   red at `HEAD` fails the next checkout.
 
-- **An invented Art. 6(2) test in `domains/financial-services.md`, creating a
+- <a id='e-2026-09-06-02'></a>**An invented Art. 6(2) test in `domains/financial-services.md`, creating a
   route into high-risk that the Regulation does not contain.** The
   "High-risk classification in financial services" section closed with
   "Additional financial use cases may qualify as high-risk under the general
@@ -169,7 +264,7 @@ records what was wrong, what was done about it, and when.
   affected file, because the phrase wraps across a line break. No other route
   into high-risk outside Annex III and Annex I was found in the corpus.
 
-- **A high-risk classification reached on one of Art. 6(1)'s two limbs, in
+- <a id='e-2026-09-06-03'></a>**A high-risk classification reached on one of Art. 6(1)'s two limbs, in
   `regulatory/eu-ai-act-addendum.md` §1.1 -- and contradicting this repository's
   own `domains/medical-devices.md` by omission.** The *Healthcare diagnosis
   support* row put **Yes** in the High-risk column and explained it, in the
@@ -203,7 +298,7 @@ records what was wrong, what was done about it, and when.
   I as failing (b) and Class IIa and above as generally satisfying it, and
   directing that the limb the determination turns on be recorded.
 
-- **Art. 6(1) reduced to limb (a), and limb (a) itself halved, in the lead-in to
+- <a id='e-2026-09-06-04'></a>**Art. 6(1) reduced to limb (a), and limb (a) itself halved, in the lead-in to
   the same table.** `regulatory/eu-ai-act-addendum.md:22` read "if a use case is
   not in Annex III and not a safety component under Annex I, it is not high-risk
   by virtue of Annex III". That clause states the Annex I route as the
@@ -237,7 +332,7 @@ records what was wrong, what was done about it, and when.
   "third-party conformity assessment" within the meaning of Art. 6(1)(b) of the EU AI Act. That
   step is asserted nowhere in this repository and was not adjudicated here.
 
-- **The EU AI Act Annex III 5(b) fraud-detection inversion is withdrawn from
+- <a id='e-2026-09-06-05'></a>**The EU AI Act Annex III 5(b) fraud-detection inversion is withdrawn from
   `domains/financial-services.md` -- it had been corrected in the APLC twin and
   never ported here, and this repository carried no errata entry for it.**
   `domains/financial-services.md:180` offered *credit scoring, insurance
@@ -261,7 +356,7 @@ records what was wrong, what was done about it, and when.
   and its subject below -- was rewritten to carry both limits in the sentences
   that make the claims.
 
-- **Personal-lines underwriting re-attributed from Annex III §5(b) to §5(c) and
+- <a id='e-2026-09-06-06'></a>**Personal-lines underwriting re-attributed from Annex III §5(b) to §5(c) and
   bounded, in `domains/insurance.md` -- the D-65 withdrawal never reached this
   repository and no errata entry existed here.** `domains/insurance.md:263`
   cited "EU AI Act Annex III §5(b) (high-risk)" as the regulatory basis for
@@ -278,7 +373,7 @@ records what was wrong, what was done about it, and when.
   and insurance decisions -- was bounded to 5(b) and 5(c) with their limits in
   place. The Tier caps themselves are unchanged; only the regulatory basis is.
 
-- **Four Annex III scope limits restored to the mapping table in
+- <a id='e-2026-09-06-07'></a>**Four Annex III scope limits restored to the mapping table in
   `regulatory/eu-ai-act-addendum.md` §1.1.** Each row asserted a point without
   the limit that point carries, and in three of them the Notes cell was empty.
   `:38` cited **point 2** for the row *Critical infrastructure operation* with the
@@ -309,7 +404,7 @@ records what was wrong, what was done about it, and when.
   institutions at all levels", had an empty Notes cell). No row's high-risk
   answer was deleted; each was qualified.
 
-- **NISPOM re-cited from 32 CFR Part 2004 to 32 CFR Part 117.**
+- <a id='e-2026-09-06-08'></a>**NISPOM re-cited from 32 CFR Part 2004 to 32 CFR Part 117.**
   `domains/defense-government.md` grounded the hard rule on classified
   information in "the National Industrial Security Program Operating Manual
   (NISPOM, **32 CFR Part 2004**)". Both parts were retrieved free from the
@@ -339,7 +434,7 @@ records what was wrong, what was done about it, and when.
   both cite **32 CFR Part 2002 (CUI)**, which is the correct Part for
   Controlled Unclassified Information; they were checked and left untouched.
 
-- **The Article 73(6) sub-items in `regulatory/eu-ai-act-addendum.md` are
+- <a id='e-2026-09-06-09'></a>**The Article 73(6) sub-items in `regulatory/eu-ai-act-addendum.md` are
   withdrawn: the obligation is real, the report-content list is not.** §6.2 was
   headed "Required content (Art. 73(6))" and its fields were cited at four
   template sites and one workflow line as lettered sub-items (a) to (d) of
@@ -359,7 +454,7 @@ records what was wrong, what was done about it, and when.
   all six sites and the list is now marked in-sentence as this document's own
   construction, with (d) and (e) tied to the genuine Art. 73(6) corrective-
   action and cooperation duties.
-- **The same file's Article 73 reporting timers were scrambled, which is the
+- <a id='e-2026-09-06-10'></a>**The same file's Article 73 reporting timers were scrambled, which is the
   more dangerous of the two defects.** §6.1 put **death of a person on the
   2-day clock** and invented a **10-day clock for fundamental-rights
   malfunction**. At the primary: **Art. 73(3)** gives the 2-day clock to a
@@ -376,14 +471,14 @@ records what was wrong, what was done about it, and when.
   `regulatory/iso-23894-23053-crosswalk.md` `risk-csdr-004`.
   `governance/_swarm-changelog.md:266` records the old clocks as history and is
   left as written.
-- **Article 3(61) had a limb the Regulation does not contain.** The §6.1 table
+- <a id='e-2026-09-06-11'></a>**Article 3(61) had a limb the Regulation does not contain.** The §6.1 table
   glossed "widespread infringement" as harming persons "in three or more Member
   States, or one Member State if substantial harm". Art. 3(61)(a) is harm to
   the collective interests of individuals residing in **at least two Member
   States other than** the Member State of origin or establishment;
   Art. 3(61)(b) is concurrent harm with common features by the same operator in
   **at least three Member States**. There is no one-Member-State limb.
-- **Article 73(7) was cited for a duty it does not impose.** §6.1 read "the
+- <a id='e-2026-09-06-12'></a>**Article 73(7) was cited for a duty it does not impose.** §6.1 read "the
   deployer ... may have a parallel obligation to report (Art. 73(7))".
   Art. 73(7) obliges the receiving market surveillance authority to inform the
   Art. 77(1) fundamental-rights bodies, and mandates Commission guidance. The
@@ -392,7 +487,7 @@ records what was wrong, what was done about it, and when.
   Art. 73 applying to the deployer only *mutatis mutandis* "*If the deployer is
   not able to reach the provider*". The same wrong duty-holder is corrected at
   §7.1. **Art. 73 binds providers.**
-- **A third fabricated sub-clause structure, in a different article of the same
+- <a id='e-2026-09-06-13'></a>**A third fabricated sub-clause structure, in a different article of the same
   file, found by enumeration rather than by the flagged line.** §2 read that
   the instructions for use "include the items listed in Art. 13(2)(a)-(f) and
   Art. 13(3)". **Art. 13(2) has no lettered sub-items** -- it is one unlettered
@@ -405,7 +500,7 @@ records what was wrong, what was done about it, and when.
   contradicted itself**. All rows are re-keyed to the primary's lettering, the
   missing (c) row is added, and the §2.2 template's two mis-keyed items are
   corrected.
-- **Six further citation faults from the same audit, each corrected in place.**
+- <a id='e-2026-09-06-14'></a>**Six further citation faults from the same audit, each corrected in place.**
   (1) §1.1 said Annex III point **5(d)** "covers AI used to evaluate
   eligibility for essential healthcare services"; 5(d) is emergency-call
   triage and dispatch, and eligibility is **5(a)**. (2) §1.3 read "Social
@@ -436,7 +531,7 @@ records what was wrong, what was done about it, and when.
   criminal sanctions (Art. 99(1))" is **withdrawn**: no criminal-sanctions
   provision exists in the enacting terms, and the adjoining manager-liability
   sentence is now marked unsourced in-sentence rather than deleted.
-- **The headline is not the four lines: it is that this file had already been
+- <a id='e-2026-09-06-15'></a>**The headline is not the four lines: it is that this file had already been
   corrected twice.** The Article 43 conformity inversion (four faults) and the
   DORA Article 28 paragraph count were both fixed on 2026-09-05, and a third
   and fourth distinct defect class survived both passes. **The point fix was
@@ -473,7 +568,7 @@ records what was wrong, what was done about it, and when.
   finding that the clocks those files omit were **stated wrongly** in the one
   file that did state them.
 
-- **The DORA Article 3 sentence in
+- <a id='e-2026-09-06-16'></a>**The DORA Article 3 sentence in
   `regulatory/foundation-model-third-party-register.md` was wrong three separate
   ways, and is re-stated rather than deleted.** Section 1.1 opened: *"DORA
   Art. 3(21) defines an 'ICT third-party service provider' as an undertaking
@@ -541,7 +636,7 @@ records what was wrong, what was done about it, and when.
   classification, five wrong DORA paragraph numbers, a *nine paragraphs* count
   where Art. 28 has ten, and the Art. 43 conformity inversion.
 
-- **A table gave DORA Article 19 three reporting clocks the Regulation does not
+- <a id='e-2026-09-06-17'></a>**A table gave DORA Article 19 three reporting clocks the Regulation does not
   contain -- and a verb-based sweep could never have seen it, because a table
   row is a duty with the verb removed.**
   `regulatory/foundation-model-third-party-register.md` section 4.1, under a
@@ -660,7 +755,7 @@ records what was wrong, what was done about it, and when.
   2024/1689 (the Official Journal text snapshot of the Regulation).
   **No RTS and no NIS2 figure is asserted from memory anywhere in these edits.**
 
-- **Ten annex citations that named no instrument on their own line, and were
+- <a id='e-2026-09-06-18'></a>**Ten annex citations that named no instrument on their own line, and were
   therefore read as the CSDR's or MiFID II's, now name the EU AI Act. Nothing
   was withdrawn and no citation was renumbered.** All ten are EU AI Act annexes,
   discussing that Regulation's own annexes while naming another instrument as
@@ -693,7 +788,7 @@ records what was wrong, what was done about it, and when.
   · This file is tracked in git. The three files edited in this repository all
   have built `.html` twins, so a rebuild was run and the built pages carry the
   named instrument.
-- **Remaining annex attributions closed -- the class was re-derived and had
+- <a id='e-2026-09-06-19'></a>**Remaining annex attributions closed -- the class was re-derived and had
   grown again.** The 2026-09-06 entry above closed twenty-two of these and named
   fifteen more, at eight sites, as still open. Re-derived rather than inherited,
   the same class is **twenty citations at twelve sites**: the earlier
@@ -735,7 +830,7 @@ records what was wrong, what was done about it, and when.
   · This file is tracked in git. Three of the four files edited here have built
   `.html` twins, so a rebuild was run and the built pages carry the named
   instrument.
-- **Annex citations hidden by a line break, closed; and the quotation site
+- <a id='e-2026-09-06-20'></a>**Annex citations hidden by a line break, closed; and the quotation site
   closed without altering the quotation.** Three of the sixteen line-break-split
   annex citations described in `aplc/errata.md` are in this repository —
   `domains/financial-services.md` at 174-175 and 209-210, and this file at
@@ -771,7 +866,7 @@ records what was wrong, what was done about it, and when.
   · This file is tracked in git. Two of the files edited here have built
   `.html` twins, so a rebuild was run and the built pages carry the change.
 
-- **The last four extractor mis-attributions are closed in the prose, not in
+- <a id='e-2026-09-06-21'></a>**The last four extractor mis-attributions are closed in the prose, not in
   the extractor: three lines now name their instrument and the fourth needed no
   edit.** Each fix is a *pure insertion* -- remove the inserted name and the
   line is byte-identical to its predecessor, including under the citation
@@ -822,7 +917,7 @@ records what was wrong, what was done about it, and when.
   · This file is tracked in git. Two of the edited files have built `.html`
   twins, so a rebuild was run and the built pages carry the change.
 
-- **The bullet above counted a string, in prose that contains that string --
+- <a id='e-2026-09-06-22'></a>**The bullet above counted a string, in prose that contains that string --
   the count was false the moment it was written, and is now removed rather
   than restated.** As first published, the note on
   `regulatory/eu-ai-act-addendum.md:570` read that the bare abbreviation
@@ -873,7 +968,7 @@ records what was wrong, what was done about it, and when.
   above are the ones compared. This file's built twins were rebuilt so the
   pages carry the change.
 
-- **A NIS2 absence claim, refuted by the line two above it -- withdrawn, not
+- <a id='e-2026-09-06-23'></a>**A NIS2 absence claim, refuted by the line two above it -- withdrawn, not
   restated with a corrected number.** As first published, the DORA-clock note
   asserted that this repository held no citations of NIS2 at all, offering the
   pattern `\bNIS ?2\b|Directive ?\(EU\) ?2022/2555` and a result of 0 as the
@@ -953,7 +1048,7 @@ records what was wrong, what was done about it, and when.
   This file is tracked in git and has two built copies, so a rebuild was run and
   the built pages carry the change.
 
-- **Two negative controls were written out in this file; one of them had
+- <a id='e-2026-09-06-24'></a>**Two negative controls were written out in this file; one of them had
   already been burned by this same file at the moment it was called clean.**
   Both are withdrawn, and the general remedy they point at is proposed here
   rather than applied across the corpus by fiat.
@@ -1034,403 +1129,14 @@ records what was wrong, what was done about it, and when.
   the change.
 
 
-## 2026-09-05
-
-- **The Article 43 conformity inversion in `regulatory/eu-ai-act-addendum.md`
-  §8.2 is withdrawn and replaced by the instrument's own rule -- one sentence,
-  four faults.** The paragraph read: "Required for Annex III point 1(a) remote
-  biometric identification, and for systems where a harmonised standard or
-  common specification has not been (fully) applied." Article 43 of Regulation
-  (EU) 2024/1689 was read in full at the hashed primary
-  (the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256 prefix
-  `a0f437e89667`) -- all six paragraphs, both lettered lists inside paragraph 1,
-  and the third subparagraph of paragraph 1. **(1) The harmonised-standard
-  triggers do not generalise.** They are the (a)-(d) items of Art. 43(1),
-  second subparagraph, and Art. 43(1) is scoped "*For high-risk AI systems
-  listed in point 1 of Annex III*"; stating them as a free-standing rule
-  asserts the inverse of Art. 43(2), under which providers of the systems
-  "*referred to in points 2 to 8 of Annex III*" follow the internal-control
-  procedure of Annex VI, "*which does not provide for the involvement of a
-  notified body*". Art. 43(6) settles it: subjecting points 2 to 8 to Annex VII
-  would take a delegated act. **(2) "Required" is wrong even inside point 1.**
-  Where harmonised standards or common specifications have been applied,
-  Art. 43(1) says the provider "*shall opt for one of the following conformity
-  assessment procedures*" -- Annex VI or Annex VII. It is a choice; Annex VII
-  becomes obligatory only in the four cases of the second subparagraph.
-  **(3) "Point 1(a)" under-scopes the provision.** Art. 43(1) reaches the whole
-  of Annex III point 1 (Biometrics), which is (a) remote biometric
-  identification, (b) biometric categorisation and (c) emotion recognition.
-  **(4) The four triggers were compressed into one.** "Has not been (fully)
-  applied" drops the case where standards "*do not exist, and common
-  specifications referred to in Article 41 are not available*", and drops the
-  limit that a restricted standard sends only "*the part of the standard that
-  was restricted*" to Annex VII. §8.1 carried the matching hedge ("for most
-  Annex III systems ... in some cases") and is restated as the Art. 43(2) rule
-  it is. Nothing was deleted: the notified body's audit function, the
-  free choice of notified body and the Art. 74(8)/(9) market-surveillance
-  substitution are all now stated where the route actually applies.
-  **This is the same defect corrected across nine sites in `aplc/` on
-  2026-09-05; that pass did not reach this repository.**
-- **Why no citation check could have found it: the sentence cited no
-  provision.** The corrected paragraph named no article number -- "Annex VII"
-  is a heading and "harmonised standard" is prose -- so it carried no
-  `(instrument, article)` triple and could never be paired against the `aplc/`
-  site that contradicted it. `tools/citation-consistency.mjs` §2 keys on
-  `Art. N`. It was found instead by `command grep -rn 'Annex VII'`. **A claim
-  about a provision that does not cite the provision is invisible to every
-  citation-based check in this programme**, and a claim stated confidently
-  enough needs no citation to be believed. The recall gap is recorded here and
-  handed back to the tool owner rather than worked around.
-- **Every conformity-assessment claim in this repository was enumerated by
-  command, not sampled.** `command grep -rniE '(annex (vi|vii)([^i]|$)|notified
-  body|third-party (conformity )?assessment|self-assessment|internal control)'
-  --include='*.md' .` run from inside the repository -> **13 lines across 9
-  files**; a second, wider pass on `conformity assess|Art(icle)?\.? ?43|CE
-  mark|Annex V` -> 18 lines across 7 files. `command grep` was used for every
-  count in this entry: the shell's `grep` wraps `ugrep --ignore-files`, and the
-  root `.gitignore` lists this repository, so a root-level search returns
-  nothing from it. **Wrong: 3** -- `regulatory/eu-ai-act-addendum.md:573` (the
-  inversion), `:564` (the matching hedge in §8.1) and
-  `domains/financial-services.md:188`. The remaining ten are sound and were
-  left alone: `domains/medical-devices.md:259` and
-  `integration/igm-aplc-integration-test.md:11` quote the Art. 6(1) two-limb
-  test correctly, `domains/defense-government.md:75` and
-  `regulatory/coso-cobit-crosswalk.md:80` are CMMC and COBIT rather than the AI
-  Act, and `companion/reference.md:47` and `companion/principles-12.md:103` use
-  "self-assessment" of maturity models, not of conformity.
-- **`domains/financial-services.md:188` resolved: the hedge was hiding a route
-  the Act forecloses.** The Art. 43 row read "Financial services AI may require
-  third-party conformity assessment under sector-specific rules." It is hedged
-  and attributed to sector rules rather than to the Act, so it was not a false
-  statement about Art. 43 -- but it sits in a table whose own Annex III section
-  classifies these systems under point 5, and a reader arriving at it reads an
-  Annex VII path that Art. 43(2) forecloses for points 2 to 8. The row now
-  states the Art. 43(2) rule in its own cell, records that financial services
-  legislation is not Union harmonisation legislation listed in Section A of
-  Annex I so the Art. 43(3) sectoral route does not apply either, and marks the
-  surviving claim `F2`: a supervisory internal-model or IRB approval is a
-  sector supervisory requirement, **not** an AI Act conformity assessment. The
-  claim is re-attributed, not deleted, because a firm may well face such a
-  review -- what was wrong was the instrument it was hung on.
-- **DORA Article 28 has ten paragraphs, not nine, and the file that said
-  otherwise had been corrected hours earlier for five wrong paragraph numbers
-  in the same list.** `regulatory/foundation-model-third-party-register.md:240`
-  said "all nine paragraphs of Art. 28 were read end to end at the primary".
-  Enumerated at the hashed primary
-  (the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA),
-  sha256 prefix `25328c7e39c4`), Art. 28 of Regulation (EU) 2022/2554 runs
-  1 to 10: **28(9)** is the ESA implementing-technical-standards mandate for
-  the register template referred to in paragraph 3, and **28(10)** the ESA
-  regulatory-technical-standards mandate for the policy referred to in
-  paragraph 2. The same undercount stood in this errata file's own 2026-09-05
-  entry ("Reading Art. 28(1) through 28(9)") and is corrected there too. The
-  count is corrected in place, and the §3.1 obligation list -- which stopped at
-  28(8) -- now carries rows for 28(9) and 28(10) so that the list and the claim
-  about it agree. **The lesson is the entry, not the digit:** a claim about
-  *how thoroughly a primary was read*, made inside a correction note, is the
-  least likely sentence in a document to be re-checked, and it survived a pass
-  that rewrote four rows immediately above it. That pass also wrote "verified
-  against" as its verdict; the word is replaced with "read at the primary",
-  since no model verifies anything.
-
-- **EU AI Act Annex III misclassification of the CSDR penalty class withdrawn -- the twin
-  a 2026-09-02 correction left standing.**
-  `regulatory/foundation-model-third-party-register.md` §6.3 stated that
-  "Class B (CSDR penalty) and Class C (credit pre-screening) require FRIA
-  refresh (these are Annex III high-risk)", citing the EU AI Act. Class B is not an EU AI Act Annex III system.
-  Annex III of Regulation (EU) 2024/1689 is exhaustive and contains no
-  post-trade financial market infrastructure; the words *settlement*,
-  *post-trade* and *securities* occur zero times anywhere in the Regulation,
-  a demonstrated absence rather than a dead search, with one-word-swap
-  negative controls and positive controls confirming the search resolves
-  against the file. The nearest point, Annex III 5(b), reaches AI systems
-  "intended to be used to evaluate the creditworthiness of natural persons or
-  establish their credit score, with the exception of AI systems used for the
-  purpose of detecting financial fraud" -- not wholesale settlement-fail
-  penalty calculation between institutions. Class C (consumer-credit
-  pre-screening) is squarely 5(b) and is unaffected; the FRIA obligation
-  scoped to Class B was over-scoped and is withdrawn, and the Phase C step
-  now carries a dated classification note in place. **The lesson is recorded
-  with the correction:** the identical correction was made to the identical
-  worked scenario in `integration/igm-aplc-integration-test.md` on
-  **2026-09-02** and landed in that file only, so this file carried the
-  withdrawn classification for three further days. Nothing in a per-file
-  review or in `git diff` shows a surviving twin -- only an enumeration of
-  every site in the repository that classifies the scenario finds it, and
-  that enumeration is the reason this entry exists. Primary consulted:
-  the Official Journal HTML snapshot of Regulation (EU) 2024/1689
-  (sha256 prefix `a0f437e89667`).
-- **DORA Article 28 paragraph attributions corrected in four places -- right
-  instrument, wrong paragraph, four times over.**
-  `regulatory/foundation-model-third-party-register.md` attributed a board-
-  approval duty for CIF-supporting arrangements to **DORA Art. 28(7)** in two
-  places (the §3.1 obligation list and procurement-gate item G16). Art. 28(7)
-  of Regulation (EU) 2022/2554 is termination: it requires financial entities
-  to "ensure that contractual arrangements on the use of ICT services may be
-  terminated" in four listed circumstances. Reading Art. 28(1) through 28(10)
-  end to end -- rather than only the paragraph named -- showed that DORA
-  imposes no board approval of an individual arrangement at all: Art. 28(2)
-  requires the management body to "regularly review the risks identified in
-  respect to contractual arrangements on the use of ICT services supporting
-  critical or important functions", and Art. 5(2)(h) requires it to "approve
-  and periodically review the financial entity's policy on arrangements
-  regarding the use of ICT services provided by ICT third-party service
-  providers" -- a policy, not a contract. The phrase "board approval" does not
-  occur anywhere in DORA. G16 is re-attributed to Art. 28(2) and now says in
-  the same sentence as the claim that per-arrangement board approval is firm
-  policy, not a DORA requirement. Reading the whole Article also exposed three
-  further neighbour errors in the same list, each corrected in place: the
-  CIF-support assessment was attributed to 28(2) (it is **28(4)(a)**), the
-  mandatory contractual provisions to 28(5) (they are **Art. 30**; 28(5) is
-  information-security standards), and the exit strategy to 28(6) (it is
-  **28(8)**; 28(6) is audit and inspection rights) -- the last of these
-  contradicting §1.1 and §6 of the same document, which already cited 28(8).
-  Every wrong paragraph is a plausible-sounding neighbour of the right one,
-  which is how the list survived earlier review. Primary consulted:
-  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
-  (sha256 prefix `25328c7e39c4`).
-- **GDPR Art. 12(3) response period restated in the Regulation's own unit --
-  three sites, not the one reported.**
-  `operational-templates/slo-table.md` rows 35 and 36 set the data-subject
-  explanation and right-to-human-review clocks at "≤ 30 days", the first of
-  them attributed in the same cell to "GDPR Art 12", and
-  `regulatory/nist-ai-rmf-crosswalk.md:150` carried the same 30-day figure in
-  its `rights_and_remedies` field example. Article 12(3) of Regulation (EU)
-  2016/679 sets no such period: the controller shall provide information on
-  action taken "without undue delay and in any event within one month of
-  receipt of the request", and "that period may be extended by two further
-  months where necessary, taking into account the complexity and number of the
-  requests", with the data subject informed of the extension within one month.
-  The strings "30 days" and "60 days" occur zero times anywhere in the
-  Regulation, with one-word-swap negative controls (month → 30 days; two →
-  three further months) and positive controls confirming the search resolves
-  against the file. **A month is not thirty days**, and the error is worse than
-  its size because an SLO table is precisely where a reader takes a number and
-  builds a timer from it: February would over-run a 28-day month and every
-  31-day month would run three days short of the real deadline. The periods are
-  restated in the Regulation's own wording rather than converted to days, and
-  the paragraph is now cited as Art. 12(3) rather than Art. 12. **The lesson is
-  recorded with the correction:** the defect was handed over as one site in a
-  different repository; enumerating every figure stated near a data-subject
-  right across this repository found three, and none of them where they were
-  said to be. Primary consulted:
-  the EUR-Lex HTML snapshot of Regulation (EU) 2016/679 (GDPR)
-  (sha256 prefix `9952f3f336d4`).
-- **EU AI Act Art. 10(4) quotation restored; paragraph numbers added.**
-  `companion/principles-08.md` asserted that Article 10 requires datasets to
-  account for "characteristics or elements that are particular to the specific
-  geographical, behavioural or functional setting." The word **contextual** had
-  been dropped from inside the quotation marks. Art. 10(4) of Regulation (EU)
-  2024/1689 reads "the characteristics or elements that are particular to the
-  specific geographical, contextual, behavioural or functional setting within
-  which the high-risk AI system is intended to be used". The quotation is
-  restored with "contextual" and the paragraph is now cited as Art. 10(4). The
-  article number held: the obligation is in Article 10, not a neighbouring
-  provision, and the text was read in the Article body -- not in Recital 67 or
-  Article 42, which carry near-identical wording in a different word order and
-  would have made a wrong-provision citation look correct. The companion
-  "free of errors and complete" quotation, which comes from Art. 10(3) and not
-  from 10(4), is now attributed to 10(3) and carries the Act's own qualifier
-  "to the best extent possible", which the previous sentence had dropped,
-  stating an absolute duty the Act does not impose. Primary consulted:
-  the Official Journal HTML snapshot of Regulation (EU) 2024/1689
-  (sha256 prefix `a0f437e89667`).
-- **DORA citation exemplar corrected -- a bad citation was being taught as the
-  model of a good one.** `review/prompts/prompt-07-guardrails-security.md`
-  offered, as its *positive* exemplar of a properly grounded regulatory claim,
-  "DORA Art. 9(2)(b) requires that ICT systems are protected against ICT
-  attacks". No such provision exists. In Regulation (EU) 2022/2554, Article 9
-  is *Protection and prevention*; Art. 9(2) is unlettered prose about security
-  policies, procedures, protocols and tools, and only Art. 9(3) carries points
-  (a)-(d). The defect is worse than its size, because the artefact's purpose is
-  to teach reviewers what a well-grounded citation looks like: an exemplar that
-  is itself unsupported propagates the defect into every review written from
-  the prompt, under the authority of the rule it illustrates. It was not
-  repaired by renumbering to 9(3)(b), which exists and would have looked
-  plausible: 9(3)(b) requires ICT solutions and processes to "minimise the risk
-  of corruption or loss of data, unauthorised access and technical flaws that
-  may hinder business activity", which is not what the sentence claimed. The
-  phrase "ICT attacks" does not occur anywhere in DORA. The exemplar is
-  replaced with Art. 9(4)(c), which unconditionally requires financial entities
-  to "implement policies that limit the physical or logical access to
-  information assets and ICT assets to what is required for legitimate and
-  approved functions and activities only". Art. 9(4)(b) was considered and
-  rejected: it mentions cyber-attacks only inside a "may include" hedge, and
-  quoting a permissive clause as a requirement would have reproduced the same
-  class of error. The replacement also places the sentence's full stop outside
-  the closing quotation mark, so the quoted span is exactly the provision's
-  words. Primary consulted:
-  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
-  (sha256 prefix `25328c7e39c4`).
-- **Declining intervention rate withdrawn as evidence; rubber-stamping
-  screens demoted; a proposed engagement test added.** `adoption/metrics.md`
-  presented four behavioural signals (median review time, rejection rate,
-  inline comments, rework rate) as quantitative rubber-stamping detection.
-  Every one is a proxy a reviewer can satisfy without doing the cognitive
-  work, and the research literature on monitoring highly reliable automation
-  reports rapid habituation to controls of exactly that kind. The signals are
-  retained as continuous screens and are now explicitly stated to be adequate
-  to fire an alert and inadequate to clear one; they are no longer an
-  assurance basis for an autonomy decision. Added in their place, as a
-  **proposed and unvalidated** design: the Engagement Falsification Protocol
-  (double-blind synthetic fault injection, with blinding to reviewers and
-  their supervisors, a hard interception interlock, pre-registered outcomes of
-  supported-within-scope / contradicted / inconclusive, and *d'* rather than a
-  raw hit rate as the primary endpoint). Its limits are stated in the text
-  alongside it, not in a footnote: it does not reach in-envelope Tier 4
-  execution, it excludes irreversible and person-affecting actions, and it
-  cannot be powered on a low-volume queue -- run unpowered it returns
-  "supported" by default. Nothing in the repository authorises live fault
-  injection. The same section now states that a declining intervention or
-  override rate is not evidence that oversight can relax, and that the
-  decision-quality qualifier does not repair it.
-- **No numeric pass criterion is asserted for the protocol.** The commissioned
-  research synthesis behind it carries a numeric pass threshold only inside an
-  embedded figure image, with no text equivalent anywhere in the document. The
-  criterion is therefore stated structurally -- detection on injected faults
-  must not decline with the baseline rate -- and no numeral is quoted for it.
-- **Tier 4 assurance basis corrected.** `glossary.md` and
-  `regulatory/incidents-appendix.md` conditioned Tier 4 authorisation on
-  rubber-stamping detection being active without recording that no engagement
-  measurement reaches in-envelope Tier 4 execution, where there is no
-  per-action human decision to instrument. Both now state that the
-  prerequisite bounds the envelope-change and audit functions only, and that
-  in-envelope assurance rests on envelope design, machine enforcement and
-  post-hoc audit. `governance/authority-accountability-matrix.md`'s D3 trigger
-  row carries the same asymmetry note and now requires a positive engagement
-  result, or an explicit record of its absence, to restore a tier.
-- **Fabricated FDA CSA quotations withdrawn.** `domains/pharma.md` attributed
-  seven quoted phrases to FDA's Computer Software Assurance guidance --
-  five in a "CSA Principle" table (`:102-106` as then numbered) and two in
-  a prose bullet on formal verification (`:338-339`) -- plus a propagated
-  eighth site in an Open Regulatory Questions row (`:424`, "leverage
-  supplier testing"). None of the eight occurs in either the 2022 CSA
-  draft or the live 2026 final, checked at primary with whitespace- and
-  hyphen-insensitive matching. The quotations were cut; the table and
-  prose bullet were not replaced with alternate quotations, per this
-  repository's cut-not-softened standard. The checks covered the FDA's 2022
-  draft and 3 February 2026 final guidance, using whitespace- and
-  hyphen-insensitive matching.
-- **Section 2 scope defect flagged, not rewritten.** The same file's
-  §2 headline -- "the strongest alignment point between the manifesto and
-  pharma regulation" -- rests on FDA CSA guidance whose own Scope section
-  states it applies "for medical devices" under 21 CFR Part 820, not the
-  210/211 and EU GMP Annex 11 basis pharma GMP validation actually runs
-  on; the guidance has also been superseded twice since the 2022 draft the
-  file cites. A dated scope note was added recording this; the section's
-  argument was left standing for its author to revise. See the same
-  packet, claim C6.
-- **GDPR Art. 22 quotation corrected.** `domains/README.md`'s
-  cross-domain open-questions table quoted "solely automated
-  decision-making" as GDPR Art. 22 itself; that exact wording does not
-  occur in Art. 22 (Art. 22(1) reads "a decision based solely on
-  automated processing"). The quotation marks and direct attribution were
-  removed; the question was kept, unquoted, since it stands on its own.
-  No replacement quotation was asserted.
-
-- **DORA Article 14 cross-reference corrected -- the withdrawal that ran in
-  two other repositories never reached this one.** `domains/financial-services.md`
-  (§ ASDLC and APLC Regulatory Guidance) listed "DORA Article 14" among the
-  financial-services requirements mapped to ASDLC Layers 1, 3 and 4. Article 14
-  of Regulation (EU) 2022/2554 is *Communication* -- crisis-communication plans
-  (¶1), communication policies for internal staff and external stakeholders
-  (¶2), and a person tasked with the public and media function (¶3) -- and
-  carries no ICT change-management obligation. The obligation the linked ASDLC
-  guidance maps to Layer 3 is Article 9(4)(e), documented policies, procedures
-  and controls for ICT change management; the cross-reference now cites that,
-  with an in-place note. Read at primary against
-  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
-  (sha256 prefix `25328c7e39c4`). Recorded for the next reader, because a
-  correction elsewhere in this programme asserted that Article 14 has no
-  paragraph 2: **it does** -- the text is quoted above -- and what does not
-  exist is lettered sub-paragraphs under it. Neither this file nor its note
-  repeats that claim. The site was missed by the earlier sweep because nothing
-  had been withdrawn here, so there was no withdrawal marker to find; it was
-  reachable only by searching for the withdrawn string itself.
-- **CSA §2 headline: the scope caveat moved out of the blockquote and into the
-  claim.** `domains/pharma.md` §2 asserted that "The FDA's 2022 CSA guidance
-  replaces traditional CSV with risk-based, critical-thinking-driven assurance"
-  and that "This is the strongest alignment point between the manifesto and
-  pharma regulation", with the qualification carried in a `> **Scope note**`
-  blockquote *above* the sentences. A separated caveat is stripped the moment
-  the figure or claim is lifted into a deck, so the qualification is now in the
-  sentences themselves: the guidance does not say it "replaces" CSV; "critical
-  thinking" occurs zero times in the 2022 draft and zero times in the
-  3 February 2026 final, so "critical-thinking-driven" is this document's gloss
-  and not the instrument's language; and the alignment judgement is marked as
-  asserted on this document's own account against a guidance whose stated scope
-  is computer software assurance "for medical devices" under 21 CFR Part 820.
-  **No claim was deleted** -- each is now marked unsourced in its own sentence,
-  and the scope note is retained and updated to say the qualification has moved.
-  Sources checked: the FDA's 2022 draft and 3 February 2026 final guidance.
-- **PAT bullet: the caveat now governs what survived the cut, not what was
-  removed.** In `domains/pharma.md`, the bullet "**FDA CSA alignment**: targeted
-  formal verification on critical paths can support replacing exhaustive
-  scripted test matrices" was followed by a parenthetical recording that two
-  CSA quotations had been cut from it. That parenthetical qualified **the
-  deleted quotations only** -- so the bullet went on attributing the practice to
-  FDA CSA in its own label with nothing behind it, next to a caveat a reader
-  would take as covering it. "formal verification" occurs zero times in the 2022
-  CSA draft and zero times in the 2026 final. The bullet now carries, in its own
-  sentence, that the alignment is asserted on this document's account and is not
-  sourced to the guidance; the withdrawal parenthetical is kept and now says so.
-  The claim was not deleted.
-- **Two unquoted CSA tables carried the withdrawn quotations onward.** The same
-  day's withdrawal of the seven fabricated FDA CSA quotations (entry above) was
-  aimed at quoted strings, and it cleared every one of them. It did not reach
-  two tables in `domains/pharma.md` that attribute phrases to the guidance
-  **without quotation marks**: the CSV-versus-CSA comparison table in §2 and the
-  CSA column of Appendix A's alignment summary. Both carried "Intended use
-  drives assurance" -- byte-identical to the withdrawn "CSA Principle" table row
-  -- as a live, unmarked attribution to the guidance, so the fabrication
-  survived the pass that was supposed to end it. It was found by a ground-truth
-  regression row (`RESOLVED-D60-CSA-4` in
-  `tools/citation-quotation-known-cases.tsv`) that reported the string
-  unexpectedly present, not by re-reading the section. Both cells were reworded
-  to "Assurance effort follows intended use and risk"; the claim was not
-  deleted, because the guidance is genuinely intended-use- and risk-driven
-  ("intended use" occurs 54 times in the 2022 draft and 81 times in the
-  3 February 2026 final). All **seven** entries in the §2 comparison table's
-  CSA (2022) column were then checked at primary, not just the flagged one:
-  "Risk-based documentation", "Unscripted + scripted testing", "Critical
-  thinking", "Test to the risk", "Assurance commensurate with risk", the former
-  "Intended use drives assurance" and "Continual assurance" each occur **zero
-  times** in both texts, with one-word-swap negative controls and five positive
-  controls confirming the search resolves against both files. The table now
-  carries a note in place stating that the column is this document's paraphrase
-  and not the guidance's wording; the Appendix A cell carries the same
-  qualification inline. **The lesson is recorded with the correction:** a
-  withdrawal pass scoped to quotation marks leaves the identical fabricated
-  wording standing wherever the corpus asserts it unquoted, and only an
-  enumeration of the surrounding tables -- not of the flagged line -- finds it.
-
-## 2026-08-11
-
-- **Fabricated ROI/overspend figures removed.** `adoption/enterprise.md` carried
-  a "40–60% defect-reduction" figure attributed to SWE-CI and an unsourced
-  "30–50% overspend" claim beside it. Neither figure is supported by the cited
-  source. Both were removed rather than replaced, pending independently
-  verified figures.
-- **Source count and attribution corrected.** `README.md` and
-  `beyond-agile/sources.md` previously stated "twenty-three cited sources" and
-  attributed material to "Feldt et al." on the front page in a way that
-  overstated the citation's role. The source count is corrected to the actual
-  count of sixty cited sources, and the front-page attribution is corrected.
-- **SWE-CI unit-of-analysis fixed.** Several passages described the SWE-CI
-  benchmark's findings using a unit of analysis (e.g., "75% per CI iteration")
-  that does not match how the benchmark actually measures outcomes. The
-  framing was corrected across five files to describe the benchmark's actual
-  unit of analysis (18 evaluated models, 100 long-horizon tasks,
-  zero-regression rate).
-- **Hoda/Hassan attributions withdrawn.** Attributions to Hoda and Hassan that
-  could not be independently verified against the cited primary sources were
-  withdrawn rather than left standing on an unconfirmed citation.
-- **Phase-profile empirical framing demoted.** Claims about phase-profile
-  behavior that were presented with an empirical framing they did not earn
-  were rewritten to remove the empirical framing, pending independently
-  verified support.
+*Filing note (2026-11-09): the two `D-57` subsections below were made on
+2026-09-06, before the `D-62` entry at the top of this date. They were
+first published under 2026-08-11 by mistake and have been moved here
+unchanged.*
 
 ### D-57 / D-60 · `regulatory/foundation-model-third-party-register.md:283, :288` — two bolded renderings of Art. 30, each a word off
+
+<a id='e-2026-09-06-25'></a>
 
 - **Struck.** *"at no additional cost, or at a cost determined ex ante"*
   (Art. 30(2)(f)) and *"participate and fully cooperate in the entity's TLPT"*
@@ -1480,6 +1186,8 @@ records what was wrong, what was done about it, and when.
   not assumed.
 
 ### D-57 / D-61 · six bare article citations carried onto the wrong instrument, five of them in this repository — and a judgment on whether `_swarm-changelog.md` is a claim surface
+
+<a id='e-2026-09-06-26'></a>
 
 **Note on how this entry is written.** Every instrument name below is
 backticked, and no span is quotation-marked. That is deliberate and it is the
@@ -1645,3 +1353,399 @@ truly-new flags. The counts are kept here; the needles are not.
 ---
 
 [← Back to README](README.md)
+
+## 2026-09-05
+
+- <a id='e-2026-09-05-01'></a>**The Article 43 conformity inversion in `regulatory/eu-ai-act-addendum.md`
+  §8.2 is withdrawn and replaced by the instrument's own rule -- one sentence,
+  four faults.** The paragraph read: "Required for Annex III point 1(a) remote
+  biometric identification, and for systems where a harmonised standard or
+  common specification has not been (fully) applied." Article 43 of Regulation
+  (EU) 2024/1689 was read in full at the hashed primary
+  (the Official Journal HTML snapshot of Regulation (EU) 2024/1689, sha256 prefix
+  `a0f437e89667`) -- all six paragraphs, both lettered lists inside paragraph 1,
+  and the third subparagraph of paragraph 1. **(1) The harmonised-standard
+  triggers do not generalise.** They are the (a)-(d) items of Art. 43(1),
+  second subparagraph, and Art. 43(1) is scoped "*For high-risk AI systems
+  listed in point 1 of Annex III*"; stating them as a free-standing rule
+  asserts the inverse of Art. 43(2), under which providers of the systems
+  "*referred to in points 2 to 8 of Annex III*" follow the internal-control
+  procedure of Annex VI, "*which does not provide for the involvement of a
+  notified body*". Art. 43(6) settles it: subjecting points 2 to 8 to Annex VII
+  would take a delegated act. **(2) "Required" is wrong even inside point 1.**
+  Where harmonised standards or common specifications have been applied,
+  Art. 43(1) says the provider "*shall opt for one of the following conformity
+  assessment procedures*" -- Annex VI or Annex VII. It is a choice; Annex VII
+  becomes obligatory only in the four cases of the second subparagraph.
+  **(3) "Point 1(a)" under-scopes the provision.** Art. 43(1) reaches the whole
+  of Annex III point 1 (Biometrics), which is (a) remote biometric
+  identification, (b) biometric categorisation and (c) emotion recognition.
+  **(4) The four triggers were compressed into one.** "Has not been (fully)
+  applied" drops the case where standards "*do not exist, and common
+  specifications referred to in Article 41 are not available*", and drops the
+  limit that a restricted standard sends only "*the part of the standard that
+  was restricted*" to Annex VII. §8.1 carried the matching hedge ("for most
+  Annex III systems ... in some cases") and is restated as the Art. 43(2) rule
+  it is. Nothing was deleted: the notified body's audit function, the
+  free choice of notified body and the Art. 74(8)/(9) market-surveillance
+  substitution are all now stated where the route actually applies.
+  **This is the same defect corrected across nine sites in `aplc/` on
+  2026-09-05; that pass did not reach this repository.**
+- **Why no citation check could have found it: the sentence cited no
+  provision.** The corrected paragraph named no article number -- "Annex VII"
+  is a heading and "harmonised standard" is prose -- so it carried no
+  `(instrument, article)` triple and could never be paired against the `aplc/`
+  site that contradicted it. `tools/citation-consistency.mjs` §2 keys on
+  `Art. N`. It was found instead by `command grep -rn 'Annex VII'`. **A claim
+  about a provision that does not cite the provision is invisible to every
+  citation-based check in this programme**, and a claim stated confidently
+  enough needs no citation to be believed. The recall gap is recorded here and
+  handed back to the tool owner rather than worked around.
+- **Every conformity-assessment claim in this repository was enumerated by
+  command, not sampled.** `command grep -rniE '(annex (vi|vii)([^i]|$)|notified
+  body|third-party (conformity )?assessment|self-assessment|internal control)'
+  --include='*.md' .` run from inside the repository -> **13 lines across 9
+  files**; a second, wider pass on `conformity assess|Art(icle)?\.? ?43|CE
+  mark|Annex V` -> 18 lines across 7 files. `command grep` was used for every
+  count in this entry: the shell's `grep` wraps `ugrep --ignore-files`, and the
+  root `.gitignore` lists this repository, so a root-level search returns
+  nothing from it. **Wrong: 3** -- `regulatory/eu-ai-act-addendum.md:573` (the
+  inversion), `:564` (the matching hedge in §8.1) and
+  `domains/financial-services.md:188`. The remaining ten are sound and were
+  left alone: `domains/medical-devices.md:259` and
+  `integration/igm-aplc-integration-test.md:11` quote the Art. 6(1) two-limb
+  test correctly, `domains/defense-government.md:75` and
+  `regulatory/coso-cobit-crosswalk.md:80` are CMMC and COBIT rather than the AI
+  Act, and `companion/reference.md:47` and `companion/principles-12.md:103` use
+  "self-assessment" of maturity models, not of conformity.
+- <a id='e-2026-09-05-02'></a>**`domains/financial-services.md:188` resolved: the hedge was hiding a route
+  the Act forecloses.** The Art. 43 row read "Financial services AI may require
+  third-party conformity assessment under sector-specific rules." It is hedged
+  and attributed to sector rules rather than to the Act, so it was not a false
+  statement about Art. 43 -- but it sits in a table whose own Annex III section
+  classifies these systems under point 5, and a reader arriving at it reads an
+  Annex VII path that Art. 43(2) forecloses for points 2 to 8. The row now
+  states the Art. 43(2) rule in its own cell, records that financial services
+  legislation is not Union harmonisation legislation listed in Section A of
+  Annex I so the Art. 43(3) sectoral route does not apply either, and marks the
+  surviving claim `F2`: a supervisory internal-model or IRB approval is a
+  sector supervisory requirement, **not** an AI Act conformity assessment. The
+  claim is re-attributed, not deleted, because a firm may well face such a
+  review -- what was wrong was the instrument it was hung on.
+- <a id='e-2026-09-05-03'></a>**DORA Article 28 has ten paragraphs, not nine, and the file that said
+  otherwise had been corrected hours earlier for five wrong paragraph numbers
+  in the same list.** `regulatory/foundation-model-third-party-register.md:240`
+  said "all nine paragraphs of Art. 28 were read end to end at the primary".
+  Enumerated at the hashed primary
+  (the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA),
+  sha256 prefix `25328c7e39c4`), Art. 28 of Regulation (EU) 2022/2554 runs
+  1 to 10: **28(9)** is the ESA implementing-technical-standards mandate for
+  the register template referred to in paragraph 3, and **28(10)** the ESA
+  regulatory-technical-standards mandate for the policy referred to in
+  paragraph 2. The same undercount stood in this errata file's own 2026-09-05
+  entry ("Reading Art. 28(1) through 28(9)") and is corrected there too. The
+  count is corrected in place, and the §3.1 obligation list -- which stopped at
+  28(8) -- now carries rows for 28(9) and 28(10) so that the list and the claim
+  about it agree. **The lesson is the entry, not the digit:** a claim about
+  *how thoroughly a primary was read*, made inside a correction note, is the
+  least likely sentence in a document to be re-checked, and it survived a pass
+  that rewrote four rows immediately above it. That pass also wrote "verified
+  against" as its verdict; the word is replaced with "read at the primary",
+  since no model verifies anything.
+
+- <a id='e-2026-09-05-04'></a>**EU AI Act Annex III misclassification of the CSDR penalty class withdrawn -- the twin
+  a 2026-09-02 correction left standing.**
+  `regulatory/foundation-model-third-party-register.md` §6.3 stated that
+  "Class B (CSDR penalty) and Class C (credit pre-screening) require FRIA
+  refresh (these are Annex III high-risk)", citing the EU AI Act. Class B is not an EU AI Act Annex III system.
+  Annex III of Regulation (EU) 2024/1689 is exhaustive and contains no
+  post-trade financial market infrastructure; the words *settlement*,
+  *post-trade* and *securities* occur zero times anywhere in the Regulation,
+  a demonstrated absence rather than a dead search, with one-word-swap
+  negative controls and positive controls confirming the search resolves
+  against the file. The nearest point, Annex III 5(b), reaches AI systems
+  "intended to be used to evaluate the creditworthiness of natural persons or
+  establish their credit score, with the exception of AI systems used for the
+  purpose of detecting financial fraud" -- not wholesale settlement-fail
+  penalty calculation between institutions. Class C (consumer-credit
+  pre-screening) is squarely 5(b) and is unaffected; the FRIA obligation
+  scoped to Class B was over-scoped and is withdrawn, and the Phase C step
+  now carries a dated classification note in place. **The lesson is recorded
+  with the correction:** the identical correction was made to the identical
+  worked scenario in `integration/igm-aplc-integration-test.md` on
+  **2026-09-02** and landed in that file only, so this file carried the
+  withdrawn classification for three further days. Nothing in a per-file
+  review or in `git diff` shows a surviving twin -- only an enumeration of
+  every site in the repository that classifies the scenario finds it, and
+  that enumeration is the reason this entry exists. Primary consulted:
+  the Official Journal HTML snapshot of Regulation (EU) 2024/1689
+  (sha256 prefix `a0f437e89667`).
+- <a id='e-2026-09-05-05'></a>**DORA Article 28 paragraph attributions corrected in four places -- right
+  instrument, wrong paragraph, four times over.**
+  `regulatory/foundation-model-third-party-register.md` attributed a board-
+  approval duty for CIF-supporting arrangements to **DORA Art. 28(7)** in two
+  places (the §3.1 obligation list and procurement-gate item G16). Art. 28(7)
+  of Regulation (EU) 2022/2554 is termination: it requires financial entities
+  to "ensure that contractual arrangements on the use of ICT services may be
+  terminated" in four listed circumstances. Reading Art. 28(1) through 28(10)
+  end to end -- rather than only the paragraph named -- showed that DORA
+  imposes no board approval of an individual arrangement at all: Art. 28(2)
+  requires the management body to "regularly review the risks identified in
+  respect to contractual arrangements on the use of ICT services supporting
+  critical or important functions", and Art. 5(2)(h) requires it to "approve
+  and periodically review the financial entity's policy on arrangements
+  regarding the use of ICT services provided by ICT third-party service
+  providers" -- a policy, not a contract. The phrase "board approval" does not
+  occur anywhere in DORA. G16 is re-attributed to Art. 28(2) and now says in
+  the same sentence as the claim that per-arrangement board approval is firm
+  policy, not a DORA requirement. Reading the whole Article also exposed three
+  further neighbour errors in the same list, each corrected in place: the
+  CIF-support assessment was attributed to 28(2) (it is **28(4)(a)**), the
+  mandatory contractual provisions to 28(5) (they are **Art. 30**; 28(5) is
+  information-security standards), and the exit strategy to 28(6) (it is
+  **28(8)**; 28(6) is audit and inspection rights) -- the last of these
+  contradicting §1.1 and §6 of the same document, which already cited 28(8).
+  Every wrong paragraph is a plausible-sounding neighbour of the right one,
+  which is how the list survived earlier review. Primary consulted:
+  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+  (sha256 prefix `25328c7e39c4`).
+- <a id='e-2026-09-05-06'></a>**GDPR Art. 12(3) response period restated in the Regulation's own unit --
+  three sites, not the one reported.**
+  `operational-templates/slo-table.md` rows 35 and 36 set the data-subject
+  explanation and right-to-human-review clocks at "≤ 30 days", the first of
+  them attributed in the same cell to "GDPR Art 12", and
+  `regulatory/nist-ai-rmf-crosswalk.md:150` carried the same 30-day figure in
+  its `rights_and_remedies` field example. Article 12(3) of Regulation (EU)
+  2016/679 sets no such period: the controller shall provide information on
+  action taken "without undue delay and in any event within one month of
+  receipt of the request", and "that period may be extended by two further
+  months where necessary, taking into account the complexity and number of the
+  requests", with the data subject informed of the extension within one month.
+  The strings "30 days" and "60 days" occur zero times anywhere in the
+  Regulation, with one-word-swap negative controls (month → 30 days; two →
+  three further months) and positive controls confirming the search resolves
+  against the file. **A month is not thirty days**, and the error is worse than
+  its size because an SLO table is precisely where a reader takes a number and
+  builds a timer from it: February would over-run a 28-day month and every
+  31-day month would run three days short of the real deadline. The periods are
+  restated in the Regulation's own wording rather than converted to days, and
+  the paragraph is now cited as Art. 12(3) rather than Art. 12. **The lesson is
+  recorded with the correction:** the defect was handed over as one site in a
+  different repository; enumerating every figure stated near a data-subject
+  right across this repository found three, and none of them where they were
+  said to be. Primary consulted:
+  the EUR-Lex HTML snapshot of Regulation (EU) 2016/679 (GDPR)
+  (sha256 prefix `9952f3f336d4`).
+- <a id='e-2026-09-05-07'></a>**EU AI Act Art. 10(4) quotation restored; paragraph numbers added.**
+  `companion/principles-08.md` asserted that Article 10 requires datasets to
+  account for "characteristics or elements that are particular to the specific
+  geographical, behavioural or functional setting." The word **contextual** had
+  been dropped from inside the quotation marks. Art. 10(4) of Regulation (EU)
+  2024/1689 reads "the characteristics or elements that are particular to the
+  specific geographical, contextual, behavioural or functional setting within
+  which the high-risk AI system is intended to be used". The quotation is
+  restored with "contextual" and the paragraph is now cited as Art. 10(4). The
+  article number held: the obligation is in Article 10, not a neighbouring
+  provision, and the text was read in the Article body -- not in Recital 67 or
+  Article 42, which carry near-identical wording in a different word order and
+  would have made a wrong-provision citation look correct. The companion
+  "free of errors and complete" quotation, which comes from Art. 10(3) and not
+  from 10(4), is now attributed to 10(3) and carries the Act's own qualifier
+  "to the best extent possible", which the previous sentence had dropped,
+  stating an absolute duty the Act does not impose. Primary consulted:
+  the Official Journal HTML snapshot of Regulation (EU) 2024/1689
+  (sha256 prefix `a0f437e89667`).
+- <a id='e-2026-09-05-08'></a>**DORA citation exemplar corrected -- a bad citation was being taught as the
+  model of a good one.** `review/prompts/prompt-07-guardrails-security.md`
+  offered, as its *positive* exemplar of a properly grounded regulatory claim,
+  "DORA Art. 9(2)(b) requires that ICT systems are protected against ICT
+  attacks". No such provision exists. In Regulation (EU) 2022/2554, Article 9
+  is *Protection and prevention*; Art. 9(2) is unlettered prose about security
+  policies, procedures, protocols and tools, and only Art. 9(3) carries points
+  (a)-(d). The defect is worse than its size, because the artefact's purpose is
+  to teach reviewers what a well-grounded citation looks like: an exemplar that
+  is itself unsupported propagates the defect into every review written from
+  the prompt, under the authority of the rule it illustrates. It was not
+  repaired by renumbering to 9(3)(b), which exists and would have looked
+  plausible: 9(3)(b) requires ICT solutions and processes to "minimise the risk
+  of corruption or loss of data, unauthorised access and technical flaws that
+  may hinder business activity", which is not what the sentence claimed. The
+  phrase "ICT attacks" does not occur anywhere in DORA. The exemplar is
+  replaced with Art. 9(4)(c), which unconditionally requires financial entities
+  to "implement policies that limit the physical or logical access to
+  information assets and ICT assets to what is required for legitimate and
+  approved functions and activities only". Art. 9(4)(b) was considered and
+  rejected: it mentions cyber-attacks only inside a "may include" hedge, and
+  quoting a permissive clause as a requirement would have reproduced the same
+  class of error. The replacement also places the sentence's full stop outside
+  the closing quotation mark, so the quoted span is exactly the provision's
+  words. Primary consulted:
+  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+  (sha256 prefix `25328c7e39c4`).
+- <a id='e-2026-09-05-09'></a>**Declining intervention rate withdrawn as evidence; rubber-stamping
+  screens demoted; a proposed engagement test added.** `adoption/metrics.md`
+  presented four behavioural signals (median review time, rejection rate,
+  inline comments, rework rate) as quantitative rubber-stamping detection.
+  Every one is a proxy a reviewer can satisfy without doing the cognitive
+  work, and the research literature on monitoring highly reliable automation
+  reports rapid habituation to controls of exactly that kind. The signals are
+  retained as continuous screens and are now explicitly stated to be adequate
+  to fire an alert and inadequate to clear one; they are no longer an
+  assurance basis for an autonomy decision. Added in their place, as a
+  **proposed and unvalidated** design: the Engagement Falsification Protocol
+  (double-blind synthetic fault injection, with blinding to reviewers and
+  their supervisors, a hard interception interlock, pre-registered outcomes of
+  supported-within-scope / contradicted / inconclusive, and *d'* rather than a
+  raw hit rate as the primary endpoint). Its limits are stated in the text
+  alongside it, not in a footnote: it does not reach in-envelope Tier 4
+  execution, it excludes irreversible and person-affecting actions, and it
+  cannot be powered on a low-volume queue -- run unpowered it returns
+  "supported" by default. Nothing in the repository authorises live fault
+  injection. The same section now states that a declining intervention or
+  override rate is not evidence that oversight can relax, and that the
+  decision-quality qualifier does not repair it.
+- **No numeric pass criterion is asserted for the protocol.** The commissioned
+  research synthesis behind it carries a numeric pass threshold only inside an
+  embedded figure image, with no text equivalent anywhere in the document. The
+  criterion is therefore stated structurally -- detection on injected faults
+  must not decline with the baseline rate -- and no numeral is quoted for it.
+- <a id='e-2026-09-05-10'></a>**Tier 4 assurance basis corrected.** `glossary.md` and
+  `regulatory/incidents-appendix.md` conditioned Tier 4 authorisation on
+  rubber-stamping detection being active without recording that no engagement
+  measurement reaches in-envelope Tier 4 execution, where there is no
+  per-action human decision to instrument. Both now state that the
+  prerequisite bounds the envelope-change and audit functions only, and that
+  in-envelope assurance rests on envelope design, machine enforcement and
+  post-hoc audit. `governance/authority-accountability-matrix.md`'s D3 trigger
+  row carries the same asymmetry note and now requires a positive engagement
+  result, or an explicit record of its absence, to restore a tier.
+- <a id='e-2026-09-05-11'></a>**Fabricated FDA CSA quotations withdrawn.** `domains/pharma.md` attributed
+  seven quoted phrases to FDA's Computer Software Assurance guidance --
+  five in a "CSA Principle" table (`:102-106` as then numbered) and two in
+  a prose bullet on formal verification (`:338-339`) -- plus a propagated
+  eighth site in an Open Regulatory Questions row (`:424`, "leverage
+  supplier testing"). None of the eight occurs in either the 2022 CSA
+  draft or the live 2026 final, checked at primary with whitespace- and
+  hyphen-insensitive matching. The quotations were cut; the table and
+  prose bullet were not replaced with alternate quotations, per this
+  repository's cut-not-softened standard. The checks covered the FDA's 2022
+  draft and 3 February 2026 final guidance, using whitespace- and
+  hyphen-insensitive matching.
+- <a id='e-2026-09-05-12'></a>**Section 2 scope defect flagged, not rewritten.** The same file's
+  §2 headline -- "the strongest alignment point between the manifesto and
+  pharma regulation" -- rests on FDA CSA guidance whose own Scope section
+  states it applies "for medical devices" under 21 CFR Part 820, not the
+  210/211 and EU GMP Annex 11 basis pharma GMP validation actually runs
+  on; the guidance has also been superseded twice since the 2022 draft the
+  file cites. A dated scope note was added recording this; the section's
+  argument was left standing for its author to revise. See the same
+  packet, claim C6.
+- <a id='e-2026-09-05-13'></a>**GDPR Art. 22 quotation corrected.** `domains/README.md`'s
+  cross-domain open-questions table quoted "solely automated
+  decision-making" as GDPR Art. 22 itself; that exact wording does not
+  occur in Art. 22 (Art. 22(1) reads "a decision based solely on
+  automated processing"). The quotation marks and direct attribution were
+  removed; the question was kept, unquoted, since it stands on its own.
+  No replacement quotation was asserted.
+
+- <a id='e-2026-09-05-14'></a>**DORA Article 14 cross-reference corrected -- the withdrawal that ran in
+  two other repositories never reached this one.** `domains/financial-services.md`
+  (§ ASDLC and APLC Regulatory Guidance) listed "DORA Article 14" among the
+  financial-services requirements mapped to ASDLC Layers 1, 3 and 4. Article 14
+  of Regulation (EU) 2022/2554 is *Communication* -- crisis-communication plans
+  (¶1), communication policies for internal staff and external stakeholders
+  (¶2), and a person tasked with the public and media function (¶3) -- and
+  carries no ICT change-management obligation. The obligation the linked ASDLC
+  guidance maps to Layer 3 is Article 9(4)(e), documented policies, procedures
+  and controls for ICT change management; the cross-reference now cites that,
+  with an in-place note. Read at primary against
+  the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
+  (sha256 prefix `25328c7e39c4`). Recorded for the next reader, because a
+  correction elsewhere in this programme asserted that Article 14 has no
+  paragraph 2: **it does** -- the text is quoted above -- and what does not
+  exist is lettered sub-paragraphs under it. Neither this file nor its note
+  repeats that claim. The site was missed by the earlier sweep because nothing
+  had been withdrawn here, so there was no withdrawal marker to find; it was
+  reachable only by searching for the withdrawn string itself.
+- <a id='e-2026-09-05-15'></a>**CSA §2 headline: the scope caveat moved out of the blockquote and into the
+  claim.** `domains/pharma.md` §2 asserted that "The FDA's 2022 CSA guidance
+  replaces traditional CSV with risk-based, critical-thinking-driven assurance"
+  and that "This is the strongest alignment point between the manifesto and
+  pharma regulation", with the qualification carried in a `> **Scope note**`
+  blockquote *above* the sentences. A separated caveat is stripped the moment
+  the figure or claim is lifted into a deck, so the qualification is now in the
+  sentences themselves: the guidance does not say it "replaces" CSV; "critical
+  thinking" occurs zero times in the 2022 draft and zero times in the
+  3 February 2026 final, so "critical-thinking-driven" is this document's gloss
+  and not the instrument's language; and the alignment judgement is marked as
+  asserted on this document's own account against a guidance whose stated scope
+  is computer software assurance "for medical devices" under 21 CFR Part 820.
+  **No claim was deleted** -- each is now marked unsourced in its own sentence,
+  and the scope note is retained and updated to say the qualification has moved.
+  Sources checked: the FDA's 2022 draft and 3 February 2026 final guidance.
+- <a id='e-2026-09-05-16'></a>**PAT bullet: the caveat now governs what survived the cut, not what was
+  removed.** In `domains/pharma.md`, the bullet "**FDA CSA alignment**: targeted
+  formal verification on critical paths can support replacing exhaustive
+  scripted test matrices" was followed by a parenthetical recording that two
+  CSA quotations had been cut from it. That parenthetical qualified **the
+  deleted quotations only** -- so the bullet went on attributing the practice to
+  FDA CSA in its own label with nothing behind it, next to a caveat a reader
+  would take as covering it. "formal verification" occurs zero times in the 2022
+  CSA draft and zero times in the 2026 final. The bullet now carries, in its own
+  sentence, that the alignment is asserted on this document's account and is not
+  sourced to the guidance; the withdrawal parenthetical is kept and now says so.
+  The claim was not deleted.
+- <a id='e-2026-09-05-17'></a>**Two unquoted CSA tables carried the withdrawn quotations onward.** The same
+  day's withdrawal of the seven fabricated FDA CSA quotations (entry above) was
+  aimed at quoted strings, and it cleared every one of them. It did not reach
+  two tables in `domains/pharma.md` that attribute phrases to the guidance
+  **without quotation marks**: the CSV-versus-CSA comparison table in §2 and the
+  CSA column of Appendix A's alignment summary. Both carried "Intended use
+  drives assurance" -- byte-identical to the withdrawn "CSA Principle" table row
+  -- as a live, unmarked attribution to the guidance, so the fabrication
+  survived the pass that was supposed to end it. It was found by a ground-truth
+  regression row (`RESOLVED-D60-CSA-4` in
+  `tools/citation-quotation-known-cases.tsv`) that reported the string
+  unexpectedly present, not by re-reading the section. Both cells were reworded
+  to "Assurance effort follows intended use and risk"; the claim was not
+  deleted, because the guidance is genuinely intended-use- and risk-driven
+  ("intended use" occurs 54 times in the 2022 draft and 81 times in the
+  3 February 2026 final). All **seven** entries in the §2 comparison table's
+  CSA (2022) column were then checked at primary, not just the flagged one:
+  "Risk-based documentation", "Unscripted + scripted testing", "Critical
+  thinking", "Test to the risk", "Assurance commensurate with risk", the former
+  "Intended use drives assurance" and "Continual assurance" each occur **zero
+  times** in both texts, with one-word-swap negative controls and five positive
+  controls confirming the search resolves against both files. The table now
+  carries a note in place stating that the column is this document's paraphrase
+  and not the guidance's wording; the Appendix A cell carries the same
+  qualification inline. **The lesson is recorded with the correction:** a
+  withdrawal pass scoped to quotation marks leaves the identical fabricated
+  wording standing wherever the corpus asserts it unquoted, and only an
+  enumeration of the surrounding tables -- not of the flagged line -- finds it.
+
+## 2026-08-11
+
+- <a id='e-2026-08-11-01'></a>**Fabricated ROI/overspend figures removed.** `adoption/enterprise.md` carried
+  a "40–60% defect-reduction" figure attributed to SWE-CI and an unsourced
+  "30–50% overspend" claim beside it. Neither figure is supported by the cited
+  source. Both were removed rather than replaced, pending independently
+  verified figures.
+- <a id='e-2026-08-11-02'></a>**Source count and attribution corrected.** `README.md` and
+  `beyond-agile/sources.md` previously stated "twenty-three cited sources" and
+  attributed material to "Feldt et al." on the front page in a way that
+  overstated the citation's role. The source count is corrected to the actual
+  count of sixty cited sources, and the front-page attribution is corrected.
+- <a id='e-2026-08-11-03'></a>**SWE-CI unit-of-analysis fixed.** Several passages described the SWE-CI
+  benchmark's findings using a unit of analysis (e.g., "75% per CI iteration")
+  that does not match how the benchmark actually measures outcomes. The
+  framing was corrected across five files to describe the benchmark's actual
+  unit of analysis (18 evaluated models, 100 long-horizon tasks,
+  zero-regression rate).
+- <a id='e-2026-08-11-04'></a>**Hoda/Hassan attributions withdrawn.** Attributions to Hoda and Hassan that
+  could not be independently verified against the cited primary sources were
+  withdrawn rather than left standing on an unconfirmed citation.
+- <a id='e-2026-08-11-05'></a>**Phase-profile empirical framing demoted.** Claims about phase-profile
+  behavior that were presented with an empirical framing they did not earn
+  were rewritten to remove the empirical framing, pending independently
+  verified support.
