@@ -14,12 +14,12 @@ whether it has since changed.
   erratum.** It says what was wrong and what was done. The rest of the entry is
   the evidence: what the text said, what the source actually says, what the
   text says now, and what was deliberately left unchanged.
-- **Bullets that have no row in the index are working records, not
-  corrections.** They are headed *Gates*, *Rebuild*, *Tracking*,
-  *Enumerated...* or similar, and log checker runs, search counts, HTML
-  rebuilds and git state for the pass that made the correction. Nothing in
-  them changes what a reader should believe, so skip them unless you are
-  auditing the work.
+- **Bullets that have no row in the index support the entry above them.**
+  Most record how far a search for the same defect was taken and what it
+  found, headed *Enumerated...* or similar. Process records (checker runs,
+  HTML rebuilds, git state) are kept separately in
+  [errata-working-records.md](errata-working-records.md); you only need them
+  to audit the work.
 
 ### What the recurring terms mean
 
@@ -32,7 +32,7 @@ whether it has since changed.
 | **Primary** | The official text of the instrument (regulation, guidance, standard), read directly rather than through a summary. |
 | **sha256 prefix** | Identifies the exact copy of a primary that was read. The copies are kept in the review programme's working inputs, not in this repository. |
 | **Positive / negative control** | A search for text known to be present (or absent), run beside the real search to prove the search could have found what it was looking for. |
-| **`:123`, `file.md:123`** | A line number in the file *as it stood when the entry was written*. Later edits move lines, so find the passage today by its quoted text or section name. |
+| **Line locators** (a colon and a number after a file name) | A line number in the file *as it stood when the entry was written*. Later edits move lines, so find the passage today by its quoted text or section name. |
 | **`D-nn`, `Tn.n`, `Fn`** | Defect, task and rule identifiers from the review programme's working register, which is not published in this repository. `F2` is the rule that a caveat must sit in the same sentence as the claim it limits. |
 
 ### Writing a new entry
@@ -41,8 +41,8 @@ Add it under a `## YYYY-MM-DD` heading at the top, give it an anchor, and add
 a row to the index. Open with one bold sentence naming the file and saying
 what was wrong and what was done. Then give, in this order: what the text
 said; what the source says, with the copy read; what the text says now; what
-was not changed and why. Keep checker output and git state out of the entry,
-or put it in a separate bullet headed as a working record.
+was not changed and why. Put checker output, rebuild notes and git state in
+[errata-working-records.md](errata-working-records.md), not in the entry.
 
 ## Index
 
@@ -184,51 +184,18 @@ or put it in a separate bullet headed as a working record.
     unchanged** — that is this defect class's close condition, and each row now
     names in the same sentence the provision it formerly cited, so a reader
     holding the old text can see what moved (`F2`).
-- **The register's `aplc` extension of `D-62` was verified rather than assumed,
-  and it is complete.** `aplc/agent/agent-annex-iv-mapping.md:28` cited **Art. 48**
-  (CE marking) for the EU declaration of conformity; the working tree there now
-  cites **Art. 47**, with 47(2)/Annex V for the content and 47(1) for the
-  provider's 10-year duty. Checked at the hashed AI Act primary
-  (`a0f437e8966746b88b15d35bc9e7a9dbe930e2938a941548524a565121c7929b`), read in
-  sequence: **Art. 47 is *EU declaration of conformity*, Art. 48 is *CE
-  marking***, 48(2) being digital CE marking, and no paragraph of Art. 48 touches
-  the declaration. **Enumerated in both trees rather than taken from the
-  register**: `aplc` `HEAD` (`821e242`) carries **2** `Art. 47`/`Art. 48` lines
-  in 2 files — the one wrong site and a **Solvency II Art. 48** (*Actuarial
-  function*) correctly left alone; the working tree carries **14** in 5 files,
-  every one of them Art. 47 and correct. **The register's own figure of "25
-  occurrences in 8 files" is reproducible against neither tree**, and it does not
-  say which tree it addressed.
+- *The companion fix in the `aplc` repository, and its verification,
+  are recorded in `aplc/errata.md` and in
+  [errata-working-records.md](errata-working-records.md#wr-2026-09-06-a0).*
 - **This repository's own Art. 47/48 usage was checked for consistency with that
   repair and needs no edit.** `regulatory/eu-ai-act-addendum.md:607` reads
   *"Issues the EU declaration of conformity (Art. 47) and affixes CE marking
   (Art. 48)"* on the provider row — both correct; `:290` is Art. 47 of the
   Charter of Fundamental Rights (effective remedy), a different instrument.
-- **Gates, run 06.09.2026 20:19 CEST from the corpus root.**
-  `tools/register-crossref.sh` **exit 0, four consecutive runs, byte-identical**
-  (md5 `14bf051ba840a746a583484a7d9313fe`), defects **73**, tasks **55**.
-  `tools/link-check.sh` **broken 4 / total 1051 across 5 repos**, against **1046**
-  before this pass. **The movement was named before the run and it landed
-  exactly**: **+5**, being the four `../errata.md` links added by the `D-62` edit
-  in `domains/pharma.md` and one added in `aplc`. **Broken did not move and was
-  not expected to** — no link was removed and every added link resolves.
-- **Rebuild.** This edit makes the rendered HTML stale for the **thirteenth**
-  time. **No `.html` was hand-patched.** A thirteenth rebuild must carry
-  `domains/pharma.html` in this repository. `aplc` contains **no `.html` at
-  all**, so its edit needs no rebuild.
-- **Tracking (`D-73`).** This file is tracked, so
-  `git -C agentic-engineering-manifesto diff` **does** show this entry.
-  **`agentic-engineering-manifesto` last committed 02.09.2026 at `c1d0d19`** and
-  this pass committed nothing, so **none of the four `D-62` repairs above reaches
-  a reader holding `HEAD` of this repository**, and all four remain live there at
-  `:124`, `:209`, `:311` and `:423`. The checkout is on branch **`alignment`**,
-  which `git rev-parse main alignment origin/main` reports identical to `main` at
-  `c1d0d19`. **`aplc/errata.md` is no longer untracked** — it is **staged and
-  uncommitted** (`git -C aplc status --short errata.md` → `A `, 20:17 CEST) — so
-  the register's `D-73` and `D-57` statements about it are stale as of today;
-  `aplc` itself last committed **02.05.2026**. **No struck-string row is added
-  for any of this**, per the `D-63` precedent: a row green in a working tree and
-  red at `HEAD` fails the next checkout.
+- *Working records for this pass (checker runs, HTML rebuild, git
+  state) are in
+  [errata-working-records.md](errata-working-records.md#wr-2026-09-06-a). They show
+  how the work was checked and change nothing above.*
 
 - <a id='e-2026-09-06-02'></a>**An invented Art. 6(2) test in `domains/financial-services.md`, creating a
   route into high-risk that the Regulation does not contain.** The
@@ -1171,19 +1138,10 @@ unchanged.*
   costs nothing, removes the ambiguity permanently, and does not depend on the
   house rule never changing; leaving them would bank on it. Content retained,
   attribution corrected, no control deleted.
-- **Rebuild.** This edit makes the rendered HTML stale for the **eleventh** time.
-  No `.html` was hand-patched. An eleventh rebuild must carry: the two corrected
-  Art. 30 spans and their correction note in `regulatory/foundation-model-third-party-register.html`,
-  and, if the site build inlines them, the register's rendered twins in
-  `index.html`. Nothing else in this repo was edited by this pass.
-- **Tracking, corrected against the brief.** The brief for this pass stated that
-  all three repositories' `errata.md` are untracked under `D-57`. That holds for
-  `aplc/errata.md` and `asdlc/errata.md` (`git -C <repo> status --porcelain
-  errata.md` -> `?? errata.md` for both), but **not for this file**: AEM's
-  `errata.md` is tracked (`MM`, and `git -C agentic-engineering-manifesto
-  ls-files --error-unmatch errata.md` succeeds), so
-  `git -C agentic-engineering-manifesto diff` **does** show this entry. Measured,
-  not assumed.
+- *Working records for this pass (checker runs, HTML rebuild, git
+  state) are in
+  [errata-working-records.md](errata-working-records.md#wr-2026-09-06-b). They show
+  how the work was checked and change nothing above.*
 
 ### D-57 / D-61 · six bare article citations carried onto the wrong instrument, five of them in this repository — and a judgment on whether `_swarm-changelog.md` is a claim surface
 
@@ -1304,55 +1262,10 @@ truly-new flags. The counts are kept here; the needles are not.
     `aplc/domains/insurance.md:118-119`, where the instrument name is broken
     across the line ending and the annex on the next line is filed under
     `Solvency II` in consequence.
-- **Fresh long negative control, proved against a positive.** A newly generated
-  two-word needle returned **0** whole and **0** for each half, line-scoped and
-  wrap-safe, in both repositories and on the six edited lines. It is a real
-  absence and not a dead scanner: positive controls on the **identical**
-  commands returned **203** annex-word hits over **113** files scanned here and
-  **317** over **30** in `aplc`, and the inserted instrument name returned
-  exactly **1** on each edited line after the edit. **None of the four needles
-  this corpus has already burned in errata entries was used** — recording a
-  control in errata retires it, and those four are recorded.
-- **Prefix-safe controls, whole tokens, because a digit is not a word.** On the
-  changelog line, a seven-only pattern with a following-digit exclusion matched
-  **0** while the seven-two pattern matched **1**, and a digit-width swap to a
-  three-digit number matched **0**. On the `aplc` annex line, the single-numeral
-  annex pattern with a following-numeral exclusion matched **0** while the
-  four-numeral pattern matched **1**, and both a longer-numeral variant and the
-  three-numeral variant matched **0**. The short form does not match the long
-  form under the controls used, in either direction.
-- **Movement, isolated and named.** Across both repositories: triples
-  **1882 → 1883**; `GDPR` **234 → 228**; `EU AI Act` **1146 → 1153**;
-  unattributed **460 → 459**; no-annex refusals **6 → 5**. The `--dump-triples`
-  diff against the frozen baseline is **exactly** the six moves plus the one
-  annex citation the bound had refused and now no longer must — nothing else
-  moved, in either direction. **Everything else is unchanged line for line:**
-  §2 pairs **73**, §2 groups **96**, truly new **0**, sub-clause OK **564** /
-  fabricated **1** / no structure data **27**, §3c rows **158** (live 154, VOID
-  0, REGRESSED 0, DUPLICATE KEYS 3), §6 verbatim OK **127**,
-  `--known-only` exit **0**, `./tools/register-crossref.sh` exit **0**,
-  `./tools/link-check.sh` **broken 4 / total 1043 across 5 repos**,
-  `aplc/tools/check_overview_counts.py` exit **0**. Full run exit **1**, twice,
-  **byte-identical**.
-- **Rebuild.** This edit makes the rendered HTML stale for the **twelfth** time.
-  **No `.html` was hand-patched.** A twelfth rebuild must carry exactly four
-  files in this repository — `governance/_swarm-changelog.html`,
-  `regulatory/eu-ai-act-addendum.html`, `regulatory/nist-ai-rmf-crosswalk.html`
-  and `regulatory/iso-42001-crosswalk.html`. **`index.html` is NOT stale from
-  this pass**, and that was measured rather than assumed: all four edited
-  strings return **0** in it against a positive control returning **1** and a
-  negative control returning **0**, so the file was actually read. `aplc`
-  contains **no `.html` at all**, so its two edits need no rebuild. Nothing else
-  in either repository was edited by this pass.
-- **Tracking.** This file is tracked, so
-  `git -C agentic-engineering-manifesto diff` **does** show this entry — unlike
-  `aplc/errata.md`, which is untracked under `D-57`, is not walked by the
-  checker's `git ls-files` at all, and whose companion entry `git -C aplc diff`
-  will not show.
-
----
-
-[← Back to README](README.md)
+- *Working records for this pass (checker runs, HTML rebuild, git
+  state) are in
+  [errata-working-records.md](errata-working-records.md#wr-2026-09-06-c). They show
+  how the work was checked and change nothing above.*
 
 ## 2026-09-05
 
@@ -1749,3 +1662,7 @@ truly-new flags. The counts are kept here; the needles are not.
   behavior that were presented with an empirical framing they did not earn
   were rewritten to remove the empirical framing, pending independently
   verified support.
+
+---
+
+[← Back to README](README.md)
