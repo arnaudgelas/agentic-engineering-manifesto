@@ -314,12 +314,12 @@ correction was made, not the day the error was introduced.</li>
 erratum.</strong> It says what was wrong and what was done. The rest of the entry is
 the evidence: what the text said, what the source actually says, what the
 text says now, and what was deliberately left unchanged.</li>
-<li><strong>Bullets that have no row in the index are working records, not
-corrections.</strong> They are headed <em>Gates</em>, <em>Rebuild</em>, <em>Tracking</em>,
-<em>Enumerated...</em> or similar, and log checker runs, search counts, HTML
-rebuilds and git state for the pass that made the correction. Nothing in
-them changes what a reader should believe, so skip them unless you are
-auditing the work.</li>
+<li><strong>Bullets that have no row in the index support the entry above them.</strong>
+Most record how far a search for the same defect was taken and what it
+found, headed <em>Enumerated...</em> or similar. Process records (checker runs,
+HTML rebuilds, git state) are kept separately in
+<a href="errata-working-records.html">errata-working-records.md</a>; you only need them
+to audit the work.</li>
 </ul>
 <h3 id="what-the-recurring-terms-mean">What the recurring terms mean</h3><table>
 <thead>
@@ -357,7 +357,7 @@ auditing the work.</li>
 <td>A search for text known to be present (or absent), run beside the real search to prove the search could have found what it was looking for.</td>
 </tr>
 <tr>
-<td><strong><code>:123</code>, <code>file.md:123</code></strong></td>
+<td><strong>Line locators</strong> (a colon and a number after a file name)</td>
 <td>A line number in the file <em>as it stood when the entry was written</em>. Later edits move lines, so find the passage today by its quoted text or section name.</td>
 </tr>
 <tr>
@@ -369,8 +369,8 @@ auditing the work.</li>
 a row to the index. Open with one bold sentence naming the file and saying
 what was wrong and what was done. Then give, in this order: what the text
 said; what the source says, with the copy read; what the text says now; what
-was not changed and why. Keep checker output and git state out of the entry,
-or put it in a separate bullet headed as a working record.</p>
+was not changed and why. Put checker output, rebuild notes and git state in
+<a href="errata-working-records.html">errata-working-records.md</a>, not in the entry.</p>
 <h2 id="index">Index</h2><table>
 <thead>
 <tr>
@@ -762,21 +762,9 @@ names in the same sentence the provision it formerly cited, so a reader
 holding the old text can see what moved (<code>F2</code>).</li>
 </ul>
 </li>
-<li><p><strong>The register&#39;s <code>aplc</code> extension of <code>D-62</code> was verified rather than assumed,
-and it is complete.</strong> <code>aplc/agent/agent-annex-iv-mapping.md:28</code> cited <strong>Art. 48</strong>
-(CE marking) for the EU declaration of conformity; the working tree there now
-cites <strong>Art. 47</strong>, with 47(2)/Annex V for the content and 47(1) for the
-provider&#39;s 10-year duty. Checked at the hashed AI Act primary
-(<code>a0f437e8966746b88b15d35bc9e7a9dbe930e2938a941548524a565121c7929b</code>), read in
-sequence: <strong>Art. 47 is <em>EU declaration of conformity</em>, Art. 48 is <em>CE
-marking</em></strong>, 48(2) being digital CE marking, and no paragraph of Art. 48 touches
-the declaration. <strong>Enumerated in both trees rather than taken from the
-register</strong>: <code>aplc</code> <code>HEAD</code> (<code>821e242</code>) carries <strong>2</strong> <code>Art. 47</code>/<code>Art. 48</code> lines
-in 2 files — the one wrong site and a <strong>Solvency II Art. 48</strong> (<em>Actuarial
-function</em>) correctly left alone; the working tree carries <strong>14</strong> in 5 files,
-every one of them Art. 47 and correct. <strong>The register&#39;s own figure of &quot;25
-occurrences in 8 files&quot; is reproducible against neither tree</strong>, and it does not
-say which tree it addressed.</p>
+<li><p><em>The companion fix in the <code>aplc</code> repository, and its verification,
+are recorded in <code>aplc/errata.md</code> and in
+<a href="errata-working-records.html#wr-2026-09-06-a0">errata-working-records.md</a>.</em></p>
 </li>
 <li><p><strong>This repository&#39;s own Art. 47/48 usage was checked for consistency with that
 repair and needs no edit.</strong> <code>regulatory/eu-ai-act-addendum.md:607</code> reads
@@ -784,33 +772,10 @@ repair and needs no edit.</strong> <code>regulatory/eu-ai-act-addendum.md:607</c
 (Art. 48)&quot;</em> on the provider row — both correct; <code>:290</code> is Art. 47 of the
 Charter of Fundamental Rights (effective remedy), a different instrument.</p>
 </li>
-<li><p><strong>Gates, run 06.09.2026 20:19 CEST from the corpus root.</strong>
-<code>tools/register-crossref.sh</code> <strong>exit 0, four consecutive runs, byte-identical</strong>
-(md5 <code>14bf051ba840a746a583484a7d9313fe</code>), defects <strong>73</strong>, tasks <strong>55</strong>.
-<code>tools/link-check.sh</code> <strong>broken 4 / total 1051 across 5 repos</strong>, against <strong>1046</strong>
-before this pass. <strong>The movement was named before the run and it landed
-exactly</strong>: <strong>+5</strong>, being the four <code>../errata.md</code> links added by the <code>D-62</code> edit
-in <code>domains/pharma.md</code> and one added in <code>aplc</code>. <strong>Broken did not move and was
-not expected to</strong> — no link was removed and every added link resolves.</p>
-</li>
-<li><p><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>thirteenth</strong>
-time. <strong>No <code>.html</code> was hand-patched.</strong> A thirteenth rebuild must carry
-<code>domains/pharma.html</code> in this repository. <code>aplc</code> contains <strong>no <code>.html</code> at
-all</strong>, so its edit needs no rebuild.</p>
-</li>
-<li><p><strong>Tracking (<code>D-73</code>).</strong> This file is tracked, so
-<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry.
-<strong><code>agentic-engineering-manifesto</code> last committed 02.09.2026 at <code>c1d0d19</code></strong> and
-this pass committed nothing, so <strong>none of the four <code>D-62</code> repairs above reaches
-a reader holding <code>HEAD</code> of this repository</strong>, and all four remain live there at
-<code>:124</code>, <code>:209</code>, <code>:311</code> and <code>:423</code>. The checkout is on branch <strong><code>alignment</code></strong>,
-which <code>git rev-parse main alignment origin/main</code> reports identical to <code>main</code> at
-<code>c1d0d19</code>. <strong><code>aplc/errata.md</code> is no longer untracked</strong> — it is <strong>staged and
-uncommitted</strong> (<code>git -C aplc status --short errata.md</code> → <code>A </code>, 20:17 CEST) — so
-the register&#39;s <code>D-73</code> and <code>D-57</code> statements about it are stale as of today;
-<code>aplc</code> itself last committed <strong>02.05.2026</strong>. <strong>No struck-string row is added
-for any of this</strong>, per the <code>D-63</code> precedent: a row green in a working tree and
-red at <code>HEAD</code> fails the next checkout.</p>
+<li><p><em>Working records for this pass (checker runs, HTML rebuild, git
+state) are in
+<a href="errata-working-records.html#wr-2026-09-06-a">errata-working-records.md</a>. They show
+how the work was checked and change nothing above.</em></p>
 </li>
 <li><p><a id='e-2026-09-06-02'></a><strong>An invented Art. 6(2) test in <code>domains/financial-services.md</code>, creating a
 route into high-risk that the Regulation does not contain.</strong> The
@@ -1756,17 +1721,10 @@ finds the sentence, matches it approximately, and moves on. Making them exact
 costs nothing, removes the ambiguity permanently, and does not depend on the
 house rule never changing; leaving them would bank on it. Content retained,
 attribution corrected, no control deleted.</li>
-<li><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>eleventh</strong> time.
-No <code>.html</code> was hand-patched. An eleventh rebuild must carry: the two corrected
-Art. 30 spans and their correction note in <code>regulatory/foundation-model-third-party-register.html</code>,
-and, if the site build inlines them, the register&#39;s rendered twins in
-<code>index.html</code>. Nothing else in this repo was edited by this pass.</li>
-<li><strong>Tracking, corrected against the brief.</strong> The brief for this pass stated that
-all three repositories&#39; <code>errata.md</code> are untracked under <code>D-57</code>. That holds for
-<code>aplc/errata.md</code> and <code>asdlc/errata.md</code> (<code>git -C &lt;repo&gt; status --porcelain errata.md</code> -&gt; <code>?? errata.md</code> for both), but <strong>not for this file</strong>: AEM&#39;s
-<code>errata.md</code> is tracked (<code>MM</code>, and <code>git -C agentic-engineering-manifesto ls-files --error-unmatch errata.md</code> succeeds), so
-<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry. Measured,
-not assumed.</li>
+<li><em>Working records for this pass (checker runs, HTML rebuild, git
+state) are in
+<a href="errata-working-records.html#wr-2026-09-06-b">errata-working-records.md</a>. They show
+how the work was checked and change nothing above.</em></li>
 </ul>
 <h3 id="d-57-d-61-six-bare-article-citations-carried-onto-the-wrong-instrument-five-of-them-in-this-repository-and-a-judgment-on-whether-_swarm-changelogmd-is-a-claim-surface">D-57 / D-61 · six bare article citations carried onto the wrong instrument, five of them in this repository — and a judgment on whether <code>_swarm-changelog.md</code> is a claim surface</h3><p><a id='e-2026-09-06-26'></a></p>
 <p><strong>Note on how this entry is written.</strong> Every instrument name below is
@@ -1886,54 +1844,11 @@ across the line ending and the annex on the next line is filed under
 <code>Solvency II</code> in consequence.</li>
 </ul>
 </li>
-<li><strong>Fresh long negative control, proved against a positive.</strong> A newly generated
-two-word needle returned <strong>0</strong> whole and <strong>0</strong> for each half, line-scoped and
-wrap-safe, in both repositories and on the six edited lines. It is a real
-absence and not a dead scanner: positive controls on the <strong>identical</strong>
-commands returned <strong>203</strong> annex-word hits over <strong>113</strong> files scanned here and
-<strong>317</strong> over <strong>30</strong> in <code>aplc</code>, and the inserted instrument name returned
-exactly <strong>1</strong> on each edited line after the edit. <strong>None of the four needles
-this corpus has already burned in errata entries was used</strong> — recording a
-control in errata retires it, and those four are recorded.</li>
-<li><strong>Prefix-safe controls, whole tokens, because a digit is not a word.</strong> On the
-changelog line, a seven-only pattern with a following-digit exclusion matched
-<strong>0</strong> while the seven-two pattern matched <strong>1</strong>, and a digit-width swap to a
-three-digit number matched <strong>0</strong>. On the <code>aplc</code> annex line, the single-numeral
-annex pattern with a following-numeral exclusion matched <strong>0</strong> while the
-four-numeral pattern matched <strong>1</strong>, and both a longer-numeral variant and the
-three-numeral variant matched <strong>0</strong>. The short form does not match the long
-form under the controls used, in either direction.</li>
-<li><strong>Movement, isolated and named.</strong> Across both repositories: triples
-<strong>1882 → 1883</strong>; <code>GDPR</code> <strong>234 → 228</strong>; <code>EU AI Act</code> <strong>1146 → 1153</strong>;
-unattributed <strong>460 → 459</strong>; no-annex refusals <strong>6 → 5</strong>. The <code>--dump-triples</code>
-diff against the frozen baseline is <strong>exactly</strong> the six moves plus the one
-annex citation the bound had refused and now no longer must — nothing else
-moved, in either direction. <strong>Everything else is unchanged line for line:</strong>
-§2 pairs <strong>73</strong>, §2 groups <strong>96</strong>, truly new <strong>0</strong>, sub-clause OK <strong>564</strong> /
-fabricated <strong>1</strong> / no structure data <strong>27</strong>, §3c rows <strong>158</strong> (live 154, VOID
-0, REGRESSED 0, DUPLICATE KEYS 3), §6 verbatim OK <strong>127</strong>,
-<code>--known-only</code> exit <strong>0</strong>, <code>./tools/register-crossref.sh</code> exit <strong>0</strong>,
-<code>./tools/link-check.sh</code> <strong>broken 4 / total 1043 across 5 repos</strong>,
-<code>aplc/tools/check_overview_counts.py</code> exit <strong>0</strong>. Full run exit <strong>1</strong>, twice,
-<strong>byte-identical</strong>.</li>
-<li><strong>Rebuild.</strong> This edit makes the rendered HTML stale for the <strong>twelfth</strong> time.
-<strong>No <code>.html</code> was hand-patched.</strong> A twelfth rebuild must carry exactly four
-files in this repository — <code>governance/_swarm-changelog.html</code>,
-<code>regulatory/eu-ai-act-addendum.html</code>, <code>regulatory/nist-ai-rmf-crosswalk.html</code>
-and <code>regulatory/iso-42001-crosswalk.html</code>. <strong><code>index.html</code> is NOT stale from
-this pass</strong>, and that was measured rather than assumed: all four edited
-strings return <strong>0</strong> in it against a positive control returning <strong>1</strong> and a
-negative control returning <strong>0</strong>, so the file was actually read. <code>aplc</code>
-contains <strong>no <code>.html</code> at all</strong>, so its two edits need no rebuild. Nothing else
-in either repository was edited by this pass.</li>
-<li><strong>Tracking.</strong> This file is tracked, so
-<code>git -C agentic-engineering-manifesto diff</code> <strong>does</strong> show this entry — unlike
-<code>aplc/errata.md</code>, which is untracked under <code>D-57</code>, is not walked by the
-checker&#39;s <code>git ls-files</code> at all, and whose companion entry <code>git -C aplc diff</code>
-will not show.</li>
+<li><em>Working records for this pass (checker runs, HTML rebuild, git
+state) are in
+<a href="errata-working-records.html#wr-2026-09-06-c">errata-working-records.md</a>. They show
+how the work was checked and change nothing above.</em></li>
 </ul>
-<hr>
-<p><a href="#overview">← Back to README</a></p>
 <h2 id="2026-09-05">2026-09-05</h2><ul>
 <li><p><a id='e-2026-09-05-01'></a><strong>The Article 43 conformity inversion in <code>regulatory/eu-ai-act-addendum.md</code>
 §8.2 is withdrawn and replaced by the instrument&#39;s own rule -- one sentence,
@@ -2343,6 +2258,8 @@ behavior that were presented with an empirical framing they did not earn
 were rewritten to remove the empirical framing, pending independently
 verified support.</li>
 </ul>
+<hr>
+<p><a href="#overview">← Back to README</a></p>
 </div></section><section id="beyond" class="doc-section" data-group="beyond"><div class="section-inner"><p><em>The Agile Manifesto was written for a world where humans wrote all the code. That world no longer exists.</em></p>
 <hr>
 <h2 id="the-agile-manifesto-is-twenty-five-years-old-and-it-shows">The Agile Manifesto Is Twenty-Five Years Old — and It Shows</h2><p>In February 2001, seventeen software developers gathered at a ski lodge in Snowbird, Utah, and wrote a document that would reshape an industry. The Agile Manifesto was a rebellion against waterfall bureaucracy, and it won. Its four values — individuals and interactions, working software, customer collaboration, responding to change — liberated a generation of engineers from Gantt charts and heavyweight process.</p>
@@ -10543,7 +10460,7 @@ links to the domain that has developed the most specific framing.</p>
 </tr>
 <tr>
 <td>5</td>
-<td><strong>GDPR Art. 22 and agent-assisted decisions</strong>: When an agent produces a recommendation that a human rubber-stamps, does that constitute solely automated decision-making within the meaning of GDPR Art. 22? (This row formerly quoted the phrase &quot;solely automated decision-making&quot; as Art. 22 itself; that exact wording does not occur in Art. 22 -- see <a href="#errata">errata.md</a>.) The boundary between meaningful human review and rubber-stamping is undefined in regulatory guidance.</td>
+<td><strong>GDPR Art. 22 and agent-assisted decisions</strong>: When an agent produces a recommendation that a human rubber-stamps, does that constitute solely automated decision-making within the meaning of GDPR Art. 22? (This row formerly quoted the phrase &quot;solely automated decision-making&quot; as Art. 22 itself; that exact wording does not occur in Art. 22 -- see <a href="#e-2026-09-05-13">errata.md</a>.) The boundary between meaningful human review and rubber-stamping is undefined in regulatory guidance.</td>
 <td>Financial, Medical, All customer-facing</td>
 <td>Open — rubber-stamping detection metrics (see <a href="#adoption-metrics">adoption/metrics.md</a>) partially address the engineering side; the legal question is unresolved</td>
 </tr>
@@ -12338,7 +12255,7 @@ All seven entries were checked against the hashed 2022 draft and the
 sixth entry carried, verbatim and unquoted, the wording of a row in the
 &quot;CSA Principle&quot; table withdrawn from this section the same day; it is
 withdrawn here too, and the withdrawn string is recorded in
-<a href="#errata">errata.md</a> rather than repeated here.)</em></p>
+<a href="#e-2026-09-05-17">errata.md</a> rather than repeated here.)</em></p>
 <p><strong>Strategic context.</strong> The manifesto is an engineering framework that
 operationalizes CSA&#39;s philosophy. CSA sets out a risk-based approach to
 assurance but does not prescribe the engineering
@@ -12355,7 +12272,7 @@ by construction.</p>
 Principle&quot; phrases formerly appeared here. None of the five quotations
 occurs in the FDA CSA guidance -- the 2022 draft or the live 2026 final,
 checked at primary -- and they were withdrawn rather than replaced. See
-<a href="#errata">errata.md</a>.)</em></p>
+<a href="#e-2026-09-05-11">errata.md</a>.)</em></p>
 <p>This alignment is structural, not retrofitted. The manifesto&#39;s evidence model
 produces CSA-compatible artifacts as a byproduct of its engineering discipline.
 Organizations adopting the manifesto for agentic delivery simultaneously
@@ -12405,7 +12322,7 @@ compliance workstream.</p>
 <td>Annex 11 s 7.2</td>
 <td>P6 memory governance -- rollback, provenance, expiration</td>
 <td>Partial</td>
-<td>Memory governance covers learned memory; GxP backup requirements extend to all system data and configuration. Annex 11 s 7.2 is the backup provision -- regular back-ups, with integrity, accuracy and &quot;the ability to restore the data&quot; checked during validation and monitored periodically; s 7.1 (<em>Data Storage</em>) covers securing and checking stored data and does not require restore testing, and this row cited it until the correction recorded in <a href="#errata">errata.md</a>.</td>
+<td>Memory governance covers learned memory; GxP backup requirements extend to all system data and configuration. Annex 11 s 7.2 is the backup provision -- regular back-ups, with integrity, accuracy and &quot;the ability to restore the data&quot; checked during validation and monitored periodically; s 7.1 (<em>Data Storage</em>) covers securing and checking stored data and does not require restore testing, and this row cited it until the correction recorded in <a href="#e-2026-09-06-01">errata.md</a>.</td>
 </tr>
 <tr>
 <td>Validation</td>
@@ -12636,7 +12553,7 @@ additional consideration.</p>
 <tbody><tr>
 <td>Agent-generated data as &quot;original&quot; data</td>
 <td>21 CFR 211.68(b); PIC/S PI 041-1; WHO TRS 1033 Annex 4</td>
-<td>When an agent generates a calculation, trend, or summary entering a batch record or clinical database, the source record must be defined. The agent&#39;s input data and logic trace constitute the source. <em>Original</em> is an ALCOA attribute and its basis is PIC/S PI 041-1 and WHO TRS 1033 Annex 4, cited on the metadata row below; this row cited EU GMP Annex 11 s 8 until the correction recorded in <a href="#errata">errata.md</a>, and s 8 (<em>Printouts</em>) defines no source or original record -- s 8.2 requires only that printouts supporting batch release show whether data changed since the original entry.</td>
+<td>When an agent generates a calculation, trend, or summary entering a batch record or clinical database, the source record must be defined. The agent&#39;s input data and logic trace constitute the source. <em>Original</em> is an ALCOA attribute and its basis is PIC/S PI 041-1 and WHO TRS 1033 Annex 4, cited on the metadata row below; this row cited EU GMP Annex 11 s 8 until the correction recorded in <a href="#e-2026-09-06-01">errata.md</a>, and s 8 (<em>Printouts</em>) defines no source or original record -- s 8.2 requires only that printouts supporting batch release show whether data changed since the original entry.</td>
 </tr>
 <tr>
 <td>Agent-modified data</td>
@@ -12713,7 +12630,7 @@ documentation supplied with commercial off-the-shelf products is reviewed by
 the regulated user against its requirements (s 3.3); and supplier quality and
 audit information is made available to inspectors on request (s 3.4). This
 section cited GAMP 5 and EU GMP Chapter 7 alone until the correction recorded
-in <a href="#errata">errata.md</a>.</p>
+in <a href="#e-2026-09-06-01">errata.md</a>.</p>
 <table>
 <thead>
 <tr>
@@ -12850,7 +12767,7 @@ preference.</p>
 <td>GMP batch record modification</td>
 <td><strong>Tier 1</strong> (observe only)</td>
 <td>21 CFR 211.68(b); EU GMP Annex 11 §15; Part 11</td>
-<td>Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. The cap rests on 21 CFR 211.68(b) -- changes to master production and control records &quot;instituted only by authorized personnel&quot; -- and on Annex 11 §15 (<em>Batch release</em>), under which the system &quot;should allow only Qualified Persons to certify the release of the batches&quot; using an electronic signature; this row cited Annex 11 §9 until the correction recorded in <a href="#errata">errata.md</a>, and §9 (<em>Audit Trails</em>) records that a change occurred and restricts nobody.</td>
+<td>Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. The cap rests on 21 CFR 211.68(b) -- changes to master production and control records &quot;instituted only by authorized personnel&quot; -- and on Annex 11 §15 (<em>Batch release</em>), under which the system &quot;should allow only Qualified Persons to certify the release of the batches&quot; using an electronic signature; this row cited Annex 11 §9 until the correction recorded in <a href="#e-2026-09-06-01">errata.md</a>, and §9 (<em>Audit Trails</em>) records that a change occurred and restricts nobody.</td>
 </tr>
 <tr>
 <td>GMP manufacturing instructions</td>
@@ -12912,7 +12829,7 @@ medical-device production and quality-management-system software under
 and &quot;critical thinking over scripted compliance&quot; as CSA principles;
 neither phrase occurs in the guidance at primary. Those quotations were
 withdrawn 2026-09-05; the caveat above governs what survives them. See
-<a href="#errata">errata.md</a>.)</em></li>
+<a href="#e-2026-09-05-16">errata.md</a>.)</em></li>
 </ul>
 <h3 id="quantitative-structure-activity-relationship-qsar-and-pharmacokinetic-models">Quantitative Structure-Activity Relationship (QSAR) and Pharmacokinetic Models</h3><p>QSAR models and PK/PD algorithms used in drug development can benefit from:</p>
 <ul>
@@ -13067,7 +12984,7 @@ discussions, not to imply that answers exist.</p>
 </tr>
 <tr>
 <td>7</td>
-<td>Can agent-generated evidence bundles serve as supplier documentation under FDA CSA guidance? (This question formerly quoted a &quot;leverage supplier testing&quot; CSA principle; the phrase does not occur in the guidance at primary -- see <a href="#errata">errata.md</a>.)</td>
+<td>Can agent-generated evidence bundles serve as supplier documentation under FDA CSA guidance? (This question formerly quoted a &quot;leverage supplier testing&quot; CSA principle; the phrase does not occur in the guidance at primary -- see <a href="#e-2026-09-05-11">errata.md</a>.)</td>
 <td>FDA CSA</td>
 <td>P1, P8</td>
 </tr>
@@ -13117,7 +13034,7 @@ track FDA, EMA, MHRA, and PIC/S publications for emerging positions.</p>
 <tr>
 <td>P2 Specifications</td>
 <td>Cat 4 configuration</td>
-<td>Assurance effort follows intended use and risk (this document&#39;s paraphrase; not the guidance&#39;s wording -- see <a href="#errata">errata.md</a>)</td>
+<td>Assurance effort follows intended use and risk (this document&#39;s paraphrase; not the guidance&#39;s wording -- see <a href="#e-2026-09-05-17">errata.md</a>)</td>
 <td>--</td>
 <td>Protocol / specification management</td>
 <td>Q12 established conditions</td>
@@ -14054,7 +13971,7 @@ change-management obligation the linked guidance maps to ASDLC Layer 3 is
 Article 9(4)(e), which requires financial entities to implement documented
 policies, procedures and controls for ICT change management. Read at primary
 against the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
-(sha256 prefix <code>25328c7e39c4</code>). See <a href="#errata">errata.md</a>.)</em></p>
+(sha256 prefix <code>25328c7e39c4</code>). See <a href="#e-2026-09-05-14">errata.md</a>.)</em></p>
 <p>For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see <a href="https://github.com/arnaudgelas/aplc/blob/main/domains/financial-services.md">APLC Financial Services Domain Guidance</a>.</p>
 </div></section><section id="domains-insurance" class="doc-section" data-group="domains"><div class="section-inner"><p><em>Mapping the <a href="manifesto.html">Agentic Engineering Manifesto</a> principles to
 insurance regulatory frameworks.</em></p>

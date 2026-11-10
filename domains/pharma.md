@@ -112,7 +112,7 @@ All seven entries were checked against the hashed 2022 draft and the
 sixth entry carried, verbatim and unquoted, the wording of a row in the
 "CSA Principle" table withdrawn from this section the same day; it is
 withdrawn here too, and the withdrawn string is recorded in
-[errata.md](../errata.md) rather than repeated here.)*
+[errata.md](../errata.md#e-2026-09-05-17) rather than repeated here.)*
 
 **Strategic context.** The manifesto is an engineering framework that
 operationalizes CSA's philosophy. CSA sets out a risk-based approach to
@@ -132,7 +132,7 @@ by construction.
 Principle" phrases formerly appeared here. None of the five quotations
 occurs in the FDA CSA guidance -- the 2022 draft or the live 2026 final,
 checked at primary -- and they were withdrawn rather than replaced. See
-[errata.md](../errata.md).)*
+[errata.md](../errata.md#e-2026-09-05-11).)*
 
 This alignment is structural, not retrofitted. The manifesto's evidence model
 produces CSA-compatible artifacts as a byproduct of its engineering discipline.
@@ -150,7 +150,7 @@ compliance workstream.
 | Electronic signatures | Part 11 s 11.50-11.100; Annex 11 s 14 | P12 accountability -- humans own outcomes, approvals, risk acceptance | Partial | Agent-produced records entering GxP systems may require legally valid electronic signatures; manifesto does not address signature binding |
 | System access controls | Part 11 s 11.10(d); Annex 11 s 12 | P5 autonomy tiers with granular permissions (read/write, deploy scope, data access) | Good fit | -- |
 | Closed vs. open system | Part 11 s 11.30 | P3 architecture as defense-in-depth; deterministic wrappers around probabilistic AI | Partial | No classification guidance for whether agent systems with external API calls constitute open systems |
-| Data backup and recovery | Annex 11 s 7.2 | P6 memory governance -- rollback, provenance, expiration | Partial | Memory governance covers learned memory; GxP backup requirements extend to all system data and configuration. Annex 11 s 7.2 is the backup provision -- regular back-ups, with integrity, accuracy and "the ability to restore the data" checked during validation and monitored periodically; s 7.1 (*Data Storage*) covers securing and checking stored data and does not require restore testing, and this row cited it until the correction recorded in [errata.md](../errata.md). |
+| Data backup and recovery | Annex 11 s 7.2 | P6 memory governance -- rollback, provenance, expiration | Partial | Memory governance covers learned memory; GxP backup requirements extend to all system data and configuration. Annex 11 s 7.2 is the backup provision -- regular back-ups, with integrity, accuracy and "the ability to restore the data" checked during validation and monitored periodically; s 7.1 (*Data Storage*) covers securing and checking stored data and does not require restore testing, and this row cited it until the correction recorded in [errata.md](../errata.md#e-2026-09-06-01). |
 | Validation | Part 11 s 11.10(a); Annex 11 s 4 | P8 evaluations as contract; evidence bundles per P1 | Partial | No explicit IQ/OQ/PQ mapping (see section 7 below) |
 | Operational checks | Part 11 s 11.10(f) | P10 containment engineering -- circuit breakers, rate limits, safe fallbacks | Good fit | -- |
 | Authority checks | Part 11 s 11.10(g) | P5 tier enforcement -- actions gated by tier and permission scope | Good fit | -- |
@@ -235,7 +235,7 @@ additional consideration.
 
 | Data Integrity Concern | Regulatory Basis | Agent-Specific Consideration |
 |------------------------|-----------------|------------------------------|
-| Agent-generated data as "original" data | 21 CFR 211.68(b); PIC/S PI 041-1; WHO TRS 1033 Annex 4 | When an agent generates a calculation, trend, or summary entering a batch record or clinical database, the source record must be defined. The agent's input data and logic trace constitute the source. *Original* is an ALCOA attribute and its basis is PIC/S PI 041-1 and WHO TRS 1033 Annex 4, cited on the metadata row below; this row cited EU GMP Annex 11 s 8 until the correction recorded in [errata.md](../errata.md), and s 8 (*Printouts*) defines no source or original record -- s 8.2 requires only that printouts supporting batch release show whether data changed since the original entry. |
+| Agent-generated data as "original" data | 21 CFR 211.68(b); PIC/S PI 041-1; WHO TRS 1033 Annex 4 | When an agent generates a calculation, trend, or summary entering a batch record or clinical database, the source record must be defined. The agent's input data and logic trace constitute the source. *Original* is an ALCOA attribute and its basis is PIC/S PI 041-1 and WHO TRS 1033 Annex 4, cited on the metadata row below; this row cited EU GMP Annex 11 s 8 until the correction recorded in [errata.md](../errata.md#e-2026-09-06-01), and s 8 (*Printouts*) defines no source or original record -- s 8.2 requires only that printouts supporting batch release show whether data changed since the original entry. |
 | Agent-modified data | Annex 11 s 9 and s 12.4; Part 11 s 11.10(e) | Audit trail must capture: original value, new value, reason for change, who authorized the change, timestamp. Annex 11 s 9 (*Audit Trails*) supplies the record of GMP-relevant changes and deletions with a documented reason; the identity, date and time elements come from s 12.4, which requires management systems for data and documents to "record the identity of operators entering, changing, confirming or deleting data including date and time". The manifesto's P9 traces cover agent actions; the authorization chain (P12) must link to a named human. |
 | Metadata preservation | WHO Data Integrity Guidance; PIC/S PI 041 | Agents processing GxP data must preserve timestamps, user IDs, system IDs, and audit metadata. Transformation or reprocessing must not corrupt metadata. |
 | Data access classification | P5 autonomy tiers | Which GxP data can agents access? Define per data classification: read-only for raw data (GLP), read-only for batch records (GMP), read-write for draft documents only, no access to restricted patient-level data without additional controls. |
@@ -265,7 +265,7 @@ documentation supplied with commercial off-the-shelf products is reviewed by
 the regulated user against its requirements (s 3.3); and supplier quality and
 audit information is made available to inspectors on request (s 3.4). This
 section cited GAMP 5 and EU GMP Chapter 7 alone until the correction recorded
-in [errata.md](../errata.md).
+in [errata.md](../errata.md#e-2026-09-06-01).
 
 | Supplier Qualification Aspect | Agent-Specific Consideration |
 |-------------------------------|------------------------------|
@@ -347,7 +347,7 @@ preference.
 
 | Use Case | Maximum Tier | Regulatory Basis | Key Constraint |
 | --- | --- | --- | --- |
-| GMP batch record modification | **Tier 1** (observe only) | 21 CFR 211.68(b); EU GMP Annex 11 §15; Part 11 | Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. The cap rests on 21 CFR 211.68(b) -- changes to master production and control records "instituted only by authorized personnel" -- and on Annex 11 §15 (*Batch release*), under which the system "should allow only Qualified Persons to certify the release of the batches" using an electronic signature; this row cited Annex 11 §9 until the correction recorded in [errata.md](../errata.md), and §9 (*Audit Trails*) records that a change occurred and restricts nobody. |
+| GMP batch record modification | **Tier 1** (observe only) | 21 CFR 211.68(b); EU GMP Annex 11 §15; Part 11 | Batch records are legal quality documents. Agents may analyze; humans execute all modifications with Part 11 electronic signatures. The cap rests on 21 CFR 211.68(b) -- changes to master production and control records "instituted only by authorized personnel" -- and on Annex 11 §15 (*Batch release*), under which the system "should allow only Qualified Persons to certify the release of the batches" using an electronic signature; this row cited Annex 11 §9 until the correction recorded in [errata.md](../errata.md#e-2026-09-06-01), and §9 (*Audit Trails*) records that a change occurred and restricts nobody. |
 | GMP manufacturing instructions | **Tier 1** (observe only) | EU GMP Chapter 4; 21 CFR 211 | Agent may draft; qualified person reviews and approves before issuance to production. |
 | GLP raw data | **Tier 1** (observe only) | 21 CFR Part 58; OECD GLP Principles | Raw data integrity is absolute. Agents may read; agents must never modify raw data. |
 | GCP patient-facing decisions / causality | **Tier 1** (observe only) | ICH E6(R3); 21 CFR 50/56 | Causality assessment and any patient safety decision requires qualified human judgment. |
@@ -384,7 +384,7 @@ control can benefit from formal verification of the control logic:
   and "critical thinking over scripted compliance" as CSA principles;
   neither phrase occurs in the guidance at primary. Those quotations were
   withdrawn 2026-09-05; the caveat above governs what survives them. See
-  [errata.md](../errata.md).)*
+  [errata.md](../errata.md#e-2026-09-05-16).)*
 
 ### Quantitative Structure-Activity Relationship (QSAR) and Pharmacokinetic Models
 
@@ -468,7 +468,7 @@ discussions, not to imply that answers exist.
 | 4 | Is a model version change equivalent to a software version change for change control purposes? | EU GMP Annex 11 s 10; ICH Q10 | P2 |
 | 5 | Does prompt modification constitute a configuration change requiring formal change control? | GAMP 5 Cat 4; Annex 11 s 10 | P2, P7 |
 | 6 | At what point does memory accumulation constitute a change to a validated system? | GAMP 5; Annex 11 s 10 | P6 |
-| 7 | Can agent-generated evidence bundles serve as supplier documentation under FDA CSA guidance? (This question formerly quoted a "leverage supplier testing" CSA principle; the phrase does not occur in the guidance at primary -- see [errata.md](../errata.md).) | FDA CSA | P1, P8 |
+| 7 | Can agent-generated evidence bundles serve as supplier documentation under FDA CSA guidance? (This question formerly quoted a "leverage supplier testing" CSA principle; the phrase does not occur in the guidance at primary -- see [errata.md](../errata.md#e-2026-09-05-11).) | FDA CSA | P1, P8 |
 | 8 | What constitutes an adequate quality agreement with an LLM provider for GxP use? | EU GMP Chapter 7; ICH Q10 | P11 |
 | 9 | How should agent systems be classified as open or closed systems under Part 11? | 21 CFR Part 11 s 11.30 | P3 |
 | 10 | Does continuous observability (P9) satisfy or supplement periodic review obligations? | EU GMP Annex 11 s 11 | P9 |
@@ -485,7 +485,7 @@ track FDA, EMA, MHRA, and PIC/S publications for emerging positions.
 | Principle | GAMP 5 | CSA | Part 11 / Annex 11 | GxP (GMP/GLP/GCP) | ICH Q8-Q12 / E6(R3) |
 |-----------|--------|-----|---------------------|--------------------|----------------------|
 | P1 Outcomes | Cat 5 validation evidence | Risk-based documentation | Record retention | Evidence across all GxP | Q10 continual improvement |
-| P2 Specifications | Cat 4 configuration | Assurance effort follows intended use and risk (this document's paraphrase; not the guidance's wording -- see [errata.md](../errata.md)) | -- | Protocol / specification management | Q12 established conditions |
+| P2 Specifications | Cat 4 configuration | Assurance effort follows intended use and risk (this document's paraphrase; not the guidance's wording -- see [errata.md](../errata.md#e-2026-09-05-17)) | -- | Protocol / specification management | Q12 established conditions |
 | P3 Architecture | Category boundary enforcement | -- | Closed/open system classification | System boundary definition | -- |
 | P5 Autonomy | Risk-based validation depth | Assurance commensurate with risk | Access controls; authority checks | Tier caps per GxP context | Q8 Design Space; Q9 risk management |
 | P6 Memory | -- | -- | Data backup and recovery | Raw data integrity | Q10 knowledge management |

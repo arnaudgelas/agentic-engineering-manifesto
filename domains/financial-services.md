@@ -511,6 +511,6 @@ change-management obligation the linked guidance maps to ASDLC Layer 3 is
 Article 9(4)(e), which requires financial entities to implement documented
 policies, procedures and controls for ICT change management. Read at primary
 against the EUR-Lex text snapshot of Regulation (EU) 2022/2554 (DORA)
-(sha256 prefix `25328c7e39c4`). See [errata.md](../errata.md).)*
+(sha256 prefix `25328c7e39c4`). See [errata.md](../errata.md#e-2026-09-05-14).)*
 
 For agent product regulatory guidance (EU AI Act high-risk conformity, GDPR Article 22, SR 11-7 model governance) applicable to financial services agent products governed by the APLC, see [APLC Financial Services Domain Guidance](https://github.com/arnaudgelas/aplc/blob/main/domains/financial-services.md).
