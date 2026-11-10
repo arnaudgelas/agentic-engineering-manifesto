@@ -115,8 +115,8 @@ withdrawn here too, and the withdrawn string is recorded in
 [errata.md](../errata.md) rather than repeated here.)*
 
 **Strategic context.** The manifesto is an engineering framework that
-operationalizes CSA's philosophy. CSA calls for risk-based,
-critical-thinking-driven assurance but does not prescribe the engineering
+operationalizes CSA's philosophy. CSA sets out a risk-based approach to
+assurance but does not prescribe the engineering
 discipline to implement it. The manifesto provides that discipline:
 specifications as living artifacts (P2), evaluations as contracts (P8),
 structured traces for auditability (P9), and tiered autonomy calibrated to

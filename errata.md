@@ -3,6 +3,32 @@
 Dated corrections to previously published content in this repository. Each entry
 records what was wrong, what was done about it, and when.
 
+## 2026-11-09
+
+- **`domains/pharma.md` §2: a gloss the section had already disowned was still
+  credited to the FDA CSA guidance two paragraphs later — the attribution is
+  corrected, the argument is not.** The section's opening paragraph (`:83-96`)
+  states that *critical-thinking-driven* is this document's own gloss and not
+  the instrument's language. The *Strategic context* paragraph (`:117-124`)
+  then said that CSA itself calls for *critical-thinking-driven* assurance,
+  which is the same gloss presented as the guidance's position. Re-checked this
+  pass against the hashed 2022 draft (sha256 prefix `e9589bd28abb`) and the
+  3 February 2026 final (sha256 prefix `28ccf98981ac`), whitespace- and
+  hyphen-insensitive: *critical thinking* occurs zero times in either, and
+  *risk-based* occurs 31 and 69 times. The sentence at `:118-119` now says that
+  CSA sets out a risk-based approach to assurance, the same characterisation
+  the section's opening already uses. One phrase was removed and nothing was
+  added; the line count is unchanged.
+  · **Not done, and left for the section's author:** the *Strategic context*
+  paragraph and the paragraphs at `:126-141` still present the manifesto as a
+  CSA implementation framework for pharma organisations whose output satisfies
+  CSA expectations. The guidance's own Scope section limits it to medical
+  devices, as the 2026-09-05 scope-defect entry below records. That is an
+  argument, not an attribution, and rewriting it is beyond a correction.
+  · Found by reading §2 end to end during an errata review, not by any
+  checker. No tool flags a gloss applied to an instrument without quotation
+  marks.
+
 ## 2026-09-06
 
 - **`D-62` closed in `domains/pharma.md`: four EU GMP Annex 11 citations moved to

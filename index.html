@@ -304,6 +304,31 @@ for contributors. See <a href="LICENSE">LICENSE</a> for terms. See <a href="#err
 for a dated record of corrections made to previously published content.</p>
 </div></section><section id="errata" class="doc-section" data-group="overview"><div class="section-inner"><p>Dated corrections to previously published content in this repository. Each entry
 records what was wrong, what was done about it, and when.</p>
+<h2 id="2026-11-09">2026-11-09</h2><ul>
+<li><strong><code>domains/pharma.md</code> §2: a gloss the section had already disowned was still
+credited to the FDA CSA guidance two paragraphs later — the attribution is
+corrected, the argument is not.</strong> The section&#39;s opening paragraph (<code>:83-96</code>)
+states that <em>critical-thinking-driven</em> is this document&#39;s own gloss and not
+the instrument&#39;s language. The <em>Strategic context</em> paragraph (<code>:117-124</code>)
+then said that CSA itself calls for <em>critical-thinking-driven</em> assurance,
+which is the same gloss presented as the guidance&#39;s position. Re-checked this
+pass against the hashed 2022 draft (sha256 prefix <code>e9589bd28abb</code>) and the
+3 February 2026 final (sha256 prefix <code>28ccf98981ac</code>), whitespace- and
+hyphen-insensitive: <em>critical thinking</em> occurs zero times in either, and
+<em>risk-based</em> occurs 31 and 69 times. The sentence at <code>:118-119</code> now says that
+CSA sets out a risk-based approach to assurance, the same characterisation
+the section&#39;s opening already uses. One phrase was removed and nothing was
+added; the line count is unchanged.
+· <strong>Not done, and left for the section&#39;s author:</strong> the <em>Strategic context</em>
+paragraph and the paragraphs at <code>:126-141</code> still present the manifesto as a
+CSA implementation framework for pharma organisations whose output satisfies
+CSA expectations. The guidance&#39;s own Scope section limits it to medical
+devices, as the 2026-09-05 scope-defect entry below records. That is an
+argument, not an attribution, and rewriting it is beyond a correction.
+· Found by reading §2 end to end during an errata review, not by any
+checker. No tool flags a gloss applied to an instrument without quotation
+marks.</li>
+</ul>
 <h2 id="2026-09-06">2026-09-06</h2><ul>
 <li><p><strong><code>D-62</code> closed in <code>domains/pharma.md</code>: four EU GMP Annex 11 citations moved to
 the paragraph that carries the obligation each row claims.</strong> All four were live
@@ -367,7 +392,7 @@ holding the old text can see what moved (<code>F2</code>).</li>
 </ul>
 </li>
 <li><p><strong>The register&#39;s <code>aplc</code> extension of <code>D-62</code> was verified rather than assumed,
-and it is complete.</strong> <code>agent/agent-annex-iv-mapping.md:28</code> cited <strong>Art. 48</strong>
+and it is complete.</strong> <code>aplc/agent/agent-annex-iv-mapping.md:28</code> cited <strong>Art. 48</strong>
 (CE marking) for the EU declaration of conformity; the working tree there now
 cites <strong>Art. 47</strong>, with 47(2)/Annex V for the content and 47(1) for the
 provider&#39;s 10-year duty. Checked at the hashed AI Act primary
@@ -509,7 +534,7 @@ reproduced deliberately. Counts: <code>Art. 6(1)</code> 6 · <code>Article 6(1)<
 read. <strong>Beyond the two corrected here, no further site states or applies the
 Art. 6(1) test on one limb</strong>: <code>domains/medical-devices.md:252-263</code> and
 <code>integration/igm-aplc-integration-test.md:11</code> each quote both limbs verbatim;
-<code>igm-aplc-integration-test.md:65</code>, <code>:83</code> and <code>:343</code> are cross-references to
+<code>integration/igm-aplc-integration-test.md:65</code>, <code>:83</code> and <code>:343</code> are cross-references to
 the correct statement in the same file&#39;s §1; <code>domains/medical-devices.md:247</code>
 is the <strong>MDR&#39;s own</strong> Annex I (general safety and performance requirements), a
 homonym, not the AI Act&#39;s. <strong>Further sites of the same pattern: 0.</strong>
@@ -1793,7 +1818,7 @@ truly-new flags. The counts are kept here; the needles are not.</p>
 number and named no instrument, so the attribution mechanism supplied the
 nearest one on a preceding line — <code>GDPR</code> in all five cases. <strong>Every one of
 them is an <code>EU AI Act</code> citation.</strong> A sixth site of the identical shape,
-<code>agent/agent-release-governance.md:156</code>, is in <code>aplc</code> and is recorded there.</li>
+<code>aplc/agent/agent-release-governance.md:156</code>, is in <code>aplc</code> and is recorded there.</li>
 <li><strong>The instrument is now named on the line. No citation was deleted, no number
 changed, and no other word on any of the six lines was touched:</strong> each edit is
 a pure ten-byte insertion, and each edited line is <strong>byte-identical to its
@@ -1817,7 +1842,7 @@ explanation of individual decision-making</em>, <em>Reporting of serious inciden
 and <em>Transparency obligations for providers and deployers of certain AI
 systems</em>. Every corpus line matches the second reading and none matches the
 first.</li>
-<li><strong>The <code>_swarm-changelog.md:284</code> case is settled by the primary, not by
+<li><strong>The <code>governance/_swarm-changelog.md:284</code> case is settled by the primary, not by
 inference.</strong> The <code>EU AI Act</code> post-market-monitoring article&#39;s third paragraph
 obliges the Commission to adopt an implementing act laying down a template for
 the post-market monitoring plan <strong>by 2 February 2026</strong> — which is exactly the
@@ -4525,7 +4550,7 @@ a bad incident, a corrupt retrieval shard, or a flawed evaluation — you need
 to undo the damage. Implementation: versioned memory snapshots (daily or per
 significant learning event), with the ability to revert a domain&#39;s learned
 memory to a known-good state. Test rollback before you need it. See
-<a href="#pattern-c--memory-poisoning-recovery">Pattern C (Memory Poisoning Recovery)</a>
+<a href="#pattern-c-memory-poisoning-recovery">Pattern C (Memory Poisoning Recovery)</a>
 in the Worked Patterns.</p>
 </li>
 <li><p><strong>Domain scoping</strong>: A lesson learned in the payments domain should not
@@ -5881,7 +5906,7 @@ required quality and latency targets at acceptable total cost of correctness.</p
 phase and risk tier.</p>
 <p><strong>Total cost of correctness</strong>: <code>inference + verification + governance overhead + incident remediation + opportunity cost + context-switching cost</code>. Optimize this
 composite, not any single component. See
-<a href="#principle-11--economics-extended-guidance">Principle 11 guidance</a>.</p>
+<a href="#principle-11-economics-extended-guidance">Principle 11 guidance</a>.</p>
 <p><strong>Evolution-weighted correctness (EvoScore)</strong>: a metric that measures functional
 correctness on future modifications, not just current tests. Agents whose early
 decisions facilitate subsequent evolution score higher; agents that accumulate
@@ -10207,7 +10232,7 @@ conditions on regulated-industry adoption. See
 applicable to verification-heavy lifecycles.</p>
 <p><strong>Canonical sources.</strong> Normative principle definitions (P1–P12) and autonomy
 tier definitions are in <a href="manifesto-principles.html">manifesto-principles.md</a>.
-Autonomy tier assignment criteria are in <a href="#principle-5--autonomy-extended-guidance">companion-principles.md —
+Autonomy tier assignment criteria are in <a href="#principle-5-autonomy-extended-guidance">companion-principles.md —
 P5</a>.  This
 document maps those definitions to aviation certification requirements; it does
 not redefine them.</p>
@@ -11938,8 +11963,8 @@ sixth entry carried, verbatim and unquoted, the wording of a row in the
 withdrawn here too, and the withdrawn string is recorded in
 <a href="#errata">errata.md</a> rather than repeated here.)</em></p>
 <p><strong>Strategic context.</strong> The manifesto is an engineering framework that
-operationalizes CSA&#39;s philosophy. CSA calls for risk-based,
-critical-thinking-driven assurance but does not prescribe the engineering
+operationalizes CSA&#39;s philosophy. CSA sets out a risk-based approach to
+assurance but does not prescribe the engineering
 discipline to implement it. The manifesto provides that discipline:
 specifications as living artifacts (P2), evaluations as contracts (P8),
 structured traces for auditability (P9), and tiered autonomy calibrated to
