@@ -33,7 +33,8 @@ whether it has since changed.
 | **sha256 prefix** | Identifies the exact copy of a primary that was read. The copies are kept in the review programme's working inputs, not in this repository. |
 | **Positive / negative control** | A search for text known to be present (or absent), run beside the real search to prove the search could have found what it was looking for. |
 | **Line locators** (a colon and a number after a file name) | A line number in the file *as it stood when the entry was written*. Later edits move lines, so find the passage today by its quoted text or section name. |
-| **`D-nn`, `Tn.n`, `Fn`** | Defect, task and rule identifiers from the review programme's working register, which is not published in this repository. `F2` is the rule that a caveat must sit in the same sentence as the claim it limits. |
+| **`D-nn`, `Tn.n`, `Fn`, `Gn`** | Defect, task, rule and pattern identifiers from the review programme's working register, which is not published in this repository. `F2` is the rule that a caveat must sit in the same sentence as the claim it limits. |
+| **AEM, `aplc`, `asdlc`, IGM** | The sibling repositories that share this errata format: AEM is this repository, `agentic-engineering-manifesto`; IGM is `intelligence-governance-manifesto`. |
 
 ### Writing a new entry
 
